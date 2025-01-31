@@ -1,58 +1,95 @@
 {
   "dependencies": {
-    "com.fallingsnowinteractive.gameplay": {
-      "version": "https://github.com/Falling-Snow-Interactive/fsi.gameplay.git",
+    "com.fallingsnowinteractive.attributesystem": {
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.attributesystem",
       "depth": 0,
-      "source": "git",
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.fallingsnowinteractive.currencies": {
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.currencies",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.fallingsnowinteractive.gameplay": {
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.gameplay",
+      "depth": 0,
+      "source": "local",
       "dependencies": {
         "com.unity.inputsystem": "1.9.0",
         "com.unity.cinemachine": "3.1.2"
-      },
-      "hash": "e9d854360367bfcf905f315a0ce269e1e55ab12c"
+      }
     },
     "com.fallingsnowinteractive.library": {
-      "version": "https://github.com/Falling-Snow-Interactive/fsi.library.git",
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.library",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "0d34e51f403e31a2fc4d3f409e885f33a07820cb"
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.fallingsnowinteractive.nodemap": {
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.nodemap",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.fallingsnowinteractive.gameplay": "0.1.1",
+        "com.fallingsnowinteractive.spline": "0.0.1",
+        "com.unity.inputsystem": "1.11.2"
+      }
     },
     "com.fallingsnowinteractive.prototyping": {
-      "version": "https://github.com/Falling-Snow-Interactive/fsi.prototyping.git",
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.prototyping",
       "depth": 0,
-      "source": "git",
+      "source": "local",
       "dependencies": {
         "com.unity.inputsystem": "1.9.0",
         "com.unity.cinemachine": "3.0.0"
-      },
-      "hash": "8eeece026b017dc55455d64096c160e38e538a11"
+      }
+    },
+    "com.fallingsnowinteractive.rectgrid": {
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.squaregrid",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.fallingsnowinteractive.settings": {
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.settings",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
     },
     "com.fallingsnowinteractive.spline": {
-      "version": "https://github.com/Falling-Snow-Interactive/fsi.spline.git",
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.spline",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "5c45c16120e77c429550f17e02d38ed383d6fd21"
+      "source": "local",
+      "dependencies": {}
     },
     "com.fallingsnowinteractive.statemachine": {
-      "version": "https://github.com/Falling-Snow-Interactive/Fsi.StateMachine.git",
+      "version": "file:/Users/kiradinan/Projects/_Packages/Fsi.StateMachine",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "0b0de773ed8b2d5f9f27a2414d55e81eccd9e80a"
+      "source": "local",
+      "dependencies": {}
     },
     "com.fallingsnowinteractive.trackpad": {
-      "version": "https://github.com/Falling-Snow-Interactive/fsi.trackpad.git",
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.trackpad",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "eef1eb95f0837660019754366602971430b4073e"
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {}
+    },
+    "com.unity.2d.tilemap": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.tilemap": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0"
+      }
     },
     "com.unity.addressables": {
       "version": "2.2.2",
@@ -160,7 +197,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.localization": {
-      "version": "1.5.4",
+      "version": "1.5.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
