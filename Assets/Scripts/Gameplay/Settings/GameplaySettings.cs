@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ProjectYahtzee.Gameplay.Score.Information;
+using ProjectYahtzee.Gameplay.Scores.Information;
 using UnityEditor;
 using UnityEngine;
 

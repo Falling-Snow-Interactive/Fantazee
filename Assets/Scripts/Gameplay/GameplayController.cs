@@ -1,6 +1,11 @@
+using System.Collections.Generic;
+using DG.Tweening;
 using Fsi.Gameplay;
-using ProjectYahtzee.Gameplay.Score.Ui;
-using ProjectYahtzee.Gameplay.Ui.Dice.DiceControl;
+using ProjectYahtzee.Gameplay.Scores;
+using ProjectYahtzee.Gameplay.Scores.Ui;
+using ProjectYahtzee.Gameplay.Ui;
+using ProjectYahtzee.Gameplay.Ui.Dices;
+using ProjectYahtzee.Gameplay.Ui.Dices.DiceControl;
 using UnityEngine;
 
 namespace ProjectYahtzee.Gameplay
@@ -28,23 +33,80 @@ namespace ProjectYahtzee.Gameplay
         [Header("Dice")]
 
         [SerializeField]
-        private DiceControlUi diceControl;
-        
+        private List<Dices.Dice> dice = new();
+
+        [Header("Roll")]
+
         [SerializeField]
-        private ScoreboardUi scoreboard;
+        private int rolls = 3;
+
+        [SerializeField]
+        private int remainingRolls = 3;
+
+        [Header("Score")]
+
+        [SerializeField]
+        private Score score;
+        public Score Score => score;
 
         private void Start()
         {
-            diceControl.DrawDice(5);
-            diceControl.TryRoll();
+            score.Initialize();
+            
+            for (int i = 0; i < this.dice.Count; i++)
+            {
+                Dices.Dice dice = this.dice[i];
+                if (GameplayUi.Instance.DiceControl.Dice.Count > i)
+                {
+                    DiceUi diceUi = GameplayUi.Instance.DiceControl.Dice[i];
+                    diceUi.Initialize(dice);
+                }
+            }
+            
+            StartTurn();
+        }
+        
+        private void StartTurn()
+        {
+            remainingRolls = rolls;
+            foreach (Dices.Dice d in this.dice)
+            {
+                d.Locked = false;
+            }
+            TryRoll();
         }
 
         public void SelectScoreEntry(ScoreEntry entry)
         {
-            scoreboard.SetScore(entry.Type, diceControl.CurrentDice);
-            diceControl.ClearDice();
-            diceControl.DrawDice(5);
-            diceControl.TryRoll();
+            if (score.CanScore(entry.Type))
+            {
+                score.AddScore(entry.Type, dice);
+                GameplayUi.Instance.Scoreboard.PlayScoreSequence(entry, 
+                                                                 GameplayUi.Instance.DiceControl.Dice, 
+                                                                 () =>
+                                                                 {
+                                                                     GameplayUi.Instance.Scoreboard
+                                                                               .SetScore(entry.Type, dice);
+                                                                     StartTurn();
+                                                                 });
+            }
+        }
+
+        public void TryRoll()
+        {
+            if (remainingRolls > 0)
+            {
+                remainingRolls--;
+                foreach (Dices.Dice d in dice)
+                {
+                    if (!d.Locked)
+                    {
+                        d.Roll();
+                    }
+                }
+                
+                GameplayUi.Instance.DiceControl.Roll();
+            }
         }
     }
 }

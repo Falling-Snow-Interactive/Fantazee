@@ -1,34 +1,18 @@
-using System;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using ProjectYahtzee.Dice.Information;
 using ProjectYahtzee.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace ProjectYahtzee.Gameplay.Ui.Dice
+namespace ProjectYahtzee.Gameplay.Ui.Dices
 {
     public class DiceUi : MonoBehaviour
     {
-        [Range(1,6)]
-        [SerializeField]
-        private int value;
-
-        public int Value
-        {
-            get => value;
-            set
-            {
-                this.value = value;
-                if (DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
-                {
-                    if (image)
-                    {
-                        image.sprite = info.Sprite;
-                    }
-                }
-            }
-        }
+        private Gameplay.Dices.Dice dice;
+        public Gameplay.Dices.Dice Dice => dice;
         
         [Header("Rolling")]
         
@@ -58,11 +42,6 @@ namespace ProjectYahtzee.Gameplay.Ui.Dice
         [Header("Lock")]
 
         [SerializeField]
-        private bool locked;
-
-        public bool Locked => locked;
-
-        [SerializeField]
         private float lockOffset = -1;
 
         [SerializeField]
@@ -75,23 +54,26 @@ namespace ProjectYahtzee.Gameplay.Ui.Dice
         
         [SerializeField]
         private Image image;
-        
-        //Gameplay
-        private Vector2 rootPosition;
-
-        private void OnValidate()
-        {
-            Value = value;
-        }
+        public Image Image => image;
 
         private void Awake()
         {
-            rootPosition = transform.position;
+            
         }
         
         private void Start()
         {
             timer = 1 / fps;
+        }
+
+        public void ResetDice()
+        {
+            image.transform.localPosition = Vector3.zero;
+            image.transform.localScale = Vector3.one;
+            if (dice != null)
+            {
+                SetImage(dice.Value);
+            }
         }
         
         private void FixedUpdate()
@@ -102,30 +84,52 @@ namespace ProjectYahtzee.Gameplay.Ui.Dice
                 if (timer <= 0)
                 {
                     timer = 1 / fps;
-                    Value = Random.Range(1, 6);
+                    int v = Random.Range(1, 6);
+                    SetImage(v);
                 }
             }
         }
 
+        public void Initialize(Gameplay.Dices.Dice d)
+        {
+            ResetDice();
+            rolling = false;
+            dice = d;
+            SetImage(dice.Value);
+        }
+
         public void Roll(float delay = 0)
         {
+            ResetDice();
+            
             rolling = true;
             Sequence sequence = DOTween.Sequence();
             
-            sequence.Append(transform.DOMoveY(rootPosition.y + rollHeight, throwTime).SetEase(throwEase));
-            sequence.Append(transform.DOMoveY(rootPosition.y, fallTime).SetEase(fallEase));
+            sequence.Append(image.transform.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase));
+            sequence.Append(image.transform.DOLocalMoveY(0, fallTime).SetEase(fallEase));
 
-            sequence.OnComplete(() => rolling = false);
+            sequence.OnComplete(() =>
+                                {
+                                    rolling = false;
+                                    SetImage(dice.Value);
+                                });
             sequence.SetDelay(delay);
             sequence.Play();
         }
 
+        private void SetImage(int value)
+        {
+            if (DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
+            {
+                image.sprite = info.Sprite;
+            }
+        }
+
         public void ToggleLock()
         {
-            locked = !locked;
-
-            float pos = locked ? rootPosition.y + lockOffset : rootPosition.y;
-            transform.DOMoveY(pos, lockTime).SetEase(lockEase);
+            dice.ToggleLock();
+            float offset = dice.Locked ? lockOffset : 0;
+            image.transform.DOLocalMoveY(offset, lockTime).SetEase(lockEase);
         }
     }
 }

@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using ProjectYahtzee.Dice.Information;
 using ProjectYahtzee.Dice.Settings;
 using ProjectYahtzee.Gameplay.Settings;
-using ProjectYahtzee.Gameplay.Ui.Dice;
+using ProjectYahtzee.Gameplay.Ui.Dices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace ProjectYahtzee.Gameplay.Score.Ui
+namespace ProjectYahtzee.Gameplay.Scores.Ui
 {
     public class ScoreEntry : MonoBehaviour
     {
@@ -26,6 +27,7 @@ namespace ProjectYahtzee.Gameplay.Score.Ui
 
         [SerializeField]
         private List<Image> diceImages = new();
+        public List<Image> DiceImages => diceImages;
 
         private void Start()
         {
@@ -98,17 +100,32 @@ namespace ProjectYahtzee.Gameplay.Score.Ui
             }
         }
 
-        public void SetDice(List<DiceUi> diceList)
+        public void SetDice(List<Dices.Dice> diceList)
         {
             for (int i = 0; i < diceImages.Count; i++)
             {
                 diceImages[i].gameObject.SetActive(diceList.Count > i);
                 if (i < diceList.Count 
-                    && DiceSettings.Settings.SideInformation.TryGetInformation(diceList[i].Value, out var information))
+                    && DiceSettings.Settings.SideInformation.TryGetInformation(diceList[i].Value, 
+                                                                               out SideInformation information))
                 {
                     diceImages[i].sprite = information.Sprite;
                 }
             }
+        }
+        
+        public void SetDice(int index, int value)
+        {
+            diceImages[index].gameObject.SetActive(true);
+            if (DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation information))
+            {
+                diceImages[index].sprite = information.Sprite;
+            }
+        }
+
+        public void SetScore(int value)
+        {
+            score.text = value.ToString();
         }
 
         public void OnClick()

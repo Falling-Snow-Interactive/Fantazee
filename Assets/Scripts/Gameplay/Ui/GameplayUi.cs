@@ -1,5 +1,6 @@
 using Fsi.Gameplay;
-using ProjectYahtzee.Gameplay.Ui.Dice.DiceControl;
+using ProjectYahtzee.Gameplay.Scores.Ui;
+using ProjectYahtzee.Gameplay.Ui.Dices.DiceControl;
 using UnityEngine;
 
 namespace ProjectYahtzee.Gameplay.Ui
@@ -9,5 +10,9 @@ namespace ProjectYahtzee.Gameplay.Ui
         [SerializeField]
         private DiceControlUi diceControl;
         public DiceControlUi DiceControl => diceControl;
+        
+        [SerializeField]
+        private ScoreboardUi scoreboard;
+        public ScoreboardUi Scoreboard => scoreboard;
     }
 }

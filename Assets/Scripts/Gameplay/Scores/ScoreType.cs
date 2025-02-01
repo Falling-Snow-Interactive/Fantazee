@@ -1,4 +1,4 @@
-namespace ProjectYahtzee.Gameplay.Score
+namespace ProjectYahtzee.Gameplay.Scores
 {
     public enum ScoreType
     {

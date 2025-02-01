@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4573306505849492514}
   - component: {fileID: 6702765721800002692}
   - component: {fileID: 5100447464248157261}
+  - component: {fileID: 5228207200867202480}
   m_Layer: 0
   m_Name: Roll_Button
   m_TagString: Untagged
@@ -83,10 +84,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ProjectYahtzee.Gameplay.Ui.DiceControl.DiceControlUi,
-          Assembly-CSharp
-        m_MethodName: TryRoll
+      - m_Target: {fileID: 5228207200867202480}
+        m_TargetAssemblyTypeName: ProjectYahtzee.Gameplay.Ui.RollButton, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -136,6 +136,18 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &5228207200867202480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548644181193361306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a6bdfce483453d9b24768abc1c5367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8517198098088055892
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +240,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.65
+  m_fontSize: 65.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

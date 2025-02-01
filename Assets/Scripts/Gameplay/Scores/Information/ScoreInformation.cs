@@ -3,7 +3,7 @@ using fsi.settings.Informations;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace ProjectYahtzee.Gameplay.Score.Information
+namespace ProjectYahtzee.Gameplay.Scores.Information
 {
     [Serializable]
     public class ScoreInformation : Information<ScoreType>
