@@ -22,7 +22,7 @@ namespace ProjectYahtzee.Gameplay.Dices
 
         public void Roll()
         {
-            value = Random.Range(1, 6);
+            value = Random.Range(0, 6) + 1;
         }
 
         public void ToggleLock()

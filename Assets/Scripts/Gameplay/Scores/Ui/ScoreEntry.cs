@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using ProjectYahtzee.Dice.Information;
 using ProjectYahtzee.Dice.Settings;
 using ProjectYahtzee.Gameplay.Settings;
-using ProjectYahtzee.Gameplay.Ui.Dices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace ProjectYahtzee.Gameplay.Scores.Ui
 {
@@ -26,11 +24,15 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
         private TMP_Text score;
 
         [SerializeField]
+        private Button button;
+
+        [SerializeField]
         private List<Image> diceImages = new();
         public List<Image> DiceImages => diceImages;
 
-        private void Start()
+        public void Initialize(ScoreType type)
         {
+            this.type = type;
             if (GameplaySettings.Settings.ScoreInformation.TryGetInformation(type, out var information))
             {
                 if (tmp)
@@ -125,6 +127,7 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
 
         public void SetScore(int value)
         {
+            button.interactable = false;
             score.text = value.ToString();
         }
 

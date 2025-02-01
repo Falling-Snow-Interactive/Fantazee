@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using DG.Tweening;
 using Fsi.Gameplay;
 using ProjectYahtzee.Gameplay.Scores;
 using ProjectYahtzee.Gameplay.Scores.Ui;
 using ProjectYahtzee.Gameplay.Ui;
 using ProjectYahtzee.Gameplay.Ui.Dices;
-using ProjectYahtzee.Gameplay.Ui.Dices.DiceControl;
 using UnityEngine;
 
 namespace ProjectYahtzee.Gameplay

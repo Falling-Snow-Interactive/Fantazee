@@ -10,9 +10,6 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
 {
     public class ScoreboardUi : MonoBehaviour
     {
-        [SerializeField]
-        private List<ScoreEntry> entries = new List<ScoreEntry>();
-        
         private readonly Dictionary<ScoreType, ScoreEntry> scoreEntries = new Dictionary<ScoreType, ScoreEntry>();
         
         [Header("Animation")]
@@ -23,10 +20,22 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
         [SerializeField]
         private Ease scoreEase = Ease.InCirc;
 
-        private void Awake()
+        [Header("Prefabs")]
+
+        [SerializeField]
+        private ScoreEntry scoreEntryPrefab;
+        
+        [Header("References")]
+        
+        [SerializeField]
+        private Transform entryContainer;
+
+        private void Start()
         {
-            foreach (ScoreEntry entry in entries)
+            foreach (ScoreType type in GameController.Instance.GameInstance.ScoreTypes)
             {
+                ScoreEntry entry = Instantiate(scoreEntryPrefab, entryContainer);
+                entry.Initialize(type);
                 scoreEntries.Add(entry.Type, entry);
             }
         }

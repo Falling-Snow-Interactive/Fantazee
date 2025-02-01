@@ -1,16 +1,24 @@
 using Fsi.Gameplay;
+using ProjectYahtzee.Instance;
 using UnityEngine;
 
-public class GameController : MbSingleton<GameController>
+namespace ProjectYahtzee
 {
-    private const string RESOURCE_PATH = "Game_CTRL";
-    
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    public static void GameLaunch()
+    public class GameController : MbSingleton<GameController>
     {
-        Debug.Log("Starting Game Controller.");
+        private const string RESOURCE_PATH = "Game_CTRL";
+    
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        public static void GameLaunch()
+        {
+            Debug.Log("Starting Game Controller.");
         
-        GameController prefab = Resources.Load<GameController>(RESOURCE_PATH);
-        Instantiate(prefab).name = "Game_CTRL";
+            GameController prefab = Resources.Load<GameController>(RESOURCE_PATH);
+            Instantiate(prefab).name = "Game_CTRL";
+        }
+
+        [SerializeField]
+        private GameInstance gameInstance;
+        public GameInstance GameInstance => gameInstance;
     }
 }
