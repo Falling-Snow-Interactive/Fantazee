@@ -174,8 +174,28 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-    - name: SmallStraight
+    - name: FullHouse
       type: 9
+      locName:
+        m_TableReference:
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
+        m_TableEntryReference:
+          m_KeyId: 285653752340480
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      locDesc:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - name: SmallStraight
+      type: 10
       locName:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
@@ -195,7 +215,7 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     - name: LargeStraight
-      type: 10
+      type: 11
       locName:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
@@ -215,7 +235,7 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     - name: Yahtzee
-      type: 11
+      type: 12
       locName:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
@@ -235,7 +255,7 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     - name: Chance
-      type: 12
+      type: 13
       locName:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376

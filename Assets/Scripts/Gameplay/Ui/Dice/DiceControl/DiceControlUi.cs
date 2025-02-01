@@ -1,11 +1,8 @@
 using System.Collections.Generic;
-using ProjectYahtzee.Dice;
-using ProjectYahtzee.Gameplay.Dice;
-using ProjectYahtzee.Gameplay.Ui.Dice;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ProjectYahtzee.Gameplay.Ui.DiceControl
+namespace ProjectYahtzee.Gameplay.Ui.Dice.DiceControl
 {
     public class DiceControlUi : MonoBehaviour
     {
@@ -15,12 +12,20 @@ namespace ProjectYahtzee.Gameplay.Ui.DiceControl
 
         [SerializeField]
         private List<DiceUi> currentDice = new();
+        public List<DiceUi> CurrentDice => currentDice;
         
         [SerializeField]
         private Transform diceContainer;
+
+        [SerializeField]
+        private int numberOfRolls = 3;
+
+        [SerializeField]
+        private int rollsRemaining = 3;
         
         public void DrawDice(int diceCount)
         {
+            rollsRemaining = numberOfRolls;
             for (int i = 0; i < diceCount; i++)
             {
                 DiceUi d = Instantiate(diceUiPrefab, diceContainer);
@@ -30,15 +35,30 @@ namespace ProjectYahtzee.Gameplay.Ui.DiceControl
 
         public void TryRoll()
         {
-            int i = 0;
-            foreach (DiceUi d in currentDice)
+            if (rollsRemaining > 0)
             {
-                if (!d.Locked)
+                int i = 0;
+                foreach (DiceUi d in currentDice)
                 {
-                    d.Roll(i * 0.2f);
-                    i++;
+                    if (!d.Locked)
+                    {
+                        d.Roll(i * 0.2f);
+                        i++;
+                    }
                 }
+
+                rollsRemaining--;
             }
+        }
+
+        public void ClearDice()
+        {
+            foreach (var d in currentDice)
+            {
+                Destroy(d.gameObject);
+            }
+
+            currentDice.Clear();
         }
     }
 }

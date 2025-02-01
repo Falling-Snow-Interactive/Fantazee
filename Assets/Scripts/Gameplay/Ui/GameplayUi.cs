@@ -1,5 +1,5 @@
 using Fsi.Gameplay;
-using ProjectYahtzee.Gameplay.Ui.DiceControl;
+using ProjectYahtzee.Gameplay.Ui.Dice.DiceControl;
 using UnityEngine;
 
 namespace ProjectYahtzee.Gameplay.Ui

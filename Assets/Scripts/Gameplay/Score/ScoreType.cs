@@ -11,9 +11,10 @@ namespace ProjectYahtzee.Gameplay.Score
         Sixes = 6,
         ThreeOfAKind = 7,
         FourOfAKind = 8,
-        SmallStraight = 9,
-        LargeStraight = 10,
-        Yahtzee = 11,
-        Chance = 12,
+        FullHouse = 9,
+        SmallStraight = 10,
+        LargeStraight = 11,
+        Yahtzee = 12,
+        Chance = 13,
     }
 }
