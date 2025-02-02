@@ -29,13 +29,21 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
         
         [SerializeField]
         private Transform entryContainer;
+        
+        [SerializeField]
+        private List<ScoreEntry> entries = new List<ScoreEntry>();
 
         private void Start()
         {
-            foreach (ScoreType type in GameController.Instance.GameInstance.ScoreTypes)
+            // foreach (var entry in entries)
+            // {
+            //     scoreEntries.Add(entry.Type, entry);
+            // }
+            for (int i = 0; i < GameController.Instance.GameInstance.ScoreCards.Count; i++)
             {
-                ScoreEntry entry = Instantiate(scoreEntryPrefab, entryContainer);
-                entry.Initialize(type);
+                ScoreCard card = GameController.Instance.GameInstance.ScoreCards[i];
+                ScoreEntry entry = entries[i];
+                entry.Initialize(card.Type);
                 scoreEntries.Add(entry.Type, entry);
             }
         }

@@ -30,6 +30,19 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
         private List<Image> diceImages = new();
         public List<Image> DiceImages => diceImages;
 
+        private void Start()
+        {
+            if (GameplaySettings.Settings.ScoreInformation.TryGetInformation(type, out var information))
+            {
+                if (tmp)
+                {
+                    tmp.text = information.LocName.GetLocalizedString();
+                }
+
+                SetDice(new List<int> {0, 0, 0, 0, 0 });
+            }
+        }
+
         public void Initialize(ScoreType type)
         {
             this.type = type;
@@ -39,53 +52,8 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
                 {
                     tmp.text = information.LocName.GetLocalizedString();
                 }
-                
-                switch (type)
-                {
-                    case ScoreType.None:
-                        break;
-                    case ScoreType.Ones:
-                        SetDice(new List<int>{1,1,1,1,1});
-                        break;
-                    case ScoreType.Twos:
-                        SetDice(new List<int>{2,2,2,2,2});
-                        break;
-                    case ScoreType.Threes:
-                        SetDice(new List<int>{3,3,3,3,3});
-                        break;
-                    case ScoreType.Fours:
-                        SetDice(new List<int>{4,4,4,4,4});
-                        break;
-                    case ScoreType.Fives:
-                        SetDice(new List<int>{5,5,5,5,5});
-                        break;
-                    case ScoreType.Sixes:
-                        SetDice(new List<int>{6,6,6,6,6});
-                        break;
-                    case ScoreType.ThreeOfAKind:
-                        SetDice(new List<int> { 4,4,4 });
-                        break;
-                    case ScoreType.FourOfAKind:
-                        SetDice(new List<int> { 5,5,5,5 });
-                        break;
-                    case ScoreType.FullHouse:
-                        SetDice(new List<int> { 5,5,5, 3,3 });
-                        break;
-                    case ScoreType.SmallStraight:
-                        SetDice(new List<int> { 1, 2, 3, 4 });
-                        break;
-                    case ScoreType.LargeStraight:
-                        SetDice(new List<int> { 2, 3, 4, 5, 6 });
-                        break;
-                    case ScoreType.Yahtzee:
-                        SetDice(new List<int> { 6,6,6,6,6 });
-                        break;
-                    case ScoreType.Chance:
-                        SetDice(new List<int> { 5,3,4,1,6 });
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+
+                SetDice(new List<int> {0, 0, 0, 0, 0 });
             }
         }
 

@@ -46,4 +46,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   gameInstance:
-    scoreTypes: 010000000700000009000000
+    scoreCards:
+    - name: Ones - 1
+      type: 1
+      level: 1
+    - name: Twos - 1
+      type: 2
+      level: 1
+    - name: Threes - 1
+      type: 3
+      level: 1
+    - name: Fours - 1
+      type: 4
+      level: 1
+    - name: Fives - 1
+      type: 5
+      level: 1
+    - name: Sixes - 1
+      type: 6
+      level: 1
+    - name: ThreeOfAKind - 1
+      type: 7
+      level: 1
+    - name: FourOfAKind - 1
+      type: 8
+      level: 1
+    - name: FullHouse - 1
+      type: 9
+      level: 1
+    - name: SmallStraight - 1
+      type: 10
+      level: 1
+    - name: LargeStraight - 1
+      type: 11
+      level: 1
+    - name: Yahtzee - 1
+      type: 12
+      level: 1
+    - name: Chance - 1
+      type: 13
+      level: 1

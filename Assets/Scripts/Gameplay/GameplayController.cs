@@ -85,7 +85,7 @@ namespace ProjectYahtzee.Gameplay
                                                                  {
                                                                      GameplayUi.Instance.Scoreboard
                                                                                .SetScore(entry.Type, dice);
-                                                                     StartTurn();
+                                                                     CheckBoard();
                                                                  });
             }
         }
@@ -105,6 +105,11 @@ namespace ProjectYahtzee.Gameplay
                 
                 GameplayUi.Instance.DiceControl.Roll();
             }
+        }
+
+        private void CheckBoard()
+        {
+            StartTurn();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ProjectYahtzee.Instance
     public class GameInstance
     {
         [SerializeField]
-        private List<ScoreType> scoreTypes = new List<ScoreType>();
-        public List<ScoreType> ScoreTypes => scoreTypes;
+        private List<ScoreCard> scoreCards = new List<ScoreCard>();
+        public List<ScoreCard> ScoreCards => scoreCards;
     }
 }
