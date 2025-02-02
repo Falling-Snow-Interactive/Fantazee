@@ -35,10 +35,6 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
 
         private void Start()
         {
-            // foreach (var entry in entries)
-            // {
-            //     scoreEntries.Add(entry.Type, entry);
-            // }
             for (int i = 0; i < GameController.Instance.GameInstance.Scores.Count; i++)
             {
                 Score card = GameController.Instance.GameInstance.Scores[i];

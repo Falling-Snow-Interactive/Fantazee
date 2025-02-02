@@ -19,6 +19,7 @@ namespace ProjectYahtzee.Instance
 
         [SerializeField]
         private Health health;
+        public Health Health => health;
 
         public void ResetScore()
         {
