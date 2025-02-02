@@ -1,7 +1,8 @@
-using System;
 using System.Collections.Generic;
+using System.Globalization;
 using ProjectYahtzee.Dice.Information;
 using ProjectYahtzee.Dice.Settings;
+using ProjectYahtzee.Gameplay.Scores.Information;
 using ProjectYahtzee.Gameplay.Settings;
 using TMPro;
 using UnityEngine;
@@ -12,16 +13,19 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
     public class ScoreEntry : MonoBehaviour
     {
         [SerializeField]
-        private ScoreType type;
-        public ScoreType Type => type;
+        private Score score;
+        public Score Score => score;
         
         [Header("References")]
         
         [SerializeField]
-        private TMP_Text tmp;
+        private TMP_Text nameText;
         
         [SerializeField]
-        private TMP_Text score;
+        private TMP_Text valueText;
+        
+        [SerializeField]
+        private TMP_Text modText;
 
         [SerializeField]
         private Button button;
@@ -29,35 +33,28 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
         [SerializeField]
         private List<Image> diceImages = new();
         public List<Image> DiceImages => diceImages;
+        
+        private ScoreInformation information;
 
-        private void Start()
+        // private void Start()
+        // {
+        //     Initialize(score);
+        // }
+
+        public void Initialize(Score score)
         {
-            if (GameplaySettings.Settings.ScoreInformation.TryGetInformation(type, out var information))
+            this.score = score;
+            
+            valueText.text = score.Value.ToString(CultureInfo.InvariantCulture);
+            modText.text = score.Mod.ToString(CultureInfo.InvariantCulture);
+            if (GameplaySettings.Settings.ScoreInformation.TryGetInformation(score.Type, out information))
             {
-                if (tmp)
-                {
-                    tmp.text = information.LocName.GetLocalizedString();
-                }
-
+                nameText.text = information.LocName.GetLocalizedString();
                 SetDice(new List<int> {0, 0, 0, 0, 0 });
             }
         }
 
-        public void Initialize(ScoreType type)
-        {
-            this.type = type;
-            if (GameplaySettings.Settings.ScoreInformation.TryGetInformation(type, out var information))
-            {
-                if (tmp)
-                {
-                    tmp.text = information.LocName.GetLocalizedString();
-                }
-
-                SetDice(new List<int> {0, 0, 0, 0, 0 });
-            }
-        }
-
-        public void SetDice(List<int> values)
+        private void SetDice(List<int> values)
         {
             for (int i = 0; i < diceImages.Count; i++)
             {
@@ -96,7 +93,7 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
         public void SetScore(int value)
         {
             button.interactable = false;
-            score.text = value.ToString();
+            nameText.text = value.ToString();
         }
 
         public void OnClick()

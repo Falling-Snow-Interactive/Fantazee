@@ -5,6 +5,7 @@ using ProjectYahtzee.Gameplay.Scores.Ui;
 using ProjectYahtzee.Gameplay.Ui;
 using ProjectYahtzee.Gameplay.Ui.Dices;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ProjectYahtzee.Gameplay
 {
@@ -41,15 +42,16 @@ namespace ProjectYahtzee.Gameplay
         [SerializeField]
         private int remainingRolls = 3;
 
+        [FormerlySerializedAs("score")]
         [Header("Score")]
 
         [SerializeField]
-        private Score score;
-        public Score Score => score;
+        private ScoreTracker scoreTracker;
+        public ScoreTracker ScoreTracker => scoreTracker;
 
         private void Start()
         {
-            score.Initialize();
+            scoreTracker.Initialize();
             
             for (int i = 0; i < this.dice.Count; i++)
             {
@@ -76,15 +78,15 @@ namespace ProjectYahtzee.Gameplay
 
         public void SelectScoreEntry(ScoreEntry entry)
         {
-            if (score.CanScore(entry.Type))
+            if (scoreTracker.CanScore(entry.Score.Type))
             {
-                score.AddScore(entry.Type, dice);
+                scoreTracker.AddScore(entry.Score, dice);
                 GameplayUi.Instance.Scoreboard.PlayScoreSequence(entry, 
                                                                  GameplayUi.Instance.DiceControl.Dice, 
                                                                  () =>
                                                                  {
                                                                      GameplayUi.Instance.Scoreboard
-                                                                               .SetScore(entry.Type, dice);
+                                                                               .SetScore(entry.Score.Type, dice);
                                                                      CheckBoard();
                                                                  });
             }

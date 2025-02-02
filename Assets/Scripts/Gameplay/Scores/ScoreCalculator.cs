@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ProjectYahtzee.Gameplay.Scores
 {
     public static class ScoreCalculator
     {
-        public static int Calculate(ScoreType type, List<Dices.Dice> dice)
+        public static int Calculate(Score score, List<Dices.Dice> dice)
         {
             Dictionary<int, int> diceByValue = new Dictionary<int, int>();
             foreach (Dices.Dice d in dice)
@@ -15,38 +16,38 @@ namespace ProjectYahtzee.Gameplay.Scores
                     diceByValue[d.Value] = diceByValue[d.Value] + 1;
                 }
             }
-            switch (type)
+            switch (score.Type)
             {
                 case ScoreType.None:
                     return 0;
                 case ScoreType.Ones:
-                    return diceByValue[1] * 1;
+                    return Mathf.RoundToInt((diceByValue[1] * 1f + score.Value) * score.Mod);
                 case ScoreType.Twos:
-                    return diceByValue[2] * 2;
+                    return Mathf.RoundToInt((diceByValue[2] * 2f + score.Value) * score.Mod);
                 case ScoreType.Threes:
-                    return diceByValue[3] * 3;
+                    return Mathf.RoundToInt((diceByValue[3] * 3f + score.Value) * score.Mod);
                 case ScoreType.Fours:
-                    return diceByValue[4] * 4;
+                    return Mathf.RoundToInt((diceByValue[4] * 4f + score.Value) * score.Mod);
                 case ScoreType.Fives:
-                    return diceByValue[5] * 5;
+                    return Mathf.RoundToInt((diceByValue[5] * 5f + score.Value) * score.Mod);
                 case ScoreType.Sixes:
                     return diceByValue[6] * 6;
                 case ScoreType.ThreeOfAKind:
-                    return CalculateThreeOfAKind(diceByValue);
+                    return Mathf.RoundToInt((CalculateThreeOfAKind(diceByValue) + score.Value) * score.Mod);
                 case ScoreType.FourOfAKind:
-                    return CalculateFourOfAKind(diceByValue);
+                    return Mathf.RoundToInt((CalculateFourOfAKind(diceByValue) + score.Value) * score.Mod);
                 case ScoreType.FullHouse:
-                    return CalculateFullHouse(diceByValue);
+                    return Mathf.RoundToInt((CalculateFullHouse(diceByValue) + score.Value) * score.Mod);
                 case ScoreType.SmallStraight:
-                    return CalculateSmallStraight(type, dice);
+                    return Mathf.RoundToInt((CalculateSmallStraight(score.Type, dice) + score.Value) * score.Mod);
                 case ScoreType.LargeStraight:
-                    return CalculateLargeStraight(dice);
+                    return Mathf.RoundToInt((CalculateLargeStraight(dice) + score.Value) * score.Mod);
                 case ScoreType.Yahtzee:
-                    return CalculateYahtzee(type, dice);
+                    return Mathf.RoundToInt((CalculateYahtzee(score.Type, dice) + score.Value) * score.Mod);
                 case ScoreType.Chance:
-                    return CalculateChance(type, dice);
+                    return Mathf.RoundToInt((CalculateChance(score.Type, dice) + score.Value) * score.Mod);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    throw new ArgumentOutOfRangeException(nameof(score.Type), score.Type, null);
             }
         }
 

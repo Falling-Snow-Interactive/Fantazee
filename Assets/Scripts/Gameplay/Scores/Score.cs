@@ -1,43 +1,56 @@
 using System;
 using System.Collections.Generic;
-using ProjectYahtzee.Gameplay.Scores;
+using ProjectYahtzee.Gameplay.Scores.Information;
+using ProjectYahtzee.Gameplay.Settings;
+using UnityEngine;
 
 namespace ProjectYahtzee.Gameplay.Scores
 {
     [Serializable]
-    public class Score
+    public class Score : ISerializationCallbackReceiver
     {
-        private Dictionary<ScoreType, int> scores = new Dictionary<ScoreType, int>();
+        [HideInInspector]
+        [SerializeField]
+        private string name;
+        
+        [SerializeField]
+        private ScoreType type;
+        public ScoreType Type => type;
 
-        public void Initialize()
-        {
-            scores.Clear();
-        }
+        [SerializeField]
+        private int level;
+        public int Level => level;
 
-        public void AddScore(ScoreType type, List<Dices.Dice> dice)
-        {
-            scores.Add(type, ScoreCalculator.Calculate(type, dice));
-        }
+        [SerializeField]
+        private float value;
+        public float Value => value;
 
-        public int GetTotal()
+        [SerializeField]
+        private float mod;
+        public float Mod => mod;
+
+        public Score(ScoreType type, int level)
         {
-            int total = 0;
-            foreach (KeyValuePair<ScoreType, int> score in scores)
+            this.type = type;
+            this.level = level;
+
+            if (GameplaySettings.Settings.ScoreInformation.TryGetInformation(type, out ScoreInformation information))
             {
-                total += score.Value;
+                value = information.BaseValue;
+                mod = information.BaseMod;
             }
-
-            return total;
         }
 
-        public bool CanScore(ScoreType type)
+        public int Calculate(List<Dices.Dice> dice)
         {
-            return !scores.ContainsKey(type);
+            return ScoreCalculator.Calculate(this, dice);
         }
 
-        public int GetScore(ScoreType type)
+        public void OnBeforeSerialize()
         {
-            return scores[type];
+            name = $"{type} - {level}";
         }
+
+        public void OnAfterDeserialize() { }
     }
 }

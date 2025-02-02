@@ -39,12 +39,12 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
             // {
             //     scoreEntries.Add(entry.Type, entry);
             // }
-            for (int i = 0; i < GameController.Instance.GameInstance.ScoreCards.Count; i++)
+            for (int i = 0; i < GameController.Instance.GameInstance.Scores.Count; i++)
             {
-                ScoreCard card = GameController.Instance.GameInstance.ScoreCards[i];
+                Score card = GameController.Instance.GameInstance.Scores[i];
                 ScoreEntry entry = entries[i];
-                entry.Initialize(card.Type);
-                scoreEntries.Add(entry.Type, entry);
+                entry.Initialize(card);
+                scoreEntries.Add(entry.Score.Type, entry);
             }
         }
 
@@ -52,7 +52,7 @@ namespace ProjectYahtzee.Gameplay.Scores.Ui
         {
             ScoreEntry entry = scoreEntries[type];
             entry.SetDice(diceList);
-            entry.SetScore(GameplayController.Instance.Score.GetScore(type));
+            entry.SetScore(GameplayController.Instance.ScoreTracker.GetScore(type));
         }
         
         public void PlayScoreSequence(ScoreEntry entry, List<DiceUi> dice, Action onComplete = null)

@@ -1,0 +1,33 @@
+using Fsi.Prototyping.Editor.Spacers;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
+
+namespace ProjectYahtzee
+{
+    [CustomEditor(typeof(GameController))]
+    public class GameControllerEditor : Editor
+    {
+        public override VisualElement CreateInspectorGUI()
+        {
+            GameController gameController = (GameController)target;
+            VisualElement root = new();
+            InspectorElement.FillDefaultInspector(root, serializedObject, this);
+            root.Add(new Spacer());
+
+            Button button = new()
+                            {
+                                text = "Reset Scores"
+                            };
+            button.clicked += () =>
+                              {
+                                  gameController.GameInstance.ResetScore();
+                                  serializedObject.ApplyModifiedProperties();
+                              };
+            
+            root.Add(button);
+            
+            return root;
+        }
+    }
+}
