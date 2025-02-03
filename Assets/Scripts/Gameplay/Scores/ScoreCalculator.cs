@@ -45,7 +45,7 @@ namespace ProjectYahtzee.Gameplay.Scores
                 case ScoreType.Yahtzee:
                     return Mathf.RoundToInt((CalculateYahtzee(score.Type, dice) + score.Value) * score.Mod);
                 case ScoreType.Chance:
-                    return Mathf.RoundToInt((CalculateChance(score.Type, dice) + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateChance(dice) + score.Value) * score.Mod);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(score.Type), score.Type, null);
             }
@@ -126,9 +126,15 @@ namespace ProjectYahtzee.Gameplay.Scores
             return CalculateCopies(5, dice);
         }
 
-        private static int CalculateChance(ScoreType type, List<Dices.Dice> dice)
+        private static int CalculateChance(List<Dices.Dice> dice)
         {
-            throw new NotImplementedException();
+            int diceTotal = 0;
+            foreach (var d in dice)
+            {
+                diceTotal += d.Value;
+            }
+
+            return diceTotal;
         }
         
         private static int CalculateValue(int value, List<Dices.Dice> dice)

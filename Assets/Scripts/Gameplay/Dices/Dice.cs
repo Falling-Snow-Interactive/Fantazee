@@ -1,4 +1,5 @@
 using System;
+using ProjectYahtzee.Gameplay.Dices.Randomizer;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,10 +20,20 @@ namespace ProjectYahtzee.Gameplay.Dices
             get => locked;
             set => locked = value;
         }
+        
+        [SerializeField]
+        private DiceRandomizer diceRandomizer;
+
+        public Dice()
+        {
+            value = 6;
+            locked = false;
+            diceRandomizer = DiceRandomizer.D6;
+        }
 
         public void Roll()
         {
-            value = Random.Range(0, 6) + 1;
+            value = diceRandomizer.Randomize();
         }
 
         public void ToggleLock()

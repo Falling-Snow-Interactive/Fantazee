@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ProjectYahtzee.Gameplay.Ui.Dices.DiceControl
@@ -20,6 +21,14 @@ namespace ProjectYahtzee.Gameplay.Ui.Dices.DiceControl
                     d.Roll(i * 0.2f);
                     i++;
                 }
+            }
+        }
+
+        public void HideDice()
+        {
+            foreach (var d in dice)
+            {
+                d.Hide();
             }
         }
     }

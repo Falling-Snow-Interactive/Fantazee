@@ -20,6 +20,12 @@ namespace ProjectYahtzee.Instance
         [SerializeField]
         private Health health;
         public Health Health => health;
+        
+        [Header("Dice")]
+        
+        [SerializeField]
+        private List<Gameplay.Dices.Dice> dice = new();
+        public List<Gameplay.Dices.Dice> Dice => dice;
 
         public void ResetScore()
         {
@@ -30,6 +36,15 @@ namespace ProjectYahtzee.Instance
                 ScoreType type = (ScoreType) i;
                 Score score = new(type, 0);
                 scores.Add(score);
+            }
+        }
+
+        public void ResetDice()
+        {
+            dice.Clear();
+            for (int i = 0; i < 5; i++)
+            {
+                dice.Add(new Gameplay.Dices.Dice());
             }
         }
     }

@@ -14,9 +14,11 @@ namespace ProjectYahtzee.Gameplay.Scores
             scores.Clear();
         }
 
-        public void AddScore(Score score, List<Dices.Dice> dice)
+        public int AddScore(Score score, List<Dices.Dice> dice)
         {
-            scores.Add(score.Type, ScoreCalculator.Calculate(score, dice));
+            int calculate = ScoreCalculator.Calculate(score, dice);
+            scores.Add(score.Type, calculate);
+            return calculate;
         }
 
         public int GetTotal()

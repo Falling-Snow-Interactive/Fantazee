@@ -55,11 +55,6 @@ namespace ProjectYahtzee.Gameplay.Ui.Dices
         [SerializeField]
         private Image image;
         public Image Image => image;
-
-        private void Awake()
-        {
-            
-        }
         
         private void Start()
         {
@@ -130,6 +125,11 @@ namespace ProjectYahtzee.Gameplay.Ui.Dices
             dice.ToggleLock();
             float offset = dice.Locked ? lockOffset : 0;
             image.transform.DOLocalMoveY(offset, lockTime).SetEase(lockEase);
+        }
+
+        public void Hide()
+        {
+            transform.DOLocalMoveY(-200, lockTime).SetEase(lockEase);
         }
     }
 }

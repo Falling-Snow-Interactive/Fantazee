@@ -1,16 +1,24 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Fsi.Gameplay;
+using ProjectYahtzee.Gameplay.Enemies;
+using ProjectYahtzee.Gameplay.Player;
 using ProjectYahtzee.Gameplay.Scores;
 using ProjectYahtzee.Gameplay.Scores.Ui;
 using ProjectYahtzee.Gameplay.Ui;
 using ProjectYahtzee.Gameplay.Ui.Dices;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
+using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace ProjectYahtzee.Gameplay
 {
     public class GameplayController : MbSingleton<GameplayController>
     {
+        public static event Action Rolled;
+        
         [Header("Camera")]
         
         [SerializeField]
@@ -29,18 +37,15 @@ namespace ProjectYahtzee.Gameplay
             }
         }
 
-        [Header("Dice")]
-
-        [SerializeField]
-        private List<Dices.Dice> dice = new();
-
         [Header("Roll")]
 
         [SerializeField]
         private int rolls = 3;
+        public int Rolls => rolls;
 
         [SerializeField]
         private int remainingRolls = 3;
+        public int RemainingRolls => remainingRolls;
 
         [FormerlySerializedAs("score")]
         [Header("Score")]
@@ -49,27 +54,69 @@ namespace ProjectYahtzee.Gameplay
         private ScoreTracker scoreTracker;
         public ScoreTracker ScoreTracker => scoreTracker;
 
+        [Header("Characters")]
+
+        [SerializeField]
+        private GameplayPlayer gameplayPlayer;
+        public GameplayPlayer Player => gameplayPlayer;
+
+        [SerializeField]
+        private List<GameplayEnemy> enemies = new();
+
+        [SerializeField]
+        private Transform enemyContainer;
+
+        [SerializeField]
+        private List<GameplayEnemy> enemyPool = new();
+
+        [SerializeField]
+        private RangeInt enemySpawns = new(3, 5);
+
+        private void OnEnable()
+        {
+            GameplayEnemy.Despawned += OnEnemyDespawned;
+        }
+
+        private void OnDisable()
+        {
+            GameplayEnemy.Despawned -= OnEnemyDespawned;
+        }
+
         private void Start()
         {
             scoreTracker.Initialize();
             
-            for (int i = 0; i < this.dice.Count; i++)
+            for (int i = 0; i < GameController.Instance.GameInstance.Dice.Count; i++)
             {
-                Dices.Dice dice = this.dice[i];
+                Dices.Dice dice = GameController.Instance.GameInstance.Dice[i];
                 if (GameplayUi.Instance.DiceControl.Dice.Count > i)
                 {
                     DiceUi diceUi = GameplayUi.Instance.DiceControl.Dice[i];
                     diceUi.Initialize(dice);
                 }
             }
+
+            int spawns = enemySpawns.Random();
+            float spawnOffset = 0;
+            for (int i = 0; i < spawns; i++)
+            {
+                var enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
+                
+                float y = i % 2 == 0 ? + 0.11f : -0.11f;
+                
+                enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
+                spawnOffset += enemy.Size;
+
+                enemies.Add(enemy);
+            }
             
-            StartTurn();
+            StartPlayerTurn();
         }
         
-        private void StartTurn()
+        private void StartPlayerTurn()
         {
             remainingRolls = rolls;
-            foreach (Dices.Dice d in this.dice)
+            foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
             {
                 d.Locked = false;
             }
@@ -80,14 +127,24 @@ namespace ProjectYahtzee.Gameplay
         {
             if (scoreTracker.CanScore(entry.Score.Type))
             {
-                scoreTracker.AddScore(entry.Score, dice);
+                int value = scoreTracker.AddScore(entry.Score, GameController.Instance.GameInstance.Dice);
                 GameplayUi.Instance.Scoreboard.PlayScoreSequence(entry, 
                                                                  GameplayUi.Instance.DiceControl.Dice, 
                                                                  () =>
                                                                  {
                                                                      GameplayUi.Instance.Scoreboard
-                                                                               .SetScore(entry.Score.Type, dice);
-                                                                     CheckBoard();
+                                                                               .SetScore(entry.Score.Type, GameController.Instance.GameInstance.Dice);
+                                                                     foreach (Dices.Dice d in GameController.Instance
+                                                                                  .GameInstance.Dice)
+                                                                     {
+                                                                         d.Locked = false;
+                                                                     }
+
+                                                                     gameplayPlayer.PerformAttack(enemies[^1], () =>
+                                                                                  {
+                                                                                      enemies[^1].Damage(value);
+                                                                                      TryRoll();
+                                                                                  });
                                                                  });
             }
         }
@@ -97,7 +154,7 @@ namespace ProjectYahtzee.Gameplay
             if (remainingRolls > 0)
             {
                 remainingRolls--;
-                foreach (Dices.Dice d in dice)
+                foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
                 {
                     if (!d.Locked)
                     {
@@ -106,12 +163,53 @@ namespace ProjectYahtzee.Gameplay
                 }
                 
                 GameplayUi.Instance.DiceControl.Roll();
+                Rolled?.Invoke();
             }
+        }
+
+        public void TryEndTurn()
+        {
+            HideDice();
+            CheckBoard();
+        }
+
+        private void HideDice()
+        {
+            GameplayUi.Instance.DiceControl.HideDice();
         }
 
         private void CheckBoard()
         {
-            StartTurn();
+            StartEnemyTurn();
         }
+        
+        #region Enemy Control
+        
+        private void OnEnemyDespawned(GameplayEnemy enemy)
+        {
+            enemies.Remove(enemy);
+        }
+
+        private void StartEnemyTurn()
+        {
+            StartCoroutine(EnemyTurnSequence());
+        }
+
+        private IEnumerator EnemyTurnSequence()
+        {
+            Queue<GameplayEnemy> enemyQueue = new(enemies);
+            while (enemyQueue.Count > 0)
+            {
+                GameplayEnemy curr = enemyQueue.Dequeue();
+                bool attacking = true;
+                curr.Attack(() => attacking = false);
+                yield return new WaitUntil(() => !attacking);
+            }
+            
+            Debug.Log("Finished enemy turns");
+            StartPlayerTurn();
+        }
+        
+        #endregion
     }
 }

@@ -14,18 +14,30 @@ namespace ProjectYahtzee
             VisualElement root = new();
             InspectorElement.FillDefaultInspector(root, serializedObject, this);
             root.Add(new Spacer());
+            
+            Button resetDiceButton = new()
+                            {
+                                text = "Reset Dice"
+                            };
+            resetDiceButton.clicked += () =>
+                              {
+                                  gameController.GameInstance.ResetDice();
+                                  serializedObject.ApplyModifiedProperties();
+                              };
+            
+            root.Add(resetDiceButton);
 
-            Button button = new()
+            Button resetScoresButton = new()
                             {
                                 text = "Reset Scores"
                             };
-            button.clicked += () =>
+            resetScoresButton.clicked += () =>
                               {
                                   gameController.GameInstance.ResetScore();
                                   serializedObject.ApplyModifiedProperties();
                               };
             
-            root.Add(button);
+            root.Add(resetScoresButton);
             
             return root;
         }
