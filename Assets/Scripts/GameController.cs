@@ -20,5 +20,12 @@ namespace ProjectYahtzee
         [SerializeField]
         private GameInstance gameInstance;
         public GameInstance GameInstance => gameInstance;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            gameInstance.Seed = (uint)Random.Range(0, int.MaxValue);
+        }
     }
 }

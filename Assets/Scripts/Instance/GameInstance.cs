@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Fsi.Gameplay.Healths;
 using ProjectYahtzee.Gameplay.Scores;
+using ProjectYahtzee.Maps;
+using ProjectYahtzee.Maps.Settings;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,6 +12,14 @@ namespace ProjectYahtzee.Instance
     [Serializable]
     public class GameInstance
     {
+        [SerializeField]
+        private uint seed = 982186532;
+        public uint Seed
+        {
+            get => seed;
+            set => seed = value;
+        }
+        
         [FormerlySerializedAs("score")]
         [SerializeField]
         private List<Score> scores = new List<Score>();
@@ -26,6 +36,11 @@ namespace ProjectYahtzee.Instance
         [SerializeField]
         private List<Gameplay.Dices.Dice> dice = new();
         public List<Gameplay.Dices.Dice> Dice => dice;
+
+        // TODO - Make serializable
+        [SerializeField]
+        private Map map;
+        public Map Map => map ??= new Map(MapSettings.Settings.MapProperties, seed);
 
         public void ResetScore()
         {
