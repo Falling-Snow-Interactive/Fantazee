@@ -1,12 +1,13 @@
-using Fsi.NodeMap;
+using System.Collections.Generic;
 using ProjectYahtzee.Maps.Nodes;
+using UnityEngine;
 
 namespace ProjectYahtzee.Maps
 {
-    public class Map : Map<NodeType, Node>
+    public class Map : MonoBehaviour
     {
-        public Map(MapProperties<NodeType> properties, uint seed) : base(properties, seed)
-        {
-        }
+        [SerializeField]
+        private List<Node> nodes = new();
+        public List<Node> Nodes => nodes;
     }
 }

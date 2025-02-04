@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fsi.Gameplay.Healths;
-using ProjectYahtzee.Gameplay.Scores;
-using ProjectYahtzee.Maps;
-using ProjectYahtzee.Maps.Settings;
+using ProjectYahtzee.Battle.Scores;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -34,13 +32,16 @@ namespace ProjectYahtzee.Instance
         [Header("Dice")]
         
         [SerializeField]
-        private List<Gameplay.Dices.Dice> dice = new();
-        public List<Gameplay.Dices.Dice> Dice => dice;
+        private List<Battle.Dices.Dice> dice;
+        public List<Battle.Dices.Dice> Dice => dice;
 
-        // TODO - Make serializable
         [SerializeField]
-        private Map map;
-        public Map Map => map ??= new Map(MapSettings.Settings.MapProperties, seed);
+        private int mapNode = 0;
+        public int MapNode
+        {
+            get => mapNode;
+            set => mapNode = value;
+        }
 
         public void ResetScore()
         {
@@ -59,7 +60,7 @@ namespace ProjectYahtzee.Instance
             dice.Clear();
             for (int i = 0; i < 5; i++)
             {
-                dice.Add(new Gameplay.Dices.Dice());
+                dice.Add(new Battle.Dices.Dice());
             }
         }
     }

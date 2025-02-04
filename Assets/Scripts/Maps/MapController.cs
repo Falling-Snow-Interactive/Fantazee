@@ -1,120 +1,82 @@
+using DG.Tweening;
 using Fsi.Gameplay;
 using ProjectYahtzee.Maps.Nodes;
-using ProjectYahtzee.Maps.Nodes.Information;
-using ProjectYahtzee.Maps.Settings;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.InputSystem;
 
-    namespace ProjectYahtzee.Maps
+namespace ProjectYahtzee.Maps
     {
         public class MapController : MbSingleton<MapController>
         {
-            [Header("Map")]
+            [SerializeField]
+            private new Camera camera;
+            
+            [SerializeField]
+            private Map map;
 
             [SerializeField]
-            private Transform nodeContainer;
+            private Transform player;
+
+            [Header("Input")]
 
             [SerializeField]
-            private Transform connectionContainer;
+            private InputActionReference cursorActionRef;
+            private InputAction cursorAction;
 
-            private Map debugMap;
+            [SerializeField]
+            private InputActionReference selectActionRef;
+            private InputAction selectAction;
+
+            protected override void Awake()
+            {
+                base.Awake();
+                
+                cursorAction = cursorActionRef.action;
+                selectAction = selectActionRef.action;
+
+                selectAction.performed += ctx => OnSelectAction();
+            }
 
             private void Start()
             {
-                float offset = (MapSettings.Settings.MapProperties.Size.x - 1) * MapSettings.Settings.NodeSpacing.x / 2f;
-                if (Camera.main != null)
-                {
-                    var vector3 = Camera.main.transform.position;
-                    vector3.x = offset;
-                    Camera.main.transform.position = vector3;
-                }
+                int index = GameController.Instance.GameInstance.MapNode;
+                Node node = map.Nodes[index];
 
-                ShowMap();
+                player.transform.position = node.transform.position;
             }
 
-            private void ShowMap()
+            private void OnSelectAction()
             {
-                PlaceNode(GameController.Instance.GameInstance.Map.Root);
-            }
+                camera ??= Camera.main;
 
-            private void PlaceNode(Node node)
-            {
-                NodeShape nodeShape = Instantiate(MapSettings.Settings.NodeShape, nodeContainer); ;
-                nodeShape.SetNode(node);
-                Vector3 pos = MapUtility.NodeToWorldPosition(node.position);
-                nodeShape.transform.position = pos;
-
-                foreach (var next in node.Next)
+                if (camera)
                 {
-                    NodeConnection connection = Instantiate(MapSettings.Settings.NodeConnection, connectionContainer);
-                    connection.SetLine(node, next);
-                    PlaceNode(next);
-                }
-            }
-
-            public void GenerateDebugMap()
-            {
-                debugMap = new Map(MapSettings.Settings.MapProperties, (uint)Random.Range(0, uint.MaxValue));
-            }
-
-            #if UNITY_EDITOR
-            private void OnDrawGizmos()
-            {
-                if (!Application.isPlaying && debugMap != null)
-                {
-                    DrawNodeGizmos(debugMap.Root);
-                }
-                else if(GameController.Instance?.GameInstance?.Map != null)
-                {
-                    DrawNodeGizmos(GameController.Instance.GameInstance.Map.Root);
-                }
-            }
-
-            private void OnDrawGizmosSelected()
-            {
-                if (!Application.isPlaying && debugMap != null)
-                {
-                    DrawNodeGizmos(debugMap.Root);
-                }
-                else if(GameController.Instance?.GameInstance?.Map != null)
-                {
-                    DrawNodeGizmos(GameController.Instance.GameInstance.Map.Root);
-                }
-            }
-
-            private void DrawNodeGizmos(Node node)
-            {
-                if (node == null)
-                {
-                    return;
-                }
-            
-                if (MapSettings.Settings.NodeInformation.TryGetInformation(node.type, out NodeInformation info))
-                {
-                    Gizmos.color = info.Color;
-                    Vector3 center = MapUtility.NodeToWorldPosition(node.position);
-                    DrawSpherePlaying(center, MapSettings.Settings.NodeRadius);
-                    foreach (Node n in node.Next)
+                    Ray ray = camera.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
+                    if (Physics.Raycast(ray, out RaycastHit hit))
                     {
-                        Vector3 nextCenter = MapUtility.NodeToWorldPosition(n.position);
-                        Gizmos.color = Color.black;
-                        Gizmos.DrawLine(center, nextCenter);
-                        DrawNodeGizmos(n);
+                        if (hit.collider.TryGetComponent(out Node node))
+                        {
+                            Node currentNode = map.Nodes[GameController.Instance.GameInstance.MapNode];
+                            if (currentNode == node)
+                            {
+                                return;
+                            }
+
+                            if (!currentNode.Connections.Contains(node))
+                            {
+                                return;
+                            }
+
+                            player.transform.DOMove(node.transform.position, 0.5f)
+                                  .OnComplete(() =>
+                                              {
+                                                  ProjectSceneManager.Instance.LoadBattle();
+                                              });
+                            int index = map.Nodes.IndexOf(node);
+                            GameController.Instance.GameInstance.MapNode = index;
+                        }
                     }
                 }
             }
-
-            private void DrawSpherePlaying(Vector3 center, float radius)
-            {
-                if (Application.isPlaying)
-                {
-                    Gizmos.DrawWireSphere(center, radius);
-                }
-                else
-                {
-                    Gizmos.DrawSphere(center, radius);
-                }
-            }
-            #endif
         }
     }

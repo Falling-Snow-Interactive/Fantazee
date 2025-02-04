@@ -1,29 +1,29 @@
-using ProjectYahtzee.Maps.Nodes;
-using ProjectYahtzee.Maps.Nodes.Information;
+using System.Collections.Generic;
+using ProjectYahtzee.Battle.Scores.Information;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProjectYahtzee.Maps.Settings
+namespace ProjectYahtzee.Battle.Settings
 {
-    public class MapSettings : ScriptableObject
+    public class GameplaySettings : ScriptableObject
     {
-        private const string RESOURCE_PATH = "Settings/MapSettings";
+        private const string RESOURCE_PATH = "Settings/GameplaySettings";
         private const string FULL_PATH = "Assets/Resources/" + RESOURCE_PATH + ".asset";
 
-        private static MapSettings _settings;
-        public static MapSettings Settings => _settings ??= GetOrCreateSettings();
+        private static GameplaySettings _settings;
+        public static GameplaySettings Settings => _settings ??= GetOrCreateSettings();
         
-        [Header("Information")]
+        [Header("Team Information")]
         
         [SerializeField]
-        private NodeInformationGroup nodeInformation;
-        public NodeInformationGroup NodeInformation => nodeInformation;
+        private ScoreInformationGroup scoreInformation;
+        public ScoreInformationGroup ScoreInformation => scoreInformation;
         
         #region Settings
         
-        public static MapSettings GetOrCreateSettings()
+        public static GameplaySettings GetOrCreateSettings()
         {
-            var settings = Resources.Load<MapSettings>(RESOURCE_PATH);
+            var settings = Resources.Load<GameplaySettings>(RESOURCE_PATH);
 
             #if UNITY_EDITOR
             if (!settings)
@@ -38,7 +38,7 @@ namespace ProjectYahtzee.Maps.Settings
                     AssetDatabase.CreateFolder("Assets/Resources", "Settings");
                 }
 
-                settings = CreateInstance<MapSettings>();
+                settings = CreateInstance<GameplaySettings>();
                 AssetDatabase.CreateAsset(settings, FULL_PATH);
                 AssetDatabase.SaveAssets();
             }

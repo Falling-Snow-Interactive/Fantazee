@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2982979097675747349}
   - component: {fileID: -3179624103548597510}
+  - component: {fileID: 307396310537484130}
   m_Layer: 0
   m_Name: Game_CTRL
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   gameInstance:
+    seed: 982186532
     scores:
     - name: Ones - 0
       type: 1
@@ -115,3 +117,24 @@ MonoBehaviour:
     health:
       current: 500
       max: 500
+    dice: []
+    mapNode: 0
+--- !u!114 &307396310537484130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022420503714906224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968bd7b8b25354f6db54a00c1e4712d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  battleScene:
+    name: Battle_SCN
+    scene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  mapScene:
+    name: Map_SCN
+    scene: {fileID: 102900000, guid: e1ce0447e6e69498c940edf40382d843, type: 3}
