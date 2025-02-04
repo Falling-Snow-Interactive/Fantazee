@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Fsi.Gameplay;
 using ProjectYahtzee.Maps.Nodes;
@@ -27,6 +28,8 @@ namespace ProjectYahtzee.Maps
             private InputActionReference selectActionRef;
             private InputAction selectAction;
 
+            private bool isMoving = false;
+
             protected override void Awake()
             {
                 base.Awake();
@@ -43,10 +46,16 @@ namespace ProjectYahtzee.Maps
                 Node node = map.Nodes[index];
 
                 player.transform.position = node.transform.position;
+                isMoving = false;
             }
 
             private void OnSelectAction()
             {
+                if (isMoving)
+                {
+                    return;
+                }
+                
                 camera ??= Camera.main;
 
                 if (camera)
@@ -68,14 +77,26 @@ namespace ProjectYahtzee.Maps
                             }
 
                             player.transform.DOMove(node.transform.position, 0.5f)
-                                  .OnComplete(() =>
-                                              {
-                                                  ProjectSceneManager.Instance.LoadBattle();
-                                              });
+                                  .OnComplete(OnFinishMoving);
                             int index = map.Nodes.IndexOf(node);
                             GameController.Instance.GameInstance.MapNode = index;
                         }
                     }
+                }
+            }
+
+            private void OnFinishMoving()
+            {
+                Node node = map.Nodes[GameController.Instance.GameInstance.MapNode];
+                switch (node.NodeType)
+                {
+                    case NodeType.None:
+                        break;
+                    case NodeType.Battle:
+                        ProjectSceneManager.Instance.LoadBattle();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
