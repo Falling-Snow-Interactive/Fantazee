@@ -39,10 +39,10 @@ namespace ProjectYahtzee.Maps
                 
                 Draw.Radius = nodeRadius;
                 Draw.Thickness = nodeOutline;
-                Draw.Color = Color.black;
+                // Draw.Color = Color.black;
                 foreach (Node node in map.Nodes)
                 {
-                    Draw.Ring(node.transform.position);
+                    Draw.Ring(node.transform.position, Color.black);
                 }
                 
                 foreach (Node node in map.Nodes)
@@ -50,8 +50,8 @@ namespace ProjectYahtzee.Maps
                     foreach (Node connection in node.Connections)
                     {
                         Draw.Thickness = lineThickness + outlineThickness;
-                        Draw.Color = Color.black;
-                        Draw.Line(node.transform.position, connection.transform.position);
+                        // Draw.Color = Color.black;
+                        Draw.Line(node.transform.position, connection.transform.position, Color.black);
                         
                         // Draw.Thickness = lineThickness;
                         // Draw.Color = Color.white;
@@ -61,14 +61,14 @@ namespace ProjectYahtzee.Maps
 
                 Draw.Radius = nodeRadius;
                 Draw.Radius = nodeRadius;
-                Draw.Color = Color.white;
+                // Draw.Color = Color.white;
                 foreach (Node node in map.Nodes)
                 {
                     if (MapSettings.Settings.NodeInformation.TryGetInformation(node.NodeType, out var info))
                     {
-                        Draw.Color = info.Color;
+                        // Draw.Color = info.Color;
+                        Draw.Disc(node.transform.position, info.Color);
                     }
-                    Draw.Disc(node.transform.position);
                 }
             }
 

@@ -12,14 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584a3ad2f17c41558221d178e484f468, type: 3}
   m_Name: MapSettings
   m_EditorClassIdentifier: 
-  mapProperties: {fileID: 11400000, guid: a9caafa3162ce4ed99db38c14c0e7bbf, type: 2}
-  nodeShape: {fileID: 4669823695536884241, guid: 6b3a19d24bff1446db465886c9e137c6, type: 3}
-  nodeConnection: {fileID: 2169581668587383287, guid: 8e528e9ce9a9649d6ae28804639cde19, type: 3}
-  nodeSpacing: {x: 1, y: 1}
-  capNodeOffset: 2
-  connectionThickness: 0.1
-  nodeRadius: 0.3
-  nodeOutlineThickness: 0.2
   nodeInformation:
     information:
     - name: None
@@ -29,4 +21,16 @@ MonoBehaviour:
     - name: Battle
       type: 1
       color: {r: 1, g: 0, b: 0, a: 1}
+      sprite: {fileID: 0}
+    - name: Blacksmith
+      type: 2
+      color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+      sprite: {fileID: 0}
+    - name: Inn
+      type: 3
+      color: {r: 0, g: 0.9638114, b: 1, a: 1}
+      sprite: {fileID: 0}
+    - name: Shop
+      type: 4
+      color: {r: 1, g: 0.9742207, b: 0, a: 1}
       sprite: {fileID: 0}

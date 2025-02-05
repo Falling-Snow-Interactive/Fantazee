@@ -29,14 +29,6 @@ namespace ProjectYahtzee.Maps.Settings.Editor
         
         public override void OnGUI(string searchContext)
         {
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("mapProperties"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("nodeShape"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("nodeConnection"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("nodeSpacing"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("capNodeOffset"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("connectionThickness"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("nodeRadius"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("nodeOutlineThickness"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("nodeInformation"));
             
             EditorGUILayout.Space(20);

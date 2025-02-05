@@ -91,9 +91,19 @@ namespace ProjectYahtzee.Maps
                 switch (node.NodeType)
                 {
                     case NodeType.None:
+                        isMoving = false;
                         break;
                     case NodeType.Battle:
                         ProjectSceneManager.Instance.LoadBattle();
+                        break;
+                    case NodeType.Blacksmith:
+                        isMoving = false;
+                        break;
+                    case NodeType.Inn:
+                        isMoving = false;
+                        break;
+                    case NodeType.Shop:
+                        isMoving = false;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
