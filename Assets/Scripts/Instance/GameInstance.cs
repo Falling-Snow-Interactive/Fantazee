@@ -32,15 +32,16 @@ namespace ProjectYahtzee.Instance
         [Header("Dice")]
         
         [SerializeField]
-        private List<Battle.Dices.Dice> dice;
+        private List<Battle.Dices.Dice> dice; // TODO - For some reason this is getting cleared when the game exits - KD
         public List<Battle.Dices.Dice> Dice => dice;
 
+        [FormerlySerializedAs("mapNode")]
         [SerializeField]
-        private int mapNode = 0;
-        public int MapNode
+        private int currentMapIndex = 0;
+        public int CurrentMapIndex
         {
-            get => mapNode;
-            set => mapNode = value;
+            get => currentMapIndex;
+            set => currentMapIndex = value;
         }
 
         public void ResetScore()

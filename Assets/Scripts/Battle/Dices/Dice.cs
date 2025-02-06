@@ -14,7 +14,6 @@ namespace ProjectYahtzee.Battle.Dices
 
         [SerializeField]
         private bool locked;
-
         public bool Locked
         {
             get => locked;

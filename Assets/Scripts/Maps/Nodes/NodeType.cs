@@ -7,5 +7,8 @@ namespace ProjectYahtzee.Maps.Nodes
         Blacksmith = 2,
         Inn = 3,
         Shop = 4,
+        Start = 5,
+        Boss = 6,
+        MiniBoss = 7,
     }
 }

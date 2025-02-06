@@ -23,7 +23,6 @@ namespace ProjectYahtzee.Battle
         
         [SerializeField]
         private new Camera camera;
-
         private Camera Camera
         {
             get
@@ -134,27 +133,33 @@ namespace ProjectYahtzee.Battle
                                                                  {
                                                                      GameplayUi.Instance.Scoreboard
                                                                                .SetScore(entry.Score.Type, GameController.Instance.GameInstance.Dice);
-                                                                     foreach (Dices.Dice d in GameController.Instance
-                                                                                  .GameInstance.Dice)
-                                                                     {
-                                                                         d.Locked = false;
-                                                                     }
 
-                                                                     gameplayPlayer.PerformAttack(enemies[^1], () =>
-                                                                                  {
-                                                                                      enemies[^1].Damage(value);
-                                                                                      foreach (var enemy in enemies)
-                                                                                      {
-                                                                                          if (enemy.Health.IsAlive)
-                                                                                          {
-                                                                                              TryRoll();
-                                                                                              return;
-                                                                                          }
-                                                                                      }
-
-                                                                                      BattleWin();
-                                                                                  });
+                                                                     OnFinishedScoring(value);
                                                                  });
+            }
+        }
+
+        private void OnFinishedScoring(int damage)
+        {
+            gameplayPlayer.PerformAttack(enemies[^1], () =>
+                                                      {
+                                                          enemies[^1].Damage(damage);
+                                                          foreach (GameplayEnemy enemy in enemies)
+                                                          {
+                                                              if (enemy.Health.IsAlive)
+                                                              {
+                                                                  TryRoll();
+                                                                  return;
+                                                              }
+                                                          }
+
+                                                          BattleWin();
+                                                      });
+            
+            foreach (Dices.Dice d in GameController.Instance
+                                                   .GameInstance.Dice)
+            {
+                d.Locked = false;
             }
         }
 

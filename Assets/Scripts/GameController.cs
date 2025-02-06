@@ -6,6 +6,8 @@ namespace ProjectYahtzee
 {
     public class GameController : MbSingleton<GameController>
     {
+        #region Launch
+        
         private const string RESOURCE_PATH = "Game_CTRL";
     
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -16,6 +18,8 @@ namespace ProjectYahtzee
             GameController prefab = Resources.Load<GameController>(RESOURCE_PATH);
             Instantiate(prefab).name = "Game_CTRL";
         }
+        
+        #endregion
 
         [SerializeField]
         private GameInstance gameInstance;
@@ -26,6 +30,9 @@ namespace ProjectYahtzee
             base.Awake();
             
             gameInstance.Seed = (uint)Random.Range(0, int.MaxValue);
+            
+            // TODO - Temporary just reseting the dice everytime beause they were getting cleared ???
+            gameInstance.ResetDice();
         }
     }
 }

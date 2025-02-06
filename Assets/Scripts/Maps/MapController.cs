@@ -42,7 +42,7 @@ namespace ProjectYahtzee.Maps
 
             private void Start()
             {
-                int index = GameController.Instance.GameInstance.MapNode;
+                int index = GameController.Instance.GameInstance.CurrentMapIndex;
                 Node node = map.Nodes[index];
 
                 player.transform.position = node.transform.position;
@@ -65,7 +65,7 @@ namespace ProjectYahtzee.Maps
                     {
                         if (hit.collider.TryGetComponent(out Node node))
                         {
-                            Node currentNode = map.Nodes[GameController.Instance.GameInstance.MapNode];
+                            Node currentNode = map.Nodes[GameController.Instance.GameInstance.CurrentMapIndex];
                             if (currentNode == node)
                             {
                                 return;
@@ -79,7 +79,7 @@ namespace ProjectYahtzee.Maps
                             player.transform.DOMove(node.transform.position, 0.5f)
                                   .OnComplete(OnFinishMoving);
                             int index = map.Nodes.IndexOf(node);
-                            GameController.Instance.GameInstance.MapNode = index;
+                            GameController.Instance.GameInstance.CurrentMapIndex = index;
                         }
                     }
                 }
@@ -87,7 +87,7 @@ namespace ProjectYahtzee.Maps
 
             private void OnFinishMoving()
             {
-                Node node = map.Nodes[GameController.Instance.GameInstance.MapNode];
+                Node node = map.Nodes[GameController.Instance.GameInstance.CurrentMapIndex];
                 switch (node.NodeType)
                 {
                     case NodeType.None:
