@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -49,6 +50,23 @@ namespace ProjectYahtzee.Battle.Ui.Dices
         
         [SerializeField]
         private Ease lockEase = Ease.OutBounce;
+        
+        [Header("Hide/Show")]
+
+        [SerializeField]
+        private float hideOffset = 3f;
+
+        [SerializeField]
+        private float hideTime = 0.5f;
+
+        [SerializeField]
+        private Ease hideEase = Ease.Linear;
+
+        [SerializeField]
+        private float showTime = 0.5f;
+        
+        [SerializeField]
+        private Ease showEase = Ease.Linear;
         
         [Header("References")]
         
@@ -127,9 +145,34 @@ namespace ProjectYahtzee.Battle.Ui.Dices
             image.transform.DOLocalMoveY(offset, lockTime).SetEase(lockEase);
         }
 
-        public void Hide()
+        public void Hide(Action onComplete, float delay = 0, bool force = false)
         {
-            transform.DOLocalMoveY(-200, lockTime).SetEase(lockEase);
+            if (force)
+            {
+                Vector3 vector3 = transform.localPosition;
+                vector3.y = hideOffset;
+                transform.localPosition = vector3;
+                return;
+            }
+
+            transform.DOLocalMoveX(hideOffset, hideTime)
+                     .SetEase(hideEase)
+                     .SetDelay(delay)
+                     .OnComplete(() => onComplete?.Invoke());
+        }
+        
+        public void Show(Action onComplete, float delay = 0, bool force = false)
+        {
+            if (force)
+            {
+                image.transform.localPosition = Vector3.zero;
+                return;
+            }
+
+            transform.DOLocalMoveY(0, showTime)
+                     .SetEase(showEase)                     
+                     .SetDelay(delay)
+                     .OnComplete(() => onComplete?.Invoke());
         }
     }
 }

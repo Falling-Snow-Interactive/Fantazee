@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -24,11 +25,12 @@ namespace ProjectYahtzee.Battle.Ui.Dices.DiceControl
             }
         }
 
-        public void HideDice()
+        public void HideDice(Action onComplete)
         {
-            foreach (var d in dice)
+            for (int i = 0; i < dice.Count; i++)
             {
-                d.Hide();
+                DiceUi d = dice[i];
+                d.Hide(onComplete, i * 0.2f, false);
             }
         }
     }

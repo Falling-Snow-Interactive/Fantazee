@@ -84,7 +84,7 @@ namespace ProjectYahtzee.Battle
         private void Start()
         {
             SetupBattle();
-            StartIntroduction();
+            StartIntroduction(OnIntroductionFinished);
         }
         
         #region Setup Battle
@@ -105,8 +105,8 @@ namespace ProjectYahtzee.Battle
                 {
                     DiceUi diceUi = GameplayUi.Instance.DiceControl.Dice[i];
                     diceUi.Initialize(dice);
-                    
-                    diceUi.Hide();
+
+                    diceUi.Hide(null, 0, true);
                 }
             }
         }
@@ -134,17 +134,35 @@ namespace ProjectYahtzee.Battle
         
         #region Introduce
 
-        private void StartIntroduction()
+        private void StartIntroduction(Action onComplete = null)
         {
-            for (int i = 0; i < enemies.Count; i++)
+            foreach (GameplayEnemy enemy in enemies)
             {
-                GameplayEnemy enemy = enemies[i];
                 enemy.Hide(null, 0, true);
-                enemy.Show(null, i * 0.2f, false);
             }
 
-            // Player.Hide(null, 0, true);
-            // Player.Show(null);
+            Player.Hide(null, 0, true);
+
+            StartCoroutine(IntroductionSequence(onComplete));
+        }
+
+        private IEnumerator IntroductionSequence(Action onComplete = null)
+        {
+            // Move players in
+            foreach (GameplayEnemy enemy in enemies)
+            {
+                enemy.Show(null);
+                yield return new WaitForSeconds(0.2f);
+            }
+            
+            Player.Show(null);
+            yield return new WaitForSeconds(0.5f);
+            onComplete?.Invoke();
+        }
+
+        private void OnIntroductionFinished()
+        {
+            StartPlayerTurn();
         }
         
         #endregion
@@ -226,7 +244,7 @@ namespace ProjectYahtzee.Battle
 
         private void HideDice()
         {
-            GameplayUi.Instance.DiceControl.HideDice();
+            GameplayUi.Instance.DiceControl.HideDice(null);
         }
         
         #region Enemy Control
