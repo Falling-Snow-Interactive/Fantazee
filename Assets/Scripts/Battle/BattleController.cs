@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fsi.Gameplay;
+using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Battle.Characters.Player;
-using ProjectYahtzee.Battle.Enemies;
 using ProjectYahtzee.Battle.Scores;
 using ProjectYahtzee.Battle.Scores.Ui;
 using ProjectYahtzee.Battle.Ui;
@@ -83,8 +83,21 @@ namespace ProjectYahtzee.Battle
 
         private void Start()
         {
+            SetupBattle();
+            StartIntroduction();
+        }
+        
+        #region Setup Battle
+
+        private void SetupBattle()
+        {
             scoreTracker.Initialize();
-            
+            SetupDice();
+            SetupEnemies();
+        }
+
+        private void SetupDice()
+        {
             for (int i = 0; i < GameController.Instance.GameInstance.Dice.Count; i++)
             {
                 Dices.Dice dice = GameController.Instance.GameInstance.Dice[i];
@@ -92,25 +105,49 @@ namespace ProjectYahtzee.Battle
                 {
                     DiceUi diceUi = GameplayUi.Instance.DiceControl.Dice[i];
                     diceUi.Initialize(dice);
+                    
+                    diceUi.Hide();
                 }
             }
+        }
 
+        private void SetupEnemies()
+        {
             int spawns = enemySpawns.Random();
             float spawnOffset = 0;
             for (int i = 0; i < spawns; i++)
             {
-                var enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
+                GameplayEnemy enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
                 
                 float y = i % 2 == 0 ? + 0.11f : -0.11f;
                 
                 enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
                 spawnOffset += enemy.Size;
 
+                enemy.Initialize();
+
                 enemies.Add(enemy);
             }
-            
-            StartPlayerTurn();
         }
+        
+        #endregion
+        
+        #region Introduce
+
+        private void StartIntroduction()
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                GameplayEnemy enemy = enemies[i];
+                enemy.Hide(null, 0, true);
+                enemy.Show(null, i * 0.2f, false);
+            }
+
+            // Player.Hide(null, 0, true);
+            // Player.Show(null);
+        }
+        
+        #endregion
         
         private void StartPlayerTurn()
         {
