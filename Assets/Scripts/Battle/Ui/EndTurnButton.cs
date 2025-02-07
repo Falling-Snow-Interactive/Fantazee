@@ -6,7 +6,7 @@ namespace ProjectYahtzee.Battle.Ui
     {
         public void OnClick()
         {
-            BattleController.Instance.TryEndTurn();
+            BattleController.Instance.TryEndPlayerTurn();
         }
     }
 }

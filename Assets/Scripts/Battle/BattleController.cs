@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fsi.Gameplay;
+using ProjectYahtzee.Battle.Characters;
 using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Battle.Characters.Player;
 using ProjectYahtzee.Battle.Scores;
@@ -73,12 +74,12 @@ namespace ProjectYahtzee.Battle
 
         private void OnEnable()
         {
-            GameplayEnemy.Despawned += OnEnemyDespawned;
+            GameplayCharacter.Despawned += OnCharacterDespawned;
         }
 
         private void OnDisable()
         {
-            GameplayEnemy.Despawned -= OnEnemyDespawned;
+            GameplayCharacter.Despawned -= OnCharacterDespawned;
         }
 
         private void Start()
@@ -171,16 +172,8 @@ namespace ProjectYahtzee.Battle
         
         #endregion
         
-        private void StartPlayerTurn()
-        {
-            remainingRolls = rolls;
-            foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
-            {
-                d.Locked = false;
-            }
-            TryRoll();
-        }
-
+        #region Scoring
+        
         public void SelectScoreEntry(ScoreEntry entry)
         {
             if (scoreTracker.CanScore(entry.Score.Type))
@@ -221,6 +214,10 @@ namespace ProjectYahtzee.Battle
                 d.Locked = false;
             }
         }
+        
+        #endregion
+        
+        #region Dice Control
 
         public void TryRoll()
         {
@@ -239,24 +236,47 @@ namespace ProjectYahtzee.Battle
                 Rolled?.Invoke();
             }
         }
-
-        public void TryEndTurn()
-        {
-            HideDice();
-            StartEnemyTurn();
-        }
-
+        
         private void HideDice()
         {
             GameplayUi.Instance.DiceControl.HideDice(null);
         }
         
-        #region Enemy Control
+        #endregion
         
-        private void OnEnemyDespawned(GameplayEnemy enemy)
+        #region Character Control
+        
+        private void OnCharacterDespawned(GameplayCharacter character)
         {
-            enemies.Remove(enemy);
+            if (character is GameplayEnemy enemy)
+            {
+                enemies.Remove(enemy);
+            }
         }
+        
+        #endregion
+        
+        #region Player Turn
+        
+        private void StartPlayerTurn()
+        {
+            remainingRolls = rolls;
+            foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
+            {
+                d.Locked = false;
+            }
+            TryRoll();
+        }
+        
+        public void TryEndPlayerTurn()
+        {
+            HideDice();
+            StartEnemyTurn();
+        }
+        
+        #endregion
+        
+        #region Enemy Turn
 
         private void StartEnemyTurn()
         {
@@ -279,10 +299,14 @@ namespace ProjectYahtzee.Battle
         }
         
         #endregion
-
+        
+        #region Battle End
+        
         private void BattleWin()
         {
             ProjectSceneManager.Instance.LoadMap();
         }
+        
+        #endregion
     }
 }
