@@ -93,6 +93,7 @@ namespace ProjectYahtzee.Battle
         private void SetupBattle()
         {
             scoreTracker.Initialize();
+            Player.Initialize();
             SetupDice();
             SetupEnemies();
         }
@@ -193,20 +194,20 @@ namespace ProjectYahtzee.Battle
 
         private void OnFinishedScoring(int damage)
         {
-            gameplayPlayer.PerformAttack(enemies[^1], () =>
-                                                      {
-                                                          enemies[^1].Damage(damage);
-                                                          foreach (GameplayEnemy enemy in enemies)
-                                                          {
-                                                              if (enemy.Health.IsAlive)
-                                                              {
-                                                                  TryRoll();
-                                                                  return;
-                                                              }
-                                                          }
+            gameplayPlayer.PerformAttack(() =>
+                                         {
+                                             enemies[^1].Damage(damage);
+                                             foreach (GameplayEnemy enemy in enemies)
+                                             {
+                                                 if (enemy.Health.IsAlive)
+                                                 {
+                                                     TryRoll();
+                                                     return;
+                                                 }
+                                             }
 
-                                                          BattleWin();
-                                                      });
+                                             BattleWin();
+                                         });
             
             foreach (Dices.Dice d in GameController.Instance
                                                    .GameInstance.Dice)

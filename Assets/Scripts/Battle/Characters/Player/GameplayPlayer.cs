@@ -1,101 +1,30 @@
 using System;
 using System.Collections;
-using DG.Tweening;
 using Fsi.Gameplay.Healths;
-using Fsi.Gameplay.Healths.Ui;
-using Fsi.Gameplay.Visuals;
-using ProjectYahtzee.Battle.Characters.Enemies;
 using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Characters.Player
 {
-    public class GameplayPlayer : MonoBehaviour, IDamageable
+    public class GameplayPlayer : GameplayCharacter
     {
-        public event Action Damaged;
-        
-        [Header("Health")]
+        public override Health Health => GameController.Instance.GameInstance.Health;
 
-        [SerializeField]
-        private HealthUi healthUi;
-
-        [Header("Visuals")]
-
-        [SerializeField]
-        private CharacterVisuals visuals;
-        
-        [Header("Hide/Show")]
-
-        [SerializeField]
-        private float hideOffset = 3f;
-
-        [SerializeField]
-        private float hideTime = 0.5f;
-
-        [SerializeField]
-        private Ease hideEase = Ease.Linear;
-
-        [SerializeField]
-        private float showTime = 0.5f;
-        
-        [SerializeField]
-        private Ease showEase = Ease.Linear;
-
-        private Vector3 root = Vector3.zero;
-
-        private void Start()
+        public void PerformAttack(Action onComplete = null)
         {
-            root = transform.localPosition;
-            healthUi.Initialize(GameController.Instance.GameInstance.Health);
+            StartCoroutine(AttackSequence(onComplete));
         }
 
-        public void PerformAttack(GameplayEnemy enemy, Action onComplete = null)
+        private IEnumerator AttackSequence(Action onComplete = null)
         {
-            StartCoroutine(AttackSequence(enemy, onComplete));
-        }
-
-        private IEnumerator AttackSequence(GameplayEnemy enemy, Action onComplete = null)
-        {
-            visuals.DoAttack();
+            Visuals.DoAttack();
             yield return new WaitForSeconds(1f);
             onComplete?.Invoke();
         }
         
-        public void Damage(int damage)
+        protected override void OnDrawGizmos()
         {
-            GameController.Instance.GameInstance.Health.Damage(damage);
-            visuals.DoHit();
-        }
-        
-        public void Hide(Action onComplete, float delay = 0, bool force = false)
-        {
-            if (force)
-            {
-                Vector3 vector3 = transform.localPosition;
-                vector3.x = hideOffset;
-                transform.localPosition = vector3;
-                return;
-            }
-
-            transform.DOLocalMoveX(hideOffset, hideTime)
-                     .SetEase(hideEase)
-                     .SetDelay(delay)
-                     .OnComplete(() => onComplete?.Invoke());
-        }
-        
-        public void Show(Action onComplete, float delay = 0, bool force = false)
-        {
-            if (force)
-            {
-                Vector3 vector3 = transform.localPosition;
-                vector3.x = root.x;
-                transform.localPosition = vector3;
-                return;
-            }
-
-            transform.DOLocalMoveX(root.x, showTime)
-                     .SetEase(showEase)                     
-                     .SetDelay(delay)
-                     .OnComplete(() => onComplete?.Invoke());
+            Gizmos.color = Color.green;
+            base.OnDrawGizmos();
         }
     }
 }

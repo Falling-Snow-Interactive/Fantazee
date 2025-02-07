@@ -1,11 +1,18 @@
 using System;
 using System.Collections;
+using Fsi.Gameplay.Healths;
 using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Characters.Enemies
 {
     public class GameplayEnemy : GameplayCharacter
     {
+        [Header("Health")]
+        
+        [SerializeField]
+        private Health health;
+        public override Health Health => health;
+
         #region Attack
         
         public void Attack(Action onComplete)

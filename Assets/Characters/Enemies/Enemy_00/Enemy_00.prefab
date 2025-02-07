@@ -46,18 +46,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa364801ad8b948ccb842a583ec8edbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localRoot: {x: 0, y: 0, z: 0}
   visuals: {fileID: 5876862720746794099}
   size: 1.6
-  health:
-    current: 50
-    max: 50
   healthUi: {fileID: 7700126193981850985}
-  hideOffset: 10
+  hideOffset: {x: 7, y: 0, z: 0}
   hideTime: 0.5
   hideEase: 1
   showTime: 0.5
   showEase: 8
-  root: {x: 0, y: 0, z: 0}
+  health:
+    current: 50
+    max: 50
 --- !u!1001 &3951315687668274134
 PrefabInstance:
   m_ObjectHideFlags: 0

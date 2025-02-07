@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Characters
 {
-    public class GameplayCharacter : MonoBehaviour, IDamageable
+    public abstract class GameplayCharacter : MonoBehaviour, IDamageable
     {
         public event Action Damaged;
 
@@ -30,18 +30,18 @@ namespace ProjectYahtzee.Battle.Characters
         public float Size => size;
         
         [Header("Health")]
-        
-        [SerializeField]
-        private Health health;
-        public Health Health => health;
 
         [SerializeField]
         private HealthUi healthUi;
+        
+        public abstract Health Health { get; }
+        
+        [Header("Animations")]
 
         [Header("Hide/Show")]
 
         [SerializeField]
-        private float hideOffset = 3f;
+        private Vector3 hideOffset = Vector3.zero;
 
         [SerializeField]
         private float hideTime = 0.5f;
@@ -64,16 +64,16 @@ namespace ProjectYahtzee.Battle.Characters
         {
             localRoot = transform.localPosition;
             
-            healthUi.Initialize(health);
+            healthUi.Initialize(Health);
             Spawned?.Invoke(this);
         }
         
         public void Damage(int damage)
         {
-            health.Damage(damage);
+            Health.Damage(damage);
             visuals.DoHit();
 
-            if (health.IsDead)
+            if (Health.IsDead)
             {
                 Destroy(gameObject);
             }
@@ -83,13 +83,11 @@ namespace ProjectYahtzee.Battle.Characters
         {
             if (force)
             {
-                Vector3 vector3 = transform.localPosition;
-                vector3.x = hideOffset;
-                transform.localPosition = vector3;
+                transform.localPosition = localRoot + hideOffset;
                 return;
             }
 
-            transform.DOLocalMoveX(hideOffset, hideTime)
+            transform.DOLocalMove(localRoot + hideOffset, hideTime)
                      .SetEase(hideEase)
                      .SetDelay(delay)
                      .OnComplete(() => onComplete?.Invoke());
@@ -99,13 +97,11 @@ namespace ProjectYahtzee.Battle.Characters
         {
             if (force)
             {
-                Vector3 vector3 = transform.localPosition;
-                vector3.x = localRoot.x;
-                transform.localPosition = vector3;
+                transform.localPosition = localRoot;
                 return;
             }
 
-            transform.DOLocalMoveX(localRoot.x, showTime)
+            transform.DOLocalMove(localRoot, showTime)
                      .SetEase(showEase)                     
                      .SetDelay(delay)
                      .OnComplete(() => onComplete?.Invoke());
