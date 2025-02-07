@@ -39,7 +39,7 @@ namespace ProjectYahtzee.Battle
         [Header("Roll")]
 
         [SerializeField]
-        private int rolls = 3;
+        private int rolls = 5;
         public int Rolls => rolls;
 
         [SerializeField]
@@ -136,11 +136,13 @@ namespace ProjectYahtzee.Battle
 
         private void StartIntroduction(Action onComplete = null)
         {
+            // Hide enemies
             foreach (GameplayEnemy enemy in enemies)
             {
                 enemy.Hide(null, 0, true);
             }
-
+            
+            // Hide player
             Player.Hide(null, 0, true);
 
             StartCoroutine(IntroductionSequence(onComplete));
@@ -148,15 +150,17 @@ namespace ProjectYahtzee.Battle
 
         private IEnumerator IntroductionSequence(Action onComplete = null)
         {
-            // Move players in
+            // Show player
+            Player.Show(null);
+            yield return new WaitForSeconds(0.2f);
+            
+            // Move enemies in
             foreach (GameplayEnemy enemy in enemies)
             {
                 enemy.Show(null);
                 yield return new WaitForSeconds(0.2f);
             }
             
-            Player.Show(null);
-            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
 
