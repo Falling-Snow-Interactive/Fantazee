@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using Fsi.Gameplay;
 using ProjectYahtzee.Battle.Characters;
 using ProjectYahtzee.Battle.Characters.Enemies;
@@ -19,6 +22,8 @@ namespace ProjectYahtzee.Battle
     public class BattleController : MbSingleton<BattleController>
     {
         public static event Action Rolled;
+
+        public static event Action<int> DiceScored;
         
         [Header("Camera")]
         
@@ -71,6 +76,16 @@ namespace ProjectYahtzee.Battle
 
         [SerializeField]
         private RangeInt enemySpawns = new(3, 5);
+
+        [Header("Scoring")]
+
+        [Header("Animation")]
+
+        [SerializeField]
+        private float scoreTime = 0.3f;
+        
+        [SerializeField]
+        private Ease scoreEase = Ease.Linear;
 
         private void OnEnable()
         {
@@ -180,16 +195,55 @@ namespace ProjectYahtzee.Battle
             if (scoreTracker.CanScore(entry.Score.Type))
             {
                 int value = scoreTracker.AddScore(entry.Score, GameController.Instance.GameInstance.Dice);
-                GameplayUi.Instance.Scoreboard.PlayScoreSequence(entry, 
-                                                                 GameplayUi.Instance.DiceControl.Dice, 
-                                                                 () =>
-                                                                 {
-                                                                     GameplayUi.Instance.Scoreboard
-                                                                               .SetScore(entry.Score.Type, GameController.Instance.GameInstance.Dice);
+                PlayScoreSequence(entry,
+                                  GameplayUi.Instance.DiceControl.Dice,
+                                  () =>
+                                  {
+                                      GameplayUi.Instance.Scoreboard
+                                                .SetScore(entry.Score.Type, GameController.Instance.GameInstance.Dice);
 
-                                                                     OnFinishedScoring(value);
-                                                                 });
+                                      OnFinishedScoring(value);
+                                  });
             }
+        }
+
+        private void PlayScoreSequence(ScoreEntry entry, List<DiceUi> dice, Action onComplete = null)
+        {
+            Sequence sequence = DOTween.Sequence();
+
+           const  float delay = 0.3f;
+
+            for (int i = 0; i < dice.Count; i++)
+            {
+                DiceUi d = dice[i];
+                int iCached = i;
+                float delayTime = delay * i;
+                
+                DiceScored?.Invoke(d.Dice.Value);
+
+                Vector3 destination = entry.DiceImages[i].transform.position;
+                TweenerCore<Vector3, Vector3, VectorOptions> move = d.Image
+                                                                     .transform
+                                                                     .DOMove(destination, scoreTime)
+                                                                     .SetEase(scoreEase)
+                                                                     .SetDelay(delayTime)
+                                                                     .OnComplete(() =>
+                                                                     {
+                                                                         entry.SetDice(iCached, d.Dice.Value);
+                                                                         d.gameObject.SetActive(false);
+                                                                     });
+                TweenerCore<Vector3, Vector3, VectorOptions> scale = d.Image
+                                                                      .transform
+                                                                      .DOScale(Vector3.one * 0.1f, scoreTime)
+                                                                      .SetEase(scoreEase)
+                                                                      .SetDelay(delayTime);
+                
+                sequence.Insert(0, move);
+                sequence.Insert(0, scale);
+            }
+
+            sequence.OnComplete(() => onComplete?.Invoke());
+            sequence.Play();
         }
 
         private void OnFinishedScoring(int damage)

@@ -6,49 +6,35 @@ namespace ProjectYahtzee.Battle.Scores
 {
     public static class ScoreCalculator
     {
-        public static int Calculate(Score score, List<Dices.Dice> dice)
+        public static int Calculate(ScoreType type, List<Dices.Dice> dice)
         {
             Dictionary<int, int> diceByValue = new Dictionary<int, int>();
             foreach (Dices.Dice d in dice)
             {
                 if (!diceByValue.TryAdd(d.Value, 1))
                 {
-                    diceByValue[d.Value] = diceByValue[d.Value] + 1;
+                    diceByValue[d.Value] += 1;
                 }
             }
-            switch (score.Type)
-            {
-                case ScoreType.None:
-                    return 0;
-                case ScoreType.Ones:
-                    return Mathf.RoundToInt((CalculateNumber(1, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.Twos:
-                    return Mathf.RoundToInt((CalculateNumber(2, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.Threes:
-                    return Mathf.RoundToInt((CalculateNumber(3, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.Fours:
-                    return Mathf.RoundToInt((CalculateNumber(4, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.Fives:
-                    return Mathf.RoundToInt((CalculateNumber(5, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.Sixes:
-                    return Mathf.RoundToInt((CalculateNumber(6, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.ThreeOfAKind:
-                    return Mathf.RoundToInt((CalculateThreeOfAKind(diceByValue) + score.Value) * score.Mod);
-                case ScoreType.FourOfAKind:
-                    return Mathf.RoundToInt((CalculateFourOfAKind(diceByValue) + score.Value) * score.Mod);
-                case ScoreType.FullHouse:
-                    return Mathf.RoundToInt((CalculateFullHouse(diceByValue) + score.Value) * score.Mod);
-                case ScoreType.SmallStraight:
-                    return Mathf.RoundToInt((CalculateStraight(4, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.LargeStraight:
-                    return Mathf.RoundToInt((CalculateStraight(5, diceByValue) + score.Value) * score.Mod);
-                case ScoreType.Yahtzee:
-                    return Mathf.RoundToInt((CalculateYahtzee(diceByValue) + score.Value) * score.Mod);
-                case ScoreType.Chance:
-                    return Mathf.RoundToInt((CalculateChance(dice) + score.Value) * score.Mod);
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(score.Type), score.Type, null);
-            }
+
+            return type switch
+                   {
+                       ScoreType.None => 0,
+                       ScoreType.Ones => CalculateNumber(1, diceByValue),
+                       ScoreType.Twos => CalculateNumber(2, diceByValue),
+                       ScoreType.Threes => CalculateNumber(3, diceByValue),
+                       ScoreType.Fours => CalculateNumber(4, diceByValue),
+                       ScoreType.Fives => CalculateNumber(5, diceByValue),
+                       ScoreType.Sixes => CalculateNumber(6, diceByValue),
+                       ScoreType.ThreeOfAKind => CalculateThreeOfAKind(diceByValue),
+                       ScoreType.FourOfAKind => CalculateFourOfAKind(diceByValue),
+                       ScoreType.FullHouse => CalculateFullHouse(diceByValue),
+                       ScoreType.SmallStraight => CalculateStraight(4, diceByValue),
+                       ScoreType.LargeStraight => CalculateStraight(5, diceByValue),
+                       ScoreType.Yahtzee => CalculateYahtzee(diceByValue),
+                       ScoreType.Chance => CalculateChance(dice),
+                       _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+                   };
         }
 
         private static int CalculateNumber(int value, Dictionary<int, int> diceByValue)

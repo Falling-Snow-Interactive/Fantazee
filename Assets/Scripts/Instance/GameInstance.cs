@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fsi.Gameplay.Healths;
 using ProjectYahtzee.Battle.Scores;
+using ProjectYahtzee.Boons;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -35,6 +36,8 @@ namespace ProjectYahtzee.Instance
         private List<Battle.Dices.Dice> dice; // TODO - For some reason this is getting cleared when the game exits - KD
         public List<Battle.Dices.Dice> Dice => dice;
 
+        [Header("Maps")]
+        
         [FormerlySerializedAs("mapNode")]
         [SerializeField]
         private int currentMapIndex = 0;
@@ -43,6 +46,12 @@ namespace ProjectYahtzee.Instance
             get => currentMapIndex;
             set => currentMapIndex = value;
         }
+        
+        [Header("Boons")]
+        
+        [SerializeReference]
+        private List<Boon> boons = new List<Boon>();
+        public List<Boon> Boons => boons;
 
         public void ResetScore()
         {

@@ -1,4 +1,5 @@
 using Fsi.Gameplay;
+using ProjectYahtzee.Boons;
 using ProjectYahtzee.Instance;
 using UnityEngine;
 
@@ -33,6 +34,9 @@ namespace ProjectYahtzee
             
             // TODO - Temporary just reseting the dice everytime beause they were getting cleared ???
             gameInstance.ResetDice();
+            
+            // Just gonna add a boon
+            gameInstance.Boons.Add(BoonFactory.Create(BoonType.TwoMod));
         }
     }
 }

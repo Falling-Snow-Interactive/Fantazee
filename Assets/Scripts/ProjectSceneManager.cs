@@ -13,6 +13,9 @@ namespace ProjectYahtzee
         
         [SerializeField]
         private FsiSceneEntry mapScene;
+
+        [SerializeField]
+        private FsiSceneEntry battleEnv;
         
         public void LoadBattle()
         {
@@ -22,6 +25,11 @@ namespace ProjectYahtzee
         public void LoadMap()
         {
             LoadScene(mapScene.Name, LoadSceneMode.Single);
+        }
+
+        public void LoadBattleEnvironment()
+        {
+            LoadScene(battleEnv.Name, LoadSceneMode.Additive);
         }
     }
 }

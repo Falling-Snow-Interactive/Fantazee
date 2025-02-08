@@ -95,6 +95,7 @@ namespace ProjectYahtzee.Maps
                         break;
                     case NodeType.Battle:
                         ProjectSceneManager.Instance.LoadBattle();
+                        ProjectSceneManager.Instance.LoadBattleEnvironment();
                         break;
                     case NodeType.Blacksmith:
                         isMoving = false;

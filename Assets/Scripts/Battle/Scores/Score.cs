@@ -43,7 +43,7 @@ namespace ProjectYahtzee.Battle.Scores
 
         public int Calculate(List<Dices.Dice> dice)
         {
-            return ScoreCalculator.Calculate(this, dice);
+            return ScoreCalculator.Calculate(type, dice);
         }
 
         public void OnBeforeSerialize()
