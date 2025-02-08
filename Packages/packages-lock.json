@@ -60,10 +60,11 @@
       "hash": "65ff04f6d226d85573b032c96979d1577c6b5dac"
     },
     "com.fallingsnowinteractive.settings": {
-      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.settings",
+      "version": "https://github.com/Falling-Snow-Interactive/fsi.settings.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "2b7ed796cbeb7de87c12cb0ad06201f6b537f89d"
     },
     "com.fallingsnowinteractive.spline": {
       "version": "https://github.com/Falling-Snow-Interactive/fsi.spline.git",
@@ -145,11 +146,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
-      "version": "3.1.2",
+      "version": "3.1.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.splines": "2.0.0"
+        "com.unity.splines": "2.0.0",
+        "com.unity.modules.imgui": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
