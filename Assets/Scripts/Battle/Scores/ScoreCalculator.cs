@@ -21,17 +21,17 @@ namespace ProjectYahtzee.Battle.Scores
                 case ScoreType.None:
                     return 0;
                 case ScoreType.Ones:
-                    return Mathf.RoundToInt((diceByValue[1] * 1f + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateNumber(1, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.Twos:
-                    return Mathf.RoundToInt((diceByValue[2] * 2f + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateNumber(2, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.Threes:
-                    return Mathf.RoundToInt((diceByValue[3] * 3f + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateNumber(3, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.Fours:
-                    return Mathf.RoundToInt((diceByValue[4] * 4f + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateNumber(4, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.Fives:
-                    return Mathf.RoundToInt((diceByValue[5] * 5f + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateNumber(5, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.Sixes:
-                    return diceByValue[6] * 6;
+                    return Mathf.RoundToInt((CalculateNumber(6, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.ThreeOfAKind:
                     return Mathf.RoundToInt((CalculateThreeOfAKind(diceByValue) + score.Value) * score.Mod);
                 case ScoreType.FourOfAKind:
@@ -49,6 +49,16 @@ namespace ProjectYahtzee.Battle.Scores
                 default:
                     throw new ArgumentOutOfRangeException(nameof(score.Type), score.Type, null);
             }
+        }
+
+        private static int CalculateNumber(int value, Dictionary<int, int> diceByValue)
+        {
+            if (diceByValue.TryGetValue(value, out int result))
+            {
+                return result * value;
+            }
+
+            return 0;
         }
 
         private static int CalculateThreeOfAKind(Dictionary<int, int> diceByValue)

@@ -121,9 +121,9 @@ namespace ProjectYahtzee.Battle
             {
                 GameplayEnemy enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
                 
-                float y = i % 2 == 0 ? + 0.11f : -0.11f;
+                float y = i % 2 == 0 ? + 0.5f : -0.5f;
                 
-                enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
+                enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.forward * y;
                 spawnOffset += enemy.Size;
 
                 enemy.Initialize();
