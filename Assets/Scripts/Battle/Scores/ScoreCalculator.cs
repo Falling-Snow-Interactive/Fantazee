@@ -39,11 +39,11 @@ namespace ProjectYahtzee.Battle.Scores
                 case ScoreType.FullHouse:
                     return Mathf.RoundToInt((CalculateFullHouse(diceByValue) + score.Value) * score.Mod);
                 case ScoreType.SmallStraight:
-                    return Mathf.RoundToInt((CalculateSmallStraight(score.Type, dice) + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateStraight(4, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.LargeStraight:
-                    return Mathf.RoundToInt((CalculateLargeStraight(dice) + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateStraight(5, diceByValue) + score.Value) * score.Mod);
                 case ScoreType.Yahtzee:
-                    return Mathf.RoundToInt((CalculateYahtzee(score.Type, dice) + score.Value) * score.Mod);
+                    return Mathf.RoundToInt((CalculateYahtzee(diceByValue) + score.Value) * score.Mod);
                 case ScoreType.Chance:
                     return Mathf.RoundToInt((CalculateChance(dice) + score.Value) * score.Mod);
                 default:
@@ -121,19 +121,50 @@ namespace ProjectYahtzee.Battle.Scores
             return 0;
         }
 
-        private static int CalculateSmallStraight(ScoreType type, List<Dices.Dice> dice)
+        private static int CalculateStraight(int length, Dictionary<int, int> dice)
         {
-            throw new NotImplementedException();
+            // Small straight must start with 1 or 2
+            int startRange = 6 - length;
+            int start = -1;
+            for (int i = 1; i <= startRange; i++)
+            {
+                if (dice.TryGetValue(i, out _))
+                {
+                    start = i;
+                    break;
+                }
+            }
+
+            if (start == -1)
+            {
+                return 0;
+            }
+
+            int total = 0;
+            for (int i = start; i <= start + length; i++)
+            {
+                if (!dice.TryGetValue(i, out _))
+                {
+                    return 0;
+                }
+
+                total += i;
+            }
+            
+            return total;
         }
 
-        private static int CalculateLargeStraight(List<Dices.Dice> dice)
+        private static int CalculateYahtzee(Dictionary<int, int> dice)
         {
-            throw new NotImplementedException();
-        }
+            foreach (var kvp in dice)
+            {
+                if (kvp.Value >= 5)
+                {
+                    return kvp.Key * kvp.Value;
+                }
+            }
 
-        private static int CalculateYahtzee(ScoreType type, List<Dices.Dice> dice)
-        {
-            return CalculateCopies(5, dice);
+            return 0;
         }
 
         private static int CalculateChance(List<Dices.Dice> dice)
@@ -145,49 +176,6 @@ namespace ProjectYahtzee.Battle.Scores
             }
 
             return diceTotal;
-        }
-        
-        private static int CalculateValue(int value, List<Dices.Dice> dice)
-        {
-            int score = 0;
-            foreach (var d in dice)
-            {
-                if (value == d.Value)
-                {
-                    score += d.Value;
-                }
-            }
-
-            return score;
-        }
-
-        private static int CalculateCopies(int min, List<Dices.Dice> dice)
-        {
-            int count = 0;
-            int score = 0;
-            for (int x = 0; x < dice.Count; x++)
-            {
-                Dices.Dice d1 = dice[x];
-                int curr = 1;
-                int currScore = d1.Value;
-                for (int y = x + 1; y < dice.Count; y++)
-                {
-                    Dices.Dice d2 = dice[y];
-                    if (d1.Value == d2.Value)
-                    {
-                        curr++;
-                        currScore += d1.Value;
-                    }
-                }
-                
-                if (curr > count)
-                {
-                    count = curr;
-                    score = currScore;
-                }
-            }
-
-            return count >= min ? score : 0;
         }
     }
 }
