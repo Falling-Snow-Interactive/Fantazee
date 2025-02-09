@@ -16,7 +16,7 @@ namespace ProjectYahtzee.Boons.GiveTake
             BattleController.Rolled += OnRolled;
         }
 
-        public override float GetValue() => value;
+        public override float GetBonus() => value;
         
         private void OnScored(int obj)
         {

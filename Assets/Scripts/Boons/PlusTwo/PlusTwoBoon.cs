@@ -27,7 +27,7 @@ namespace ProjectYahtzee.Boons.PlusTwo
             }
         }
 
-        public override float GetValue()
+        public override float GetBonus()
         {
             return value;
         }

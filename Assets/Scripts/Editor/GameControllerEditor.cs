@@ -27,17 +27,17 @@ namespace ProjectYahtzee
             
             root.Add(resetDiceButton);
 
-            Button resetScoresButton = new()
-                            {
-                                text = "Reset Scores"
-                            };
-            resetScoresButton.clicked += () =>
-                              {
-                                  gameController.GameInstance.ResetScore();
-                                  serializedObject.ApplyModifiedProperties();
-                              };
-            
-            root.Add(resetScoresButton);
+            // Button resetScoresButton = new()
+            //                 {
+            //                     text = "Reset Scores"
+            //                 };
+            // resetScoresButton.clicked += () =>
+            //                   {
+            //                       gameController.GameInstance.ResetScore();
+            //                       serializedObject.ApplyModifiedProperties();
+            //                   };
+            //
+            // root.Add(resetScoresButton);
             
             return root;
         }

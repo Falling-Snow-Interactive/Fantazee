@@ -33,11 +33,12 @@ namespace ProjectYahtzee.Battle.Scores.Ui
         [SerializeField]
         private List<ScoreEntry> entries = new List<ScoreEntry>();
 
-        private void Start()
+        public void Initialize()
         {
-            for (int i = 0; i < GameController.Instance.GameInstance.Scores.Count; i++)
+            List<Score> scores = BattleController.Instance.ScoreTracker.Scores;
+            for (int i = 0; i < scores.Count; i++)
             {
-                Score card = GameController.Instance.GameInstance.Scores[i];
+                Score card = scores[i];
                 ScoreEntry entry = entries[i];
                 entry.Initialize(card);
                 scoreEntries.Add(entry.Score.Type, entry);

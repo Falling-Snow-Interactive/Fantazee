@@ -3,6 +3,7 @@ using ProjectYahtzee.Boons;
 using ProjectYahtzee.Boons.Information;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace ProjectYahtzee.Battle.Boons.Ui
@@ -22,8 +23,9 @@ namespace ProjectYahtzee.Battle.Boons.Ui
         [SerializeField]
         private TMP_Text descriptionText;
 
+        [FormerlySerializedAs("valueText")]
         [SerializeField]
-        private TMP_Text valueText;
+        private TMP_Text bonusText;
         
         [SerializeField]
         private TMP_Text modText;
@@ -41,8 +43,7 @@ namespace ProjectYahtzee.Battle.Boons.Ui
             icon.sprite = info.Icon;
             nameText.text = info.LocName.GetLocalizedString();
             descriptionText.text = info.LocDescription.GetLocalizedString();
-            valueText.text = $"+{boon.GetValue()}";
-            modText.text = $"+{boon.GetModifier()}";
+            bonusText.text = $"+{boon.GetBonus()}";
         }
 
         public void Squish()

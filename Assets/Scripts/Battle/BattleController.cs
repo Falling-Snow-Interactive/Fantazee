@@ -218,20 +218,33 @@ namespace ProjectYahtzee.Battle
             
             if (scoreTracker.CanScore(entry.Score.Type))
             {
-                // int value = scoreTracker.AddScore(entry.Score, GameController.Instance.GameInstance.Dice);
                 StartCoroutine(StartScoreSequence(entry, GameplayUi.Instance.DiceControl.Dice));
             }
         }
 
-        private IEnumerator StartScoreSequence(ScoreEntry entry, List<DiceUi> dice)
+        private IEnumerator StartScoreSequence(ScoreEntry entry, List<DiceUi> diceUi)
         {
+            List<Dices.Dice> dice = GameController.Instance.GameInstance.Dice;
+            
             // First, dice go to scoreboard
-            for (int i = 0; i < dice.Count; i++)
+            List<Dices.Dice> scoredDice = new();
+            int prevScore = -1;
+            for (int i = 0; i < diceUi.Count; i++)
             {
-                DiceUi d = dice[i];
+                DiceUi d = diceUi[i];
+                scoredDice.Add(d.Dice);
 
                 d.Image.transform.DOPunchScale(Vector3.one * 0.1f, scoreTime, 10, 1f);
                 entry.SetDice(i, d.Dice.Value);
+
+                int s = entry.Score.Calculate(scoredDice);
+                if (s != prevScore)
+                {
+                    entry.SetScore(s);
+                }
+                
+                prevScore = s;
+
                 DiceScored?.Invoke(d.Dice.Value); // TODO - Right now this will score all the dice. Need to filter out dice that arent part of the score - KD
                 
                 yield return new WaitForSeconds(scoreTime);
@@ -241,58 +254,40 @@ namespace ProjectYahtzee.Battle
 
             // Get bonuses from boons
             
-            ScoreType type = entry.Score.Type;
             Score score = entry.Score;
-            
-            int diceScore = ScoreCalculator.Calculate(type, GameController.Instance.GameInstance.Dice);
+
+            int diceScore = score.Calculate(dice);
             if (diceScore > 0)
             {
-                float value = score.Value;
+                float s = diceScore;
                 // float mod = score.Mod;
 
                 foreach (Boon boon in GameController.Instance.GameInstance.Boons)
                 {
-                    float v = boon.GetValue();
-                    // float m = boon.GetModifier();
+                    float b = boon.GetBonus();
 
-                    if (v > 0)// || m > 0)
+                    if (b > 0)
                     {
                         boon.entryUi.Punch();
 
-                        if (v > 0)
+                        if (b > 0)
                         {
-                            Debug.Log($"Adding value to boon: {v}");
+                            Debug.Log($"Adding value to boon: {b}");
                         }
 
-                        // if (m > 0)
-                        // {
-                        //     Debug.Log($"Adding modifier to boon: {m}");
-                        // }
+                        s += b;
 
-                        value += v;
-                        // mod += m;
+                        entry.SetScore(Mathf.RoundToInt(s));
 
-                        if (v > 0)
-                        {
-                            entry.SetValue(value);
-                        }
-
-                        // if (m > 0)
-                        // {
-                        //     entry.SetMod(mod);
-                        // }
-
-                        yield return new WaitForSeconds(0.25f);
+                        yield return new WaitForSeconds(0.35f);
                     }
                 }
 
                 yield return new WaitForSeconds(0.25f);
 
-                float total = (diceScore + value);// * mod;
-                int rounded = Mathf.RoundToInt(total);
-
-                ScoreTracker.AddScore(score, rounded);
-                entry.SetScore(rounded);
+                int total = Mathf.RoundToInt(s);
+                ScoreTracker.AddScore(score, total);
+                entry.SetScore(total);
                 
                 yield return new WaitForSeconds(0.25f);
             
@@ -306,8 +301,8 @@ namespace ProjectYahtzee.Battle
             
                 yield return new WaitUntil(() => ready);
             
-                enemies[^1].Damage(rounded);
-                Scored?.Invoke(rounded);
+                enemies[^1].Damage(total);
+                Scored?.Invoke(total);
             }
             else
             {

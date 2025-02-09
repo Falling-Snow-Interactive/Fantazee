@@ -30,8 +30,7 @@ namespace ProjectYahtzee.Boons
             }
         }
 
-        public virtual float GetValue() => 0;
-        public virtual float GetModifier() => 0;
+        public virtual float GetBonus() => 0;
         
         public void SetBoonsEntryUi(BoonsEntryUi entry)
         {

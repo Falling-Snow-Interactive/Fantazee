@@ -18,11 +18,6 @@ namespace ProjectYahtzee.Instance
             get => seed;
             set => seed = value;
         }
-        
-        [FormerlySerializedAs("score")]
-        [SerializeField]
-        private List<Score> scores = new List<Score>();
-        public List<Score> Scores => scores;
 
         [Header("Character")]
 
@@ -52,18 +47,6 @@ namespace ProjectYahtzee.Instance
         [SerializeReference]
         private List<Boon> boons = new List<Boon>();
         public List<Boon> Boons => boons;
-
-        public void ResetScore()
-        {
-            scores.Clear();
-            int x = Enum.GetValues(typeof(ScoreType)).Length;
-            for (int i = 1; i < x; i++)
-            {
-                ScoreType type = (ScoreType) i;
-                Score score = new(type, 0);
-                scores.Add(score);
-            }
-        }
 
         public void ResetDice()
         {
