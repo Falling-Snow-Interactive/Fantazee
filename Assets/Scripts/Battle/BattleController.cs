@@ -12,6 +12,7 @@ using ProjectYahtzee.Battle.Scores;
 using ProjectYahtzee.Battle.Scores.Ui;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Battle.Ui.Dices;
+using ProjectYahtzee.Boons;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -52,6 +53,8 @@ namespace ProjectYahtzee.Battle
         private int remainingRolls = 3;
         public int RemainingRolls => remainingRolls;
 
+        private bool hasScoredRoll = false;
+
         [FormerlySerializedAs("score")]
         [Header("Score")]
 
@@ -82,7 +85,7 @@ namespace ProjectYahtzee.Battle
         [Header("Animation")]
 
         [SerializeField]
-        private float scoreTime = 0.3f;
+        private float scoreTime = 0.2f;
         
         [SerializeField]
         private Ease scoreEase = Ease.Linear;
@@ -111,6 +114,8 @@ namespace ProjectYahtzee.Battle
             Player.Initialize();
             SetupDice();
             SetupEnemies();
+
+            SetupBoons();
         }
 
         private void SetupDice()
@@ -144,6 +149,14 @@ namespace ProjectYahtzee.Battle
                 enemy.Initialize();
 
                 enemies.Add(enemy);
+            }
+        }
+
+        private void SetupBoons()
+        {
+            foreach (Boon boon in GameController.Instance.GameInstance.Boons)
+            {
+                GameplayUi.Instance.BoonsUi.AddBoon(boon);
             }
         }
         
@@ -192,82 +205,130 @@ namespace ProjectYahtzee.Battle
         
         public void SelectScoreEntry(ScoreEntry entry)
         {
+            if (hasScoredRoll)
+            {
+                return;
+            }
+            
+            hasScoredRoll = true;
+            
             if (scoreTracker.CanScore(entry.Score.Type))
             {
-                int value = scoreTracker.AddScore(entry.Score, GameController.Instance.GameInstance.Dice);
-                PlayScoreSequence(entry,
-                                  GameplayUi.Instance.DiceControl.Dice,
-                                  () =>
-                                  {
-                                      GameplayUi.Instance.Scoreboard
-                                                .SetScore(entry.Score.Type, GameController.Instance.GameInstance.Dice);
-
-                                      OnFinishedScoring(value);
-                                  });
+                // int value = scoreTracker.AddScore(entry.Score, GameController.Instance.GameInstance.Dice);
+                StartCoroutine(StartScoreSequence(entry, GameplayUi.Instance.DiceControl.Dice));
             }
         }
 
-        private void PlayScoreSequence(ScoreEntry entry, List<DiceUi> dice, Action onComplete = null)
+        private IEnumerator StartScoreSequence(ScoreEntry entry, List<DiceUi> dice)
         {
-            Sequence sequence = DOTween.Sequence();
-
-           const  float delay = 0.3f;
-
+            // First, dice go to scoreboard
             for (int i = 0; i < dice.Count; i++)
             {
                 DiceUi d = dice[i];
-                int iCached = i;
-                float delayTime = delay * i;
-                
-                DiceScored?.Invoke(d.Dice.Value);
 
-                Vector3 destination = entry.DiceImages[i].transform.position;
-                TweenerCore<Vector3, Vector3, VectorOptions> move = d.Image
-                                                                     .transform
-                                                                     .DOMove(destination, scoreTime)
-                                                                     .SetEase(scoreEase)
-                                                                     .SetDelay(delayTime)
-                                                                     .OnComplete(() =>
-                                                                     {
-                                                                         entry.SetDice(iCached, d.Dice.Value);
-                                                                         d.gameObject.SetActive(false);
-                                                                     });
-                TweenerCore<Vector3, Vector3, VectorOptions> scale = d.Image
-                                                                      .transform
-                                                                      .DOScale(Vector3.one * 0.1f, scoreTime)
-                                                                      .SetEase(scoreEase)
-                                                                      .SetDelay(delayTime);
+                d.Image.transform.DOPunchScale(Vector3.one * 0.1f, scoreTime, 10, 1f);
+                entry.SetDice(i, d.Dice.Value);
+                DiceScored?.Invoke(d.Dice.Value); // TODO - Right now this will score all the dice. Need to filter out dice that arent part of the score - KD
                 
-                sequence.Insert(0, move);
-                sequence.Insert(0, scale);
+                yield return new WaitForSeconds(scoreTime);
             }
+            
+            yield return new WaitForSeconds(0.5f);
 
-            sequence.OnComplete(() => onComplete?.Invoke());
-            sequence.Play();
+            // Get bonuses from boons
+            
+            ScoreType type = entry.Score.Type;
+            Score score = entry.Score;
+            
+            int diceScore = ScoreCalculator.Calculate(type, GameController.Instance.GameInstance.Dice);
+            if (diceScore > 0)
+            {
+                float value = score.Value;
+                float mod = score.Mod;
+
+                foreach (Boon boon in GameController.Instance.GameInstance.Boons)
+                {
+                    float v = boon.GetValue();
+                    float m = boon.GetModifier();
+
+                    if (v > 0 || m > 0)
+                    {
+                        boon.entryUi.Pop();
+
+                        if (v > 0)
+                        {
+                            Debug.Log($"Adding value to boon: {v}");
+                        }
+
+                        if (m > 0)
+                        {
+                            Debug.Log($"Adding modifier to boon: {m}");
+                        }
+
+                        value += v;
+                        mod += m;
+
+                        entry.SetValue(value);
+                        entry.SetMod(mod);
+
+                        yield return new WaitForSeconds(0.25f);
+                    }
+                }
+
+                yield return new WaitForSeconds(0.25f);
+
+                float total = (diceScore + value) * mod;
+                int rounded = Mathf.RoundToInt(total);
+
+                ScoreTracker.AddScore(score, rounded);
+                entry.SetScore(rounded);
+                
+                yield return new WaitForSeconds(0.25f);
+            
+                // Do attack
+
+                bool ready = false;
+                gameplayPlayer.PerformAttack(() =>
+                                             {
+                                                 ready = true;
+                                             });
+            
+                yield return new WaitUntil(() => ready);
+            
+                enemies[^1].Damage(rounded);
+            }
+            else
+            {
+                ScoreTracker.AddScore(score, 0);
+                entry.SetScore(0);
+            }
+            
+            yield return new WaitForSeconds(0.25f);
+            
+            OnFinishedScoring();
         }
 
-        private void OnFinishedScoring(int damage)
+        private void OnFinishedScoring()
         {
-            gameplayPlayer.PerformAttack(() =>
-                                         {
-                                             enemies[^1].Damage(damage);
-                                             foreach (GameplayEnemy enemy in enemies)
-                                             {
-                                                 if (enemy.Health.IsAlive)
-                                                 {
-                                                     TryRoll();
-                                                     return;
-                                                 }
-                                             }
-
-                                             BattleWin();
-                                         });
-            
-            foreach (Dices.Dice d in GameController.Instance
-                                                   .GameInstance.Dice)
+            foreach (DiceUi d in GameplayUi.Instance.DiceControl.Dice)
             {
-                d.Locked = false;
+                d.Dice.Locked = false;
+                if (remainingRolls > 0)
+                {
+                    d.ResetDice();
+                }
             }
+            
+            foreach (GameplayEnemy enemy in enemies)
+            {
+                if (enemy.Health.IsAlive)
+                {
+                    TryRoll();
+                    return;
+                }
+            }
+            
+            BattleWin();
         }
         
         #endregion
@@ -278,6 +339,7 @@ namespace ProjectYahtzee.Battle
         {
             if (remainingRolls > 0)
             {
+                hasScoredRoll = false;
                 remainingRolls--;
                 foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
                 {
@@ -290,11 +352,6 @@ namespace ProjectYahtzee.Battle
                 GameplayUi.Instance.DiceControl.Roll();
                 Rolled?.Invoke();
             }
-        }
-        
-        private void HideDice()
-        {
-            GameplayUi.Instance.DiceControl.HideDice(null);
         }
         
         #endregion
@@ -325,7 +382,6 @@ namespace ProjectYahtzee.Battle
         
         public void TryEndPlayerTurn()
         {
-            HideDice();
             StartEnemyTurn();
         }
         

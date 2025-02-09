@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
+using DG.Tweening;
 using ProjectYahtzee.Battle.Scores.Information;
 using ProjectYahtzee.Battle.Settings;
 using ProjectYahtzee.Dice.Information;
@@ -25,7 +26,13 @@ namespace ProjectYahtzee.Battle.Scores.Ui
         private TMP_Text valueText;
         
         [SerializeField]
+        private Transform valueContainer;
+        
+        [SerializeField]
         private TMP_Text modText;
+        
+        [SerializeField]
+        private Transform modContainer;
 
         [SerializeField]
         private Button button;
@@ -94,11 +101,25 @@ namespace ProjectYahtzee.Battle.Scores.Ui
         {
             button.interactable = false;
             nameText.text = value.ToString();
+            nameText.transform.DOPunchScale(Vector3.one * 1.1f, 0.25f, 10, 1f);
         }
 
         public void OnClick()
         {
             BattleController.Instance.SelectScoreEntry(this);
+        }
+
+        public void SetValue(float value)
+        {
+            valueText.text = value.ToString(CultureInfo.InvariantCulture);
+            valueContainer.DOPunchScale(Vector3.one * 1.1f, 0.25f, 10, 1f);
+        }
+
+        public void SetMod(float mod)
+        {
+            modText.text = mod.ToString(CultureInfo.InvariantCulture);
+            modContainer.DOPunchScale(Vector3.one * 1.1f, 0.25f, 10, 1f);
+
         }
     }
 }

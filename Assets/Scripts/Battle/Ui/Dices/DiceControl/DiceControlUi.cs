@@ -16,7 +16,6 @@ namespace ProjectYahtzee.Battle.Ui.Dices.DiceControl
             int i = 0;
             foreach (DiceUi d in dice)
             {
-                d.gameObject.SetActive(true);
                 if (!d.Dice.Locked)
                 {
                     d.Roll(i * 0.2f);

@@ -142,7 +142,7 @@ namespace ProjectYahtzee.Battle.Scores
 
         private static int CalculateYahtzee(Dictionary<int, int> dice)
         {
-            foreach (var kvp in dice)
+            foreach (KeyValuePair<int, int> kvp in dice)
             {
                 if (kvp.Value >= 5)
                 {

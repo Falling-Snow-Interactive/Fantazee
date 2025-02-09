@@ -1,4 +1,5 @@
 using System;
+using ProjectYahtzee.Battle.Boons.Ui;
 using ProjectYahtzee.Boons.Information;
 using ProjectYahtzee.Boons.Settings;
 using UnityEngine;
@@ -16,6 +17,9 @@ namespace ProjectYahtzee.Boons
 
         private BoonInformation information;
         public BoonInformation Information => information;
+        
+        // Gameplay
+        public BoonsEntryUi entryUi;
 
         protected Boon()
         {
@@ -28,5 +32,10 @@ namespace ProjectYahtzee.Boons
 
         public virtual float GetValue() => 0;
         public virtual float GetModifier() => 0;
+        
+        public void SetBattleEntry(BoonsEntryUi entry)
+        {
+            entryUi = entry;
+        }
     }
 }

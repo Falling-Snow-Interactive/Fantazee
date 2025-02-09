@@ -10,7 +10,7 @@ namespace ProjectYahtzee.Battle.Scores.Ui
 {
     public class ScoreboardUi : MonoBehaviour
     {
-        private readonly Dictionary<ScoreType, ScoreEntry> scoreEntries = new Dictionary<ScoreType, ScoreEntry>();
+        public readonly Dictionary<ScoreType, ScoreEntry> scoreEntries = new Dictionary<ScoreType, ScoreEntry>();
         
         [Header("Animation")]
         
@@ -44,11 +44,11 @@ namespace ProjectYahtzee.Battle.Scores.Ui
             }
         }
 
-        public void SetScore(ScoreType type, List<Dices.Dice> diceList)
+        public void SetScore(ScoreType type, List<Dices.Dice> diceList, int score)
         {
             ScoreEntry entry = scoreEntries[type];
             entry.SetDice(diceList);
-            entry.SetScore(BattleController.Instance.ScoreTracker.GetScore(type));
+            entry.SetScore(score);
         }
         
         public void PlayScoreSequence(ScoreEntry entry, List<DiceUi> dice, Action onComplete = null)

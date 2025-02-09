@@ -1,6 +1,5 @@
 using System;
 using ProjectYahtzee.Battle;
-using UnityEngine;
 
 namespace ProjectYahtzee.Boons.TwoMod
 {
@@ -23,6 +22,8 @@ namespace ProjectYahtzee.Boons.TwoMod
             if (dice == 2)
             {
                 mod++;
+                entryUi.Pop();
+                entryUi.UpdateUi();
             }
         }
 

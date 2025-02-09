@@ -83,6 +83,7 @@ namespace ProjectYahtzee.Battle.Ui.Dices
         {
             image.transform.localPosition = Vector3.zero;
             image.transform.localScale = Vector3.one;
+            image.gameObject.SetActive(true);
             if (dice != null)
             {
                 SetImage(dice.Value);

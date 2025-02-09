@@ -118,7 +118,11 @@ MonoBehaviour:
       current: 500
       max: 500
     dice: []
-    mapNode: 0
+    currentMapIndex: 0
+    boons: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &307396310537484130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +142,6 @@ MonoBehaviour:
   mapScene:
     name: Map_SCN
     scene: {fileID: 102900000, guid: e1ce0447e6e69498c940edf40382d843, type: 3}
+  battleEnv:
+    name: Environment_00_ENV
+    scene: {fileID: 102900000, guid: 10a7e8fab2609416a95149894feb229c, type: 3}
