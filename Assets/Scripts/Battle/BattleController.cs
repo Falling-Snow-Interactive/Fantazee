@@ -260,7 +260,6 @@ namespace ProjectYahtzee.Battle
             if (diceScore > 0)
             {
                 float s = diceScore;
-                // float mod = score.Mod;
 
                 foreach (Boon boon in GameController.Instance.GameInstance.Boons)
                 {

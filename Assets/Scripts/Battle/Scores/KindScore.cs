@@ -23,18 +23,24 @@ namespace ProjectYahtzee.Battle.Scores
         public override int Calculate(List<Dices.Dice> dice)
         {
             Dictionary<int, int> dict = DiceToDict(dice);
+            bool isValid = false;
+            int total = 0;
 
-            int score = 0;
             foreach (KeyValuePair<int, int> kvp in dict)
             {
-                if (kvp.Value >= matches
-                    && kvp.Value * kvp.Key > score)
+                total += kvp.Key * kvp.Value;
+                if (kvp.Value >= matches)
                 {
-                    score = kvp.Value * kvp.Key;
+                    isValid = true;
                 }
             }
-            
-            return score;
+
+            if (isValid)
+            {
+                return total;
+            }
+
+            return 0;
         }
     }
 }
