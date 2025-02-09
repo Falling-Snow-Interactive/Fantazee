@@ -7,7 +7,7 @@ namespace ProjectYahtzee.Boons.GiveTake
     {
         public override BoonType Type => BoonType.GiveTake;
 
-        private float mod;
+        private float value;
         private bool scoredRoll = true;
 
         public GiveTakeBoon()
@@ -16,12 +16,12 @@ namespace ProjectYahtzee.Boons.GiveTake
             BattleController.Rolled += OnRolled;
         }
 
-        public override float GetModifier() => mod;
+        public override float GetValue() => value;
         
         private void OnScored(int obj)
         {
             scoredRoll = true;
-            mod++;
+            value++;
             entryUi.UpdateUi();
             entryUi.Squish();
         }
@@ -34,7 +34,7 @@ namespace ProjectYahtzee.Boons.GiveTake
                 return;
             }
 
-            mod = Mathf.Clamp(mod - 1, 0, Mathf.Infinity);
+            value = Mathf.Clamp(value - 1, 0, Mathf.Infinity);
             entryUi.UpdateUi();
             entryUi.Squish();
         }

@@ -248,14 +248,14 @@ namespace ProjectYahtzee.Battle
             if (diceScore > 0)
             {
                 float value = score.Value;
-                float mod = score.Mod;
+                // float mod = score.Mod;
 
                 foreach (Boon boon in GameController.Instance.GameInstance.Boons)
                 {
                     float v = boon.GetValue();
-                    float m = boon.GetModifier();
+                    // float m = boon.GetModifier();
 
-                    if (v > 0 || m > 0)
+                    if (v > 0)// || m > 0)
                     {
                         boon.entryUi.Punch();
 
@@ -264,16 +264,23 @@ namespace ProjectYahtzee.Battle
                             Debug.Log($"Adding value to boon: {v}");
                         }
 
-                        if (m > 0)
-                        {
-                            Debug.Log($"Adding modifier to boon: {m}");
-                        }
+                        // if (m > 0)
+                        // {
+                        //     Debug.Log($"Adding modifier to boon: {m}");
+                        // }
 
                         value += v;
-                        mod += m;
+                        // mod += m;
 
-                        entry.SetValue(value);
-                        entry.SetMod(mod);
+                        if (v > 0)
+                        {
+                            entry.SetValue(value);
+                        }
+
+                        // if (m > 0)
+                        // {
+                        //     entry.SetMod(mod);
+                        // }
 
                         yield return new WaitForSeconds(0.25f);
                     }
@@ -281,7 +288,7 @@ namespace ProjectYahtzee.Battle
 
                 yield return new WaitForSeconds(0.25f);
 
-                float total = (diceScore + value) * mod;
+                float total = (diceScore + value);// * mod;
                 int rounded = Mathf.RoundToInt(total);
 
                 ScoreTracker.AddScore(score, rounded);
