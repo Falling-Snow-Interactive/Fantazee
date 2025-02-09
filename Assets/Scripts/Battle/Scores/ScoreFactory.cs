@@ -16,9 +16,9 @@ namespace ProjectYahtzee.Battle.Scores
                        ScoreType.Sixes => new NumberScore(6),
                        ScoreType.ThreeOfAKind => new KindScore(3),
                        ScoreType.FourOfAKind => new KindScore(4),
-                       ScoreType.FullHouse => throw new ArgumentOutOfRangeException(nameof(type), type, null),
-                       ScoreType.SmallStraight=> throw new ArgumentOutOfRangeException(nameof(type), type, null),
-                       ScoreType.LargeStraight => throw new ArgumentOutOfRangeException(nameof(type), type, null),
+                       ScoreType.FullHouse => new FullHouseScore(),
+                       ScoreType.SmallStraight=> new StraightScore(3),
+                       ScoreType.LargeStraight => new StraightScore(4),
                        ScoreType.Yahtzee => new KindScore(5), 
                        ScoreType.Chance => throw new ArgumentOutOfRangeException(nameof(type), type, null),
                        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
