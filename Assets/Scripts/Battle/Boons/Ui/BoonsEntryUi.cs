@@ -45,9 +45,15 @@ namespace ProjectYahtzee.Battle.Boons.Ui
             modText.text = $"+{boon.GetModifier()}";
         }
 
-        public void Pop()
+        public void Squish()
         {
-            transform.DOPunchScale(Vector3.one * 0.1f, 0.25f, 10, 1f);
+            Vector3 squish = new Vector3(0.1f, -0.1f, 0);
+            transform.DOPunchScale(squish, 0.25f, 10, 1f);
+        }
+
+        public void Punch()
+        {
+            transform.DOPunchPosition(Vector3.right * 50f, 0.25f, 10, 1f);
         }
     }
 }

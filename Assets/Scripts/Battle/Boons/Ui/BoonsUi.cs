@@ -19,7 +19,7 @@ namespace ProjectYahtzee.Battle.Boons.Ui
         {
             BoonsEntryUi entry = Instantiate(boonEntryPrefab, content);
             entry.Initialize(boon);
-            boon.SetBattleEntry(entry);
+            boon.SetBoonsEntryUi(entry);
         }
     }
 }

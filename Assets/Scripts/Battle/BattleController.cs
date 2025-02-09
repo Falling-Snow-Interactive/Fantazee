@@ -22,9 +22,13 @@ namespace ProjectYahtzee.Battle
 {
     public class BattleController : MbSingleton<BattleController>
     {
+        public static event Action PlayerTurnStart;
+        public static event Action PlayerTurnEnd;
+        
         public static event Action Rolled;
-
+        
         public static event Action<int> DiceScored;
+        public static event Action<int> Scored;
         
         [Header("Camera")]
         
@@ -253,7 +257,7 @@ namespace ProjectYahtzee.Battle
 
                     if (v > 0 || m > 0)
                     {
-                        boon.entryUi.Pop();
+                        boon.entryUi.Punch();
 
                         if (v > 0)
                         {
@@ -296,11 +300,13 @@ namespace ProjectYahtzee.Battle
                 yield return new WaitUntil(() => ready);
             
                 enemies[^1].Damage(rounded);
+                Scored?.Invoke(rounded);
             }
             else
             {
                 ScoreTracker.AddScore(score, 0);
                 entry.SetScore(0);
+                Scored?.Invoke(0);
             }
             
             yield return new WaitForSeconds(0.25f);
@@ -372,6 +378,7 @@ namespace ProjectYahtzee.Battle
         
         private void StartPlayerTurn()
         {
+            PlayerTurnStart?.Invoke();
             remainingRolls = rolls;
             foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
             {
@@ -382,6 +389,7 @@ namespace ProjectYahtzee.Battle
         
         public void TryEndPlayerTurn()
         {
+            PlayerTurnEnd?.Invoke();
             StartEnemyTurn();
         }
         

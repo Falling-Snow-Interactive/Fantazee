@@ -36,7 +36,7 @@ namespace ProjectYahtzee
             gameInstance.ResetDice();
             
             // Just gonna add a boon
-            gameInstance.Boons.Add(BoonFactory.Create(BoonType.TwoMod));
+            gameInstance.Boons.Add(BoonFactory.Create(BoonType.GiveTake));
         }
     }
 }

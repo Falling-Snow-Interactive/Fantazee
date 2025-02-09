@@ -4,5 +4,7 @@ namespace ProjectYahtzee.Boons
     {
         None = 0,
         TwoMod = 1,
+        GiveTake = 2,
+        
     }
 }

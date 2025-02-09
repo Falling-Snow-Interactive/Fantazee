@@ -22,7 +22,7 @@ namespace ProjectYahtzee.Boons.TwoMod
             if (dice == 2)
             {
                 mod++;
-                entryUi.Pop();
+                entryUi.Squish();
                 entryUi.UpdateUi();
             }
         }
