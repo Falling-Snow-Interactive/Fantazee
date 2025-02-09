@@ -37,6 +37,7 @@ namespace ProjectYahtzee
             
             // Just gonna add a boon
             gameInstance.Boons.Add(BoonFactory.Create(BoonType.GiveTake));
+            gameInstance.Boons.Add(BoonFactory.Create(BoonType.PlusTwo));
         }
     }
 }

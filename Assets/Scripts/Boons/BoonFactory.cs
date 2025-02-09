@@ -1,6 +1,6 @@
 using System;
 using ProjectYahtzee.Boons.GiveTake;
-using ProjectYahtzee.Boons.TwoMod;
+using ProjectYahtzee.Boons.PlusTwo;
 
 namespace ProjectYahtzee.Boons
 {
@@ -11,7 +11,7 @@ namespace ProjectYahtzee.Boons
             return type switch
                    {
                        BoonType.None => (Boon)null,
-                       BoonType.TwoMod => new TwoModBoon(),
+                       BoonType.PlusTwo => new PlusTwoBoon(),
                        BoonType.GiveTake => new GiveTakeBoon(),
                        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
                    };

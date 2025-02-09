@@ -1,18 +1,18 @@
 using System;
 using ProjectYahtzee.Battle;
 
-namespace ProjectYahtzee.Boons.TwoMod
+namespace ProjectYahtzee.Boons.PlusTwo
 {
     [Serializable]
-    public class TwoModBoon : Boon
+    public class PlusTwoBoon : Boon
     {
-        public override BoonType Type => BoonType.TwoMod;
+        public override BoonType Type => BoonType.PlusTwo;
 
-        public int mod;
+        public int value;
 
-        public TwoModBoon() : base()
+        public PlusTwoBoon() : base()
         {
-            mod = 0;
+            value = 0;
 
             BattleController.DiceScored += OnDiceScored;
         }
@@ -21,15 +21,15 @@ namespace ProjectYahtzee.Boons.TwoMod
         {
             if (dice == 2)
             {
-                mod++;
+                value += 2;
                 entryUi.Squish();
                 entryUi.UpdateUi();
             }
         }
 
-        public override float GetModifier()
+        public override float GetValue()
         {
-            return mod;
+            return value;
         }
     }
 }

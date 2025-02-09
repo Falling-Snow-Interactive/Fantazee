@@ -3,7 +3,7 @@ namespace ProjectYahtzee.Boons
     public enum BoonType
     {
         None = 0,
-        TwoMod = 1,
+        PlusTwo = 1,
         GiveTake = 2,
         
     }
