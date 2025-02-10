@@ -13,11 +13,11 @@ namespace ProjectYahtzee.Boons.GiveTake
         public GiveTakeBoon()
         {
             BattleController.Scored += OnScored;
-            BattleController.Rolled += OnRolled;
+            BattleController.RollStarted += OnRollStarted;
         }
 
         public override float GetBonus() => value;
-        
+
         private void OnScored(int obj)
         {
             scoredRoll = true;
@@ -26,7 +26,7 @@ namespace ProjectYahtzee.Boons.GiveTake
             entryUi.Squish();
         }
 
-        private void OnRolled()
+        private void OnRollStarted()
         {
             if (scoredRoll)
             {
@@ -37,6 +37,11 @@ namespace ProjectYahtzee.Boons.GiveTake
             value = Mathf.Clamp(value - 1, 0, Mathf.Infinity);
             entryUi.UpdateUi();
             entryUi.Squish();
+        }
+        
+        public override string GetBonusText()
+        {
+            return $"+{value}";
         }
     }
 }

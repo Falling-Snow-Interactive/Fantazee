@@ -31,6 +31,8 @@ namespace ProjectYahtzee.Boons
         }
 
         public virtual float GetBonus() => 0;
+
+        public abstract string GetBonusText();
         
         public void SetBoonsEntryUi(BoonsEntryUi entry)
         {

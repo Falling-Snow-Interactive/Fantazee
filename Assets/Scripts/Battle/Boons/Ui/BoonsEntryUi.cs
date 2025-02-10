@@ -43,7 +43,7 @@ namespace ProjectYahtzee.Battle.Boons.Ui
             icon.sprite = info.Icon;
             nameText.text = info.LocName.GetLocalizedString();
             descriptionText.text = info.LocDescription.GetLocalizedString();
-            bonusText.text = $"+{boon.GetBonus()}";
+            bonusText.text = $"{boon.GetBonusText()}";
         }
 
         public void Squish()

@@ -70,6 +70,7 @@ namespace ProjectYahtzee.Battle.Characters
         
         public void Damage(int damage)
         {
+            Debug.Log($"Enemy: Damage {damage}");
             Health.Damage(damage);
             visuals.DoHit();
 

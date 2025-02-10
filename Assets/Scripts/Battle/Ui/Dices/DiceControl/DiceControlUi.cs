@@ -11,14 +11,14 @@ namespace ProjectYahtzee.Battle.Ui.Dices.DiceControl
         private List<DiceUi> dice = new();
         public List<DiceUi> Dice => dice;
 
-        public void Roll()
+        public void Roll(Action<Battle.Dices.Dice> onRollComplete)
         {
             int i = 0;
             foreach (DiceUi d in dice)
             {
                 if (!d.Dice.Locked)
                 {
-                    d.Roll(i * 0.2f);
+                    d.Roll(i * 0.2f, onRollComplete);
                     i++;
                 }
             }

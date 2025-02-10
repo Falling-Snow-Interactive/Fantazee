@@ -5,6 +5,7 @@ namespace ProjectYahtzee.Boons
         None = 0,
         PlusTwo = 1,
         GiveTake = 2,
+        ExplosiveDice = 3,
         
     }
 }

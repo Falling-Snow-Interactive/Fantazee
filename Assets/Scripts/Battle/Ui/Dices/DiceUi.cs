@@ -112,7 +112,7 @@ namespace ProjectYahtzee.Battle.Ui.Dices
             SetImage(dice.Value);
         }
 
-        public void Roll(float delay = 0)
+        public void Roll(float delay = 0, Action<Battle.Dices.Dice> onRollComplete = null)
         {
             ResetDice();
             
@@ -126,6 +126,7 @@ namespace ProjectYahtzee.Battle.Ui.Dices
                                 {
                                     rolling = false;
                                     SetImage(dice.Value);
+                                    onRollComplete?.Invoke(dice);
                                 });
             sequence.SetDelay(delay);
             sequence.Play();

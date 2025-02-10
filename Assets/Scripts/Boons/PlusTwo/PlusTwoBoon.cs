@@ -31,5 +31,10 @@ namespace ProjectYahtzee.Boons.PlusTwo
         {
             return value;
         }
+        
+        public override string GetBonusText()
+        {
+            return $"+{value}";
+        }
     }
 }

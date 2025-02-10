@@ -26,7 +26,8 @@ namespace ProjectYahtzee.Battle
         public static event Action PlayerTurnStart;
         public static event Action PlayerTurnEnd;
         
-        public static event Action Rolled;
+        public static event Action RollStarted;
+        public static event Action<Dices.Dice> DiceRolled;
         
         public static event Action<int> DiceScored;
         public static event Action<int> Scored;
@@ -75,6 +76,7 @@ namespace ProjectYahtzee.Battle
 
         [SerializeField]
         private List<GameplayEnemy> enemies = new();
+        public List<GameplayEnemy> Enemies => enemies;
 
         [SerializeField]
         private Transform enemyContainer;
@@ -353,8 +355,11 @@ namespace ProjectYahtzee.Battle
                     }
                 }
                 
-                GameplayUi.Instance.DiceControl.Roll();
-                Rolled?.Invoke();
+                GameplayUi.Instance.DiceControl.Roll(d =>
+                                                     {
+                                                         DiceRolled?.Invoke(d);
+                                                     });
+                RollStarted?.Invoke();
             }
         }
         

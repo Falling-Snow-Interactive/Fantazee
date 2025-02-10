@@ -17,13 +17,13 @@ namespace ProjectYahtzee.Battle.Ui
         private void OnEnable()
         {
             BattleController.PlayerTurnStart += OnPlayerTurnStart;
-            BattleController.Rolled += OnRolled;
+            BattleController.RollStarted += OnRollStarted;
         }
 
         private void OnDisable()
         {
             BattleController.PlayerTurnStart -= OnPlayerTurnStart;
-            BattleController.Rolled -= OnRolled;
+            BattleController.RollStarted -= OnRollStarted;
         }
 
         private void Start()
@@ -37,7 +37,7 @@ namespace ProjectYahtzee.Battle.Ui
             rollsText.text = BattleController.Instance.RemainingRolls.ToString();
         }
         
-        private void OnRolled()
+        private void OnRollStarted()
         {
             rollsText.text = BattleController.Instance.RemainingRolls.ToString();
             if (BattleController.Instance.RemainingRolls == 0)
