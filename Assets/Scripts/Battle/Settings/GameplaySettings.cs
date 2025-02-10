@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using ProjectYahtzee.Battle.Scores.Information;
 using UnityEditor;
 using UnityEngine;
@@ -18,6 +19,20 @@ namespace ProjectYahtzee.Battle.Settings
         [SerializeField]
         private ScoreInformationGroup scoreInformation;
         public ScoreInformationGroup ScoreInformation => scoreInformation;
+        
+        [Header("Animations")]
+        
+        [SerializeField]
+        private Vector3 squishAmount = new Vector3(0.2f, -0.2f, 0);
+        public Vector3 SquishAmount => squishAmount;
+
+        [SerializeField]
+        private float squishTime = 0.25f;
+        public float SquishTime => squishTime;
+        
+        [SerializeField]
+        private Ease squishEase = Ease.Linear;
+        public Ease SquishEase => squishEase;
         
         #region Settings
         

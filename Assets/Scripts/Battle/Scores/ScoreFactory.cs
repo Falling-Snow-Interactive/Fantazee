@@ -20,7 +20,7 @@ namespace ProjectYahtzee.Battle.Scores
                        ScoreType.SmallStraight=> new StraightScore(3),
                        ScoreType.LargeStraight => new StraightScore(4),
                        ScoreType.Yahtzee => new KindScore(5), 
-                       ScoreType.Chance => throw new ArgumentOutOfRangeException(nameof(type), type, null),
+                       ScoreType.Chance => new ChanceScore(),
                        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
                    };
         }

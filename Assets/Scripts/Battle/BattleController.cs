@@ -10,6 +10,7 @@ using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Battle.Characters.Player;
 using ProjectYahtzee.Battle.Scores;
 using ProjectYahtzee.Battle.Scores.Ui;
+using ProjectYahtzee.Battle.Settings;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Battle.Ui.Dices;
 using ProjectYahtzee.Boons;
@@ -224,28 +225,32 @@ namespace ProjectYahtzee.Battle
 
         private IEnumerator StartScoreSequence(ScoreEntry entry, List<DiceUi> diceUi)
         {
+            Score score = entry.Score;
             List<Dices.Dice> dice = GameController.Instance.GameInstance.Dice;
+            List<Dices.Dice> partOfScore = entry.Score.GetScoredDice(dice);
             
             // First, dice go to scoreboard
             List<Dices.Dice> scoredDice = new();
-            int prevScore = -1;
             for (int i = 0; i < diceUi.Count; i++)
             {
                 DiceUi d = diceUi[i];
-                scoredDice.Add(d.Dice);
-
-                d.Image.transform.DOPunchScale(Vector3.one * 0.1f, scoreTime, 10, 1f);
-                entry.SetDice(i, d.Dice.Value);
-
-                int s = entry.Score.Calculate(scoredDice);
-                if (s != prevScore)
-                {
-                    entry.SetScore(s);
-                }
                 
-                prevScore = s;
+                bool inScore = partOfScore.Contains(d.Dice);
+                scoredDice.Add(d.Dice);
+                
+                d.Image.transform.DOPunchScale(GameplaySettings.Settings.SquishAmount, 
+                                               GameplaySettings.Settings.SquishTime, 
+                                               10, 
+                                               1f)
+                 .SetEase(GameplaySettings.Settings.SquishEase);
+                entry.SetDice(i, d.Dice.Value, inScore);
 
-                DiceScored?.Invoke(d.Dice.Value); // TODO - Right now this will score all the dice. Need to filter out dice that arent part of the score - KD
+                if (inScore)
+                {
+                    int s = entry.Score.Calculate(scoredDice);
+                    entry.SetScore(s);
+                    DiceScored?.Invoke(d.Dice.Value); 
+                }
                 
                 yield return new WaitForSeconds(scoreTime);
             }
@@ -254,7 +259,6 @@ namespace ProjectYahtzee.Battle
 
             // Get bonuses from boons
             
-            Score score = entry.Score;
 
             int diceScore = score.Calculate(dice);
             if (diceScore > 0)
@@ -267,28 +271,21 @@ namespace ProjectYahtzee.Battle
 
                     if (b > 0)
                     {
-                        boon.entryUi.Punch();
-
-                        if (b > 0)
-                        {
-                            Debug.Log($"Adding value to boon: {b}");
-                        }
-
                         s += b;
-
+                        boon.entryUi.Punch();
                         entry.SetScore(Mathf.RoundToInt(s));
 
-                        yield return new WaitForSeconds(0.35f);
+                        yield return new WaitForSeconds(0.5f);
                     }
                 }
 
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.5f);
 
                 int total = Mathf.RoundToInt(s);
                 ScoreTracker.AddScore(score, total);
                 entry.SetScore(total);
                 
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.5f);
             
                 // Do attack
 
@@ -310,7 +307,7 @@ namespace ProjectYahtzee.Battle
                 Scored?.Invoke(0);
             }
             
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
             
             OnFinishedScoring();
         }

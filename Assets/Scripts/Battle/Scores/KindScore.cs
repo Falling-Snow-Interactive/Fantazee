@@ -37,10 +37,15 @@ namespace ProjectYahtzee.Battle.Scores
 
             if (isValid)
             {
-                return total;
+                return Type == ScoreType.Yahtzee ? 50 : total;
             }
 
             return 0;
+        }
+
+        public override List<Dices.Dice> GetScoredDice(List<Dices.Dice> dice)
+        {
+            return Calculate(dice) > 0 ? new List<Dices.Dice>(dice) : new List<Dices.Dice>();
         }
     }
 }

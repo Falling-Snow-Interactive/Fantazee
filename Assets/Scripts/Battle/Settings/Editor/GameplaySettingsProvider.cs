@@ -31,6 +31,10 @@ namespace ProjectYahtzee.Battle.Settings.Editor
         {
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreInformation"));
             
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishAmount"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishEase"));
+            
             EditorGUILayout.Space(20);
             if (GUILayout.Button("Save"))
             {

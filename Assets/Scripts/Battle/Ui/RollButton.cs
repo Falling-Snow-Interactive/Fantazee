@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ProjectYahtzee.Battle.Ui
 {
@@ -10,13 +11,18 @@ namespace ProjectYahtzee.Battle.Ui
         [SerializeField]
         private TMP_Text rollsText;
 
+        [SerializeField]
+        private Button button;
+
         private void OnEnable()
         {
+            BattleController.PlayerTurnStart += OnPlayerTurnStart;
             BattleController.Rolled += OnRolled;
         }
 
         private void OnDisable()
         {
+            BattleController.PlayerTurnStart -= OnPlayerTurnStart;
             BattleController.Rolled -= OnRolled;
         }
 
@@ -34,6 +40,15 @@ namespace ProjectYahtzee.Battle.Ui
         private void OnRolled()
         {
             rollsText.text = BattleController.Instance.RemainingRolls.ToString();
+            if (BattleController.Instance.RemainingRolls == 0)
+            {
+                button.interactable = false;
+            }
+        }
+        
+        private void OnPlayerTurnStart()
+        {
+            button.interactable = true;
         }
     }
 }

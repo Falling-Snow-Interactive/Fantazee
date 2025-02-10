@@ -79,14 +79,17 @@ namespace ProjectYahtzee.Battle.Scores.Ui
                 }
             }
         }
-        
-        public void SetDice(int index, int value)
+
+        public void SetDice(int index, int value, bool inScore = true)
         {
             diceImages[index].gameObject.SetActive(true);
             if (DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation information))
             {
                 diceImages[index].sprite = information.Sprite;
             }
+            
+            Color color = inScore ? Color.white : Color.gray;
+            diceImages[index].color = color;
         }
 
         public void SetScore(int value)
@@ -94,7 +97,11 @@ namespace ProjectYahtzee.Battle.Scores.Ui
             button.interactable = false;
             scoreText.text = value.ToString();
             
-            scoreContainer.transform.DOPunchScale(new Vector3(0.2f, -0.2f, 0f), 0.25f, 10, 1f);
+            scoreContainer.transform.DOPunchScale(GameplaySettings.Settings.SquishAmount, 
+                                                  GameplaySettings.Settings.SquishTime,
+                                                  10,
+                                                  1f)
+                          .SetEase(GameplaySettings.Settings.SquishEase);
         }
 
         public void OnClick()

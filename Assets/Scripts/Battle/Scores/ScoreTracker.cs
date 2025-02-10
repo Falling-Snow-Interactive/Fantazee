@@ -20,7 +20,7 @@ namespace ProjectYahtzee.Battle.Scores
             scoreDictionary.Clear();
             
             Scores.Clear();
-            int x = 13;//Enum.GetValues(typeof(ScoreType)).Length;
+            int x = Enum.GetValues(typeof(ScoreType)).Length;
             for (int i = 1; i < x; i++)
             {
                 ScoreType type = (ScoreType) i;

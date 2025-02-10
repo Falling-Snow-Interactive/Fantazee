@@ -7,9 +7,11 @@ namespace ProjectYahtzee.Battle.Scores
     public class NumberScore : Score
     {
         public override ScoreType Type { get; }
+        private int value;
 
         public NumberScore(int value)
         {
+            this.value = value;
             Type = value switch
                    {
                        1 => ScoreType.Ones,
@@ -43,6 +45,20 @@ namespace ProjectYahtzee.Battle.Scores
             }
 
             return 0;
+        }
+
+        public override List<Dices.Dice> GetScoredDice(List<Dices.Dice> dice)
+        {
+            List<Dices.Dice> scored = new List<Dices.Dice>();
+            foreach (var d in dice)
+            {
+                if (d.Value == value)
+                {
+                    scored.Add(d);
+                }
+            }
+
+            return scored;
         }
     }
 }
