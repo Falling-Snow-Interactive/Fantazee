@@ -43,14 +43,13 @@
       "hash": "ec0a4a8c6b468bd88ea0449e4118a62c624eb58f"
     },
     "com.fallingsnowinteractive.prototyping": {
-      "version": "https://github.com/Falling-Snow-Interactive/fsi.prototyping.git",
+      "version": "file:/Users/kiradinan/Projects/_Packages/fsi.prototyping",
       "depth": 0,
-      "source": "git",
+      "source": "local",
       "dependencies": {
         "com.unity.inputsystem": "1.9.0",
         "com.unity.cinemachine": "3.0.0"
-      },
-      "hash": "7e565b3ad994fcd9dcf0502b1eaedd9399c77863"
+      }
     },
     "com.fallingsnowinteractive.rectgrid": {
       "version": "https://github.com/Falling-Snow-Interactive/fsi.squaregrid.git",
@@ -239,6 +238,15 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.polybrush": {
+      "version": "1.1.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.settings-manager": "2.0.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.probuilder": {
       "version": "6.0.4",
       "depth": 0,
@@ -390,7 +398,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.8.7",
+      "version": "1.8.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {
