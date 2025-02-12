@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using FMODUnity;
 using Fsi.Gameplay.Healths;
 using Fsi.Gameplay.Healths.Ui;
 using Fsi.Gameplay.Visuals;

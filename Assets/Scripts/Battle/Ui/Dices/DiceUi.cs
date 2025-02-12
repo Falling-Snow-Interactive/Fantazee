@@ -1,7 +1,5 @@
 using System;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using ProjectYahtzee.Dice.Information;
 using ProjectYahtzee.Dice.Settings;
 using UnityEngine;

@@ -2,8 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
+using FMODUnity;
 using Fsi.Gameplay;
 using ProjectYahtzee.Battle.Characters;
 using ProjectYahtzee.Battle.Characters.Enemies;
@@ -97,6 +96,11 @@ namespace ProjectYahtzee.Battle
         [SerializeField]
         private Ease scoreEase = Ease.Linear;
 
+        [Header("Sfx")]
+
+        [SerializeField]
+        private EventReference diceScoreSfx;
+        
         private void OnEnable()
         {
             GameplayCharacter.Despawned += OnCharacterDespawned;
@@ -240,11 +244,13 @@ namespace ProjectYahtzee.Battle
                 bool inScore = partOfScore.Contains(d.Dice);
                 scoredDice.Add(d.Dice);
                 
+                
                 d.Image.transform.DOPunchScale(GameplaySettings.Settings.SquishAmount, 
                                                GameplaySettings.Settings.SquishTime, 
                                                10, 
                                                1f)
                  .SetEase(GameplaySettings.Settings.SquishEase);
+                RuntimeManager.PlayOneShot(diceScoreSfx);
                 entry.SetDice(i, d.Dice.Value, inScore);
 
                 if (inScore)
@@ -298,7 +304,8 @@ namespace ProjectYahtzee.Battle
                                              });
             
                 yield return new WaitUntil(() => ready);
-            
+
+                RuntimeManager.PlayOneShot(gameplayPlayer.AttackHitSfx);
                 enemies[^1].Damage(total);
                 Scored?.Invoke(total);
             }
