@@ -13,6 +13,12 @@ namespace ProjectYahtzee.Battle.Settings
 
         private static GameplaySettings _settings;
         public static GameplaySettings Settings => _settings ??= GetOrCreateSettings();
+
+        [Header("Scores")]
+
+        [SerializeField]
+        private int bonusScore = 200;
+        public int BonusScore => bonusScore;
         
         [Header("Team Information")]
         

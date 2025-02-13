@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ProjectYahtzee.Battle.Scores;
+using ProjectYahtzee.Battle.Scores.Bonus;
 using ProjectYahtzee.Battle.Scores.Ui;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Boons;
@@ -15,6 +16,9 @@ namespace ProjectYahtzee.Battle.Scores
 
         public List<Score> Scores { get; } = new();
 
+        private BonusScore bonusScore;
+        public BonusScore BonusScore => bonusScore;
+
         public void Initialize()
         {
             scoreDictionary.Clear();
@@ -27,6 +31,7 @@ namespace ProjectYahtzee.Battle.Scores
                 Score score = ScoreFactory.Create(type);
                 Scores.Add(score);
             }
+            bonusScore = new BonusScore();
             
             GameplayUi.Instance.Scoreboard.Initialize();
         }
@@ -34,6 +39,7 @@ namespace ProjectYahtzee.Battle.Scores
         public void AddScore(Score score, int value)
         {
             scoreDictionary.Add(score.Type, value);
+            bonusScore.Add(value);
         }
         
         public int GetTotal()

@@ -402,6 +402,15 @@ namespace ProjectYahtzee.Battle
             PlayerTurnEnd?.Invoke();
             StartEnemyTurn();
         }
+
+        public void TryBonusAttack()
+        {
+            if (scoreTracker.BonusScore.IsReady)
+            {
+                // Player.DoBonusAttack();
+                GameplayUi.Instance.Scoreboard.BonusScoreUi.Disable();
+            }
+        }
         
         #endregion
         

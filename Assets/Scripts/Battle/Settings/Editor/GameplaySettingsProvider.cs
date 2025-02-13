@@ -29,6 +29,8 @@ namespace ProjectYahtzee.Battle.Settings.Editor
         
         public override void OnGUI(string searchContext)
         {
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("bonusScore"));
+            
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreInformation"));
             
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishAmount"));

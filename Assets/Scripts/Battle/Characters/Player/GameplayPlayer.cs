@@ -3,6 +3,7 @@ using System.Collections;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace ProjectYahtzee.Battle.Characters.Player
 {
@@ -11,6 +12,11 @@ namespace ProjectYahtzee.Battle.Characters.Player
         public override Health Health => GameController.Instance.GameInstance.Health;
 
         [Header("Player")]
+
+        [Header("Vfx")]
+
+        [SerializeField]
+        private VisualEffect bonusAttackVfx;
         
         [Header("Sfx")]
         
@@ -21,6 +27,9 @@ namespace ProjectYahtzee.Battle.Characters.Player
         [SerializeField]
         private EventReference attackHitSfx;
         public EventReference AttackHitSfx => attackHitSfx;
+
+        [SerializeField]
+        private EventReference bonusAttackSfx;
         
         public void PerformAttack(Action onComplete = null)
         {
