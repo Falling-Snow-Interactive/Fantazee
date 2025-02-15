@@ -14,7 +14,7 @@ namespace ProjectYahtzee.Boons
                        BoonType.None => (Boon)null,
                        BoonType.PlusTwo => new PlusTwoBoon(),
                        BoonType.GiveTake => new GiveTakeBoon(),
-                       BoonType.ExplosiveDice => new ExplosiveDiceBoon(),
+                       BoonType.ExplosiveDice => new ExplosiveDiceBoon(6),
                        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
                    };
         }
