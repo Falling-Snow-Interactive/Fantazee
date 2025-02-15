@@ -1,30 +1,35 @@
 using ProjectYahtzee.Battle;
+using ProjectYahtzee.Battle.Characters.Enemies;
+using ProjectYahtzee.Boons.Handlers;
 
 namespace ProjectYahtzee.Boons.ExplosiveDice
 {
-    public class ExplosiveDiceBoon : Boon
+    public class ExplosiveDiceBoon : Boon, IBoonRollHandler
     {
         public override BoonType Type => BoonType.ExplosiveDice;
 
-        public ExplosiveDiceBoon() : base()
-        {
-            BattleController.DiceRolled += OnDiceRolled;
-        }
+        private int roll;
 
-        private void OnDiceRolled(Battle.Dices.Dice dice)
+        public ExplosiveDiceBoon(int roll) : base()
         {
-            if (dice.Value == 6)
-            {
-                foreach (var enemy in BattleController.Instance.Enemies)
-                {
-                    enemy.Damage(6);
-                }
-            }
+            this.roll = roll;
+            BattleController.Instance.RegisterBoonRollHandlerCallback(this);
         }
         
         public override string GetBonusText()
         {
-            return "6";
+            return roll.ToString();
+        }
+
+        public void OnDiceRoll(Battle.Dices.Dice dice)
+        {
+            if (dice.Value == roll)
+            {
+                foreach (GameplayEnemy enemy in BattleController.Instance.Enemies)
+                {
+                    enemy.Damage(roll);
+                }
+            }
         }
     }
 }

@@ -103,7 +103,8 @@ namespace ProjectYahtzee.Battle
         private EventReference diceScoreSfx;
         
         // Boon Control
-        private List<IBoonDamageHandler> boonDamageHandlers = new();
+        private readonly List<IBoonDamageHandler> boonDamageHandlers = new();
+        private List<IBoonRollHandler> boonRollHandlers = new();
         
         private void OnEnable()
         {
@@ -364,6 +365,10 @@ namespace ProjectYahtzee.Battle
                 
                 GameplayUi.Instance.DiceControl.Roll(d =>
                                                      {
+                                                         foreach (IBoonRollHandler boon in boonRollHandlers)
+                                                         {
+                                                             boon.OnDiceRoll(d);
+                                                         }
                                                          DiceRolled?.Invoke(d);
                                                      });
                 RollStarted?.Invoke();
@@ -447,7 +452,7 @@ namespace ProjectYahtzee.Battle
         
         #endregion
         
-        #region Boon Control
+        #region Boon Handlers
 
         public void RegisterBoonDamageHandlerCallback(IBoonDamageHandler hander)
         {
@@ -457,6 +462,16 @@ namespace ProjectYahtzee.Battle
         public void UnregisterBoonDamageHandlerCallback(IBoonDamageHandler handler)
         {
             boonDamageHandlers.Remove(handler);
+        }
+
+        public void RegisterBoonRollHandlerCallback(IBoonRollHandler handler)
+        {
+            boonRollHandlers.Add(handler);
+        }
+
+        public void UnregisterBoonRollHandlerCallback(IBoonRollHandler handler)
+        {
+            boonRollHandlers.Remove(handler);
         }
         
         #endregion
