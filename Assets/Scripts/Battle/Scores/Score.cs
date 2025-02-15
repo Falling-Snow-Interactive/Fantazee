@@ -18,7 +18,7 @@ namespace ProjectYahtzee.Battle.Scores
         }
 
         public abstract int Calculate(List<Dices.Dice> dice);
-
+        
         public abstract List<Dices.Dice> GetScoredDice(List<Dices.Dice> dice);
 
         protected Dictionary<int, int> DiceToDict(List<Dices.Dice> dice)

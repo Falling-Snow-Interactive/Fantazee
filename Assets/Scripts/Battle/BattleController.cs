@@ -13,6 +13,7 @@ using ProjectYahtzee.Battle.Settings;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Battle.Ui.Dices;
 using ProjectYahtzee.Boons;
+using ProjectYahtzee.Boons.Handlers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -101,6 +102,9 @@ namespace ProjectYahtzee.Battle
         [SerializeField]
         private EventReference diceScoreSfx;
         
+        // Boon Control
+        private List<IBoonDamageHandler> boonDamageHandlers = new();
+        
         private void OnEnable()
         {
             GameplayCharacter.Despawned += OnCharacterDespawned;
@@ -168,6 +172,10 @@ namespace ProjectYahtzee.Battle
             foreach (Boon boon in GameController.Instance.GameInstance.Boons)
             {
                 GameplayUi.Instance.BoonsUi.AddBoon(boon);
+                if (boon is IBoonDamageHandler boonDamageHandler)
+                {
+                    boonDamageHandlers.Add(boonDamageHandler);
+                }
             }
         }
         
@@ -212,7 +220,7 @@ namespace ProjectYahtzee.Battle
         
         #endregion
         
-        #region Scoring
+        #region Score/Damage
         
         public void SelectScoreEntry(ScoreEntry entry)
         {
@@ -265,38 +273,30 @@ namespace ProjectYahtzee.Battle
             
             yield return new WaitForSeconds(0.5f);
 
-            // Get bonuses from boons
+            // Calculate damage
             
-
             int diceScore = score.Calculate(dice);
-            if (diceScore > 0)
+            Damage damage = new(diceScore);
+            
+            if (damage.Value > 0)
             {
-                float s = diceScore;
-
-                foreach (Boon boon in GameController.Instance.GameInstance.Boons)
+                foreach (IBoonDamageHandler boon in boonDamageHandlers)
                 {
-                    float b = boon.GetBonus();
-
-                    if (b > 0)
-                    {
-                        s += b;
-                        boon.entryUi.Punch();
-                        entry.SetScore(Mathf.RoundToInt(s));
-
-                        yield return new WaitForSeconds(0.5f);
-                    }
+                    damage = boon.ReceiveDamage(damage);
+                    boon.Boon.entryUi.Punch();
+                    entry.SetScore(damage.Value);
+                    
+                    yield return new WaitForSeconds(0.5f);
                 }
 
                 yield return new WaitForSeconds(0.5f);
 
-                int total = Mathf.RoundToInt(s);
-                ScoreTracker.AddScore(score, total);
-                entry.SetScore(total);
+                ScoreTracker.AddScore(score, damage.Value);
+                entry.SetScore(damage.Value);
                 
                 yield return new WaitForSeconds(0.5f);
             
                 // Do attack
-
                 bool ready = false;
                 gameplayPlayer.PerformAttack(() =>
                                              {
@@ -306,8 +306,8 @@ namespace ProjectYahtzee.Battle
                 yield return new WaitUntil(() => ready);
 
                 RuntimeManager.PlayOneShot(gameplayPlayer.AttackHitSfx);
-                enemies[^1].Damage(total);
-                Scored?.Invoke(total);
+                enemies[^1].Damage(damage.Value);
+                Scored?.Invoke(damage.Value);
             }
             else
             {
@@ -443,6 +443,20 @@ namespace ProjectYahtzee.Battle
         private void BattleWin()
         {
             ProjectSceneManager.Instance.LoadMap();
+        }
+        
+        #endregion
+        
+        #region Boon Control
+
+        public void RegisterBoonDamageHandlerCallback(IBoonDamageHandler hander)
+        {
+            boonDamageHandlers.Add(hander);
+        }
+
+        public void UnregisterBoonDamageHandlerCallback(IBoonDamageHandler handler)
+        {
+            boonDamageHandlers.Remove(handler);
         }
         
         #endregion

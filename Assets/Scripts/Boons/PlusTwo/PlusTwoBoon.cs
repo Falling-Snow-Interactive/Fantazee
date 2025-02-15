@@ -1,12 +1,14 @@
 using System;
 using ProjectYahtzee.Battle;
+using ProjectYahtzee.Boons.Handlers;
 
 namespace ProjectYahtzee.Boons.PlusTwo
 {
     [Serializable]
-    public class PlusTwoBoon : Boon
+    public class PlusTwoBoon : Boon, IBoonDamageHandler
     {
         public override BoonType Type => BoonType.PlusTwo;
+        public Boon Boon => this;
 
         public int value;
 
@@ -26,15 +28,16 @@ namespace ProjectYahtzee.Boons.PlusTwo
                 entryUi.UpdateUi();
             }
         }
-
-        public override float GetBonus()
-        {
-            return value;
-        }
         
         public override string GetBonusText()
         {
             return $"+{value}";
+        }
+
+        public Damage ReceiveDamage(Damage damage)
+        {
+            damage.Value += value;
+            return damage;
         }
     }
 }

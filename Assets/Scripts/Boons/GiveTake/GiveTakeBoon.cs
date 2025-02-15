@@ -1,23 +1,24 @@
 using ProjectYahtzee.Battle;
+using ProjectYahtzee.Boons.Handlers;
 using UnityEngine;
 
 namespace ProjectYahtzee.Boons.GiveTake
 {
-    public class GiveTakeBoon : Boon
+    public class GiveTakeBoon : Boon, IBoonDamageHandler
     {
         public override BoonType Type => BoonType.GiveTake;
 
         private float value;
         private bool scoredRoll = true;
+        
+        public Boon Boon => this;
 
         public GiveTakeBoon()
         {
             BattleController.Scored += OnScored;
             BattleController.RollStarted += OnRollStarted;
         }
-
-        public override float GetBonus() => value;
-
+        
         private void OnScored(int obj)
         {
             scoredRoll = true;
@@ -42,6 +43,12 @@ namespace ProjectYahtzee.Boons.GiveTake
         public override string GetBonusText()
         {
             return $"+{value}";
+        }
+        
+        public Damage ReceiveDamage(Damage damage)
+        {
+            damage.Value += Mathf.RoundToInt(value);
+            return damage;
         }
     }
 }

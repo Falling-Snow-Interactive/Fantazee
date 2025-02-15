@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
+using ProjectYahtzee.Boons.Handlers;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -30,6 +32,9 @@ namespace ProjectYahtzee.Battle.Characters.Player
 
         [SerializeField]
         private EventReference bonusAttackSfx;
+        
+        // Boon handlers
+        private List<IBoonDamageHandler> boonDamageHandlers = new();
         
         public void PerformAttack(Action onComplete = null)
         {

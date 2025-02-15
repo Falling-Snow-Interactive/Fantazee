@@ -29,9 +29,7 @@ namespace ProjectYahtzee.Boons
                 Debug.LogError($"Boon {Type} not found");
             }
         }
-
-        public virtual float GetBonus() => 0;
-
+        
         public abstract string GetBonusText();
         
         public void SetBoonsEntryUi(BoonsEntryUi entry)
