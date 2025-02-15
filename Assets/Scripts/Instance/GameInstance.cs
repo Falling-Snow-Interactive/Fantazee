@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Fsi.Gameplay.Healths;
-using ProjectYahtzee.Battle.Scores;
 using ProjectYahtzee.Boons;
 using UnityEngine;
 using UnityEngine.Serialization;

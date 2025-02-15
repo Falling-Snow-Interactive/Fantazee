@@ -7,11 +7,11 @@ using Fsi.Gameplay;
 using ProjectYahtzee.Battle.Characters;
 using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Battle.Characters.Player;
+using ProjectYahtzee.Battle.Dices.Ui;
 using ProjectYahtzee.Battle.Scores;
 using ProjectYahtzee.Battle.Scores.Ui;
 using ProjectYahtzee.Battle.Settings;
 using ProjectYahtzee.Battle.Ui;
-using ProjectYahtzee.Battle.Ui.Dices;
 using ProjectYahtzee.Boons;
 using ProjectYahtzee.Boons.Handlers;
 using UnityEngine;
@@ -282,7 +282,7 @@ namespace ProjectYahtzee.Battle
             {
                 foreach (IBoonDamageHandler boon in boonDamageHandlers)
                 {
-                    damage = boon.ReceiveDamage(damage);
+                    boon.ReceiveDamage(ref damage);
                     boon.Boon.entryUi.Punch();
                     entry.SetScore(damage.Value);
                     

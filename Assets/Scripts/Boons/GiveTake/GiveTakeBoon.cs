@@ -45,10 +45,9 @@ namespace ProjectYahtzee.Boons.GiveTake
             return $"+{value}";
         }
         
-        public Damage ReceiveDamage(Damage damage)
+        public void ReceiveDamage(ref Damage damage)
         {
             damage.Value += Mathf.RoundToInt(value);
-            return damage;
         }
     }
 }

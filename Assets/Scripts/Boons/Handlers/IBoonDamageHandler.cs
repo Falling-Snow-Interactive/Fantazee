@@ -7,8 +7,7 @@ namespace ProjectYahtzee.Boons.Handlers
     /// </summary>
     public interface IBoonDamageHandler
     {
-        public Damage ReceiveDamage(Damage damage);
-        
         public Boon Boon { get; }
+        public void ReceiveDamage(ref Damage damage);
     }
 }

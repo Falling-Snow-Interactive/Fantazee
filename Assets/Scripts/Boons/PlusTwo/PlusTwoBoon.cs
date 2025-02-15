@@ -34,10 +34,9 @@ namespace ProjectYahtzee.Boons.PlusTwo
             return $"+{value}";
         }
 
-        public Damage ReceiveDamage(Damage damage)
+        public void ReceiveDamage(ref Damage damage)
         {
             damage.Value += value;
-            return damage;
         }
     }
 }

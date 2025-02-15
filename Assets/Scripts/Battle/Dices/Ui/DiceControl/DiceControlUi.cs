@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Ui.Dices.DiceControl
+namespace ProjectYahtzee.Battle.Dices.Ui.DiceControl
 {
     public class DiceControlUi : MonoBehaviour
     {
@@ -11,7 +10,7 @@ namespace ProjectYahtzee.Battle.Ui.Dices.DiceControl
         private List<DiceUi> dice = new();
         public List<DiceUi> Dice => dice;
 
-        public void Roll(Action<Battle.Dices.Dice> onRollComplete)
+        public void Roll(Action<Dice> onRollComplete)
         {
             int i = 0;
             foreach (DiceUi d in dice)

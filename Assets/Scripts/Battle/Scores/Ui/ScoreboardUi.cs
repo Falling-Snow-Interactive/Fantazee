@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using ProjectYahtzee.Battle.Dices.Ui;
 using ProjectYahtzee.Battle.Scores.Bonus.Ui;
-using ProjectYahtzee.Battle.Ui.Dices;
 using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Scores.Ui

@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace ProjectYahtzee.Battle.Ui.Dices
+namespace ProjectYahtzee.Battle.Dices.Ui
 {
     public class DiceUi : MonoBehaviour
     {
-        private Battle.Dices.Dice dice;
-        public Battle.Dices.Dice Dice => dice;
+        private Dice dice;
+        public Dice Dice => dice;
         
         [Header("Rolling")]
         
