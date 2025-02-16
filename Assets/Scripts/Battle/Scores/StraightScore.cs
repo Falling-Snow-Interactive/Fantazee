@@ -71,7 +71,6 @@ namespace ProjectYahtzee.Battle.Scores
             return false;
         }
 
-        // This is probably a really bad way to do this...
         public override List<Dices.Dice> GetScoredDice(List<Dices.Dice> dice)
         {
             // Bit better. Still mediocre
