@@ -2,10 +2,10 @@ using System;
 using Fsi.Gameplay.Randomizers;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Dices.Randomizer
+namespace ProjectYahtzee.Battle.Dice.Randomizer
 {
     [Serializable]
-    public class DiceRandomizerEntry : RandomizerEntry<int>
+    public class DieRandomizerEntry : RandomizerEntry<int>
     {
         [SerializeField]
         private int weight = 1;

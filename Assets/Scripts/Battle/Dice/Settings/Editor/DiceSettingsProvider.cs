@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using ProjectYahtzee.Dice.Settings;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace FsiProject.Dice.Settings
+namespace ProjectYahtzee.Battle.Dice.Settings.Editor
 {
     public class DiceSettingsProvider : SettingsProvider
     {

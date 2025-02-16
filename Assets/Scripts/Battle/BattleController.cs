@@ -7,7 +7,8 @@ using Fsi.Gameplay;
 using ProjectYahtzee.Battle.Characters;
 using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Battle.Characters.Player;
-using ProjectYahtzee.Battle.Dices.Ui;
+using ProjectYahtzee.Battle.Dice;
+using ProjectYahtzee.Battle.Dice.Ui;
 using ProjectYahtzee.Battle.Scores;
 using ProjectYahtzee.Battle.Scores.Ui;
 using ProjectYahtzee.Battle.Settings;
@@ -27,7 +28,7 @@ namespace ProjectYahtzee.Battle
         public static event Action PlayerTurnEnd;
         
         public static event Action RollStarted;
-        public static event Action<Dices.Dice> DiceRolled;
+        public static event Action<Die> DieRolled;
         
         public static event Action<int> DiceScored;
         public static event Action<int> Scored;
@@ -138,13 +139,13 @@ namespace ProjectYahtzee.Battle
         {
             for (int i = 0; i < GameController.Instance.GameInstance.Dice.Count; i++)
             {
-                Dices.Dice dice = GameController.Instance.GameInstance.Dice[i];
+                Dice.Die die = GameController.Instance.GameInstance.Dice[i];
                 if (GameplayUi.Instance.DiceControl.Dice.Count > i)
                 {
-                    DiceUi diceUi = GameplayUi.Instance.DiceControl.Dice[i];
-                    diceUi.Initialize(dice);
+                    DieUi dieUi = GameplayUi.Instance.DiceControl.Dice[i];
+                    dieUi.Initialize(die);
 
-                    diceUi.Hide(null, 0, true);
+                    dieUi.Hide(null, 0, true);
                 }
             }
         }
@@ -243,20 +244,20 @@ namespace ProjectYahtzee.Battle
             }
         }
 
-        private IEnumerator StartScoreSequence(ScoreEntry entry, List<DiceUi> diceUi)
+        private IEnumerator StartScoreSequence(ScoreEntry entry, List<DieUi> diceUi)
         {
             Score score = entry.Score;
-            List<Dices.Dice> dice = GameController.Instance.GameInstance.Dice;
-            List<Dices.Dice> partOfScore = entry.Score.GetScoredDice(dice);
+            List<Dice.Die> dice = GameController.Instance.GameInstance.Dice;
+            List<Dice.Die> partOfScore = entry.Score.GetScoredDice(dice);
             
             // First, dice go to scoreboard
-            List<Dices.Dice> scoredDice = new();
+            List<Dice.Die> scoredDice = new();
             for (int i = 0; i < diceUi.Count; i++)
             {
-                DiceUi d = diceUi[i];
+                DieUi d = diceUi[i];
                 
-                bool inScore = partOfScore.Contains(d.Dice);
-                scoredDice.Add(d.Dice);
+                bool inScore = partOfScore.Contains(d.Die);
+                scoredDice.Add(d.Die);
                 
                 
                 d.Image.transform.DOPunchScale(GameplaySettings.Settings.SquishAmount, 
@@ -265,13 +266,13 @@ namespace ProjectYahtzee.Battle
                                                1f)
                  .SetEase(GameplaySettings.Settings.SquishEase);
                 RuntimeManager.PlayOneShot(diceScoreSfx);
-                entry.SetDice(i, d.Dice.Value, inScore);
+                entry.SetDice(i, d.Die.Value, inScore);
 
                 if (inScore)
                 {
                     int s = entry.Score.Calculate(scoredDice);
                     entry.SetScore(s);
-                    DiceScored?.Invoke(d.Dice.Value); 
+                    DiceScored?.Invoke(d.Die.Value); 
                 }
                 
                 yield return new WaitForSeconds(scoreTime);
@@ -329,9 +330,9 @@ namespace ProjectYahtzee.Battle
 
         private void OnFinishedScoring()
         {
-            foreach (DiceUi d in GameplayUi.Instance.DiceControl.Dice)
+            foreach (DieUi d in GameplayUi.Instance.DiceControl.Dice)
             {
-                d.Dice.Locked = false;
+                d.Die.Locked = false;
                 if (remainingRolls > 0)
                 {
                     d.ResetDice();
@@ -360,7 +361,7 @@ namespace ProjectYahtzee.Battle
             {
                 hasScoredRoll = false;
                 remainingRolls--;
-                foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
+                foreach (Dice.Die d in GameController.Instance.GameInstance.Dice)
                 {
                     if (!d.Locked)
                     {
@@ -374,7 +375,7 @@ namespace ProjectYahtzee.Battle
                                                          {
                                                              boon.OnDiceRoll(d);
                                                          }
-                                                         DiceRolled?.Invoke(d);
+                                                         DieRolled?.Invoke(d);
                                                      });
                 RollStarted?.Invoke();
             }
@@ -400,7 +401,7 @@ namespace ProjectYahtzee.Battle
         {
             PlayerTurnStart?.Invoke();
             remainingRolls = rolls;
-            foreach (Dices.Dice d in GameController.Instance.GameInstance.Dice)
+            foreach (Dice.Die d in GameController.Instance.GameInstance.Dice)
             {
                 d.Locked = false;
             }

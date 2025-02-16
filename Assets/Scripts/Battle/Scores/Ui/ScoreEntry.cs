@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using DG.Tweening;
+using ProjectYahtzee.Battle.Dice.Information;
+using ProjectYahtzee.Battle.Dice.Settings;
 using ProjectYahtzee.Battle.Scores.Information;
 using ProjectYahtzee.Battle.Settings;
-using ProjectYahtzee.Dice.Information;
-using ProjectYahtzee.Dice.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -66,7 +66,7 @@ namespace ProjectYahtzee.Battle.Scores.Ui
             }
         }
 
-        public void SetDice(List<Dices.Dice> diceList)
+        public void SetDice(List<Dice.Die> diceList)
         {
             for (int i = 0; i < diceImages.Count; i++)
             {

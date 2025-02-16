@@ -2,20 +2,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Dices.Ui.DiceControl
+namespace ProjectYahtzee.Battle.Dice.Ui.DiceControl
 {
     public class DiceControlUi : MonoBehaviour
     {
         [SerializeField]
-        private List<DiceUi> dice = new();
-        public List<DiceUi> Dice => dice;
+        private List<DieUi> dice = new();
+        public List<DieUi> Dice => dice;
 
-        public void Roll(Action<Dice> onRollComplete)
+        public void Roll(Action<Die> onRollComplete)
         {
             int i = 0;
-            foreach (DiceUi d in dice)
+            foreach (DieUi d in dice)
             {
-                if (!d.Dice.Locked)
+                if (!d.Die.Locked)
                 {
                     d.Roll(i * 0.2f, onRollComplete);
                     i++;
@@ -27,7 +27,7 @@ namespace ProjectYahtzee.Battle.Dices.Ui.DiceControl
         {
             for (int i = 0; i < dice.Count; i++)
             {
-                DiceUi d = dice[i];
+                DieUi d = dice[i];
                 d.Hide(onComplete, i * 0.2f, false);
             }
         }

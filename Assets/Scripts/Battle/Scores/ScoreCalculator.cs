@@ -6,10 +6,10 @@ namespace ProjectYahtzee.Battle.Scores
 {
     public static class ScoreCalculator
     {
-        public static int Calculate(ScoreType type, List<Dices.Dice> dice)
+        public static int Calculate(ScoreType type, List<Dice.Die> dice)
         {
             Dictionary<int, int> diceByValue = new Dictionary<int, int>();
-            foreach (Dices.Dice d in dice)
+            foreach (Dice.Die d in dice)
             {
                 if (!diceByValue.TryAdd(d.Value, 1))
                 {
@@ -153,7 +153,7 @@ namespace ProjectYahtzee.Battle.Scores
             return 0;
         }
 
-        private static int CalculateChance(List<Dices.Dice> dice)
+        private static int CalculateChance(List<Dice.Die> dice)
         {
             int diceTotal = 0;
             foreach (var d in dice)

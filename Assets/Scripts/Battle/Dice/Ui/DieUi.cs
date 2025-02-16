@@ -1,18 +1,17 @@
 using System;
 using DG.Tweening;
-using ProjectYahtzee.Dice.Information;
-using ProjectYahtzee.Dice.Settings;
+using ProjectYahtzee.Battle.Dice.Information;
+using ProjectYahtzee.Battle.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace ProjectYahtzee.Battle.Dices.Ui
+namespace ProjectYahtzee.Battle.Dice.Ui
 {
-    public class DiceUi : MonoBehaviour
+    public class DieUi : MonoBehaviour
     {
-        private Dice dice;
-        public Dice Dice => dice;
-        
+        public Die Die { get; private set; }
+
         [Header("Rolling")]
         
         public bool rolling = false;
@@ -82,9 +81,9 @@ namespace ProjectYahtzee.Battle.Dices.Ui
             image.transform.localPosition = Vector3.zero;
             image.transform.localScale = Vector3.one;
             image.gameObject.SetActive(true);
-            if (dice != null)
+            if (Die != null)
             {
-                SetImage(dice.Value);
+                SetImage(Die.Value);
             }
         }
         
@@ -102,15 +101,15 @@ namespace ProjectYahtzee.Battle.Dices.Ui
             }
         }
 
-        public void Initialize(Battle.Dices.Dice d)
+        public void Initialize(Die d)
         {
             ResetDice();
             rolling = false;
-            dice = d;
-            SetImage(dice.Value);
+            Die = d;
+            SetImage(Die.Value);
         }
 
-        public void Roll(float delay = 0, Action<Battle.Dices.Dice> onRollComplete = null)
+        public void Roll(float delay = 0, Action<Die> onRollComplete = null)
         {
             ResetDice();
             
@@ -123,8 +122,8 @@ namespace ProjectYahtzee.Battle.Dices.Ui
             sequence.OnComplete(() =>
                                 {
                                     rolling = false;
-                                    SetImage(dice.Value);
-                                    onRollComplete?.Invoke(dice);
+                                    SetImage(Die.Value);
+                                    onRollComplete?.Invoke(Die);
                                 });
             sequence.SetDelay(delay);
             sequence.Play();
@@ -140,7 +139,7 @@ namespace ProjectYahtzee.Battle.Dices.Ui
 
         public void UpdateImage()
         {
-            if (DiceSettings.Settings.SideInformation.TryGetInformation(dice.Value, out SideInformation info))
+            if (DiceSettings.Settings.SideInformation.TryGetInformation(Die.Value, out SideInformation info))
             {
                 image.sprite = info.Sprite;
             }
@@ -148,8 +147,8 @@ namespace ProjectYahtzee.Battle.Dices.Ui
 
         public void ToggleLock()
         {
-            dice.ToggleLock();
-            float offset = dice.Locked ? lockOffset : 0;
+            Die.ToggleLock();
+            float offset = Die.Locked ? lockOffset : 0;
             image.transform.DOLocalMoveY(offset, lockTime).SetEase(lockEase);
         }
 

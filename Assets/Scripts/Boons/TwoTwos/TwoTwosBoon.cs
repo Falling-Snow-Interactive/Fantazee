@@ -1,36 +1,38 @@
+using System;
 using DG.Tweening;
-using ProjectYahtzee.Battle.Dices.Ui;
+using ProjectYahtzee.Battle.Dice.Ui;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Boons.Handlers;
 using UnityEngine;
 
 namespace ProjectYahtzee.Boons.TwoTwos
 {
+    [Serializable]
     public class TwoTwosBoon : Boon, IBoonRollHandler
     {
         public override BoonType Type => BoonType.TwoTwos;
         public override string GetBonusText() => "";
 
-        public void OnDiceRoll(Battle.Dices.Dice dice)
+        public void OnDiceRoll(Battle.Dice.Die die)
         {
-            if (dice.Value == 2)
+            if (die.Value == 2)
             {
-                DiceUi diceUi = null;
-                foreach (var d in GameplayUi.Instance.DiceControl.Dice)
+                DieUi dieUi = null;
+                foreach (DieUi d in GameplayUi.Instance.DiceControl.Dice)
                 {
-                    if (d.Dice == dice)
+                    if (d.Die == die)
                     {
-                        diceUi = d;
+                        dieUi = d;
                     }
                 }
 
-                if (diceUi != null)
+                if (dieUi)
                 {
-                    diceUi.transform.DOShakeRotation(0.3f, new Vector3(0, 0, 25f), 25, 150, true, ShakeRandomnessMode.Full)
+                    dieUi.transform.DOShakeRotation(0.3f, new Vector3(0, 0, 25f), 25, 150, true, ShakeRandomnessMode.Full)
                           .OnComplete(() =>
                                       {
-                                          dice.Value = 4;
-                                          diceUi.UpdateImage();
+                                          die.Value = 4;
+                                          dieUi.UpdateImage();
                                           entryUi.Squish();
                                       });
                 }

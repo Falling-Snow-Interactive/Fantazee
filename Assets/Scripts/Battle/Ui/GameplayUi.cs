@@ -1,6 +1,6 @@
 using Fsi.Gameplay;
 using ProjectYahtzee.Battle.Boons.Ui;
-using ProjectYahtzee.Battle.Dices.Ui.DiceControl;
+using ProjectYahtzee.Battle.Dice.Ui.DiceControl;
 using ProjectYahtzee.Battle.Scores.Ui;
 using UnityEngine;
 

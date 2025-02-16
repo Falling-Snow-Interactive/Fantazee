@@ -20,7 +20,7 @@ namespace ProjectYahtzee.Battle.Scores
                    };
         }
         
-        public override int Calculate(List<Dices.Dice> dice)
+        public override int Calculate(List<Dice.Die> dice)
         {
             Dictionary<int, int> dict = DiceToDict(dice);
             bool isValid = false;
@@ -43,9 +43,9 @@ namespace ProjectYahtzee.Battle.Scores
             return 0;
         }
 
-        public override List<Dices.Dice> GetScoredDice(List<Dices.Dice> dice)
+        public override List<Dice.Die> GetScoredDice(List<Dice.Die> dice)
         {
-            return Calculate(dice) > 0 ? new List<Dices.Dice>(dice) : new List<Dices.Dice>();
+            return Calculate(dice) > 0 ? new List<Dice.Die>(dice) : new List<Dice.Die>();
         }
     }
 }

@@ -1,14 +1,18 @@
+using System;
 using ProjectYahtzee.Battle;
 using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Boons.Handlers;
+using UnityEngine;
 
 namespace ProjectYahtzee.Boons.ExplosiveDice
 {
+    [Serializable]
     public class ExplosiveDiceBoon : Boon, IBoonRollHandler
     {
         public override BoonType Type => BoonType.ExplosiveDice;
 
-        private readonly int roll;
+        [SerializeField]
+        private int roll;
 
         public ExplosiveDiceBoon(int roll) : base()
         {
@@ -20,9 +24,9 @@ namespace ProjectYahtzee.Boons.ExplosiveDice
             return roll.ToString();
         }
 
-        public void OnDiceRoll(Battle.Dices.Dice dice)
+        public void OnDiceRoll(Battle.Dice.Die die)
         {
-            if (dice.Value == roll)
+            if (die.Value == roll)
             {
                 foreach (GameplayEnemy enemy in BattleController.Instance.Enemies)
                 {

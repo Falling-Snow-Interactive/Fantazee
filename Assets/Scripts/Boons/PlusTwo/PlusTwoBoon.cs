@@ -1,6 +1,7 @@
 using System;
 using ProjectYahtzee.Battle;
 using ProjectYahtzee.Boons.Handlers;
+using UnityEngine;
 
 namespace ProjectYahtzee.Boons.PlusTwo
 {
@@ -10,7 +11,8 @@ namespace ProjectYahtzee.Boons.PlusTwo
         public override BoonType Type => BoonType.PlusTwo;
         public Boon Boon => this;
 
-        public int value;
+        [SerializeField]
+        private int value;
 
         public PlusTwoBoon() : base()
         {

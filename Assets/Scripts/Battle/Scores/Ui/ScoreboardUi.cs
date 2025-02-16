@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
-using ProjectYahtzee.Battle.Dices.Ui;
+using ProjectYahtzee.Battle.Dice.Ui;
 using ProjectYahtzee.Battle.Scores.Bonus.Ui;
 using UnityEngine;
 
@@ -52,14 +52,14 @@ namespace ProjectYahtzee.Battle.Scores.Ui
             bonusScoreUi.Initialize(BattleController.Instance.ScoreTracker.BonusScore);
         }
 
-        public void SetScore(ScoreType type, List<Dices.Dice> diceList, int score)
+        public void SetScore(ScoreType type, List<Dice.Die> diceList, int score)
         {
             ScoreEntry entry = scoreEntries[type];
             entry.SetDice(diceList);
             entry.SetScore(score);
         }
         
-        public void PlayScoreSequence(ScoreEntry entry, List<DiceUi> dice, Action onComplete = null)
+        public void PlayScoreSequence(ScoreEntry entry, List<DieUi> dice, Action onComplete = null)
         {
             Sequence sequence = DOTween.Sequence();
 
@@ -67,7 +67,7 @@ namespace ProjectYahtzee.Battle.Scores.Ui
 
             for (int i = 0; i < dice.Count; i++)
             {
-                DiceUi d = dice[i];
+                DieUi d = dice[i];
                 int iCached = i;
                 float delayTime = delay * i;
 
@@ -79,7 +79,7 @@ namespace ProjectYahtzee.Battle.Scores.Ui
                                                                      .SetDelay(delayTime)
                                                                      .OnComplete(() =>
                                                                                   {
-                                                                                      entry.SetDice(iCached, d.Dice.Value);
+                                                                                      entry.SetDice(iCached, d.Die.Value);
                                                                                       d.gameObject.SetActive(false);
                                                                                   });
                 TweenerCore<Vector3, Vector3, VectorOptions> scale = d.Image

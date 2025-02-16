@@ -17,14 +17,14 @@ namespace ProjectYahtzee.Battle.Scores
         {
         }
 
-        public abstract int Calculate(List<Dices.Dice> dice);
+        public abstract int Calculate(List<Dice.Die> dice);
         
-        public abstract List<Dices.Dice> GetScoredDice(List<Dices.Dice> dice);
+        public abstract List<Dice.Die> GetScoredDice(List<Dice.Die> dice);
 
-        protected Dictionary<int, int> DiceToDict(List<Dices.Dice> dice)
+        protected Dictionary<int, int> DiceToDict(List<Dice.Die> dice)
         {
             Dictionary<int, int> diceByValue = new Dictionary<int, int>();
-            foreach (Dices.Dice d in dice)
+            foreach (Dice.Die d in dice)
             {
                 if (!diceByValue.TryAdd(d.Value, 1))
                 {

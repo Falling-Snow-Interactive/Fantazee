@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ProjectYahtzee.Battle.Scores
 {
@@ -20,7 +19,7 @@ namespace ProjectYahtzee.Battle.Scores
                    };
         }
         
-        public override int Calculate(List<Dices.Dice> dice)
+        public override int Calculate(List<Dice.Die> dice)
         {
             // This works with 1,2,3,4,6 but not 1, 3,4,5,6
             Dictionary<int, int> dict = DiceToDict(dice);
@@ -56,7 +55,7 @@ namespace ProjectYahtzee.Battle.Scores
             return 0;
         }
 
-        private bool HasDiceValue(int value, List<Dices.Dice> dice, out Dices.Dice d)
+        private bool HasDiceValue(int value, List<Dice.Die> dice, out Dice.Die d)
         {
             foreach (var di in dice)
             {
@@ -71,13 +70,13 @@ namespace ProjectYahtzee.Battle.Scores
             return false;
         }
 
-        public override List<Dices.Dice> GetScoredDice(List<Dices.Dice> dice)
+        public override List<Dice.Die> GetScoredDice(List<Dice.Die> dice)
         {
             // Bit better. Still mediocre
-            List<Dices.Dice> scored = new List<Dices.Dice>();
+            List<Dice.Die> scored = new();
             for (int i = 1; i <= 6; i++)
             {
-                if (HasDiceValue(i, dice, out Dices.Dice d))
+                if (HasDiceValue(i, dice, out Dice.Die d))
                 {
                     scored.Add(d);
                     for (int j = i + 1; j <= 6; j++)

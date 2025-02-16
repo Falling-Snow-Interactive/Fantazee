@@ -1,8 +1,8 @@
-using ProjectYahtzee.Dice.Information;
+using ProjectYahtzee.Battle.Dice.Information;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProjectYahtzee.Dice.Settings
+namespace ProjectYahtzee.Battle.Dice.Settings
 {
     public class DiceSettings : ScriptableObject
     {

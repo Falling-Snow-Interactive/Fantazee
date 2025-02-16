@@ -1,13 +1,16 @@
+using System;
 using ProjectYahtzee.Battle;
 using ProjectYahtzee.Boons.Handlers;
 using UnityEngine;
 
 namespace ProjectYahtzee.Boons.GiveTake
 {
+    [Serializable]
     public class GiveTakeBoon : Boon, IBoonDamageHandler
     {
         public override BoonType Type => BoonType.GiveTake;
 
+        [SerializeField]
         private float value;
         private bool scoredRoll = true;
         

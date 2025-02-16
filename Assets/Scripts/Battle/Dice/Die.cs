@@ -1,12 +1,12 @@
 using System;
-using ProjectYahtzee.Battle.Dices.Randomizer;
+using ProjectYahtzee.Battle.Dice.Randomizer;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.Serialization;
 
-namespace ProjectYahtzee.Battle.Dices
+namespace ProjectYahtzee.Battle.Dice
 {
     [Serializable]
-    public class Dice
+    public class Die
     {
         [SerializeField]
         private int value = 6;
@@ -25,19 +25,20 @@ namespace ProjectYahtzee.Battle.Dices
             set => locked = value;
         }
         
+        [FormerlySerializedAs("diceRandomizer")]
         [SerializeField]
-        private DiceRandomizer diceRandomizer;
+        private DieRandomizer dieRandomizer;
 
-        public Dice()
+        public Die()
         {
             value = 6;
             locked = false;
-            diceRandomizer = DiceRandomizer.D6;
+            dieRandomizer = DieRandomizer.D6;
         }
 
         public void Roll()
         {
-            value = diceRandomizer.Randomize();
+            value = dieRandomizer.Randomize();
         }
 
         public void ToggleLock()

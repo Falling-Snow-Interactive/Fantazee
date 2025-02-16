@@ -27,10 +27,18 @@ namespace ProjectYahtzee.Instance
         [Header("Dice")]
         
         [SerializeField]
-        private List<Battle.Dices.Dice> dice; // TODO - For some reason this is getting cleared when the game exits - KD
-        public List<Battle.Dices.Dice> Dice => dice;
+        private List<Battle.Dice.Die> dice; // TODO - For some reason this is getting cleared when the game exits - KD
+        public List<Battle.Dice.Die> Dice => dice;
 
         [Header("Maps")]
+
+        [SerializeField]
+        private int currentMapId = 0;
+        public int CurrentMapId
+        {
+            get => currentMapId;
+            set => currentMapId = value;
+        }
         
         [FormerlySerializedAs("mapNode")]
         [SerializeField]
@@ -52,7 +60,7 @@ namespace ProjectYahtzee.Instance
             dice.Clear();
             for (int i = 0; i < 5; i++)
             {
-                dice.Add(new Battle.Dices.Dice());
+                dice.Add(new Battle.Dice.Die());
             }
         }
     }

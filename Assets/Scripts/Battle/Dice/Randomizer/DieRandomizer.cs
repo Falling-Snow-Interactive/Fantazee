@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using Fsi.Gameplay.Randomizers;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Dices.Randomizer
+namespace ProjectYahtzee.Battle.Dice.Randomizer
 {
     [Serializable]
-    public class DiceRandomizer : Randomizer<int, DiceRandomizerEntry>
+    public class DieRandomizer : Randomizer<int, DieRandomizerEntry>
     {
         [SerializeField]
-        private List<DiceRandomizerEntry> entries;
-        public override List<DiceRandomizerEntry> Entries => entries;
+        private List<DieRandomizerEntry> entries;
+        public override List<DieRandomizerEntry> Entries => entries;
 
-        public DiceRandomizer(List<DiceRandomizerEntry> entries)
+        public DieRandomizer(List<DieRandomizerEntry> entries)
         {
             this.entries = entries;
         }
 
-        public static DiceRandomizer D6
+        public static DieRandomizer D6
         {
             get
             {
-                List<DiceRandomizerEntry> entries = new List<DiceRandomizerEntry>();
+                List<DieRandomizerEntry> entries = new List<DieRandomizerEntry>();
                 for (int i = 1; i <= 6; i++)
                 {
-                    DiceRandomizerEntry entry = new DiceRandomizerEntry
+                    DieRandomizerEntry entry = new DieRandomizerEntry
                                                 {
                                                     Value = i,
                                                     Weight = 1
@@ -33,7 +33,7 @@ namespace ProjectYahtzee.Battle.Dices.Randomizer
                     entries.Add(entry);
                 }
 
-                return new DiceRandomizer(entries);
+                return new DieRandomizer(entries);
             }
         }
     }
