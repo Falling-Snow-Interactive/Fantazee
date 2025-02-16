@@ -1,12 +1,13 @@
 using System;
 using DG.Tweening;
-using ProjectYahtzee.Battle.Dice.Information;
-using ProjectYahtzee.Battle.Dice.Settings;
+using ProjectYahtzee.Battle;
+using ProjectYahtzee.Items.Dice.Information;
+using ProjectYahtzee.Items.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace ProjectYahtzee.Battle.Dice.Ui
+namespace ProjectYahtzee.Items.Dice.Ui
 {
     public class DieUi : MonoBehaviour
     {
@@ -36,11 +37,11 @@ namespace ProjectYahtzee.Battle.Dice.Ui
         
         [SerializeField]
         private Ease fallEase = Ease.OutBounce;
-
+        
         [Header("Lock")]
 
         [SerializeField]
-        private float lockOffset = -1;
+        private Vector3 lockOffset = new Vector3(0, -1, 0);
 
         [SerializeField]
         private float lockTime = 0.2f;
@@ -51,7 +52,7 @@ namespace ProjectYahtzee.Battle.Dice.Ui
         [Header("Hide/Show")]
 
         [SerializeField]
-        private float hideOffset = 3f;
+        private Vector3 hideOffset = new Vector3(0, -3, 0);
 
         [SerializeField]
         private float hideTime = 0.5f;
@@ -147,25 +148,32 @@ namespace ProjectYahtzee.Battle.Dice.Ui
 
         public void ToggleLock()
         {
-            Die.ToggleLock();
-            float offset = Die.Locked ? lockOffset : 0;
-            image.transform.DOLocalMoveY(offset, lockTime).SetEase(lockEase);
+            bool shouldLock = !BattleController.Instance.LockedDice.Contains(Die);
+            if (shouldLock)
+            {
+                BattleController.Instance.LockedDice.Add(Die);
+            }
+            else
+            {
+                BattleController.Instance.LockedDice.Remove(Die);
+            }
+
+            Vector3 offset = shouldLock ? lockOffset : Vector3.zero;
+            image.transform.DOLocalMove(offset, lockTime).SetEase(lockEase);
         }
 
         public void Hide(Action onComplete, float delay = 0, bool force = false)
         {
             if (force)
             {
-                Vector3 vector3 = transform.localPosition;
-                vector3.y = hideOffset;
-                transform.localPosition = vector3;
+                image.transform.localPosition = hideOffset;
                 return;
             }
 
-            transform.DOLocalMoveX(hideOffset, hideTime)
-                     .SetEase(hideEase)
-                     .SetDelay(delay)
-                     .OnComplete(() => onComplete?.Invoke());
+            image.transform.DOLocalMove(hideOffset, hideTime)
+                 .SetEase(hideEase)
+                 .SetDelay(delay)
+                 .OnComplete(() => onComplete?.Invoke());
         }
         
         public void Show(Action onComplete, float delay = 0, bool force = false)
@@ -176,10 +184,10 @@ namespace ProjectYahtzee.Battle.Dice.Ui
                 return;
             }
 
-            transform.DOLocalMoveY(0, showTime)
-                     .SetEase(showEase)                     
-                     .SetDelay(delay)
-                     .OnComplete(() => onComplete?.Invoke());
+            image.transform.DOLocalMove(Vector3.zero, showTime)
+                 .SetEase(showEase)
+                 .SetDelay(delay)
+                 .OnComplete(() => onComplete?.Invoke());
         }
     }
 }

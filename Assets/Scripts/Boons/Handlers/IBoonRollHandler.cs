@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using ProjectYahtzee.Items.Dice;
 
 namespace ProjectYahtzee.Boons.Handlers
 {
     public interface IBoonRollHandler
     {
-        public void OnDiceRoll(Battle.Dice.Die die);
+        public void OnDiceRoll(Die die);
     }
 }

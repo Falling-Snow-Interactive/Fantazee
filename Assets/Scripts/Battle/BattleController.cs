@@ -7,14 +7,14 @@ using Fsi.Gameplay;
 using ProjectYahtzee.Battle.Characters;
 using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Battle.Characters.Player;
-using ProjectYahtzee.Battle.Dice;
-using ProjectYahtzee.Battle.Dice.Ui;
 using ProjectYahtzee.Battle.Scores;
 using ProjectYahtzee.Battle.Scores.Ui;
 using ProjectYahtzee.Battle.Settings;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Boons;
 using ProjectYahtzee.Boons.Handlers;
+using ProjectYahtzee.Items.Dice;
+using ProjectYahtzee.Items.Dice.Ui;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -59,6 +59,9 @@ namespace ProjectYahtzee.Battle
         [SerializeField]
         private int remainingRolls = 3;
         public int RemainingRolls => remainingRolls;
+
+        private List<Die> lockedDice = new();
+        public List<Die> LockedDice => lockedDice;
 
         private bool hasScoredRoll = false;
 
@@ -139,10 +142,10 @@ namespace ProjectYahtzee.Battle
         {
             for (int i = 0; i < GameController.Instance.GameInstance.Dice.Count; i++)
             {
-                Dice.Die die = GameController.Instance.GameInstance.Dice[i];
-                if (GameplayUi.Instance.DiceControl.Dice.Count > i)
+                Die die = GameController.Instance.GameInstance.Dice[i];
+                if (BattleUi.Instance.DiceControl.Dice.Count > i)
                 {
-                    DieUi dieUi = GameplayUi.Instance.DiceControl.Dice[i];
+                    DieUi dieUi = BattleUi.Instance.DiceControl.Dice[i];
                     dieUi.Initialize(die);
 
                     dieUi.Hide(null, 0, true);
@@ -173,7 +176,7 @@ namespace ProjectYahtzee.Battle
         {
             foreach (Boon boon in GameController.Instance.GameInstance.Boons)
             {
-                GameplayUi.Instance.BoonsUi.AddBoon(boon);
+                BattleUi.Instance.BoonsUi.AddBoon(boon);
                 if (boon is IBoonDamageHandler boonDamageHandler)
                 {
                     boonDamageHandlers.Add(boonDamageHandler);
@@ -240,18 +243,18 @@ namespace ProjectYahtzee.Battle
             
             if (scoreTracker.CanScore(entry.Score.Type))
             {
-                StartCoroutine(StartScoreSequence(entry, GameplayUi.Instance.DiceControl.Dice));
+                StartCoroutine(StartScoreSequence(entry, BattleUi.Instance.DiceControl.Dice));
             }
         }
 
         private IEnumerator StartScoreSequence(ScoreEntry entry, List<DieUi> diceUi)
         {
             Score score = entry.Score;
-            List<Dice.Die> dice = GameController.Instance.GameInstance.Dice;
-            List<Dice.Die> partOfScore = entry.Score.GetScoredDice(dice);
+            List<Die> dice = GameController.Instance.GameInstance.Dice;
+            List<Die> partOfScore = entry.Score.GetScoredDice(dice);
             
             // First, dice go to scoreboard
-            List<Dice.Die> scoredDice = new();
+            List<Die> scoredDice = new();
             for (int i = 0; i < diceUi.Count; i++)
             {
                 DieUi d = diceUi[i];
@@ -330,15 +333,16 @@ namespace ProjectYahtzee.Battle
 
         private void OnFinishedScoring()
         {
-            foreach (DieUi d in GameplayUi.Instance.DiceControl.Dice)
+            lockedDice.Clear();
+            if (remainingRolls > 0)
             {
-                d.Die.Locked = false;
-                if (remainingRolls > 0)
-                {
-                    d.ResetDice();
-                }
+                BattleUi.Instance.DiceControl.ResetDice();
             }
-            
+            else
+            {
+                BattleUi.Instance.DiceControl.HideDice();
+            }
+
             foreach (GameplayEnemy enemy in enemies)
             {
                 if (enemy.Health.IsAlive)
@@ -361,15 +365,15 @@ namespace ProjectYahtzee.Battle
             {
                 hasScoredRoll = false;
                 remainingRolls--;
-                foreach (Dice.Die d in GameController.Instance.GameInstance.Dice)
+                foreach (Die d in GameController.Instance.GameInstance.Dice)
                 {
-                    if (!d.Locked)
+                    if(!lockedDice.Contains(d))
                     {
                         d.Roll();
                     }
                 }
                 
-                GameplayUi.Instance.DiceControl.Roll(d =>
+                BattleUi.Instance.DiceControl.Roll(d =>
                                                      {
                                                          foreach (IBoonRollHandler boon in boonRollHandlers)
                                                          {
@@ -401,15 +405,13 @@ namespace ProjectYahtzee.Battle
         {
             PlayerTurnStart?.Invoke();
             remainingRolls = rolls;
-            foreach (Dice.Die d in GameController.Instance.GameInstance.Dice)
-            {
-                d.Locked = false;
-            }
-            TryRoll();
+            lockedDice.Clear();
+            BattleUi.Instance.DiceControl.ShowDice(TryRoll);
         }
         
         public void TryEndPlayerTurn()
         {
+            BattleUi.Instance.DiceControl.HideDice();
             PlayerTurnEnd?.Invoke();
             StartEnemyTurn();
         }
@@ -419,7 +421,7 @@ namespace ProjectYahtzee.Battle
             if (scoreTracker.BonusScore.IsReady)
             {
                 // Player.DoBonusAttack();
-                GameplayUi.Instance.Scoreboard.BonusScoreUi.Disable();
+                BattleUi.Instance.Scoreboard.BonusScoreUi.Disable();
             }
         }
         

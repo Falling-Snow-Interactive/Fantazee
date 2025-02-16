@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ProjectYahtzee.Items.Dice;
 
 namespace ProjectYahtzee.Battle.Scores
 {
@@ -24,7 +25,7 @@ namespace ProjectYahtzee.Battle.Scores
                    };
         }
         
-        public override int Calculate(List<Dice.Die> dice)
+        public override int Calculate(List<Die> dice)
         {
             Dictionary<int, int> dict = DiceToDict(dice);
             
@@ -47,9 +48,9 @@ namespace ProjectYahtzee.Battle.Scores
             return 0;
         }
 
-        public override List<Dice.Die> GetScoredDice(List<Dice.Die> dice)
+        public override List<Die> GetScoredDice(List<Die> dice)
         {
-            List<Dice.Die> scored = new List<Dice.Die>();
+            List<Die> scored = new List<Die>();
             foreach (var d in dice)
             {
                 if (d.Value == value)

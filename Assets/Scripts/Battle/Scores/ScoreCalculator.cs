@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using ProjectYahtzee.Items.Dice;
 using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Scores
 {
     public static class ScoreCalculator
     {
-        public static int Calculate(ScoreType type, List<Dice.Die> dice)
+        public static int Calculate(ScoreType type, List<Die> dice)
         {
             Dictionary<int, int> diceByValue = new Dictionary<int, int>();
-            foreach (Dice.Die d in dice)
+            foreach (Die d in dice)
             {
                 if (!diceByValue.TryAdd(d.Value, 1))
                 {
@@ -153,7 +154,7 @@ namespace ProjectYahtzee.Battle.Scores
             return 0;
         }
 
-        private static int CalculateChance(List<Dice.Die> dice)
+        private static int CalculateChance(List<Die> dice)
         {
             int diceTotal = 0;
             foreach (var d in dice)

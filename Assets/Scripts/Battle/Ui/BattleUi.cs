@@ -1,12 +1,11 @@
 using Fsi.Gameplay;
 using ProjectYahtzee.Battle.Boons.Ui;
-using ProjectYahtzee.Battle.Dice.Ui.DiceControl;
 using ProjectYahtzee.Battle.Scores.Ui;
 using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Ui
 {
-    public class GameplayUi : MbSingleton<GameplayUi>
+    public class BattleUi : MbSingleton<BattleUi>
     {
         [SerializeField]
         private DiceControlUi diceControl;

@@ -1,6 +1,7 @@
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace ProjectYahtzee
 {
@@ -15,11 +16,21 @@ namespace ProjectYahtzee
         private FsiSceneEntry mapScene;
 
         [SerializeField]
-        private FsiSceneEntry battleEnv;
+        private FsiSceneEntry sandboxEnv;
+
+        [SerializeField]
+        private FsiSceneEntry blacksmithScene;
+
+        [SerializeField]
+        private FsiSceneEntry shopScene;
+
+        [SerializeField]
+        private FsiSceneEntry innScene;
         
         public void LoadBattle()
         {
             LoadScene(battleScene.Name, LoadSceneMode.Single);
+            LoadBattleEnvironment();
         }
 
         public void LoadMap()
@@ -29,7 +40,22 @@ namespace ProjectYahtzee
 
         public void LoadBattleEnvironment()
         {
-            LoadScene(battleEnv.Name, LoadSceneMode.Additive);
+            LoadScene(sandboxEnv.Name, LoadSceneMode.Additive);
+        }
+
+        public void LoadBlacksmith()
+        {
+            LoadScene(blacksmithScene.Name, LoadSceneMode.Single);
+        }
+
+        public void LoadShop()
+        {
+            LoadScene(shopScene.Name, LoadSceneMode.Single);
+        }
+
+        public void LoadInn()
+        {
+            LoadScene(innScene.Name, LoadSceneMode.Single);
         }
     }
 }

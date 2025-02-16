@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ProjectYahtzee.Items.Dice;
 using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Scores
@@ -17,14 +18,14 @@ namespace ProjectYahtzee.Battle.Scores
         {
         }
 
-        public abstract int Calculate(List<Dice.Die> dice);
+        public abstract int Calculate(List<Die> dice);
         
-        public abstract List<Dice.Die> GetScoredDice(List<Dice.Die> dice);
+        public abstract List<Die> GetScoredDice(List<Die> dice);
 
-        protected Dictionary<int, int> DiceToDict(List<Dice.Die> dice)
+        protected Dictionary<int, int> DiceToDict(List<Die> dice)
         {
             Dictionary<int, int> diceByValue = new Dictionary<int, int>();
-            foreach (Dice.Die d in dice)
+            foreach (Die d in dice)
             {
                 if (!diceByValue.TryAdd(d.Value, 1))
                 {

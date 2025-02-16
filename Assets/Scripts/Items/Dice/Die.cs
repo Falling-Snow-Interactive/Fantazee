@@ -1,28 +1,20 @@
 using System;
-using ProjectYahtzee.Battle.Dice.Randomizer;
+using ProjectYahtzee.Items.Dice.Randomizer;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ProjectYahtzee.Battle.Dice
+namespace ProjectYahtzee.Items.Dice
 {
     [Serializable]
-    public class Die
+    public class Die : Item
     {
         [SerializeField]
-        private int value = 6;
+        private int value;
 
         public int Value
         {
             get => value;
             set => this.value = value;
-        }
-
-        [SerializeField]
-        private bool locked;
-        public bool Locked
-        {
-            get => locked;
-            set => locked = value;
         }
         
         [FormerlySerializedAs("diceRandomizer")]
@@ -32,7 +24,6 @@ namespace ProjectYahtzee.Battle.Dice
         public Die()
         {
             value = 6;
-            locked = false;
             dieRandomizer = DieRandomizer.D6;
         }
 
@@ -41,9 +32,9 @@ namespace ProjectYahtzee.Battle.Dice
             value = dieRandomizer.Randomize();
         }
 
-        public void ToggleLock()
+        public override void Upgrade()
         {
-            locked = !locked;
+            throw new NotImplementedException();
         }
     }
 }

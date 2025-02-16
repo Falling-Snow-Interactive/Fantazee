@@ -33,7 +33,7 @@ namespace ProjectYahtzee.Battle.Scores
             }
             bonusScore = new BonusScore();
             
-            GameplayUi.Instance.Scoreboard.Initialize();
+            BattleUi.Instance.Scoreboard.Initialize();
         }
 
         public void AddScore(Score score, int value)

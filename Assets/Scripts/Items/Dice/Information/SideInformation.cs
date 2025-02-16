@@ -2,7 +2,7 @@ using System;
 using fsi.settings.Informations;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Dice.Information
+namespace ProjectYahtzee.Items.Dice.Information
 {
     [Serializable]
     public class SideInformation : Information<int>

@@ -95,16 +95,15 @@ namespace ProjectYahtzee.Maps
                         break;
                     case NodeType.Battle:
                         ProjectSceneManager.Instance.LoadBattle();
-                        ProjectSceneManager.Instance.LoadBattleEnvironment();
                         break;
                     case NodeType.Blacksmith:
-                        isMoving = false;
+                        ProjectSceneManager.Instance.LoadBlacksmith();
                         break;
                     case NodeType.Inn:
-                        isMoving = false;
+                        ProjectSceneManager.Instance.LoadInn();
                         break;
                     case NodeType.Shop:
-                        isMoving = false;
+                        ProjectSceneManager.Instance.LoadShop();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fsi.Gameplay.Healths;
 using ProjectYahtzee.Boons;
+using ProjectYahtzee.Items.Dice;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -27,8 +28,8 @@ namespace ProjectYahtzee.Instance
         [Header("Dice")]
         
         [SerializeField]
-        private List<Battle.Dice.Die> dice; // TODO - For some reason this is getting cleared when the game exits - KD
-        public List<Battle.Dice.Die> Dice => dice;
+        private List<Die> dice; // TODO - For some reason this is getting cleared when the game exits - KD
+        public List<Die> Dice => dice;
 
         [Header("Maps")]
 
@@ -60,7 +61,7 @@ namespace ProjectYahtzee.Instance
             dice.Clear();
             for (int i = 0; i < 5; i++)
             {
-                dice.Add(new Battle.Dice.Die());
+                dice.Add(new Die());
             }
         }
     }

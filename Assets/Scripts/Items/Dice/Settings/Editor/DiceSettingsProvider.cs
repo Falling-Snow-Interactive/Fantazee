@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ProjectYahtzee.Battle.Dice.Settings.Editor
+namespace ProjectYahtzee.Items.Dice.Settings.Editor
 {
     public class DiceSettingsProvider : SettingsProvider
     {

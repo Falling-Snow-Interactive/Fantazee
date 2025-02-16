@@ -1,8 +1,9 @@
 using System;
 using DG.Tweening;
-using ProjectYahtzee.Battle.Dice.Ui;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Boons.Handlers;
+using ProjectYahtzee.Items.Dice;
+using ProjectYahtzee.Items.Dice.Ui;
 using UnityEngine;
 
 namespace ProjectYahtzee.Boons.TwoTwos
@@ -13,12 +14,12 @@ namespace ProjectYahtzee.Boons.TwoTwos
         public override BoonType Type => BoonType.TwoTwos;
         public override string GetBonusText() => "";
 
-        public void OnDiceRoll(Battle.Dice.Die die)
+        public void OnDiceRoll(Die die)
         {
             if (die.Value == 2)
             {
                 DieUi dieUi = null;
-                foreach (DieUi d in GameplayUi.Instance.DiceControl.Dice)
+                foreach (DieUi d in BattleUi.Instance.DiceControl.Dice)
                 {
                     if (d.Die == die)
                     {

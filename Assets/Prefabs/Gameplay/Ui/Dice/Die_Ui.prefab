@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7681740762171878921}
   - component: {fileID: 458663929710508687}
   m_Layer: 0
-  m_Name: Dice_Ui
+  m_Name: Die_Ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,9 +58,14 @@ MonoBehaviour:
   throwEase: 6
   fallTime: 1.2
   fallEase: 30
-  lockOffset: -50
+  lockOffset: {x: 0, y: -60, z: 0}
   lockTime: 0.2
   lockEase: 30
+  hideOffset: {x: 0, y: -500, z: 0}
+  hideTime: 0.5
+  hideEase: 1
+  showTime: 0.5
+  showEase: 1
   image: {fileID: 1629304878505802033}
 --- !u!114 &458663929710508687
 MonoBehaviour:
@@ -132,7 +137,7 @@ GameObject:
   - component: {fileID: 995819636784197243}
   - component: {fileID: 6108211825856388938}
   m_Layer: 0
-  m_Name: Dice_UI_VIS
+  m_Name: Die_UI_VIS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

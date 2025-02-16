@@ -2,6 +2,7 @@ using System;
 using ProjectYahtzee.Battle;
 using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Boons.Handlers;
+using ProjectYahtzee.Items.Dice;
 using UnityEngine;
 
 namespace ProjectYahtzee.Boons.ExplosiveDice
@@ -24,7 +25,7 @@ namespace ProjectYahtzee.Boons.ExplosiveDice
             return roll.ToString();
         }
 
-        public void OnDiceRoll(Battle.Dice.Die die)
+        public void OnDiceRoll(Die die)
         {
             if (die.Value == roll)
             {

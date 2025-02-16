@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using ProjectYahtzee.Items.Dice;
 
 namespace ProjectYahtzee.Battle.Scores
 {
     public class ChanceScore : Score
     {
         public override ScoreType Type => ScoreType.Chance;
-        public override int Calculate(List<Dice.Die> dice)
+        public override int Calculate(List<Die> dice)
         {
             int score = 0;
             foreach (var d in dice)
@@ -16,9 +17,9 @@ namespace ProjectYahtzee.Battle.Scores
             return score;
         }
 
-        public override List<Dice.Die> GetScoredDice(List<Dice.Die> dice)
+        public override List<Die> GetScoredDice(List<Die> dice)
         {
-            return new List<Dice.Die>(dice);
+            return new List<Die>(dice);
         }
     }
 }

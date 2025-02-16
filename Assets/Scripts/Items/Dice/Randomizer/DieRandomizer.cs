@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fsi.Gameplay.Randomizers;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Dice.Randomizer
+namespace ProjectYahtzee.Items.Dice.Randomizer
 {
     [Serializable]
     public class DieRandomizer : Randomizer<int, DieRandomizerEntry>

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using ProjectYahtzee.Items.Dice;
 
 namespace ProjectYahtzee.Battle.Scores
 {
     public class FullHouseScore : Score
     {
         public override ScoreType Type => ScoreType.FullHouse;
-        public override int Calculate(List<Dice.Die> dice)
+        public override int Calculate(List<Die> dice)
         {
             Dictionary<int, int> dict = DiceToDict(dice);
             
@@ -35,9 +36,9 @@ namespace ProjectYahtzee.Battle.Scores
             return 0;
         }
 
-        public override List<Dice.Die> GetScoredDice(List<Dice.Die> dice)
+        public override List<Die> GetScoredDice(List<Die> dice)
         {
-            return Calculate(dice) > 0 ? new List<Dice.Die>(dice) : new List<Dice.Die>();
+            return Calculate(dice) > 0 ? new List<Die>(dice) : new List<Die>();
         }
     }
 }

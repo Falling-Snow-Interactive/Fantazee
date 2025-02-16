@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
-using ProjectYahtzee.Battle.Dice.Ui;
 using ProjectYahtzee.Battle.Scores.Bonus.Ui;
+using ProjectYahtzee.Items.Dice;
+using ProjectYahtzee.Items.Dice.Ui;
 using UnityEngine;
 
 namespace ProjectYahtzee.Battle.Scores.Ui
@@ -52,7 +53,7 @@ namespace ProjectYahtzee.Battle.Scores.Ui
             bonusScoreUi.Initialize(BattleController.Instance.ScoreTracker.BonusScore);
         }
 
-        public void SetScore(ScoreType type, List<Dice.Die> diceList, int score)
+        public void SetScore(ScoreType type, List<Die> diceList, int score)
         {
             ScoreEntry entry = scoreEntries[type];
             entry.SetDice(diceList);
