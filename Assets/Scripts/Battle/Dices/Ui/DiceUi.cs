@@ -138,6 +138,14 @@ namespace ProjectYahtzee.Battle.Dices.Ui
             }
         }
 
+        public void UpdateImage()
+        {
+            if (DiceSettings.Settings.SideInformation.TryGetInformation(dice.Value, out SideInformation info))
+            {
+                image.sprite = info.Sprite;
+            }
+        }
+
         public void ToggleLock()
         {
             dice.ToggleLock();

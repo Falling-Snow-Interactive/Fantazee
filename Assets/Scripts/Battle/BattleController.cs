@@ -104,7 +104,7 @@ namespace ProjectYahtzee.Battle
         
         // Boon Control
         private readonly List<IBoonDamageHandler> boonDamageHandlers = new();
-        private List<IBoonRollHandler> boonRollHandlers = new();
+        private readonly List<IBoonRollHandler> boonRollHandlers = new();
         
         private void OnEnable()
         {
@@ -176,6 +176,11 @@ namespace ProjectYahtzee.Battle
                 if (boon is IBoonDamageHandler boonDamageHandler)
                 {
                     boonDamageHandlers.Add(boonDamageHandler);
+                }
+
+                if (boon is IBoonRollHandler boonRollHandler)
+                {
+                    boonRollHandlers.Add(boonRollHandler);
                 }
             }
         }

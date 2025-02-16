@@ -8,12 +8,11 @@ namespace ProjectYahtzee.Boons.ExplosiveDice
     {
         public override BoonType Type => BoonType.ExplosiveDice;
 
-        private int roll;
+        private readonly int roll;
 
         public ExplosiveDiceBoon(int roll) : base()
         {
             this.roll = roll;
-            BattleController.Instance.RegisterBoonRollHandlerCallback(this);
         }
         
         public override string GetBonusText()

@@ -39,6 +39,7 @@ namespace ProjectYahtzee
             gameInstance.Boons.Add(BoonFactory.Create(BoonType.GiveTake));
             gameInstance.Boons.Add(BoonFactory.Create(BoonType.PlusTwo));
             gameInstance.Boons.Add(BoonFactory.Create(BoonType.ExplosiveDice));
+            gameInstance.Boons.Add(BoonFactory.Create(BoonType.TwoTwos));
         }
     }
 }

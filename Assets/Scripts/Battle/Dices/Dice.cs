@@ -10,7 +10,12 @@ namespace ProjectYahtzee.Battle.Dices
     {
         [SerializeField]
         private int value = 6;
-        public int Value => value;
+
+        public int Value
+        {
+            get => value;
+            set => this.value = value;
+        }
 
         [SerializeField]
         private bool locked;
