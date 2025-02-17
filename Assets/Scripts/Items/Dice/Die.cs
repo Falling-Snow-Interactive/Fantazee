@@ -6,8 +6,12 @@ using UnityEngine.Serialization;
 namespace ProjectYahtzee.Items.Dice
 {
     [Serializable]
-    public class Die : Item
+    public class Die : Item, ISerializationCallbackReceiver
     {
+        [HideInInspector]
+        [SerializeField]
+        private string name;
+        
         [SerializeField]
         private int value;
 
@@ -20,6 +24,7 @@ namespace ProjectYahtzee.Items.Dice
         [FormerlySerializedAs("diceRandomizer")]
         [SerializeField]
         private DieRandomizer dieRandomizer;
+        public DieRandomizer DieRandomizer => dieRandomizer;
 
         public Die()
         {
@@ -36,5 +41,25 @@ namespace ProjectYahtzee.Items.Dice
         {
             throw new NotImplementedException();
         }
+
+        public void OnBeforeSerialize()
+        {
+            string s = "";
+
+            for (int i = 0; i < dieRandomizer.Entries.Count; i++)
+            {
+                DieRandomizerEntry d = dieRandomizer.Entries[i];
+                s += d.Value + " - " + d.Weight;
+
+                if (i + 1 < dieRandomizer.Entries.Count)
+                {
+                    s += "     ";
+                }
+            }
+
+            name = s;
+        }
+
+        public void OnAfterDeserialize() { }
     }
 }

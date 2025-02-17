@@ -130,7 +130,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
             sequence.Play();
         }
 
-        private void SetImage(int value)
+        public void SetImage(int value)
         {
             if (DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
             {

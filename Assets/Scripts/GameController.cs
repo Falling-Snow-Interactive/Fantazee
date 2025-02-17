@@ -18,6 +18,8 @@ namespace ProjectYahtzee
         
             GameController prefab = Resources.Load<GameController>(RESOURCE_PATH);
             Instantiate(prefab).name = "Game_CTRL";
+            
+            Application.targetFrameRate = 60;
         }
         
         #endregion
@@ -34,12 +36,6 @@ namespace ProjectYahtzee
             
             // TODO - Temporary just reseting the dice everytime beause they were getting cleared ???
             gameInstance.ResetDice();
-            
-            // Just gonna add a boon
-            gameInstance.Boons.Add(BoonFactory.Create(BoonType.GiveTake));
-            gameInstance.Boons.Add(BoonFactory.Create(BoonType.PlusTwo));
-            gameInstance.Boons.Add(BoonFactory.Create(BoonType.ExplosiveDice));
-            gameInstance.Boons.Add(BoonFactory.Create(BoonType.TwoTwos));
         }
     }
 }

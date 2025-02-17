@@ -54,14 +54,7 @@ namespace ProjectYahtzee.Battle.Ui
             for (int i = 0; i < dice.Count; i++)
             {
                 DieUi d = dice[i];
-                if (i == dice.Count - 1)
-                {
-                    d.Show(onComplete, i * 0.2f, false);
-                }
-                else
-                {
-                    d.Show(null, i * 0.2f, false);
-                }
+                d.Show(i == dice.Count - 1 ? onComplete : null, i * 0.2f, false);
             }
         }
     }

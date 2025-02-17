@@ -1,0 +1,63 @@
+using System.Globalization;
+using ProjectYahtzee.Items.Dice;
+using ProjectYahtzee.Items.Dice.Randomizer;
+using ProjectYahtzee.Items.Dice.Ui;
+using TMPro;
+using UnityEngine;
+
+namespace ProjectYahtzee.Blacksmith.Ui
+{
+    public class BlacksmithSideUi : MonoBehaviour
+    {
+        public Die Die { get; private set; }
+        public DieRandomizerEntry Side { get; private set; }
+
+        private BlacksmithSideGroupUi groupUi;
+        
+        [SerializeField]
+        private BlacksmithDieUi dieUi;
+
+        [SerializeField]
+        private TMP_Text weightText;
+        
+        public void Initialize(Die die, DieRandomizerEntry side, BlacksmithSideGroupUi groupUi)
+        {
+            Die = die;
+            Side = side;
+            dieUi.SetImage(side.Value);
+            weightText.text = side.Value.ToString();
+            
+            this.groupUi = groupUi;
+        }
+
+        public void SetWeight(float weight)
+        {
+            weightText.text = weight.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public void SetImage(int value)
+        {
+            dieUi.SetImage(value);
+        }
+        
+        public void OnValuePlus()
+        {
+            groupUi.UpgradeDieValue(this, Side.Value, 1);
+        }
+
+        public void OnValueMinus()
+        {
+            groupUi.UpgradeDieValue(this, Side.Value, -1);
+        }
+
+        public void OnWeightPlus()
+        {
+            groupUi.UpgradeDieWeight(this, Side.Value, 1);
+        }
+
+        public void OnWeightMinus()
+        { 
+            groupUi.UpgradeDieWeight(this, Side.Value, -1);
+        }
+    }
+}
