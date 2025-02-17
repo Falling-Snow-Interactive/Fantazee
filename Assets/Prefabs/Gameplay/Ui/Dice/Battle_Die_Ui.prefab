@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7681740762171878921}
   - component: {fileID: 458663929710508687}
   m_Layer: 0
-  m_Name: Die_Ui
+  m_Name: Battle_Die_Ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,9 +63,9 @@ MonoBehaviour:
   lockEase: 30
   hideOffset: {x: 0, y: -500, z: 0}
   hideTime: 0.5
-  hideEase: 1
+  hideEase: 12
   showTime: 0.5
-  showEase: 1
+  showEase: 12
   image: {fileID: 1629304878505802033}
 --- !u!114 &458663929710508687
 MonoBehaviour:

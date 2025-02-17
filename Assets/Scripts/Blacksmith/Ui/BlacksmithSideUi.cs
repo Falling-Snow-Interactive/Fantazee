@@ -25,7 +25,7 @@ namespace ProjectYahtzee.Blacksmith.Ui
             Die = die;
             Side = side;
             dieUi.SetImage(side.Value);
-            weightText.text = side.Value.ToString();
+            weightText.text = side.Weight.ToString();
             
             this.groupUi = groupUi;
         }
