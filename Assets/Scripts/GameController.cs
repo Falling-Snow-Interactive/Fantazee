@@ -37,5 +37,10 @@ namespace ProjectYahtzee
             // TODO - Temporary just reseting the dice everytime beause they were getting cleared ???
             gameInstance.ResetDice();
         }
+
+        public void NewGame()
+        {
+            gameInstance = new GameInstance();
+        }
     }
 }

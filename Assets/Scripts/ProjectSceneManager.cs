@@ -1,13 +1,15 @@
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace ProjectYahtzee
 {
     public class ProjectSceneManager : FsiSceneManager<ProjectSceneManager>
     {
         [Header("Scenes")]
+        
+        [SerializeField]
+        private FsiSceneEntry mainMenuScene;
 
         [SerializeField]
         private FsiSceneEntry battleScene;
@@ -26,6 +28,11 @@ namespace ProjectYahtzee
 
         [SerializeField]
         private FsiSceneEntry innScene;
+
+        public void LoadMainMenu()
+        {
+            LoadScene(mainMenuScene.Name, LoadSceneMode.Single);
+        }
         
         public void LoadBattle()
         {

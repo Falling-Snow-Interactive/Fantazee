@@ -24,6 +24,9 @@ namespace ProjectYahtzee.Maps
         [SerializeField]
         private float outlineThickness = 1;
         
+        [SerializeField]
+        private Vector2 spacing = Vector2.one;
+        
         public override void DrawShapes(Camera cam)
         {
             if (map == null)
@@ -31,7 +34,7 @@ namespace ProjectYahtzee.Maps
                 return;
             }
             
-            using(Draw.Command(cam, RenderPassEvent.BeforeRenderingPrePasses))
+            using(Draw.Command(cam, RenderPassEvent.AfterRendering))
             {
                 Draw.LineGeometry = LineGeometry.Flat2D;
                 Draw.ThicknessSpace = ThicknessSpace.Pixels;

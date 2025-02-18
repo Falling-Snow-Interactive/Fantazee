@@ -12,6 +12,10 @@ namespace ProjectYahtzee.Maps.Nodes.Information
         public Color Color => color;
 
         [SerializeField]
+        private Color outline = Color.black;
+        public Color Outline => outline;
+        
+        [SerializeField]
         private Sprite sprite;
         public Sprite Sprite => sprite;
     }

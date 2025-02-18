@@ -5,6 +5,7 @@ using ProjectYahtzee.Boons;
 using ProjectYahtzee.Items.Dice;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace ProjectYahtzee.Instance
 {
@@ -53,12 +54,22 @@ namespace ProjectYahtzee.Instance
         [Header("Boons")]
         
         [SerializeReference]
-        private List<Boon> boons = new List<Boon>();
+        private List<Boon> boons;
         public List<Boon> Boons => boons;
+
+        public GameInstance()
+        {
+            seed = (uint)Random.Range(0, int.MaxValue);
+            health = new Health(500);
+            ResetDice();
+            currentMapIndex = 0;
+            currentMapId = 0;
+            boons = new List<Boon>();
+        }
 
         public void ResetDice()
         {
-            dice.Clear();
+            dice = new List<Die>();
             for (int i = 0; i < 5; i++)
             {
                 dice.Add(new Die());

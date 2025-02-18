@@ -87,11 +87,11 @@ namespace ProjectYahtzee.Maps
 
             private void OnFinishMoving()
             {
+                isMoving = false;
                 Node node = map.Nodes[GameController.Instance.GameInstance.CurrentMapIndex];
                 switch (node.NodeType)
                 {
                     case NodeType.None:
-                        isMoving = false;
                         break;
                     case NodeType.Battle:
                         ProjectSceneManager.Instance.LoadBattle();
@@ -100,10 +100,10 @@ namespace ProjectYahtzee.Maps
                         ProjectSceneManager.Instance.LoadBlacksmith();
                         break;
                     case NodeType.Inn:
-                        ProjectSceneManager.Instance.LoadInn();
+                        // ProjectSceneManager.Instance.LoadInn();
                         break;
                     case NodeType.Shop:
-                        ProjectSceneManager.Instance.LoadShop();
+                        // ProjectSceneManager.Instance.LoadShop();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
