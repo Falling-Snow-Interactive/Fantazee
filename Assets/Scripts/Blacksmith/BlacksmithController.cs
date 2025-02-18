@@ -1,18 +1,25 @@
-using Fsi.Roguelite;
-using ProjectYahtzee.Blacksmith.Cart;
-using ProjectYahtzee.Items;
+using ProjectYahtzee.Blacksmith.Ui;
+using UnityEngine;
 
 namespace ProjectYahtzee.Blacksmith
 {
-    public class BlacksmithController : BlacksmithController<Item>
+    public class BlacksmithController : MonoBehaviour
     {
-        private BlacksmithCart cart;
+        [SerializeField]
+        private BlacksmithUi blacksmithUi;
 
         private void Start()
         {
-            cart = new BlacksmithCart();
+            Debug.Log("Blacksmith - Start");
+            
+            blacksmithUi.gameObject.SetActive(true);
+            blacksmithUi.Initialize();
         }
         
-        
+        public void ExitBlacksmith()
+        {
+            Debug.Log("Blacksmith - Exit");
+            ProjectSceneManager.Instance.LoadMap();
+        }
     }
 }

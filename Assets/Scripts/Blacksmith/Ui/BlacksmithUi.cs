@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fsi.Roguelite;
 using Fsi.Roguelite.Ui;
 using ProjectYahtzee.Items;
 using ProjectYahtzee.Items.Dice;
@@ -8,8 +9,11 @@ using UnityEngine;
 
 namespace ProjectYahtzee.Blacksmith.Ui
 {
-    public class BlacksmithUi : BlacksmithUi<Item>
+    public class BlacksmithUi : MonoBehaviour
     {
+        [SerializeField]
+        private BlacksmithController blacksmithController;
+        
         [SerializeField]
         private BlacksmithSideGroupUi blacksmithSideGroupUi;
 
@@ -20,8 +24,10 @@ namespace ProjectYahtzee.Blacksmith.Ui
 
         private bool canUpgrade = true;
         
-        private void Start()
+        public void Initialize()
         {
+            Debug.Log("Blacksmith - BlacksmithUi initialize");
+            
             int i = 1;
             foreach (BlacksmithDieUi d in diceButtons)
             {
@@ -65,8 +71,6 @@ namespace ProjectYahtzee.Blacksmith.Ui
                 return;
             }
             
-            Debug.Log($"Upgrade {side} + {change}");
-            
             DieRandomizer r = entry.Die.DieRandomizer;
             foreach (DieRandomizerEntry s in r.Entries)
             {
@@ -75,6 +79,7 @@ namespace ProjectYahtzee.Blacksmith.Ui
                     s.Value += change;
                     canUpgrade = false;
                     StartCoroutine(DelayedUpdate(entry, s.Value, s.Weight));
+                    Debug.Log($"Blacksmith - Value: {s.Value - change} -> {s.Value}");
                     return;
                 }
             }
@@ -95,6 +100,7 @@ namespace ProjectYahtzee.Blacksmith.Ui
                     s.Weight += change;
                     canUpgrade = false;
                     StartCoroutine(DelayedUpdate(entry, s.Value, s.Weight));
+                    Debug.Log($"Blacksmith - {side} Weight: {s.Weight - change} -> {s.Weight}");
                     return;
                 }
             }
@@ -111,7 +117,7 @@ namespace ProjectYahtzee.Blacksmith.Ui
 
         private void ExitBlacksmith()
         {
-            ProjectSceneManager.Instance.LoadMap();
+            blacksmithController.ExitBlacksmith();
         }
     }
 }

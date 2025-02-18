@@ -122,6 +122,8 @@ namespace ProjectYahtzee.Battle
 
         private void Start()
         {
+            Debug.Log($"Battle - Start");
+            
             SetupBattle();
             StartIntroduction(OnIntroductionFinished);
         }
@@ -130,6 +132,7 @@ namespace ProjectYahtzee.Battle
 
         private void SetupBattle()
         {
+            Debug.Log($"Battle - Setup");
             scoreTracker.Initialize();
             Player.Initialize();
             SetupDice();
@@ -140,6 +143,7 @@ namespace ProjectYahtzee.Battle
 
         private void SetupDice()
         {
+            Debug.Log($"Battle - Setup Dice");
             for (int i = 0; i < GameController.Instance.GameInstance.Dice.Count; i++)
             {
                 Die die = GameController.Instance.GameInstance.Dice[i];

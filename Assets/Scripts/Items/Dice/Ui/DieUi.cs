@@ -79,6 +79,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
 
         public void ResetDice()
         {
+            Debug.Log($"DiceUi - Reset");
             image.transform.localPosition = Vector3.zero;
             image.transform.localScale = Vector3.one;
             image.gameObject.SetActive(true);
@@ -104,6 +105,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
 
         public void Initialize(Die d)
         {
+            Debug.Log($"DiceUi - Initialize");
             ResetDice();
             rolling = false;
             Die = d;
@@ -112,6 +114,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
 
         public void Roll(float delay = 0, Action<Die> onRollComplete = null)
         {
+            Debug.Log($"DiceUi - Roll");
             ResetDice();
             
             rolling = true;
@@ -132,6 +135,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
 
         public void SetImage(int value)
         {
+            Debug.Log($"DiceUi - Set Image {value}");
             if (DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
             {
                 image.sprite = info.Sprite;
@@ -140,6 +144,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
 
         public void UpdateImage()
         {
+            Debug.Log($"DiceUi - Update Image");
             if (DiceSettings.Settings.SideInformation.TryGetInformation(Die.Value, out SideInformation info))
             {
                 image.sprite = info.Sprite;
@@ -149,6 +154,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
         public void ToggleLock()
         {
             bool shouldLock = !BattleController.Instance.LockedDice.Contains(Die);
+            Debug.Log($"DiceUi - ToggleLock {shouldLock}");
             if (shouldLock)
             {
                 BattleController.Instance.LockedDice.Add(Die);
@@ -164,6 +170,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
 
         public void Hide(Action onComplete, float delay = 0, bool force = false)
         {
+            Debug.Log($"DiceUi - Hide ({force})");
             if (force)
             {
                 image.transform.localPosition = hideOffset;
@@ -178,6 +185,7 @@ namespace ProjectYahtzee.Items.Dice.Ui
         
         public void Show(Action onComplete, float delay = 0, bool force = false)
         {
+            Debug.Log($"DiceUi - Show ({force})");
             if (force)
             {
                 image.transform.localPosition = Vector3.zero;

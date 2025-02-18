@@ -42,11 +42,16 @@ namespace ProjectYahtzee.Maps
 
             private void Start()
             {
+                Debug.Log("Map - Start");
+                
                 int index = GameController.Instance.GameInstance.CurrentMapIndex;
                 Node node = map.Nodes[index];
 
                 player.transform.position = node.transform.position;
                 isMoving = false;
+                
+                Debug.Log($"Map - Current Node: {node.name}");
+                Debug.Log($"Map - Player to {player.transform.position}");
             }
 
             private void OnSelectAction()
@@ -55,6 +60,8 @@ namespace ProjectYahtzee.Maps
                 {
                     return;
                 }
+
+                Debug.Log($"Map - Select Action");
                 
                 camera ??= Camera.main;
 
@@ -75,6 +82,8 @@ namespace ProjectYahtzee.Maps
                             {
                                 return;
                             }
+                            
+                            Debug.Log($"Map - Move to {node.name}", node.gameObject);
 
                             player.transform.DOMove(node.transform.position, 0.5f)
                                   .OnComplete(OnFinishMoving);
@@ -87,8 +96,10 @@ namespace ProjectYahtzee.Maps
 
             private void OnFinishMoving()
             {
+                Debug.Log($"Map - Finished move");
                 isMoving = false;
                 Node node = map.Nodes[GameController.Instance.GameInstance.CurrentMapIndex];
+                Debug.Log($"Map - Node {node.NodeType}");
                 switch (node.NodeType)
                 {
                     case NodeType.None:

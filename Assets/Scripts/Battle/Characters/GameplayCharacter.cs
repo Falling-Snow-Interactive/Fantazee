@@ -63,6 +63,7 @@ namespace ProjectYahtzee.Battle.Characters
         
         public void Initialize()
         {
+            Debug.Log($"Player - Initialize");
             localRoot = transform.localPosition;
             
             healthUi.Initialize(Health);

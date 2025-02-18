@@ -21,6 +21,7 @@ namespace ProjectYahtzee.Battle.Scores
 
         public void Initialize()
         {
+            Debug.Log($"Score Tracker - Initialize");
             scoreDictionary.Clear();
             
             Scores.Clear();
@@ -38,6 +39,7 @@ namespace ProjectYahtzee.Battle.Scores
 
         public void AddScore(Score score, int value)
         {
+            Debug.Log($"Score Tracker - Add {score.Type} - {value}");
             scoreDictionary.Add(score.Type, value);
             bonusScore.Add(value);
         }
