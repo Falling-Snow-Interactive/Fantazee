@@ -31,16 +31,17 @@ namespace ProjectYahtzee
         protected override void Awake()
         {
             base.Awake();
-            
-            gameInstance.Seed = (uint)Random.Range(0, int.MaxValue);
-            
-            // TODO - Temporary just reseting the dice everytime beause they were getting cleared ???
-            gameInstance.ResetDice();
+            gameInstance.RandomizeSeed();
         }
 
         public void NewGame()
         {
-            gameInstance = new GameInstance();
+            gameInstance = GameInstance.Defaults;
+        }
+
+        public void Reset()
+        {
+            gameInstance = GameInstance.Defaults;
         }
     }
 }

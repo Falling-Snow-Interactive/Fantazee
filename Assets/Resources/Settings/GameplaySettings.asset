@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19037ab111444fb697d14361cc12b747, type: 3}
   m_Name: GameplaySettings
   m_EditorClassIdentifier: 
+  bonusScore: 200
   scoreInformation:
     information:
     - name: Ones
@@ -300,6 +301,9 @@ MonoBehaviour:
         m_LocalVariables: []
       baseValue: 0
       baseMod: 5
+  squishAmount: {x: 0.2, y: -0.2, z: 0}
+  squishTime: 0.25
+  squishEase: 31
   references:
     version: 2
     RefIds: []

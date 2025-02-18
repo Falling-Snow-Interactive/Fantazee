@@ -44,7 +44,7 @@ namespace ProjectYahtzee.Maps
             {
                 Debug.Log("Map - Start");
                 
-                int index = GameController.Instance.GameInstance.CurrentMapIndex;
+                int index = GameController.Instance.GameInstance.MapNodeIndex;
                 Node node = map.Nodes[index];
 
                 player.transform.position = node.transform.position;
@@ -72,7 +72,7 @@ namespace ProjectYahtzee.Maps
                     {
                         if (hit.collider.TryGetComponent(out Node node))
                         {
-                            Node currentNode = map.Nodes[GameController.Instance.GameInstance.CurrentMapIndex];
+                            Node currentNode = map.Nodes[GameController.Instance.GameInstance.MapNodeIndex];
                             if (currentNode == node)
                             {
                                 return;
@@ -88,7 +88,7 @@ namespace ProjectYahtzee.Maps
                             player.transform.DOMove(node.transform.position, 0.5f)
                                   .OnComplete(OnFinishMoving);
                             int index = map.Nodes.IndexOf(node);
-                            GameController.Instance.GameInstance.CurrentMapIndex = index;
+                            GameController.Instance.GameInstance.MapNodeIndex = index;
                         }
                     }
                 }
@@ -98,7 +98,7 @@ namespace ProjectYahtzee.Maps
             {
                 Debug.Log($"Map - Finished move");
                 isMoving = false;
-                Node node = map.Nodes[GameController.Instance.GameInstance.CurrentMapIndex];
+                Node node = map.Nodes[GameController.Instance.GameInstance.MapNodeIndex];
                 Debug.Log($"Map - Node {node.NodeType}");
                 switch (node.NodeType)
                 {
@@ -114,7 +114,7 @@ namespace ProjectYahtzee.Maps
                         // ProjectSceneManager.Instance.LoadInn();
                         break;
                     case NodeType.Shop:
-                        // ProjectSceneManager.Instance.LoadShop();
+                        ProjectSceneManager.Instance.LoadShop();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

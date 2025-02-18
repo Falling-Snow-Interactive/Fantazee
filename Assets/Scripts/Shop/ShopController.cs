@@ -13,6 +13,7 @@ namespace ProjectYahtzee.Shop
         private void Start()
         {
             Debug.Log("Shop - Start");
+            shopUi.Initialize();
         }
 
         public void LeaveShop()

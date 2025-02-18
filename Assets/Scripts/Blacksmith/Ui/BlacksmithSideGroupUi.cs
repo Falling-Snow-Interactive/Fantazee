@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Fsi.Roguelite.Ui;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 using ProjectYahtzee.Items.Dice.Randomizer;
 using UnityEngine;

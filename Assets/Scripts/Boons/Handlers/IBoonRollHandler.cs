@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 
 namespace ProjectYahtzee.Boons.Handlers

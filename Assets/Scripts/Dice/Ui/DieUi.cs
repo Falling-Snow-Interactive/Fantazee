@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using ProjectYahtzee.Battle;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice.Information;
 using ProjectYahtzee.Items.Dice.Settings;
 using UnityEngine;

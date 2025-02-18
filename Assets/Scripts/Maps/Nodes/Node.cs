@@ -34,21 +34,24 @@ namespace ProjectYahtzee.Maps.Nodes
         private Disc outline;
         
         [SerializeField]
+        private SpriteRenderer spriteRenderer;
+        
+        [SerializeField]
         private List<ConnectionLine> connectionLines;
 
         private void OnValidate()
         {
-            if (MapSettings.Settings.NodeInformation.TryGetInformation(NodeType, out NodeInformation information))
+            if (MapSettings.Settings.NodeInformation.TryGetInformation(NodeType, out NodeInformation info))
             {
                 if (disc)
                 {
-                    disc.Color = information.Color;
+                    disc.Color = info.Color;
                     disc.Radius = radius;
                 }
 
                 if (outline)
                 {
-                    outline.Color = information.Outline;
+                    outline.Color = info.Outline;
                     outline.Thickness = thickness/2f;
                     outline.Radius = radius + thickness/4f;
                 }
@@ -59,6 +62,11 @@ namespace ProjectYahtzee.Maps.Nodes
                     {
                         connectionLines[i].SetLine(connections[i].transform.position - transform.position);
                     }
+                }
+
+                if (spriteRenderer)
+                {
+                    spriteRenderer.sprite = info.Sprite;
                 }
             }
         }

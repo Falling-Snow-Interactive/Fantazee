@@ -3,10 +3,10 @@ using ProjectYahtzee.Items.Dice.Randomizer;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ProjectYahtzee.Items.Dice
+namespace ProjectYahtzee.Dice
 {
     [Serializable]
-    public class Die : Item, ISerializationCallbackReceiver
+    public class Die : ISerializationCallbackReceiver
     {
         [HideInInspector]
         [SerializeField]
@@ -26,20 +26,15 @@ namespace ProjectYahtzee.Items.Dice
         private DieRandomizer dieRandomizer;
         public DieRandomizer DieRandomizer => dieRandomizer;
 
-        public Die()
+        public Die(int value = 6)
         {
-            value = 6;
+            this.value = value;
             dieRandomizer = DieRandomizer.D6;
         }
 
         public void Roll()
         {
             value = dieRandomizer.Randomize();
-        }
-
-        public override void Upgrade()
-        {
-            throw new NotImplementedException();
         }
 
         public void OnBeforeSerialize()

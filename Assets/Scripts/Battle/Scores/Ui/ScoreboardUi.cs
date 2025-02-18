@@ -4,6 +4,7 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using ProjectYahtzee.Battle.Scores.Bonus.Ui;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 using ProjectYahtzee.Items.Dice.Ui;
 using UnityEngine;

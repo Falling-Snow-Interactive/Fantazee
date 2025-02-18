@@ -2,6 +2,7 @@ using System;
 using ProjectYahtzee.Battle;
 using ProjectYahtzee.Battle.Characters.Enemies;
 using ProjectYahtzee.Boons.Handlers;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 using UnityEngine;
 

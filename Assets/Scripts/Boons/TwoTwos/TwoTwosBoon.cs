@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Boons.Handlers;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 using ProjectYahtzee.Items.Dice.Ui;
 using UnityEngine;

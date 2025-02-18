@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using Fsi.Gameplay.Healths;
 using ProjectYahtzee.Boons;
+using ProjectYahtzee.Currencies;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace ProjectYahtzee.Instance
@@ -12,20 +13,20 @@ namespace ProjectYahtzee.Instance
     [Serializable]
     public class GameInstance
     {
+        private const uint DEFAULT_SEED = 0;
+        private const int DEFAULT_HEALTH = 500;
+        private const int DEFAULT_GOLD = 500;
+        
         [SerializeField]
-        private uint seed = 982186532;
-        public uint Seed
-        {
-            get => seed;
-            set => seed = value;
-        }
+        private uint seed;
+        public uint Seed => seed;
 
         [Header("Character")]
 
         [SerializeField]
         private Health health;
         public Health Health => health;
-        
+
         [Header("Dice")]
         
         [SerializeField]
@@ -35,20 +36,19 @@ namespace ProjectYahtzee.Instance
         [Header("Maps")]
 
         [SerializeField]
-        private int currentMapId = 0;
-        public int CurrentMapId
+        private int mapIndex = 0;
+        public int MapIndex
         {
-            get => currentMapId;
-            set => currentMapId = value;
+            get => mapIndex;
+            set => mapIndex = value;
         }
         
-        [FormerlySerializedAs("mapNode")]
         [SerializeField]
-        private int currentMapIndex = 0;
-        public int CurrentMapIndex
+        private int mapNodeIndex = 0;
+        public int MapNodeIndex
         {
-            get => currentMapIndex;
-            set => currentMapIndex = value;
+            get => mapNodeIndex;
+            set => mapNodeIndex = value;
         }
         
         [Header("Boons")]
@@ -57,23 +57,50 @@ namespace ProjectYahtzee.Instance
         private List<Boon> boons;
         public List<Boon> Boons => boons;
 
-        public GameInstance()
+        [Header("Currency")]
+
+        [SerializeField]
+        private Wallet wallet;
+        public Wallet Wallet => wallet;
+
+        public static GameInstance Defaults
         {
-            seed = (uint)Random.Range(0, int.MaxValue);
-            health = new Health(500);
-            ResetDice();
-            currentMapIndex = 0;
-            currentMapId = 0;
-            boons = new List<Boon>();
+            get
+            {
+                GameInstance instance = new()
+                                        {
+                                            seed = DEFAULT_SEED,
+                                            health = new Health(DEFAULT_HEALTH),
+                                            mapIndex = 0,
+                                            mapNodeIndex = 0,
+                                            dice = DefaultDice(6),
+                                            boons = new List<Boon>(),
+                                            wallet = new Wallet(CurrencyType.Gold, DEFAULT_GOLD),
+                                        };
+                
+                return instance;
+            }
+        }
+        
+        
+        public static List<Die> DefaultDice(int amount)
+        {
+            List<Die> dice = new();
+            for (int i = 0; i < amount; i++)
+            {
+                dice.Add(new Die(i));
+            }
+            return dice;
         }
 
         public void ResetDice()
         {
-            dice = new List<Die>();
-            for (int i = 0; i < 5; i++)
-            {
-                dice.Add(new Die());
-            }
+            dice = DefaultDice(6);
+        }
+
+        public void RandomizeSeed()
+        {
+            seed = (uint)Random.Range(0, int.MaxValue);
         }
     }
 }

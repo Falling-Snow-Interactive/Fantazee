@@ -3,6 +3,7 @@ using System.Globalization;
 using DG.Tweening;
 using ProjectYahtzee.Battle.Scores.Information;
 using ProjectYahtzee.Battle.Settings;
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 using ProjectYahtzee.Items.Dice.Information;
 using ProjectYahtzee.Items.Dice.Settings;

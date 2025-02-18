@@ -1,3 +1,4 @@
+using ProjectYahtzee.Dice;
 using ProjectYahtzee.Items.Dice;
 
 namespace ProjectYahtzee.Blacksmith.Cart.Entries

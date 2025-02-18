@@ -1,5 +1,6 @@
 using System;
 using fsi.settings.Informations;
+using ProjectYahtzee.Currencies;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -18,8 +19,16 @@ namespace ProjectYahtzee.Boons.Information
         private LocalizedString locDescription;
         public LocalizedString LocDescription => locDescription;
         
+        [Header("Visuals")]
+        
         [SerializeField]
         private Sprite icon;
         public Sprite Icon => icon;
+
+        [Header("Shop")]
+
+        [SerializeField]
+        private Currency cost;
+        public Currency Cost => cost;
     }
 }
