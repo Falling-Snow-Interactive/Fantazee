@@ -4,17 +4,22 @@ namespace ProjectYahtzee.MainMenu
 {
     public class MainMenuController : MonoBehaviour
     {
+        private void Start()
+        {
+            GameController.Instance.MainMenuReady();
+        }
+        
         public void OnContinueButton()
         {
             Debug.Log("MainMenu - OnContinueButton");
-            ProjectSceneManager.Instance.LoadMap();
+            GameController.Instance.LoadMap();
         }
 
         public void OnNewGameButton()
         {
             Debug.Log("MainMenu - OnNewGameButton");
             GameController.Instance.NewGame();
-            ProjectSceneManager.Instance.LoadMap();
+            GameController.Instance.LoadMap();
         }
 
         public void OnSettingsButton()

@@ -1,5 +1,10 @@
+using System;
+using System.Collections.Generic;
+using ProjectYahtzee.Boons;
+using ProjectYahtzee.Boons.Settings;
 using ProjectYahtzee.Currencies;
 using ProjectYahtzee.Currencies.Ui;
+using ProjectYahtzee.Shop.Ui.Entries;
 using UnityEngine;
 
 namespace ProjectYahtzee.Shop.Ui
@@ -10,19 +15,56 @@ namespace ProjectYahtzee.Shop.Ui
         
         [SerializeField]
         private ShopController shopController;
+        
+        [Header("Prefabs")]
+        
+        [SerializeField]
+        private BoonEntry boonEntryPrefab;
+        
+        [SerializeField]
+        private RelicEntry relicEntryPrefab;
+
+        private List<BoonEntry> boonEntries = new();
+        private List<RelicEntry> relicEntries = new();
+        
+        // [SerializeField]
+        // private Entry otherEntryPrefab;
 
         [Header("Ui References")]
 
         [SerializeField]
-        private Transform content;
+        private Transform boonContent;
+        
+        [SerializeField]
+        private Transform relicContent;
         
         [SerializeField]
         private CurrencyEntryUi currencyEntry;
 
-        public void Initialize()
+        public void Initialize(ShopInventory inventory)
         {
             Debug.Log("ShopUi - Initialize");
-            currencyEntry.SetCurrency(CurrencyType.Gold);
+            if (GameController.Instance.GameInstance.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency currency))
+            {
+                currencyEntry.SetCurrency(currency);
+            }
+
+            foreach (BoonType boon in inventory.Boons)
+            {
+                BoonEntry boonEntry = Instantiate(boonEntryPrefab, boonContent);
+                boonEntry.Initialize(boon, OnBoonSelected);
+            }
+        }
+
+        private void OnBoonSelected(BoonEntry boonEntry)
+        {
+            Debug.Log($"ShopUi - OnBoonSelected {boonEntry.Boon}");
+
+            if (shopController.TryPurchase(boonEntry.Boon))
+            {
+                boonEntries.Remove(boonEntry);
+                Destroy(boonEntry.gameObject);
+            }
         }
         
         public void OnLeaveButtonClicked()

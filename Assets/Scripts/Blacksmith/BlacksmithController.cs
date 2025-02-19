@@ -14,12 +14,14 @@ namespace ProjectYahtzee.Blacksmith
             
             blacksmithUi.gameObject.SetActive(true);
             blacksmithUi.Initialize();
+            
+            GameController.Instance.BlacksmithReady();
         }
         
         public void ExitBlacksmith()
         {
             Debug.Log("Blacksmith - Exit");
-            ProjectSceneManager.Instance.LoadMap();
+            GameController.Instance.ExitBlacksmith();
         }
     }
 }

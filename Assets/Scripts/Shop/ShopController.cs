@@ -1,10 +1,19 @@
+using ProjectYahtzee.Boons;
+using ProjectYahtzee.Boons.Information;
+using ProjectYahtzee.Boons.Settings;
+using ProjectYahtzee.Currencies;
 using ProjectYahtzee.Shop.Ui;
 using UnityEngine;
 
 namespace ProjectYahtzee.Shop
 {
     public class ShopController : MonoBehaviour
-    { 
+    {
+        [Header("Inventory")]
+
+        [SerializeField]
+        private ShopInventory inventory;
+        
         [Header("Scene References")]
         
         [SerializeField]
@@ -13,14 +22,35 @@ namespace ProjectYahtzee.Shop
         private void Start()
         {
             Debug.Log("Shop - Start");
-            shopUi.Initialize();
+            
+            // TODO - Generate shop inventory randomly - KD
+            shopUi.Initialize(inventory);
+            
+            GameController.Instance.ShopReady();
+        }
+
+        public bool TryPurchase(BoonType type)
+        {
+            if (BoonSettings.Settings.Information.TryGetInformation(type, out BoonInformation information))
+            {
+                Currency cost = information.Cost;
+                if (GameController.Instance.GameInstance.Wallet.CanAfford(cost))
+                {
+                    Boon boon = BoonFactory.Create(type);
+                    GameController.Instance.GameInstance.Boons.Add(boon);
+                    GameController.Instance.GameInstance.Wallet.Remove(cost);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void LeaveShop()
         {
             Debug.Log("Shop - Leave shop");
             
-            ProjectSceneManager.Instance.LoadMap();
+            GameController.Instance.ExitShop();
         }
     }
 }

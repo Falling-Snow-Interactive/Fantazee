@@ -124,8 +124,13 @@ namespace ProjectYahtzee.Battle
         private void Start()
         {
             Debug.Log($"Battle - Start");
-            
             SetupBattle();
+            Debug.Log($"Battle - Ready");
+            GameController.Instance.BattleReady();
+        }
+
+        public void BattleStart()
+        {
             StartIntroduction(OnIntroductionFinished);
         }
         
@@ -140,6 +145,16 @@ namespace ProjectYahtzee.Battle
             SetupEnemies();
 
             SetupBoons();
+            
+            // Hide enemies
+            foreach (GameplayEnemy enemy in enemies)
+            {
+                enemy.Hide(null, 0, true);
+            }
+            
+            // Hide player
+            Player.Hide(null, 0, true);
+
         }
 
         private void SetupDice()
@@ -200,15 +215,6 @@ namespace ProjectYahtzee.Battle
 
         private void StartIntroduction(Action onComplete = null)
         {
-            // Hide enemies
-            foreach (GameplayEnemy enemy in enemies)
-            {
-                enemy.Hide(null, 0, true);
-            }
-            
-            // Hide player
-            Player.Hide(null, 0, true);
-
             StartCoroutine(IntroductionSequence(onComplete));
         }
 
@@ -460,7 +466,7 @@ namespace ProjectYahtzee.Battle
         
         private void BattleWin()
         {
-            ProjectSceneManager.Instance.LoadMap();
+            GameController.Instance.FinishedBattle(true);
         }
         
         #endregion

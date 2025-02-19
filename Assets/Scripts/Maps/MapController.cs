@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using Fsi.Gameplay;
+using ProjectYahtzee.Instance;
 using ProjectYahtzee.Maps.Nodes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,8 @@ namespace ProjectYahtzee.Maps
     {
         public class MapController : MbSingleton<MapController>
         {
+            private GameInstance GameInstance => GameController.Instance.GameInstance;
+            
             [SerializeField]
             private new Camera camera;
             
@@ -28,7 +31,7 @@ namespace ProjectYahtzee.Maps
             private InputActionReference selectActionRef;
             private InputAction selectAction;
 
-            private bool isMoving = false;
+            private bool canInteract = false;
 
             protected override void Awake()
             {
@@ -44,19 +47,26 @@ namespace ProjectYahtzee.Maps
             {
                 Debug.Log("Map - Start");
                 
-                int index = GameController.Instance.GameInstance.MapNodeIndex;
+                int index = GameInstance.MapNodeIndex;
                 Node node = map.Nodes[index];
 
                 player.transform.position = node.transform.position;
-                isMoving = false;
+                canInteract = false;
                 
                 Debug.Log($"Map - Current Node: {node.name}");
                 Debug.Log($"Map - Player to {player.transform.position}");
+                Debug.Log("Map - Ready");
+                GameController.Instance.MapReady();
+            }
+
+            public void StartMap()
+            {
+                canInteract = true;
             }
 
             private void OnSelectAction()
             {
-                if (isMoving)
+                if (!canInteract)
                 {
                     return;
                 }
@@ -72,7 +82,7 @@ namespace ProjectYahtzee.Maps
                     {
                         if (hit.collider.TryGetComponent(out Node node))
                         {
-                            Node currentNode = map.Nodes[GameController.Instance.GameInstance.MapNodeIndex];
+                            Node currentNode = map.Nodes[GameInstance.MapNodeIndex];
                             if (currentNode == node)
                             {
                                 return;
@@ -82,39 +92,46 @@ namespace ProjectYahtzee.Maps
                             {
                                 return;
                             }
-                            
-                            Debug.Log($"Map - Move to {node.name}", node.gameObject);
 
-                            player.transform.DOMove(node.transform.position, 0.5f)
-                                  .OnComplete(OnFinishMoving);
-                            int index = map.Nodes.IndexOf(node);
-                            GameController.Instance.GameInstance.MapNodeIndex = index;
+                            MoveToNode(node);
                         }
                     }
                 }
             }
 
+            private void MoveToNode(Node node)
+            {
+                Debug.Log($"Map - Move to {node.name}", node.gameObject);
+                
+                canInteract = false;
+
+                player.transform.DOMove(node.transform.position, 0.5f)
+                      .OnComplete(OnFinishMoving);
+                int index = map.Nodes.IndexOf(node);
+                GameInstance.MapNodeIndex = index;
+            }
+
             private void OnFinishMoving()
             {
                 Debug.Log($"Map - Finished move");
-                isMoving = false;
-                Node node = map.Nodes[GameController.Instance.GameInstance.MapNodeIndex];
+                canInteract = false;
+                Node node = map.Nodes[GameInstance.MapNodeIndex];
                 Debug.Log($"Map - Node {node.NodeType}");
                 switch (node.NodeType)
                 {
                     case NodeType.None:
                         break;
                     case NodeType.Battle:
-                        ProjectSceneManager.Instance.LoadBattle();
+                        GameController.Instance.LoadBattle();
                         break;
                     case NodeType.Blacksmith:
-                        ProjectSceneManager.Instance.LoadBlacksmith();
+                        GameController.Instance.LoadBlacksmith();
                         break;
                     case NodeType.Inn:
-                        // ProjectSceneManager.Instance.LoadInn();
+                        // GameController.Instance.LoadInn();
                         break;
                     case NodeType.Shop:
-                        ProjectSceneManager.Instance.LoadShop();
+                        GameController.Instance.LoadShop();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

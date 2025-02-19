@@ -11,7 +11,7 @@ namespace ProjectYahtzee.Currencies.Ui
         [Header("Currency")]
 
         [SerializeField]
-        private CurrencyType currencyType;
+        private Currency currency;
         
         [Header("Background")]
 
@@ -56,54 +56,45 @@ namespace ProjectYahtzee.Currencies.Ui
                 outline.effectColor = outlineColor;
                 outline.effectDistance = outlineSize;
             }
-
-            SetCurrency(currencyType);
         }
 
         private void OnEnable()
         {
-            GameController.Instance.GameInstance.Wallet.Changed += OnWalletChanged;
+            if (currency != null)
+            {
+                currency.Changed += UpdateAmount;
+            }
         }
 
         private void OnDisable()
         {
-            GameController.Instance.GameInstance.Wallet.Changed -= OnWalletChanged;
+            if (currency != null)
+            {
+                currency.Changed -= UpdateAmount;
+            }
         }
 
-        private void OnWalletChanged()
+        public void SetCurrency(Currency currency)
         {
-            UpdateAmount();
-        }
-
-        public void SetCurrency(CurrencyType currencyType)
-        {
-            Debug.Log($"CurrencyEntry - Set Currency {currencyType}");
-            this.currencyType = currencyType;
-            if (CurrencySettings.Settings.CurrencyInformation.TryGetInformation(currencyType, out CurrencyInformation info))
+            Debug.Log($"CurrencyEntry - Set Currency {currency}");
+            this.currency = currency;
+            if (CurrencySettings.Settings.CurrencyInformation.TryGetInformation(currency.type, out CurrencyInformation info))
             {
                 if (icon)
                 {
                     icon.sprite = info.Icon;
                 }
 
-                if (GameController.Instance && GameController.Instance.GameInstance != null)
-                {
-                    UpdateAmount();
-                }
-                else
-                {
-                    text.text = "000";
-                }
+                UpdateAmount();
             }
+            
+            currency.Changed += UpdateAmount;
         }
 
         private void UpdateAmount()
         {
-            if (GameController.Instance.GameInstance.Wallet.TryGetCurrency(currencyType, out Currency currency))
-            {
-                Debug.Log($"CurrencyEntry - UpdateAmount {currency}");
-                text.text = currency.amount.ToString();
-            }
+            Debug.Log($"CurrencyEntry - UpdateAmount {currency}");
+            text.text = currency.amount.ToString();
         }
     }
 }

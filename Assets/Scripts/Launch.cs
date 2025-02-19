@@ -6,7 +6,7 @@ namespace ProjectYahtzee
     {
         private void Start()
         {
-            ProjectSceneManager.Instance.LoadMainMenu();
+            GameController.Instance.LoadMainMenu();
         }
     }
 }

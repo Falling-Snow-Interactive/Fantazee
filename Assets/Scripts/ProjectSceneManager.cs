@@ -1,3 +1,4 @@
+using System;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,40 +30,42 @@ namespace ProjectYahtzee
         [SerializeField]
         private FsiSceneEntry innScene;
 
-        public void LoadMainMenu()
+        public void LoadMainMenu(Action onComplete)
         {
-            LoadScene(mainMenuScene.Name, LoadSceneMode.Single);
+            LoadSceneAsync(mainMenuScene.Name, LoadSceneMode.Single, onComplete);
         }
         
-        public void LoadBattle()
+        public void LoadBattle(Action onComplete)
         {
-            LoadScene(battleScene.Name, LoadSceneMode.Single);
-            LoadBattleEnvironment();
+            LoadSceneAsync(battleScene.Name, LoadSceneMode.Single, () =>
+                                                                   {
+                                                                       LoadBattleEnvironment(onComplete);
+                                                                   });
         }
 
-        public void LoadMap()
+        public void LoadMap(Action onComplete)
         {
-            LoadScene(mapScene.Name, LoadSceneMode.Single);
+            LoadSceneAsync(mapScene.Name, LoadSceneMode.Single, onComplete);
         }
 
-        public void LoadBattleEnvironment()
+        public void LoadBattleEnvironment(Action onComplete)
         {
-            LoadScene(sandboxEnv.Name, LoadSceneMode.Additive);
+            LoadSceneAsync(sandboxEnv.Name, LoadSceneMode.Additive, onComplete);
         }
 
-        public void LoadBlacksmith()
+        public void LoadBlacksmith(Action onComplete)
         {
-            LoadScene(blacksmithScene.Name, LoadSceneMode.Single);
+            LoadSceneAsync(blacksmithScene.Name, LoadSceneMode.Single, onComplete);
         }
 
-        public void LoadShop()
+        public void LoadShop(Action onComplete)
         {
-            LoadScene(shopScene.Name, LoadSceneMode.Single);
+            LoadSceneAsync(shopScene.Name, LoadSceneMode.Single, onComplete);
         }
 
-        public void LoadInn()
+        public void LoadInn(Action onComplete)
         {
-            LoadScene(innScene.Name, LoadSceneMode.Single);
+            LoadSceneAsync(innScene.Name, LoadSceneMode.Single, onComplete);
         }
     }
 }
