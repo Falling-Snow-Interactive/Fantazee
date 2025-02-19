@@ -1,9 +1,9 @@
 using System;
-using ProjectYahtzee.Battle;
-using ProjectYahtzee.Boons.Handlers;
+using Fantahzee.Battle;
+using Fantahzee.Boons.Handlers;
 using UnityEngine;
 
-namespace ProjectYahtzee.Boons.GiveTake
+namespace Fantahzee.Boons.GiveTake
 {
     [Serializable]
     public class GiveTakeBoon : Boon, IBoonDamageHandler

@@ -1,10 +1,10 @@
+using Fantahzee.Battle.Boons.Ui;
+using Fantahzee.Battle.Scores.Ui;
+using Fantahzee.Battle.Ui.WinScreens;
 using Fsi.Gameplay;
-using ProjectYahtzee.Battle.Boons.Ui;
-using ProjectYahtzee.Battle.Scores.Ui;
-using ProjectYahtzee.Battle.Ui.WinScreens;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Ui
+namespace Fantahzee.Battle.Ui
 {
     public class BattleUi : MbSingleton<BattleUi>
     {

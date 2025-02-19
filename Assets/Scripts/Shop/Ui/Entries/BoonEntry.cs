@@ -1,9 +1,9 @@
 using System;
-using ProjectYahtzee.Boons;
-using ProjectYahtzee.Boons.Settings;
-using ProjectYahtzee.Currencies;
+using Fantahzee.Boons;
+using Fantahzee.Boons.Settings;
+using Fantahzee.Currencies;
 
-namespace ProjectYahtzee.Shop.Ui.Entries
+namespace Fantahzee.Shop.Ui.Entries
 {
     public class BoonEntry : ShopEntryUi
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using DG.Tweening;
-using ProjectYahtzee.Battle.Scores.Information;
+using Fantahzee.Battle.Scores.Information;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Settings
+namespace Fantahzee.Battle.Settings
 {
     public class GameplaySettings : ScriptableObject
     {

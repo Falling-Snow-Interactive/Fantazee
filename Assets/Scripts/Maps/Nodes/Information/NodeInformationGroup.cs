@@ -1,7 +1,7 @@
 using System;
 using fsi.settings.Informations;
 
-namespace ProjectYahtzee.Maps.Nodes.Information
+namespace Fantahzee.Maps.Nodes.Information
 {
     [Serializable]
     public class NodeInformationGroup : InformationGroup<NodeInformation, NodeType>

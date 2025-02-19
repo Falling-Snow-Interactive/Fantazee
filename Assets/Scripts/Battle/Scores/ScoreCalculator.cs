@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using ProjectYahtzee.Dice;
-using ProjectYahtzee.Items.Dice;
+using Fantahzee.Dice;
+using Fantahzee.Items.Dice;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Scores
+namespace Fantahzee.Battle.Scores
 {
     public static class ScoreCalculator
     {
@@ -33,7 +33,7 @@ namespace ProjectYahtzee.Battle.Scores
                        ScoreType.FullHouse => CalculateFullHouse(diceByValue),
                        ScoreType.SmallStraight => CalculateStraight(4, diceByValue),
                        ScoreType.LargeStraight => CalculateStraight(5, diceByValue),
-                       ScoreType.Yahtzee => CalculateYahtzee(diceByValue),
+                       ScoreType.Fantahzee => CalculateFantahzee(diceByValue),
                        ScoreType.Chance => CalculateChance(dice),
                        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
                    };
@@ -142,7 +142,7 @@ namespace ProjectYahtzee.Battle.Scores
             return total;
         }
 
-        private static int CalculateYahtzee(Dictionary<int, int> dice)
+        private static int CalculateFantahzee(Dictionary<int, int> dice)
         {
             foreach (KeyValuePair<int, int> kvp in dice)
             {

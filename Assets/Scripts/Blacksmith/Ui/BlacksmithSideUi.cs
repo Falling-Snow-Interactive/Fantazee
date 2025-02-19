@@ -1,12 +1,12 @@
 using System.Globalization;
-using ProjectYahtzee.Dice;
-using ProjectYahtzee.Items.Dice;
-using ProjectYahtzee.Items.Dice.Randomizer;
-using ProjectYahtzee.Items.Dice.Ui;
+using Fantahzee.Dice;
+using Fantahzee.Items.Dice.Randomizer;
+using Fantahzee.Items.Dice;
+using Fantahzee.Items.Dice.Ui;
 using TMPro;
 using UnityEngine;
 
-namespace ProjectYahtzee.Blacksmith.Ui
+namespace Fantahzee.Blacksmith.Ui
 {
     public class BlacksmithSideUi : MonoBehaviour
     {

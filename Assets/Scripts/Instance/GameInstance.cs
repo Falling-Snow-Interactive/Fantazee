@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Fantahzee.Boons;
+using Fantahzee.Currencies;
+using Fantahzee.Dice;
 using Fsi.Gameplay.Healths;
-using ProjectYahtzee.Boons;
-using ProjectYahtzee.Currencies;
-using ProjectYahtzee.Dice;
-using ProjectYahtzee.Items.Dice;
+using Fantahzee.Items.Dice;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace ProjectYahtzee.Instance
+namespace Fantahzee.Instance
 {
     [Serializable]
     public class GameInstance

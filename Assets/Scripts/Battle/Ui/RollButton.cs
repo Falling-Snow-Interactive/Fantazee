@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectYahtzee.Battle.Ui
+namespace Fantahzee.Battle.Ui
 {
     public class RollButton : MonoBehaviour
     {

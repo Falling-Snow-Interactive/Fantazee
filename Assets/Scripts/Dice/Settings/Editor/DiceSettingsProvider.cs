@@ -3,11 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ProjectYahtzee.Items.Dice.Settings.Editor
+namespace Fantahzee.Items.Dice.Settings.Editor
 {
     public class DiceSettingsProvider : SettingsProvider
     {
-        private const string SETTINGS_PATH = "Project Yahtzee/Dice";
+        private const string SETTINGS_PATH = "Fantahzee/Dice";
         
         private SerializedObject serializedSettings;
         

@@ -1,6 +1,6 @@
-using ProjectYahtzee.Currencies;
+using Fantahzee.Currencies;
 
-namespace ProjectYahtzee.Shop.Ui.Entries
+namespace Fantahzee.Shop.Ui.Entries
 {
     public class RelicEntry : ShopEntryUi
     {

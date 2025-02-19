@@ -6,7 +6,7 @@ using Fsi.Gameplay.Healths.Ui;
 using Fsi.Gameplay.Visuals;
 using UnityEngine;
 
-namespace ProjectYahtzee.Battle.Characters
+namespace Fantahzee.Battle.Characters
 {
     public abstract class GameplayCharacter : MonoBehaviour, IDamageable
     {

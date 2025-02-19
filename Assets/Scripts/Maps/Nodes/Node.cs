@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using ProjectYahtzee.Maps.Nodes.Information;
-using ProjectYahtzee.Maps.Settings;
+using Fantahzee.Maps.Nodes.Information;
+using Fantahzee.Maps.Settings;
 using Shapes;
 using UnityEngine;
 
-namespace ProjectYahtzee.Maps.Nodes
+namespace Fantahzee.Maps.Nodes
 {
     public class Node : MonoBehaviour
     {

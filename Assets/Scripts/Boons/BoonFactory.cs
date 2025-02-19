@@ -1,10 +1,10 @@
 using System;
-using ProjectYahtzee.Boons.ExplosiveDice;
-using ProjectYahtzee.Boons.GiveTake;
-using ProjectYahtzee.Boons.PlusTwo;
-using ProjectYahtzee.Boons.TwoTwos;
+using Fantahzee.Boons.ExplosiveDice;
+using Fantahzee.Boons.GiveTake;
+using Fantahzee.Boons.PlusTwo;
+using Fantahzee.Boons.TwoTwos;
 
-namespace ProjectYahtzee.Boons
+namespace Fantahzee.Boons
 {
     public static class BoonFactory
     {

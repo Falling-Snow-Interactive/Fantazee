@@ -2,7 +2,7 @@ using System;
 using fsi.settings.Informations;
 using UnityEngine;
 
-namespace ProjectYahtzee.Maps.Nodes.Information
+namespace Fantahzee.Maps.Nodes.Information
 {
     [Serializable]
     public class NodeInformation : Information<NodeType>

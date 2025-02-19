@@ -3,11 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ProjectYahtzee.Battle.Settings.Editor
+namespace Fantahzee.Battle.Settings.Editor
 {
     public class GameplaySettingsProvider : SettingsProvider
     {
-        private const string SETTINGS_PATH = "Project Yahtzee/Gameplay";
+        private const string SETTINGS_PATH = "Fantahzee/Gameplay";
         
         private SerializedObject serializedSettings;
         

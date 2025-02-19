@@ -1,12 +1,12 @@
+using Fantahzee.Battle;
+using Fantahzee.Instance;
+using Fantahzee.LoadingScreens;
+using Fantahzee.Maps;
 using Fsi.Gameplay;
-using ProjectYahtzee.Battle;
-using ProjectYahtzee.Boons;
-using ProjectYahtzee.Instance;
-using ProjectYahtzee.LoadingScreens;
-using ProjectYahtzee.Maps;
+using Fantahzee.Boons;
 using UnityEngine;
 
-namespace ProjectYahtzee
+namespace Fantahzee
 {
     public class GameController : MbSingleton<GameController>
     {

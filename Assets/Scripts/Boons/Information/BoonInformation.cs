@@ -1,10 +1,10 @@
 using System;
+using Fantahzee.Currencies;
 using fsi.settings.Informations;
-using ProjectYahtzee.Currencies;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace ProjectYahtzee.Boons.Information
+namespace Fantahzee.Boons.Information
 {
     [Serializable]
     public class BoonInformation : Information<BoonType>

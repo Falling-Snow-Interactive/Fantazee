@@ -1,10 +1,10 @@
 using DG.Tweening;
-using ProjectYahtzee.Items.Dice.Information;
-using ProjectYahtzee.Items.Dice.Settings;
+using Fantahzee.Items.Dice.Information;
+using Fantahzee.Items.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectYahtzee.Blacksmith.Ui
+namespace Fantahzee.Blacksmith.Ui
 {
     public class BlacksmithDieUi : MonoBehaviour
     {

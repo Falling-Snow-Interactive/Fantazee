@@ -1,7 +1,7 @@
 using Shapes;
 using UnityEngine;
 
-namespace ProjectYahtzee.Maps.Nodes
+namespace Fantahzee.Maps.Nodes
 {
     public class ConnectionLine : MonoBehaviour
     {

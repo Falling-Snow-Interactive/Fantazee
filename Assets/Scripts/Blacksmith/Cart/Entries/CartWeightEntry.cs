@@ -1,7 +1,7 @@
-using ProjectYahtzee.Dice;
-using ProjectYahtzee.Items.Dice;
+using Fantahzee.Dice;
+using Fantahzee.Items.Dice;
 
-namespace ProjectYahtzee.Blacksmith.Cart.Entries
+namespace Fantahzee.Blacksmith.Cart.Entries
 {
     public class CartWeightEntry : BlacksmithCartEntry
     {

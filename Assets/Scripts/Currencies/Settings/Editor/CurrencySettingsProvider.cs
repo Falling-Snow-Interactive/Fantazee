@@ -3,11 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ProjectYahtzee.Currencies.Settings.Editor
+namespace Fantahzee.Currencies.Settings.Editor
 {
     public class CurrencySettingsProvider : SettingsProvider
     {
-        private const string SETTINGS_PATH = "Project Yahtzee/Currency";
+        private const string SETTINGS_PATH = "Fantahzee/Currency";
         
         private SerializedObject serializedSettings;
         

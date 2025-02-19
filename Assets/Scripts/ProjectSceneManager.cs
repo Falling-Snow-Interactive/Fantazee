@@ -3,7 +3,7 @@ using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ProjectYahtzee
+namespace Fantahzee
 {
     public class ProjectSceneManager : FsiSceneManager<ProjectSceneManager>
     {

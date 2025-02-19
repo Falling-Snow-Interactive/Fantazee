@@ -1,7 +1,7 @@
 using System;
 using fsi.settings.Informations;
 
-namespace ProjectYahtzee.Currencies.Information
+namespace Fantahzee.Currencies.Information
 {
     [Serializable]
     public class CurrencyInformationGroup : InformationGroup<CurrencyInformation, CurrencyType>

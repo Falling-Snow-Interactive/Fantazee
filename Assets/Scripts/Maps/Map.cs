@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using ProjectYahtzee.Maps.Nodes;
+using Fantahzee.Maps.Nodes;
 using UnityEngine;
 
-namespace ProjectYahtzee.Maps
+namespace Fantahzee.Maps
 {
     public class Map : MonoBehaviour
     {

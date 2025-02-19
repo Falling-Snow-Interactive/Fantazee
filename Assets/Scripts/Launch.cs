@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ProjectYahtzee
+namespace Fantahzee
 {
     public class Launch : MonoBehaviour
     {

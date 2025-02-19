@@ -1,7 +1,7 @@
 using System;
 using fsi.settings.Informations;
 
-namespace ProjectYahtzee.Boons.Information
+namespace Fantahzee.Boons.Information
 {
     [Serializable]
     public class BoonInformationGroup : InformationGroup<BoonInformation, BoonType>

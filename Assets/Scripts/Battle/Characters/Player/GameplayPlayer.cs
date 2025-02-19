@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Fantahzee.Boons.Handlers;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
-using ProjectYahtzee.Boons.Handlers;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace ProjectYahtzee.Battle.Characters.Player
+namespace Fantahzee.Battle.Characters.Player
 {
     public class GameplayPlayer : GameplayCharacter
     {

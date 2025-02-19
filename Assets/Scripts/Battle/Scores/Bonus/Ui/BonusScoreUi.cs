@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectYahtzee.Battle.Scores.Bonus.Ui
+namespace Fantahzee.Battle.Scores.Bonus.Ui
 {
     public class BonusScoreUi : MonoBehaviour
     {

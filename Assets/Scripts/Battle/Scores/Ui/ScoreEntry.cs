@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using System.Globalization;
 using DG.Tweening;
-using ProjectYahtzee.Battle.Scores.Information;
-using ProjectYahtzee.Battle.Settings;
-using ProjectYahtzee.Dice;
-using ProjectYahtzee.Items.Dice;
-using ProjectYahtzee.Items.Dice.Information;
-using ProjectYahtzee.Items.Dice.Settings;
+using Fantahzee.Battle.Scores.Information;
+using Fantahzee.Battle.Settings;
+using Fantahzee.Dice;
+using Fantahzee.Items.Dice.Information;
+using Fantahzee.Items.Dice.Settings;
+using Fantahzee.Items.Dice;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace ProjectYahtzee.Battle.Scores.Ui
+namespace Fantahzee.Battle.Scores.Ui
 {
     public class ScoreEntry : MonoBehaviour
     {
