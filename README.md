@@ -18,7 +18,3 @@ Rogue-lite RPG with a dice-based combat system
 3. Earn rewards, level up, and acquire new abilities.
 4. Progress through a branching narrative.
 5. Prepare for a final confrontation against the growing evil.
-
----
-
-Copyright Falling Snow Interactive 2025 All rights reserved
