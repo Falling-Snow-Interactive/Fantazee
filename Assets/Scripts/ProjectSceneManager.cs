@@ -2,6 +2,7 @@ using System;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Fantahzee
 {
@@ -17,10 +18,7 @@ namespace Fantahzee
         
         [SerializeField]
         private FsiSceneEntry mapScene;
-
-        [SerializeField]
-        private FsiSceneEntry sandboxEnv;
-
+        
         [SerializeField]
         private FsiSceneEntry blacksmithScene;
 
@@ -29,6 +27,15 @@ namespace Fantahzee
 
         [SerializeField]
         private FsiSceneEntry innScene;
+        
+        [Header("Battle Environments")]
+        
+        [FormerlySerializedAs("sandboxEnv")]
+        [SerializeField]
+        private FsiSceneEntry environmentEnv;
+
+        [SerializeField]
+        private FsiSceneEntry grassEnv;
 
         public void LoadMainMenu(Action onComplete)
         {
@@ -39,18 +46,13 @@ namespace Fantahzee
         {
             LoadSceneAsync(battleScene.Name, LoadSceneMode.Single, () =>
                                                                    {
-                                                                       LoadBattleEnvironment(onComplete);
+                                                                       LoadGrassEnvironment(onComplete);
                                                                    });
         }
 
         public void LoadMap(Action onComplete)
         {
             LoadSceneAsync(mapScene.Name, LoadSceneMode.Single, onComplete);
-        }
-
-        public void LoadBattleEnvironment(Action onComplete)
-        {
-            LoadSceneAsync(sandboxEnv.Name, LoadSceneMode.Additive, onComplete);
         }
 
         public void LoadBlacksmith(Action onComplete)
@@ -66,6 +68,16 @@ namespace Fantahzee
         public void LoadInn(Action onComplete)
         {
             LoadSceneAsync(innScene.Name, LoadSceneMode.Single, onComplete);
+        }
+        
+        public void LoadBattleEnvironment(Action onComplete)
+        {
+            LoadSceneAsync(environmentEnv.Name, LoadSceneMode.Additive, onComplete);
+        }
+        
+        public void LoadGrassEnvironment(Action onComplete)
+        {
+            LoadSceneAsync(grassEnv.Name, LoadSceneMode.Additive, onComplete);
         }
     }
 }

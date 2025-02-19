@@ -122,6 +122,8 @@ namespace Fantahzee.Maps
                     case NodeType.None:
                         break;
                     case NodeType.Battle:
+                    case NodeType.Boss:
+                    case NodeType.MiniBoss:
                         GameController.Instance.LoadBattle();
                         break;
                     case NodeType.Blacksmith:
@@ -133,6 +135,7 @@ namespace Fantahzee.Maps
                     case NodeType.Shop:
                         GameController.Instance.LoadShop();
                         break;
+                    
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
