@@ -111,6 +111,8 @@ namespace Fantahzee.Items.Dice.Ui
             rolling = false;
             Die = d;
             SetImage(Die.Value);
+            
+            
         }
 
         public void Roll(float delay = 0, Action<Die> onRollComplete = null)
@@ -118,12 +120,15 @@ namespace Fantahzee.Items.Dice.Ui
             Debug.Log($"DiceUi - Roll");
             ResetDice();
             
-            rolling = true;
             Sequence sequence = DOTween.Sequence();
             
             sequence.Append(image.transform.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase));
             sequence.Append(image.transform.DOLocalMoveY(0, fallTime).SetEase(fallEase));
 
+            sequence.OnStart(() =>
+                             {
+                                 rolling = true;
+                             });
             sequence.OnComplete(() =>
                                 {
                                     rolling = false;

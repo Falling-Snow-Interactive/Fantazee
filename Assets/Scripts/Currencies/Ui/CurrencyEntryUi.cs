@@ -28,6 +28,11 @@ namespace Fantahzee.Currencies.Ui
         
         [SerializeField]
         private Color outlineColor = Color.white;
+
+        [Header("Text")]
+
+        [SerializeField]
+        private Color textColor = Color.black;
         
         [Header("References")]
         
@@ -55,6 +60,11 @@ namespace Fantahzee.Currencies.Ui
             {
                 outline.effectColor = outlineColor;
                 outline.effectDistance = outlineSize;
+            }
+
+            if (text)
+            {
+                text.color = textColor;
             }
         }
 

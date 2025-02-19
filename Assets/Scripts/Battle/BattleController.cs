@@ -168,6 +168,7 @@ namespace Fantahzee.Battle
             for (int i = 0; i < GameController.Instance.GameInstance.Dice.Count; i++)
             {
                 Die die = GameController.Instance.GameInstance.Dice[i];
+                die.Roll();
                 if (BattleUi.Instance.DiceControl.Dice.Count > i)
                 {
                     DieUi dieUi = BattleUi.Instance.DiceControl.Dice[i];
