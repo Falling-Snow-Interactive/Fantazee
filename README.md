@@ -1,18 +1,10 @@
 # **Fantahzee**
-
----
-
-## **Game Overview**
-### **Game Title**
-Fantahzee
-
-### **Genre**
 Rogue-lite RPG with a dice-based combat system
 
 ### **Platforms**
-- PC (Windows, Mac, Linux)
-- Console (Switch, PlayStation, Xbox)
-- Mobile (iOS, Android) *(optional)*
+- PC (Windows, Mac, Linux) - *launch*
+- Console (Switch, PlayStation, Xbox) - *post launch*
+- Mobile (iOS, Android) - *optional*
 
 ### **Target Audience**
 - Fans of turn-based RPGs
