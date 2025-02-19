@@ -13,8 +13,8 @@ using ProjectYahtzee.Battle.Settings;
 using ProjectYahtzee.Battle.Ui;
 using ProjectYahtzee.Boons;
 using ProjectYahtzee.Boons.Handlers;
+using ProjectYahtzee.Currencies;
 using ProjectYahtzee.Dice;
-using ProjectYahtzee.Items.Dice;
 using ProjectYahtzee.Items.Dice.Ui;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -91,6 +91,11 @@ namespace ProjectYahtzee.Battle
 
         [SerializeField]
         private RangeInt enemySpawns = new(3, 5);
+
+        [Header("Battle Rewards")]
+        
+        [SerializeField]
+        private BattleRewards battleRewards;
 
         [Header("Scoring")]
 
@@ -466,7 +471,25 @@ namespace ProjectYahtzee.Battle
         
         private void BattleWin()
         {
+            
+            
+            BattleUi.Instance.ShowWinScreen();
+            BattleUi.Instance.WinScreen.Initialize(battleRewards, OnBattleWinContinue);
+        }
+
+        private void OnBattleWinContinue()
+        {
+            GrantRewards();
+            
             GameController.Instance.FinishedBattle(true);
+        }
+
+        private void GrantRewards()
+        {
+            foreach (Currency currency in battleRewards.Currencies)
+            {
+                GameController.Instance.GameInstance.Wallet.Add(currency);
+            }
         }
         
         #endregion
