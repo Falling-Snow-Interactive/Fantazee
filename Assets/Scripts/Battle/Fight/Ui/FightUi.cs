@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Fantazhee
+namespace Fantazee
 {
     public class FightUi : MonoBehaviour
     {

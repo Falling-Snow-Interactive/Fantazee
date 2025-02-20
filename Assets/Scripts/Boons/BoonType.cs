@@ -1,4 +1,4 @@
-namespace Fantazhee.Boons
+namespace Fantazee.Boons
 {
     public enum BoonType
     {

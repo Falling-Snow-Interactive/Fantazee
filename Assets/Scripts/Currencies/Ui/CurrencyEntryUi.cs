@@ -1,10 +1,10 @@
-using Fantazhee.Currencies.Information;
-using Fantazhee.Currencies.Settings;
+using Fantazee.Currencies.Information;
+using Fantazee.Currencies.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantazhee.Currencies.Ui
+namespace Fantazee.Currencies.Ui
 {
     public class CurrencyEntryUi : MonoBehaviour
     {

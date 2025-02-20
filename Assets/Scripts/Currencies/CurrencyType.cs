@@ -1,4 +1,4 @@
-namespace Fantazhee.Currencies
+namespace Fantazee.Currencies
 {
     public enum CurrencyType
     {

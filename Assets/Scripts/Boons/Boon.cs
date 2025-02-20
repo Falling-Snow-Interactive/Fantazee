@@ -1,10 +1,10 @@
 using System;
-using Fantazhee.Battle.Boons.Ui;
-using Fantazhee.Boons.Information;
-using Fantazhee.Boons.Settings;
+using Fantazee.Battle.Boons.Ui;
+using Fantazee.Boons.Information;
+using Fantazee.Boons.Settings;
 using UnityEngine;
 
-namespace Fantazhee.Boons
+namespace Fantazee.Boons
 {
     [Serializable]
     public abstract class Boon

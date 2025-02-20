@@ -1,11 +1,11 @@
-using Fantazhee.Boons;
-using Fantazhee.Boons.Information;
-using Fantazhee.Boons.Settings;
-using Fantazhee.Currencies;
-using Fantazhee.Shop.Ui;
+using Fantazee.Boons;
+using Fantazee.Boons.Information;
+using Fantazee.Boons.Settings;
+using Fantazee.Currencies;
+using Fantazee.Shop.Ui;
 using UnityEngine;
 
-namespace Fantazhee.Shop
+namespace Fantazee.Shop
 {
     public class ShopController : MonoBehaviour
     {

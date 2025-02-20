@@ -3,11 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Fantazhee.Maps.Settings.Editor
+namespace Fantazee.Maps.Settings.Editor
 {
     public class MapSettingsProvider : SettingsProvider
     {
-        private const string SETTINGS_PATH = "Fantazhee/Map";
+        private const string SETTINGS_PATH = "Fantazee/Map";
         
         private SerializedObject serializedSettings;
         

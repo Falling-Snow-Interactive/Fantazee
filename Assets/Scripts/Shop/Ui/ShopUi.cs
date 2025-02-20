@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Fantazhee.Boons.Settings;
-using Fantazhee.Boons;
-using Fantazhee.Currencies;
-using Fantazhee.Currencies.Ui;
-using Fantazhee.Shop.Ui.Entries;
+using Fantazee.Boons;
+using Fantazee.Currencies;
+using Fantazee.Currencies.Ui;
+using Fantazee.Shop.Ui.Entries;
+using Fantazee.Boons.Settings;
 using UnityEngine;
 
-namespace Fantazhee.Shop.Ui
+namespace Fantazee.Shop.Ui
 {
     public class ShopUi : MonoBehaviour
     {

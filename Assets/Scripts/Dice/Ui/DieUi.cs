@@ -1,14 +1,14 @@
 using System;
 using DG.Tweening;
-using Fantazhee.Battle;
-using Fantazhee.Dice;
-using Fantazhee.Items.Dice.Information;
-using Fantazhee.Items.Dice.Settings;
+using Fantazee.Battle;
+using Fantazee.Dice;
+using Fantazee.Items.Dice.Information;
+using Fantazee.Items.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace Fantazhee.Items.Dice.Ui
+namespace Fantazee.Items.Dice.Ui
 {
     public class DieUi : MonoBehaviour
     {

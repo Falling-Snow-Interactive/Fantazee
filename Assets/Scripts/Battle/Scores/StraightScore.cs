@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Fantazhee.Items.Dice;
-using Fantazhee.Dice;
+using Fantazee.Dice;
+using Fantazee.Items.Dice;
 
-namespace Fantazhee.Battle.Scores
+namespace Fantazee.Battle.Scores
 {
     public class StraightScore : Score
     {

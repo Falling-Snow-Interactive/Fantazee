@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Fantazhee.Boons;
+using Fantazee.Boons;
 using UnityEngine;
 
-namespace Fantazhee.Shop
+namespace Fantazee.Shop
 {
     [Serializable]
     public class ShopInventory

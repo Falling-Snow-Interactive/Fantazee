@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Fantazhee.Items.Dice;
-using Fantazhee.Dice;
+using Fantazee.Dice;
+using Fantazee.Items.Dice;
 using UnityEngine;
 
-namespace Fantazhee.Battle.Scores
+namespace Fantazee.Battle.Scores
 {
     [Serializable]
     public abstract class Score : ISerializationCallbackReceiver

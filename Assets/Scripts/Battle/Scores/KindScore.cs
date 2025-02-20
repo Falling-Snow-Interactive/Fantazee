@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Fantazhee.Items.Dice;
-using Fantazhee.Dice;
+using Fantazee.Dice;
+using Fantazee.Items.Dice;
 
-namespace Fantazhee.Battle.Scores
+namespace Fantazee.Battle.Scores
 {
     public class KindScore : Score
     {
@@ -17,7 +17,7 @@ namespace Fantazhee.Battle.Scores
                    {
                        3 => ScoreType.ThreeOfAKind,
                        4 => ScoreType.FourOfAKind,
-                       5 => ScoreType.Fantazhee,
+                       5 => ScoreType.Fantazee,
                        _ => throw new ArgumentOutOfRangeException(nameof(matches), matches, null)
                    };
         }
@@ -39,7 +39,7 @@ namespace Fantazhee.Battle.Scores
 
             if (isValid)
             {
-                return Type == ScoreType.Fantazhee ? 50 : total;
+                return Type == ScoreType.Fantazee ? 50 : total;
             }
 
             return 0;

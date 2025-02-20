@@ -1,11 +1,11 @@
 using System.Collections.Generic;
+using Fantazee.Dice;
+using Fantazee.Items.Dice.Randomizer;
 using Fsi.Roguelite.Ui;
-using Fantazhee.Items.Dice;
-using Fantazhee.Dice;
-using Fantazhee.Items.Dice.Randomizer;
+using Fantazee.Items.Dice;
 using UnityEngine;
 
-namespace Fantazhee.Blacksmith.Ui
+namespace Fantazee.Blacksmith.Ui
 {
     public class BlacksmithSideGroupUi : MonoBehaviour
     {

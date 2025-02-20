@@ -1,4 +1,4 @@
-namespace Fantazhee.Maps.Nodes
+namespace Fantazee.Maps.Nodes
 {
     public enum NodeType
     {

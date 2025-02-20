@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Fantazhee.Battle.Scores;
-using Fantazhee.Battle.Scores.Ui;
-using Fantazhee.Boons;
-using Fantazhee.Battle.Scores.Bonus;
-using Fantazhee.Battle.Ui;
+using Fantazee.Battle.Scores.Bonus;
+using Fantazee.Battle.Ui;
+using Fantazee.Battle.Scores;
+using Fantazee.Battle.Scores.Ui;
+using Fantazee.Boons;
 using UnityEngine;
 
-namespace Fantazhee.Battle.Scores
+namespace Fantazee.Battle.Scores
 {
     [Serializable]
     public class ScoreTracker

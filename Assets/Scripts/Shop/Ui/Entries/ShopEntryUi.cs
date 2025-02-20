@@ -1,9 +1,9 @@
-using Fantazhee.Currencies;
-using Fantazhee.Currencies.Ui;
+using Fantazee.Currencies;
+using Fantazee.Currencies.Ui;
 using TMPro;
 using UnityEngine;
 
-namespace Fantazhee.Shop.Ui.Entries
+namespace Fantazee.Shop.Ui.Entries
 {
     public abstract class ShopEntryUi : MonoBehaviour
     {

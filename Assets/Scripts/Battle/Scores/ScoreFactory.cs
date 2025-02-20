@@ -1,6 +1,6 @@
 using System;
 
-namespace Fantazhee.Battle.Scores
+namespace Fantazee.Battle.Scores
 {
     public static class ScoreFactory
     {
@@ -19,7 +19,7 @@ namespace Fantazhee.Battle.Scores
                        ScoreType.FullHouse => new FullHouseScore(),
                        ScoreType.SmallStraight=> new StraightScore(3),
                        ScoreType.LargeStraight => new StraightScore(4),
-                       ScoreType.Fantazhee => new KindScore(5), 
+                       ScoreType.Fantazee => new KindScore(5), 
                        ScoreType.Chance => new ChanceScore(),
                        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
                    };

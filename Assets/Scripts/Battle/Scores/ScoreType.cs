@@ -1,4 +1,4 @@
-namespace Fantazhee.Battle.Scores
+namespace Fantazee.Battle.Scores
 {
     public enum ScoreType
     {
@@ -14,7 +14,7 @@ namespace Fantazhee.Battle.Scores
         FullHouse = 9,
         SmallStraight = 10,
         LargeStraight = 11,
-        Fantazhee = 12,
+        Fantazee = 12,
         Chance = 13,
     }
 }

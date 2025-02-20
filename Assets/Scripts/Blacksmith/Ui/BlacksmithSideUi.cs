@@ -1,12 +1,12 @@
 using System.Globalization;
-using Fantazhee.Items.Dice;
-using Fantazhee.Items.Dice.Ui;
-using Fantazhee.Dice;
-using Fantazhee.Items.Dice.Randomizer;
+using Fantazee.Dice;
+using Fantazee.Items.Dice.Randomizer;
+using Fantazee.Items.Dice;
+using Fantazee.Items.Dice.Ui;
 using TMPro;
 using UnityEngine;
 
-namespace Fantazhee.Blacksmith.Ui
+namespace Fantazee.Blacksmith.Ui
 {
     public class BlacksmithSideUi : MonoBehaviour
     {

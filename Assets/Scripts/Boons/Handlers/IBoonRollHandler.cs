@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Fantazhee.Items.Dice;
-using Fantazhee.Dice;
+using Fantazee.Dice;
+using Fantazee.Items.Dice;
 
-namespace Fantazhee.Boons.Handlers
+namespace Fantazee.Boons.Handlers
 {
     public interface IBoonRollHandler
     {

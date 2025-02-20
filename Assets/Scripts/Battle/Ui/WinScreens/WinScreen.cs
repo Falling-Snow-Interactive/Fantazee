@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Fantazhee.Currencies;
-using Fantazhee.Currencies.Ui;
+using Fantazee.Currencies;
+using Fantazee.Currencies.Ui;
 using UnityEngine;
 
-namespace Fantazhee.Battle.Ui.WinScreens
+namespace Fantazee.Battle.Ui.WinScreens
 {
     public class WinScreen : MonoBehaviour
     {

@@ -1,6 +1,6 @@
-using Fantazhee.Battle;
+using Fantazee.Battle;
 
-namespace Fantazhee.Boons.Handlers
+namespace Fantazee.Boons.Handlers
 {
     /// <summary>
     /// For boons that modify the damage. A Damage object is modified as its passed through the boons.

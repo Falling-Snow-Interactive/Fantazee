@@ -3,7 +3,7 @@ using fsi.settings.Informations;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace Fantazhee.Currencies.Information
+namespace Fantazee.Currencies.Information
 {
     [Serializable]
     public class CurrencyInformation : Information<CurrencyType>

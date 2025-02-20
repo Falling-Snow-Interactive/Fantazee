@@ -1,10 +1,10 @@
 using DG.Tweening;
-using Fantazhee.Items.Dice.Information;
-using Fantazhee.Items.Dice.Settings;
+using Fantazee.Items.Dice.Information;
+using Fantazee.Items.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantazhee.Blacksmith.Ui
+namespace Fantazee.Blacksmith.Ui
 {
     public class BlacksmithDieUi : MonoBehaviour
     {

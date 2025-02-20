@@ -1,7 +1,7 @@
-using Fantazhee.Boons;
+using Fantazee.Boons;
 using UnityEngine;
 
-namespace Fantazhee.Battle.Boons.Ui
+namespace Fantazee.Battle.Boons.Ui
 {
     public class BoonsUi : MonoBehaviour
     {

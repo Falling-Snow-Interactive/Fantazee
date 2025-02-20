@@ -1,13 +1,13 @@
 using System;
 using DG.Tweening;
-using Fantazhee.Items.Dice;
-using Fantazhee.Battle.Ui;
-using Fantazhee.Boons.Handlers;
-using Fantazhee.Dice;
-using Fantazhee.Items.Dice.Ui;
+using Fantazee.Battle.Ui;
+using Fantazee.Boons.Handlers;
+using Fantazee.Dice;
+using Fantazee.Items.Dice.Ui;
+using Fantazee.Items.Dice;
 using UnityEngine;
 
-namespace Fantazhee.Boons.TwoTwos
+namespace Fantazee.Boons.TwoTwos
 {
     [Serializable]
     public class TwoTwosBoon : Boon, IBoonRollHandler

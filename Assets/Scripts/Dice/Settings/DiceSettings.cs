@@ -1,8 +1,8 @@
-using Fantazhee.Items.Dice.Information;
+using Fantazee.Items.Dice.Information;
 using UnityEditor;
 using UnityEngine;
 
-namespace Fantazhee.Items.Dice.Settings
+namespace Fantazee.Items.Dice.Settings
 {
     public class DiceSettings : ScriptableObject
     {

@@ -1,12 +1,12 @@
 using System;
 using DG.Tweening;
-using Fantazhee.Instance;
-using Fantazhee.Maps.Nodes;
+using Fantazee.Instance;
+using Fantazee.Maps.Nodes;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Fantazhee.Maps
+namespace Fantazee.Maps
     {
         public class MapController : MbSingleton<MapController>
         {
