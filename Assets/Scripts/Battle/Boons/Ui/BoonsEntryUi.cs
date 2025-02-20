@@ -1,12 +1,12 @@
 using DG.Tweening;
-using Fantahzee.Boons;
-using Fantahzee.Boons.Information;
+using Fantazhee.Boons;
+using Fantazhee.Boons.Information;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Fantahzee.Battle.Boons.Ui
+namespace Fantazhee.Battle.Boons.Ui
 {
     public class BoonsEntryUi : MonoBehaviour
     {

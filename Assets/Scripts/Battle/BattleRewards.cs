@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Fantahzee.Currencies;
+using Fantazhee.Currencies;
 using UnityEngine;
 
-namespace Fantahzee.Battle
+namespace Fantazhee.Battle
 {
     [Serializable]
     public class BattleRewards

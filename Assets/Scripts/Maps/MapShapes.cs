@@ -1,10 +1,10 @@
-using Fantahzee.Maps.Nodes;
-using Fantahzee.Maps.Settings;
+using Fantazhee.Maps.Nodes;
+using Fantazhee.Maps.Settings;
 using Shapes;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Fantahzee.Maps
+namespace Fantazhee.Maps
 {
     [ExecuteAlways] 
     public class MapShapes : ImmediateModeShapeDrawer

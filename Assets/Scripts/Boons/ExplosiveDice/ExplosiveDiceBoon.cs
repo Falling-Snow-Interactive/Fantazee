@@ -1,12 +1,12 @@
 using System;
-using Fantahzee.Battle;
-using Fantahzee.Battle.Characters.Enemies;
-using Fantahzee.Boons.Handlers;
-using Fantahzee.Dice;
-using Fantahzee.Items.Dice;
+using Fantazhee.Items.Dice;
+using Fantazhee.Battle;
+using Fantazhee.Battle.Characters.Enemies;
+using Fantazhee.Boons.Handlers;
+using Fantazhee.Dice;
 using UnityEngine;
 
-namespace Fantahzee.Boons.ExplosiveDice
+namespace Fantazhee.Boons.ExplosiveDice
 {
     [Serializable]
     public class ExplosiveDiceBoon : Boon, IBoonRollHandler

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Fantahzee
+namespace Fantazhee
 {
     [CustomEditor(typeof(GameController))]
     public class GameControllerEditor : Editor

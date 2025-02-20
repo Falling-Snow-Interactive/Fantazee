@@ -1,7 +1,7 @@
-using Fantahzee.Blacksmith.Ui;
+using Fantazhee.Blacksmith.Ui;
 using UnityEngine;
 
-namespace Fantahzee.Blacksmith
+namespace Fantazhee.Blacksmith
 {
     public class BlacksmithController : MonoBehaviour
     {

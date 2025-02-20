@@ -1,4 +1,4 @@
-namespace Fantahzee.Blacksmith.Cart.Entries
+namespace Fantazhee.Blacksmith.Cart.Entries
 {
     public enum BlacksmithCartEntryType
     {

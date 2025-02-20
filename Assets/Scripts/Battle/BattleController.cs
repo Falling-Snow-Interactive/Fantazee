@@ -2,18 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using Fantahzee.Battle.Characters;
-using Fantahzee.Battle.Characters.Enemies;
-using Fantahzee.Battle.Characters.Player;
-using Fantahzee.Battle.Scores;
-using Fantahzee.Battle.Scores.Ui;
-using Fantahzee.Battle.Settings;
-using Fantahzee.Battle.Ui;
-using Fantahzee.Boons;
-using Fantahzee.Boons.Handlers;
-using Fantahzee.Currencies;
-using Fantahzee.Dice;
-using Fantahzee.Items.Dice.Ui;
+using Fantazhee.Battle.Characters;
+using Fantazhee.Battle.Characters.Enemies;
+using Fantazhee.Battle.Characters.Player;
+using Fantazhee.Battle.Scores;
+using Fantazhee.Battle.Scores.Ui;
+using Fantazhee.Battle.Settings;
+using Fantazhee.Battle.Ui;
+using Fantazhee.Boons;
+using Fantazhee.Boons.Handlers;
+using Fantazhee.Currencies;
+using Fantazhee.Dice;
+using Fantazhee.Items.Dice.Ui;
 using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
@@ -21,7 +21,7 @@ using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
-namespace Fantahzee.Battle
+namespace Fantazhee.Battle
 {
     public class BattleController : MbSingleton<BattleController>
     {

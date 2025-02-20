@@ -1,9 +1,9 @@
 using System;
-using Fantahzee.Items.Dice.Randomizer;
+using Fantazhee.Items.Dice.Randomizer;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fantahzee.Dice
+namespace Fantazhee.Dice
 {
     [Serializable]
     public class Die : ISerializationCallbackReceiver

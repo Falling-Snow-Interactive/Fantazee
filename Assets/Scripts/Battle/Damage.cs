@@ -1,4 +1,4 @@
-namespace Fantahzee.Battle
+namespace Fantazhee.Battle
 {
     public class Damage
     {

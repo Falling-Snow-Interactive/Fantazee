@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Fantahzee.Dice;
-using Fantahzee.Items.Dice.Ui;
-using Fantahzee.Items.Dice;
+using Fantazhee.Items.Dice;
+using Fantazhee.Dice;
+using Fantazhee.Items.Dice.Ui;
 using UnityEngine;
 
-namespace Fantahzee.Battle.Ui
+namespace Fantazhee.Battle.Ui
 {
     public class DiceControlUi : MonoBehaviour
     {

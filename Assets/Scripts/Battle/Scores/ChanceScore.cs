@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Fantahzee.Dice;
-using Fantahzee.Items.Dice;
+using Fantazhee.Items.Dice;
+using Fantazhee.Dice;
 
-namespace Fantahzee.Battle.Scores
+namespace Fantazhee.Battle.Scores
 {
     public class ChanceScore : Score
     {

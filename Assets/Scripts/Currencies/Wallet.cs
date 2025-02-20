@@ -1,7 +1,7 @@
 using System;
 using Fsi.Currencies;
 
-namespace Fantahzee.Currencies
+namespace Fantazhee.Currencies
 {
     [Serializable]
     public class Wallet : Wallet<CurrencyType, Currency>

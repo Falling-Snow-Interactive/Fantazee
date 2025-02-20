@@ -1,10 +1,10 @@
 using DG.Tweening;
-using Fantahzee.Items.Dice.Information;
-using Fantahzee.Items.Dice.Settings;
+using Fantazhee.Items.Dice.Information;
+using Fantazhee.Items.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantahzee.Blacksmith.Ui
+namespace Fantazhee.Blacksmith.Ui
 {
     public class BlacksmithDieUi : MonoBehaviour
     {
@@ -16,6 +16,9 @@ namespace Fantahzee.Blacksmith.Ui
 
         [SerializeField]
         private float time = 0.25f;
+
+        [SerializeField]
+        private Ease ease = Ease.Linear;
         
         public void SetImage(int value)
         {
@@ -27,12 +30,12 @@ namespace Fantahzee.Blacksmith.Ui
 
         public void Select()
         {
-            image.transform.DOScale(Vector3.one * scale, time).SetEase(Ease.OutBounce);
+            image.transform.DOScale(Vector3.one * scale, time).SetEase(ease);
         }
 
         public void Deselect()
         {
-            image.transform.DOScale(Vector3.one, time).SetEase(Ease.InBounce);
+            image.transform.DOScale(Vector3.one, time).SetEase(ease);
         }
     }
 }

@@ -1,8 +1,8 @@
-using Fantahzee.Boons.Information;
+using Fantazhee.Boons.Information;
 using UnityEditor;
 using UnityEngine;
 
-namespace Fantahzee.Boons.Settings
+namespace Fantazhee.Boons.Settings
 {
     public class BoonSettings : ScriptableObject
     {

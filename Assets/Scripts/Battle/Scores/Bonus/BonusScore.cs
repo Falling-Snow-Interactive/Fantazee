@@ -1,7 +1,7 @@
 using System;
-using Fantahzee.Battle.Settings;
+using Fantazhee.Battle.Settings;
 
-namespace Fantahzee.Battle.Scores.Bonus
+namespace Fantazhee.Battle.Scores.Bonus
 {
     public class BonusScore
     {

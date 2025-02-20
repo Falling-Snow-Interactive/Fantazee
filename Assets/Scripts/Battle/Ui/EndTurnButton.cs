@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Fantahzee.Battle.Ui
+namespace Fantazhee.Battle.Ui
 {
     public class EndTurnButton : MonoBehaviour
     {

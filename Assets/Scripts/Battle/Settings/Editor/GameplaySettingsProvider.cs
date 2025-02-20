@@ -3,11 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Fantahzee.Battle.Settings.Editor
+namespace Fantazhee.Battle.Settings.Editor
 {
     public class GameplaySettingsProvider : SettingsProvider
     {
-        private const string SETTINGS_PATH = "Fantahzee/Gameplay";
+        private const string SETTINGS_PATH = "Fantazhee/Gameplay";
         
         private SerializedObject serializedSettings;
         

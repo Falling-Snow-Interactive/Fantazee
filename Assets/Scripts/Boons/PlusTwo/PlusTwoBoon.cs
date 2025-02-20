@@ -1,9 +1,9 @@
 using System;
-using Fantahzee.Battle;
-using Fantahzee.Boons.Handlers;
+using Fantazhee.Battle;
+using Fantazhee.Boons.Handlers;
 using UnityEngine;
 
-namespace Fantahzee.Boons.PlusTwo
+namespace Fantazhee.Boons.PlusTwo
 {
     [Serializable]
     public class PlusTwoBoon : Boon, IBoonDamageHandler

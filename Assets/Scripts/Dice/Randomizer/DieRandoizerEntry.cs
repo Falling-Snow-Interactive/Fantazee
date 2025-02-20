@@ -2,7 +2,7 @@ using System;
 using Fsi.Gameplay.Randomizers;
 using UnityEngine;
 
-namespace Fantahzee.Items.Dice.Randomizer
+namespace Fantazhee.Items.Dice.Randomizer
 {
     [Serializable]
     public class DieRandomizerEntry : RandomizerEntry<int>

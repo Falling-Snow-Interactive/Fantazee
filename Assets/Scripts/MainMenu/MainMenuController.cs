@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Fantahzee.MainMenu
+namespace Fantazhee.MainMenu
 {
     public class MainMenuController : MonoBehaviour
     {

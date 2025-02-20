@@ -1,9 +1,9 @@
-using Fantahzee.Maps.Nodes.Information;
-using Fantahzee.Maps.Nodes;
+using Fantazhee.Maps.Nodes;
+using Fantazhee.Maps.Nodes.Information;
 using UnityEditor;
 using UnityEngine;
 
-namespace Fantahzee.Maps.Settings
+namespace Fantazhee.Maps.Settings
 {
     public class MapSettings : ScriptableObject
     {

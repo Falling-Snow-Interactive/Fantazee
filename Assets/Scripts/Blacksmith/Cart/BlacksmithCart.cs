@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Fantahzee.Blacksmith.Cart.Entries;
+using Fantazhee.Blacksmith.Cart.Entries;
 
-namespace Fantahzee.Blacksmith.Cart
+namespace Fantazhee.Blacksmith.Cart
 {
     public class BlacksmithCart
     {

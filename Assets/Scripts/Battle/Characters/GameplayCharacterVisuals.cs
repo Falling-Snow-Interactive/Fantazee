@@ -2,7 +2,7 @@ using Fsi.Gameplay.Visuals;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace Fantahzee.Battle.Characters
+namespace Fantazhee.Battle.Characters
 {
     public class GameplayCharacterVisuals : CharacterVisuals
     {

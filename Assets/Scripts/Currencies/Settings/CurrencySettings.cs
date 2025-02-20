@@ -1,8 +1,8 @@
-using Fantahzee.Currencies.Information;
+using Fantazhee.Currencies.Information;
 using UnityEditor;
 using UnityEngine;
 
-namespace Fantahzee.Currencies.Settings
+namespace Fantazhee.Currencies.Settings
 {
     public class CurrencySettings : ScriptableObject
     {

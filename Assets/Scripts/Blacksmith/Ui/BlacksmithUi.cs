@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Fantahzee.Dice;
-using Fantahzee.Items.Dice.Randomizer;
 using Fsi.Roguelite;
 using Fsi.Roguelite.Ui;
-using Fantahzee.Items;
-using Fantahzee.Items.Dice;
+using Fantazhee.Items;
+using Fantazhee.Items.Dice;
+using Fantazhee.Dice;
+using Fantazhee.Items.Dice.Randomizer;
 using UnityEngine;
 
-namespace Fantahzee.Blacksmith.Ui
+namespace Fantazhee.Blacksmith.Ui
 {
     public class BlacksmithUi : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
-namespace Fantahzee
+namespace Fantazhee
 {
     public class ProjectSceneManager : FsiSceneManager<ProjectSceneManager>
     {

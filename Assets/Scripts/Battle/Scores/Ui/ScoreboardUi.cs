@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
-using Fantahzee.Battle.Scores.Bonus.Ui;
-using Fantahzee.Dice;
-using Fantahzee.Items.Dice.Ui;
-using Fantahzee.Items.Dice;
+using Fantazhee.Items.Dice;
+using Fantazhee.Battle.Scores.Bonus.Ui;
+using Fantazhee.Dice;
+using Fantazhee.Items.Dice.Ui;
 using UnityEngine;
 
-namespace Fantahzee.Battle.Scores.Ui
+namespace Fantazhee.Battle.Scores.Ui
 {
     public class ScoreboardUi : MonoBehaviour
     {

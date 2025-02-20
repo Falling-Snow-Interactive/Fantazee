@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Fantahzee.Maps.Nodes.Information;
-using Fantahzee.Maps.Settings;
+using Fantazhee.Maps.Nodes.Information;
+using Fantazhee.Maps.Settings;
 using Shapes;
 using UnityEngine;
 
-namespace Fantahzee.Maps.Nodes
+namespace Fantazhee.Maps.Nodes
 {
     public class Node : MonoBehaviour
     {

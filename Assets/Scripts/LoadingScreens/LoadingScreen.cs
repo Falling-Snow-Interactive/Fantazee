@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantahzee.LoadingScreens
+namespace Fantazhee.LoadingScreens
 {
     public class LoadingScreen : MonoBehaviour
     {

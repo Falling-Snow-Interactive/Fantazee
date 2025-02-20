@@ -3,7 +3,7 @@ using System.Collections;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
 
-namespace Fantahzee.Battle.Characters.Enemies
+namespace Fantazhee.Battle.Characters.Enemies
 {
     public class GameplayEnemy : GameplayCharacter
     {

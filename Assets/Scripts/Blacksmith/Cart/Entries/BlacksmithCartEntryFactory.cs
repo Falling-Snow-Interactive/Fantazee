@@ -1,8 +1,8 @@
 using System;
-using Fantahzee.Dice;
-using Fantahzee.Items.Dice;
+using Fantazhee.Items.Dice;
+using Fantazhee.Dice;
 
-namespace Fantahzee.Blacksmith.Cart.Entries
+namespace Fantazhee.Blacksmith.Cart.Entries
 {
     public static class BlacksmithCartEntryFactory
     {
