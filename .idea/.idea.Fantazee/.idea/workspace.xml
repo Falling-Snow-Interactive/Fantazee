@@ -1,117 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Settings/MapSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Settings/MapSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleRewards.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleRewards.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Boons/Ui/BoonsEntryUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Boons/Ui/BoonsEntryUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Boons/Ui/BoonsUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Boons/Ui/BoonsUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Enemies/GameplayEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Enemies/GameplayEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/GameplayCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/GameplayCharacter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/GameplayCharacterVisuals.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/GameplayCharacterVisuals.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/GameplayPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/GameplayPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Damage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Damage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Fight/Ui/FightUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Fight/Ui/FightUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Bonus/BonusScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Bonus/BonusScore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Bonus/Ui/BonusScoreUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Bonus/Ui/BonusScoreUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ChanceScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ChanceScore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/FullHouseScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/FullHouseScore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Information/ScoreInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Information/ScoreInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Information/ScoreInformationGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Information/ScoreInformationGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/KindScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/KindScore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/NumberScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/NumberScore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Score.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Score.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreCalculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreCalculator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreTracker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/ScoreType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/StraightScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/StraightScore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Ui/ScoreEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Ui/ScoreEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Ui/ScoreboardUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Ui/ScoreboardUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Settings/Editor/GameplaySettingsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Settings/Editor/GameplaySettingsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Settings/GameplaySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Settings/GameplaySettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/BattleUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/BattleUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/DiceControlUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/DiceControlUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/EndTurnButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/EndTurnButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/RollButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/RollButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/WinScreens/WinScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Ui/WinScreens/WinScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/BlacksmithController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/BlacksmithController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/BlacksmithCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/BlacksmithCart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/BlacksmithCartEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/BlacksmithCartEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/BlacksmithCartEntryFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/BlacksmithCartEntryFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/BlacksmithCartEntryType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/BlacksmithCartEntryType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/CartValueEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/CartValueEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/CartWeightEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Cart/Entries/CartWeightEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithDieUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithDieUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithSideGroupUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithSideGroupUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithSideUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithSideUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/Boon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/Boon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/BoonFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/BoonFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/BoonType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/BoonType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/ExplosiveDice/ExplosiveDiceBoon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/ExplosiveDice/ExplosiveDiceBoon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/GiveTake/GiveTakeBoon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/GiveTake/GiveTakeBoon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/Handlers/IBoonDamageHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/Handlers/IBoonDamageHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/Handlers/IBoonRollHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/Handlers/IBoonRollHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/Information/BoonInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/Information/BoonInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/Information/BoonInformationGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/Information/BoonInformationGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/PlusTwo/PlusTwoBoon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/PlusTwo/PlusTwoBoon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/Settings/BoonSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/Settings/BoonSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/Settings/Editor/BoonSettingsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/Settings/Editor/BoonSettingsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boons/TwoTwos/TwoTwosBoon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boons/TwoTwos/TwoTwosBoon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/Currency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/Currency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/CurrencyType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/CurrencyType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/Information/CurrencyInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/Information/CurrencyInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/Information/CurrencyInformationGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/Information/CurrencyInformationGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/Settings/CurrencySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/Settings/CurrencySettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/Settings/Editor/CurrencySettingsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/Settings/Editor/CurrencySettingsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/Ui/CurrencyEntryUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/Ui/CurrencyEntryUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Currencies/Wallet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Currencies/Wallet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Die.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Die.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Information/SideInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Information/SideInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Information/SideInformationGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Information/SideInformationGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Randomizer/DieRandoizerEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Randomizer/DieRandoizerEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Randomizer/DieRandomizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Randomizer/DieRandomizer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Settings/DiceSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Settings/DiceSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Settings/Editor/DiceSettingsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Settings/Editor/DiceSettingsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Ui/DieUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Ui/DieUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/GameControllerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/GameControllerEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Launch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Launch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LoadingScreens/LoadingScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LoadingScreens/LoadingScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenuController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/MapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/MapController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/MapShapes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/MapShapes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/ConnectionLine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/ConnectionLine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Information/NodeInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Information/NodeInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Information/NodeInformationGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Information/NodeInformationGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Node.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/NodeType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/NodeType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Settings/Editor/MapSettingsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Settings/Editor/MapSettingsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Settings/MapSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Settings/MapSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProjectSceneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProjectSceneManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/ShopController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/ShopController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/ShopInventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/ShopInventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/BoonEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/BoonEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/RelicEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/RelicEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/ShopEntryUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/ShopEntryUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/ShopUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/ShopUi.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Environments/Grass/Grass_00_Background.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Environments/Grass/Grass_00_Background.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Environments/Grass/Grass_00_Background_00_MAT.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Environments/Grass/Grass_00_Background_00_MAT.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Boons/Boons_Ui.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Boons/Boons_Ui.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map/Node_PFB.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map/Node_PFB.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Environments/Grass_00_ENV.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Environments/Grass_00_ENV.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2tHitY3qqTGHMT4YKCz6K4BCZ3Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -119,9 +38,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -156,13 +80,15 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2853">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="2853" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -178,7 +104,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1740015617276</updated>
-      <workItem from="1740015619351" duration="135000" />
+      <workItem from="1740015619351" duration="420000" />
+      <workItem from="1740054546044" duration="1117000" />
     </task>
     <servers />
   </component>
@@ -194,5 +121,50 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/Scores/KindScore.cs</url>
+          <line>35</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/KindScore.cs" containingFunctionPresentation="Method 'Calculate'">
+            <startOffsets>
+              <option value="1061" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1076" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/Scores/KindScore.cs</url>
+          <line>39</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/KindScore.cs" containingFunctionPresentation="Method 'Calculate'">
+            <startOffsets>
+              <option value="1122" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1134" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Score.cs</url>
+          <line>27</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/Scores/Score.cs" containingFunctionPresentation="Method 'DiceToDict'">
+            <startOffsets>
+              <option value="644" />
+            </startOffsets>
+            <endOffsets>
+              <option value="706" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
