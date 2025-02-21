@@ -79,7 +79,7 @@ namespace Fantazee
         {
             loadingScreen.Show(() =>
                                {
-                                   ProjectSceneManager.Instance.LoadBattle(null);
+                                   ProjectSceneManager.Instance.LoadBattle(GameInstance.Environment);
                                });
         }
 

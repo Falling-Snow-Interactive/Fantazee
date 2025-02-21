@@ -7,7 +7,7 @@ namespace Fantazee.Battle.Scores.Bonus
     {
         public event Action Changed;
 
-        public int Max => GameplaySettings.Settings.BonusScore;
+        public int Max => BattleSettings.Settings.BonusScore;
         public int CurrentScore { get; private set; }
         public float Normalized => (float)CurrentScore / Max;
         

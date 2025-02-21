@@ -1,15 +1,10 @@
-using System;
+using Fsi.Gameplay;
 using UnityEngine;
 
-namespace Environments
+namespace Fantazee.Environments
 {
-    public class Environment : MonoBehaviour
+    public class Environment : MbSingleton<Environment>
     {
-        public static event Action<Environment> Ready;
-
-        public void Start()
-        {
-            Ready?.Invoke(this);
-        }
+        
     }
 }

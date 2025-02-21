@@ -836,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &385350858
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2691,12 +2691,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3968059228443334647, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968059228443334647, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
       propertyPath: m_EffectDistance.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3968059228443334647, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
       propertyPath: m_EffectDistance.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5239882090805096612, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
       propertyPath: m_Name
@@ -2717,6 +2721,26 @@ PrefabInstance:
     - target: {fileID: 6132681630678061639, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262671618455445346, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -378373997, guid: 5a095f0a3c4a1407ab1f1ddb7b50712e, type: 3}
+    - target: {fileID: 7262671618455445346, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727919752851926835, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727919752851926835, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727919752851926835, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7968220311900906107, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
       propertyPath: textColor.b

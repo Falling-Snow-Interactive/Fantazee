@@ -1,4 +1,5 @@
 using System;
+using Fantazee.Dice.Randomizer;
 using Fantazee.Items.Dice.Randomizer;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -41,6 +42,10 @@ namespace Fantazee.Dice
         {
             string s = "";
 
+            if (dieRandomizer == null)
+            {
+                dieRandomizer = new();
+            }
             for (int i = 0; i < dieRandomizer.Entries.Count; i++)
             {
                 DieRandomizerEntry d = dieRandomizer.Entries[i];

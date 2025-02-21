@@ -1,18 +1,18 @@
-using System.Collections.Generic;
 using DG.Tweening;
+using Fantazee.Battle.Environments.Information;
 using Fantazee.Battle.Scores.Information;
 using UnityEditor;
 using UnityEngine;
 
 namespace Fantazee.Battle.Settings
 {
-    public class GameplaySettings : ScriptableObject
+    public class BattleSettings : ScriptableObject
     {
-        private const string RESOURCE_PATH = "Settings/GameplaySettings";
+        private const string RESOURCE_PATH = "Settings/BattleSettings";
         private const string FULL_PATH = "Assets/Resources/" + RESOURCE_PATH + ".asset";
 
-        private static GameplaySettings _settings;
-        public static GameplaySettings Settings => _settings ??= GetOrCreateSettings();
+        private static BattleSettings _settings;
+        public static BattleSettings Settings => _settings ??= GetOrCreateSettings();
 
         [Header("Scores")]
 
@@ -40,11 +40,17 @@ namespace Fantazee.Battle.Settings
         private Ease squishEase = Ease.Linear;
         public Ease SquishEase => squishEase;
         
+        [Header("Environments")]
+        
+        [SerializeField]
+        private EnvironmentInformationGroup environmentInformation;
+        public EnvironmentInformationGroup EnvironmentInformation => environmentInformation;
+        
         #region Settings
         
-        public static GameplaySettings GetOrCreateSettings()
+        public static BattleSettings GetOrCreateSettings()
         {
-            var settings = Resources.Load<GameplaySettings>(RESOURCE_PATH);
+            var settings = Resources.Load<BattleSettings>(RESOURCE_PATH);
 
             #if UNITY_EDITOR
             if (!settings)
@@ -59,7 +65,7 @@ namespace Fantazee.Battle.Settings
                     AssetDatabase.CreateFolder("Assets/Resources", "Settings");
                 }
 
-                settings = CreateInstance<GameplaySettings>();
+                settings = CreateInstance<BattleSettings>();
                 AssetDatabase.CreateAsset(settings, FULL_PATH);
                 AssetDatabase.SaveAssets();
             }

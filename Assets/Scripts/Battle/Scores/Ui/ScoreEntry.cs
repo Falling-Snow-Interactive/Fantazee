@@ -48,7 +48,7 @@ namespace Fantazee.Battle.Scores.Ui
             this.score = score;
 
             scoreText.text = "";
-            if (GameplaySettings.Settings.ScoreInformation.TryGetInformation(score.Type, out information))
+            if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Type, out information))
             {
                 nameText.text = information.LocName.GetLocalizedString();
                 SetDice(new List<int> {0, 0, 0, 0, 0 });
@@ -99,11 +99,11 @@ namespace Fantazee.Battle.Scores.Ui
             button.interactable = false;
             scoreText.text = value.ToString();
             
-            scoreContainer.transform.DOPunchScale(GameplaySettings.Settings.SquishAmount, 
-                                                  GameplaySettings.Settings.SquishTime,
+            scoreContainer.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
+                                                  BattleSettings.Settings.SquishTime,
                                                   10,
                                                   1f)
-                          .SetEase(GameplaySettings.Settings.SquishEase);
+                          .SetEase(BattleSettings.Settings.SquishEase);
         }
 
         public void OnClick()

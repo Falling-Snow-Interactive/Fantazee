@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.Dice.Randomizer;
 using Fantazee.Items.Dice.Randomizer;
 using Fsi.Roguelite;
 using Fsi.Roguelite.Ui;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Battle.Environments;
 using Fantazee.Boons;
 using Fantazee.Currencies;
 using Fantazee.Dice;
@@ -50,6 +51,10 @@ namespace Fantazee.Instance
             get => mapNodeIndex;
             set => mapNodeIndex = value;
         }
+        
+        [SerializeField]
+        private EnvironmentType environment;
+        public EnvironmentType Environment => environment;
         
         [Header("Boons")]
         

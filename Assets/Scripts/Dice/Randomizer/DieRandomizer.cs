@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Items.Dice.Randomizer;
 using Fsi.Gameplay.Randomizers;
 using UnityEngine;
 
-namespace Fantazee.Items.Dice.Randomizer
+namespace Fantazee.Dice.Randomizer
 {
     [Serializable]
     public class DieRandomizer : Randomizer<int, DieRandomizerEntry>
@@ -11,6 +12,11 @@ namespace Fantazee.Items.Dice.Randomizer
         [SerializeField]
         private List<DieRandomizerEntry> entries;
         public override List<DieRandomizerEntry> Entries => entries;
+
+        public DieRandomizer()
+        {
+            entries = new List<DieRandomizerEntry>();
+        }
 
         public DieRandomizer(List<DieRandomizerEntry> entries)
         {

@@ -7,7 +7,7 @@ namespace Fantazee.Battle.Settings.Editor
 {
     public class GameplaySettingsProvider : SettingsProvider
     {
-        private const string SETTINGS_PATH = "Fantazee/Gameplay";
+        private const string SETTINGS_PATH = "Fantazee/Battle";
         
         private SerializedObject serializedSettings;
         
@@ -24,7 +24,7 @@ namespace Fantazee.Battle.Settings.Editor
         
         public override void OnActivate(string searchContext, VisualElement rootElement)
         {
-            serializedSettings = GameplaySettings.GetSerializedSettings();
+            serializedSettings = BattleSettings.GetSerializedSettings();
         }
         
         public override void OnGUI(string searchContext)
@@ -36,6 +36,8 @@ namespace Fantazee.Battle.Settings.Editor
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishAmount"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishTime"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishEase"));
+            
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("environmentInformation"));
             
             EditorGUILayout.Space(20);
             if (GUILayout.Button("Save"))

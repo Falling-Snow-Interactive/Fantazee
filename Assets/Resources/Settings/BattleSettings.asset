@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19037ab111444fb697d14361cc12b747, type: 3}
-  m_Name: GameplaySettings
+  m_Name: BattleSettings
   m_EditorClassIdentifier: 
   bonusScore: 200
   scoreInformation:
@@ -28,15 +28,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15000709095424
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
       baseValue: 0
-      baseMod: 5
+      baseMod: 0
     - name: Twos
       type: 2
       locName:
@@ -50,15 +50,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15030379601920
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
       baseValue: 0
-      baseMod: 5
+      baseMod: 0
     - name: Threes
       type: 3
       locName:
@@ -72,15 +72,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15054882725888
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
       baseValue: 0
-      baseMod: 5
+      baseMod: 0
     - name: Fours
       type: 4
       locName:
@@ -94,15 +94,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15066765189120
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
       baseValue: 0
-      baseMod: 5
+      baseMod: 0
     - name: Fives
       type: 5
       locName:
@@ -116,15 +116,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15081269092352
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 1
-      baseMod: 5
+      baseValue: 0
+      baseMod: 0
     - name: Sixes
       type: 6
       locName:
@@ -138,15 +138,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15090744025088
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
       baseValue: 0
-      baseMod: 5
+      baseMod: 0
     - name: ThreeOfAKind
       type: 7
       locName:
@@ -160,15 +160,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15103305965568
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 10
-      baseMod: 3
+      baseValue: 0
+      baseMod: 0
     - name: FourOfAKind
       type: 8
       locName:
@@ -182,15 +182,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15125103763456
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 10
-      baseMod: 4
+      baseValue: 0
+      baseMod: 0
     - name: FullHouse
       type: 9
       locName:
@@ -204,15 +204,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 285653752340480
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 25
-      baseMod: 5
+      baseValue: 0
+      baseMod: 0
     - name: SmallStraight
       type: 10
       locName:
@@ -226,15 +226,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15143382540288
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 15
-      baseMod: 4
+      baseValue: 0
+      baseMod: 0
     - name: LargeStraight
       type: 11
       locName:
@@ -248,15 +248,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15160524660736
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 30
-      baseMod: 5
+      baseValue: 0
+      baseMod: 0
     - name: Fantazee
       type: 12
       locName:
@@ -270,15 +270,15 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15188802658304
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 50
-      baseMod: 5
+      baseValue: 0
+      baseMod: 0
     - name: Chance
       type: 13
       locName:
@@ -292,18 +292,18 @@ MonoBehaviour:
         m_LocalVariables: []
       locDesc:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 15220155080704
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
       baseValue: 0
-      baseMod: 5
+      baseMod: 0
   squishAmount: {x: 0.2, y: -0.2, z: 0}
   squishTime: 0.25
-  squishEase: 31
+  squishEase: 1
   environmentInformation:
     information:
     - name: Woods

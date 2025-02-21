@@ -33,6 +33,7 @@ namespace Fantazee.Boons.ExplosiveDice
                 foreach (GameplayEnemy enemy in BattleController.Instance.Enemies)
                 {
                     enemy.Damage(roll);
+                    BattleController.Instance.CheckWin();
                 }
             }
         }

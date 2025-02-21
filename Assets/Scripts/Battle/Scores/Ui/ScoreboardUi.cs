@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using Fantazee.Battle.Environments.Information;
 using Fantazee.Battle.Scores.Bonus.Ui;
+using Fantazee.Battle.Settings;
 using Fantazee.Dice;
 using Fantazee.Items.Dice.Ui;
-using Fantazee.Items.Dice;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Fantazee.Battle.Scores.Ui
 {
@@ -40,6 +42,9 @@ namespace Fantazee.Battle.Scores.Ui
         private BonusScoreUi bonusScoreUi;
         public BonusScoreUi BonusScoreUi => bonusScoreUi;
 
+        [SerializeField]
+        private Image background;
+
         public void Initialize()
         {
             List<Score> scores = BattleController.Instance.ScoreTracker.Scores;
@@ -52,6 +57,13 @@ namespace Fantazee.Battle.Scores.Ui
             }
 
             bonusScoreUi.Initialize(BattleController.Instance.ScoreTracker.BonusScore);
+
+            if (BattleSettings.Settings.EnvironmentInformation
+                              .TryGetInformation(GameController.Instance.GameInstance.Environment, 
+                                                 out EnvironmentInformation info))
+            {
+                background.color = info.Color;
+            }
         }
 
         public void SetScore(ScoreType type, List<Die> diceList, int score)

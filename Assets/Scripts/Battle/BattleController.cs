@@ -280,11 +280,11 @@ namespace Fantazee.Battle
                 scoredDice.Add(d.Die);
                 
                 
-                d.Image.transform.DOPunchScale(GameplaySettings.Settings.SquishAmount, 
-                                               GameplaySettings.Settings.SquishTime, 
+                d.Image.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
+                                               BattleSettings.Settings.SquishTime, 
                                                10, 
                                                1f)
-                 .SetEase(GameplaySettings.Settings.SquishEase);
+                 .SetEase(BattleSettings.Settings.SquishEase);
                 RuntimeManager.PlayOneShot(diceScoreSfx);
                 entry.SetDice(i, d.Die.Value, inScore);
 
@@ -318,6 +318,7 @@ namespace Fantazee.Battle
 
                 yield return new WaitForSeconds(0.5f);
 
+                // TODO - Somwthing weird going on with four of a kind
                 ScoreTracker.AddScore(score, damage.Value);
                 entry.SetScore(damage.Value);
                 
@@ -360,16 +361,34 @@ namespace Fantazee.Battle
                 BattleUi.Instance.DiceControl.HideDice();
             }
 
+            if (CheckEnemiesAlive())
+            {
+                TryRoll();
+                return;
+            }
+
+            BattleWin();
+        }
+
+        public bool CheckEnemiesAlive()
+        {
             foreach (GameplayEnemy enemy in enemies)
             {
                 if (enemy.Health.IsAlive)
                 {
-                    TryRoll();
-                    return;
+                    return true;
                 }
             }
-            
-            BattleWin();
+
+            return false;
+        }
+
+        public void CheckWin()
+        {
+            if (!CheckEnemiesAlive())
+            {
+                BattleWin();
+            }
         }
         
         #endregion
@@ -472,8 +491,6 @@ namespace Fantazee.Battle
         
         private void BattleWin()
         {
-            
-            
             BattleUi.Instance.ShowWinScreen();
             BattleUi.Instance.WinScreen.Initialize(battleRewards, OnBattleWinContinue);
         }

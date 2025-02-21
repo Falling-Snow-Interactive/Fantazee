@@ -1,4 +1,5 @@
 using System;
+using Fantazee.Battle.Environments;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -42,11 +43,26 @@ namespace Fantazee
             LoadSceneAsync(mainMenuScene.Name, LoadSceneMode.Single, onComplete);
         }
         
-        public void LoadBattle(Action onComplete)
+        public void LoadBattle(EnvironmentType environmentType, Action onComplete = null)
         {
             LoadSceneAsync(battleScene.Name, LoadSceneMode.Single, () =>
                                                                    {
-                                                                       LoadGrassEnvironment(onComplete);
+                                                                       switch (environmentType)
+                                                                       {
+                                                                           case EnvironmentType.Woods:
+                                                                               LoadWoodsEnvironment(onComplete);
+                                                                               break;
+                                                                           case EnvironmentType.Plains:
+                                                                               break;
+                                                                           case EnvironmentType.Beach:
+                                                                               break;
+                                                                           case EnvironmentType.Mountains:
+                                                                               break;
+                                                                           case EnvironmentType.Volcano:
+                                                                               break;
+                                                                           default:
+                                                                               throw new ArgumentOutOfRangeException(nameof(environmentType), environmentType, null);
+                                                                       }
                                                                    });
         }
 
@@ -74,8 +90,8 @@ namespace Fantazee
         {
             LoadSceneAsync(environmentEnv.Name, LoadSceneMode.Additive, onComplete);
         }
-        
-        public void LoadGrassEnvironment(Action onComplete)
+
+        private void LoadWoodsEnvironment(Action onComplete)
         {
             LoadSceneAsync(grassEnv.Name, LoadSceneMode.Additive, onComplete);
         }
