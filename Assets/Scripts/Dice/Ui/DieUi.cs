@@ -141,7 +141,6 @@ namespace Fantazee.Items.Dice.Ui
 
         public void SetImage(int value)
         {
-            Debug.Log($"DiceUi - Set Image {value}");
             if (DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
             {
                 image.sprite = info.Sprite;
@@ -150,7 +149,6 @@ namespace Fantazee.Items.Dice.Ui
 
         public void UpdateImage()
         {
-            Debug.Log($"DiceUi - Update Image");
             if (DiceSettings.Settings.SideInformation.TryGetInformation(Die.Value, out SideInformation info))
             {
                 image.sprite = info.Sprite;

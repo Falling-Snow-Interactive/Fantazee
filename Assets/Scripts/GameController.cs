@@ -83,6 +83,14 @@ namespace Fantazee
                                });
         }
 
+        public void LoadBossBattle()
+        {
+            loadingScreen.Show(() =>
+                               {
+                                   ProjectSceneManager.Instance.LoadBossBattle(GameInstance.Environment);
+                               });
+        }
+
         public void BattleReady()
         {
             loadingScreen.Hide(() =>

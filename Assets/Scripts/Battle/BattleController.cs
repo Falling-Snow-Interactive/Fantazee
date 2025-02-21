@@ -489,7 +489,7 @@ namespace Fantazee.Battle
         
         #region Battle End
         
-        private void BattleWin()
+        protected virtual void BattleWin()
         {
             BattleUi.Instance.ShowWinScreen();
             BattleUi.Instance.WinScreen.Initialize(battleRewards, OnBattleWinContinue);

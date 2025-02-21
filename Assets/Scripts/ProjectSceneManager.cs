@@ -16,6 +16,9 @@ namespace Fantazee
 
         [SerializeField]
         private FsiSceneEntry battleScene;
+
+        [SerializeField]
+        private FsiSceneEntry bossScene;
         
         [SerializeField]
         private FsiSceneEntry mapScene;
@@ -47,6 +50,29 @@ namespace Fantazee
         public void LoadBattle(EnvironmentType environmentType, Action onComplete = null)
         {
             LoadSceneAsync(battleScene.Name, LoadSceneMode.Single, () =>
+                                                                   {
+                                                                       switch (environmentType)
+                                                                       {
+                                                                           case EnvironmentType.Woods:
+                                                                               LoadWoodsEnvironment(onComplete);
+                                                                               break;
+                                                                           case EnvironmentType.Plains:
+                                                                               break;
+                                                                           case EnvironmentType.Beach:
+                                                                               break;
+                                                                           case EnvironmentType.Mountains:
+                                                                               break;
+                                                                           case EnvironmentType.Volcano:
+                                                                               break;
+                                                                           default:
+                                                                               throw new ArgumentOutOfRangeException(nameof(environmentType), environmentType, null);
+                                                                       }
+                                                                   });
+        }
+        
+        public void LoadBossBattle(EnvironmentType environmentType, Action onComplete = null)
+        {
+            LoadSceneAsync(bossScene.Name, LoadSceneMode.Single, () =>
                                                                    {
                                                                        switch (environmentType)
                                                                        {

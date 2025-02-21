@@ -108,5 +108,12 @@ namespace Fantazee.Instance
         {
             seed = (uint)Random.Range(0, int.MaxValue);
         }
+
+        public void AdvanceMap()
+        {
+            Debug.Log($"Instance: Advance map: \nIndex {mapIndex} -> {mapIndex + 1}");
+            mapIndex++;
+            mapNodeIndex = 0;
+        }
     }
 }

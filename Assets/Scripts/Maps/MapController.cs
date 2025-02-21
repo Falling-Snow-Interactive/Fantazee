@@ -122,9 +122,11 @@ namespace Fantazee.Maps
                     case NodeType.None:
                         break;
                     case NodeType.Battle:
-                    case NodeType.Boss:
                     case NodeType.MiniBoss:
                         GameController.Instance.LoadBattle();
+                        break;
+                    case NodeType.Boss:
+                        GameController.Instance.LoadBossBattle();
                         break;
                     case NodeType.Blacksmith:
                         GameController.Instance.LoadBlacksmith();
