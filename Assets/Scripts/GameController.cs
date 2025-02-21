@@ -11,14 +11,14 @@ namespace Fantazee
     {
         #region Launch
         
-        private const string RESOURCE_PATH = "Game_CTRL";
+        private const string ResourcePath = "Game_CTRL";
     
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void GameLaunch()
         {
             Debug.Log("Starting Game Controller.");
         
-            GameController prefab = Resources.Load<GameController>(RESOURCE_PATH);
+            GameController prefab = Resources.Load<GameController>(ResourcePath);
             Instantiate(prefab).name = "Game_CTRL";
             
             Application.targetFrameRate = 60;
