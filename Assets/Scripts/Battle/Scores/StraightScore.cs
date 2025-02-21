@@ -5,28 +5,25 @@ using Fantazee.Items.Dice;
 
 namespace Fantazee.Battle.Scores
 {
+    [Serializable]
     public class StraightScore : Score
     {
-        public override ScoreType Type { get; }
-        private int length;
-
-        public StraightScore(int length)
+        private int GetLength()
         {
-            this.length = length;
-            Type = length switch
+            return Type switch
                    {
-                       3 => ScoreType.SmallStraight,
-                       4 => ScoreType.LargeStraight,
-                       _ => throw new ArgumentOutOfRangeException(nameof(length), length, null)
+                       ScoreType.SmallStraight => 3,
+                       ScoreType.LargeStraight => 4,
+                       _ => throw new ArgumentOutOfRangeException()
                    };
         }
         
-        public override int Calculate(List<Die> dice)
+        public override int Calculate()
         {
             // This works with 1,2,3,4,6 but not 1, 3,4,5,6
-            Dictionary<int, int> dict = DiceToDict(dice);
+            Dictionary<int, int> dict = DiceToDict(Dice);
             
-            int startLimit = 7 - length;
+            int startLimit = 7 - GetLength();
             
             for (int i = 1; i <= startLimit; i++)
             {
@@ -47,7 +44,7 @@ namespace Fantazee.Battle.Scores
                         }
                     }
 
-                    if (count >= length)
+                    if (count >= GetLength())
                     {
                         return Type == ScoreType.SmallStraight ? 30 : 40;
                     }
@@ -72,24 +69,24 @@ namespace Fantazee.Battle.Scores
             return false;
         }
 
-        public override List<Die> GetScoredDice(List<Die> dice)
+        public override List<Die> GetScoredDice()
         {
             // Bit better. Still mediocre
             List<Die> scored = new();
             for (int i = 1; i <= 6; i++)
             {
-                if (HasDiceValue(i, dice, out Die d))
+                if (HasDiceValue(i, Dice, out Die d))
                 {
                     scored.Add(d);
                     for (int j = i + 1; j <= 6; j++)
                     {
-                        if (HasDiceValue(j, dice, out var d2))
+                        if (HasDiceValue(j, Dice, out Die d2))
                         {
                             scored.Add(d2);
                         }
                     }
 
-                    if (scored.Count >= length)
+                    if (scored.Count >= GetLength())
                     {
                         return scored;
                     }

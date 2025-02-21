@@ -4,9 +4,10 @@ using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Spells
 {
-    [CreateAssetMenu(menuName = "Spells/Data")]
-    public class SpellData : ScriptableObject
+    public abstract class SpellData : ScriptableObject
     {
+        public abstract SpellType Type { get; }
+        
         [Header("Localization")]
 
         [SerializeField]
@@ -24,7 +25,7 @@ namespace Fantazee.Spells
         public Sprite Icon => icon;
 
         [SerializeField]
-        private Color color;
+        private Color color = Color.white;
         public Color Color => color;
 
         [Header("Shop")]

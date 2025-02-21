@@ -12,20 +12,45 @@ namespace Fantazee.Battle.Scores
         [HideInInspector]
         [SerializeField]
         private string name;
-        
-        public abstract ScoreType Type { get; }
 
-        protected Score()
+        [SerializeField]
+        private ScoreType type;
+        public ScoreType Type
         {
+            get => type;
+            set => type = value;
         }
 
-        public abstract int Calculate(List<Die> dice);
+        [SerializeField]
+        private List<Die> dice = new();
+        public List<Die> Dice => dice;
+
+        public bool CanScore()
+        {
+            Debug.LogWarning("Score: CanScore not implemented. Returning true.");
+            return dice.Count == 0;
+        }
+
+        public int AddDie(Die die)
+        {
+            dice.Add(die);
+            Debug.LogWarning("Die added, now what?");
+            return Calculate();
+        }
+
+        public void ClearDice()
+        {
+            dice.Clear();
+            Debug.LogWarning("Dice cleared, now what?");
+        }
+
+        public abstract int Calculate();
         
-        public abstract List<Die> GetScoredDice(List<Die> dice);
+        public abstract List<Die> GetScoredDice();
 
         protected Dictionary<int, int> DiceToDict(List<Die> dice)
         {
-            Dictionary<int, int> diceByValue = new Dictionary<int, int>();
+            Dictionary<int, int> diceByValue = new();
             foreach (Die d in dice)
             {
                 if (!diceByValue.TryAdd(d.Value, 1))

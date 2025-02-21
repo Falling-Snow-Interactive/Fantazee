@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Battle.Environments;
+using Fantazee.Battle.Scores;
 using Fantazee.Boons;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fsi.Gameplay.Healths;
 using Fantazee.Items.Dice;
+using Fantazee.Relics;
+using Fantazee.Spells;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,9 +17,9 @@ namespace Fantazee.Instance
     [Serializable]
     public class GameInstance
     {
-        private const uint DEFAULT_SEED = 0;
-        private const int DEFAULT_HEALTH = 500;
-        private const int DEFAULT_GOLD = 500;
+        private const uint DefaultSeed = 0;
+        private const int DefaultHealth = 500;
+        private const int DefaultGold = 500;
         
         [SerializeField]
         private uint seed;
@@ -68,26 +71,37 @@ namespace Fantazee.Instance
         private Wallet wallet;
         public Wallet Wallet => wallet;
 
+        [Header("Relics")]
+
+        [SerializeField]
+        private List<RelicInstance> relics;
+        public List<RelicInstance> Relics => relics;
+        
+        [Header("Scores")]
+        
+        [SerializeField]
+        private ScoreTracker scoreTracker;
+        public ScoreTracker ScoreTracker => scoreTracker;
+        
         public static GameInstance Defaults
         {
             get
             {
                 GameInstance instance = new()
                                         {
-                                            seed = DEFAULT_SEED,
-                                            health = new Health(DEFAULT_HEALTH),
+                                            seed = DefaultSeed,
+                                            health = new Health(DefaultHealth),
                                             mapIndex = 0,
                                             mapNodeIndex = 0,
                                             dice = DefaultDice(6),
                                             boons = new List<Boon>(),
-                                            wallet = new Wallet(CurrencyType.Gold, DEFAULT_GOLD),
+                                            wallet = new Wallet(CurrencyType.Gold, DefaultGold),
                                             environment = EnvironmentType.Woods,
                                         };
                 
                 return instance;
             }
         }
-        
         
         public static List<Die> DefaultDice(int amount)
         {

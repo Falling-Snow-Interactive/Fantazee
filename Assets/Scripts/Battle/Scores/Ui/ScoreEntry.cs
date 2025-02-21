@@ -16,7 +16,7 @@ namespace Fantazee.Battle.Scores.Ui
 {
     public class ScoreEntry : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeReference]
         private Score score;
         public Score Score => score;
         

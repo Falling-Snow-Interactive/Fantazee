@@ -1,7 +1,11 @@
+using System.Collections.Generic;
 using Fantazee.Battle;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
+using Fantazee.Relics;
+using Fantazee.Spells;
+using Fantazee.Spells.Settings;
 using Fsi.Gameplay;
 using UnityEngine;
 
@@ -35,6 +39,11 @@ namespace Fantazee
         [SerializeField]
         private LoadingScreen loadingScreen;
 
+        [Header("Debug")]
+        
+        [SerializeField]
+        private List<RelicData> startingRelics;
+        
         protected override void Awake()
         {
             base.Awake();

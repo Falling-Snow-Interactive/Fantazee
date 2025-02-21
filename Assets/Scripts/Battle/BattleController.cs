@@ -66,13 +66,6 @@ namespace Fantazee.Battle
 
         private bool hasScoredRoll = false;
 
-        [FormerlySerializedAs("score")]
-        [Header("Score")]
-
-        [SerializeField]
-        private ScoreTracker scoreTracker;
-        public ScoreTracker ScoreTracker => scoreTracker;
-
         [Header("Characters")]
 
         [SerializeField]
@@ -144,7 +137,7 @@ namespace Fantazee.Battle
         private void SetupBattle()
         {
             Debug.Log($"Battle - Setup");
-            scoreTracker.Initialize();
+            GameController.Instance.GameInstance.ScoreTracker.Clear();
             Player.Initialize();
             SetupDice();
             SetupEnemies();
@@ -258,7 +251,7 @@ namespace Fantazee.Battle
             
             hasScoredRoll = true;
             
-            if (scoreTracker.CanScore(entry.Score.Type))
+            if (entry.Score.CanScore())
             {
                 StartCoroutine(StartScoreSequence(entry, BattleUi.Instance.DiceControl.Dice));
             }
@@ -268,7 +261,7 @@ namespace Fantazee.Battle
         {
             Score score = entry.Score;
             List<Die> dice = GameController.Instance.GameInstance.Dice;
-            List<Die> partOfScore = entry.Score.GetScoredDice(dice);
+            List<Die> partOfScore = entry.Score.GetScoredDice();
             
             // First, dice go to scoreboard
             List<Die> scoredDice = new();
@@ -290,7 +283,7 @@ namespace Fantazee.Battle
 
                 if (inScore)
                 {
-                    int s = entry.Score.Calculate(scoredDice);
+                    int s = entry.Score.Calculate();
                     entry.SetScore(s);
                     DiceScored?.Invoke(d.Die.Value); 
                 }
@@ -302,7 +295,7 @@ namespace Fantazee.Battle
 
             // Calculate damage
             
-            int diceScore = score.Calculate(dice);
+            int diceScore = score.Calculate();
             Damage damage = new(diceScore);
             
             if (damage.Value > 0)
@@ -318,8 +311,10 @@ namespace Fantazee.Battle
 
                 yield return new WaitForSeconds(0.5f);
 
+                Debug.Log("Changing how the score tracking works again");
+                
                 // TODO - Somwthing weird going on with four of a kind
-                ScoreTracker.AddScore(score, damage.Value);
+                // ScoreTracker.AddScore(score, damage.Value);
                 entry.SetScore(damage.Value);
                 
                 yield return new WaitForSeconds(0.5f);
@@ -339,7 +334,8 @@ namespace Fantazee.Battle
             }
             else
             {
-                ScoreTracker.AddScore(score, 0);
+                Debug.Log("Changing how the score tracking works again");
+                // ScoreTracker.AddScore(score, 0);
                 entry.SetScore(0);
                 Scored?.Invoke(0);
             }
@@ -454,11 +450,12 @@ namespace Fantazee.Battle
 
         public void TryBonusAttack()
         {
-            if (scoreTracker.BonusScore.IsReady)
-            {
-                // Player.DoBonusAttack();
-                BattleUi.Instance.Scoreboard.BonusScoreUi.Disable();
-            }
+            Debug.Log("No Bonus Yet");
+            // if (scoreTracker.BonusScore.IsReady)
+            // {
+            //     // Player.DoBonusAttack();
+            //     BattleUi.Instance.Scoreboard.BonusScoreUi.Disable();
+            // }
         }
         
         #endregion

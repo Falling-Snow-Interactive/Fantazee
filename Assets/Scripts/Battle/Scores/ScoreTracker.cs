@@ -1,68 +1,131 @@
 using System;
 using System.Collections.Generic;
-using Fantazee.Battle.Scores.Bonus;
 using Fantazee.Battle.Ui;
-using Fantazee.Battle.Scores;
-using Fantazee.Battle.Scores.Ui;
-using Fantazee.Boons;
 using UnityEngine;
 
 namespace Fantazee.Battle.Scores
 {
     [Serializable]
-    public class ScoreTracker
+    public class ScoreTracker : ISerializationCallbackReceiver
     {
-        private Dictionary<ScoreType, int> scoreDictionary = new Dictionary<ScoreType, int>();
+        [SerializeField]
+        private NumberScore ones;
+        public NumberScore Ones => ones;
 
-        public List<Score> Scores { get; } = new();
+        [SerializeField]
+        private NumberScore twos;
+        public NumberScore Twos => twos;
+        
+        [SerializeField]
+        private NumberScore threes;
+        public NumberScore Threes => threes;
+        
+        [SerializeField]
+        private NumberScore fours;
+        public NumberScore Fours => fours;
+        
+        [SerializeField]
+        private NumberScore fives;
+        public NumberScore Fives => fives;
+        
+        [SerializeField]
+        private NumberScore sixes;
+        public NumberScore Sixes => sixes;
 
-        private BonusScore bonusScore;
-        public BonusScore BonusScore => bonusScore;
+        [SerializeField]
+        private KindScore threeOfAKind;
+        public KindScore ThreeOfAKind => threeOfAKind;
+        
+        [SerializeField]
+        private KindScore fourOfAKind;
+        public KindScore FourOfAKind => fourOfAKind;
+
+        [SerializeField]
+        private FullHouseScore fullHouse;
+        public FullHouseScore FullHouse => fullHouse;
+
+        [SerializeField]
+        private StraightScore smallStraight;
+        public StraightScore SmallStraight => smallStraight;
+        
+        [SerializeField]
+        private StraightScore largeStraight;
+        public StraightScore LargeStraight => largeStraight;
+
+        [SerializeField]
+        private KindScore fantazee;
+        public KindScore Fantazee => fantazee;
+
+        [SerializeField]
+        private ChanceScore chance;
+        public ChanceScore Chance => chance;
+
+        // [SerializeField]
+        // private BonusScore bonusScore;
+        // public BonusScore BonusScore => bonusScore;
 
         public void Initialize()
         {
             Debug.Log($"Score Tracker - Initialize");
-            scoreDictionary.Clear();
-            
-            Scores.Clear();
-            int x = Enum.GetValues(typeof(ScoreType)).Length;
-            for (int i = 1; i < x; i++)
-            {
-                ScoreType type = (ScoreType) i;
-                Score score = ScoreFactory.Create(type);
-                Scores.Add(score);
-            }
-            bonusScore = new BonusScore();
-            
             BattleUi.Instance.Scoreboard.Initialize();
         }
 
-        public void AddScore(Score score, int value)
+        public List<Score> GetScoreList()
         {
-            Debug.Log($"Score Tracker - Add {score.Type} - {value}");
-            scoreDictionary.Add(score.Type, value);
-            bonusScore.Add(value);
-        }
-        
-        public int GetTotal()
-        {
-            int total = 0;
-            foreach (KeyValuePair<ScoreType, int> score in scoreDictionary)
-            {
-                total += score.Value;
-            }
+            List<Score> scores = new List<Score>
+                                 {
+                                     Ones,
+                                     Twos,
+                                     Threes,
+                                     Fours,
+                                     Fives,
+                                     Sixes,
+                                     ThreeOfAKind,
+                                     FourOfAKind,
+                                     FullHouse,
+                                     SmallStraight,
+                                     LargeStraight,
+                                     Fantazee,
+                                     Chance,
+                                 };
 
-            return total;
+            return scores;
         }
 
-        public bool CanScore(ScoreType type)
+        public void Clear()
         {
-            return !scoreDictionary.ContainsKey(type);
+            ones.ClearDice();
+            twos.ClearDice();
+            threes.ClearDice();
+            fours.ClearDice();
+            fives.ClearDice();
+            sixes.ClearDice();
+            threeOfAKind.ClearDice();
+            fourOfAKind.ClearDice();
+            fullHouse.ClearDice();
+            smallStraight.ClearDice();
+            largeStraight.ClearDice();
+            fantazee.ClearDice();
+            chance.ClearDice();
         }
 
-        public int GetScore(ScoreType type)
+        public void OnBeforeSerialize()
         {
-            return scoreDictionary.GetValueOrDefault(type, 0);
+            ones.Type = ScoreType.Ones;
+            twos.Type = ScoreType.Twos;
+            threes.Type = ScoreType.Threes;
+            fours.Type = ScoreType.Fours;
+            fives.Type = ScoreType.Fives;
+            sixes.Type = ScoreType.Sixes;
+            threeOfAKind.Type = ScoreType.ThreeOfAKind;
+            fourOfAKind.Type = ScoreType.FourOfAKind;
+            fullHouse.Type = ScoreType.FullHouse;
+            smallStraight.Type = ScoreType.SmallStraight;
+            largeStraight.Type = ScoreType.LargeStraight;
+            fantazee.Type = ScoreType.Fantazee;
+            chance.Type = ScoreType.Chance;
         }
+
+        public void OnAfterDeserialize() { }
     }
 }

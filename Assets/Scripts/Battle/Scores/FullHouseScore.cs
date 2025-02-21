@@ -1,15 +1,16 @@
+using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
 using Fantazee.Items.Dice;
 
 namespace Fantazee.Battle.Scores
 {
+    [Serializable]
     public class FullHouseScore : Score
     {
-        public override ScoreType Type => ScoreType.FullHouse;
-        public override int Calculate(List<Die> dice)
+        public override int Calculate()
         {
-            Dictionary<int, int> dict = DiceToDict(dice);
+            Dictionary<int, int> dict = DiceToDict(Dice);
             
             bool foundPair = false;
             bool foundThree = false;
@@ -37,9 +38,9 @@ namespace Fantazee.Battle.Scores
             return 0;
         }
 
-        public override List<Die> GetScoredDice(List<Die> dice)
+        public override List<Die> GetScoredDice()
         {
-            return Calculate(dice) > 0 ? new List<Die>(dice) : new List<Die>();
+            return Calculate() > 0 ? new List<Die>(Dice) : new List<Die>();
         }
     }
 }

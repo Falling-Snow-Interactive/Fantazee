@@ -336,10 +336,61 @@ MonoBehaviour:
       - name: Gold - 500
         type: 1
         amount: 500
+    spells:
+    - rid: 3917922133231010028
+    relics: []
+    scoreTracker:
+      ones:
+        name: Ones
+        type: 1
+      twos:
+        name: Twos
+        type: 2
+      threes:
+        name: ThreeOfAKind
+        type: 7
+      fours:
+        name: FourOfAKind
+        type: 8
+      fives:
+        name: Fives
+        type: 5
+      sixes:
+        name: Sixes
+        type: 6
+      threeOfAKind:
+        name: ThreeOfAKind
+        type: 7
+      fourOfAKind:
+        name: FourOfAKind
+        type: 8
+      fullHouse:
+        name: FullHouse
+        type: 9
+      smallStraight:
+        name: SmallStraight
+        type: 10
+      largeStraight:
+        name: LargeStraight
+        type: 11
+      fantazee:
+        name: Fantazee
+        type: 12
+      chance:
+        name: Chance
+        type: 13
   loadingScreen: {fileID: 5289247866963360002}
+  addSpell: 0
+  startingSpells: []
+  startingRelics: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3917922133231010028
+      type: {class: DaggerInstance, ns: Fantazee.Spells.Dagger, asm: Assembly-CSharp}
+      data:
+        name: Dagger
+        data: {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
 --- !u!114 &307396310537484130
 MonoBehaviour:
   m_ObjectHideFlags: 0

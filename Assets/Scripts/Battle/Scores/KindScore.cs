@@ -1,37 +1,38 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using Fantazee.Items.Dice;
+using UnityEngine;
 
 namespace Fantazee.Battle.Scores
 {
+    [Serializable]
     public class KindScore : Score
     {
-        public override ScoreType Type { get; }
-        private int matches;
-
-        public KindScore(int matches)
+        private int GetMatches()
         {
-            this.matches = matches;
-            Type = matches switch
-                   {
-                       3 => ScoreType.ThreeOfAKind,
-                       4 => ScoreType.FourOfAKind,
-                       5 => ScoreType.Fantazee,
-                       _ => throw new ArgumentOutOfRangeException(nameof(matches), matches, null)
-                   };
+            switch (Type)
+            {
+                case ScoreType.ThreeOfAKind:
+                    return 3;
+                case ScoreType.FourOfAKind:
+                    return 4;
+                case ScoreType.Fantazee:
+                    return 5;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         
-        public override int Calculate(List<Die> dice)
+        public override int Calculate()
         {
-            Dictionary<int, int> dict = DiceToDict(dice);
+            Dictionary<int, int> dict = DiceToDict(Dice);
             bool isValid = false;
             int total = 0;
 
             foreach (KeyValuePair<int, int> kvp in dict)
             {
                 total += kvp.Key * kvp.Value;
-                if (kvp.Value >= matches)
+                if (kvp.Value >= GetMatches())
                 {
                     isValid = true;
                 }
@@ -45,9 +46,9 @@ namespace Fantazee.Battle.Scores
             return 0;
         }
 
-        public override List<Die> GetScoredDice(List<Die> dice)
+        public override List<Die> GetScoredDice()
         {
-            return Calculate(dice) > 0 ? new List<Die>(dice) : new List<Die>();
+            return Calculate() > 0 ? new List<Die>(Dice) : new List<Die>();
         }
     }
 }

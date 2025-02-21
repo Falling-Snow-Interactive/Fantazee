@@ -1,34 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using Fantazee.Items.Dice;
 
 namespace Fantazee.Battle.Scores
 {
     [Serializable]
     public class NumberScore : Score
     {
-        public override ScoreType Type { get; }
-        private int value;
-
-        public NumberScore(int value)
+        public override int Calculate()
         {
-            this.value = value;
-            Type = value switch
-                   {
-                       1 => ScoreType.Ones,
-                       2 => ScoreType.Twos,
-                       3 => ScoreType.Threes,
-                       4 => ScoreType.Fours,
-                       5 => ScoreType.Fives,
-                       6 => ScoreType.Sixes,
-                       _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
-                   };
-        }
-        
-        public override int Calculate(List<Die> dice)
-        {
-            Dictionary<int, int> dict = DiceToDict(dice);
+            Dictionary<int, int> dict = DiceToDict(Dice);
             
             int value = Type switch
                    {
@@ -49,12 +30,26 @@ namespace Fantazee.Battle.Scores
             return 0;
         }
 
-        public override List<Die> GetScoredDice(List<Die> dice)
+        private int GetValue()
         {
-            List<Die> scored = new List<Die>();
-            foreach (var d in dice)
+            return Type switch
+                   {
+                       ScoreType.Ones => 1,
+                       ScoreType.Twos => 2,
+                       ScoreType.Threes => 3,
+                       ScoreType.Fours => 4,
+                       ScoreType.Fives => 5,
+                       ScoreType.Sixes => 6,
+                       _ => throw new ArgumentOutOfRangeException()
+                   };
+        }
+
+        public override List<Die> GetScoredDice()
+        {
+            List<Die> scored = new();
+            foreach (Die d in Dice)
             {
-                if (d.Value == value)
+                if (d.Value == GetValue())
                 {
                     scored.Add(d);
                 }
