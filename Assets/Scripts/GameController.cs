@@ -3,7 +3,6 @@ using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
 using Fsi.Gameplay;
-using Fantazee.Boons;
 using UnityEngine;
 
 namespace Fantazee
