@@ -114,7 +114,7 @@ namespace Fantazee.Maps
             private void OnFinishMoving()
             {
                 Debug.Log($"Map - Finished move");
-                canInteract = false;
+                canInteract = true;
                 Node node = map.Nodes[GameInstance.MapNodeIndex];
                 Debug.Log($"Map - Node {node.NodeType}");
                 switch (node.NodeType)

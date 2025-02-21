@@ -81,6 +81,7 @@ namespace Fantazee.Instance
                                             dice = DefaultDice(6),
                                             boons = new List<Boon>(),
                                             wallet = new Wallet(CurrencyType.Gold, DEFAULT_GOLD),
+                                            environment = EnvironmentType.Woods,
                                         };
                 
                 return instance;

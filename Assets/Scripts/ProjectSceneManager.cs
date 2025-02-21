@@ -35,8 +35,9 @@ namespace Fantazee
         [SerializeField]
         private FsiSceneEntry environmentEnv;
 
+        [FormerlySerializedAs("grassEnv")]
         [SerializeField]
-        private FsiSceneEntry grassEnv;
+        private FsiSceneEntry woodsEnv;
 
         public void LoadMainMenu(Action onComplete)
         {
@@ -93,7 +94,7 @@ namespace Fantazee
 
         private void LoadWoodsEnvironment(Action onComplete)
         {
-            LoadSceneAsync(grassEnv.Name, LoadSceneMode.Additive, onComplete);
+            LoadSceneAsync(woodsEnv.Name, LoadSceneMode.Additive, onComplete);
         }
     }
 }
