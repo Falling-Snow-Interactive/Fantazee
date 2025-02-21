@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
-using Fantazee.Battle.Scores.Bonus.Ui;
 using Fantazee.Battle.Settings;
+using Fantazee.Scores.Bonus.Ui;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantazee.Battle.Scores.Ui
+namespace Fantazee.Scores.Ui
 {
     public class ScoreboardUi : MonoBehaviour
     {

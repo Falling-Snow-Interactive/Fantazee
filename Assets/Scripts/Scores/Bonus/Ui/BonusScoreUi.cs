@@ -1,8 +1,9 @@
+using Fantazee.Battle;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantazee.Battle.Scores.Bonus.Ui
+namespace Fantazee.Scores.Bonus.Ui
 {
     public class BonusScoreUi : MonoBehaviour
     {

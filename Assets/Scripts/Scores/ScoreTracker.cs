@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fantazee.Battle.Ui;
 using UnityEngine;
 
-namespace Fantazee.Battle.Scores
+namespace Fantazee.Scores
 {
     [Serializable]
     public class ScoreTracker : ISerializationCallbackReceiver

@@ -1,6 +1,6 @@
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
-using Fantazee.Battle.Scores.Information;
+using Fantazee.Scores.Information;
 using UnityEditor;
 using UnityEngine;
 

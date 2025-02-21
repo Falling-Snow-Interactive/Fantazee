@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using Fantazee.Items.Dice;
-using UnityEngine;
 
-namespace Fantazee.Battle.Scores
+namespace Fantazee.Scores
 {
     public static class ScoreCalculator
     {

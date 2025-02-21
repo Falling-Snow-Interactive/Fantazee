@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using UnityEngine;
 
-namespace Fantazee.Battle.Scores
+namespace Fantazee.Scores
 {
     [Serializable]
     public class KindScore : Score

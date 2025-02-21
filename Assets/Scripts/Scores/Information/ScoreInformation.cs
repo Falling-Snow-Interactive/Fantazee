@@ -3,7 +3,7 @@ using fsi.settings.Informations;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace Fantazee.Battle.Scores.Information
+namespace Fantazee.Scores.Information
 {
     [Serializable]
     public class ScoreInformation : Information<ScoreType>

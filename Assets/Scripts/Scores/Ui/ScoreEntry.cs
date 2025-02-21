@@ -1,18 +1,17 @@
 using System.Collections.Generic;
-using System.Globalization;
 using DG.Tweening;
-using Fantazee.Battle.Scores.Information;
+using Fantazee.Battle;
 using Fantazee.Battle.Settings;
 using Fantazee.Dice;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
-using Fantazee.Items.Dice;
+using Fantazee.Scores.Information;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Fantazee.Battle.Scores.Ui
+namespace Fantazee.Scores.Ui
 {
     public class ScoreEntry : MonoBehaviour
     {

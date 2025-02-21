@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
 
-namespace Fantazee.Battle.Scores
+namespace Fantazee.Scores
 {
     [Serializable]
     public class NumberScore : Score
