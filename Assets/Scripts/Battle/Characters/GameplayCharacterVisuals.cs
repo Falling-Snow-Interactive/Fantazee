@@ -1,5 +1,8 @@
 using System;
+using DG.Tweening;
+using Fantazee.Battle.Characters.Animation;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Battle.Characters
 {
@@ -18,20 +21,20 @@ namespace Fantazee.Battle.Characters
 
         [SerializeField]
         private Sprite death;
-        
+
         [Header("Animations")]
+
+        [SerializeField]
+        private TweenAnim idleTween;
+
+        [SerializeField]
+        private PunchTweenAnim attackPunch;
         
         [SerializeField]
-        private CharacterTweenAnimation idleAnimation;
+        private PunchTweenAnim hitAnim;
         
         [SerializeField]
-        private CharacterTweenAnimation attackAnimation;
-        
-        [SerializeField]
-        private CharacterTweenAnimation hitAnimation;
-        
-        [SerializeField]
-        private CharacterTweenAnimation deathAnimation;
+        private PunchTweenAnim deathAnim;
         
         [Header("References")]
         
@@ -46,23 +49,23 @@ namespace Fantazee.Battle.Characters
         public void Idle()
         {
             spriteRenderer.sprite = idle;
-            idleAnimation.Play(transform);
+            idleTween.Play(spriteRenderer.transform);
         }
 
         public void Attack(Action onComplete = null)
         {
             spriteRenderer.sprite = attack;
-            attackAnimation.Play(transform, () =>
-                                            {
-                                                Idle();
-                                                onComplete?.Invoke();
-                                            });
+            attackPunch.Play(spriteRenderer.transform, () =>
+                                                       {
+                                                           Idle();
+                                                           onComplete?.Invoke();
+                                                       });
         }
         
         public void Hit()
         {
             spriteRenderer.sprite = hit;
-            hitAnimation.Play(transform, Idle);
+            hitAnim.Play(spriteRenderer.transform, Idle);
         }
 
         public void Death()

@@ -161,42 +161,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db98ee4deb143ffbb2309f4525a56d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idle: {fileID: -417846152, guid: 5a847bcf4fee540b3b6d7b206290ee15, type: 3}
-  attack: {fileID: 1873303195, guid: 5a847bcf4fee540b3b6d7b206290ee15, type: 3}
-  hit: {fileID: 1461869303, guid: 5a847bcf4fee540b3b6d7b206290ee15, type: 3}
-  death: {fileID: 610343840, guid: 5a847bcf4fee540b3b6d7b206290ee15, type: 3}
-  idleAnimation:
-    type: 0
-    local: 1
-    vector: {x: 0.95, y: 1.1, z: 0.95}
+  idle: {fileID: -1273670582, guid: 0913c24a9d84c496cbbd5b04a1928ec7, type: 3}
+  attack: {fileID: -586445052, guid: 0913c24a9d84c496cbbd5b04a1928ec7, type: 3}
+  hit: {fileID: 1036423528, guid: 0913c24a9d84c496cbbd5b04a1928ec7, type: 3}
+  death: {fileID: -1230468602, guid: 0913c24a9d84c496cbbd5b04a1928ec7, type: 3}
+  idleTween:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    scale: {x: 0.9, y: 1.1, z: 1}
     time: 1
-    ease: 2
+    ease: 1
     loops: -1
     loopType: 1
-  attackAnimation:
-    type: 4
-    local: 1
-    vector: {x: -1, y: 0, z: 0}
-    time: 1
+  attackPunch:
+    positionPunch: {x: -1, y: 0, z: 0}
+    rotationPunch: {x: 0, y: 0, z: 30}
+    scalePunch: {x: -0.1, y: 0.1, z: 0}
+    time: 0.3
+    vibrato: 2
+    elasticity: 2
     ease: 1
-    loops: 0
-    loopType: 0
-  hitAnimation:
-    type: 4
-    local: 1
-    vector: {x: 1, y: 0, z: 0}
-    time: 0.25
+  hitAnim:
+    positionPunch: {x: 1, y: 0, z: 0}
+    rotationPunch: {x: 0, y: 0, z: -30}
+    scalePunch: {x: -0.1, y: 0.1, z: 0}
+    time: 0.3
+    vibrato: 2
+    elasticity: 2
     ease: 1
-    loops: 0
-    loopType: 0
-  deathAnimation:
-    type: 0
-    local: 1
-    vector: {x: 0, y: 0, z: 0}
-    time: 1
+  deathAnim:
+    positionPunch: {x: 0, y: 0, z: 0}
+    rotationPunch: {x: 0, y: 0, z: 0}
+    scalePunch: {x: 0, y: 0, z: 0}
+    time: 0.3
+    vibrato: 2
+    elasticity: 2
     ease: 1
-    loops: 0
-    loopType: 0
   spriteRenderer: {fileID: 2944858150234283115}
 --- !u!1 &8076166033666750762
 GameObject:
@@ -330,7 +330,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -417846152, guid: 5a847bcf4fee540b3b6d7b206290ee15, type: 3}
+  m_Sprite: {fileID: -1273670582, guid: 0913c24a9d84c496cbbd5b04a1928ec7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
