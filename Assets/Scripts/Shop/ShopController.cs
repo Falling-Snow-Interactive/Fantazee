@@ -1,6 +1,3 @@
-using Fantazee.Boons;
-using Fantazee.Boons.Information;
-using Fantazee.Boons.Settings;
 using Fantazee.Currencies;
 using Fantazee.Shop.Ui;
 using UnityEngine;
@@ -29,19 +26,19 @@ namespace Fantazee.Shop
             GameController.Instance.ShopReady();
         }
 
-        public bool TryPurchase(BoonType type)
+        public bool TryPurchase()// BoonType type)
         {
-            if (BoonSettings.Settings.Information.TryGetInformation(type, out BoonInformation information))
-            {
-                Currency cost = information.Cost;
-                if (GameController.Instance.GameInstance.Wallet.CanAfford(cost))
-                {
-                    Boon boon = BoonFactory.Create(type);
-                    GameController.Instance.GameInstance.Boons.Add(boon);
-                    GameController.Instance.GameInstance.Wallet.Remove(cost);
-                    return true;
-                }
-            }
+            // if (BoonSettings.Settings.Information.TryGetInformation(type, out BoonInformation information))
+            // {
+            //     Currency cost = information.Cost;
+            //     if (GameController.Instance.GameInstance.Wallet.CanAfford(cost))
+            //     {
+            //         Boon boon = BoonFactory.Create(type);
+            //         GameController.Instance.GameInstance.Boons.Add(boon);
+            //         GameController.Instance.GameInstance.Wallet.Remove(cost);
+            //         return true;
+            //     }
+            // }
 
             return false;
         }

@@ -1,4 +1,3 @@
-using Fantazee.Battle.Boons.Ui;
 using Fantazee.Battle.Ui.WinScreens;
 using Fantazee.Scores.Ui;
 using Fsi.Gameplay;
@@ -17,10 +16,6 @@ namespace Fantazee.Battle.Ui
         public ScoreboardUi Scoreboard => scoreboard;
 
         [SerializeField]
-        private BoonsUi boonsUi;
-        public BoonsUi BoonsUi => boonsUi;
-
-        [SerializeField]
         private WinScreen winScreen;
         public WinScreen WinScreen => winScreen;
 
@@ -30,7 +25,6 @@ namespace Fantazee.Battle.Ui
 
             diceControl.gameObject.SetActive(true);
             scoreboard.gameObject.SetActive(true);
-            boonsUi.gameObject.SetActive(true);
             
             winScreen.gameObject.SetActive(false);
         }

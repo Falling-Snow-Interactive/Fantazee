@@ -730,7 +730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 109.73332, y: -15}
+  m_AnchoredPosition: {x: 107.29167, y: -15}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9157684796886052902
@@ -854,9 +854,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0780647dee95b491ca7813e937888f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score:
+    rid: -2
   nameText: {fileID: 5755747312275567777}
   scoreText: {fileID: 6577669375536813416}
-  scoreContainer: {fileID: 0}
+  scoreContainer: {fileID: 3153150128955506843}
   button: {fileID: 2393331292134590895}
   diceImages:
   - {fileID: 4311944140279875632}
@@ -864,6 +866,11 @@ MonoBehaviour:
   - {fileID: 948880417937044130}
   - {fileID: 5216255741957178555}
   - {fileID: 4801531141444982581}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &2393331292134590895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,7 +1171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 21.946665, y: -15}
+  m_AnchoredPosition: {x: 21.458334, y: -15}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &388232658034344482
@@ -1334,7 +1341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65.84, y: -15}
+  m_AnchoredPosition: {x: 64.375, y: -15}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1698307795771743355

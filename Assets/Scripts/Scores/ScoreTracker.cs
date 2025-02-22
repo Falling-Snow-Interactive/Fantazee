@@ -67,7 +67,7 @@ namespace Fantazee.Scores
         public void Initialize()
         {
             Debug.Log($"Score Tracker - Initialize");
-            BattleUi.Instance.Scoreboard.Initialize();
+            Clear();
         }
 
         public List<Score> GetScoreList()

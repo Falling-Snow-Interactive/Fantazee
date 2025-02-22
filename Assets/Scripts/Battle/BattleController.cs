@@ -7,8 +7,6 @@ using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Battle.Settings;
 using Fantazee.Battle.Ui;
-using Fantazee.Boons;
-using Fantazee.Boons.Handlers;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Items.Dice.Ui;
@@ -17,7 +15,6 @@ using Fantazee.Scores.Ui;
 using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
@@ -33,6 +30,10 @@ namespace Fantazee.Battle
         
         public static event Action<int> DiceScored;
         public static event Action<int> Scored;
+        
+        // Common instance references
+
+        private ScoreTracker ScoreTracker => GameController.Instance.GameInstance.ScoreTracker;
         
         [Header("Camera")]
         
@@ -105,10 +106,6 @@ namespace Fantazee.Battle
         [SerializeField]
         private EventReference diceScoreSfx;
         
-        // Boon Control
-        private readonly List<IBoonDamageHandler> boonDamageHandlers = new();
-        private readonly List<IBoonRollHandler> boonRollHandlers = new();
-        
         private void OnEnable()
         {
             GameplayCharacter.Despawned += OnCharacterDespawned;
@@ -137,12 +134,13 @@ namespace Fantazee.Battle
         private void SetupBattle()
         {
             Debug.Log($"Battle - Setup");
-            GameController.Instance.GameInstance.ScoreTracker.Clear();
+            
+            ScoreTracker.Initialize();
+            BattleUi.Instance.Scoreboard.Initialize(ScoreTracker);
+            
             Player.Initialize();
             SetupDice();
             SetupEnemies();
-
-            SetupBoons();
             
             // Hide enemies
             foreach (GameplayEnemy enemy in enemies)
@@ -188,23 +186,6 @@ namespace Fantazee.Battle
                 enemy.Initialize();
 
                 enemies.Add(enemy);
-            }
-        }
-
-        private void SetupBoons()
-        {
-            foreach (Boon boon in GameController.Instance.GameInstance.Boons)
-            {
-                BattleUi.Instance.BoonsUi.AddBoon(boon);
-                if (boon is IBoonDamageHandler boonDamageHandler)
-                {
-                    boonDamageHandlers.Add(boonDamageHandler);
-                }
-
-                if (boon is IBoonRollHandler boonRollHandler)
-                {
-                    boonRollHandlers.Add(boonRollHandler);
-                }
             }
         }
         
@@ -260,63 +241,29 @@ namespace Fantazee.Battle
         private IEnumerator StartScoreSequence(ScoreEntry entry, List<DieUi> diceUi)
         {
             Score score = entry.Score;
-            List<Die> dice = GameController.Instance.GameInstance.Dice;
-            List<Die> partOfScore = entry.Score.GetScoredDice();
-            
-            // First, dice go to scoreboard
-            List<Die> scoredDice = new();
-            for (int i = 0; i < diceUi.Count; i++)
+            foreach (DieUi d in diceUi)
             {
-                DieUi d = diceUi[i];
-                
-                bool inScore = partOfScore.Contains(d.Die);
-                scoredDice.Add(d.Die);
-                
-                
                 d.Image.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
                                                BattleSettings.Settings.SquishTime, 
                                                10, 
                                                1f)
                  .SetEase(BattleSettings.Settings.SquishEase);
                 RuntimeManager.PlayOneShot(diceScoreSfx);
-                entry.SetDice(i, d.Die.Value, inScore);
-
-                if (inScore)
-                {
-                    int s = entry.Score.Calculate();
-                    entry.SetScore(s);
-                    DiceScored?.Invoke(d.Die.Value); 
-                }
+                entry.Score.AddDie(d.Die);
                 
                 yield return new WaitForSeconds(scoreTime);
             }
             
             yield return new WaitForSeconds(0.5f);
-
+            
             // Calculate damage
             
+            entry.FinalizeScore();
             int diceScore = score.Calculate();
             Damage damage = new(diceScore);
             
             if (damage.Value > 0)
             {
-                foreach (IBoonDamageHandler boon in boonDamageHandlers)
-                {
-                    boon.ReceiveDamage(ref damage);
-                    boon.Boon.entryUi.Punch();
-                    entry.SetScore(damage.Value);
-                    
-                    yield return new WaitForSeconds(0.5f);
-                }
-
-                yield return new WaitForSeconds(0.5f);
-
-                Debug.Log("Changing how the score tracking works again");
-                
-                // TODO - Somwthing weird going on with four of a kind
-                // ScoreTracker.AddScore(score, damage.Value);
-                entry.SetScore(damage.Value);
-                
                 yield return new WaitForSeconds(0.5f);
             
                 // Do attack
@@ -336,7 +283,7 @@ namespace Fantazee.Battle
             {
                 Debug.Log("Changing how the score tracking works again");
                 // ScoreTracker.AddScore(score, 0);
-                entry.SetScore(0);
+                entry.FinalizeScore();
                 Scored?.Invoke(0);
             }
             
@@ -407,10 +354,6 @@ namespace Fantazee.Battle
                 
                 BattleUi.Instance.DiceControl.Roll(d =>
                                                      {
-                                                         foreach (IBoonRollHandler boon in boonRollHandlers)
-                                                         {
-                                                             boon.OnDiceRoll(d);
-                                                         }
                                                          DieRolled?.Invoke(d);
                                                      });
                 RollStarted?.Invoke();
@@ -505,30 +448,6 @@ namespace Fantazee.Battle
             {
                 GameController.Instance.GameInstance.Wallet.Add(currency);
             }
-        }
-        
-        #endregion
-        
-        #region Boon Handlers
-
-        public void RegisterBoonDamageHandlerCallback(IBoonDamageHandler hander)
-        {
-            boonDamageHandlers.Add(hander);
-        }
-
-        public void UnregisterBoonDamageHandlerCallback(IBoonDamageHandler handler)
-        {
-            boonDamageHandlers.Remove(handler);
-        }
-
-        public void RegisterBoonRollHandlerCallback(IBoonRollHandler handler)
-        {
-            boonRollHandlers.Add(handler);
-        }
-
-        public void UnregisterBoonRollHandlerCallback(IBoonRollHandler handler)
-        {
-            boonRollHandlers.Remove(handler);
         }
         
         #endregion

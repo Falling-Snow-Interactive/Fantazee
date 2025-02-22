@@ -8,6 +8,10 @@ namespace Fantazee.Scores
     [Serializable]
     public abstract class Score : ISerializationCallbackReceiver
     {
+        public event Action Changed;
+        public event Action DieAdded;
+        public event Action DiceCleared;
+        
         [HideInInspector]
         [SerializeField]
         private string name;
@@ -26,21 +30,34 @@ namespace Fantazee.Scores
 
         public bool CanScore()
         {
-            Debug.LogWarning("Score: CanScore not implemented. Returning true.");
             return dice.Count == 0;
         }
 
-        public int AddDie(Die die)
+        public void AddDie(Die die)
         {
             dice.Add(die);
-            Debug.LogWarning("Die added, now what?");
-            return Calculate();
+            string s = "";
+            for (int i = 0; i < dice.Count; i++)
+            {
+                Die d = dice[i];
+                s += $"{d.Value}";
+                if (i != dice.Count - 1)
+                {
+                    s += " - ";
+                }
+            }
+
+            Debug.Log($"Score: {Type} - Die: {die.Value}\n{s}");
+            DieAdded?.Invoke();
+            Changed?.Invoke();
         }
 
         public void ClearDice()
         {
             dice.Clear();
             Debug.LogWarning("Dice cleared, now what?");
+            DiceCleared?.Invoke();
+            Changed?.Invoke();
         }
 
         public abstract int Calculate();

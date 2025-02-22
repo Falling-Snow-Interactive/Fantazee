@@ -117,7 +117,6 @@ namespace Fantazee.Items.Dice.Ui
 
         public void Roll(float delay = 0, Action<Die> onRollComplete = null)
         {
-            Debug.Log($"DiceUi - Roll");
             ResetDice();
             
             Sequence sequence = DOTween.Sequence();

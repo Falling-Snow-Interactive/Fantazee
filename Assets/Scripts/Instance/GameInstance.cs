@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Battle.Environments;
-using Fantazee.Boons;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fsi.Gameplay.Healths;
-using Fantazee.Items.Dice;
 using Fantazee.Relics;
 using Fantazee.Scores;
-using Fantazee.Spells;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -58,12 +55,6 @@ namespace Fantazee.Instance
         [SerializeField]
         private EnvironmentType environment;
         public EnvironmentType Environment => environment;
-        
-        [Header("Boons")]
-        
-        [SerializeReference]
-        private List<Boon> boons;
-        public List<Boon> Boons => boons;
 
         [Header("Currency")]
 
@@ -94,7 +85,6 @@ namespace Fantazee.Instance
                                             mapIndex = 0,
                                             mapNodeIndex = 0,
                                             dice = DefaultDice(6),
-                                            boons = new List<Boon>(),
                                             wallet = new Wallet(CurrencyType.Gold, DefaultGold),
                                             environment = EnvironmentType.Woods,
                                         };

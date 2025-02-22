@@ -38,14 +38,14 @@ namespace Fantazee.Scores.Ui
         [SerializeField]
         private Image background;
 
-        public void Initialize()
+        public void Initialize(ScoreTracker scoreTracker)
         {
-            List<Score> scores = GameController.Instance.GameInstance.ScoreTracker.GetScoreList();
+            List<Score> scores = scoreTracker.GetScoreList();
             for (int i = 0; i < scores.Count; i++)
             {
-                Score card = scores[i];
+                Score score = scores[i];
                 ScoreEntry entry = entries[i];
-                entry.Initialize(card);
+                entry.Initialize(score);
             }
 
             // bonusScoreUi.Initialize(BattleController.Instance.ScoreTracker.BonusScore);

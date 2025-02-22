@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Fantazee.Boons;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Boons.Settings;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui
@@ -19,12 +17,8 @@ namespace Fantazee.Shop.Ui
         [Header("Prefabs")]
         
         [SerializeField]
-        private BoonEntry boonEntryPrefab;
-        
-        [SerializeField]
         private RelicEntry relicEntryPrefab;
 
-        private List<BoonEntry> boonEntries = new();
         private List<RelicEntry> relicEntries = new();
         
         // [SerializeField]
@@ -49,22 +43,11 @@ namespace Fantazee.Shop.Ui
                 currencyEntry.SetCurrency(currency);
             }
 
-            foreach (BoonType boon in inventory.Boons)
-            {
-                BoonEntry boonEntry = Instantiate(boonEntryPrefab, boonContent);
-                boonEntry.Initialize(boon, OnBoonSelected);
-            }
-        }
-
-        private void OnBoonSelected(BoonEntry boonEntry)
-        {
-            Debug.Log($"ShopUi - OnBoonSelected {boonEntry.Boon}");
-
-            if (shopController.TryPurchase(boonEntry.Boon))
-            {
-                boonEntries.Remove(boonEntry);
-                Destroy(boonEntry.gameObject);
-            }
+            // foreach (BoonType boon in inventory.Boons)
+            // {
+            //     BoonEntry boonEntry = Instantiate(boonEntryPrefab, boonContent);
+            //     boonEntry.Initialize(boon, OnBoonSelected);
+            // }
         }
         
         public void OnLeaveButtonClicked()
