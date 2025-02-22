@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Settings;
-using Fantazee.Dice;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using Fantazee.Scores.Information;
@@ -80,6 +79,7 @@ namespace Fantazee.Scores.Ui
                 DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
             {
                 diceImages[index].sprite = info.Sprite;
+                diceImages[index].transform.parent.DOPunchScale(Vector3.one * 0.1f, 0.2f, 2, 0.5f);
             }
         }
 

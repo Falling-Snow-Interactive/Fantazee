@@ -1,14 +1,13 @@
 using System;
 using DG.Tweening;
 using Fantazee.Battle;
-using Fantazee.Dice;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace Fantazee.Items.Dice.Ui
+namespace Fantazee.Dice.Ui
 {
     public class DieUi : MonoBehaviour
     {
@@ -72,6 +71,9 @@ namespace Fantazee.Items.Dice.Ui
         [SerializeField]
         private Image image;
         public Image Image => image;
+
+        [SerializeField]
+        private Transform root;
         
         private void Start()
         {
@@ -81,8 +83,8 @@ namespace Fantazee.Items.Dice.Ui
         public void ResetDice()
         {
             Debug.Log($"DiceUi - Reset");
-            image.transform.localPosition = Vector3.zero;
-            image.transform.localScale = Vector3.one;
+            root.localPosition = Vector3.zero;
+            root.localScale = Vector3.one;
             image.gameObject.SetActive(true);
             if (Die != null)
             {
@@ -121,8 +123,8 @@ namespace Fantazee.Items.Dice.Ui
             
             Sequence sequence = DOTween.Sequence();
             
-            sequence.Append(image.transform.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase));
-            sequence.Append(image.transform.DOLocalMoveY(0, fallTime).SetEase(fallEase));
+            sequence.Append(root.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase));
+            sequence.Append(root.DOLocalMoveY(0, fallTime).SetEase(fallEase));
 
             sequence.OnStart(() =>
                              {
@@ -168,7 +170,7 @@ namespace Fantazee.Items.Dice.Ui
             }
 
             Vector3 offset = shouldLock ? lockOffset : Vector3.zero;
-            image.transform.DOLocalMove(offset, lockTime).SetEase(lockEase);
+            root.DOLocalMove(offset, lockTime).SetEase(lockEase);
         }
 
         public void Hide(Action onComplete, float delay = 0, bool force = false)
@@ -176,11 +178,11 @@ namespace Fantazee.Items.Dice.Ui
             Debug.Log($"DiceUi - Hide ({force})");
             if (force)
             {
-                image.transform.localPosition = hideOffset;
+                root.localPosition = hideOffset;
                 return;
             }
 
-            image.transform.DOLocalMove(hideOffset, hideTime)
+            root.DOLocalMove(hideOffset, hideTime)
                  .SetEase(hideEase)
                  .SetDelay(delay)
                  .OnComplete(() => onComplete?.Invoke());
@@ -191,11 +193,11 @@ namespace Fantazee.Items.Dice.Ui
             Debug.Log($"DiceUi - Show ({force})");
             if (force)
             {
-                image.transform.localPosition = Vector3.zero;
+                root.localPosition = Vector3.zero;
                 return;
             }
 
-            image.transform.DOLocalMove(Vector3.zero, showTime)
+            root.DOLocalMove(Vector3.zero, showTime)
                  .SetEase(showEase)
                  .SetDelay(delay)
                  .OnComplete(() => onComplete?.Invoke());

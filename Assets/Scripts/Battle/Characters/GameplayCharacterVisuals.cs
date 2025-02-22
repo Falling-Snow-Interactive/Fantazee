@@ -48,12 +48,14 @@ namespace Fantazee.Battle.Characters
 
         public void Idle()
         {
+            DOTween.Kill(transform);
             spriteRenderer.sprite = idle;
             idleTween.Play(spriteRenderer.transform);
         }
 
         public void Attack(Action onComplete = null)
         {
+            DOTween.Kill(transform);
             spriteRenderer.sprite = attack;
             attackPunch.Play(spriteRenderer.transform, () =>
                                                        {
@@ -64,12 +66,14 @@ namespace Fantazee.Battle.Characters
         
         public void Hit()
         {
+            DOTween.Kill(transform);
             spriteRenderer.sprite = hit;
             hitAnim.Play(spriteRenderer.transform, Idle);
         }
 
         public void Death()
         {
+            DOTween.Kill(transform);
             spriteRenderer.sprite = death;
         }
     }

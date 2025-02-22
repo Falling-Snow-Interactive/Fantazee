@@ -2,7 +2,6 @@ using System.Globalization;
 using Fantazee.Dice;
 using Fantazee.Items.Dice.Randomizer;
 using Fantazee.Items.Dice;
-using Fantazee.Items.Dice.Ui;
 using TMPro;
 using UnityEngine;
 

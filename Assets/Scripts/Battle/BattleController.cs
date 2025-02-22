@@ -9,7 +9,7 @@ using Fantazee.Battle.Settings;
 using Fantazee.Battle.Ui;
 using Fantazee.Currencies;
 using Fantazee.Dice;
-using Fantazee.Items.Dice.Ui;
+using Fantazee.Dice.Ui;
 using Fantazee.Scores;
 using Fantazee.Scores.Ui;
 using FMODUnity;

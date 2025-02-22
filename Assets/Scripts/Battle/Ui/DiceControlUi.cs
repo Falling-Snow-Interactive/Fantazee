@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using Fantazee.Items.Dice.Ui;
+using Fantazee.Dice.Ui;
 using Fantazee.Items.Dice;
 using UnityEngine;
 
