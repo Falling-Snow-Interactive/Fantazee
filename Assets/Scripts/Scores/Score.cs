@@ -55,7 +55,6 @@ namespace Fantazee.Scores
         public void ClearDice()
         {
             dice.Clear();
-            Debug.LogWarning("Dice cleared, now what?");
             DiceCleared?.Invoke();
             Changed?.Invoke();
         }

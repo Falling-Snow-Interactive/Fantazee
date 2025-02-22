@@ -22,7 +22,7 @@ namespace Fantazee.Battle.Characters.Enemies
 
         private IEnumerator AttackSequence(Action onComplete)
         {
-            Visuals.DoAttack();
+            Visuals.Attack();
             yield return new WaitForSeconds(1f);
             BattleController.Instance.Player.Damage(25);
             onComplete?.Invoke();

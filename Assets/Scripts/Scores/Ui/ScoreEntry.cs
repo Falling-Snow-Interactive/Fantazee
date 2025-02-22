@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Settings;
+using Fantazee.Dice;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using Fantazee.Scores.Information;
@@ -64,45 +65,22 @@ namespace Fantazee.Scores.Ui
             if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Type, out information))
             {
                 nameText.text = information.LocName.GetLocalizedString();
-                ShowDice(new List<int> {0, 0, 0, 0, 0 });
+                for (int i = 0; i < diceImages.Count; i++)
+                {
+                    ShowInSlot(i, 0);
+                }
             }
             
-            score.Changed += OnDieAdded;
+            score.DieAdded += OnDieAdded;
         }
 
-        private void ShowDice(List<int> values)
+        private void ShowInSlot(int index, int value)
         {
-            for (int i = 0; i < diceImages.Count; i++)
+            if (diceImages.Count >= index &&
+                DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
             {
-                diceImages[i].gameObject.SetActive(values.Count > i);
-                if (i < values.Count 
-                    && DiceSettings.Settings.SideInformation.TryGetInformation(values[i], 
-                                                                               out SideInformation information))
-                {
-                    diceImages[i].sprite = information.Sprite;
-                }
+                diceImages[index].sprite = info.Sprite;
             }
-        }
-
-        private void ShowDice(int[] values)
-        {
-            for (int i = 0; i < diceImages.Count; i++)
-            {
-                diceImages[i].gameObject.SetActive(values.Length > i);
-                if (i < values.Length 
-                    && DiceSettings.Settings.SideInformation.TryGetInformation(values[i], 
-                                                                               out SideInformation information))
-                {
-                    diceImages[i].sprite = information.Sprite;
-                }
-            }
-
-            BattleSettings settings = BattleSettings.Settings;
-            diceImages[score.Dice.Count - 1].transform.DOPunchScale(settings.SquishAmount, 
-                                                                    settings.SquishTime, 
-                                                                    10, 
-                                                                    1f)
-                                            .SetEase(settings.SquishEase);
         }
 
         public void FinalizeScore()
@@ -119,14 +97,10 @@ namespace Fantazee.Scores.Ui
         
         private void OnDieAdded()
         {
-            int[] vals = { 0, 0, 0, 0, 0 };
-
             for (int i = 0; i < score.Dice.Count; i++)
             {
-                vals[i] = score.Dice[i].Value;
+                ShowInSlot(i, score.Dice[i].Value);
             }
-
-            ShowDice(vals);
         }
 
         public void OnClick()

@@ -267,13 +267,10 @@ namespace Fantazee.Battle
                 yield return new WaitForSeconds(0.5f);
             
                 // Do attack
-                bool ready = false;
-                gameplayPlayer.PerformAttack(() =>
-                                             {
-                                                 ready = true;
-                                             });
-            
-                yield return new WaitUntil(() => ready);
+                gameplayPlayer.Visuals.Attack();
+                // RuntimeManager.PlayOneShot(attackSfx);
+
+                yield return new WaitForSeconds(0.1f);
 
                 RuntimeManager.PlayOneShot(gameplayPlayer.AttackHitSfx);
                 enemies[^1].Damage(damage.Value);

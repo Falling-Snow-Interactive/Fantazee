@@ -23,8 +23,8 @@ namespace Fantazee.Battle.Characters
         [Header("Visuals")]
 
         [SerializeField]
-        private CharacterVisuals visuals;
-        public CharacterVisuals Visuals => visuals;
+        private GameplayCharacterVisuals visuals;
+        public GameplayCharacterVisuals Visuals => visuals;
 
         [SerializeField]
         private float size = 1f;
@@ -74,7 +74,7 @@ namespace Fantazee.Battle.Characters
         {
             Debug.Log($"Enemy: Damage {damage}");
             Health.Damage(damage);
-            visuals.DoHit();
+            visuals.Hit();
 
             if (Health.IsDead)
             {
