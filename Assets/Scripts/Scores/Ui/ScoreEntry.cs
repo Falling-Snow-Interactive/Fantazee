@@ -5,6 +5,8 @@ using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using Fantazee.Scores.Information;
+using Fantazee.Spells;
+using Fantazee.Spells.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -37,6 +39,10 @@ namespace Fantazee.Scores.Ui
         [SerializeField]
         private List<Image> diceImages = new();
         public List<Image> DiceImages => diceImages;
+
+        [FormerlySerializedAs("spellImage")]
+        [SerializeField]
+        private Image spellIcon;
         
         private ScoreInformation information;
 
@@ -68,6 +74,11 @@ namespace Fantazee.Scores.Ui
                 {
                     ShowInSlot(i, 0);
                 }
+            }
+            
+            if(SpellSettings.Settings.TryGetSpell(score.Spell, out SpellData info))
+            {
+                spellIcon.sprite = info.Icon;
             }
             
             score.DieAdded += OnDieAdded;

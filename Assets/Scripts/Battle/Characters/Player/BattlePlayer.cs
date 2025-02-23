@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 
 namespace Fantazee.Battle.Characters.Player
 {
-    public class GameplayPlayer : GameplayCharacter
+    public class BattlePlayer : BattleCharacter
     {
         public override Health Health => GameController.Instance.GameInstance.Health;
 

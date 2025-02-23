@@ -330,67 +330,80 @@ MonoBehaviour:
     mapIndex: 0
     mapNodeIndex: 0
     environment: 1
-    boons: []
     wallet:
       currencies:
       - name: Gold - 500
         type: 1
         amount: 500
-    spells:
-    - rid: 3917922133231010028
     relics: []
     scoreTracker:
       ones:
-        name: Ones
+        name: Ones - Dagger
         type: 1
+        dice: []
+        spell: 1
       twos:
-        name: Twos
+        name: Twos - Dagger
         type: 2
+        dice: []
+        spell: 1
       threes:
-        name: ThreeOfAKind
-        type: 7
+        name: Threes - Dagger
+        type: 3
+        dice: []
+        spell: 1
       fours:
-        name: FourOfAKind
-        type: 8
+        name: Fours - Dagger
+        type: 4
+        dice: []
+        spell: 1
       fives:
-        name: Fives
+        name: Fives - Dagger
         type: 5
+        dice: []
+        spell: 1
       sixes:
-        name: Sixes
+        name: Sixes - Dagger
         type: 6
+        dice: []
+        spell: 1
       threeOfAKind:
-        name: ThreeOfAKind
+        name: ThreeOfAKind - Dagger
         type: 7
+        dice: []
+        spell: 1
       fourOfAKind:
-        name: FourOfAKind
+        name: FourOfAKind - Dagger
         type: 8
+        dice: []
+        spell: 1
       fullHouse:
-        name: FullHouse
+        name: FullHouse - Dagger
         type: 9
+        dice: []
+        spell: 1
       smallStraight:
-        name: SmallStraight
+        name: SmallStraight - Dagger
         type: 10
+        dice: []
+        spell: 1
       largeStraight:
-        name: LargeStraight
+        name: LargeStraight - Dagger
         type: 11
-      fantazee:
-        name: Fantazee
-        type: 12
+        dice: []
+        spell: 1
       chance:
-        name: Chance
+        name: Chance - Dagger
+        type: 12
+        dice: []
+        spell: 1
+      fantazee:
+        name: Fantazee - Dagger
         type: 13
+        dice: []
+        spell: 1
   loadingScreen: {fileID: 5289247866963360002}
-  addSpell: 0
-  startingSpells: []
   startingRelics: []
-  references:
-    version: 2
-    RefIds:
-    - rid: 3917922133231010028
-      type: {class: DaggerInstance, ns: Fantazee.Spells.Dagger, asm: Assembly-CSharp}
-      data:
-        name: Dagger
-        data: {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
 --- !u!114 &307396310537484130
 MonoBehaviour:
   m_ObjectHideFlags: 0

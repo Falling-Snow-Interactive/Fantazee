@@ -7,7 +7,7 @@ namespace Fantazee.Characters.Settings
 {
     public class CharacterSettingsProvider : SettingsProvider
     {
-        private const string SettingsPath = "[PROJECT]/Character";
+        private const string SettingsPath = "Fantazee/Character";
         
         private SerializedObject serializedSettings;
         
@@ -29,6 +29,8 @@ namespace Fantazee.Characters.Settings
         
         public override void OnGUI(string searchContext)
         {
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("characters"));
+            
             // EditorGUILayout.PropertyField(serializedSettings.FindProperty("prop"));
             
             EditorGUILayout.Space(20);

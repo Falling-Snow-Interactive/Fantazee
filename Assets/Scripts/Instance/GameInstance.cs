@@ -14,6 +14,8 @@ namespace Fantazee.Instance
     [Serializable]
     public class GameInstance
     {
+        public static GameInstance Current => GameController.Instance.GameInstance;
+        
         private const uint DefaultSeed = 0;
         private const int DefaultHealth = 500;
         private const int DefaultGold = 500;

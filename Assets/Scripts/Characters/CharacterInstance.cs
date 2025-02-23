@@ -1,19 +1,14 @@
+using System;
+using Fantazee.Scores;
 using UnityEngine;
 
-namespace Fantazee
+namespace Fantazee.Characters
 {
-    public class CharacterInstance : MonoBehaviour
+    [Serializable]
+    public class CharacterInstance
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        [SerializeField]
+        private ScoreTracker scoreTracker;
+        public ScoreTracker ScoreTracker => scoreTracker;
     }
 }

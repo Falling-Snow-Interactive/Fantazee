@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.Spells;
 using UnityEngine;
 
 namespace Fantazee.Scores
@@ -27,6 +28,10 @@ namespace Fantazee.Scores
         [SerializeField]
         private List<Die> dice = new();
         public List<Die> Dice => dice;
+
+        [SerializeField]
+        private SpellType spell;
+        public SpellType Spell => spell;
 
         public bool CanScore()
         {
@@ -79,7 +84,7 @@ namespace Fantazee.Scores
 
         public void OnBeforeSerialize()
         {
-            name = $"{Type}";
+            name = $"{Type} - {spell}";
         }
 
         public void OnAfterDeserialize() { }

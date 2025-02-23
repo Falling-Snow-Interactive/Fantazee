@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using UnityEngine;
 
 namespace Fantazee.Scores
 {

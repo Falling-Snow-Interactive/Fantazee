@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Battle.Ui;
+using Fantazee.Characters;
 using UnityEngine;
 
 namespace Fantazee.Scores

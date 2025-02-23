@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,26 @@ namespace Fantazee.Characters.Settings
 
         private static CharacterSettings settings;
         public static CharacterSettings Settings => settings ??= GetOrCreateSettings();
+
+        [Header("Characters")]
+        
+        [SerializeField]
+        private List<CharacterData> characters;
+
+        public bool TryGetCharacter(CharacterType type, out CharacterData data)
+        {
+            foreach (CharacterData character in characters)
+            {
+                if (character.Type == type)
+                {
+                    data = character;
+                    return true;
+                }
+            }
+            
+            data = null;
+            return false;
+        }
         
         #region Settings
         

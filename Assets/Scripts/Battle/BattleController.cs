@@ -10,11 +10,13 @@ using Fantazee.Battle.Ui;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
+using Fantazee.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Ui;
 using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
@@ -33,7 +35,7 @@ namespace Fantazee.Battle
         
         // Common instance references
 
-        private ScoreTracker ScoreTracker => GameController.Instance.GameInstance.ScoreTracker;
+        private ScoreTracker ScoreTracker => GameInstance.Current.ScoreTracker;
         
         [Header("Camera")]
         
@@ -67,21 +69,22 @@ namespace Fantazee.Battle
 
         private bool hasScoredRoll = false;
 
+        [FormerlySerializedAs("gameplayPlayer")]
         [Header("Characters")]
 
         [SerializeField]
-        private GameplayPlayer gameplayPlayer;
-        public GameplayPlayer Player => gameplayPlayer;
+        private BattlePlayer battlePlayer;
+        public BattlePlayer Player => battlePlayer;
 
         [SerializeField]
-        private List<GameplayEnemy> enemies = new();
-        public List<GameplayEnemy> Enemies => enemies;
+        private List<BattleEnemy> enemies = new();
+        public List<BattleEnemy> Enemies => enemies;
 
         [SerializeField]
         private Transform enemyContainer;
 
         [SerializeField]
-        private List<GameplayEnemy> enemyPool = new();
+        private List<BattleEnemy> enemyPool = new();
 
         [SerializeField]
         private RangeInt enemySpawns = new(3, 5);
@@ -108,12 +111,12 @@ namespace Fantazee.Battle
         
         private void OnEnable()
         {
-            GameplayCharacter.Despawned += OnCharacterDespawned;
+            BattleCharacter.Despawned += OnCharacterDespawned;
         }
 
         private void OnDisable()
         {
-            GameplayCharacter.Despawned -= OnCharacterDespawned;
+            BattleCharacter.Despawned -= OnCharacterDespawned;
         }
 
         private void Start()
@@ -143,7 +146,7 @@ namespace Fantazee.Battle
             SetupEnemies();
             
             // Hide enemies
-            foreach (GameplayEnemy enemy in enemies)
+            foreach (BattleEnemy enemy in enemies)
             {
                 enemy.Hide(null, 0, true);
             }
@@ -176,7 +179,7 @@ namespace Fantazee.Battle
             float spawnOffset = 0;
             for (int i = 0; i < spawns; i++)
             {
-                GameplayEnemy enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
+                BattleEnemy enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
                 
                 float y = i % 2 == 0 ? + 0.5f : -0.5f;
                 
@@ -205,7 +208,7 @@ namespace Fantazee.Battle
             yield return new WaitForSeconds(0.2f);
             
             // Move enemies in
-            foreach (GameplayEnemy enemy in enemies)
+            foreach (BattleEnemy enemy in enemies)
             {
                 enemy.Show(null);
                 yield return new WaitForSeconds(0.2f);
@@ -263,12 +266,12 @@ namespace Fantazee.Battle
                 yield return new WaitForSeconds(0.5f);
             
                 // Do attack
-                gameplayPlayer.Visuals.Attack();
+                battlePlayer.Visuals.Attack();
                 // RuntimeManager.PlayOneShot(attackSfx);
 
                 yield return new WaitForSeconds(0.1f);
 
-                RuntimeManager.PlayOneShot(gameplayPlayer.AttackHitSfx);
+                RuntimeManager.PlayOneShot(battlePlayer.AttackHitSfx);
                 enemies[^1].Damage(damage.Value);
                 Scored?.Invoke(damage.Value);
             }
@@ -308,7 +311,7 @@ namespace Fantazee.Battle
 
         public bool CheckEnemiesAlive()
         {
-            foreach (GameplayEnemy enemy in enemies)
+            foreach (BattleEnemy enemy in enemies)
             {
                 if (enemy.Health.IsAlive)
                 {
@@ -357,9 +360,9 @@ namespace Fantazee.Battle
         
         #region Character Control
         
-        private void OnCharacterDespawned(GameplayCharacter character)
+        private void OnCharacterDespawned(BattleCharacter character)
         {
-            if (character is GameplayEnemy enemy)
+            if (character is BattleEnemy enemy)
             {
                 enemies.Remove(enemy);
             }
@@ -405,10 +408,10 @@ namespace Fantazee.Battle
 
         private IEnumerator EnemyTurnSequence()
         {
-            Queue<GameplayEnemy> enemyQueue = new(enemies);
+            Queue<BattleEnemy> enemyQueue = new(enemies);
             while (enemyQueue.Count > 0)
             {
-                GameplayEnemy curr = enemyQueue.Dequeue();
+                BattleEnemy curr = enemyQueue.Dequeue();
                 bool attacking = true;
                 curr.Attack(() => attacking = false);
                 yield return new WaitUntil(() => !attacking);

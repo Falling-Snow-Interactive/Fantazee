@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Fantazee.Battle.Characters.Enemies
 {
-    public class GameplayEnemy : GameplayCharacter
+    public class BattleEnemy : BattleCharacter
     {
         [Header("Health")]
         

@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace Fantazee.Battle.Characters
 {
-    public abstract class GameplayCharacter : MonoBehaviour, IDamageable
+    public abstract class BattleCharacter : MonoBehaviour, IDamageable
     {
         public event Action Damaged;
 
-        public static event Action<GameplayCharacter> Spawned;
-        public static event Action<GameplayCharacter> Despawned;
+        public static event Action<BattleCharacter> Spawned;
+        public static event Action<BattleCharacter> Despawned;
         
         [SerializeField]
         private Vector3 localRoot;
