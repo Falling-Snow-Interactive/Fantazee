@@ -4,8 +4,6 @@ using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
 using Fantazee.Relics;
-using Fantazee.Spells;
-using Fantazee.Spells.Settings;
 using Fsi.Gameplay;
 using UnityEngine;
 

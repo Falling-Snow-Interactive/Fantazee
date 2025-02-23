@@ -243,11 +243,7 @@ namespace Fantazee.Battle
             Score score = entry.Score;
             foreach (DieUi d in diceUi)
             {
-                d.Image.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
-                                               BattleSettings.Settings.SquishTime, 
-                                               10, 
-                                               1f)
-                 .SetEase(BattleSettings.Settings.SquishEase);
+                d.Squish();
                 RuntimeManager.PlayOneShot(diceScoreSfx);
                 entry.Score.AddDie(d.Die);
                 

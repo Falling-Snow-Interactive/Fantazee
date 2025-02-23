@@ -35,8 +35,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: Twos
       type: 2
       locName:
@@ -57,8 +55,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: Threes
       type: 3
       locName:
@@ -79,8 +75,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: Fours
       type: 4
       locName:
@@ -101,8 +95,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: Fives
       type: 5
       locName:
@@ -123,8 +115,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: Sixes
       type: 6
       locName:
@@ -145,8 +135,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: ThreeOfAKind
       type: 7
       locName:
@@ -167,8 +155,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: FourOfAKind
       type: 8
       locName:
@@ -189,8 +175,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: FullHouse
       type: 9
       locName:
@@ -211,8 +195,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: SmallStraight
       type: 10
       locName:
@@ -233,8 +215,6 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
     - name: LargeStraight
       type: 11
       locName:
@@ -255,15 +235,13 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
-    - name: Fantazee
+    - name: Chance
       type: 12
       locName:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 15188802658304
+          m_KeyId: 15220155080704
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -272,20 +250,18 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 15188802658304
+          m_KeyId: 15220155080704
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
-    - name: Chance
+    - name: Fantazee
       type: 13
       locName:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 15220155080704
+          m_KeyId: 15188802658304
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -294,13 +270,11 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
         m_TableEntryReference:
-          m_KeyId: 15220155080704
+          m_KeyId: 15188802658304
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      baseValue: 0
-      baseMod: 0
   squishAmount: {x: 0.2, y: -0.2, z: 0}
   squishTime: 0.25
   squishEase: 1

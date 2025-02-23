@@ -15,13 +15,5 @@ namespace Fantazee.Scores.Information
         [SerializeField]
         private LocalizedString locDesc;
         public LocalizedString LocDesc => locDesc;
-
-        [SerializeField]
-        private float baseValue = 10;
-        public float BaseValue => baseValue;
-
-        [SerializeField]
-        private float baseMod = 2;
-        public float BaseMod => baseMod;
     }
 }

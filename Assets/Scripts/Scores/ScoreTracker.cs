@@ -51,14 +51,14 @@ namespace Fantazee.Scores
         [SerializeField]
         private StraightScore largeStraight;
         public StraightScore LargeStraight => largeStraight;
+        
+        [SerializeField]
+        private ChanceScore chance;
+        public ChanceScore Chance => chance;
 
         [SerializeField]
         private KindScore fantazee;
         public KindScore Fantazee => fantazee;
-
-        [SerializeField]
-        private ChanceScore chance;
-        public ChanceScore Chance => chance;
 
         // [SerializeField]
         // private BonusScore bonusScore;
@@ -72,7 +72,7 @@ namespace Fantazee.Scores
 
         public List<Score> GetScoreList()
         {
-            List<Score> scores = new List<Score>
+            List<Score> scores = new()
                                  {
                                      Ones,
                                      Twos,
@@ -85,8 +85,8 @@ namespace Fantazee.Scores
                                      FullHouse,
                                      SmallStraight,
                                      LargeStraight,
-                                     Fantazee,
                                      Chance,
+                                     Fantazee,
                                  };
 
             return scores;
@@ -105,8 +105,8 @@ namespace Fantazee.Scores
             fullHouse.ClearDice();
             smallStraight.ClearDice();
             largeStraight.ClearDice();
-            fantazee.ClearDice();
             chance.ClearDice();
+            fantazee.ClearDice();
         }
 
         public void OnBeforeSerialize()
@@ -122,8 +122,8 @@ namespace Fantazee.Scores
             fullHouse.Type = ScoreType.FullHouse;
             smallStraight.Type = ScoreType.SmallStraight;
             largeStraight.Type = ScoreType.LargeStraight;
-            fantazee.Type = ScoreType.Fantazee;
             chance.Type = ScoreType.Chance;
+            fantazee.Type = ScoreType.Fantazee;
         }
 
         public void OnAfterDeserialize() { }

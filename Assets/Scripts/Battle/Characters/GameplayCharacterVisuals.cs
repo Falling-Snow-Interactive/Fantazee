@@ -46,16 +46,24 @@ namespace Fantazee.Battle.Characters
             Idle();
         }
 
-        public void Idle()
+        private void ResetTransform()
         {
             DOTween.Kill(transform);
+            spriteRenderer.transform.localScale = Vector3.one;
+            spriteRenderer.transform.localPosition = Vector3.zero;
+            spriteRenderer.transform.rotation = Quaternion.identity;
+        }
+
+        public void Idle()
+        {
+            ResetTransform();
             spriteRenderer.sprite = idle;
             idleTween.Play(spriteRenderer.transform);
         }
 
         public void Attack(Action onComplete = null)
         {
-            DOTween.Kill(transform);
+            ResetTransform();
             spriteRenderer.sprite = attack;
             attackPunch.Play(spriteRenderer.transform, () =>
                                                        {
@@ -66,14 +74,14 @@ namespace Fantazee.Battle.Characters
         
         public void Hit()
         {
-            DOTween.Kill(transform);
+            ResetTransform();
             spriteRenderer.sprite = hit;
             hitAnim.Play(spriteRenderer.transform, Idle);
         }
 
         public void Death()
         {
-            DOTween.Kill(transform);
+            ResetTransform();
             spriteRenderer.sprite = death;
         }
     }

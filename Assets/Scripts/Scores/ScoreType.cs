@@ -19,8 +19,8 @@ namespace Fantazee.Scores
         SmallStraight = 10,
         LargeStraight = 11,
         
-        Fantazee = 12,
+        Chance = 12,
         
-        Chance = 13,
+        Fantazee = 13,
     }
 }

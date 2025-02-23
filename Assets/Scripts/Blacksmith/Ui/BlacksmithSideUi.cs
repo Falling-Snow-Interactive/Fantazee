@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using System.Globalization;
 using Fantazee.Dice;
 using Fantazee.Items.Dice.Randomizer;
-using Fantazee.Items.Dice;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Fantazee.Blacksmith.Ui
 {
@@ -19,6 +20,9 @@ namespace Fantazee.Blacksmith.Ui
 
         [SerializeField]
         private TMP_Text weightText;
+
+        [SerializeField]
+        private List<Image> weightImages = new();
         
         public void Initialize(Die die, DieRandomizerEntry side, BlacksmithSideGroupUi groupUi)
         {
@@ -26,13 +30,29 @@ namespace Fantazee.Blacksmith.Ui
             Side = side;
             dieUi.SetImage(side.Value);
             weightText.text = side.Weight.ToString();
+
+            SetWeight(side.Weight);
             
             this.groupUi = groupUi;
         }
 
         public void SetWeight(float weight)
         {
-            weightText.text = weight.ToString(CultureInfo.InvariantCulture);
+            for (int i = 0; i < 5; i++)
+            {
+                if (i < weight)
+                {
+                    Color color = weightImages[i].color;
+                    color.a = 1f;
+                    weightImages[i].color = color;
+                }
+                else
+                {
+                    Color color = weightImages[i].color;
+                    color.a = 0.2f;
+                    weightImages[i].color = color;
+                }
+            }
         }
 
         public void SetImage(int value)

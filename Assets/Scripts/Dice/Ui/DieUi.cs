@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using Fantazee.Battle;
+using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using UnityEngine;
@@ -85,7 +86,7 @@ namespace Fantazee.Dice.Ui
             Debug.Log($"DiceUi - Reset");
             root.localPosition = Vector3.zero;
             root.localScale = Vector3.one;
-            image.gameObject.SetActive(true);
+            root.gameObject.SetActive(true);
             if (Die != null)
             {
                 SetImage(Die.Value);
@@ -201,6 +202,15 @@ namespace Fantazee.Dice.Ui
                  .SetEase(showEase)
                  .SetDelay(delay)
                  .OnComplete(() => onComplete?.Invoke());
+        }
+
+        public void Squish()
+        {
+            root.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
+                                         BattleSettings.Settings.SquishTime, 
+                                         10, 
+                                         1f)
+                 .SetEase(BattleSettings.Settings.SquishEase);
         }
     }
 }
