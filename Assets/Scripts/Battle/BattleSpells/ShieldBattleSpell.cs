@@ -5,11 +5,11 @@ using Fantazee.Spells.Data;
 namespace Fantazee.Battle.BattleSpells
 {
     [Serializable]
-    public class PierceBattleSpell : BattleSpell
+    public class ShieldBattleSpell : BattleSpell
     {
-        private PierceData data;
+        private ShieldData data;
         
-        public PierceBattleSpell(PierceData data) : base(data)
+        public ShieldBattleSpell(ShieldData data) : base(data)
         {
             this.data = data;
         }

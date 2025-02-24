@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using UnityEngine;
 

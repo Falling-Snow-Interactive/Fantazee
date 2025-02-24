@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046fd5f7760c4af28de2c0ff8a92798b, type: 3}
+  m_Name: Spell_Shield_00
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 1045241879584768
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 1045259080425472
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 21300000, guid: 9ae524608c4774755993cc7c2c0a8213, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  attackSfx:
+    Guid:
+      Data1: 39658635
+      Data2: 1087295334
+      Data3: -218683484
+      Data4: -1537345559
+    Path: event:/Battle/Actions/Bow
+  attackHitSfx:
+    Guid:
+      Data1: 1587142695
+      Data2: 1254140595
+      Data3: -1123422044
+      Data4: 2069711484
+    Path: event:/Battle/Actions/Arrow
+  cost:
+    min: 10
+    max: 15
+  references:
+    version: 2
+    RefIds: []
