@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
+using Fantazee.Battle.Score;
 using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using Fantazee.Scores.Information;
-using Fantazee.Spells;
-using Fantazee.Spells.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,8 +16,8 @@ namespace Fantazee.Scores.Ui
     public class ScoreEntry : MonoBehaviour
     {
         [SerializeReference]
-        private Score score;
-        public Score Score => score;
+        private BattleScore score;
+        public BattleScore Score => score;
         
         [Header("References")]
         
@@ -62,12 +61,12 @@ namespace Fantazee.Scores.Ui
             }
         }
 
-        public void Initialize(Score score)
+        public void Initialize(BattleScore score)
         {
             this.score = score;
 
             scoreText.text = "";
-            if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Type, out information))
+            if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Score.Type, out information))
             {
                 nameText.text = information.LocName.GetLocalizedString();
                 for (int i = 0; i < diceImages.Count; i++)
@@ -75,11 +74,8 @@ namespace Fantazee.Scores.Ui
                     ShowInSlot(i, 0);
                 }
             }
-            
-            if(SpellSettings.Settings.TryGetSpell(score.Spell, out SpellData info))
-            {
-                spellIcon.sprite = info.Icon;
-            }
+
+            spellIcon.sprite = score.SpellData.Icon;
             
             score.DieAdded += OnDieAdded;
         }
@@ -94,16 +90,19 @@ namespace Fantazee.Scores.Ui
             }
         }
 
-        public void FinalizeScore()
+        public int FinalizeScore()
         {
+            int s = score.Calculate();
             button.interactable = false;
-            scoreText.text = score.Calculate().ToString();
+            scoreText.text = s.ToString();
             
             scoreContainer.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
                                                   BattleSettings.Settings.SquishTime,
                                                   10,
                                                   1f)
                           .SetEase(BattleSettings.Settings.SquishEase);
+
+            return s;
         }
         
         private void OnDieAdded()

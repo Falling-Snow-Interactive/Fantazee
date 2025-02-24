@@ -29,6 +29,7 @@ namespace Fantazee.Characters.Settings
         
         public override void OnGUI(string searchContext)
         {
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("defaultCharacter"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("characters"));
             
             // EditorGUILayout.PropertyField(serializedSettings.FindProperty("prop"));

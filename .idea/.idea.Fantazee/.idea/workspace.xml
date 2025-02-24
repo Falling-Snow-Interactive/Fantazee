@@ -5,32 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterType.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleSpells.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleSpells/BattleSpell.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleSpells/BattleSpell.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleSpells/BattleSpellFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleSpells/BattleSpellFactory.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleSpells/DaggerBattleSpell.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleSpells/DaggerBattleSpell.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Score.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/BattleScore.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/BattleScore.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Localization-Assets-Shared.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Localization-Assets-Shared.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-English (en).asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-English (en).asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Players/Player_00/Player_00.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Players/Player_00/Player_00.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/ScoreEntry_Ui.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/ScoreEntry_Ui.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Game_CTRL.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Game_CTRL.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Settings/CharacterSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Settings/CharacterSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Enemies/GameplayEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Enemies/BattleEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Enemies/GameplayEnemy.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Enemies/BattleEnemy.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/GameplayCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/GameplayCharacter.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/GameplayPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/BattlePlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/GameplayPlayer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/BattlePlayer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithSideUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithSideUi.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/BattlePlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/Player/BattlePlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blacksmith/Ui/BlacksmithUi.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterInstance.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Settings/CharacterSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Settings/CharacterSettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Settings/Editor/CharacterSettingsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Settings/Editor/CharacterSettingsProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/Die.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/Die.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/GameControllerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/GameControllerEditor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/ChanceScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/ChanceScore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/FullHouseScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/FullHouseScore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/KindScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/KindScore.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/NumberScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/NumberScore.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Score.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Score.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/ScoreTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/ScoreTracker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/StraightScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/StraightScore.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreboardUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreboardUi.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellData.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +51,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/eac12af5e0034b02b1bfe348a7feb8c61dea00/55/14b926e6/RangeInt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/kiradinan/Projects/Fantazee/Assets/Scripts/Scores/ScoreTracker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/SpellFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/SpellInstance.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -129,7 +146,7 @@
       <workItem from="1740015619351" duration="420000" />
       <workItem from="1740054546044" duration="3138000" />
       <workItem from="1740144946497" duration="32182000" />
-      <workItem from="1740318776749" duration="4676000" />
+      <workItem from="1740318776749" duration="11100000" />
     </task>
     <servers />
   </component>
@@ -145,24 +162,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntry.cs</url>
-          <line>109</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntry.cs" containingFunctionPresentation="Method 'OnDieAdded'">
-            <startOffsets>
-              <option value="3228" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3229" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

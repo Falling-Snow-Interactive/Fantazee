@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Battle.Environments;
+using Fantazee.Characters;
+using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
-using Fantazee.Dice;
-using Fsi.Gameplay.Healths;
 using Fantazee.Relics;
-using Fantazee.Scores;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,7 +16,6 @@ namespace Fantazee.Instance
         public static GameInstance Current => GameController.Instance.GameInstance;
         
         private const uint DefaultSeed = 0;
-        private const int DefaultHealth = 500;
         private const int DefaultGold = 500;
         
         [SerializeField]
@@ -26,15 +24,9 @@ namespace Fantazee.Instance
 
         [Header("Character")]
 
-        [SerializeField]
-        private Health health;
-        public Health Health => health;
-
-        [Header("Dice")]
-        
-        [SerializeField]
-        private List<Die> dice; // TODO - For some reason this is getting cleared when the game exits - KD
-        public List<Die> Dice => dice;
+        [SerializeReference]
+        private CharacterInstance character;
+        public CharacterInstance Character => character;
 
         [Header("Maps")]
 
@@ -70,12 +62,6 @@ namespace Fantazee.Instance
         private List<RelicInstance> relics;
         public List<RelicInstance> Relics => relics;
         
-        [Header("Scores")]
-        
-        [SerializeField]
-        private ScoreTracker scoreTracker;
-        public ScoreTracker ScoreTracker => scoreTracker;
-        
         public static GameInstance Defaults
         {
             get
@@ -83,31 +69,15 @@ namespace Fantazee.Instance
                 GameInstance instance = new()
                                         {
                                             seed = DefaultSeed,
-                                            health = new Health(DefaultHealth),
+                                            character = new CharacterInstance(CharacterSettings.Settings.DefaultCharacter),
                                             mapIndex = 0,
                                             mapNodeIndex = 0,
-                                            dice = DefaultDice(6),
                                             wallet = new Wallet(CurrencyType.Gold, DefaultGold),
                                             environment = EnvironmentType.Woods,
                                         };
                 
                 return instance;
             }
-        }
-        
-        public static List<Die> DefaultDice(int amount)
-        {
-            List<Die> dice = new();
-            for (int i = 0; i < amount; i++)
-            {
-                dice.Add(new Die(i));
-            }
-            return dice;
-        }
-
-        public void ResetDice()
-        {
-            dice = DefaultDice(6);
         }
 
         public void RandomizeSeed()

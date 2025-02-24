@@ -25,6 +25,10 @@ namespace Fantazee.Characters
         [Header("Battle")]
 
         [SerializeField]
+        private int maxHealth = 500;
+        public int MaxHealth => maxHealth;
+
+        [SerializeField]
         private BattleCharacter battleCharacter;
         public BattleCharacter BattleCharacter => battleCharacter;
 

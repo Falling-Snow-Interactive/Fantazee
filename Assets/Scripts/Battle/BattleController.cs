@@ -5,13 +5,12 @@ using DG.Tweening;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Battle.Characters.Player;
-using Fantazee.Battle.Settings;
+using Fantazee.Battle.Score;
 using Fantazee.Battle.Ui;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
 using Fantazee.Instance;
-using Fantazee.Scores;
 using Fantazee.Scores.Ui;
 using FMODUnity;
 using Fsi.Gameplay;
@@ -34,8 +33,6 @@ namespace Fantazee.Battle
         public static event Action<int> Scored;
         
         // Common instance references
-
-        private ScoreTracker ScoreTracker => GameInstance.Current.ScoreTracker;
         
         [Header("Camera")]
         
@@ -88,6 +85,12 @@ namespace Fantazee.Battle
 
         [SerializeField]
         private RangeInt enemySpawns = new(3, 5);
+        
+        [Header("Battle Scores")]
+        
+        [SerializeField]
+        private List<BattleScore> battleScores = new();
+        public List<BattleScore> BattleScores => battleScores;
 
         [Header("Battle Rewards")]
         
@@ -137,9 +140,14 @@ namespace Fantazee.Battle
         private void SetupBattle()
         {
             Debug.Log($"Battle - Setup");
+
+            foreach (Scores.Score score in GameInstance.Current.Character.ScoreTracker.GetScoreList())
+            {
+                BattleScore bs = new(score);
+                battleScores.Add(bs);
+            }
             
-            ScoreTracker.Initialize();
-            BattleUi.Instance.Scoreboard.Initialize(ScoreTracker);
+            BattleUi.Instance.Scoreboard.Initialize(battleScores);
             
             Player.Initialize();
             SetupDice();
@@ -159,9 +167,9 @@ namespace Fantazee.Battle
         private void SetupDice()
         {
             Debug.Log($"Battle - Setup Dice");
-            for (int i = 0; i < GameController.Instance.GameInstance.Dice.Count; i++)
+            for (int i = 0; i < GameController.Instance.GameInstance.Character.Dice.Count; i++)
             {
-                Die die = GameController.Instance.GameInstance.Dice[i];
+                Die die = GameController.Instance.GameInstance.Character.Dice[i];
                 die.Roll();
                 if (BattleUi.Instance.DiceControl.Dice.Count > i)
                 {
@@ -243,7 +251,6 @@ namespace Fantazee.Battle
 
         private IEnumerator StartScoreSequence(ScoreEntry entry, List<DieUi> diceUi)
         {
-            Score score = entry.Score;
             foreach (DieUi d in diceUi)
             {
                 d.Squish();
@@ -257,35 +264,24 @@ namespace Fantazee.Battle
             
             // Calculate damage
             
-            entry.FinalizeScore();
-            int diceScore = score.Calculate();
-            Damage damage = new(diceScore);
+            int s = entry.FinalizeScore();
+            Damage damage = new(s);
             
             if (damage.Value > 0)
             {
                 yield return new WaitForSeconds(0.5f);
-            
-                // Do attack
-                battlePlayer.Visuals.Attack();
-                // RuntimeManager.PlayOneShot(attackSfx);
-
-                yield return new WaitForSeconds(0.1f);
-
-                RuntimeManager.PlayOneShot(battlePlayer.AttackHitSfx);
-                enemies[^1].Damage(damage.Value);
-                Scored?.Invoke(damage.Value);
+                entry.Score.Cast(damage, () =>
+                                         {
+                                             Debug.Log("Casted");
+                                             Scored?.Invoke(damage.Value);
+                                             OnFinishedScoring();
+                                         });
             }
             else
             {
-                Debug.Log("Changing how the score tracking works again");
-                // ScoreTracker.AddScore(score, 0);
                 entry.FinalizeScore();
                 Scored?.Invoke(0);
             }
-            
-            yield return new WaitForSeconds(0.5f);
-            
-            OnFinishedScoring();
         }
 
         private void OnFinishedScoring()
@@ -340,7 +336,7 @@ namespace Fantazee.Battle
             {
                 hasScoredRoll = false;
                 remainingRolls--;
-                foreach (Die d in GameController.Instance.GameInstance.Dice)
+                foreach (Die d in GameController.Instance.GameInstance.Character.Dice)
                 {
                     if(!lockedDice.Contains(d))
                     {

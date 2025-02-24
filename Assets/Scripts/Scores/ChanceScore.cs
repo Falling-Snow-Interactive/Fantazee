@@ -7,10 +7,10 @@ namespace Fantazee.Scores
     [Serializable]
     public class ChanceScore : Score
     {
-        public override int Calculate()
+        public override int Calculate(List<Die> dice)
         {
             int score = 0;
-            foreach (Die d in Dice)
+            foreach (Die d in dice)
             {
                 score += d.Value;
             }
@@ -18,9 +18,9 @@ namespace Fantazee.Scores
             return score;
         }
 
-        public override List<Die> GetScoredDice()
+        public override List<Die> GetScoredDice(List<Die> dice)
         {
-            return new List<Die>(Dice);
+            return new List<Die>(dice);
         }
     }
 }

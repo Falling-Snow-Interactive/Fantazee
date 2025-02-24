@@ -14,18 +14,6 @@ namespace Fantazee
             VisualElement root = new();
             InspectorElement.FillDefaultInspector(root, serializedObject, this);
             root.Add(new Spacer());
-            
-            Button resetDiceButton = new()
-                            {
-                                text = "Reset Dice"
-                            };
-            resetDiceButton.clicked += () =>
-                              {
-                                  gameController.GameInstance.ResetDice();
-                                  serializedObject.ApplyModifiedProperties();
-                              };
-            
-            root.Add(resetDiceButton);
 
             // Button resetScoresButton = new()
             //                 {

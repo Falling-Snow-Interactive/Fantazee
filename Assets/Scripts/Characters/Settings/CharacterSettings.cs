@@ -13,6 +13,10 @@ namespace Fantazee.Characters.Settings
         public static CharacterSettings Settings => settings ??= GetOrCreateSettings();
 
         [Header("Characters")]
+
+        [SerializeField]
+        private CharacterData defaultCharacter;
+        public CharacterData DefaultCharacter => defaultCharacter;
         
         [SerializeField]
         private List<CharacterData> characters;

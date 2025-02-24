@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
+using Fantazee.Battle.Score;
 using Fantazee.Battle.Settings;
 using Fantazee.Scores.Bonus.Ui;
 using UnityEngine;
@@ -38,12 +39,11 @@ namespace Fantazee.Scores.Ui
         [SerializeField]
         private Image background;
 
-        public void Initialize(ScoreTracker scoreTracker)
+        public void Initialize(List<BattleScore> battleScores)
         {
-            List<Score> scores = scoreTracker.GetScoreList();
-            for (int i = 0; i < scores.Count; i++)
+            for (int i = 0; i < battleScores.Count; i++)
             {
-                Score score = scores[i];
+                BattleScore score = battleScores[i];
                 ScoreEntry entry = entries[i];
                 entry.Initialize(score);
             }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Fantazee.Battle.Ui;
 using Fantazee.Characters;
 using UnityEngine;
 
@@ -65,10 +64,85 @@ namespace Fantazee.Scores
         // private BonusScore bonusScore;
         // public BonusScore BonusScore => bonusScore;
 
-        public void Initialize()
+        public ScoreTracker(CharacterData data)
         {
-            Debug.Log($"Score Tracker - Initialize");
-            Clear();
+            ones = new NumberScore
+                   {
+                       Type = ScoreType.Ones,
+                       Spell = data.OneSpell
+                   };
+
+            twos = new NumberScore
+                   {
+                       Type = ScoreType.Twos,
+                       Spell = data.TwoSpell
+                   };
+
+            threes = new NumberScore
+                     {
+                         Type = ScoreType.Threes,
+                         Spell = data.ThreesSpell,
+                     };
+
+            fours = new NumberScore
+                    {
+                        Type = ScoreType.Fours,
+                        Spell = data.FoursSpell,
+                    };
+
+            fives = new NumberScore
+                    {
+                        Type = ScoreType.Fives,
+                        Spell = data.FivesSpell
+                    };
+
+            sixes = new NumberScore
+                    {
+                        Type = ScoreType.Sixes,
+                        Spell = data.SixesSpell,
+                    };
+
+            threeOfAKind = new KindScore
+                           {
+                               Type = ScoreType.ThreeOfAKind,
+                               Spell = data.ThreeOfAKindSpell,
+                           };
+
+            fourOfAKind = new KindScore
+                          {
+                              Type = ScoreType.FourOfAKind,
+                              Spell = data.FourOfAKindSpell,
+                          };
+
+            fullHouse = new FullHouseScore
+                        {
+                            Type = ScoreType.FullHouse,
+                            Spell = data.FullHouseSpell,
+                        };
+
+            smallStraight = new StraightScore
+                            {
+                                Type = ScoreType.SmallStraight,
+                                Spell = data.SmallStraightSpell,
+                            };
+
+            largeStraight = new StraightScore
+                            {
+                                Type = ScoreType.LargeStraight,
+                                Spell = data.LargeStraightSpell,
+                            };
+
+            chance = new ChanceScore
+                     {
+                         Type = ScoreType.Chance,
+                         Spell = data.ChanceSpell,
+                     };
+
+            fantazee = new KindScore
+                       {
+                           Type = ScoreType.Fantazee,
+                           Spell = data.FantazeeSpell,
+                       };
         }
 
         public List<Score> GetScoreList()
@@ -91,23 +165,6 @@ namespace Fantazee.Scores
                                  };
 
             return scores;
-        }
-
-        public void Clear()
-        {
-            ones.ClearDice();
-            twos.ClearDice();
-            threes.ClearDice();
-            fours.ClearDice();
-            fives.ClearDice();
-            sixes.ClearDice();
-            threeOfAKind.ClearDice();
-            fourOfAKind.ClearDice();
-            fullHouse.ClearDice();
-            smallStraight.ClearDice();
-            largeStraight.ClearDice();
-            chance.ClearDice();
-            fantazee.ClearDice();
         }
 
         public void OnBeforeSerialize()

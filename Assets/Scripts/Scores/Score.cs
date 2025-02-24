@@ -9,10 +9,6 @@ namespace Fantazee.Scores
     [Serializable]
     public abstract class Score : ISerializationCallbackReceiver
     {
-        public event Action Changed;
-        public event Action DieAdded;
-        public event Action DiceCleared;
-        
         [HideInInspector]
         [SerializeField]
         private string name;
@@ -26,47 +22,16 @@ namespace Fantazee.Scores
         }
 
         [SerializeField]
-        private List<Die> dice = new();
-        public List<Die> Dice => dice;
-
-        [SerializeField]
         private SpellType spell;
-        public SpellType Spell => spell;
-
-        public bool CanScore()
+        public SpellType Spell
         {
-            return dice.Count == 0;
+            get => spell;
+            set => spell = value;
         }
 
-        public void AddDie(Die die)
-        {
-            dice.Add(die);
-            string s = "";
-            for (int i = 0; i < dice.Count; i++)
-            {
-                Die d = dice[i];
-                s += $"{d.Value}";
-                if (i != dice.Count - 1)
-                {
-                    s += " - ";
-                }
-            }
-
-            Debug.Log($"Score: {Type} - Die: {die.Value}\n{s}");
-            DieAdded?.Invoke();
-            Changed?.Invoke();
-        }
-
-        public void ClearDice()
-        {
-            dice.Clear();
-            DiceCleared?.Invoke();
-            Changed?.Invoke();
-        }
-
-        public abstract int Calculate();
+        public abstract int Calculate(List<Die> dice);
         
-        public abstract List<Die> GetScoredDice();
+        public abstract List<Die> GetScoredDice(List<Die> dice);
 
         protected Dictionary<int, int> DiceToDict(List<Die> dice)
         {

@@ -17,10 +17,10 @@ namespace Fantazee.Scores
                    };
         }
         
-        public override int Calculate()
+        public override int Calculate(List<Die> dice)
         {
             // This works with 1,2,3,4,6 but not 1, 3,4,5,6
-            Dictionary<int, int> dict = DiceToDict(Dice);
+            Dictionary<int, int> dict = DiceToDict(dice);
             
             int startLimit = 7 - GetLength();
             
@@ -68,18 +68,18 @@ namespace Fantazee.Scores
             return false;
         }
 
-        public override List<Die> GetScoredDice()
+        public override List<Die> GetScoredDice(List<Die> dice)
         {
             // Bit better. Still mediocre
             List<Die> scored = new();
             for (int i = 1; i <= 6; i++)
             {
-                if (HasDiceValue(i, Dice, out Die d))
+                if (HasDiceValue(i, dice, out Die d))
                 {
                     scored.Add(d);
                     for (int j = i + 1; j <= 6; j++)
                     {
-                        if (HasDiceValue(j, Dice, out Die d2))
+                        if (HasDiceValue(j, dice, out Die d2))
                         {
                             scored.Add(d2);
                         }

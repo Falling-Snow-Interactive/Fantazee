@@ -9,27 +9,7 @@ namespace Fantazee.Battle.Characters.Player
 {
     public class BattlePlayer : BattleCharacter
     {
-        public override Health Health => GameController.Instance.GameInstance.Health;
-
-        [Header("Player")]
-
-        [Header("Vfx")]
-
-        [SerializeField]
-        private VisualEffect bonusAttackVfx;
-        
-        [Header("Sfx")]
-        
-        [SerializeField]
-        private EventReference attackSfx;
-        public EventReference AttackSfx => attackSfx;
-        
-        [SerializeField]
-        private EventReference attackHitSfx;
-        public EventReference AttackHitSfx => attackHitSfx;
-
-        [SerializeField]
-        private EventReference bonusAttackSfx;
+        public override Health Health => GameController.Instance.GameInstance.Character.Health;
         
         protected override void OnDrawGizmos()
         {

@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
 using RangeInt = Fsi.Gameplay.RangeInt;
@@ -27,6 +28,18 @@ namespace Fantazee.Spells
         [SerializeField]
         private Color color = Color.white;
         public Color Color => color;
+        
+        [Header("Audio")]
+        
+        [Header("Sfx")]
+        
+        [SerializeField]
+        private EventReference attackSfx;
+        public EventReference AttackSfx => attackSfx;
+        
+        [SerializeField]
+        private EventReference attackHitSfx;
+        public EventReference AttackHitSfx => attackHitSfx;
 
         [Header("Shop")]
 

@@ -8,9 +8,9 @@ namespace Fantazee.Scores
     [Serializable]
     public class NumberScore : Score
     {
-        public override int Calculate()
+        public override int Calculate(List<Die> dice)
         {
-            Dictionary<int, int> dict = DiceToDict(Dice);
+            Dictionary<int, int> dict = DiceToDict(dice);
             
             int value = Type switch
                    {
@@ -45,10 +45,10 @@ namespace Fantazee.Scores
                    };
         }
 
-        public override List<Die> GetScoredDice()
+        public override List<Die> GetScoredDice(List<Die> dice)
         {
             List<Die> scored = new();
-            foreach (Die d in Dice)
+            foreach (Die d in dice)
             {
                 if (d.Value == GetValue())
                 {

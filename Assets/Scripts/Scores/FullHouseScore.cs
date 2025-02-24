@@ -7,9 +7,9 @@ namespace Fantazee.Scores
     [Serializable]
     public class FullHouseScore : Score
     {
-        public override int Calculate()
+        public override int Calculate(List<Die> dice)
         {
-            Dictionary<int, int> dict = DiceToDict(Dice);
+            Dictionary<int, int> dict = DiceToDict(dice);
             
             bool foundPair = false;
             bool foundThree = false;
@@ -37,9 +37,9 @@ namespace Fantazee.Scores
             return 0;
         }
 
-        public override List<Die> GetScoredDice()
+        public override List<Die> GetScoredDice(List<Die> dice)
         {
-            return Calculate() > 0 ? new List<Die>(Dice) : new List<Die>();
+            return Calculate(dice) > 0 ? new List<Die>(dice) : new List<Die>();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Fantazee.Dice.Randomizer;
 using Fantazee.Items.Dice.Randomizer;
 using UnityEngine;
@@ -61,5 +62,15 @@ namespace Fantazee.Dice
         }
 
         public void OnAfterDeserialize() { }
+        
+        public static List<Die> DefaultDice(int amount)
+        {
+            List<Die> dice = new();
+            for (int i = 0; i < amount; i++)
+            {
+                dice.Add(new Die(i));
+            }
+            return dice;
+        }
     }
 }

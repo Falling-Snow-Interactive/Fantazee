@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Fantazee.Dice;
 using Fantazee.Dice.Randomizer;
+using Fantazee.Instance;
 using Fantazee.Items.Dice.Randomizer;
 using Fsi.Roguelite;
 using Fsi.Roguelite.Ui;
@@ -48,7 +49,7 @@ namespace Fantazee.Blacksmith.Ui
                 return;
             }
             
-            Die die = GameController.Instance.GameInstance.Dice[i];
+            Die die = GameInstance.Current.Character.Dice[i];
             blacksmithSideGroupUi.Initialize(this);
             blacksmithSideGroupUi.SetDie(die);
             SetSelected(i);
