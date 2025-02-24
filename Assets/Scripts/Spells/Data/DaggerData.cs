@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Fantazee.Spells.Dagger
+namespace Fantazee.Spells.Data
 {
     [CreateAssetMenu(menuName = "Spells/Dagger")]
     public class DaggerData : SpellData

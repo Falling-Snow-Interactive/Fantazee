@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Spells;
-using Fantazee.Spells.Dagger;
+using Fantazee.Spells.Data;
 using FMODUnity;
 using UnityEngine;
 

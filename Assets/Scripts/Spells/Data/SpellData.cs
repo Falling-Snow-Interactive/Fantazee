@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
-namespace Fantazee.Spells
+namespace Fantazee.Spells.Data
 {
     public abstract class SpellData : ScriptableObject
     {

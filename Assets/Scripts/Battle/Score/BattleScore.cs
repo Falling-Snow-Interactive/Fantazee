@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fantazee.Battle.BattleSpells;
 using Fantazee.Dice;
 using Fantazee.Spells;
+using Fantazee.Spells.Data;
 using Fantazee.Spells.Settings;
 using UnityEngine;
 

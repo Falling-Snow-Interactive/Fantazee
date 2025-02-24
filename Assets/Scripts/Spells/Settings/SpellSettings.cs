@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fantazee.Spells.Data;
 using UnityEditor;
 using UnityEngine;
 

@@ -1,6 +1,6 @@
 using System;
 using Fantazee.Spells;
-using Fantazee.Spells.Dagger;
+using Fantazee.Spells.Data;
 
 namespace Fantazee.Battle.BattleSpells
 {

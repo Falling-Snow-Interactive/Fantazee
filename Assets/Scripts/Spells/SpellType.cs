@@ -4,6 +4,7 @@ namespace Fantazee.Spells
     {
         None = 0,
         Dagger = 1,
-        
+        Pierce = 2,
+        Shield = 3,
     }
 }
