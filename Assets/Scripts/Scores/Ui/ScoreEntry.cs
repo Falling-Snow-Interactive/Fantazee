@@ -18,6 +18,17 @@ namespace Fantazee.Scores.Ui
         [SerializeReference]
         private BattleScore score;
         public BattleScore Score => score;
+
+        [Header("Information")]
+
+        [SerializeField]
+        private float tooltipOffset = 100f;
+        
+        [SerializeField]
+        private float tooltipTime = 5f;
+        
+        [SerializeField]
+        private Ease tooltipEase = Ease.OutBounce;
         
         [Header("References")]
         
@@ -42,8 +53,22 @@ namespace Fantazee.Scores.Ui
         [FormerlySerializedAs("spellImage")]
         [SerializeField]
         private Image spellIcon;
+
+        [SerializeField]
+        private GameObject tooltip;
+
+        [SerializeField]
+        private TMP_Text tooltipName;
+
+        [SerializeField]
+        private TMP_Text tooltipDesc;
         
         private ScoreInformation information;
+
+        private void Awake()
+        {
+            tooltip.SetActive(false);
+        }
 
         private void OnEnable()
         {
@@ -76,6 +101,10 @@ namespace Fantazee.Scores.Ui
             }
 
             spellIcon.sprite = score.SpellData.Icon;
+            
+            tooltip.SetActive(false);
+            tooltipName.text = score.SpellData.LocName.GetLocalizedString();
+            tooltipDesc.text = score.SpellData.LocDesc.GetLocalizedString();
             
             score.DieAdded += OnDieAdded;
         }
@@ -111,6 +140,19 @@ namespace Fantazee.Scores.Ui
             {
                 ShowInSlot(i, score.Dice[i].Value);
             }
+        }
+
+        public void ShowTooltip()
+        {
+            tooltip.SetActive(true);
+            tooltip.transform.DOLocalMoveY(tooltipOffset, tooltipTime).SetEase(tooltipEase);
+        }
+
+        public void HideTooltip()
+        {
+            tooltip.transform.DOLocalMoveY(0, tooltipTime)
+                   .SetEase(tooltipEase)
+                   .OnComplete(() => tooltip.SetActive(false));
         }
 
         public void OnClick()

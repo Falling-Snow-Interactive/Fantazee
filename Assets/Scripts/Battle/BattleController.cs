@@ -73,7 +73,7 @@ namespace Fantazee.Battle
         private BattlePlayer battlePlayer;
         public BattlePlayer Player => battlePlayer;
 
-        [SerializeField]
+        [SerializeReference]
         private List<BattleEnemy> enemies = new();
         public List<BattleEnemy> Enemies => enemies;
 
@@ -141,7 +141,8 @@ namespace Fantazee.Battle
         {
             Debug.Log($"Battle - Setup");
 
-            foreach (Scores.Score score in GameInstance.Current.Character.ScoreTracker.GetScoreList())
+            List<Scores.Score> scoreList = GameInstance.Current.Character.ScoreTracker.GetScoreList();
+            foreach (Scores.Score score in scoreList)
             {
                 BattleScore bs = new(score);
                 battleScores.Add(bs);
@@ -161,7 +162,6 @@ namespace Fantazee.Battle
             
             // Hide player
             Player.Hide(null, 0, true);
-
         }
 
         private void SetupDice()
@@ -253,6 +253,7 @@ namespace Fantazee.Battle
         {
             foreach (DieUi d in diceUi)
             {
+                d.ResetDice();
                 d.Squish();
                 RuntimeManager.PlayOneShot(diceScoreSfx);
                 entry.Score.AddDie(d.Die);
@@ -272,7 +273,6 @@ namespace Fantazee.Battle
                 yield return new WaitForSeconds(0.5f);
                 entry.Score.Cast(damage, () =>
                                          {
-                                             Debug.Log("Casted");
                                              Scored?.Invoke(damage.Value);
                                              OnFinishedScoring();
                                          });

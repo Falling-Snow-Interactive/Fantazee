@@ -5,6 +5,7 @@ using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -42,7 +43,10 @@ namespace Fantazee.Dice.Ui
         [Header("Lock")]
 
         [SerializeField]
-        private Vector3 lockOffset = new Vector3(0, -1, 0);
+        private Vector3 lockRot = new Vector3(0, 0, 25);
+        
+        [SerializeField]
+        private Vector3 lockScale = new Vector3(0.8f, 0.8f, 0.8f);
 
         [SerializeField]
         private float lockTime = 0.2f;
@@ -84,8 +88,7 @@ namespace Fantazee.Dice.Ui
         public void ResetDice()
         {
             Debug.Log($"DiceUi - Reset");
-            root.localPosition = Vector3.zero;
-            root.localScale = Vector3.one;
+            ToggleOff();
             root.gameObject.SetActive(true);
             if (Die != null)
             {
@@ -126,7 +129,7 @@ namespace Fantazee.Dice.Ui
             
             sequence.Append(root.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase));
             sequence.Append(root.DOLocalMoveY(0, fallTime).SetEase(fallEase));
-
+            
             sequence.OnStart(() =>
                              {
                                  rolling = true;
@@ -170,8 +173,20 @@ namespace Fantazee.Dice.Ui
                 BattleController.Instance.LockedDice.Remove(Die);
             }
 
-            Vector3 offset = shouldLock ? lockOffset : Vector3.zero;
-            root.DOLocalMove(offset, lockTime).SetEase(lockEase);
+            Vector3 rot = shouldLock ? lockRot : Vector3.zero;
+            Vector3 scale = shouldLock ? lockScale : Vector3.one;
+            
+            root.DOLocalRotate(rot, lockTime).SetEase(lockEase);
+            root.DOScale(scale, lockTime).SetEase(lockEase);
+        }
+
+        public void ToggleOff()
+        {
+            Debug.Log($"DiceUi - ToggleLock {false}");
+            BattleController.Instance.LockedDice.Remove(Die);
+            
+            root.DOLocalRotate(Vector3.zero, lockTime).SetEase(lockEase);
+            root.DOScale(Vector3.one, lockTime).SetEase(lockEase);
         }
 
         public void Hide(Action onComplete, float delay = 0, bool force = false)
@@ -206,6 +221,7 @@ namespace Fantazee.Dice.Ui
 
         public void Squish()
         {
+            root.transform.localScale = Vector3.one;
             root.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
                                          BattleSettings.Settings.SquishTime, 
                                          10, 

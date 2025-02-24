@@ -1,6 +1,7 @@
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Serialization;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Spells.Data
@@ -13,7 +14,7 @@ namespace Fantazee.Spells.Data
 
         [SerializeField]
         private LocalizedString locName;
-        public LocalizedString Name => locName;
+        public LocalizedString LocName => locName;
 
         [SerializeField]
         private LocalizedString locDesc;
