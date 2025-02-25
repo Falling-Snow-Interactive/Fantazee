@@ -1,9 +1,9 @@
 using System;
 using DG.Tweening;
-using FMODUnity;
+using Fantazee.Battle.Shields;
+using Fantazee.Battle.Shields.Ui;
 using Fsi.Gameplay.Healths;
 using Fsi.Gameplay.Healths.Ui;
-using Fsi.Gameplay.Visuals;
 using UnityEngine;
 
 namespace Fantazee.Battle.Characters
@@ -37,6 +37,16 @@ namespace Fantazee.Battle.Characters
         
         public abstract Health Health { get; }
         
+        [Header("Shield")]
+        
+        [SerializeField]
+        private Shield shield;
+        public Shield Shield => shield;
+
+        [SerializeField]
+        private ShieldUi shieldUi;
+        public ShieldUi ShieldUi => shieldUi;
+        
         [Header("Animations")]
 
         [Header("Hide/Show")]
@@ -68,12 +78,28 @@ namespace Fantazee.Battle.Characters
             
             healthUi.Initialize(Health);
             Spawned?.Invoke(this);
+
+            shieldUi.Initialize(shield);
+        }
+
+        public void StartTurn()
+        {
+            shield.Clear();
         }
         
         public void Damage(int damage)
         {
             Debug.Log($"Enemy: Damage {damage}");
-            Health.Damage(damage);
+            
+            // shield first
+            int rem = damage - shield.Current;
+            shield.Remove(damage);
+
+            if (rem > 0)
+            {
+                Health.Damage(rem);
+            }
+
             visuals.Hit();
 
             if (Health.IsDead)

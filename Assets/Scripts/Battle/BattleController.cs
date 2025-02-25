@@ -12,7 +12,6 @@ using Fantazee.Dice;
 using Fantazee.Dice.Ui;
 using Fantazee.Instance;
 using Fantazee.Scores.Ui;
-using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -106,11 +105,6 @@ namespace Fantazee.Battle
         
         [SerializeField]
         private Ease scoreEase = Ease.Linear;
-
-        [Header("Sfx")]
-
-        [SerializeField]
-        private EventReference diceScoreSfx;
         
         private void OnEnable()
         {
@@ -255,7 +249,6 @@ namespace Fantazee.Battle
             {
                 d.ResetDice();
                 d.Squish();
-                RuntimeManager.PlayOneShot(diceScoreSfx);
                 entry.Score.AddDie(d.Die);
                 
                 yield return new WaitForSeconds(scoreTime);
@@ -281,6 +274,7 @@ namespace Fantazee.Battle
             {
                 entry.FinalizeScore();
                 Scored?.Invoke(0);
+                OnFinishedScoring();
             }
         }
 
@@ -373,6 +367,7 @@ namespace Fantazee.Battle
             PlayerTurnStart?.Invoke();
             remainingRolls = rolls;
             lockedDice.Clear();
+            Player.StartTurn();
             BattleUi.Instance.DiceControl.ShowDice(TryRoll);
         }
         

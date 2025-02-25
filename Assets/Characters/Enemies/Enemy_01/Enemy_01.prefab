@@ -48,8 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRoot: {x: 0, y: 0, z: 0}
   visuals: {fileID: 4893186979142604537}
-  size: 1.6
-  healthUi: {fileID: 7700126193981850985}
+  size: 2
+  healthUi: {fileID: 5733528727177418192}
+  shield:
+    current: 0
+  shieldUi: {fileID: 1389102305547806050}
   hideOffset: {x: 7, y: 0, z: 0}
   hideTime: 0.5
   hideEase: 1
@@ -106,6 +109,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3264392990046654594, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264392990046654594, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264392990046654594, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264392990046654594, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264392990046654594, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3553688626447245161, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_Name
       value: Health_Ui
@@ -118,19 +141,54 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5569822369578459321, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569822369578459321, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569822369578459321, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569822369578459321, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569822369578459321, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175780796554710513, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+--- !u!114 &1389102305547806050 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2707491863165613748, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+  m_PrefabInstance: {fileID: 3951315687668274134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad5db49c57b459a87bfd8cd7cfc0a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2536104737019486386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1578486915850449764, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
   m_PrefabInstance: {fileID: 3951315687668274134}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7700126193981850985 stripped
+--- !u!114 &5733528727177418192 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6632029113112417983, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8738233770283173382, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
   m_PrefabInstance: {fileID: 3951315687668274134}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

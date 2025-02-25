@@ -4,10 +4,6 @@ using Fantazee.Dice;
 using Fantazee.Dice.Randomizer;
 using Fantazee.Instance;
 using Fantazee.Items.Dice.Randomizer;
-using Fsi.Roguelite;
-using Fsi.Roguelite.Ui;
-using Fantazee.Items;
-using Fantazee.Items.Dice;
 using UnityEngine;
 
 namespace Fantazee.Blacksmith.Ui

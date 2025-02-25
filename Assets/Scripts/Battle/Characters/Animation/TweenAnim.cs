@@ -30,6 +30,12 @@ namespace Fantazee.Battle.Characters.Animation
 
         public void Play(Transform target)
         {
+            DOTween.Complete(target);
+            
+            target.localPosition = Vector3.zero;
+            target.localRotation = Quaternion.identity;
+            target.localScale = Vector3.one;
+            
             target.DOLocalMove(position, time).SetEase(ease).SetLoops(loops, loopType);
             target.DOLocalRotate(rotation, time).SetEase(ease).SetLoops(loops, loopType);
             target.DOScale(scale, time).SetEase(ease).SetLoops(loops, loopType);

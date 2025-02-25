@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Fantazee.Dice;
 using Fantazee.Items.Dice.Randomizer;
-using Fsi.Roguelite.Ui;
-using Fantazee.Items.Dice;
 using UnityEngine;
 
 namespace Fantazee.Blacksmith.Ui

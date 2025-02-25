@@ -8,5 +8,10 @@ namespace Fantazee
         {
             GameController.Instance.LoadMainMenu();
         }
+        
+        private void Start()
+        {
+            GameController.Instance.LoadMainMenu();
+        }
     }
 }

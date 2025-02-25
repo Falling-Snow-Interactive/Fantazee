@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Fantazee.Battle.Characters
+namespace Fantazee.Battle.Characters.Animation
 {
     [Serializable]
     public class PunchTweenAnim
@@ -31,6 +31,12 @@ namespace Fantazee.Battle.Characters
 
         public void Play(Transform target, Action onComplete = null)
         {
+            DOTween.Complete(target);
+            
+            target.localPosition = Vector3.zero;
+            target.localRotation = Quaternion.identity;
+            target.localScale = Vector3.one;
+            
             Sequence sequence = DOTween.Sequence();
             
             sequence.Append(target.DOPunchPosition(positionPunch, 

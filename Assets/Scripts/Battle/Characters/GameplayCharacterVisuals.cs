@@ -30,8 +30,9 @@ namespace Fantazee.Battle.Characters
         [SerializeField]
         private PunchTweenAnim attackPunch;
         
+        [FormerlySerializedAs("hitAnim")]
         [SerializeField]
-        private PunchTweenAnim hitAnim;
+        private PunchTweenAnim hitPunch;
         
         [SerializeField]
         private PunchTweenAnim deathAnim;
@@ -76,7 +77,7 @@ namespace Fantazee.Battle.Characters
         {
             ResetTransform();
             spriteRenderer.sprite = hit;
-            hitAnim.Play(spriteRenderer.transform, Idle);
+            hitPunch.Play(spriteRenderer.transform, Idle);
         }
 
         public void Death()

@@ -46,11 +46,17 @@ namespace Fantazee
         {
             base.Awake();
             gameInstance.RandomizeSeed();
+            gameInstance = GameInstance.Defaults;
         }
 
         public void NewGame()
         {
             gameInstance = GameInstance.Defaults;
+        }
+
+        public void LoadGame()
+        {
+            // TODO - Load a saved game instance.
         }
 
         public void Reset()
