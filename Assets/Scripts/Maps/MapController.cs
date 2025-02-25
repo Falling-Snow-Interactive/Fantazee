@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using Fsi.Gameplay;
 using UnityEngine;
@@ -40,6 +41,18 @@ namespace Fantazee.Maps
                 selectAction = selectActionRef.action;
 
                 selectAction.performed += ctx => OnSelectAction();
+            }
+
+            private void OnEnable()
+            {
+                cursorAction.Enable();
+                selectAction.Enable();
+            }
+
+            private void OnDisable()
+            {
+                cursorAction.Disable();
+                selectAction.Disable();
             }
 
             private void Start()

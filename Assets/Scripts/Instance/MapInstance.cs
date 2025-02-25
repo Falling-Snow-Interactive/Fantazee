@@ -1,9 +1,8 @@
 using System;
 using Fantazee.Battle.Environments;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Fantazee.Maps
+namespace Fantazee.Instance
 {
     [Serializable]
     public class MapInstance
@@ -35,7 +34,7 @@ namespace Fantazee.Maps
             index = 0;
             node = 0;
             environment = EnvironmentType.Woods;
-            ReadyToAdvance = true;
+            ReadyToAdvance = false;
         }
 
         public void SetReadyToAdvance()

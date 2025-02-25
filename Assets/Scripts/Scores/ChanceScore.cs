@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.Spells;
 
 namespace Fantazee.Scores
 {
     [Serializable]
     public class ChanceScore : Score
     {
+        public ChanceScore(SpellType spell) : base(ScoreType.Chance, spell)
+        {
+        }
+
         public override int Calculate(List<Die> dice)
         {
             int score = 0;

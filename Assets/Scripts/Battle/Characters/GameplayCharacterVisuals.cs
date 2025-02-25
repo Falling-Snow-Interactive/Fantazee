@@ -49,7 +49,8 @@ namespace Fantazee.Battle.Characters
 
         private void ResetTransform()
         {
-            DOTween.Complete(spriteRenderer.transform);
+            DOTween.Kill(spriteRenderer.transform);
+            
             spriteRenderer.transform.localScale = Vector3.one;
             spriteRenderer.transform.localPosition = Vector3.zero;
             spriteRenderer.transform.localRotation = Quaternion.identity;

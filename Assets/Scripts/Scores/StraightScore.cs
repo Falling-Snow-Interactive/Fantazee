@@ -1,12 +1,27 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.Spells;
 
 namespace Fantazee.Scores
 {
     [Serializable]
     public class StraightScore : Score
     {
+        public StraightScore(SpellType spell, int straight) : base(GetType(straight), spell)
+        {
+        }
+
+        private static ScoreType GetType(int straight)
+        {
+            return straight switch
+                   {
+                       3 => ScoreType.SmallStraight,
+                       4 => ScoreType.LargeStraight,
+                       _ => throw new ArgumentOutOfRangeException(nameof(straight), straight, null)
+                   };
+        }
+        
         private int GetLength()
         {
             return Type switch

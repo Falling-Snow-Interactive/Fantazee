@@ -84,6 +84,7 @@ namespace Fantazee.Battle.Characters
 
         public void StartTurn()
         {
+            visuals.Idle();
             shield.Clear();
         }
         

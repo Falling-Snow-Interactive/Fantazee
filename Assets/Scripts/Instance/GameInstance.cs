@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Fantazee.Battle.Environments;
-using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
 using Fantazee.Maps;

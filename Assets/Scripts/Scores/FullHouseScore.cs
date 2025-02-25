@@ -1,12 +1,18 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.Spells;
 
 namespace Fantazee.Scores
 {
     [Serializable]
     public class FullHouseScore : Score
     {
+        public FullHouseScore(SpellType spell) : base(ScoreType.FullHouse, spell)
+        {
+            
+        }
+
         public override int Calculate(List<Die> dice)
         {
             Dictionary<int, int> dict = DiceToDict(dice);

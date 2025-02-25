@@ -87,6 +87,9 @@ namespace Fantazee.Battle
         private List<BattleScore> battleScores = new();
         public List<BattleScore> BattleScores => battleScores;
 
+        [SerializeField]
+        private BattleScore fantazeeBattleScore;
+
         [Header("Battle Rewards")]
         
         [SerializeField]
@@ -131,14 +134,15 @@ namespace Fantazee.Battle
         {
             Debug.Log($"Battle - Setup");
 
-            List<Scores.Score> scoreList = GameInstance.Current.Character.ScoreTracker.GetScoreList();
+            List<Scores.Score> scoreList = GameInstance.Current.Character.ScoreTracker.Scores;
             foreach (Scores.Score score in scoreList)
             {
                 BattleScore bs = new(score);
                 battleScores.Add(bs);
             }
             
-            BattleUi.Instance.Scoreboard.Initialize(battleScores);
+            fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.ScoreTracker.Fantazee);
+            BattleUi.Instance.Scoreboard.Initialize(battleScores, fantazeeBattleScore);
             
             Player.Initialize();
             SetupDice();
@@ -396,12 +400,14 @@ namespace Fantazee.Battle
         private IEnumerator EnemyTurnSequence()
         {
             Queue<BattleEnemy> enemyQueue = new(enemies);
+            yield return new WaitForSeconds(0.5f);
             while (enemyQueue.Count > 0)
             {
                 BattleEnemy curr = enemyQueue.Dequeue();
                 bool attacking = true;
                 curr.Attack(() => attacking = false);
                 yield return new WaitUntil(() => !attacking);
+                yield return new WaitForSeconds(0.5f);
             }
             
             Debug.Log("Finished enemy turns");
@@ -414,6 +420,7 @@ namespace Fantazee.Battle
         
         protected virtual void BattleWin()
         {
+            DOTween.Complete(Player.transform);
             Player.transform.DOLocalMoveX(9, 0.5f).SetEase(Ease.InOutCubic)
                   .OnComplete(() =>
                               {
@@ -433,6 +440,7 @@ namespace Fantazee.Battle
             }
             
             exiting = true;
+            DOTween.Complete(Player.transform);
             Player.transform.DOLocalMoveX(20, 0.5f).SetEase(Ease.InOutCubic)
                   .OnComplete(() =>
                               {

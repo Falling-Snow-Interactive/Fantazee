@@ -1,12 +1,27 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.Spells;
 
 namespace Fantazee.Scores
 {
     [Serializable]
     public class KindScore : Score
     {
+        public KindScore(SpellType spell, int kind) : base(GetType(kind), spell)
+        {
+        }
+
+        public static ScoreType GetType(int kind)
+        {
+            return kind switch
+                   {
+                       3 => ScoreType.ThreeOfAKind,
+                       4 => ScoreType.FourOfAKind,
+                       _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+                   };
+        }
+        
         private int GetMatches()
         {
             switch (Type)

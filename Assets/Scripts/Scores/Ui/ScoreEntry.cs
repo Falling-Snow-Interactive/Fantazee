@@ -54,8 +54,12 @@ namespace Fantazee.Scores.Ui
         [SerializeField]
         private Image spellIcon;
 
+        [FormerlySerializedAs("tooltip")]
         [SerializeField]
-        private GameObject tooltip;
+        private GameObject tooltipGroup;
+
+        [SerializeField]
+        private Transform tooltipRoot;
 
         [SerializeField]
         private TMP_Text tooltipName;
@@ -67,7 +71,7 @@ namespace Fantazee.Scores.Ui
 
         private void Awake()
         {
-            tooltip.SetActive(false);
+            tooltipGroup.SetActive(false);
         }
 
         private void OnEnable()
@@ -86,7 +90,7 @@ namespace Fantazee.Scores.Ui
             }
         }
 
-        public void Initialize(BattleScore score)
+        public virtual void Initialize(BattleScore score)
         {
             this.score = score;
 
@@ -102,7 +106,7 @@ namespace Fantazee.Scores.Ui
 
             spellIcon.sprite = score.SpellData.Icon;
             
-            tooltip.SetActive(false);
+            tooltipGroup.SetActive(false);
             tooltipName.text = score.SpellData.LocName.GetLocalizedString();
             tooltipDesc.text = score.SpellData.LocDesc.GetLocalizedString();
             
@@ -144,23 +148,23 @@ namespace Fantazee.Scores.Ui
 
         public void ShowTooltip()
         {
-            DOTween.Complete(tooltip);
-            tooltip.SetActive(true);
-            Vector3 pos = tooltip.transform.localPosition;
+            DOTween.Complete(tooltipGroup);
+            tooltipGroup.SetActive(true);
+            Vector3 pos = tooltipRoot.transform.localPosition;
             pos.y = 0;
-            tooltip.transform.localPosition = pos;
-            tooltip.transform.DOLocalMoveY(tooltipOffset, tooltipTime).SetEase(tooltipEase);
+            tooltipRoot.transform.localPosition = pos;
+            tooltipRoot.transform.DOLocalMoveY(tooltipOffset, tooltipTime).SetEase(tooltipEase);
         }
 
         public void HideTooltip()
         {
-            DOTween.Complete(tooltip);
-            Vector3 pos = tooltip.transform.localPosition;
+            DOTween.Complete(tooltipRoot);
+            Vector3 pos = tooltipRoot.transform.localPosition;
             pos.y = tooltipOffset;
-            tooltip.transform.localPosition = pos;
-            tooltip.transform.DOLocalMoveY(0, tooltipTime)
-                   .SetEase(tooltipEase)
-                   .OnComplete(() => tooltip.SetActive(false));
+            tooltipRoot.transform.localPosition = pos;
+            tooltipRoot.transform.DOLocalMoveY(0, tooltipTime)
+                       .SetEase(tooltipEase)
+                       .OnComplete(() => tooltipGroup.SetActive(false));
         }
 
         public void OnClick()

@@ -37,7 +37,7 @@ namespace Fantazee.Blacksmith.Ui
 
         public void SetWeight(float weight)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < weightImages.Count; i++)
             {
                 if (i < weight)
                 {

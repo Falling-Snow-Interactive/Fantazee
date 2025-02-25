@@ -14,7 +14,7 @@ namespace Fantazee.Scores
         private string name;
 
         [SerializeField]
-        private ScoreType type;
+        protected ScoreType type;
         public ScoreType Type
         {
             get => type;
@@ -27,6 +27,12 @@ namespace Fantazee.Scores
         {
             get => spell;
             set => spell = value;
+        }
+
+        protected Score(ScoreType type, SpellType spell)
+        {
+            this.type = type;
+            this.spell = spell;
         }
 
         public abstract int Calculate(List<Die> dice);

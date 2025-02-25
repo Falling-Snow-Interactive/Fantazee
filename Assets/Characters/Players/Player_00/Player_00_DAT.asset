@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d94ae59c08f4d41b9883eb242434fc84, type: 3}
-  m_Name: Player_00
+  m_Name: Player_00_DAT
   m_EditorClassIdentifier: 
   type: 0
   locName:
@@ -33,19 +33,44 @@ MonoBehaviour:
     m_LocalVariables: []
   maxHealth: 500
   battleCharacter: {fileID: 5850074044104224665, guid: 4909486ccb1b84888aa5a93f2c0f15a7, type: 3}
-  onesSpell: 1
-  twosSpell: 1
-  threesSpell: 2
-  foursSpell: 3
-  fivesSpell: 1
-  sixesSpell: 1
-  threeOfAKindSpell: 2
-  fourOfAKindSpell: 3
-  fullHouseSpell: 1
-  smallStraightSpell: 1
-  largeStraightSpell: 2
-  chanceSpell: 3
-  fantazeeSpell: 2
+  scoreData:
+  - name: Ones - Dagger
+    score: 1
+    spell: 1
+  - name: Twos - Dagger
+    score: 2
+    spell: 1
+  - name: Threes - Pierce
+    score: 3
+    spell: 2
+  - name: Fours - Shield
+    score: 4
+    spell: 3
+  - name: Fives - Dagger
+    score: 5
+    spell: 1
+  - name: Sixes - Dagger
+    score: 6
+    spell: 1
+  - name: ThreeOfAKind - Pierce
+    score: 7
+    spell: 2
+  - name: FourOfAKind - Shield
+    score: 8
+    spell: 3
+  - name: FullHouse - Dagger
+    score: 9
+    spell: 1
+  - name: SmallStraight - Dagger
+    score: 10
+    spell: 1
+  - name: LargeStraight - Pierce
+    score: 11
+    spell: 2
+  - name: Chance - Shield
+    score: 12
+    spell: 3
+  fantazeeSpells: 010000000200000003000000
   references:
     version: 2
     RefIds: []

@@ -33,13 +33,16 @@ namespace Fantazee.Scores.Ui
         private List<ScoreEntry> entries = new List<ScoreEntry>();
 
         [SerializeField]
+        private ScoreEntry fantazeeEntry;
+
+        [SerializeField]
         private BonusScoreUi bonusScoreUi;
         public BonusScoreUi BonusScoreUi => bonusScoreUi;
 
         [SerializeField]
         private Image background;
 
-        public void Initialize(List<BattleScore> battleScores)
+        public void Initialize(List<BattleScore> battleScores, BattleScore fantazeeScore)
         {
             for (int i = 0; i < battleScores.Count; i++)
             {
@@ -47,6 +50,8 @@ namespace Fantazee.Scores.Ui
                 ScoreEntry entry = entries[i];
                 entry.Initialize(score);
             }
+            
+            fantazeeEntry.Initialize(fantazeeScore);
 
             // bonusScoreUi.Initialize(BattleController.Instance.ScoreTracker.BonusScore);
 

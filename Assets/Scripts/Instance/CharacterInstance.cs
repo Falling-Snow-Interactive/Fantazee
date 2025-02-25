@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Characters;
 using Fantazee.Dice;
 using Fantazee.Scores;
-using Fantazee.Spells;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
 
-namespace Fantazee.Characters
+namespace Fantazee.Instance
 {
     [Serializable]
     public class CharacterInstance

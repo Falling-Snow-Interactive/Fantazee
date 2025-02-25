@@ -1,13 +1,31 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using UnityEngine;
+using Fantazee.Spells;
 
 namespace Fantazee.Scores
 {
     [Serializable]
     public class NumberScore : Score
     {
+        public NumberScore(SpellType spell, int number) : base(GetType(number), spell)
+        {
+        }
+
+        public static ScoreType GetType(int number)
+        {
+            return number switch
+                   {
+                       1 => ScoreType.Ones,
+                       2 => ScoreType.Twos,
+                       3 => ScoreType.Threes,
+                       4 => ScoreType.Fours,
+                       5 => ScoreType.Fives,
+                       6 => ScoreType.Sixes,
+                       _ => throw new ArgumentOutOfRangeException(nameof(number), number, null)
+                   };
+        }
+        
         public override int Calculate(List<Die> dice)
         {
             Dictionary<int, int> dict = DiceToDict(dice);
