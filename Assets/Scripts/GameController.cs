@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fantazee.Battle;
 using Fantazee.Instance;
@@ -87,6 +88,19 @@ namespace Fantazee
                                    MapController.Instance.StartMap();
                                });
         }
+
+        public void AdvanceMap(Action onComplete)
+        {
+            loadingScreen.Show(() =>
+                               {
+                                   GameInstance.Map.Advance();
+                                   // TODO this is also where the new map will be generated and then sent to the map controller to display
+                                   loadingScreen.Hide(() =>
+                                                      {
+                                                          onComplete?.Invoke();
+                                                      });
+                               });
+        }
         
         #endregion
         
@@ -96,7 +110,7 @@ namespace Fantazee
         {
             loadingScreen.Show(() =>
                                {
-                                   ProjectSceneManager.Instance.LoadBattle(GameInstance.Environment);
+                                   ProjectSceneManager.Instance.LoadBattle(GameInstance.Map.Environment);
                                });
         }
 
@@ -104,7 +118,7 @@ namespace Fantazee
         {
             loadingScreen.Show(() =>
                                {
-                                   ProjectSceneManager.Instance.LoadBossBattle(GameInstance.Environment);
+                                   ProjectSceneManager.Instance.LoadBossBattle(GameInstance.Map.Environment);
                                });
         }
 

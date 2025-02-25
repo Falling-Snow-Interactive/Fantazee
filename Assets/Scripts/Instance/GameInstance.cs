@@ -4,6 +4,7 @@ using Fantazee.Battle.Environments;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
+using Fantazee.Maps;
 using Fantazee.Relics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -30,25 +31,9 @@ namespace Fantazee.Instance
 
         [Header("Maps")]
 
-        [SerializeField]
-        private int mapIndex = 0;
-        public int MapIndex
-        {
-            get => mapIndex;
-            set => mapIndex = value;
-        }
-        
-        [SerializeField]
-        private int mapNodeIndex = 0;
-        public int MapNodeIndex
-        {
-            get => mapNodeIndex;
-            set => mapNodeIndex = value;
-        }
-        
-        [SerializeField]
-        private EnvironmentType environment;
-        public EnvironmentType Environment => environment;
+        [SerializeReference]
+        private MapInstance map;
+        public MapInstance Map => map;
 
         [Header("Currency")]
 
@@ -70,10 +55,8 @@ namespace Fantazee.Instance
                                         {
                                             seed = DefaultSeed,
                                             character = new CharacterInstance(CharacterSettings.Settings.DefaultCharacter),
-                                            mapIndex = 0,
-                                            mapNodeIndex = 0,
+                                            map = new MapInstance(),
                                             wallet = new Wallet(CurrencyType.Gold, DefaultGold),
-                                            environment = EnvironmentType.Woods,
                                         };
                 
                 return instance;
@@ -83,13 +66,6 @@ namespace Fantazee.Instance
         public void RandomizeSeed()
         {
             seed = (uint)Random.Range(0, int.MaxValue);
-        }
-
-        public void AdvanceMap()
-        {
-            Debug.Log($"Instance: Advance map: \nIndex {mapIndex} -> {mapIndex + 1}");
-            mapIndex++;
-            mapNodeIndex = 0;
         }
     }
 }

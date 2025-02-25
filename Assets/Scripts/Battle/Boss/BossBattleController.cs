@@ -1,4 +1,3 @@
-using Fantazee.Instance;
 
 namespace Fantazee.Battle.Boss
 {
@@ -8,7 +7,7 @@ namespace Fantazee.Battle.Boss
         {
             base.BattleWin();
 
-            GameController.Instance.GameInstance.AdvanceMap();
+            GameController.Instance.GameInstance.Map.SetReadyToAdvance();
         }
     }
 }

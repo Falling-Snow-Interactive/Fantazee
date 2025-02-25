@@ -144,12 +144,20 @@ namespace Fantazee.Scores.Ui
 
         public void ShowTooltip()
         {
+            DOTween.Complete(tooltip);
             tooltip.SetActive(true);
+            Vector3 pos = tooltip.transform.localPosition;
+            pos.y = 0;
+            tooltip.transform.localPosition = pos;
             tooltip.transform.DOLocalMoveY(tooltipOffset, tooltipTime).SetEase(tooltipEase);
         }
 
         public void HideTooltip()
         {
+            DOTween.Complete(tooltip);
+            Vector3 pos = tooltip.transform.localPosition;
+            pos.y = tooltipOffset;
+            tooltip.transform.localPosition = pos;
             tooltip.transform.DOLocalMoveY(0, tooltipTime)
                    .SetEase(tooltipEase)
                    .OnComplete(() => tooltip.SetActive(false));

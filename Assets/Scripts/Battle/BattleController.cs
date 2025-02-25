@@ -53,14 +53,10 @@ namespace Fantazee.Battle
         [Header("Roll")]
 
         [SerializeField]
-        private int rolls = 5;
-        public int Rolls => rolls;
-
-        [SerializeField]
         private int remainingRolls = 3;
         public int RemainingRolls => remainingRolls;
 
-        private List<Die> lockedDice = new();
+        private readonly List<Die> lockedDice = new();
         public List<Die> LockedDice => lockedDice;
 
         private bool hasScoredRoll = false;
@@ -365,7 +361,7 @@ namespace Fantazee.Battle
         private void StartPlayerTurn()
         {
             PlayerTurnStart?.Invoke();
-            remainingRolls = rolls;
+            remainingRolls = GameInstance.Current.Character.Rolls;
             lockedDice.Clear();
             Player.StartTurn();
             BattleUi.Instance.DiceControl.ShowDice(TryRoll);

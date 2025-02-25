@@ -1,6 +1,5 @@
 using System;
 using DG.Tweening;
-using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using Fsi.Gameplay;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Fantazee.Maps
     {
         public class MapController : MbSingleton<MapController>
         {
-            private GameInstance GameInstance => GameController.Instance.GameInstance;
+            private MapInstance Map => GameController.Instance.GameInstance.Map;
             
             [SerializeField]
             private new Camera camera;
@@ -46,9 +45,12 @@ namespace Fantazee.Maps
             private void Start()
             {
                 Debug.Log("Map - Start");
-                
-                int index = GameInstance.MapNodeIndex;
-                Node node = map.Nodes[index];
+
+                Node node = map.Nodes[Map.Node];
+                if (Map.ReadyToAdvance)
+                {
+                    node = map.Nodes[^1];
+                }
 
                 player.transform.position = node.transform.position;
                 canInteract = false;
@@ -61,7 +63,12 @@ namespace Fantazee.Maps
 
             public void StartMap()
             {
-                canInteract = true;
+                canInteract = !Map.ReadyToAdvance;
+
+                if (Map.ReadyToAdvance)
+                {
+                    AdvanceToNextMap();
+                }
             }
 
             private void OnSelectAction()
@@ -82,7 +89,7 @@ namespace Fantazee.Maps
                     {
                         if (hit.collider.TryGetComponent(out Node node))
                         {
-                            Node currentNode = map.Nodes[GameInstance.MapNodeIndex];
+                            Node currentNode = map.Nodes[Map.Node];
                             if (currentNode == node)
                             {
                                 return;
@@ -106,16 +113,17 @@ namespace Fantazee.Maps
                 canInteract = false;
 
                 player.transform.DOMove(node.transform.position, 0.5f)
-                      .OnComplete(OnFinishMoving);
-                int index = map.Nodes.IndexOf(node);
-                GameInstance.MapNodeIndex = index;
+                      .OnComplete(() =>
+                                  {
+                                      OnFinishMoving(node);
+                                  });
             }
 
-            private void OnFinishMoving()
+            private void OnFinishMoving(Node node)
             {
                 Debug.Log($"Map - Finished move");
                 canInteract = true;
-                Node node = map.Nodes[GameInstance.MapNodeIndex];
+                Map.Index = map.Nodes.IndexOf(node);
                 Debug.Log($"Map - Node {node.NodeType}");
                 switch (node.NodeType)
                 {
@@ -141,6 +149,28 @@ namespace Fantazee.Maps
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+            }
+
+            private void AdvanceToNextMap()
+            {
+                Debug.Log("Map - Advance to next map");
+                player.transform.position = map.Nodes[^1].transform.position;
+                player.DOMove(map.Nodes[^1].transform.position + Vector3.right * 10f, 0.5f)
+                      .SetEase(Ease.InSine)
+                      .SetDelay(0.5f)
+                      .OnComplete(() =>
+                                  {
+                                      GameController.Instance.AdvanceMap(StartNewMap);
+                                  });
+            }
+
+            private void StartNewMap()
+            {
+                player.transform.position = map.Nodes[0].transform.position + Vector3.right * -10;
+                player.DOLocalMoveX(map.Nodes[0].transform.position.x, 0.5f)
+                      .SetEase(Ease.InSine)
+                      .SetDelay(0.5f)
+                      .OnComplete(StartMap); 
             }
         }
     }

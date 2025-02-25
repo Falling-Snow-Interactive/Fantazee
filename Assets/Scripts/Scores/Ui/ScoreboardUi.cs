@@ -51,7 +51,7 @@ namespace Fantazee.Scores.Ui
             // bonusScoreUi.Initialize(BattleController.Instance.ScoreTracker.BonusScore);
 
             if (BattleSettings.Settings.EnvironmentInformation
-                              .TryGetInformation(GameController.Instance.GameInstance.Environment, 
+                              .TryGetInformation(GameController.Instance.GameInstance.Map.Environment, 
                                                  out EnvironmentInformation info))
             {
                 background.color = info.Color;

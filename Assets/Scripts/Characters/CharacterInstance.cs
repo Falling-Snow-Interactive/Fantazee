@@ -30,6 +30,10 @@ namespace Fantazee.Characters
         [SerializeField]
         private List<Die> dice; // TODO - For some reason this is getting cleared when the game exits - KD
         public List<Die> Dice => dice;
+        
+        [SerializeField]
+        private int rolls = 3;
+        public int Rolls => rolls;
 
         public CharacterInstance(CharacterData data)
         {
