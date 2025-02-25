@@ -418,15 +418,31 @@ namespace Fantazee.Battle
         
         protected virtual void BattleWin()
         {
-            BattleUi.Instance.ShowWinScreen();
-            BattleUi.Instance.WinScreen.Initialize(battleRewards, OnBattleWinContinue);
+            Player.transform.DOLocalMoveX(9, 0.5f).SetEase(Ease.InOutCubic)
+                  .OnComplete(() =>
+                              {
+                                  BattleUi.Instance.ShowWinScreen();
+                                  BattleUi.Instance.WinScreen.Initialize(battleRewards, OnBattleWinContinue);
+                              });
+            exiting = false;
         }
+
+        private bool exiting = false;
 
         private void OnBattleWinContinue()
         {
-            GrantRewards();
+            if (exiting)
+            {
+                return;
+            }
             
-            GameController.Instance.FinishedBattle(true);
+            exiting = true;
+            Player.transform.DOLocalMoveX(20, 0.5f).SetEase(Ease.InOutCubic)
+                  .OnComplete(() =>
+                              {
+                                  GrantRewards();
+                                  GameController.Instance.FinishedBattle(true);
+                              });
         }
 
         private void GrantRewards()
