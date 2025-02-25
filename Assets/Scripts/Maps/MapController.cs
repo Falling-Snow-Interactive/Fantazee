@@ -123,8 +123,8 @@ namespace Fantazee.Maps
             {
                 Debug.Log($"Map - Finished move");
                 canInteract = true;
-                Map.Index = map.Nodes.IndexOf(node);
-                Debug.Log($"Map - Node {node.NodeType}");
+                Map.Node = map.Nodes.IndexOf(node);
+                Debug.Log($"Map - Node {node.NodeType} [{Map.Node}]");
                 switch (node.NodeType)
                 {
                     case NodeType.None:

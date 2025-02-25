@@ -32,22 +32,24 @@ namespace Fantazee.LoadingScreens
         [SerializeField]
         private Image overlay;
 
-        public void Show(Action onComplete)
+        public void Show(float delay = 0, Action onComplete = null)
         {
-            Debug.Log("Show");
+            Debug.Log("LoadingScreen: Show");
             overlay.gameObject.SetActive(true);
             overlay.DOColor(Color.black, fadeTime)
+                   .SetDelay(delay)
                    .OnComplete(() =>
                                {
                                    StartCoroutine(Delay(postShowDelay, onComplete));
                                });
         }
 
-        public void Hide(Action onComplete)
+        public void Hide(float delay = 0, Action onComplete = null)
         {
-            Debug.Log("Hide");
+            Debug.Log("LoadingScreen: Hide");
             overlay.gameObject.SetActive(true);
             overlay.DOColor(Color.clear, fadeTime)
+                   .SetDelay(delay)
                    .OnComplete(() =>
                                {
                                    overlay.gameObject.SetActive(false);

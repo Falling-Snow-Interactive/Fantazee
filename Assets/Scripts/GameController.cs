@@ -75,7 +75,8 @@ namespace Fantazee
         
         public void LoadMap()
         {
-            loadingScreen.Show(() =>
+            loadingScreen.Show(0,
+                               () =>
                                {
                                    ProjectSceneManager.Instance.LoadMap(null);
                                });
@@ -83,7 +84,8 @@ namespace Fantazee
 
         public void MapReady()
         {
-            loadingScreen.Hide(() =>
+            loadingScreen.Hide(0,
+                               () =>
                                {
                                    MapController.Instance.StartMap();
                                });
@@ -91,11 +93,13 @@ namespace Fantazee
 
         public void AdvanceMap(Action onComplete)
         {
-            loadingScreen.Show(() =>
+            loadingScreen.Show(0.5f,
+                               () =>
                                {
                                    GameInstance.Map.Advance();
                                    // TODO this is also where the new map will be generated and then sent to the map controller to display
-                                   loadingScreen.Hide(() =>
+                                   loadingScreen.Hide(0.5f,
+                                                      () =>
                                                       {
                                                           onComplete?.Invoke();
                                                       });
@@ -108,7 +112,8 @@ namespace Fantazee
 
         public void LoadBattle()
         {
-            loadingScreen.Show(() =>
+            loadingScreen.Show(0,
+                               () =>
                                {
                                    ProjectSceneManager.Instance.LoadBattle(GameInstance.Map.Environment);
                                });
@@ -116,7 +121,8 @@ namespace Fantazee
 
         public void LoadBossBattle()
         {
-            loadingScreen.Show(() =>
+            loadingScreen.Show(0,
+                               () =>
                                {
                                    ProjectSceneManager.Instance.LoadBossBattle(GameInstance.Map.Environment);
                                });
@@ -124,7 +130,8 @@ namespace Fantazee
 
         public void BattleReady()
         {
-            loadingScreen.Hide(() =>
+            loadingScreen.Hide(0,
+                               () =>
                                {
                                    BattleController.Instance.BattleStart();
                                });
@@ -141,7 +148,8 @@ namespace Fantazee
         
         public void LoadShop()
         {
-            loadingScreen.Show(() =>
+            loadingScreen.Show(0,
+                               () =>
                                {
                                    ProjectSceneManager.Instance.LoadShop(null);
                                });
@@ -149,7 +157,8 @@ namespace Fantazee
 
         public void ShopReady()
         {
-            loadingScreen.Hide(() =>
+            loadingScreen.Hide(0,
+                               () =>
                                {
                                    // BattleController.Instance.ShopStart();
                                });
@@ -166,7 +175,8 @@ namespace Fantazee
 
         public void LoadBlacksmith()
         {
-            loadingScreen.Show(() =>
+            loadingScreen.Show(0,
+                               () =>
                                {
                                    ProjectSceneManager.Instance.LoadBlacksmith(null);
                                });
@@ -174,7 +184,8 @@ namespace Fantazee
 
         public void BlacksmithReady()
         {
-            loadingScreen.Hide(() =>
+            loadingScreen.Hide(0,
+                               () =>
                                {
                                    // BattleController.Instance.BlacksmithStart();
                                });
@@ -191,7 +202,8 @@ namespace Fantazee
 
         public void LoadMainMenu()
         {
-            loadingScreen.Show(() =>
+            loadingScreen.Show(0,
+                               () =>
                                {
                                    ProjectSceneManager.Instance.LoadMainMenu(null);
                                });
@@ -199,7 +211,8 @@ namespace Fantazee
 
         public void MainMenuReady()
         {
-            loadingScreen.Hide(() => { });
+            loadingScreen.Hide(0,
+                               () => { });
         }
         
         #endregion
