@@ -28,7 +28,7 @@ namespace Fantazee.Battle.Characters.Animation
         [SerializeField]
         private LoopType loopType;
 
-        public void Play(Transform target)
+        public void Play(Transform target, Action onComplete = null)
         {
             DOTween.Complete(target);
             
@@ -38,7 +38,11 @@ namespace Fantazee.Battle.Characters.Animation
             
             target.DOLocalMove(position, time).SetEase(ease).SetLoops(loops, loopType);
             target.DOLocalRotate(rotation, time).SetEase(ease).SetLoops(loops, loopType);
-            target.DOScale(scale, time).SetEase(ease).SetLoops(loops, loopType);
+            target.DOScale(scale, time).SetEase(ease).SetLoops(loops, loopType)
+                  .OnComplete(() =>
+                              {
+                                  onComplete?.Invoke();
+                              });
         }
     }
 }

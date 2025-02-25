@@ -164,7 +164,7 @@ MonoBehaviour:
   idle: {fileID: 1839227506, guid: b34a00dd471f34e3d85a7f5c79f6c2ae, type: 3}
   attack: {fileID: 931696996, guid: b34a00dd471f34e3d85a7f5c79f6c2ae, type: 3}
   hit: {fileID: 369950822, guid: b34a00dd471f34e3d85a7f5c79f6c2ae, type: 3}
-  death: {fileID: 143276798, guid: b34a00dd471f34e3d85a7f5c79f6c2ae, type: 3}
+  death: {fileID: 375863530, guid: b34a00dd471f34e3d85a7f5c79f6c2ae, type: 3}
   idleTween:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
     vibrato: 2
     elasticity: 2
     ease: 1
-  hitAnim:
+  hitPunch:
     positionPunch: {x: 1, y: 0, z: 0}
     rotationPunch: {x: 0, y: 0, z: -30}
     scalePunch: {x: -0.1, y: 0.1, z: 0}
@@ -190,13 +190,13 @@ MonoBehaviour:
     elasticity: 2
     ease: 1
   deathAnim:
-    positionPunch: {x: 0, y: 0, z: 0}
-    rotationPunch: {x: 0, y: 0, z: 0}
-    scalePunch: {x: 0, y: 0, z: 0}
-    time: 0.3
-    vibrato: 2
-    elasticity: 2
-    ease: 1
+    position: {x: 1, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1.1, y: 1.1, z: 1.1}
+    time: 0.6
+    ease: 3
+    loops: 0
+    loopType: 0
   spriteRenderer: {fileID: 2944858150234283115}
 --- !u!1 &8076166033666750762
 GameObject:

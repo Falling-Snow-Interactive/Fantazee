@@ -100,12 +100,16 @@ namespace Fantazee.Battle.Characters
                 Health.Damage(rem);
             }
 
-            visuals.Hit();
-
-            if (Health.IsDead)
-            {
-                Destroy(gameObject);
-            }
+            visuals.Hit(() =>
+                        {
+                            if (Health.IsDead)
+                            {
+                                visuals.Death(() =>
+                                              {
+                                                  Destroy(gameObject);
+                                              });
+                            }
+                        });
         }
 
         public void Hide(Action onComplete, float delay = 0, bool force = false)

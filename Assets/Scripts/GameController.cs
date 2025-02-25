@@ -59,6 +59,11 @@ namespace Fantazee
             // TODO - Load a saved game instance.
         }
 
+        public void SaveGame()
+        {
+            // TODO - Save the current game.
+        }
+
         public void Reset()
         {
             dontDestroyOnLoad = true;
