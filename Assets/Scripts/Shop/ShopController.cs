@@ -1,4 +1,3 @@
-using Fantazee.Currencies;
 using Fantazee.Shop.Ui;
 using UnityEngine;
 

@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Fantazee.Battle;
 using Fantazee.Battle.Score;
 using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
@@ -15,6 +15,8 @@ namespace Fantazee.Scores.Ui
 {
     public class ScoreEntry : MonoBehaviour
     {
+        private Action<ScoreEntry> onSelect;
+        
         [SerializeReference]
         private BattleScore score;
         public BattleScore Score => score;
@@ -90,9 +92,10 @@ namespace Fantazee.Scores.Ui
             }
         }
 
-        public virtual void Initialize(BattleScore score)
+        public virtual void Initialize(BattleScore score, Action<ScoreEntry> onSelect)
         {
             this.score = score;
+            this.onSelect = onSelect;
 
             scoreText.text = "";
             if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Score.Type, out information))
@@ -169,7 +172,7 @@ namespace Fantazee.Scores.Ui
 
         public void OnClick()
         {
-            BattleController.Instance.SelectScoreEntry(this);
+            onSelect?.Invoke(this);
         }
     }
 }

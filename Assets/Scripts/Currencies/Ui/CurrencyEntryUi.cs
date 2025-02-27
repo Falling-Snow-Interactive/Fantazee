@@ -10,63 +10,16 @@ namespace Fantazee.Currencies.Ui
     {
         [Header("Currency")]
 
-        [SerializeField]
+        [SerializeReference]
         private Currency currency;
         
-        [Header("Background")]
-
-        [SerializeField]
-        private Sprite backgroundSprite;
-
-        [SerializeField]
-        private Color backgroundColor;
-
-        [Header("Outline")]
-
-        [SerializeField]
-        private Vector2 outlineSize = Vector2.zero;
-        
-        [SerializeField]
-        private Color outlineColor = Color.white;
-
-        [Header("Text")]
-
-        [SerializeField]
-        private Color textColor = Color.black;
-        
         [Header("References")]
-        
-        [SerializeField]
-        private Image backgroundImage;
-
-        [SerializeField]
-        private Outline outline;
 
         [SerializeField]
         private Image icon;
         
         [SerializeField]
         private TMP_Text text;
-
-        private void OnValidate()
-        {
-            if (backgroundImage)
-            {
-                backgroundImage.sprite = backgroundSprite;
-                backgroundImage.color = backgroundColor;
-            }
-
-            if (outline)
-            {
-                outline.effectColor = outlineColor;
-                outline.effectDistance = outlineSize;
-            }
-
-            if (text)
-            {
-                text.color = textColor;
-            }
-        }
 
         private void OnEnable()
         {

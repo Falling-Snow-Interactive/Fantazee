@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Shop.Ui.Entries;
+using Fantazee.Shop.Ui.Screens;
+using Fantazee.Spells;
 using UnityEngine;
+using UnityEngine.Serialization;
+using ScoreEntry = Fantazee.Scores.Ui.ScoreEntry;
 
 namespace Fantazee.Shop.Ui
 {
@@ -14,26 +19,24 @@ namespace Fantazee.Shop.Ui
         [SerializeField]
         private ShopController shopController;
         
-        [Header("Prefabs")]
-        
-        [SerializeField]
-        private RelicEntry relicEntryPrefab;
-
-        private List<RelicEntry> relicEntries = new();
-        
         // [SerializeField]
         // private Entry otherEntryPrefab;
 
-        [Header("Ui References")]
+        [Header("References")]
 
         [SerializeField]
-        private Transform boonContent;
+        private ShopMainScreen mainScreen;
         
+        [FormerlySerializedAs("shopScoreScreen")]
         [SerializeField]
-        private Transform relicContent;
+        private ShopSpellScreen spellScreen;
         
         [SerializeField]
         private CurrencyEntryUi currencyEntry;
+
+        // [Header("Score Screen References")]
+        //
+        // [SerializeField]
 
         public void Initialize(ShopInventory inventory)
         {
@@ -43,12 +46,46 @@ namespace Fantazee.Shop.Ui
                 currencyEntry.SetCurrency(currency);
             }
 
-            // foreach (BoonType boon in inventory.Boons)
-            // {
-            //     BoonEntry boonEntry = Instantiate(boonEntryPrefab, boonContent);
-            //     boonEntry.Initialize(boon, OnBoonSelected);
-            // }
+            mainScreen.Initialize(inventory.Spells, OnSpellSelected);
         }
+        
+        #region Main screen
+
+        private void OnSpellSelected(SpellEntry spellEntry)
+        {
+            ShowSpellScoreScreen(spellEntry);
+        }
+
+        private void OnRelicSelected(RelicEntry relicEntry)
+        {
+            
+        }
+
+        private void OnScoreSelected(ScoreEntry scoreEntry)
+        {
+            
+        }
+        
+        #endregion
+        
+        #region Score spell screen
+
+        private void ShowSpellScoreScreen(SpellEntry spellEntry, Action onComplete = null)
+        {
+            spellScreen.Initialize(spellEntry, OnSpellScreenComplete);
+            
+            mainScreen.SlideOut();
+            spellScreen.SlideIn();
+            
+            spellEntry.transform.DOMove(spellScreen.transform.position, 0.75f);
+        }
+
+        private void OnSpellScreenComplete()
+        {
+            
+        }
+        
+        #endregion
         
         public void OnLeaveButtonClicked()
         {

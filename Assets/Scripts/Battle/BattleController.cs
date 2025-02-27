@@ -142,7 +142,7 @@ namespace Fantazee.Battle
             }
             
             fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.ScoreTracker.Fantazee);
-            BattleUi.Instance.Scoreboard.Initialize(battleScores, fantazeeBattleScore);
+            BattleUi.Instance.Scoreboard.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
             
             Player.Initialize();
             SetupDice();
@@ -228,7 +228,7 @@ namespace Fantazee.Battle
         
         #region Score/Damage
         
-        public void SelectScoreEntry(ScoreEntry entry)
+        private void SelectScoreEntry(ScoreEntry entry)
         {
             if (hasScoredRoll)
             {

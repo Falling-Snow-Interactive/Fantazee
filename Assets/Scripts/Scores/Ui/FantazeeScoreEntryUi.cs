@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fantazee.Battle.Score;
 using Fantazee.Spells.Settings;
@@ -11,9 +12,9 @@ namespace Fantazee.Scores.Ui
         [SerializeField]
         private List<Image> spellIcons = new List<Image>();
 
-        public override void Initialize(BattleScore score)
+        public override void Initialize(BattleScore score, Action<ScoreEntry> onSelect)
         {
-            base.Initialize(score);
+            base.Initialize(score, onSelect);
 
             if (score.Score is FantazeeScore fantazeeScore)
             {

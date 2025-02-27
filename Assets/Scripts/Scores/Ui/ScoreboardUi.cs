@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
@@ -11,6 +12,8 @@ namespace Fantazee.Scores.Ui
 {
     public class ScoreboardUi : MonoBehaviour
     {
+        private Action<ScoreEntry> onSelect;
+        
         [Header("Animation")]
         
         [SerializeField]
@@ -42,25 +45,30 @@ namespace Fantazee.Scores.Ui
         [SerializeField]
         private Image background;
 
-        public void Initialize(List<BattleScore> battleScores, BattleScore fantazeeScore)
+        public void Initialize(List<BattleScore> battleScores, BattleScore fantazeeScore, Action<ScoreEntry> onSelect)
         {
+            this.onSelect = onSelect;
+            
             for (int i = 0; i < battleScores.Count; i++)
             {
                 BattleScore score = battleScores[i];
                 ScoreEntry entry = entries[i];
-                entry.Initialize(score);
+                entry.Initialize(score, OnScoreEntrySelected);
             }
             
-            fantazeeEntry.Initialize(fantazeeScore);
-
-            // bonusScoreUi.Initialize(BattleController.Instance.ScoreTracker.BonusScore);
-
+            fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
+            
             if (BattleSettings.Settings.EnvironmentInformation
                               .TryGetInformation(GameController.Instance.GameInstance.Map.Environment, 
                                                  out EnvironmentInformation info))
             {
                 background.color = info.Color;
             }
+        }
+
+        private void OnScoreEntrySelected(ScoreEntry scoreEntry)
+        {
+            onSelect?.Invoke(scoreEntry);
         }
     }
 }
