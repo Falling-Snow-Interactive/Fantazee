@@ -30,6 +30,14 @@ namespace Fantazee.Scores
             get => spell;
             set => spell = value;
         }
+        
+        [SerializeField]
+        private List<SpellType> spells = new List<SpellType>();
+        public List<SpellType> Spells
+        {
+            get => spells;
+            set => spells = value;
+        }
 
         private ScoreInformation information;
         public ScoreInformation Information
@@ -71,7 +79,13 @@ namespace Fantazee.Scores
 
         public void OnBeforeSerialize()
         {
-            name = $"{Type} - {spell}";
+            string s = $"{Type}";
+            foreach (SpellType spell in spells)
+            {
+                s += $"- {spell}";
+            }
+
+            name = s;
         }
 
         public void OnAfterDeserialize() { }

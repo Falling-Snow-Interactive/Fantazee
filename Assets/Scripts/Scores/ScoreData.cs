@@ -20,10 +20,6 @@ namespace Fantazee.Scores
         private SpellType spell;
         public SpellType Spell => spell;
         
-        [SerializeField]
-        private List<SpellType> spells;
-        public List<SpellType> Spells => spells;
-        
         public void OnBeforeSerialize()
         {
             name = $"{score} - {spell}";
