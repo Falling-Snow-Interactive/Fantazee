@@ -1181,7 +1181,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 350095339}
-  - component: {fileID: 350095340}
   - component: {fileID: 350095341}
   m_Layer: 0
   m_Name: Score_Score_Screen
@@ -1214,54 +1213,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1700, y: 888.7483}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &350095340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350095338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044e5f6bb108f4da0b77c9e569d04912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localIn: {x: 0, y: 0, z: 0}
-  localOut: {x: 2000, y: 0, z: 0}
-  inTime: 0.75
-  outTime: 0.75
-  inEase: 12
-  outEase: 12
-  selectTime: 0.6
-  selectEase: 8
-  entryTime: 0.5
-  entryEase: 8
-  entryOffset: -150
-  punchAmount: 250
-  punchTime: 0.25
-  returnTime: 1
-  returnEase: 8
-  fadeAmount: 0.6
-  fadeTime: 0.5
-  fadeEase: 10
-  entry: {fileID: 0}
-  scoreEntries:
-  - {fileID: 1322562422}
-  - {fileID: 1320969373}
-  - {fileID: 658845495}
-  - {fileID: 227033317}
-  - {fileID: 1658607264}
-  - {fileID: 766023451}
-  - {fileID: 1831401968}
-  - {fileID: 1475807641}
-  - {fileID: 1728382943}
-  - {fileID: 488352627}
-  - {fileID: 1947852698}
-  - {fileID: 1010929772}
-  selectedSocket: {fileID: 1380117140}
-  animGroup: {fileID: 254203526}
-  fadeImage: {fileID: 580117320}
-  entry: {fileID: 0}
 --- !u!114 &350095341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,7 +1260,7 @@ MonoBehaviour:
   selectedSocket: {fileID: 1380117140}
   animGroup: {fileID: 254203526}
   fadeImage: {fileID: 580117320}
-  entry: {fileID: 0}
+  scoreEntry: {fileID: 1940567566}
 --- !u!1001 &362781402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4743,7 +4694,7 @@ MonoBehaviour:
   shopController: {fileID: 1551118647}
   mainScreen: {fileID: 1304737529}
   spellScoreScreen: {fileID: 2076436818}
-  scoreScoreScreen: {fileID: 0}
+  scoreScoreScreen: {fileID: 350095341}
   currencyEntry: {fileID: 200458384}
 --- !u!1 &1002702458
 GameObject:
@@ -5991,7 +5942,7 @@ MonoBehaviour:
   scoreEntries: []
   boonContent: {fileID: 987526337}
   relicContent: {fileID: 690550306}
-  scoreContent: {fileID: 0}
+  scoreContent: {fileID: 659034240}
 --- !u!1 &1311326388
 GameObject:
   m_ObjectHideFlags: 0
