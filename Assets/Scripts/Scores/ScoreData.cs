@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Fantazee.Spells;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ namespace Fantazee.Scores
         [SerializeField]
         private SpellType spell;
         public SpellType Spell => spell;
+        
+        [SerializeField]
+        private List<SpellType> spells;
+        public List<SpellType> Spells => spells;
         
         public void OnBeforeSerialize()
         {
