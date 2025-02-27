@@ -1,7 +1,10 @@
 
 using System;
 using System.Collections.Generic;
+using Fantazee.Battle.Settings;
 using Fantazee.Currencies.Ui;
+using Fantazee.Scores;
+using Fantazee.Scores.Information;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -45,17 +48,25 @@ namespace Fantazee.Shop.Ui.Screens
         
         [SerializeField]
         private Transform relicContent;
+
+        [SerializeField]
+        private Transform scoreContent;
         
         private void Awake()
         {
             transform.localPosition = localIn;
         }
 
-        public void Initialize(List<SpellType> spells, Action<SpellEntry> onSpellSelected)
+        public void Initialize(ShopInventory shopInventory, 
+                               Action<SpellEntry> onSpellSelected,
+                               Action<RelicEntry> onRelicSelected,
+                               Action<ScoreShopEntry> onScoreSelected)
         {
             this.onSpellSelected = onSpellSelected;
+            this.onRelicSelected = onRelicSelected;
+            this.onScoreSelected = onScoreSelected;
             
-            foreach (SpellType spell in spells)
+            foreach (SpellType spell in shopInventory.Spells)
             {
                 if (SpellSettings.Settings.TryGetSpell(spell, out SpellData data))
                 {
@@ -68,6 +79,13 @@ namespace Fantazee.Shop.Ui.Screens
                 {
                     Debug.LogWarning($"Shop: No spell found for type {spell}");
                 }
+            }
+
+            foreach (ScoreType score in shopInventory.Scores)
+            {
+                ScoreShopEntry scoreShopEntry = Instantiate(scoreShopEntryPrefab, scoreContent);
+                scoreShopEntry.Initialize(score, OnScoreSelected);
+                scoreEntries.Add(scoreShopEntry);
             }
         }
 

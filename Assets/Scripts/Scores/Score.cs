@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Battle.Settings;
 using Fantazee.Dice;
+using Fantazee.Scores.Information;
 using Fantazee.Spells;
 using UnityEngine;
 
@@ -28,6 +30,20 @@ namespace Fantazee.Scores
             get => spell;
             set => spell = value;
         }
+
+        private ScoreInformation information;
+        public ScoreInformation Information
+        {
+            get
+            {
+                if (information == null)
+                {
+                    BattleSettings.Settings.ScoreInformation.TryGetInformation(type, out information);
+                }
+                
+                return information;
+            }
+        } 
 
         protected Score(ScoreType type, SpellType spell)
         {

@@ -35,10 +35,10 @@ namespace Fantazee.Shop.Ui.ScoreSelect
             this.score = score;
             this.onSelect = onSelect;
 
-            UpdateSpell();
+            UpdateVisuals();
         }
 
-        public void UpdateSpell()
+        public void UpdateVisuals()
         {
             if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Type, out ScoreInformation scoreInfo))
             {

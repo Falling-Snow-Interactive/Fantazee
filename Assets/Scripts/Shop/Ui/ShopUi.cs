@@ -28,9 +28,11 @@ namespace Fantazee.Shop.Ui
         [SerializeField]
         private ShopMainScreen mainScreen;
         
-        [FormerlySerializedAs("shopScoreScreen")]
         [SerializeField]
-        private ShopSpellScreen spellScreen;
+        private SpellScoreScreen spellScoreScreen;
+        
+        [SerializeField]
+        private ScoreScoreScreen scoreScoreScreen;
         
         [SerializeField]
         private CurrencyEntryUi currencyEntry;
@@ -47,7 +49,7 @@ namespace Fantazee.Shop.Ui
                 currencyEntry.SetCurrency(currency);
             }
 
-            mainScreen.Initialize(inventory.Spells, OnSpellSelected);
+            mainScreen.Initialize(inventory, OnSpellSelected, OnRelicSelected, OnScoreSelected);
         }
         
         #region Main screen
@@ -56,7 +58,7 @@ namespace Fantazee.Shop.Ui
         {
             if (GameInstance.Current.Character.Wallet.CanAfford(spellEntry.Data.Cost))
             {
-                ShowSpellScoreScreen(spellEntry);
+                ShowSpellScreen(spellEntry);
             }
             else
             {
@@ -70,26 +72,52 @@ namespace Fantazee.Shop.Ui
             
         }
 
-        private void OnScoreSelected(ScoreEntry scoreEntry)
+        private void OnScoreSelected(ScoreShopEntry scoreEntry)
         {
-            
+            if (GameInstance.Current.Character.Wallet.CanAfford(scoreEntry.Information.Cost))
+            {
+                ShowScoreScoreScreen(scoreEntry);
+            }
+            else
+            {
+                currencyEntry.PlayCantAfford();
+                scoreEntry.PlayCantAfford();
+            }
         }
         
         #endregion
         
         #region Score spell screen
 
-        private void ShowSpellScoreScreen(SpellEntry spellEntry, Action onComplete = null)
+        private void ShowSpellScreen(SpellEntry spellEntry, Action onComplete = null)
         {
-            spellScreen.Initialize(spellEntry, OnSpellScreenComplete);
+            spellScoreScreen.Initialize(spellEntry, OnSpellScreenComplete);
             
             mainScreen.SlideOut();
-            spellScreen.SlideIn();
+            spellScoreScreen.SlideIn();
         }
 
         private void OnSpellScreenComplete()
         {
-            spellScreen.SlideOut();
+            spellScoreScreen.SlideOut();
+            mainScreen.SlideIn();
+        }
+        
+        #endregion
+        
+        #region Score spell screen
+        
+        private void ShowScoreScoreScreen(ScoreShopEntry scoreShopEntry, Action onComplete = null)
+        {
+            scoreScoreScreen.Initialize(scoreShopEntry, OnScoreScoreScreenComplete);
+            
+            mainScreen.SlideOut();
+            scoreScoreScreen.SlideIn();
+        }
+
+        private void OnScoreScoreScreenComplete()
+        {
+            scoreScoreScreen.SlideOut();
             mainScreen.SlideIn();
         }
         

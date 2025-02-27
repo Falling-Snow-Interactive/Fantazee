@@ -1,4 +1,5 @@
 using System;
+using Fantazee.Currencies;
 using fsi.settings.Informations;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -15,5 +16,9 @@ namespace Fantazee.Scores.Information
         [SerializeField]
         private LocalizedString locDesc;
         public LocalizedString LocDesc => locDesc;
+
+        [SerializeField]
+        private Currency cost;
+        public Currency Cost => cost;
     }
 }
