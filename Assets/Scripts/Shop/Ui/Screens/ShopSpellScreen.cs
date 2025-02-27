@@ -4,6 +4,7 @@ using Fantazee.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Ui;
 using Fantazee.Shop.Ui.Entries;
+using Fantazee.Shop.Ui.ScoreSelect;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui.Screens
@@ -18,7 +19,7 @@ namespace Fantazee.Shop.Ui.Screens
         private SpellEntry entry;
 
         [SerializeField]
-        private List<ScoreEntry> scoreEntries = new();
+        private List<ScoreSelectEntry> scoreEntries = new();
         
         private void Awake()
         {
@@ -34,15 +35,16 @@ namespace Fantazee.Shop.Ui.Screens
             
             for (int i = 0; i < scoreEntries.Count; i++)
             {
-                ScoreEntry scoreEntry = scoreEntries[i];
+                ScoreSelectEntry scoreEntry = scoreEntries[i];
                 Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
                 
-                // scoreEntry.Initialize(score, OnScoreSelected);
+                scoreEntry.Initialize(score, OnScoreSelected);
             }
         }
 
-        private void OnScoreSelected(SpellEntry spellEntry)
+        private void OnScoreSelected(ScoreSelectEntry scoreEntry)
         {
+            Debug.Log("Do stuff");
             onComplete?.Invoke();
         }
     }

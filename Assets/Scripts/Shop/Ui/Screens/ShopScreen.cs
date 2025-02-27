@@ -6,10 +6,6 @@ namespace Fantazee.Shop.Ui.Screens
 {
     public class ShopScreen : MonoBehaviour
     {
-        [SerializeField]
-        private ShopUi shopUi;
-        protected ShopUi ShopUi => shopUi;
-        
         [Header("Animation")]
         
         [SerializeField]
