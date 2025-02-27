@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -11,28 +12,21 @@ namespace Fantazee.Shop.Ui.Entries
     public class SpellEntry : ShopEntryUi
     {
         private Action<SpellEntry> onSelected;
-        
-        [SerializeReference]
-        private SpellType spell;
-        public SpellType Spell => spell;
 
-        [SerializeField]
-        private Currency cost;
+        [SerializeReference]
+        private SpellData data;
+        public SpellData Data => data;
 
         [SerializeField]
         private Image icon;
         
-        public void Initialize(SpellType spell, Action<SpellEntry> onSelected)
+        public void Initialize(SpellData data, Action<SpellEntry> onSelected)
         {
-            this.spell = spell;
             this.onSelected = onSelected;
-
-            if (SpellSettings.Settings.TryGetSpell(spell, out SpellData data))
-            {
-                cost = new Currency(CurrencyType.Gold, data.Cost.Random());
-                ShowEntry(data.LocName.GetLocalizedString(), data.LocDesc.GetLocalizedString(), cost);
-                icon.sprite = data.Icon;
-            }
+            this.data = data;
+            
+            icon.sprite = data.Icon;
+            ShowEntry(data.LocName.GetLocalizedString(), data.LocDesc.GetLocalizedString(), data.Cost);
         }
         
         public override void OnEntrySelected()

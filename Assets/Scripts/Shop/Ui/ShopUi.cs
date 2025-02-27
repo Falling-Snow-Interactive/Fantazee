@@ -54,7 +54,15 @@ namespace Fantazee.Shop.Ui
 
         private void OnSpellSelected(SpellEntry spellEntry)
         {
-            ShowSpellScoreScreen(spellEntry);
+            if (GameInstance.Current.Character.Wallet.CanAfford(spellEntry.Data.Cost))
+            {
+                ShowSpellScoreScreen(spellEntry);
+            }
+            else
+            {
+                currencyEntry.PlayCantAfford();
+                spellEntry.PlayCantAfford();
+            }
         }
 
         private void OnRelicSelected(RelicEntry relicEntry)
@@ -77,8 +85,6 @@ namespace Fantazee.Shop.Ui
             
             mainScreen.SlideOut();
             spellScreen.SlideIn();
-            
-            spellEntry.transform.DOMove(spellScreen.transform.position, 0.75f);
         }
 
         private void OnSpellScreenComplete()

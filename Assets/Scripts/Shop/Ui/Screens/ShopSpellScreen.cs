@@ -16,6 +16,7 @@ namespace Fantazee.Shop.Ui.Screens
         private Action onComplete;
 
         private SpellType spellType;
+        private SpellEntry selected;
         
         [Header("Select animation")]
         
@@ -85,12 +86,13 @@ namespace Fantazee.Shop.Ui.Screens
         {
             Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
             
-            spellType = selected.Spell;
+            spellType = selected.Data.Type;
             this.onComplete = onComplete;
+            this.selected = selected;
             
             entry.gameObject.SetActive(true);
             entry.transform.localPosition = Vector3.zero;
-            entry.Initialize(selected.Spell, null);
+            entry.Initialize(selected.Data, null);
             
             for (int i = 0; i < scoreEntries.Count; i++)
             {
@@ -103,8 +105,17 @@ namespace Fantazee.Shop.Ui.Screens
 
         private void OnScoreSelected(ScoreSelectEntry scoreEntry)
         {
+            if (!GameInstance.Current.Character.Wallet.Remove(entry.Data.Cost))
+            {
+                Debug.LogWarning("Shop: Cannot afford spell. Returning to shop.");
+                onComplete?.Invoke();
+                return;
+            }
+            
             Debug.Log($"Shop Spell: {scoreEntry.Score.Type} {scoreEntry.Score.Spell} -> {spellType}");
             scoreEntry.Score.Spell = spellType;
+            
+            selected.gameObject.SetActive(false);
 
             Vector3 pos = scoreEntry.transform.position;
             Transform parent = scoreEntry.transform.parent;
@@ -115,7 +126,9 @@ namespace Fantazee.Shop.Ui.Screens
             sequence.Append(scoreEntry.transform.DOMove(selectedSocket.position, selectTime)
                                       .SetEase(selectEase)
                                       .SetDelay(0.15f));
-            sequence.Insert(0, fadeImage.DOFade(fadeAmount, fadeTime).SetEase(fadeEase));
+            sequence.Insert(0, fadeImage.DOFade(fadeAmount, fadeTime)
+                                        .SetEase(fadeEase)
+                                        .OnStart(() => fadeImage.raycastTarget = true));
             sequence.Append(entry.transform.DOMove(selectedSocket.position + Vector3.right * entryOffset, entryTime)
                                  .SetEase(entryEase)
                                  .SetDelay(0.3f)
@@ -130,7 +143,8 @@ namespace Fantazee.Shop.Ui.Screens
                                       .SetDelay(0.3f));
             sequence.AppendInterval(0.5f);
             sequence.Insert(2, fadeImage.DOFade(0, fadeTime)
-                                        .SetEase(fadeEase));
+                                        .SetEase(fadeEase)
+                                        .OnComplete(() => fadeImage.raycastTarget = false));
 
             sequence.OnComplete(() =>
                                 {

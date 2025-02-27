@@ -163,6 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currency:
     rid: -2
+  background: {fileID: 2049591355211088585}
+  border: {fileID: 4666819927015231861}
   icon: {fileID: 7322046700119886851}
   text: {fileID: 388824809235054042}
   references:
@@ -466,7 +468,7 @@ GameObject:
   - component: {fileID: 9201580680454776805}
   - component: {fileID: 3948013941020180990}
   m_Layer: 0
-  m_Name: Border
+  m_Name: Border-Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -555,7 +557,7 @@ GameObject:
   - component: {fileID: 4230939415513055293}
   - component: {fileID: 4666819927015231861}
   m_Layer: 0
-  m_Name: Border (1)
+  m_Name: Border-Color
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Fantazee.Currencies.Information;
 using Fantazee.Currencies.Settings;
 using TMPro;
@@ -12,8 +13,14 @@ namespace Fantazee.Currencies.Ui
 
         [SerializeReference]
         private Currency currency;
-        
+
         [Header("References")]
+
+        [SerializeField]
+        private Image background;
+
+        [SerializeField]
+        private Image border;
 
         [SerializeField]
         private Image icon;
@@ -58,6 +65,33 @@ namespace Fantazee.Currencies.Ui
         {
             Debug.Log($"CurrencyEntry - UpdateAmount {currency}");
             text.text = currency.amount.ToString();
+        }
+
+        public void PlayCantAfford()
+        {
+            DOTween.Complete(transform);
+            DOTween.Complete(background);
+            DOTween.Complete(border);
+            DOTween.Complete(text);
+            
+            transform.DOPunchScale(Vector3.one * -0.1f, 0.2f, 10, 1f);
+            Color c1 = background.color;
+            Color c2 = Color.red;
+            c2.a = c1.a;
+            // background.color = c2;
+            background.DOColor(c1, 0.2f);
+            
+            Color b1 = border.color;
+            Color b2 = Color.red;
+            b2.a = b1.a;
+            border.color = b2;
+            border.DOColor(b1, 0.2f);
+
+            Color t1 = text.color;
+            Color t2 = Color.red;
+            t2.a = t1.a;
+            text.color = t2;
+            text.DOColor(t1, 0.2f);
         }
     }
 }

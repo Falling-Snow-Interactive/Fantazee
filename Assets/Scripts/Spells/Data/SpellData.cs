@@ -1,3 +1,4 @@
+using Fantazee.Currencies;
 using UnityEngine;
 using UnityEngine.Localization;
 using RangeInt = Fsi.Gameplay.RangeInt;
@@ -31,7 +32,7 @@ namespace Fantazee.Spells.Data
         [Header("Shop")]
 
         [SerializeField]
-        private RangeInt cost = new(10, 15);
-        public RangeInt Cost => cost;
+        private Currency cost = new(CurrencyType.Gold, 10);
+        public Currency Cost => cost;
     }
 }

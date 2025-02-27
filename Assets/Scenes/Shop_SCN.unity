@@ -4443,11 +4443,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localIn: {x: 300, y: -95, z: 0}
-  localOut: {x: -2500, y: -95, z: 0}
+  localOut: {x: -1700, y: -95, z: 0}
   inTime: 0.75
   outTime: 0.75
-  inEase: 27
-  outEase: 9
+  inEase: 12
+  outEase: 12
   spellEntryPrefab: {fileID: 8773429858442824666, guid: 7493d452e17594e5b92bac577cf4c3be, type: 3}
   spellEntries: []
   relicEntryPrefab: {fileID: 0}
@@ -4683,6 +4683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1412767302}
+  - component: {fileID: 1412767303}
   m_Layer: 0
   m_Name: Header
   m_TagString: Untagged
@@ -4711,6 +4712,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1412767303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412767301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:5424bd4dc5245492f85646e13d7ce6ef
+    m_TableEntryReference:
+      m_KeyId: 3292850799239168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1899727278}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!224 &1449387110 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2519913216688146339, guid: 7a958808258f74c1ba3917b6c2e80b13, type: 3}
@@ -7375,8 +7416,8 @@ MonoBehaviour:
   localOut: {x: 2000, y: 0, z: 0}
   inTime: 0.75
   outTime: 0.75
-  inEase: 27
-  outEase: 9
+  inEase: 12
+  outEase: 12
   selectTime: 0.6
   selectEase: 9
   entryTime: 0.4
@@ -7388,7 +7429,7 @@ MonoBehaviour:
   returnEase: 9
   fadeAmount: 0.9
   fadeTime: 0.5
-  fadeEase: 10
+  fadeEase: 32
   entry: {fileID: 362781404}
   scoreEntries:
   - {fileID: 1238036575}
@@ -7477,7 +7518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7348998220435273980, guid: a249cab72f23c4dc2a7cb9af373557f3, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7348998220435273980, guid: a249cab72f23c4dc2a7cb9af373557f3, type: 3}
       propertyPath: m_Pivot.y
@@ -7537,11 +7578,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7348998220435273980, guid: a249cab72f23c4dc2a7cb9af373557f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -25
+      value: -154.99985
       objectReference: {fileID: 0}
     - target: {fileID: 7348998220435273980, guid: a249cab72f23c4dc2a7cb9af373557f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 7348998220435273980, guid: a249cab72f23c4dc2a7cb9af373557f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

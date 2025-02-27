@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Fantazee.Currencies.Ui;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
+using Fantazee.Spells.Data;
+using Fantazee.Spells.Settings;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -55,10 +57,17 @@ namespace Fantazee.Shop.Ui.Screens
             
             foreach (SpellType spell in spells)
             {
-                SpellEntry spellEntry = Instantiate(spellEntryPrefab, boonContent);
-                spellEntry.Initialize(spell, OnSpellSelected);
-                
-                spellEntries.Add(spellEntry);
+                if (SpellSettings.Settings.TryGetSpell(spell, out SpellData data))
+                {
+                    SpellEntry spellEntry = Instantiate(spellEntryPrefab, boonContent);
+                    spellEntry.Initialize(data, OnSpellSelected);
+
+                    spellEntries.Add(spellEntry);
+                }
+                else
+                {
+                    Debug.LogWarning($"Shop: No spell found for type {spell}");
+                }
             }
         }
 
