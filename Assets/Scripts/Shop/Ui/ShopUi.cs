@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
+using Fantazee.Instance;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.Screens;
 using Fantazee.Spells;
@@ -41,7 +42,7 @@ namespace Fantazee.Shop.Ui
         public void Initialize(ShopInventory inventory)
         {
             Debug.Log("ShopUi - Initialize");
-            if (GameController.Instance.GameInstance.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency currency))
+            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency currency))
             {
                 currencyEntry.SetCurrency(currency);
             }

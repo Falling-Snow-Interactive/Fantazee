@@ -80,6 +80,9 @@ namespace Fantazee.Battle
 
         [SerializeField]
         private RangeInt enemySpawns = new(3, 5);
+
+        [SerializeReference]
+        private BattleRewards rewards;
         
         [Header("Battle Scores")]
         
@@ -89,12 +92,7 @@ namespace Fantazee.Battle
 
         [SerializeField]
         private BattleScore fantazeeBattleScore;
-
-        [Header("Battle Rewards")]
         
-        [SerializeField]
-        private BattleRewards battleRewards;
-
         [Header("Scoring")]
 
         [Header("Animation")]
@@ -177,6 +175,7 @@ namespace Fantazee.Battle
 
         private void SetupEnemies()
         {
+            rewards = new BattleRewards();
             int spawns = enemySpawns.Random();
             float spawnOffset = 0;
             for (int i = 0; i < spawns; i++)
@@ -189,6 +188,7 @@ namespace Fantazee.Battle
                 spawnOffset += enemy.Size;
 
                 enemy.Initialize();
+                rewards.Add(enemy.BattleRewards);
 
                 enemies.Add(enemy);
             }
@@ -425,7 +425,7 @@ namespace Fantazee.Battle
                   .OnComplete(() =>
                               {
                                   BattleUi.Instance.ShowWinScreen();
-                                  BattleUi.Instance.WinScreen.Initialize(battleRewards, OnBattleWinContinue);
+                                  BattleUi.Instance.WinScreen.Initialize(rewards, OnBattleWinContinue);
                               });
             exiting = false;
         }
@@ -444,17 +444,9 @@ namespace Fantazee.Battle
             Player.transform.DOLocalMoveX(20, 0.5f).SetEase(Ease.InOutCubic)
                   .OnComplete(() =>
                               {
-                                  GrantRewards();
+                                  rewards.Grant();
                                   GameController.Instance.FinishedBattle(true);
                               });
-        }
-
-        private void GrantRewards()
-        {
-            foreach (Currency currency in battleRewards.Currencies)
-            {
-                GameController.Instance.GameInstance.Wallet.Add(currency);
-            }
         }
         
         #endregion

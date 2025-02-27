@@ -6,6 +6,8 @@ namespace Fantazee.Currencies
     [Serializable]
     public class Wallet : Wallet<CurrencyType, Currency>
     {
+        public Wallet() : base() { }
+        
         public Wallet(CurrencyType type, int amount) : base(type, amount) { }
         
         public Wallet(Wallet wallet) : base(wallet) { }

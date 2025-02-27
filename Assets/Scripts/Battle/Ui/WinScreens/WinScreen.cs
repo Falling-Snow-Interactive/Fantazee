@@ -32,7 +32,7 @@ namespace Fantazee.Battle.Ui.WinScreens
             }
             
             currencyEntries.Clear();
-            foreach (Currency currency in rewards.Currencies)
+            foreach (Currency currency in rewards.Wallet.Currencies)
             {
                 CurrencyEntryUi currencyEntry = Instantiate(currencyEntryPrefab, currencyContainer);
                 currencyEntry.SetCurrency(currency);

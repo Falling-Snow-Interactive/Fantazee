@@ -1,5 +1,6 @@
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
+using Fantazee.Instance;
 using Fsi.Gameplay;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Fantazee.Maps.Ui
 
         private void Start()
         {
-            if (GameController.Instance.GameInstance.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency currency))
+            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency currency))
             {
                 currencyEntry.SetCurrency(currency);
             }

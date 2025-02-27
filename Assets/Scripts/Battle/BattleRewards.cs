@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Currencies;
+using Fantazee.Instance;
 using UnityEngine;
 
 namespace Fantazee.Battle
@@ -9,7 +10,23 @@ namespace Fantazee.Battle
     public class BattleRewards
     {
         [SerializeField]
-        private List<Currency> currencies;
-        public List<Currency> Currencies => currencies;
+        private Wallet wallet;
+        public Wallet Wallet => wallet;
+
+        public BattleRewards()
+        {
+            wallet = new Wallet();
+        }
+        
+        public void Add(BattleRewards other)
+        {
+            wallet.Add(other.Wallet);
+        }
+
+        public void Grant()
+        {
+            Debug.Log($"Battle: Rewards Granted\n{wallet}");
+            GameInstance.Current.Character.Wallet.Add(wallet);
+        }
     }
 }

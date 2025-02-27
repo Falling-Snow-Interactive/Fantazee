@@ -12,6 +12,12 @@ namespace Fantazee.Battle.Characters.Enemies
         [SerializeField]
         private Health health;
         public override Health Health => health;
+        
+        [Header("Rewards")]
+        
+        [SerializeField]
+        private BattleRewards battleRewards;
+        public BattleRewards BattleRewards => battleRewards;
 
         #region Attack
         
