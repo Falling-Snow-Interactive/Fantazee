@@ -2,6 +2,7 @@ using System;
 using Fantazee.Battle.Settings;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
+using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using Fantazee.Spells.Settings;
 using TMPro;
@@ -16,6 +17,7 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         
         [SerializeReference]
         private Score score;
+        public Score Score => score;
         
         [Header("References")]
 
@@ -33,6 +35,11 @@ namespace Fantazee.Shop.Ui.ScoreSelect
             this.score = score;
             this.onSelect = onSelect;
 
+            UpdateSpell();
+        }
+
+        public void UpdateSpell()
+        {
             if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Type, out ScoreInformation scoreInfo))
             {
                 scoreText.text = scoreInfo.LocName.GetLocalizedString();

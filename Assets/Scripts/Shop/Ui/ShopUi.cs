@@ -82,7 +82,8 @@ namespace Fantazee.Shop.Ui
 
         private void OnSpellScreenComplete()
         {
-            
+            spellScreen.SlideOut();
+            mainScreen.SlideIn();
         }
         
         #endregion
