@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Characters;
+using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Scores;
 using Fsi.Gameplay.Healths;
@@ -18,6 +19,12 @@ namespace Fantazee.Instance
         [SerializeField]
         private Health health;
         public Health Health => health;
+        
+        [Header("Wallet")]
+        
+        [SerializeField]
+        private Wallet wallet;
+        public Wallet Wallet => wallet;
         
         [Header("Scores")]
         
@@ -40,6 +47,7 @@ namespace Fantazee.Instance
             this.data = data;
             
             health = new Health(data.MaxHealth);
+            wallet = new Wallet(data.Wallet);
             scoreTracker = new ScoreTracker(data);
             dice = Die.DefaultDice(6);
         }

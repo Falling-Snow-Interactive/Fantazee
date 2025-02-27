@@ -227,183 +227,23 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   gameInstance:
     seed: 0
-    health:
-      current: 500
-      max: 500
-    dice:
-    - name: 1 - 1     2 - 1     3 - 1     4 - 1     5 - 1     6 - 1
-      value: 0
-      dieRandomizer:
-        entries:
-        - weight: 1
-          value: 1
-        - weight: 1
-          value: 2
-        - weight: 1
-          value: 3
-        - weight: 1
-          value: 4
-        - weight: 1
-          value: 5
-        - weight: 1
-          value: 6
-    - name: 1 - 1     2 - 1     3 - 1     4 - 1     5 - 1     6 - 1
-      value: 1
-      dieRandomizer:
-        entries:
-        - weight: 1
-          value: 1
-        - weight: 1
-          value: 2
-        - weight: 1
-          value: 3
-        - weight: 1
-          value: 4
-        - weight: 1
-          value: 5
-        - weight: 1
-          value: 6
-    - name: 1 - 1     2 - 1     3 - 1     4 - 1     5 - 1     6 - 1
-      value: 2
-      dieRandomizer:
-        entries:
-        - weight: 1
-          value: 1
-        - weight: 1
-          value: 2
-        - weight: 1
-          value: 3
-        - weight: 1
-          value: 4
-        - weight: 1
-          value: 5
-        - weight: 1
-          value: 6
-    - name: 1 - 1     2 - 1     3 - 1     4 - 1     5 - 1     6 - 1
-      value: 3
-      dieRandomizer:
-        entries:
-        - weight: 1
-          value: 1
-        - weight: 1
-          value: 2
-        - weight: 1
-          value: 3
-        - weight: 1
-          value: 4
-        - weight: 1
-          value: 5
-        - weight: 1
-          value: 6
-    - name: 1 - 1     2 - 1     3 - 1     4 - 1     5 - 1     6 - 1
-      value: 4
-      dieRandomizer:
-        entries:
-        - weight: 1
-          value: 1
-        - weight: 1
-          value: 2
-        - weight: 1
-          value: 3
-        - weight: 1
-          value: 4
-        - weight: 1
-          value: 5
-        - weight: 1
-          value: 6
-    - name: 1 - 1     2 - 1     3 - 1     4 - 1     5 - 1     6 - 1
-      value: 5
-      dieRandomizer:
-        entries:
-        - weight: 1
-          value: 1
-        - weight: 1
-          value: 2
-        - weight: 1
-          value: 3
-        - weight: 1
-          value: 4
-        - weight: 1
-          value: 5
-        - weight: 1
-          value: 6
-    mapIndex: 0
-    mapNodeIndex: 0
-    environment: 1
+    character:
+      rid: -2
+    map:
+      rid: -2
     wallet:
       currencies:
-      - name: Gold - 500
+      - name: Gold - 5
         type: 1
-        amount: 500
+        amount: 5
     relics: []
-    scoreTracker:
-      ones:
-        name: Ones - Dagger
-        type: 1
-        dice: []
-        spell: 1
-      twos:
-        name: Twos - Dagger
-        type: 2
-        dice: []
-        spell: 1
-      threes:
-        name: Threes - Dagger
-        type: 3
-        dice: []
-        spell: 1
-      fours:
-        name: Fours - Dagger
-        type: 4
-        dice: []
-        spell: 1
-      fives:
-        name: Fives - Dagger
-        type: 5
-        dice: []
-        spell: 1
-      sixes:
-        name: Sixes - Dagger
-        type: 6
-        dice: []
-        spell: 1
-      threeOfAKind:
-        name: ThreeOfAKind - Dagger
-        type: 7
-        dice: []
-        spell: 1
-      fourOfAKind:
-        name: FourOfAKind - Dagger
-        type: 8
-        dice: []
-        spell: 1
-      fullHouse:
-        name: FullHouse - Dagger
-        type: 9
-        dice: []
-        spell: 1
-      smallStraight:
-        name: SmallStraight - Dagger
-        type: 10
-        dice: []
-        spell: 1
-      largeStraight:
-        name: LargeStraight - Dagger
-        type: 11
-        dice: []
-        spell: 1
-      chance:
-        name: Chance - Dagger
-        type: 12
-        dice: []
-        spell: 1
-      fantazee:
-        name: Fantazee - Dagger
-        type: 13
-        dice: []
-        spell: 1
   loadingScreen: {fileID: 5289247866963360002}
   startingRelics: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &307396310537484130
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,12 +33,6 @@ namespace Fantazee.Instance
         private MapInstance map;
         public MapInstance Map => map;
 
-        [Header("Currency")]
-
-        [SerializeField]
-        private Wallet wallet;
-        public Wallet Wallet => wallet;
-
         [Header("Relics")]
 
         [SerializeField]
@@ -54,7 +48,6 @@ namespace Fantazee.Instance
                                             seed = DefaultSeed,
                                             character = new CharacterInstance(CharacterSettings.Settings.DefaultCharacter),
                                             map = new MapInstance(),
-                                            wallet = new Wallet(CurrencyType.Gold, DefaultGold),
                                         };
                 
                 return instance;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Fantazee.Battle.Characters;
+using Fantazee.Currencies;
 using Fantazee.Scores;
 using Fantazee.Spells;
 using UnityEngine;
@@ -43,5 +44,11 @@ namespace Fantazee.Characters
         [SerializeField]
         private List<SpellType> fantazeeSpells;
         public List<SpellType> FantazeeSpells => fantazeeSpells;
+
+        [Header("Waller")]
+
+        [SerializeField]
+        private Wallet wallet;
+        public Wallet Wallet => wallet;
     }
 }
