@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   camera: {fileID: 0}
-  rolls: 3
   remainingRolls: 3
   battlePlayer: {fileID: 0}
   enemies: []
@@ -55,16 +54,21 @@ MonoBehaviour:
   - {fileID: 3079497476993578450, guid: 24cd6dd13294249b7a3848cca090b724, type: 3}
   - {fileID: 3079497476993578450, guid: 4690d9e039ed740df89133511a8fac87, type: 3}
   enemySpawns:
-    min: 1
-    max: 3
+    min: 2
+    max: 4
+  rewards:
+    rid: -2
   battleScores: []
-  battleRewards:
-    currencies:
-    - name: Gold - 50
-      type: 1
-      amount: 50
+  fantazeeBattleScore:
+    spells: []
+    score:
+      rid: -2
+    dice: []
+    entryUi: {fileID: 0}
   scoreTime: 0.3
   scoreEase: 1
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

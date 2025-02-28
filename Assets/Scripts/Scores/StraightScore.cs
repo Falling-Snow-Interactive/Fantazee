@@ -60,7 +60,7 @@ namespace Fantazee.Scores
 
                     if (count >= GetLength())
                     {
-                        return Type == ScoreType.SmallStraight ? 30 : 40;
+                        return Type == ScoreType.SmallStraight ? 10 : 15;
                     }
                 }
             }

@@ -25,7 +25,7 @@ namespace Fantazee.Scores
                 switch (kvp.Value)
                 {
                     case >=5:
-                        return 25;
+                        return 20;
                     case >=3:
                         foundThree = true;
                         break;
@@ -37,7 +37,7 @@ namespace Fantazee.Scores
 
             if (foundPair && foundThree)
             {
-                return 25;
+                return 20;
             }
 
             return 0;

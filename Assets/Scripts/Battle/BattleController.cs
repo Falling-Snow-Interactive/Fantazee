@@ -12,7 +12,6 @@ using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
 using Fantazee.Instance;
-using Fantazee.Scores.Ui;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -368,8 +367,31 @@ namespace Fantazee.Battle
             PlayerTurnStart?.Invoke();
             remainingRolls = GameInstance.Current.Character.Rolls;
             lockedDice.Clear();
-            Player.StartTurn();
-            BattleUi.Instance.DiceControl.ShowDice(TryRoll);
+            bool canPlay = false;
+
+            foreach (BattleScore battleScore in battleScores)
+            {
+                if (battleScore.CanScore())
+                {
+                    canPlay = true;
+                    break;
+                }
+            }
+
+            if (canPlay || fantazeeBattleScore.CanScore())
+            {
+                Player.StartTurn();
+                BattleUi.Instance.DiceControl.ShowDice(TryRoll);
+            }
+            else
+            {
+                foreach (BattleScore battleScore in battleScores)
+                {
+                    battleScore.ClearDice();
+                }
+                fantazeeBattleScore.ClearDice();
+                TryEndPlayerTurn();
+            }
         }
         
         public void TryEndPlayerTurn()
@@ -391,7 +413,20 @@ namespace Fantazee.Battle
         
         #endregion
         
-        #region Enemy Turn
+        #region Enemies
+
+        public int EnemiesRemaining()
+        {
+            int count = 0;
+            foreach (BattleEnemy e in enemies)
+            {
+                if (e.Health.IsAlive)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
 
         private void StartEnemyTurn()
         {

@@ -1,5 +1,5 @@
+using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
-using Fantazee.Scores.Ui;
 using Fsi.Gameplay;
 using UnityEngine;
 

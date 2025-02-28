@@ -87,7 +87,6 @@ namespace Fantazee.Dice.Ui
 
         public void ResetDice()
         {
-            Debug.Log($"DiceUi - Reset");
             ToggleOff();
             root.gameObject.SetActive(true);
             if (Die != null)
@@ -182,7 +181,6 @@ namespace Fantazee.Dice.Ui
 
         public void ToggleOff()
         {
-            Debug.Log($"DiceUi - ToggleLock {false}");
             BattleController.Instance.LockedDice.Remove(Die);
             
             root.DOLocalRotate(Vector3.zero, lockTime).SetEase(lockEase);
@@ -191,7 +189,6 @@ namespace Fantazee.Dice.Ui
 
         public void Hide(Action onComplete, float delay = 0, bool force = false)
         {
-            Debug.Log($"DiceUi - Hide ({force})");
             if (force)
             {
                 root.localPosition = hideOffset;
@@ -206,7 +203,6 @@ namespace Fantazee.Dice.Ui
         
         public void Show(Action onComplete, float delay = 0, bool force = false)
         {
-            Debug.Log($"DiceUi - Show ({force})");
             if (force)
             {
                 root.localPosition = Vector3.zero;

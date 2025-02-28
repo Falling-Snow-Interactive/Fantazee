@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
-using Fantazee.Battle.Score;
-using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Settings;
 using Fantazee.Scores.Bonus.Ui;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantazee.Scores.Ui
+namespace Fantazee.Battle.Score.Ui
 {
     public class ScoreboardUi : MonoBehaviour
     {
@@ -59,7 +57,7 @@ namespace Fantazee.Scores.Ui
             }
             
             // TODO - Fix fantazee entry
-            // fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
+            fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
             
             if (BattleSettings.Settings.EnvironmentInformation
                               .TryGetInformation(GameController.Instance.GameInstance.Map.Environment, 

@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
+using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Battle.Characters.Enemies
 {
     public class BattleEnemy : BattleCharacter
     {
+        [SerializeField]
+        private RangeInt damage;
+        
         [Header("Health")]
         
         [SerializeField]
@@ -30,7 +34,7 @@ namespace Fantazee.Battle.Characters.Enemies
         {
             Visuals.Attack();
             yield return new WaitForSeconds(0.2f);
-            BattleController.Instance.Player.Damage(25); // TODO - <----
+            BattleController.Instance.Player.Damage(damage.Random()); // TODO - <----
             onComplete?.Invoke();
         }
         

@@ -23,7 +23,7 @@ namespace Fantazee.Scores
                 }
             }
 
-            return isValid ? 50 : 0;
+            return isValid ? 30 : 0;
         }
 
         public override List<Die> GetScoredDice(List<Die> dice)

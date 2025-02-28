@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.BattleSpells;
@@ -55,19 +56,30 @@ namespace Fantazee.Battle.Score
 
         public void Cast(Damage damage, Action onComplete)
         {
-            if (entryUi?.SpellIcons[0])
+            BattleController.Instance.StartCoroutine(CastSequence(damage, onComplete));
+        }
+
+        private IEnumerator CastSequence(Damage damage, Action onComplete)
+        {
+            for (int i = 0; i < spells.Count; i++)
             {
-                entryUi.SpellIcons[0].transform.DOPunchScale(Vector3.one * -0.1f, 0.3f);
+                bool ready = false;
+                BattleSpell spell = spells[i];
+                if (spell.Data.Type != SpellType.None)
+                {
+                    entryUi.SpellIcons[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
+                
+                    spell.Cast(damage, () => { ready = true; });
+                    yield return new WaitUntil(() => ready);
+                }
             }
-            spells[0].Cast(damage, () =>
-                                   {
-                                       if (spells[1].Data.Type != SpellType.None 
-                                           && entryUi?.SpellIcons[1])
-                                       {
-                                           entryUi.SpellIcons[1].transform.DOPunchScale(Vector3.one * -0.1f, 0.3f);
-                                       }
-                                       spells[1].Cast(damage, onComplete);
-                                   });
+            
+            onComplete?.Invoke();
+        }
+
+        public void Cast(int i, Damage damage, Action onComplete)
+        {
+            
         }
 
         public int Calculate()

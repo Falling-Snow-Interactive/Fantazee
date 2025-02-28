@@ -153,6 +153,7 @@ namespace Fantazee.Battle.Score.Ui
 
         public void ShowTooltip()
         {
+            return;
             DOTween.Complete(tooltipGroup);
             tooltipGroup.SetActive(true);
             Vector3 pos = tooltipRoot.transform.localPosition;
@@ -163,6 +164,7 @@ namespace Fantazee.Battle.Score.Ui
 
         public void HideTooltip()
         {
+            return;
             DOTween.Complete(tooltipRoot);
             Vector3 pos = tooltipRoot.transform.localPosition;
             pos.y = tooltipOffset;
