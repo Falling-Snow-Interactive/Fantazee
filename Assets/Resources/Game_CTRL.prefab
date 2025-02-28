@@ -189,6 +189,8 @@ GameObject:
   - component: {fileID: -3179624103548597510}
   - component: {fileID: 307396310537484130}
   - component: {fileID: 5289247866963360002}
+  - component: {fileID: 5505610813834021074}
+  - component: {fileID: 8953011610711814437}
   m_Layer: 0
   m_Name: Game_CTRL
   m_TagString: Untagged
@@ -231,14 +233,9 @@ MonoBehaviour:
       rid: -2
     map:
       rid: -2
-    wallet:
-      currencies:
-      - name: Gold - 5
-        type: 1
-        amount: 5
     relics: []
   loadingScreen: {fileID: 5289247866963360002}
-  startingRelics: []
+  environmentAudio: {fileID: 5505610813834021074}
   references:
     version: 2
     RefIds:
@@ -302,3 +299,47 @@ MonoBehaviour:
   showEase: 6
   hideEase: 5
   overlay: {fileID: 4801063919757846256}
+--- !u!114 &5505610813834021074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022420503714906224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2387efc2a004ce88a72a4c32eb1497a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventEmitter: {fileID: 8953011610711814437}
+--- !u!114 &8953011610711814437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022420503714906224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1

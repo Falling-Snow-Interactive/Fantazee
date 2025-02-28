@@ -1,10 +1,14 @@
 using System;
 using DG.Tweening;
+using Fantazee.Environments.Audio;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
+using FMOD.Studio;
+using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Maps
     {
@@ -33,6 +37,18 @@ namespace Fantazee.Maps
 
             private bool canInteract = false;
 
+            [Header("Audio")]
+
+            [SerializeField]
+            private EventReference mapStartSfx;
+            
+            [SerializeField]
+            private EventReference mapEndSfx;
+
+            [SerializeField]
+            private EventReference footstepsSfx;
+            private EventInstance footstepsInst;
+
             protected override void Awake()
             {
                 base.Awake();
@@ -41,6 +57,8 @@ namespace Fantazee.Maps
                 selectAction = selectActionRef.action;
 
                 selectAction.performed += ctx => OnSelectAction();
+                
+                footstepsInst = RuntimeManager.CreateInstance(footstepsSfx);
             }
 
             private void OnEnable()
@@ -67,6 +85,8 @@ namespace Fantazee.Maps
 
                 player.transform.position = node.transform.position;
                 canInteract = false;
+                
+                RuntimeManager.PlayOneShot(mapStartSfx);
                 
                 Debug.Log($"Map - Current Node: {node.name}");
                 Debug.Log($"Map - Player to {player.transform.position}");
@@ -125,9 +145,11 @@ namespace Fantazee.Maps
                 
                 canInteract = false;
 
+                footstepsInst.start();
                 player.transform.DOMove(node.transform.position, 0.5f)
                       .OnComplete(() =>
                                   {
+                                      footstepsInst.stop(STOP_MODE.IMMEDIATE);
                                       OnFinishMoving(node);
                                   });
             }

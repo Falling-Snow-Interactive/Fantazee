@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
 using Fantazee.Battle.Settings;
+using Fantazee.Environments.Information;
+using Fantazee.Environments.Settings;
 using Fantazee.Scores.Bonus.Ui;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,9 +61,8 @@ namespace Fantazee.Battle.Score.Ui
             // TODO - Fix fantazee entry
             fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
             
-            if (BattleSettings.Settings.EnvironmentInformation
-                              .TryGetInformation(GameController.Instance.GameInstance.Map.Environment, 
-                                                 out EnvironmentInformation info))
+            if (EnvironmentSettings.Settings.Information.TryGetInformation(GameController.Instance.GameInstance.Map.Environment, 
+                                                                           out EnvironmentInformation info))
             {
                 background.color = info.Color;
             }

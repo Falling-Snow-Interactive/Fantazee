@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Fantazee.Spells.Data;
+using FMODUnity;
 using UnityEngine;
 
 namespace Fantazee.Battle.BattleSpells
@@ -19,6 +20,7 @@ namespace Fantazee.Battle.BattleSpells
 
         public void Cast(Damage damage, Action onComplete = null)
         {
+            RuntimeManager.PlayOneShot(data.CastSfx);
             BattleController.Instance.StartCoroutine(CastSequence(damage, onComplete));
         }
 

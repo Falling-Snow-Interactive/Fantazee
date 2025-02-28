@@ -4,6 +4,8 @@ using Fantazee.Battle;
 using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -53,6 +55,12 @@ namespace Fantazee.Dice.Ui
         
         [SerializeField]
         private Ease lockEase = Ease.OutBounce;
+
+        [SerializeField]
+        private EventReference lockSfx;
+        
+        [SerializeField]
+        private EventReference unlockSfx;
         
         [Header("Hide/Show")]
 
@@ -71,6 +79,16 @@ namespace Fantazee.Dice.Ui
         [SerializeField]
         private Ease showEase = Ease.Linear;
         
+        [SerializeField]
+        private EventReference showSfx;
+        
+        [SerializeField]
+        private EventReference hideSfx;
+        
+        // Audio
+        private EventInstance rollSfx;
+        private EventInstance squishSfx;
+        
         [Header("References")]
         
         [SerializeField]
@@ -79,6 +97,12 @@ namespace Fantazee.Dice.Ui
 
         [SerializeField]
         private Transform root;
+
+        private void Awake()
+        {
+            rollSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.DieRollRef);
+            squishSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.DieSquishRef);
+        }
         
         private void Start()
         {
@@ -122,21 +146,23 @@ namespace Fantazee.Dice.Ui
 
         public void Roll(float delay = 0, Action<Die> onRollComplete = null)
         {
+            if (rolling)
+            {
+                return;
+            }
+            
             ResetDice();
+            rolling = true;
             
             Sequence sequence = DOTween.Sequence();
             
-            sequence.Append(root.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase));
+            sequence.Append(root.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase)
+                                .OnStart(() => rollSfx.start()));
             sequence.Append(root.DOLocalMoveY(0, fallTime).SetEase(fallEase));
-            
-            sequence.OnStart(() =>
-                             {
-                                 rolling = true;
-                             });
             sequence.OnComplete(() =>
                                 {
                                     rolling = false;
-                                    SetImage(Die.Value);
+                                    SetImage(Die.Value); 
                                     onRollComplete?.Invoke(Die);
                                 });
             sequence.SetDelay(delay);
@@ -162,14 +188,15 @@ namespace Fantazee.Dice.Ui
         public void ToggleLock()
         {
             bool shouldLock = !BattleController.Instance.LockedDice.Contains(Die);
-            Debug.Log($"DiceUi - ToggleLock {shouldLock}");
             if (shouldLock)
             {
                 BattleController.Instance.LockedDice.Add(Die);
+                RuntimeManager.PlayOneShot(lockSfx);
             }
             else
             {
                 BattleController.Instance.LockedDice.Remove(Die);
+                RuntimeManager.PlayOneShot(unlockSfx);
             }
 
             Vector3 rot = shouldLock ? lockRot : Vector3.zero;
@@ -218,11 +245,12 @@ namespace Fantazee.Dice.Ui
         public void Squish()
         {
             root.transform.localScale = Vector3.one;
-            root.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
-                                         BattleSettings.Settings.SquishTime, 
+            squishSfx.start();
+            root.transform.DOPunchScale(DiceSettings.Settings.SquishAmount, 
+                                        DiceSettings.Settings.SquishTime, 
                                          10, 
                                          1f)
-                 .SetEase(BattleSettings.Settings.SquishEase);
+                 .SetEase(DiceSettings.Settings.SquishEase);
         }
     }
 }

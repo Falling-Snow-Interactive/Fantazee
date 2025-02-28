@@ -32,23 +32,17 @@ MonoBehaviour:
     m_LocalVariables: []
   icon: {fileID: 21300000, guid: 9ae524608c4774755993cc7c2c0a8213, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
-  attackSfx:
+  castSfx:
     Guid:
-      Data1: 39658635
-      Data2: 1087295334
-      Data3: -218683484
-      Data4: -1537345559
-    Path: event:/Battle/Actions/Bow
-  attackHitSfx:
-    Guid:
-      Data1: 1587142695
-      Data2: 1254140595
-      Data3: -1123422044
-      Data4: 2069711484
-    Path: event:/Battle/Actions/Arrow
+      Data1: -1424322623
+      Data2: 1169967675
+      Data3: -19947625
+      Data4: -1348847300
+    Path: event:/Battle/Spells/Spell_Shield
   cost:
-    min: 10
-    max: 15
+    name: Gold - 10
+    type: 1
+    amount: 10
   references:
     version: 2
     RefIds: []

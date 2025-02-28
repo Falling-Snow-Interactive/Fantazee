@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
 using Fantazee.Scores.Information;
+using FMODUnity;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,49 +9,31 @@ namespace Fantazee.Battle.Settings
 {
     public class BattleSettings : ScriptableObject
     {
-        private const string RESOURCE_PATH = "Settings/BattleSettings";
-        private const string FULL_PATH = "Assets/Resources/" + RESOURCE_PATH + ".asset";
+        private const string ResourcePath = "Settings/BattleSettings";
+        private const string FullPath = "Assets/Resources/" + ResourcePath + ".asset";
 
-        private static BattleSettings _settings;
-        public static BattleSettings Settings => _settings ??= GetOrCreateSettings();
+        private static BattleSettings settings;
+        public static BattleSettings Settings => settings ??= GetOrCreateSettings();
 
         [Header("Scores")]
 
         [SerializeField]
         private int bonusScore = 200;
         public int BonusScore => bonusScore;
-        
-        [Header("Team Information")]
+
+        [SerializeField]
+        private EventReference scoreSfx;
+        public EventReference ScoreSfx => scoreSfx;
         
         [SerializeField]
         private ScoreInformationGroup scoreInformation;
         public ScoreInformationGroup ScoreInformation => scoreInformation;
         
-        [Header("Animations")]
-        
-        [SerializeField]
-        private Vector3 squishAmount = new Vector3(0.2f, -0.2f, 0);
-        public Vector3 SquishAmount => squishAmount;
-
-        [SerializeField]
-        private float squishTime = 0.25f;
-        public float SquishTime => squishTime;
-        
-        [SerializeField]
-        private Ease squishEase = Ease.Linear;
-        public Ease SquishEase => squishEase;
-        
-        [Header("Environments")]
-        
-        [SerializeField]
-        private EnvironmentInformationGroup environmentInformation;
-        public EnvironmentInformationGroup EnvironmentInformation => environmentInformation;
-        
         #region Settings
         
         public static BattleSettings GetOrCreateSettings()
         {
-            var settings = Resources.Load<BattleSettings>(RESOURCE_PATH);
+            var settings = Resources.Load<BattleSettings>(ResourcePath);
 
             #if UNITY_EDITOR
             if (!settings)
@@ -66,7 +49,7 @@ namespace Fantazee.Battle.Settings
                 }
 
                 settings = CreateInstance<BattleSettings>();
-                AssetDatabase.CreateAsset(settings, FULL_PATH);
+                AssetDatabase.CreateAsset(settings, FullPath);
                 AssetDatabase.SaveAssets();
             }
             #endif

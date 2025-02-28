@@ -35,3 +35,20 @@ MonoBehaviour:
     - name: 0
       type: 0
       sprite: {fileID: -812017129, guid: d8abbf325646d4e8f87152bf98ff3c7e, type: 3}
+  squishAmount: {x: 0.2, y: -0.2, z: 0}
+  squishTime: 0.25
+  squishEase: 1
+  dieRollRef:
+    Guid:
+      Data1: -1383280746
+      Data2: 1166428425
+      Data3: -1265161595
+      Data4: -1445726228
+    Path: event:/Dice/Roll
+  dieSquishRef:
+    Guid:
+      Data1: 1179777480
+      Data2: 1105100132
+      Data3: 2136599219
+      Data4: -528275620
+    Path: event:/Dice/Squish

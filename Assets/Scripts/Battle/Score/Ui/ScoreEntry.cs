@@ -5,6 +5,7 @@ using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
 using Fantazee.Scores.Information;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -133,12 +134,12 @@ namespace Fantazee.Battle.Score.Ui
             int s = score.Calculate();
             button.interactable = false;
             scoreText.text = s.ToString();
-            
-            scoreContainer.transform.DOPunchScale(BattleSettings.Settings.SquishAmount, 
-                                                  BattleSettings.Settings.SquishTime,
+            RuntimeManager.PlayOneShot(BattleSettings.Settings.ScoreSfx);
+            scoreContainer.transform.DOPunchScale(DiceSettings.Settings.SquishAmount, 
+                                                  DiceSettings.Settings.SquishTime,
                                                   10,
                                                   1f)
-                          .SetEase(BattleSettings.Settings.SquishEase);
+                          .SetEase(DiceSettings.Settings.SquishEase);
 
             return s;
         }

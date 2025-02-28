@@ -2,9 +2,13 @@ using System;
 using DG.Tweening;
 using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
+using FMOD.Studio;
+using FMODUnity;
 using Fsi.Gameplay.Healths;
 using Fsi.Gameplay.Healths.Ui;
 using UnityEngine;
+using UnityEngine.Serialization;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Battle.Characters
 {
@@ -65,6 +69,12 @@ namespace Fantazee.Battle.Characters
         
         [SerializeField]
         private Ease showEase = Ease.Linear;
+
+        [Header("Audio")]
+
+        [SerializeField]
+        private EventReference footsteps;
+        private EventInstance footstepsInstance;
         
         private void OnDestroy()
         {
@@ -78,6 +88,8 @@ namespace Fantazee.Battle.Characters
             
             healthUi.Initialize(Health);
             Spawned?.Invoke(this);
+            
+            footstepsInstance = RuntimeManager.CreateInstance(footsteps);
 
             shieldUi.Initialize(shield);
         }
@@ -134,11 +146,16 @@ namespace Fantazee.Battle.Characters
                 transform.localPosition = localRoot;
                 return;
             }
-
+            
             transform.DOLocalMove(localRoot, showTime)
                      .SetEase(showEase)                     
                      .SetDelay(delay)
-                     .OnComplete(() => onComplete?.Invoke());
+                     .OnPlay(() => footstepsInstance.start())
+                     .OnComplete(() =>
+                                 {
+                                     footstepsInstance.stop(STOP_MODE.IMMEDIATE);
+                                     onComplete?.Invoke();
+                                 });
         }
         
         protected virtual void OnDrawGizmos()

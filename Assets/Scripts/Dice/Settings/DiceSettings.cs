@@ -1,4 +1,6 @@
+using DG.Tweening;
 using Fantazee.Items.Dice.Information;
+using FMODUnity;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,6 +19,30 @@ namespace Fantazee.Items.Dice.Settings
         [SerializeField]
         private SideInformationGroup sideInformation;
         public SideInformationGroup SideInformation => sideInformation;
+        
+        [Header("Animations")]
+        
+        [SerializeField]
+        private Vector3 squishAmount = new Vector3(0.2f, -0.2f, 0);
+        public Vector3 SquishAmount => squishAmount;
+
+        [SerializeField]
+        private float squishTime = 0.25f;
+        public float SquishTime => squishTime;
+        
+        [SerializeField]
+        private Ease squishEase = Ease.Linear;
+        public Ease SquishEase => squishEase;
+        
+        [Header("Audio")]
+        
+        [SerializeField]
+        private EventReference dieRollRef;
+        public EventReference DieRollRef => dieRollRef;
+
+        [SerializeField]
+        private EventReference dieSquishRef;
+        public EventReference DieSquishRef => dieSquishRef;
         
         #region Settings
         

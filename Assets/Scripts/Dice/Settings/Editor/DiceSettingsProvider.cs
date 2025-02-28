@@ -31,6 +31,13 @@ namespace Fantazee.Items.Dice.Settings.Editor
         {
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("sideInformation"));
             
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishAmount"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishEase"));
+            
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("dieRollRef"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("dieSquishRef"));
+            
             EditorGUILayout.Space(20);
             if (GUILayout.Button("Save"))
             {

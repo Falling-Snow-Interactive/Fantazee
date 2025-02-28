@@ -62,11 +62,46 @@ MonoBehaviour:
   lockScale: {x: 0.8, y: 0.8, z: 0.8}
   lockTime: 0.2
   lockEase: 30
+  lockSfx:
+    Guid:
+      Data1: -294528293
+      Data2: 1278682202
+      Data3: -1667961178
+      Data4: -656612721
+    Path: event:/Battle/Dice/Dice_Lock
+  unlockSfx:
+    Guid:
+      Data1: -1651917084
+      Data2: 1109801792
+      Data3: 2009196681
+      Data4: -105422714
+    Path: event:/Battle/Dice/Dice_Unlock
   hideOffset: {x: 0, y: -500, z: 0}
   hideTime: 0.5
   hideEase: 12
   showTime: 0.5
   showEase: 12
+  showSfx:
+    Guid:
+      Data1: -318620354
+      Data2: 1203192456
+      Data3: -1720251463
+      Data4: -1832976957
+    Path: event:/Battle/Actions/Swoosh_Small
+  hideSfx:
+    Guid:
+      Data1: -318620354
+      Data2: 1203192456
+      Data3: -1720251463
+      Data4: -1832976957
+    Path: event:/Battle/Actions/Swoosh_Small
+  rollRef:
+    Guid:
+      Data1: -1383280746
+      Data2: 1166428425
+      Data3: -1265161595
+      Data4: -1445726228
+    Path: event:/Battle/Dice/Dice_Roll
   image: {fileID: 1629304878505802033}
   root: {fileID: 5127248589732021929}
 --- !u!114 &458663929710508687

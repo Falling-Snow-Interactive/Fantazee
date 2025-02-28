@@ -445,6 +445,27 @@ MonoBehaviour:
   player: {fileID: 206340804}
   cursorActionRef: {fileID: 3495247442398311673, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
   selectActionRef: {fileID: 9090993431622607344, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  mapStartSfx:
+    Guid:
+      Data1: -847252282
+      Data2: 1302611045
+      Data3: 565844872
+      Data4: -1427972467
+    Path: event:/Map/Map_Open
+  mapEndSfx:
+    Guid:
+      Data1: 1831271368
+      Data2: 1287852618
+      Data3: -1540987253
+      Data4: -123334645
+    Path: event:/Map/Map_Close
+  footstepsSfx:
+    Guid:
+      Data1: -1074254192
+      Data2: 1278406906
+      Data3: 2061520286
+      Data4: 84554171
+    Path: event:/General/Footsteps_Grass
 --- !u!4 &188481643
 Transform:
   m_ObjectHideFlags: 0
@@ -1054,7 +1075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 839524378137029141, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 839524378137029141, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
       propertyPath: m_AnchoredPosition.y

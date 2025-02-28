@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Battle;
+using Fantazee.Environments.Audio;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
@@ -37,11 +38,11 @@ namespace Fantazee
         
         [SerializeField]
         private LoadingScreen loadingScreen;
-
-        [Header("Debug")]
         
+        [Header("Environment")]
+            
         [SerializeField]
-        private List<RelicData> startingRelics;
+        private EnvironmentAudio environmentAudio;
         
         protected override void Awake()
         {
@@ -84,6 +85,7 @@ namespace Fantazee
 
         public void MapReady()
         {
+            PlayEnvironmentMusic();
             loadingScreen.Hide(0,
                                () =>
                                {
@@ -215,6 +217,15 @@ namespace Fantazee
                                () => { });
         }
         
+        #endregion
+
+        #region Environment
+
+        private void PlayEnvironmentMusic()
+        {
+            environmentAudio.PlayMusic(GameInstance.Current.Map.Environment);
+        }
+
         #endregion
     }
 }
