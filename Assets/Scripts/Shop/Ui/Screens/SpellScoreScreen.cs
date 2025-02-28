@@ -47,8 +47,8 @@ namespace Fantazee.Shop.Ui.Screens
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} {scoreEntry.Score.Spell} -> {spellType}");
-            scoreEntry.Score.Spell = spellType;
+            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} {scoreEntry.Score.Spells[0]} -> {spellType}");
+            scoreEntry.Score.Spells[0] = spellType;
             
             selected.gameObject.SetActive(false);
 

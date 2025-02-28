@@ -45,7 +45,7 @@ namespace Fantazee.Shop.Ui.ScoreSelect
                 scoreText.text = scoreInfo.LocName.GetLocalizedString();
             }
 
-            if (SpellSettings.Settings.TryGetSpell(score.Spell, out SpellData spellInfo))
+            if (SpellSettings.Settings.TryGetSpell(score.Spells[0], out SpellData spellInfo))
             {
                 icon.sprite = spellInfo.Icon;
                 spellText.text = spellInfo.LocName.GetLocalizedString();

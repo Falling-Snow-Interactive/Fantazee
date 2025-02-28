@@ -35,7 +35,7 @@ namespace Fantazee.Battle.Score
         public BattleScore(Scores.Score score)
         {
             this.score = score;
-            if (SpellSettings.Settings.TryGetSpell(score.Spell, out spellData))
+            if (SpellSettings.Settings.TryGetSpell(score.Spells[0], out spellData))
             {
                 spell = BattleSpellFactory.Create(spellData);
             }
