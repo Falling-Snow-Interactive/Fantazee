@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
-using Fantazee.Battle.Score;
+using Fantazee.Scores;
 using Fantazee.Spells.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fantazee.Scores.Ui
+namespace Fantazee.Battle.Score.Ui
 {
     public class FantazeeScoreEntryUi : ScoreEntry
     {
-        [SerializeField]
-        private List<Image> spellIcons = new List<Image>();
-
         public override void Initialize(BattleScore score, Action<ScoreEntry> onSelect)
         {
             base.Initialize(score, onSelect);

@@ -45,12 +45,14 @@ namespace Fantazee.Scores
             }
         } 
 
-        protected Score(ScoreType type, 
-                        SpellType spell0 = SpellType.None, 
-                        SpellType spell1 = SpellType.None)
+        protected Score(ScoreType type, List<SpellType> spells)
         {
             this.type = type;
-            spells = new List<SpellType> { spell0, spell1 };
+            this.spells = new List<SpellType>(spells);
+            while(spells.Count < 2)
+            {
+                spells.Add(SpellType.None);
+            }
         }
 
         public abstract int Calculate(List<Die> dice);

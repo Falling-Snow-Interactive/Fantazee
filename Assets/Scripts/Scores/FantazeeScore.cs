@@ -7,13 +7,8 @@ namespace Fantazee.Scores
 {
     public class FantazeeScore : Score
     {
-        [SerializeField]
-        private List<SpellType> spells = new List<SpellType>();
-        public List<SpellType> Spells => spells;
-        
-        public FantazeeScore(List<SpellType> spells) : base(ScoreType.Fantazee, spells[0])
+        public FantazeeScore(List<SpellType> spells) : base(ScoreType.Fantazee, spells)
         {
-            this.spells.AddRange(spells);
         }
 
         public override int Calculate(List<Die> dice)

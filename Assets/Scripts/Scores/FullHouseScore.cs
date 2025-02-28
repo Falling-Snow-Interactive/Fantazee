@@ -8,7 +8,7 @@ namespace Fantazee.Scores
     [Serializable]
     public class FullHouseScore : Score
     {
-        public FullHouseScore(SpellType spell) : base(ScoreType.FullHouse, spell)
+        public FullHouseScore(List<SpellType> spells) : base(ScoreType.FullHouse, spells)
         {
             
         }

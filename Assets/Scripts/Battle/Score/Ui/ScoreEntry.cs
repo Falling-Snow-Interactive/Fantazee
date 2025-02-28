@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Fantazee.Battle.Score;
 using Fantazee.Battle.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Items.Dice.Settings;
@@ -11,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Fantazee.Scores.Ui
+namespace Fantazee.Battle.Score.Ui
 {
     public class ScoreEntry : MonoBehaviour
     {
@@ -53,7 +52,8 @@ namespace Fantazee.Scores.Ui
         public List<Image> DiceImages => diceImages;
         
         [SerializeField]
-        private List<Image> spellIcons = new();
+        protected List<Image> spellIcons = new();
+        public List<Image> SpellIcons => spellIcons;
 
         [FormerlySerializedAs("tooltip")]
         [SerializeField]

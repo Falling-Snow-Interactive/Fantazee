@@ -8,7 +8,7 @@ namespace Fantazee.Scores
     [Serializable]
     public class KindScore : Score
     {
-        public KindScore(SpellType spell, int kind) : base(GetType(kind), spell)
+        public KindScore(List<SpellType> spells, int kind) : base(GetType(kind), spells)
         {
         }
 

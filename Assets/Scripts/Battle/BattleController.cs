@@ -6,6 +6,7 @@ using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Battle.Score;
+using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui;
 using Fantazee.Currencies;
 using Fantazee.Dice;

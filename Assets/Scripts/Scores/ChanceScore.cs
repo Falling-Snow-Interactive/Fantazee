@@ -8,7 +8,7 @@ namespace Fantazee.Scores
     [Serializable]
     public class ChanceScore : Score
     {
-        public ChanceScore(SpellType spell) : base(ScoreType.Chance, spell)
+        public ChanceScore(List<SpellType> spells) : base(ScoreType.Chance, spells)
         {
         }
 

@@ -8,7 +8,7 @@ namespace Fantazee.Scores
     [Serializable]
     public class NumberScore : Score
     {
-        public NumberScore(SpellType spell, int number) : base(GetType(number), spell)
+        public NumberScore(List<SpellType> spells, int number) : base(GetType(number), spells)
         {
         }
 

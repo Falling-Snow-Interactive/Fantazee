@@ -17,12 +17,23 @@ namespace Fantazee.Scores
         public ScoreType Score => score;
         
         [SerializeField]
-        private SpellType spell;
-        public SpellType Spell => spell;
+        private List<SpellType> spells;
+        public List<SpellType> Spells => spells;
+
+        public override string ToString()
+        {
+            string s = $"{score}";
+            foreach (SpellType spell in spells)
+            {
+                s += $" - {spell}";
+            }
+
+            return s;
+        }
         
         public void OnBeforeSerialize()
         {
-            name = $"{score} - {spell}";
+            name = ToString();
         }
 
         public void OnAfterDeserialize() { }

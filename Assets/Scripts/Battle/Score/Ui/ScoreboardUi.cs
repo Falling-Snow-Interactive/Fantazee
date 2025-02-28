@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
 using Fantazee.Battle.Score;
+using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Settings;
 using Fantazee.Scores.Bonus.Ui;
 using UnityEngine;
@@ -54,6 +55,7 @@ namespace Fantazee.Scores.Ui
                 BattleScore score = battleScores[i];
                 ScoreEntry entry = entries[i];
                 entry.Initialize(score, OnScoreEntrySelected);
+                score.SetEntry(entry);
             }
             
             // TODO - Fix fantazee entry

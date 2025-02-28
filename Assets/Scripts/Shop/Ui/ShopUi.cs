@@ -9,7 +9,7 @@ using Fantazee.Shop.Ui.Screens;
 using Fantazee.Spells;
 using UnityEngine;
 using UnityEngine.Serialization;
-using ScoreEntry = Fantazee.Scores.Ui.ScoreEntry;
+using ScoreEntry = Fantazee.Battle.Score.Ui.ScoreEntry;
 
 namespace Fantazee.Shop.Ui
 {

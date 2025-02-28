@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Fantazee.Battle.BattleSpells;
+using Fantazee.Battle.Score.Ui;
 using Fantazee.Dice;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -28,6 +30,9 @@ namespace Fantazee.Battle.Score
         private List<Die> dice = new();
         public List<Die> Dice => dice;
 
+        [SerializeReference]
+        private ScoreEntry entryUi;
+
         public BattleScore(Scores.Score score)
         {
             this.score = score;
@@ -43,10 +48,24 @@ namespace Fantazee.Battle.Score
             }
         }
 
+        public void SetEntry(ScoreEntry entryUi)
+        {
+            this.entryUi = entryUi;
+        }
+
         public void Cast(Damage damage, Action onComplete)
         {
+            if (entryUi?.SpellIcons[0])
+            {
+                entryUi.SpellIcons[0].transform.DOPunchScale(Vector3.one * -0.1f, 0.3f);
+            }
             spells[0].Cast(damage, () =>
                                    {
+                                       if (spells[1].Data.Type != SpellType.None 
+                                           && entryUi?.SpellIcons[1])
+                                       {
+                                           entryUi.SpellIcons[1].transform.DOPunchScale(Vector3.one * -0.1f, 0.3f);
+                                       }
                                        spells[1].Cast(damage, onComplete);
                                    });
         }
