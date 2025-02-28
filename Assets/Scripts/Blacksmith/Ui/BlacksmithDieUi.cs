@@ -1,6 +1,6 @@
 using DG.Tweening;
+using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
-using Fantazee.Items.Dice.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 

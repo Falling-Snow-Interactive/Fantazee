@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fantazee.Dice.Settings;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;

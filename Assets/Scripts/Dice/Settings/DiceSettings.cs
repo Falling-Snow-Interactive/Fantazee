@@ -5,15 +5,15 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fantazee.Items.Dice.Settings
+namespace Fantazee.Dice.Settings
 {
     public class DiceSettings : ScriptableObject
     {
-        private const string RESOURCE_PATH = "Settings/DiceSettings";
-        private const string FULL_PATH = "Assets/Resources/" + RESOURCE_PATH + ".asset";
+        private const string ResourcePath = "Settings/DiceSettings";
+        private const string FullPath = "Assets/Resources/" + ResourcePath + ".asset";
 
-        private static DiceSettings _settings;
-        public static DiceSettings Settings => _settings ??= GetOrCreateSettings();
+        private static DiceSettings settings;
+        public static DiceSettings Settings => settings ??= GetOrCreateSettings();
 
         [Header("Sides")]
 
@@ -71,7 +71,7 @@ namespace Fantazee.Items.Dice.Settings
         
         public static DiceSettings GetOrCreateSettings()
         {
-            var settings = Resources.Load<DiceSettings>(RESOURCE_PATH);
+            var settings = Resources.Load<DiceSettings>(ResourcePath);
 
             #if UNITY_EDITOR
             if (!settings)
@@ -87,7 +87,7 @@ namespace Fantazee.Items.Dice.Settings
                 }
 
                 settings = CreateInstance<DiceSettings>();
-                AssetDatabase.CreateAsset(settings, FULL_PATH);
+                AssetDatabase.CreateAsset(settings, FullPath);
                 AssetDatabase.SaveAssets();
             }
             #endif
