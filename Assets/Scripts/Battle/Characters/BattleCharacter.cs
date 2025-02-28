@@ -70,11 +70,22 @@ namespace Fantazee.Battle.Characters
         [SerializeField]
         private Ease showEase = Ease.Linear;
 
+        [FormerlySerializedAs("footsteps")]
         [Header("Audio")]
 
         [SerializeField]
-        private EventReference footsteps;
-        private EventInstance footstepsInstance;
+        private EventReference footstepsSfxRef;
+        private EventInstance footstepsSfx;
+
+        [SerializeField]
+        private EventReference hitSfxRef;
+        private EventInstance hitSfx;
+
+        private void Awake()
+        {
+            footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
+            hitSfx = RuntimeManager.CreateInstance(hitSfxRef);
+        }
         
         private void OnDestroy()
         {
@@ -88,8 +99,6 @@ namespace Fantazee.Battle.Characters
             
             healthUi.Initialize(Health);
             Spawned?.Invoke(this);
-            
-            footstepsInstance = RuntimeManager.CreateInstance(footsteps);
 
             shieldUi.Initialize(shield);
         }
@@ -113,6 +122,7 @@ namespace Fantazee.Battle.Characters
                 Health.Damage(rem);
             }
 
+            hitSfx.start();
             visuals.Hit(() =>
                         {
                             if (Health.IsDead)
@@ -150,10 +160,10 @@ namespace Fantazee.Battle.Characters
             transform.DOLocalMove(localRoot, showTime)
                      .SetEase(showEase)                     
                      .SetDelay(delay)
-                     .OnPlay(() => footstepsInstance.start())
+                     .OnPlay(() => footstepsSfx.start())
                      .OnComplete(() =>
                                  {
-                                     footstepsInstance.stop(STOP_MODE.IMMEDIATE);
+                                     footstepsSfx.stop(STOP_MODE.IMMEDIATE);
                                      onComplete?.Invoke();
                                  });
         }

@@ -60,6 +60,7 @@ namespace Fantazee.Battle.Score.Ui
             
             // TODO - Fix fantazee entry
             fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
+            fantazeeScore.SetEntry(fantazeeEntry);
             
             if (EnvironmentSettings.Settings.Information.TryGetInformation(GameController.Instance.GameInstance.Map.Environment, 
                                                                            out EnvironmentInformation info))

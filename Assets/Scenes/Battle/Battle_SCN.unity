@@ -652,6 +652,17 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &1531979907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2531493482381218542, guid: 098adcca7f1bb48bfb88dd5845fdac0a, type: 3}
+  m_PrefabInstance: {fileID: 2669328735096059615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a6bdfce483453d9b24768abc1c5367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1643577968
 GameObject:
   m_ObjectHideFlags: 0
@@ -6221,6 +6232,22 @@ PrefabInstance:
     - target: {fileID: 9082550471650257718, guid: 098adcca7f1bb48bfb88dd5845fdac0a, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087471201209714765, guid: 098adcca7f1bb48bfb88dd5845fdac0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087471201209714765, guid: 098adcca7f1bb48bfb88dd5845fdac0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1531979907}
+    - target: {fileID: 9087471201209714765, guid: 098adcca7f1bb48bfb88dd5845fdac0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087471201209714765, guid: 098adcca7f1bb48bfb88dd5845fdac0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Fantazee.Battle.Ui.RollButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9111347759386051036, guid: 098adcca7f1bb48bfb88dd5845fdac0a, type: 3}
       propertyPath: m_LocalPosition.x

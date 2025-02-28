@@ -119,6 +119,7 @@ namespace Fantazee.Battle.Score.Ui
             // tooltipDesc.text = score.SpellData.LocDesc.GetLocalizedString();
             
             score.DieAdded += OnDieAdded;
+            score.ScoreReset += OnScoreReset;
         }
 
         private void ShowInSlot(int index, int value)
