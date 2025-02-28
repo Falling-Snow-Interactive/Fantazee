@@ -56,7 +56,8 @@ namespace Fantazee.Scores.Ui
                 entry.Initialize(score, OnScoreEntrySelected);
             }
             
-            fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
+            // TODO - Fix fantazee entry
+            // fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
             
             if (BattleSettings.Settings.EnvironmentInformation
                               .TryGetInformation(GameController.Instance.GameInstance.Map.Environment, 

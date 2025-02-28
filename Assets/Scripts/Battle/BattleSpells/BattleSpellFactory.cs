@@ -10,6 +10,7 @@ namespace Fantazee.Battle.BattleSpells
         {
             return data.Type switch
                    {
+                       SpellType.None => new NoneBattleSpell(data),
                        SpellType.Dagger => new DaggerBattleSpell(data as DaggerData),
                        SpellType.Pierce => new PierceBattleSpell(data as PierceData),
                        SpellType.Shield => new ShieldBattleSpell(data as ShieldData),

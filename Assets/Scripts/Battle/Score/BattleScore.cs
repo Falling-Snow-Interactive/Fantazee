@@ -17,12 +17,8 @@ namespace Fantazee.Battle.Score
         public event Action DiceCleared;
         
         [SerializeReference]
-        private SpellData spellData;
-        public SpellData SpellData => spellData;
-        
-        [SerializeReference]
-        private BattleSpell spell;
-        public BattleSpell Spell => spell;
+        private List<BattleSpell> spells;
+        public List<BattleSpell> Spells => spells;
 
         [SerializeReference]
         private Scores.Score score;
@@ -35,15 +31,24 @@ namespace Fantazee.Battle.Score
         public BattleScore(Scores.Score score)
         {
             this.score = score;
-            if (SpellSettings.Settings.TryGetSpell(score.Spells[0], out spellData))
+
+            spells = new List<BattleSpell>();
+            foreach(SpellType spell in score.Spells)
             {
-                spell = BattleSpellFactory.Create(spellData);
+                if (SpellSettings.Settings.TryGetSpell(spell, out SpellData data))
+                {
+                    BattleSpell battleSpell = BattleSpellFactory.Create(data);
+                    spells.Add(battleSpell);
+                }
             }
         }
 
         public void Cast(Damage damage, Action onComplete)
         {
-            spell.Cast(damage, onComplete);
+            spells[0].Cast(damage, () =>
+                                   {
+                                       spells[1].Cast(damage, onComplete);
+                                   });
         }
 
         public int Calculate()

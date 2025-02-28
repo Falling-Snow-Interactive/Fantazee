@@ -24,7 +24,7 @@ namespace Fantazee.Scores
         }
         
         [SerializeField]
-        private List<SpellType> spells = new List<SpellType>();
+        private List<SpellType> spells;
         public List<SpellType> Spells
         {
             get => spells;
@@ -47,11 +47,10 @@ namespace Fantazee.Scores
 
         protected Score(ScoreType type, 
                         SpellType spell0 = SpellType.None, 
-                        SpellType spell1 = SpellType.None, 
-                        SpellType spell2 = SpellType.None)
+                        SpellType spell1 = SpellType.None)
         {
             this.type = type;
-            spells = new List<SpellType> { spell0, spell1, spell2 };
+            spells = new List<SpellType> { spell0, spell1 };
         }
 
         public abstract int Calculate(List<Die> dice);

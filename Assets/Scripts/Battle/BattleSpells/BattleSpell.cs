@@ -10,6 +10,7 @@ namespace Fantazee.Battle.BattleSpells
     {
         [SerializeReference]
         private SpellData data;
+        public SpellData Data { get => data; set => data = value; }
 
         protected BattleSpell(SpellData spellData)
         {

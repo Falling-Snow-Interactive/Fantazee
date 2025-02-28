@@ -51,10 +51,9 @@ namespace Fantazee.Scores.Ui
         [SerializeField]
         private List<Image> diceImages = new();
         public List<Image> DiceImages => diceImages;
-
-        [FormerlySerializedAs("spellImage")]
+        
         [SerializeField]
-        private Image spellIcon;
+        private List<Image> spellIcons = new();
 
         [FormerlySerializedAs("tooltip")]
         [SerializeField]
@@ -107,11 +106,14 @@ namespace Fantazee.Scores.Ui
                 }
             }
 
-            spellIcon.sprite = score.SpellData.Icon;
-            
+            for (int i = 0; i < spellIcons.Count; i++)
+            {
+                spellIcons[i].sprite = score.Spells[i].Data.Icon;
+            }
+
             tooltipGroup.SetActive(false);
-            tooltipName.text = score.SpellData.LocName.GetLocalizedString();
-            tooltipDesc.text = score.SpellData.LocDesc.GetLocalizedString();
+            // tooltipName.text = score.SpellData.LocName.GetLocalizedString();
+            // tooltipDesc.text = score.SpellData.LocDesc.GetLocalizedString();
             
             score.DieAdded += OnDieAdded;
         }
