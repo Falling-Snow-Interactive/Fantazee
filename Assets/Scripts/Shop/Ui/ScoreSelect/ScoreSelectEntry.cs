@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using DG.Tweening;
 using Fantazee.Battle.Settings;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
@@ -18,17 +20,14 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         [SerializeReference]
         private Score score;
         public Score Score => score;
-        
+
         [Header("References")]
 
         [SerializeField]
-        private Image icon;
+        private List<ScoreSelectEntrySpell> spells = new();
 
         [SerializeField]
         private TMP_Text scoreText;
-
-        [SerializeField]
-        private TMP_Text spellText;
 
         public void Initialize(Score score, Action<ScoreSelectEntry> onSelect)
         {
@@ -45,16 +44,30 @@ namespace Fantazee.Shop.Ui.ScoreSelect
                 scoreText.text = scoreInfo.LocName.GetLocalizedString();
             }
 
-            if (SpellSettings.Settings.TryGetSpell(score.Spells[0], out SpellData spellInfo))
+            for (int i = 0; i < score.Spells.Count; i++)
             {
-                icon.sprite = spellInfo.Icon;
-                spellText.text = spellInfo.LocName.GetLocalizedString();
+                spells[i].Initialize(i, score.Spells[i]);
             }
         }
 
         public void Select()
         {
             onSelect?.Invoke(this);
+        }
+
+        public void RequestSpell(Action<int, ScoreSelectEntry> onSpellSelect)
+        {
+            foreach (ScoreSelectEntrySpell spell in spells)
+            {
+                spell.Activate(i =>
+                               {
+                                   foreach (ScoreSelectEntrySpell s in spells)
+                                   {
+                                       s.Deactivate();
+                                   }
+                                   onSpellSelect?.Invoke(i, this);
+                               });
+            }
         }
     }
 }

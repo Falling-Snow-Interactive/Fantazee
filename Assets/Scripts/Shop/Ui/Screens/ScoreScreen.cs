@@ -42,13 +42,13 @@ namespace Fantazee.Shop.Ui.Screens
         private Ease returnEase = Ease.InCubic;
 
         [SerializeField]
-        private float fadeAmount = 0.6f;
+        protected float fadeAmount = 0.6f;
         
         [SerializeField]
-        private float fadeTime = 0.5f;
+        protected float fadeTime = 0.5f;
         
         [SerializeField]
-        private Ease fadeEase = Ease.InOutCubic;
+        protected Ease fadeEase = Ease.InOutCubic;
         
         [Header("Score References")]
         
@@ -62,10 +62,10 @@ namespace Fantazee.Shop.Ui.Screens
         private Transform selectedSocket;
 
         [SerializeField]
-        private Transform animGroup;
+        protected Transform animGroup;
 
         [SerializeField]
-        private Image fadeImage;
+        protected Image fadeImage;
 
         protected virtual void Awake()
         {

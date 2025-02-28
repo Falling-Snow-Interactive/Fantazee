@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Fantazee.Instance;
 using Fantazee.Scores;
 using Fantazee.Shop.Ui.Entries;
@@ -18,6 +19,8 @@ namespace Fantazee.Shop.Ui.Screens
         [SerializeField]
         private SpellEntry entry;
 
+        private int selectedSpellIndex = -1;
+
         public void Initialize(SpellEntry selected, Action onComplete)
         {
             Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
@@ -35,8 +38,24 @@ namespace Fantazee.Shop.Ui.Screens
                 ScoreSelectEntry scoreEntry = scoreEntries[i];
                 Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
                 
-                scoreEntry.Initialize(score, PlayAnimation);
+                scoreEntry.Initialize(score, OnScoreSelected);
             }
+        }
+
+        private void OnScoreSelected(ScoreSelectEntry scoreSelectEntry)
+        {
+            scoreSelectEntry.transform.SetParent(animGroup);
+            fadeImage.DOFade(fadeAmount, fadeTime)
+                     .SetEase(fadeEase)
+                     .OnStart(() => fadeImage.raycastTarget = true);
+
+            scoreSelectEntry.RequestSpell(OnSpellSelected);
+        }
+
+        private void OnSpellSelected(int i, ScoreSelectEntry scoreSelectEntry)
+        {
+            selectedSpellIndex = i;
+            PlayAnimation(scoreSelectEntry);
         }
 
         protected override bool Apply(ScoreSelectEntry scoreEntry)
@@ -48,7 +67,7 @@ namespace Fantazee.Shop.Ui.Screens
             }
             
             Debug.Log($"Shop Spell: {scoreEntry.Score.Type} {scoreEntry.Score.Spells[0]} -> {spellType}");
-            scoreEntry.Score.Spells[0] = spellType;
+            scoreEntry.Score.Spells[selectedSpellIndex] = spellType;
             
             selected.gameObject.SetActive(false);
 
