@@ -38,17 +38,45 @@ MonoBehaviour:
   squishAmount: {x: 0.2, y: -0.2, z: 0}
   squishTime: 0.25
   squishEase: 1
-  dieRollRef:
+  rollSfx:
     Guid:
       Data1: -1383280746
       Data2: 1166428425
       Data3: -1265161595
       Data4: -1445726228
     Path: event:/Dice/Roll
-  dieSquishRef:
+  squishSfx:
     Guid:
       Data1: 1179777480
       Data2: 1105100132
       Data3: 2136599219
       Data4: -528275620
     Path: event:/Dice/Squish
+  showSfx:
+    Guid:
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
+  hideSfx:
+    Guid:
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
+  lockSfx:
+    Guid:
+      Data1: -294528293
+      Data2: 1278682202
+      Data3: -1667961178
+      Data4: -656612721
+    Path: event:/Dice/Lock
+  unlockSfx:
+    Guid:
+      Data1: -1651917084
+      Data2: 1109801792
+      Data3: 2009196681
+      Data4: -105422714
+    Path: event:/Dice/Unlock

@@ -55,12 +55,6 @@ namespace Fantazee.Dice.Ui
         
         [SerializeField]
         private Ease lockEase = Ease.OutBounce;
-
-        [SerializeField]
-        private EventReference lockSfx;
-        
-        [SerializeField]
-        private EventReference unlockSfx;
         
         [Header("Hide/Show")]
 
@@ -79,15 +73,13 @@ namespace Fantazee.Dice.Ui
         [SerializeField]
         private Ease showEase = Ease.Linear;
         
-        [SerializeField]
-        private EventReference showSfx;
-        
-        [SerializeField]
-        private EventReference hideSfx;
-        
         // Audio
         private EventInstance rollSfx;
         private EventInstance squishSfx;
+        private EventInstance showSfx;
+        private EventInstance hideSfx;
+        private EventInstance lockSfx;
+        private EventInstance unlockSfx;
         
         [Header("References")]
         
@@ -100,8 +92,12 @@ namespace Fantazee.Dice.Ui
 
         private void Awake()
         {
-            rollSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.DieRollRef);
-            squishSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.DieSquishRef);
+            rollSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.RollSfx);
+            squishSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.SquishSfx);
+            showSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.ShowSfx);
+            hideSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.HideSfx);
+            lockSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.LockSfx);
+            unlockSfx = RuntimeManager.CreateInstance(DiceSettings.Settings.UnlockSfx);
         }
         
         private void Start()
@@ -156,9 +152,12 @@ namespace Fantazee.Dice.Ui
             
             Sequence sequence = DOTween.Sequence();
             
-            sequence.Append(root.DOLocalMoveY(rollHeight, throwTime).SetEase(throwEase)
+            sequence.Append(root.DOLocalMoveY(rollHeight, throwTime)
+                                .SetEase(throwEase)
                                 .OnStart(() => rollSfx.start()));
-            sequence.Append(root.DOLocalMoveY(0, fallTime).SetEase(fallEase));
+            sequence.Append(root.DOLocalMoveY(0, fallTime)
+                                .SetEase(fallEase));
+            
             sequence.OnComplete(() =>
                                 {
                                     rolling = false;
@@ -191,12 +190,12 @@ namespace Fantazee.Dice.Ui
             if (shouldLock)
             {
                 BattleController.Instance.LockedDice.Add(Die);
-                RuntimeManager.PlayOneShot(lockSfx);
+                lockSfx.start();
             }
             else
             {
                 BattleController.Instance.LockedDice.Remove(Die);
-                RuntimeManager.PlayOneShot(unlockSfx);
+                unlockSfx.start();
             }
 
             Vector3 rot = shouldLock ? lockRot : Vector3.zero;
@@ -222,6 +221,7 @@ namespace Fantazee.Dice.Ui
                 return;
             }
 
+            hideSfx.start();
             root.DOLocalMove(hideOffset, hideTime)
                  .SetEase(hideEase)
                  .SetDelay(delay)
@@ -236,6 +236,7 @@ namespace Fantazee.Dice.Ui
                 return;
             }
 
+            showSfx.start();
             root.DOLocalMove(Vector3.zero, showTime)
                  .SetEase(showEase)
                  .SetDelay(delay)

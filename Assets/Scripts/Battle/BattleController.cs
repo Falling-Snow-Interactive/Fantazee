@@ -367,12 +367,13 @@ namespace Fantazee.Battle
             PlayerTurnStart?.Invoke();
             remainingRolls = GameInstance.Current.Character.Rolls;
             lockedDice.Clear();
+            
             bool canPlay = false;
-
             foreach (BattleScore battleScore in battleScores)
             {
                 if (battleScore.CanScore())
                 {
+                    Debug.Log($"Battle: Can play {battleScore.Score}, no need to check.");
                     canPlay = true;
                     break;
                 }
@@ -385,11 +386,12 @@ namespace Fantazee.Battle
             }
             else
             {
+                Debug.Log($"Battle: Battle scores filled. Clearing.");
                 foreach (BattleScore battleScore in battleScores)
                 {
-                    battleScore.ClearDice();
+                    battleScore.ResetScore();
                 }
-                fantazeeBattleScore.ClearDice();
+                fantazeeBattleScore.ResetScore();
                 TryEndPlayerTurn();
             }
         }
@@ -398,6 +400,7 @@ namespace Fantazee.Battle
         {
             BattleUi.Instance.DiceControl.HideDice();
             PlayerTurnEnd?.Invoke();
+            Debug.Log("Battle: Player turn end");
             StartEnemyTurn();
         }
 

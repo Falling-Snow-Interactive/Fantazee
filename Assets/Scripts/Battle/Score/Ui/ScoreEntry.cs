@@ -81,6 +81,7 @@ namespace Fantazee.Battle.Score.Ui
             if (score != null)
             {
                 score.DieAdded += OnDieAdded;
+                score.ScoreReset += OnScoreReset;
             }
         }
 
@@ -89,6 +90,7 @@ namespace Fantazee.Battle.Score.Ui
             if (score != null)
             {
                 score.DieAdded -= OnDieAdded;
+                score.ScoreReset -= OnScoreReset;
             }
         }
 
@@ -178,6 +180,18 @@ namespace Fantazee.Battle.Score.Ui
         public void OnClick()
         {
             onSelect?.Invoke(this);
+        }
+
+        private void OnScoreReset()
+        {
+            for (int i = 0; i < diceImages.Count; i++)
+            {
+                int v = score.Dice.Count > i ? score.Dice[i].Value : 0;
+                ShowInSlot(i, v);
+            }
+
+            button.interactable = score.Dice.Count == 0;
+            scoreText.text = score.Dice.Count == 0 ? "" : score.Calculate().ToString();
         }
     }
 }

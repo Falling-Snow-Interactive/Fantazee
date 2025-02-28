@@ -3,6 +3,7 @@ using Fantazee.Items.Dice.Information;
 using FMODUnity;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Items.Dice.Settings
 {
@@ -34,15 +35,37 @@ namespace Fantazee.Items.Dice.Settings
         private Ease squishEase = Ease.Linear;
         public Ease SquishEase => squishEase;
         
+        [FormerlySerializedAs("dieRollRef")]
         [Header("Audio")]
         
         [SerializeField]
-        private EventReference dieRollRef;
-        public EventReference DieRollRef => dieRollRef;
+        private EventReference rollSfx;
+        public EventReference RollSfx => rollSfx;
 
+        [FormerlySerializedAs("dieSquishRef")]
         [SerializeField]
-        private EventReference dieSquishRef;
-        public EventReference DieSquishRef => dieSquishRef;
+        private EventReference squishSfx;
+        public EventReference SquishSfx => squishSfx;
+
+        [FormerlySerializedAs("showRef")]
+        [SerializeField]
+        private EventReference showSfx;
+        public EventReference ShowSfx => showSfx;
+        
+        [FormerlySerializedAs("hideRef")]
+        [SerializeField]
+        private EventReference hideSfx;
+        public EventReference HideSfx => hideSfx;
+
+        [FormerlySerializedAs("lockRef")]
+        [SerializeField]
+        private EventReference lockSfx;
+        public EventReference LockSfx => lockSfx;
+        
+        [FormerlySerializedAs("unlockRef")]
+        [SerializeField]
+        private EventReference unlockSfx;
+        public EventReference UnlockSfx => unlockSfx;
         
         #region Settings
         

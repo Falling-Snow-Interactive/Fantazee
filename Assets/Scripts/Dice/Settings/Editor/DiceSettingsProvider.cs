@@ -29,14 +29,22 @@ namespace Fantazee.Items.Dice.Settings.Editor
         
         public override void OnGUI(string searchContext)
         {
+            // info groups
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("sideInformation"));
             
+            // Animation
+            // squish
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishAmount"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishTime"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishEase"));
             
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("dieRollRef"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("dieSquishRef"));
+            // sfx
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("rollSfx"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("squishSfx"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("showSfx"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("hideSfx"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("lockSfx"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("unlockSfx"));
             
             EditorGUILayout.Space(20);
             if (GUILayout.Button("Save"))

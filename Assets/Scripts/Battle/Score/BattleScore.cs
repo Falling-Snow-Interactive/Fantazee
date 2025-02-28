@@ -17,7 +17,7 @@ namespace Fantazee.Battle.Score
     {
         public event Action Changed;
         public event Action DieAdded;
-        public event Action DiceCleared;
+        public event Action ScoreReset;
         
         [SerializeReference]
         private List<BattleSpell> spells;
@@ -77,11 +77,6 @@ namespace Fantazee.Battle.Score
             onComplete?.Invoke();
         }
 
-        public void Cast(int i, Damage damage, Action onComplete)
-        {
-            
-        }
-
         public int Calculate()
         {
             return score.Calculate(dice);
@@ -108,14 +103,12 @@ namespace Fantazee.Battle.Score
 
             Debug.Log($"Score: {score.Type} - Die: {die.Value}\n{s}");
             DieAdded?.Invoke();
-            Changed?.Invoke();
         }
 
-        public void ClearDice()
+        public void ResetScore()
         {
             dice.Clear();
-            DiceCleared?.Invoke();
-            Changed?.Invoke();
+            ScoreReset?.Invoke();
         }
     }
 }
