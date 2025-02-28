@@ -41,6 +41,7 @@ namespace Fantazee.Maps.Nodes
 
         private void OnValidate()
         {
+            NodeType = nodeType;
             if (MapSettings.Settings.NodeInformation.TryGetInformation(NodeType, out NodeInformation info))
             {
                 if (disc)

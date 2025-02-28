@@ -1,6 +1,5 @@
 using System;
 using DG.Tweening;
-using Fantazee.Environments.Audio;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using FMOD.Studio;
@@ -8,6 +7,7 @@ using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Maps
@@ -46,8 +46,11 @@ namespace Fantazee.Maps
             private EventReference mapEndSfx;
 
             [SerializeField]
-            private EventReference footstepsSfx;
-            private EventInstance footstepsInst;
+            private EventReference footstepsSfxRef;
+            private EventInstance footstepsSfx;
+
+            [SerializeField]
+            private EventReference nodeSelectSfxRef;
 
             protected override void Awake()
             {
@@ -58,7 +61,7 @@ namespace Fantazee.Maps
 
                 selectAction.performed += ctx => OnSelectAction();
                 
-                footstepsInst = RuntimeManager.CreateInstance(footstepsSfx);
+                footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
             }
 
             private void OnEnable()
@@ -122,6 +125,7 @@ namespace Fantazee.Maps
                     {
                         if (hit.collider.TryGetComponent(out Node node))
                         {
+                            RuntimeManager.PlayOneShot(nodeSelectSfxRef);
                             Node currentNode = map.Nodes[Map.Node];
                             if (currentNode == node)
                             {
@@ -145,11 +149,11 @@ namespace Fantazee.Maps
                 
                 canInteract = false;
 
-                footstepsInst.start();
+                footstepsSfx.start();
                 player.transform.DOMove(node.transform.position, 0.5f)
                       .OnComplete(() =>
                                   {
-                                      footstepsInst.stop(STOP_MODE.IMMEDIATE);
+                                      footstepsSfx.stop(STOP_MODE.IMMEDIATE);
                                       OnFinishMoving(node);
                                   });
             }
@@ -160,6 +164,7 @@ namespace Fantazee.Maps
                 canInteract = true;
                 Map.Node = map.Nodes.IndexOf(node);
                 Debug.Log($"Map - Node {node.NodeType} [{Map.Node}]");
+                RuntimeManager.PlayOneShot(mapEndSfx);
                 switch (node.NodeType)
                 {
                     case NodeType.None:

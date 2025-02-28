@@ -13,4 +13,44 @@ MonoBehaviour:
   m_Name: MapSettings
   m_EditorClassIdentifier: 
   nodeInformation:
-    information: []
+    information:
+    - name: None
+      type: 0
+      color: {r: 0, g: 0, b: 0, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 0}
+    - name: Battle
+      type: 1
+      color: {r: 1, g: 0, b: 0, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 21300000, guid: 57f9e1aa8358245ab8dfd457204c1ecb, type: 3}
+    - name: Blacksmith
+      type: 2
+      color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 21300000, guid: 100e65662aca045948ffd7f7537e87ab, type: 3}
+    - name: Inn
+      type: 3
+      color: {r: 0, g: 1, b: 0.9789009, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 21300000, guid: f015f29e2ceee496daadd8e054636b77, type: 3}
+    - name: Shop
+      type: 4
+      color: {r: 1, g: 0.8378445, b: 0, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 21300000, guid: b06031d54ca974661b0a89f0d12fd7b7, type: 3}
+    - name: Start
+      type: 5
+      color: {r: 0, g: 1, b: 0, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 0}
+    - name: Boss
+      type: 6
+      color: {r: 1, g: 0, b: 0.49705696, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 21300000, guid: 42d110775084b40b49e38eb88c5634e8, type: 3}
+    - name: MiniBoss
+      type: 7
+      color: {r: 1, g: 0.4496705, b: 0, a: 1}
+      outline: {r: 0, g: 0, b: 0, a: 1}
+      sprite: {fileID: 21300000, guid: 88ae1b4489cd840f1844da0ff03c200d, type: 3}
