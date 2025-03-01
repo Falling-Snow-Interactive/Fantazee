@@ -12,8 +12,6 @@ namespace Fantazee.Shop.Ui.Screens
 {
     public abstract class ScoreScreen : ShopScreen
     {
-        protected Action onComplete;
-        
         [Header("Select animation")]
         
         [SerializeField]
@@ -55,9 +53,6 @@ namespace Fantazee.Shop.Ui.Screens
         [Header("Score References")]
         
         [SerializeField]
-        protected ShopEntryUi entry;
-        
-        [SerializeField]
         protected List<ShopScoreEntry> scoreEntries = new();
 
         [SerializeField]
@@ -81,7 +76,9 @@ namespace Fantazee.Shop.Ui.Screens
 
         protected abstract bool Apply(ScoreEntry scoreEntry);
 
-        protected void ScoreSelectSequence(ScoreEntry scoreEntry, Action onSequenceComplete = null)
+        protected void ScoreSelectSequence(Transform purchaseEntry, 
+                                           ScoreEntry scoreEntry, 
+                                           Action onComplete = null)
         {
             if (!Apply(scoreEntry))
             {
@@ -102,14 +99,14 @@ namespace Fantazee.Shop.Ui.Screens
             sequence.Insert(0, fadeImage.DOFade(fadeAmount, fadeTime)
                                         .SetEase(fadeEase)
                                         .OnStart(() => fadeImage.raycastTarget = true));
-            sequence.Append(entry.transform.DOMove(selectedSocket.position + Vector3.right * entryOffset, entryTime)
-                                 .SetEase(entryEase)
-                                 .SetDelay(0.3f)
-                                 .OnComplete(() =>
-                                             {
-                                                 entry.gameObject.SetActive(false);
-                                                 scoreEntry.UpdateVisuals();
-                                             }));
+            sequence.Append(purchaseEntry.DOMove(selectedSocket.position + Vector3.right * entryOffset, entryTime)
+                                         .SetEase(entryEase)
+                                         .SetDelay(0.3f)
+                                         .OnComplete(() =>
+                                                     {
+                                                         purchaseEntry.gameObject.SetActive(false);
+                                                         scoreEntry.UpdateVisuals();
+                                                     }));
             sequence.Append(scoreEntry.transform.DOPunchPosition(Vector3.right * punchAmount, punchTime));
             sequence.Append(scoreEntry.transform.DOMove(pos, returnTime)
                                       .SetEase(returnEase)
@@ -122,7 +119,6 @@ namespace Fantazee.Shop.Ui.Screens
             sequence.OnComplete(() =>
                                 {
                                     scoreEntry.transform.SetParent(parent);
-                                    onSequenceComplete?.Invoke();
                                     onComplete?.Invoke();
                                 });
             sequence.Play();

@@ -835,6 +835,7 @@ GameObject:
   - component: {fileID: 5650557967694967021}
   - component: {fileID: 1151797120251265015}
   - component: {fileID: 8773429858442824666}
+  - component: {fileID: 3148087452964920941}
   m_Layer: 0
   m_Name: Shop_Entry_Spell_Ui
   m_TagString: Untagged
@@ -920,6 +921,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3148087452964920941}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8773429858442824666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,9 +948,47 @@ MonoBehaviour:
   nameText: {fileID: 5613310718549683433}
   descriptionText: {fileID: 0}
   currencyEntry: {fileID: 8848555098009955839}
+  cost:
+    rid: -2
   borderColor: {fileID: 5160219666886844656}
   data: {fileID: 0}
   icon: {fileID: 6699945980083354118}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &3148087452964920941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278643379033199772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -735943947
+      Data2: 1250124614
+      Data3: -929631570
+      Data4: -1366487958
+    Path: event:/Ui/Button_Click
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1466115042947436420
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,9 +1,7 @@
 using System;
 using Fantazee.Currencies.Ui;
 using Fantazee.Scores;
-using Fantazee.Scores.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
-using Fantazee.Shop.Ui.ScoreSelect;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui.Entries

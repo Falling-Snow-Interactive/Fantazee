@@ -735,6 +735,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2355319180424189396 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1838194938146486154, guid: 715280ea8f0a544ca9f71591cfa008c6, type: 3}
+  m_PrefabInstance: {fileID: 4120040348992758366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3186049010908771658 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1520611866933384980, guid: 715280ea8f0a544ca9f71591cfa008c6, type: 3}
@@ -866,6 +877,7 @@ MonoBehaviour:
   tooltipOffset: 100
   tooltipTime: 5
   tooltipEase: 30
+  borderImage: {fileID: 2355319180424189396}
   currencyEntryUi: {fileID: 201537922546916330}
   references:
     version: 2

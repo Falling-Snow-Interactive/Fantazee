@@ -25,7 +25,7 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         [Header("References")]
         
         [SerializeField]
-        private TMP_Text nameText;
+        protected TMP_Text nameText;
         
         [SerializeField]
         protected TMP_Text scoreText;

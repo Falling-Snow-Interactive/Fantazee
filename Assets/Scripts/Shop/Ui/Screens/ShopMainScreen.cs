@@ -21,7 +21,7 @@ namespace Fantazee.Shop.Ui.Screens
     {
         private Action<SpellEntry> onSpellSelected;
         private Action<RelicEntry> onRelicSelected;
-        private Action<ShopScoreEntry> onScoreSelected;
+        private Action<ShopScoreEntryPurchase> onScoreSelected;
         
         [Header("Prefabs")]
         
@@ -62,7 +62,7 @@ namespace Fantazee.Shop.Ui.Screens
         public void Initialize(ShopInventory shopInventory, 
                                Action<SpellEntry> onSpellSelected,
                                Action<RelicEntry> onRelicSelected,
-                               Action<ShopScoreEntry> onScoreSelected)
+                               Action<ShopScoreEntryPurchase> onScoreSelected)
         {
             this.onSpellSelected = onSpellSelected;
             this.onRelicSelected = onRelicSelected;
@@ -83,8 +83,9 @@ namespace Fantazee.Shop.Ui.Screens
                 }
             }
 
-            foreach (Score score in shopInventory.Scores)
+            foreach (ScoreData sd in shopInventory.Scores)
             {
+                Score score = ScoreFactory.Create(sd);
                 ShopScoreEntryPurchase scorePurchase = Instantiate(scorePurchaseEntry, scoreContent);
                 scorePurchase.Initialize(score, OnScoreSelected);
                 scorePurchaseEntries.Add(scorePurchase);

@@ -67,16 +67,16 @@ namespace Fantazee.Shop.Ui
             
         }
 
-        private void OnScoreSelected(ShopScoreEntry shopScoreEntry)
+        private void OnScoreSelected(ShopScoreEntryPurchase purchaseScoreEntry)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(shopScoreEntry.Score.Information.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(purchaseScoreEntry.Score.Information.Cost))
             {
-                // ShowScoreScoreScreen(shopScoreEntry);
+                ShowScoreScoreScreen(purchaseScoreEntry);
             }
             else
             {
                 currencyEntry.PlayCantAfford();
-                // shopScoreEntry.PlayCantAfford();
+                purchaseScoreEntry.PlayCantAfford();
             }
         }
         
@@ -102,7 +102,7 @@ namespace Fantazee.Shop.Ui
         
         #region Score spell screen
         
-        private void ShowScoreScoreScreen(ScoreShopEntry scoreShopEntry, Action onComplete = null)
+        private void ShowScoreScoreScreen(ShopScoreEntryPurchase scoreShopEntry, Action onComplete = null)
         {
             scoreScoreScreen.Initialize(scoreShopEntry, OnScoreScoreScreenComplete);
             
