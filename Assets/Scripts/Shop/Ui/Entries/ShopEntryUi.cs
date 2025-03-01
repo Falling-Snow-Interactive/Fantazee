@@ -23,6 +23,10 @@ namespace Fantazee.Shop.Ui.Entries
         private CurrencyEntryUi currencyEntry;
         protected CurrencyEntryUi CurrencyEntry => currencyEntry;
 
+        [SerializeReference]
+        private Currency cost;
+        public Currency Cost => cost;
+
         [SerializeField]
         private Image borderColor;
 
@@ -34,6 +38,7 @@ namespace Fantazee.Shop.Ui.Entries
                 descriptionText.text = desc;
             }
 
+            cost = currency;
             currencyEntry.SetCurrency(currency);
         }
 

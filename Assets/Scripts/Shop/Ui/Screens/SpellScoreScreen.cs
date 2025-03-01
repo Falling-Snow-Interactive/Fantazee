@@ -2,10 +2,8 @@ using System;
 using DG.Tweening;
 using Fantazee.Instance;
 using Fantazee.Scores;
-using Fantazee.Scores.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Shop.Ui.ScoreSelect;
 using Fantazee.Spells;
 using UnityEngine;
 
@@ -15,11 +13,6 @@ namespace Fantazee.Shop.Ui.Screens
     {
         private SpellType spellType;
         private SpellEntry selected;
-        
-        [Header("Spell References")]
-        
-        [SerializeField]
-        private SpellEntry entry;
 
         private int selectedSpellIndex = -1;
 
@@ -31,8 +24,11 @@ namespace Fantazee.Shop.Ui.Screens
             
             entry.gameObject.SetActive(true);
             entry.transform.localPosition = Vector3.zero;
-            entry.Initialize(selected.Data, null);
-            
+            if (entry is SpellEntry sEntry)
+            {
+                sEntry.Initialize(selected.Data, null);
+            }
+
             Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
             for (int i = 0; i < scoreEntries.Count; i++)
             {
@@ -45,23 +41,29 @@ namespace Fantazee.Shop.Ui.Screens
 
         private void OnScoreSelected(ScoreEntry scoreEntry)
         {
+            Transform parent = scoreEntry.transform.parent;
             scoreEntry.transform.SetParent(animGroup);
+            fadeImage.raycastTarget = true;
             fadeImage.DOFade(fadeAmount, fadeTime)
-                     .SetEase(fadeEase)
-                     .OnStart(() => fadeImage.raycastTarget = true);
-
-            scoreEntry.RequestSpell(OnSpellSelected);
+                     .SetEase(fadeEase);
+            scoreEntry.RequestSpell((i, se) =>
+                                    {
+                                        OnSpellSelected(i, se, () =>
+                                                               {
+                                                                   scoreEntry.transform.SetParent(parent);
+                                                               });
+                                    });
         }
 
-        private void OnSpellSelected(int i, ScoreEntry scoreEntry)
+        private void OnSpellSelected(int i, ScoreEntry scoreEntry, Action onComplete)
         {
             selectedSpellIndex = i;
-            ScoreSelectSequence(scoreEntry);
+            ScoreSelectSequence(scoreEntry, onComplete);
         }
 
         protected override bool Apply(ScoreEntry scoreEntry)
         {
-            if (!GameInstance.Current.Character.Wallet.Remove(entry.Data.Cost))
+            if (!GameInstance.Current.Character.Wallet.Remove(entry.Cost))
             {
                 Debug.LogWarning("Shop: Cannot afford spell. Returning to shop.");
                 return false;

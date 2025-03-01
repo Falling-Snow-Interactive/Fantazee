@@ -37,7 +37,11 @@ namespace Fantazee.Shop.Ui.Screens
                 ShopScoreEntry scoreEntry = scoreEntries[i];
                 Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
 
-                scoreEntry.Initialize(score, ScoreSelectSequence);
+                // TODO - probably somrething
+                scoreEntry.Initialize(score, se =>
+                                             {
+                                                 ScoreSelectSequence(se);
+                                             });
             }
         }
 

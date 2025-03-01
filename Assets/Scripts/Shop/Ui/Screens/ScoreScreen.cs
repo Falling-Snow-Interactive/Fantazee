@@ -55,7 +55,7 @@ namespace Fantazee.Shop.Ui.Screens
         [Header("Score References")]
         
         [SerializeField]
-        private ShopEntryUi entry;
+        protected ShopEntryUi entry;
         
         [SerializeField]
         protected List<ShopScoreEntry> scoreEntries = new();
@@ -76,12 +76,12 @@ namespace Fantazee.Shop.Ui.Screens
             fadeImage.color = color;
             fadeImage.raycastTarget = false;
             
-            transform.localPosition = localOut;
+            transform.localPosition = hidePos;
         }
 
         protected abstract bool Apply(ScoreEntry scoreEntry);
 
-        protected void ScoreSelectSequence(ScoreEntry scoreEntry)
+        protected void ScoreSelectSequence(ScoreEntry scoreEntry, Action onSequenceComplete = null)
         {
             if (!Apply(scoreEntry))
             {
@@ -122,6 +122,7 @@ namespace Fantazee.Shop.Ui.Screens
             sequence.OnComplete(() =>
                                 {
                                     scoreEntry.transform.SetParent(parent);
+                                    onSequenceComplete?.Invoke();
                                     onComplete?.Invoke();
                                 });
             sequence.Play();

@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Shop.Ui.Screens
 {
@@ -8,40 +9,68 @@ namespace Fantazee.Shop.Ui.Screens
     {
         [Header("Animation")]
         
+        [FormerlySerializedAs("localIn")]
         [SerializeField]
-        protected Vector3 localIn;
+        protected Vector3 showPos;
         
+        [FormerlySerializedAs("localOut")]
         [SerializeField]
-        protected Vector3 localOut;
+        protected Vector3 hidePos;
+
+        [FormerlySerializedAs("inTime")]
+        [SerializeField]
+        private float showTime = 0.5f;
+        
+        [FormerlySerializedAs("outTime")]
+        [SerializeField]
+        private float hideTime = 0.5f;
+
+        [FormerlySerializedAs("inEase")]
+        [SerializeField]
+        private Ease showEase = Ease.OutBack;
+        
+        [FormerlySerializedAs("outEase")]
+        [SerializeField]
+        private Ease hideEase = Ease.OutCubic;
+
+        [Header("References")]
 
         [SerializeField]
-        private float inTime = 0.5f;
-        
-        [SerializeField]
-        private float outTime = 0.5f;
+        private GameObject root;
 
-        [SerializeField]
-        private Ease inEase = Ease.OutBack;
-        
-        [SerializeField]
-        private Ease outEase = Ease.OutCubic;
-
-        public void SlideIn(Action onComplete = null)
+        public void Show(bool force = false, Action onComplete = null)
         {
-            transform.DOLocalMove(localIn, inTime)
-                      .SetEase(inEase)
+            root.SetActive(true);
+            if (force)
+            {
+                transform.localPosition = hidePos;
+                onComplete?.Invoke();
+                return;
+            }
+            
+            transform.DOLocalMove(showPos, showTime)
+                      .SetEase(showEase)
                       .OnComplete(() =>
                                   {
                                       onComplete?.Invoke(); 
                                   });
         }
 
-        public void SlideOut(Action onComplete = null)
+        public void Hide(bool force = false, Action onComplete = null)
         {
-            transform.DOLocalMove(localOut, outTime)
-                     .SetEase(outEase)
+            if (force)
+            {
+                transform.localPosition = hidePos;
+                root.SetActive(false);
+                onComplete?.Invoke();
+                return;
+            }
+            
+            transform.DOLocalMove(hidePos, hideTime)
+                     .SetEase(hideEase)
                      .OnComplete(() =>
                                  {
+                                     root.SetActive(false);
                                      onComplete?.Invoke(); 
                                  });
         }

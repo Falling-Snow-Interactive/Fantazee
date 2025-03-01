@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Shop.Ui.ScoreSelect;
 using Fantazee.Shop.Ui.Screens;
-using Fantazee.Spells;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Shop.Ui
 {
@@ -19,9 +14,6 @@ namespace Fantazee.Shop.Ui
         
         [SerializeField]
         private ShopController shopController;
-        
-        // [SerializeField]
-        // private Entry otherEntryPrefab;
 
         [Header("References")]
 
@@ -37,9 +29,12 @@ namespace Fantazee.Shop.Ui
         [SerializeField]
         private CurrencyEntryUi currencyEntry;
 
-        // [Header("Score Screen References")]
-        //
-        // [SerializeField]
+        private void Awake()
+        {
+            mainScreen.Show(true);
+            spellScoreScreen.Hide(true);
+            scoreScoreScreen.Hide(true);
+        }
 
         public void Initialize(ShopInventory inventory)
         {
@@ -93,14 +88,14 @@ namespace Fantazee.Shop.Ui
         {
             spellScoreScreen.Initialize(spellEntry, OnSpellScreenComplete);
             
-            mainScreen.SlideOut();
-            spellScoreScreen.SlideIn();
+            mainScreen.Hide();
+            spellScoreScreen.Show();
         }
 
         private void OnSpellScreenComplete()
         {
-            spellScoreScreen.SlideOut();
-            mainScreen.SlideIn();
+            spellScoreScreen.Hide();
+            mainScreen.Show();
         }
         
         #endregion
@@ -111,14 +106,14 @@ namespace Fantazee.Shop.Ui
         {
             scoreScoreScreen.Initialize(scoreShopEntry, OnScoreScoreScreenComplete);
             
-            mainScreen.SlideOut();
-            scoreScoreScreen.SlideIn();
+            mainScreen.Hide();
+            scoreScoreScreen.Show();
         }
 
         private void OnScoreScoreScreenComplete()
         {
-            scoreScoreScreen.SlideOut();
-            mainScreen.SlideIn();
+            scoreScoreScreen.Hide();
+            mainScreen.Show();
         }
         
         #endregion

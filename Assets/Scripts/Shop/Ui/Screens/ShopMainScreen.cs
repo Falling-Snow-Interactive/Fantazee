@@ -56,7 +56,7 @@ namespace Fantazee.Shop.Ui.Screens
         
         private void Awake()
         {
-            transform.localPosition = localIn;
+            transform.localPosition = showPos;
         }
 
         public void Initialize(ShopInventory shopInventory, 
