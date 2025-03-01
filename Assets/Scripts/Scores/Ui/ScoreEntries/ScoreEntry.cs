@@ -42,35 +42,15 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         [SerializeField]
         private List<ScoreEntrySpell> spells = new();
         public List<ScoreEntrySpell> Spells => spells;
-        
-        [Header("Tooltip")]
-        
+
         [SerializeField]
-        private GameObject tooltipGroup;
-        
-        [SerializeField]
-        private Transform tooltipRoot;
-        
-        [SerializeField]
-        private TMP_Text tooltipName;
-        
-        [SerializeField]
-        private TMP_Text tooltipDesc;
-        
-        [SerializeField]
-        private float tooltipOffset = 100f;
-        
-        [SerializeField]
-        private float tooltipTime = 5f;
-        
-        [SerializeField]
-        private Ease tooltipEase = Ease.OutBounce;
+        private ScoreEntrySpellTooltip tooltip;
         
         private ScoreInformation information;
         
         private void Awake()
         {
-            tooltipGroup.SetActive(false);
+            tooltip.Hide(true);
         }
 
         public virtual void Initialize(Score score, Action<ScoreEntry> onSelect)
@@ -169,30 +149,6 @@ namespace Fantazee.Scores.Ui.ScoreEntries
                 diceImages[index].sprite = info.Sprite;
                 diceImages[index].transform.parent.DOPunchScale(Vector3.one * 0.1f, 0.2f, 2, 0.5f);
             }
-        }
-        
-        public void ShowTooltip()
-        {
-            // TODO - Tooltips
-            return;
-            DOTween.Complete(tooltipGroup);
-            tooltipGroup.SetActive(true);
-            Vector3 pos = tooltipRoot.transform.localPosition;
-            pos.y = 0;
-            tooltipRoot.transform.localPosition = pos;
-            tooltipRoot.transform.DOLocalMoveY(tooltipOffset, tooltipTime).SetEase(tooltipEase);
-        }
-
-        public void HideTooltip()
-        {
-            return;
-            DOTween.Complete(tooltipRoot);
-            Vector3 pos = tooltipRoot.transform.localPosition;
-            pos.y = tooltipOffset;
-            tooltipRoot.transform.localPosition = pos;
-            tooltipRoot.transform.DOLocalMoveY(0, tooltipTime)
-                       .SetEase(tooltipEase)
-                       .OnComplete(() => tooltipGroup.SetActive(false));
         }
         
         public void RequestSpell(Action<int, ScoreEntry> onSpellSelect)

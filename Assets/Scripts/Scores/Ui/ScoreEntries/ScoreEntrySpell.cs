@@ -23,6 +23,9 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         
         [SerializeField]
         private Button button;
+        
+        [SerializeField]
+        private ScoreEntrySpellTooltip tooltip;
 
         public void Initialize(int i, SpellType spell)
         {
@@ -51,6 +54,24 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         public void OnSelect()
         {
             onSelect?.Invoke(i);
+        }
+
+        public void SetTooltip(bool set)
+        {
+            if (data.Type == SpellType.None)
+            {
+                return;
+            }
+            
+            Debug.Log($"Set Tooltip{set}");
+            if (set)
+            {
+                tooltip.Show(this);
+            }
+            else
+            {
+                tooltip.Hide();
+            }
         }
     }
 }
