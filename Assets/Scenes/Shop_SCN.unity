@@ -3991,9 +3991,12 @@ MonoBehaviour:
   root: {fileID: 538062342}
   selectTime: 0.6
   selectEase: 8
-  entryTime: 0.5
-  entryEase: 8
-  entryOffset: -150
+  chargeTime: 0.7
+  chargeEase: 12
+  chargeOffset: 200
+  purchaseTime: 0.5
+  purchaseEase: 11
+  purchaseOffset: -150
   punchAmount: 250
   punchTime: 0.25
   returnTime: 1
@@ -13508,6 +13511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc9a99fa43e4bb39c252e104c88858f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   inventory:
     spells: 010000000200000003000000
     scores:
@@ -17595,9 +17599,12 @@ MonoBehaviour:
   root: {fileID: 715720495}
   selectTime: 0.6
   selectEase: 8
-  entryTime: 0.5
-  entryEase: 8
-  entryOffset: -150
+  chargeTime: 0.7
+  chargeEase: 12
+  chargeOffset: 200
+  purchaseTime: 0.5
+  purchaseEase: 11
+  purchaseOffset: -150
   punchAmount: 250
   punchTime: 0.25
   returnTime: 1

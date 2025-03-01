@@ -36,18 +36,19 @@ namespace Fantazee.Shop.Ui.Screens
 
         protected override bool Apply(ScoreEntry scoreEntry)
         {
-            if (!GameInstance.Current.Character.Wallet.Remove(scoreEntry.Score.Information.Cost))
+            if (!ShopController.Instance.MakePurchase(purchase.Score.Information.Cost))
             {
-                Debug.LogWarning("Shop: Cannot afford spell. Returning to shop.");
                 return false;
             }
+            
             Debug.Log($"Shop Spell: {scoreEntry.Score.Type} -> {purchase.Score.Type}");
 
             int index = GameInstance.Current.Character.ScoreTracker.Scores.IndexOf(scoreEntry.Score);
             GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(purchase.Score.Type, scoreEntry.Score.Spells);
             scoreEntry.Score = GameInstance.Current.Character.ScoreTracker.Scores[index];
-            // purchase.gameObject.SetActive(false);
-
+            
+            purchase.gameObject.SetActive(false);
+            
             return true;
         }
     }

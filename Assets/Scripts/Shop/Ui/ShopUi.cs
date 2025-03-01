@@ -2,8 +2,11 @@ using System;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
+using Fantazee.Shop.Settings;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.Screens;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui
@@ -28,6 +31,9 @@ namespace Fantazee.Shop.Ui
         
         [SerializeField]
         private CurrencyEntryUi currencyEntry;
+        
+        // Audio
+        private EventInstance swooshSfx;
 
         private void Awake()
         {
@@ -43,6 +49,8 @@ namespace Fantazee.Shop.Ui
             {
                 currencyEntry.SetCurrency(currency);
             }
+
+            swooshSfx = RuntimeManager.CreateInstance(ShopSettings.Settings.SwooshSfx);
 
             mainScreen.Initialize(inventory, OnSpellSelected, OnRelicSelected, OnScoreSelected);
         }
@@ -84,18 +92,22 @@ namespace Fantazee.Shop.Ui
         
         #region Score spell screen
 
-        private void ShowSpellScreen(SpellEntry spellEntry, Action onComplete = null)
+        private void ShowSpellScreen(SpellEntry purchase, Action onComplete = null)
         {
-            spellScoreScreen.Initialize(spellEntry, OnSpellScreenComplete);
+            spellScoreScreen.Initialize(purchase, OnSpellScreenComplete);
             
             mainScreen.Hide();
             spellScoreScreen.Show();
+
+            swooshSfx.start();
         }
 
         private void OnSpellScreenComplete()
         {
             spellScoreScreen.Hide();
             mainScreen.Show();
+            
+            swooshSfx.start();
         }
         
         #endregion
@@ -108,12 +120,16 @@ namespace Fantazee.Shop.Ui
             
             mainScreen.Hide();
             scoreScoreScreen.Show();
+            
+            swooshSfx.start();
         }
 
         private void OnScoreScoreScreenComplete()
         {
             scoreScoreScreen.Hide();
             mainScreen.Show();
+            
+            swooshSfx.start();
         }
         
         #endregion

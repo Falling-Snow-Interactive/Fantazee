@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9f6b3649824f17b68bbf615d286570, type: 3}
+  m_Name: ShopSettings
+  m_EditorClassIdentifier: 
+  enterSfx:
+    Guid:
+      Data1: -1414903263
+      Data2: 1161339340
+      Data3: -1917483852
+      Data4: -862625333
+    Path: event:/Shop/Enter
+  exitSfx:
+    Guid:
+      Data1: -1983421553
+      Data2: 1202134619
+      Data3: -1852764023
+      Data4: -60690722
+    Path: event:/Shop/Exit
+  chargeSfx:
+    Guid:
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
+  purchaseSfx:
+    Guid:
+      Data1: 1660722876
+      Data2: 1102191164
+      Data3: -1098327885
+      Data4: -1056742579
+    Path: event:/Shop/Purchase
+  swooshSfx:
+    Guid:
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
+  upgradeSfx:
+    Guid:
+      Data1: -396252863
+      Data2: 1214135050
+      Data3: 1697879727
+      Data4: 2014184088
+    Path: event:/Shop/Upgrade

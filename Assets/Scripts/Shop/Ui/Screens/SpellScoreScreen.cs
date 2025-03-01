@@ -13,7 +13,7 @@ namespace Fantazee.Shop.Ui.Screens
     public class SpellScoreScreen : ScoreScreen
     {
         private SpellType spellType;
-        private SpellEntry selected;
+        private SpellEntry purchaseSpell;
 
         private int selectedSpellIndex = -1;
         
@@ -24,7 +24,7 @@ namespace Fantazee.Shop.Ui.Screens
         public void Initialize(SpellEntry selected, Action onComplete)
         {
             spellType = selected.Data.Type;
-            this.selected = selected;
+            purchaseSpell = selected;
             
             purchase.gameObject.SetActive(true);
             purchase.transform.localPosition = Vector3.zero;
@@ -68,16 +68,15 @@ namespace Fantazee.Shop.Ui.Screens
 
         protected override bool Apply(ScoreEntry scoreEntry)
         {
-            if (!GameInstance.Current.Character.Wallet.Remove(purchase.Cost))
+            if (!ShopController.Instance.MakePurchase(purchase.Cost))
             {
-                Debug.LogWarning("Shop: Cannot afford spell. Returning to shop.");
                 return false;
             }
             
             Debug.Log($"Shop Spell: {scoreEntry.Score.Type} {scoreEntry.Score.Spells[0]} -> {spellType}");
             scoreEntry.Score.Spells[selectedSpellIndex] = spellType;
             
-            selected.gameObject.SetActive(false);
+            purchaseSpell.gameObject.SetActive(false);
 
             return true;
         }

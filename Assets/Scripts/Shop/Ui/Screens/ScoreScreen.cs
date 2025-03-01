@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Fantazee.Battle.Score.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Shop.Settings;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Shop.Ui.ScoreSelect;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Screens
@@ -19,15 +21,27 @@ namespace Fantazee.Shop.Ui.Screens
 
         [SerializeField]
         private Ease selectEase = Ease.InCubic;
-
-        [SerializeField]
-        private float entryTime = 0.5f;
         
         [SerializeField]
-        private Ease entryEase = Ease.InCubic;
+        private float chargeTime = 0.2f;
+        
+        [SerializeField]
+        private Ease chargeEase = Ease.InCubic;
 
         [SerializeField]
-        private float entryOffset = -150f;
+        private float chargeOffset = 200f;
+
+        [FormerlySerializedAs("entryTime")]
+        [SerializeField]
+        private float purchaseTime = 0.5f;
+        
+        [FormerlySerializedAs("entryEase")]
+        [SerializeField]
+        private Ease purchaseEase = Ease.InCubic;
+
+        [FormerlySerializedAs("entryOffset")]
+        [SerializeField]
+        private float purchaseOffset = -150f;
 
         [SerializeField]
         private float punchAmount = 250f;
@@ -63,6 +77,9 @@ namespace Fantazee.Shop.Ui.Screens
 
         [SerializeField]
         protected Image fadeImage;
+        
+        // Audio
+        private EventInstance swooshSfx;
 
         protected virtual void Awake()
         {
@@ -74,18 +91,18 @@ namespace Fantazee.Shop.Ui.Screens
             transform.localPosition = hidePos;
         }
 
+        private void Start()
+        {
+            swooshSfx = RuntimeManager.CreateInstance(ShopSettings.Settings.SwooshSfx);
+        }
+
         protected abstract bool Apply(ScoreEntry scoreEntry);
 
         protected void ScoreSelectSequence(Transform purchaseEntry, 
                                            ScoreEntry scoreEntry, 
                                            Action onComplete = null)
         {
-            if (!Apply(scoreEntry))
-            {
-                Debug.LogWarning("Shop: Cannot apply spell. Returning to shop.");
-                onComplete?.Invoke();
-                return;
-            }
+            
 
             Vector3 pos = scoreEntry.transform.position;
             Transform parent = scoreEntry.transform.parent;
@@ -95,20 +112,35 @@ namespace Fantazee.Shop.Ui.Screens
             
             sequence.Append(scoreEntry.transform.DOMove(selectedSocket.position, selectTime)
                                       .SetEase(selectEase)
-                                      .SetDelay(0.15f));
+                                      .SetDelay(0.15f)
+                                      .OnStart(() => swooshSfx.start()));
             sequence.Insert(0, fadeImage.DOFade(fadeAmount, fadeTime)
                                         .SetEase(fadeEase)
                                         .OnStart(() => fadeImage.raycastTarget = true));
-            sequence.Append(purchaseEntry.DOMove(selectedSocket.position + Vector3.right * entryOffset, entryTime)
-                                         .SetEase(entryEase)
-                                         .SetDelay(0.3f)
+            sequence.Append(purchaseEntry.DOMove(purchaseEntry.position + Vector3.left * chargeOffset, chargeTime)
+                                         .SetEase(chargeEase)
+                                         .OnStart(() =>
+                                                  {
+                                                      RuntimeManager.PlayOneShot(ShopSettings.Settings.ChargeSfx);
+                                                  }));
+            sequence.Append(purchaseEntry.DOMove(selectedSocket.position + Vector3.right * purchaseOffset, purchaseTime)
+                                         .SetEase(purchaseEase)
+                                         .OnStart(() => swooshSfx.start())
                                          .OnComplete(() =>
                                                      {
                                                          purchaseEntry.gameObject.SetActive(false);
+                                                         if (!Apply(scoreEntry))
+                                                         {
+                                                             Debug.LogWarning("Shop: Cannot apply spell. Returning to shop.");
+                                                             onComplete?.Invoke();
+                                                             return;
+                                                         }
                                                          scoreEntry.UpdateVisuals();
                                                      }));
-            sequence.Append(scoreEntry.transform.DOPunchPosition(Vector3.right * punchAmount, punchTime));
+            sequence.Append(scoreEntry.transform.DOPunchPosition(Vector3.right * punchAmount, punchTime)
+                                      .OnStart(() => RuntimeManager.PlayOneShot(ShopSettings.Settings.UpgradeSfx)));
             sequence.Append(scoreEntry.transform.DOMove(pos, returnTime)
+                                      .OnStart(() => swooshSfx.start())
                                       .SetEase(returnEase)
                                       .SetDelay(0.3f));
             sequence.AppendInterval(0.5f);

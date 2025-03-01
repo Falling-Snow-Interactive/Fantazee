@@ -1,9 +1,15 @@
+using Fantazee.Currencies;
+using Fantazee.Instance;
+using Fantazee.Shop.Settings;
 using Fantazee.Shop.Ui;
+using FMOD.Studio;
+using FMODUnity;
+using Fsi.Gameplay;
 using UnityEngine;
 
 namespace Fantazee.Shop
 {
-    public class ShopController : MonoBehaviour
+    public class ShopController : MbSingleton<ShopController>
     {
         [Header("Inventory")]
 
@@ -14,6 +20,16 @@ namespace Fantazee.Shop
         
         [SerializeField]
         private ShopUi shopUi;
+        
+        // Audio
+        private EventInstance purchaseSfx;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            purchaseSfx = RuntimeManager.CreateInstance(ShopSettings.Settings.PurchaseSfx);
+        }
 
         private void Start()
         {
@@ -22,31 +38,28 @@ namespace Fantazee.Shop
             // TODO - Generate shop inventory randomly - KD
             shopUi.Initialize(inventory);
             
+            RuntimeManager.PlayOneShot(ShopSettings.Settings.EnterSfx);
             GameController.Instance.ShopReady();
-        }
-
-        public bool TryPurchase()// BoonType type)
-        {
-            // if (BoonSettings.Settings.Information.TryGetInformation(type, out BoonInformation information))
-            // {
-            //     Currency cost = information.Cost;
-            //     if (GameController.Instance.GameInstance.Wallet.CanAfford(cost))
-            //     {
-            //         Boon boon = BoonFactory.Create(type);
-            //         GameController.Instance.GameInstance.Boons.Add(boon);
-            //         GameController.Instance.GameInstance.Wallet.Remove(cost);
-            //         return true;
-            //     }
-            // }
-
-            return false;
         }
 
         public void LeaveShop()
         {
             Debug.Log("Shop - Leave shop");
             
+            RuntimeManager.PlayOneShot(ShopSettings.Settings.ExitSfx);
             GameController.Instance.ExitShop();
+        }
+
+        public bool MakePurchase(Currency cost)
+        {
+            if (!GameInstance.Current.Character.Wallet.Remove(cost))
+            {
+                Debug.LogWarning("Shop: Cannot afford spell. Purchase not made.");
+                return false;
+            }
+            
+            purchaseSfx.start();
+            return true;
         }
     }
 }
