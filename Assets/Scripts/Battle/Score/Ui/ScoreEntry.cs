@@ -122,6 +122,11 @@ namespace Fantazee.Battle.Score.Ui
             score.ScoreReset += OnScoreReset;
         }
 
+        public virtual void Initialize(Scores.Score score, Action<ScoreEntry> onSelect)
+        {
+            
+        }
+
         private void ShowInSlot(int index, int value)
         {
             if (diceImages.Count >= index &&

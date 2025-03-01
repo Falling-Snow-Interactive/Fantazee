@@ -79,6 +79,17 @@ namespace Fantazee.Battle.Score
 
         public int Calculate()
         {
+            int results = score.Calculate(dice);
+            string s = $"BattleScore: {results}\n";
+            foreach (var d in dice)
+            {
+                s += $"{d}";
+                if (d == dice[^1])
+                {
+                    s += " - ";
+                }
+            }
+            Debug.Log($"BattleScore: {results} - {dice[0]}");
             return score.Calculate(dice);
         }
         
@@ -90,18 +101,6 @@ namespace Fantazee.Battle.Score
         public void AddDie(Die die)
         {
             dice.Add(die);
-            string s = "";
-            for (int i = 0; i < dice.Count; i++)
-            {
-                Die d = dice[i];
-                s += $"{d.Value}";
-                if (i != dice.Count - 1)
-                {
-                    s += " - ";
-                }
-            }
-
-            Debug.Log($"Score: {score.Type} - Die: {die.Value}\n{s}");
             DieAdded?.Invoke();
         }
 

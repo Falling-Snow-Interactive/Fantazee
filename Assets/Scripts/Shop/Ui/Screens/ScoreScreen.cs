@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Fantazee.Battle.Score.Ui;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.ScoreSelect;
 using UnityEngine;
@@ -56,7 +57,7 @@ namespace Fantazee.Shop.Ui.Screens
         private ShopEntryUi entry;
         
         [SerializeField]
-        protected List<ScoreSelectEntry> scoreEntries = new();
+        protected List<ScoreEntry> scoreEntries = new();
 
         [SerializeField]
         private Transform selectedSocket;

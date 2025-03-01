@@ -46,8 +46,12 @@ namespace Fantazee.Shop.Ui.Screens
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} -> {scoreEntry.Score.Type}");
-            scoreEntry.Score.Type = scoreType;
+            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} -> {selected.Score}");
+            // scoreEntry.Score = ScoreFactory.Create(selected.Score, scoreEntry.Score.Spells);
+
+            int index = GameInstance.Current.Character.ScoreTracker.Scores.IndexOf(scoreEntry.Score);
+            GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(selected.Score, scoreEntry.Score.Spells);
+            scoreEntry.Score = GameInstance.Current.Character.ScoreTracker.Scores[index];
             
             selected.gameObject.SetActive(false);
 

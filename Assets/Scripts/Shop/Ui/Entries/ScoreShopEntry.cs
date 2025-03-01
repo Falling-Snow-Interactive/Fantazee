@@ -12,7 +12,11 @@ namespace Fantazee.Shop.Ui.Entries
         
         [SerializeField]
         private ScoreType score;
-        public ScoreType Score => score;
+        public ScoreType Score
+        {
+            get => score;
+            set => score = value;
+        }
 
         [SerializeReference]
         private ScoreInformation information;

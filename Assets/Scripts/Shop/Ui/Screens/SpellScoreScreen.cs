@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Fantazee.Battle.Score.Ui;
 using Fantazee.Instance;
 using Fantazee.Scores;
 using Fantazee.Shop.Ui.Entries;
@@ -35,7 +36,7 @@ namespace Fantazee.Shop.Ui.Screens
             
             for (int i = 0; i < scoreEntries.Count; i++)
             {
-                ScoreSelectEntry scoreEntry = scoreEntries[i];
+                ScoreEntry scoreEntry = scoreEntries[i];
                 Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
                 
                 scoreEntry.Initialize(score, OnScoreSelected);

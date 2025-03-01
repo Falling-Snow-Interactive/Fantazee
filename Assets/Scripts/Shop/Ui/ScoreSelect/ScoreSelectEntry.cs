@@ -19,7 +19,11 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         
         [SerializeReference]
         private Score score;
-        public Score Score => score;
+        public Score Score
+        {
+            get => score;
+            set => score = value;
+        }
 
         [Header("References")]
 
