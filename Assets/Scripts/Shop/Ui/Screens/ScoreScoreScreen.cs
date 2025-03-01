@@ -46,7 +46,7 @@ namespace Fantazee.Shop.Ui.Screens
             int index = GameInstance.Current.Character.ScoreTracker.Scores.IndexOf(scoreEntry.Score);
             GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(purchase.Score.Type, scoreEntry.Score.Spells);
             scoreEntry.Score = GameInstance.Current.Character.ScoreTracker.Scores[index];
-            purchase.gameObject.SetActive(false);
+            // purchase.gameObject.SetActive(false);
 
             return true;
         }
