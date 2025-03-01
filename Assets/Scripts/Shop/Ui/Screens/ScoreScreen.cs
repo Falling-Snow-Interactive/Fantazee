@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Score.Ui;
+using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.ScoreSelect;
 using UnityEngine;
@@ -57,7 +58,7 @@ namespace Fantazee.Shop.Ui.Screens
         private ShopEntryUi entry;
         
         [SerializeField]
-        protected List<ScoreEntry> scoreEntries = new();
+        protected List<ShopScoreEntry> scoreEntries = new();
 
         [SerializeField]
         private Transform selectedSocket;
@@ -78,9 +79,9 @@ namespace Fantazee.Shop.Ui.Screens
             transform.localPosition = localOut;
         }
 
-        protected abstract bool Apply(ScoreSelectEntry scoreEntry);
+        protected abstract bool Apply(ScoreEntry scoreEntry);
 
-        protected void PlayAnimation(ScoreSelectEntry scoreEntry)
+        protected void ScoreSelectSequence(ScoreEntry scoreEntry)
         {
             if (!Apply(scoreEntry))
             {

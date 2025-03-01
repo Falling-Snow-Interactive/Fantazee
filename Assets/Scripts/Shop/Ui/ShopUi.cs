@@ -5,11 +5,11 @@ using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
 using Fantazee.Shop.Ui.Entries;
+using Fantazee.Shop.Ui.ScoreSelect;
 using Fantazee.Shop.Ui.Screens;
 using Fantazee.Spells;
 using UnityEngine;
 using UnityEngine.Serialization;
-using ScoreEntry = Fantazee.Battle.Score.Ui.ScoreEntry;
 
 namespace Fantazee.Shop.Ui
 {
@@ -72,16 +72,16 @@ namespace Fantazee.Shop.Ui
             
         }
 
-        private void OnScoreSelected(ScoreShopEntry scoreEntry)
+        private void OnScoreSelected(ShopScoreEntry shopScoreEntry)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(scoreEntry.Information.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(shopScoreEntry.Score.Information.Cost))
             {
-                ShowScoreScoreScreen(scoreEntry);
+                // ShowScoreScoreScreen(shopScoreEntry);
             }
             else
             {
                 currencyEntry.PlayCantAfford();
-                scoreEntry.PlayCantAfford();
+                // shopScoreEntry.PlayCantAfford();
             }
         }
         

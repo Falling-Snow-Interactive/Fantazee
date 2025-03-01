@@ -5,7 +5,10 @@ using Fantazee.Battle.Settings;
 using Fantazee.Currencies.Ui;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
+using Fantazee.Scores.Ui;
+using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
+using Fantazee.Shop.Ui.ScoreSelect;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using Fantazee.Spells.Settings;
@@ -18,7 +21,7 @@ namespace Fantazee.Shop.Ui.Screens
     {
         private Action<SpellEntry> onSpellSelected;
         private Action<RelicEntry> onRelicSelected;
-        private Action<ScoreShopEntry> onScoreSelected;
+        private Action<ShopScoreEntry> onScoreSelected;
         
         [Header("Prefabs")]
         
@@ -33,13 +36,12 @@ namespace Fantazee.Shop.Ui.Screens
 
         [SerializeReference]
         private List<RelicEntry> relicEntries = new();
-        
-        [FormerlySerializedAs("scoreEntryPrefab")]
+
         [SerializeField]
-        private ScoreShopEntry scoreShopEntryPrefab;
+        private ShopScoreEntryPurchase scorePurchaseEntry;
         
         [SerializeReference]
-        private List<ScoreShopEntry> scoreEntries = new();
+        private List<ShopScoreEntryPurchase> scorePurchaseEntries = new();
         
         [Header("References")]
 
@@ -60,7 +62,7 @@ namespace Fantazee.Shop.Ui.Screens
         public void Initialize(ShopInventory shopInventory, 
                                Action<SpellEntry> onSpellSelected,
                                Action<RelicEntry> onRelicSelected,
-                               Action<ScoreShopEntry> onScoreSelected)
+                               Action<ShopScoreEntry> onScoreSelected)
         {
             this.onSpellSelected = onSpellSelected;
             this.onRelicSelected = onRelicSelected;
@@ -81,11 +83,11 @@ namespace Fantazee.Shop.Ui.Screens
                 }
             }
 
-            foreach (ScoreType score in shopInventory.Scores)
+            foreach (Score score in shopInventory.Scores)
             {
-                ScoreShopEntry scoreShopEntry = Instantiate(scoreShopEntryPrefab, scoreContent);
-                scoreShopEntry.Initialize(score, OnScoreSelected);
-                scoreEntries.Add(scoreShopEntry);
+                ShopScoreEntryPurchase scorePurchase = Instantiate(scorePurchaseEntry, scoreContent);
+                scorePurchase.Initialize(score, OnScoreSelected);
+                scorePurchaseEntries.Add(scorePurchase);
             }
         }
 
@@ -99,9 +101,13 @@ namespace Fantazee.Shop.Ui.Screens
             onRelicSelected?.Invoke(relicEntry);
         }
 
-        private void OnScoreSelected(ScoreShopEntry scoreShopEntry)
+        private void OnScoreSelected(ScoreEntry shopScoreEntry)
         {
-            onScoreSelected?.Invoke(scoreShopEntry);
+            Debug.Assert(shopScoreEntry is ShopScoreEntryPurchase, 
+                         "Should be a purchase score entry.", 
+                         gameObject);
+            
+            onScoreSelected?.Invoke((ShopScoreEntryPurchase)shopScoreEntry);
         }
     }
 }

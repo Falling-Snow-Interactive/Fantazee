@@ -1,8 +1,9 @@
 using System;
 using DG.Tweening;
-using Fantazee.Battle.Score.Ui;
 using Fantazee.Instance;
 using Fantazee.Scores;
+using Fantazee.Scores.Ui;
+using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.ScoreSelect;
 using Fantazee.Spells;
@@ -24,8 +25,6 @@ namespace Fantazee.Shop.Ui.Screens
 
         public void Initialize(SpellEntry selected, Action onComplete)
         {
-            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
-            
             spellType = selected.Data.Type;
             this.onComplete = onComplete;
             this.selected = selected;
@@ -34,32 +33,33 @@ namespace Fantazee.Shop.Ui.Screens
             entry.transform.localPosition = Vector3.zero;
             entry.Initialize(selected.Data, null);
             
+            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
             for (int i = 0; i < scoreEntries.Count; i++)
             {
-                ScoreEntry scoreEntry = scoreEntries[i];
+                ShopScoreEntry scoreEntry = scoreEntries[i];
                 Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
                 
                 scoreEntry.Initialize(score, OnScoreSelected);
             }
         }
 
-        private void OnScoreSelected(ScoreSelectEntry scoreSelectEntry)
+        private void OnScoreSelected(ScoreEntry scoreEntry)
         {
-            scoreSelectEntry.transform.SetParent(animGroup);
+            scoreEntry.transform.SetParent(animGroup);
             fadeImage.DOFade(fadeAmount, fadeTime)
                      .SetEase(fadeEase)
                      .OnStart(() => fadeImage.raycastTarget = true);
 
-            scoreSelectEntry.RequestSpell(OnSpellSelected);
+            scoreEntry.RequestSpell(OnSpellSelected);
         }
 
-        private void OnSpellSelected(int i, ScoreSelectEntry scoreSelectEntry)
+        private void OnSpellSelected(int i, ScoreEntry scoreEntry)
         {
             selectedSpellIndex = i;
-            PlayAnimation(scoreSelectEntry);
+            ScoreSelectSequence(scoreEntry);
         }
 
-        protected override bool Apply(ScoreSelectEntry scoreEntry)
+        protected override bool Apply(ScoreEntry scoreEntry)
         {
             if (!GameInstance.Current.Character.Wallet.Remove(entry.Data.Cost))
             {

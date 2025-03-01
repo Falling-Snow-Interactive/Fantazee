@@ -4,6 +4,7 @@ using DG.Tweening;
 using Fantazee.Battle.Settings;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
+using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using Fantazee.Spells.Settings;
@@ -28,7 +29,7 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         [Header("References")]
 
         [SerializeField]
-        private List<ScoreSelectEntrySpell> spells = new();
+        private List<ScoreEntrySpell> spells = new();
 
         [SerializeField]
         private TMP_Text scoreText;
@@ -57,21 +58,6 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         public void Select()
         {
             onSelect?.Invoke(this);
-        }
-
-        public void RequestSpell(Action<int, ScoreSelectEntry> onSpellSelect)
-        {
-            foreach (ScoreSelectEntrySpell spell in spells)
-            {
-                spell.Activate(i =>
-                               {
-                                   foreach (ScoreSelectEntrySpell s in spells)
-                                   {
-                                       s.Deactivate();
-                                   }
-                                   onSpellSelect?.Invoke(i, this);
-                               });
-            }
         }
     }
 }

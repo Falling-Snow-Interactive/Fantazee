@@ -14,7 +14,7 @@ namespace Fantazee.Shop
         public List<SpellType> Spells => spells;
         
         [SerializeField]
-        private List<ScoreType> scores = new();
-        public List<ScoreType> Scores => scores;
+        private List<Score> scores = new();
+        public List<Score> Scores => scores;
     }
 }

@@ -12,6 +12,7 @@ using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
 using Fantazee.Instance;
+using Fantazee.Scores.Ui.ScoreEntries;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -228,7 +229,7 @@ namespace Fantazee.Battle
         
         #region Score/Damage
         
-        private void SelectScoreEntry(ScoreEntry entry)
+        private void SelectScoreEntry(ScoreEntry scoreEntry)
         {
             if (hasScoredRoll)
             {
@@ -237,19 +238,24 @@ namespace Fantazee.Battle
             
             hasScoredRoll = true;
             
-            if (entry.Score.CanScore())
+            // This should always be true. Something going on if its not
+            Debug.Assert(scoreEntry is BattleScoreEntry);
+            if (scoreEntry is BattleScoreEntry bEntry)
             {
-                StartCoroutine(StartScoreSequence(entry, BattleUi.Instance.DiceControl.Dice));
+                if (bEntry.BattleScore.CanScore())
+                {
+                    StartCoroutine(StartScoreSequence(bEntry, BattleUi.Instance.DiceControl.Dice));
+                }
             }
         }
 
-        private IEnumerator StartScoreSequence(ScoreEntry entry, List<DieUi> diceUi)
+        private IEnumerator StartScoreSequence(BattleScoreEntry entry, List<DieUi> diceUi)
         {
             foreach (DieUi d in diceUi)
             {
                 d.ResetDice();
                 d.Squish();
-                entry.Score.AddDie(d.Die);
+                entry.BattleScore.AddDie(d.Die);
                 
                 yield return new WaitForSeconds(scoreTime);
             }
@@ -264,7 +270,7 @@ namespace Fantazee.Battle
             if (damage.Value > 0)
             {
                 yield return new WaitForSeconds(0.5f);
-                entry.Score.Cast(damage, () =>
+                entry.BattleScore.Cast(damage, () =>
                                          {
                                              Scored?.Invoke(damage.Value);
                                              OnFinishedScoring();

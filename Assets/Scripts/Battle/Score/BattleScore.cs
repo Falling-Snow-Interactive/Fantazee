@@ -32,7 +32,7 @@ namespace Fantazee.Battle.Score
         public List<Die> Dice => dice;
 
         [SerializeReference]
-        private ScoreEntry entryUi;
+        private BattleScoreEntry entryUi;
 
         public BattleScore(Scores.Score score)
         {
@@ -49,7 +49,7 @@ namespace Fantazee.Battle.Score
             }
         }
 
-        public void SetEntry(ScoreEntry entryUi)
+        public void SetEntry(BattleScoreEntry entryUi)
         {
             this.entryUi = entryUi;
         }
@@ -67,7 +67,7 @@ namespace Fantazee.Battle.Score
                 BattleSpell spell = spells[i];
                 if (spell.Data.Type != SpellType.None && BattleController.Instance.EnemiesRemaining() > 0)
                 {
-                    entryUi.SpellIcons[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
+                    entryUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
                 
                     spell.Cast(damage, () => { ready = true; });
                     yield return new WaitUntil(() => ready);

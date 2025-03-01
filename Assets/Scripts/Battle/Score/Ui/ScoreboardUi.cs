@@ -6,7 +6,9 @@ using Fantazee.Battle.Settings;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Scores.Bonus.Ui;
+using Fantazee.Scores.Ui.ScoreEntries;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui
@@ -23,10 +25,11 @@ namespace Fantazee.Battle.Score.Ui
         [SerializeField]
         private Ease scoreEase = Ease.InCirc;
 
+        [FormerlySerializedAs("scoreEntryPrefab")]
         [Header("Prefabs")]
 
         [SerializeField]
-        private ScoreEntry scoreEntryPrefab;
+        private BattleScoreEntry battleScoreEntryPrefab;
         
         [Header("References")]
         
@@ -34,10 +37,10 @@ namespace Fantazee.Battle.Score.Ui
         private Transform entryContainer;
         
         [SerializeField]
-        private List<ScoreEntry> entries = new List<ScoreEntry>();
+        private List<BattleScoreEntry> entries = new List<BattleScoreEntry>();
 
         [SerializeField]
-        private ScoreEntry fantazeeEntry;
+        private BattleScoreEntry fantazeeEntry;
 
         [SerializeField]
         private BonusScoreUi bonusScoreUi;
@@ -53,7 +56,7 @@ namespace Fantazee.Battle.Score.Ui
             for (int i = 0; i < battleScores.Count; i++)
             {
                 BattleScore score = battleScores[i];
-                ScoreEntry entry = entries[i];
+                BattleScoreEntry entry = entries[i];
                 entry.Initialize(score, OnScoreEntrySelected);
                 score.SetEntry(entry);
             }

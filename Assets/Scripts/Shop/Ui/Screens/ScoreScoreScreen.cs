@@ -1,6 +1,7 @@
 using System;
 using Fantazee.Instance;
 using Fantazee.Scores;
+using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.ScoreSelect;
 using UnityEngine;
@@ -10,12 +11,12 @@ namespace Fantazee.Shop.Ui.Screens
     public class ScoreScoreScreen : ScoreScreen
     {
         private ScoreType scoreType;
-        private ScoreShopEntry selected;
+        private ScoreShopEntry selectedOnMain;
         
         [Header("Score Score References")]
         
         [SerializeField]
-        private ScoreShopEntry scoreEntry;
+        private ShopScoreEntry scoreEntry;
 
         public void Initialize(ScoreShopEntry selected, Action onComplete)
         {
@@ -23,37 +24,38 @@ namespace Fantazee.Shop.Ui.Screens
             
             scoreType = selected.Score;
             this.onComplete = onComplete;
-            this.selected = selected;
+            selectedOnMain = selected;
             
             scoreEntry.gameObject.SetActive(true);
             scoreEntry.transform.localPosition = Vector3.zero;
-            scoreEntry.Initialize(selected.Score, null);
+            
+            // TODO - this matches what's selected on the shop main screen
+            // scoreEntry.Initialize(selected.Score, null);
             
             for (int i = 0; i < scoreEntries.Count; i++)
             {
-                ScoreSelectEntry scoreEntry = scoreEntries[i];
+                ShopScoreEntry scoreEntry = scoreEntries[i];
                 Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
-                
-                scoreEntry.Initialize(score, PlayAnimation);
+
+                scoreEntry.Initialize(score, ScoreSelectSequence);
             }
         }
 
-        protected override bool Apply(ScoreSelectEntry scoreEntry)
+        protected override bool Apply(ScoreEntry scoreEntry)
         {
-            if (!GameInstance.Current.Character.Wallet.Remove(this.scoreEntry.Information.Cost))
+            if (!GameInstance.Current.Character.Wallet.Remove(this.scoreEntry.Score.Information.Cost))
             {
                 Debug.LogWarning("Shop: Cannot afford spell. Returning to shop.");
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} -> {selected.Score}");
-            // scoreEntry.Score = ScoreFactory.Create(selected.Score, scoreEntry.Score.Spells);
+            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} -> {selectedOnMain.Score}");
 
             int index = GameInstance.Current.Character.ScoreTracker.Scores.IndexOf(scoreEntry.Score);
-            GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(selected.Score, scoreEntry.Score.Spells);
+            GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(selectedOnMain.Score, scoreEntry.Score.Spells);
             scoreEntry.Score = GameInstance.Current.Character.ScoreTracker.Scores[index];
             
-            selected.gameObject.SetActive(false);
+            selectedOnMain.gameObject.SetActive(false);
 
             return true;
         }
