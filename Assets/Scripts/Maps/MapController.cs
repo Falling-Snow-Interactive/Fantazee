@@ -7,7 +7,6 @@ using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Maps
@@ -151,6 +150,7 @@ namespace Fantazee.Maps
 
                 footstepsSfx.start();
                 player.transform.DOMove(node.transform.position, 0.5f)
+                      .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
                       .OnComplete(() =>
                                   {
                                       footstepsSfx.stop(STOP_MODE.IMMEDIATE);
@@ -198,6 +198,7 @@ namespace Fantazee.Maps
                 player.DOMove(map.Nodes[^1].transform.position + Vector3.right * 10f, 0.5f)
                       .SetEase(Ease.InSine)
                       .SetDelay(0.5f)
+                      .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
                       .OnComplete(() =>
                                   {
                                       GameController.Instance.AdvanceMap(StartNewMap);
@@ -210,6 +211,7 @@ namespace Fantazee.Maps
                 player.DOLocalMoveX(map.Nodes[0].transform.position.x, 0.5f)
                       .SetEase(Ease.InSine)
                       .SetDelay(0.5f)
+                      .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
                       .OnComplete(StartMap); 
             }
         }

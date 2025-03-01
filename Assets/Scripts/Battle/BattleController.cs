@@ -379,7 +379,6 @@ namespace Fantazee.Battle
             {
                 if (battleScore.CanScore())
                 {
-                    Debug.Log($"Battle: Can play {battleScore.Score}, no need to check.");
                     canPlay = true;
                     break;
                 }

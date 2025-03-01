@@ -6,7 +6,7 @@ namespace Fantazee.Battle.Score.Ui
 {
     public class FantazeeBattleScoreEntryUi : BattleScoreEntry
     {
-        public void Initialize(BattleScore battleScore, Action<ScoreEntry> onSelect)
+        public new void Initialize(BattleScore battleScore, Action<ScoreEntry> onSelect)
         {
             base.Initialize(battleScore.Score, onSelect);
 

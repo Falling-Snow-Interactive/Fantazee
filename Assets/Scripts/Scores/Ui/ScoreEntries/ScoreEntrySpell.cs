@@ -63,7 +63,6 @@ namespace Fantazee.Scores.Ui.ScoreEntries
                 return;
             }
             
-            Debug.Log($"Set Tooltip{set}");
             if (set)
             {
                 tooltip.Show(this);
