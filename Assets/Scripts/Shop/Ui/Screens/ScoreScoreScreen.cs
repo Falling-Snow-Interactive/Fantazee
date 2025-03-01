@@ -12,9 +12,14 @@ namespace Fantazee.Shop.Ui.Screens
         [SerializeField]
         private ShopScoreEntryPurchase purchase;
 
+        [SerializeField]
+        private ShopScoreEntryPurchase mainMenuSelected;
+
         public void Initialize(ShopScoreEntryPurchase selected, Action onComplete)
         {
             Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
+
+            mainMenuSelected = selected;
             
             purchase.gameObject.SetActive(true);
             purchase.transform.localPosition = Vector3.zero;
@@ -47,7 +52,7 @@ namespace Fantazee.Shop.Ui.Screens
             GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(purchase.Score.Type, scoreEntry.Score.Spells);
             scoreEntry.Score = GameInstance.Current.Character.ScoreTracker.Scores[index];
             
-            purchase.gameObject.SetActive(false);
+            mainMenuSelected.gameObject.SetActive(false);
             
             return true;
         }

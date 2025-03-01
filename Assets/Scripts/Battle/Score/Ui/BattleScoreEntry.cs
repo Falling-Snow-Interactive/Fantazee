@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Settings;
 using Fantazee.Dice.Settings;
@@ -42,6 +43,11 @@ namespace Fantazee.Battle.Score.Ui
             
             battleScore.DieAdded += OnDieAdded;
             battleScore.ScoreReset += OnBattleScoreReset;
+        }
+
+        protected override List<int> GetDiceValues()
+        {
+            return new List<int>{0,0,0,0,0};
         }
 
         public int FinalizeScore()

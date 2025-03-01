@@ -111,7 +111,7 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             }
         }
 
-        private List<int> GetDiceValues()
+        protected virtual List<int> GetDiceValues()
         {
             List<int> diceValues = new();
 
