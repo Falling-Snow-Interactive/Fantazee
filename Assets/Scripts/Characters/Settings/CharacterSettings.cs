@@ -20,6 +20,7 @@ namespace Fantazee.Characters.Settings
         
         [SerializeField]
         private List<CharacterData> characters;
+        public List<CharacterData> Characters => characters;
 
         public bool TryGetCharacter(CharacterType type, out CharacterData data)
         {

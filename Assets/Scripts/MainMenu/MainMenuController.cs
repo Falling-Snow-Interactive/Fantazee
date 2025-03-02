@@ -1,33 +1,49 @@
+using Fantazee.Characters;
+using Fantazee.MainMenu.Character.Ui;
+using Fsi.Gameplay;
 using UnityEngine;
 
 namespace Fantazee.MainMenu
 {
-    public class MainMenuController : MonoBehaviour
+    public class MainMenuController : MbSingleton<MainMenuController>
     {
+        [SerializeField]
+        private MainMenu mainMenu;
+        
+        [SerializeField]
+        private CharacterMenu characterMenu;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            characterMenu.gameObject.SetActive(false);
+        }
+        
         private void Start()
         {
             GameController.Instance.MainMenuReady();
         }
-        
-        public void OnContinueButton()
+
+        public void NewGame(CharacterData character)
         {
-            Debug.Log("MainMenu - OnContinueButton");
+            Debug.Log($"MainMenu - Starting new game as {character.name}", character);
+            GameController.Instance.NewGame(character);
             GameController.Instance.LoadMap();
         }
 
-        public void OnNewGameButton()
+        public void ShowMainMenu()
         {
-            Debug.Log("MainMenu - OnNewGameButton");
-            GameController.Instance.NewGame();
-            GameController.Instance.LoadMap();
+            mainMenu.gameObject.SetActive(true);
+            characterMenu.gameObject.SetActive(false);
         }
 
-        public void OnSettingsButton()
+        public void ShowCharacterMenu()
         {
-            Debug.Log("MainMenu - OnSettingsButton - Not Implemented");
+            characterMenu.gameObject.SetActive(true);
+            mainMenu.gameObject.SetActive(false);
         }
 
-        public void OnQuitButton()
+        public void Quit()
         {
             Debug.Log("MainMenu - OnQuitButton");
             Application.Quit();

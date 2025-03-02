@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Fantazee.Battle.Characters;
+using Fantazee.Battle.Characters.Player;
 using Fantazee.Currencies;
 using Fantazee.Scores;
 using Fantazee.Spells;
+using Fsi.Gameplay.Visuals;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -25,6 +27,16 @@ namespace Fantazee.Characters
         private LocalizedString locDesc;
         public LocalizedString LocDesc => locDesc;
 
+        [Header("Visuals")]
+
+        [SerializeField]
+        private Sprite icon;
+        public Sprite Icon => icon;
+
+        [SerializeField]
+        private GameplayCharacterVisuals visuals;
+        public GameplayCharacterVisuals Visuals => visuals;
+
         [Header("Battle")]
 
         [SerializeField]
@@ -32,8 +44,8 @@ namespace Fantazee.Characters
         public int MaxHealth => maxHealth;
 
         [SerializeField]
-        private BattleCharacter battleCharacter;
-        public BattleCharacter BattleCharacter => battleCharacter;
+        private BattlePlayer battleCharacter;
+        public BattlePlayer BattleCharacter => battleCharacter;
 
         [Header("Scores")]
 

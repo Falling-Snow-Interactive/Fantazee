@@ -685,17 +685,6 @@ Transform:
   - {fileID: 405188323}
   m_Father: {fileID: 836698593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1989365795 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1207447404569566630, guid: 48ebd6668b9c64bbd8065c0eb253c9c6, type: 3}
-  m_PrefabInstance: {fileID: 125878882215837661}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06ac073aacd0480dbbe75800adb15bfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &125878882215837661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -805,6 +794,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48ebd6668b9c64bbd8065c0eb253c9c6, type: 3}
+--- !u!4 &125878882215837662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5797257722080980638, guid: 48ebd6668b9c64bbd8065c0eb253c9c6, type: 3}
+  m_PrefabInstance: {fileID: 125878882215837661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2017258921051555001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6234,11 +6228,15 @@ PrefabInstance:
     - target: {fileID: 840833419396323897, guid: 3cf32e665bd36425984c556b5215e7fb, type: 3}
       propertyPath: battlePlayer
       value: 
-      objectReference: {fileID: 1989365795}
+      objectReference: {fileID: 0}
     - target: {fileID: 840833419396323897, guid: 3cf32e665bd36425984c556b5215e7fb, type: 3}
       propertyPath: enemyContainer
       value: 
       objectReference: {fileID: 707306080}
+    - target: {fileID: 840833419396323897, guid: 3cf32e665bd36425984c556b5215e7fb, type: 3}
+      propertyPath: playerContainer
+      value: 
+      objectReference: {fileID: 125878882215837662}
     - target: {fileID: 1519221127867995531, guid: 3cf32e665bd36425984c556b5215e7fb, type: 3}
       propertyPath: m_Name
       value: Battle_CTRL

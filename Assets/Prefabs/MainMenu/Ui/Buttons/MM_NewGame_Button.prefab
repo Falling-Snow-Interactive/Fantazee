@@ -256,6 +256,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnNewGameButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Fantazee.MainMenu.MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096457944785535103, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Ui/Button_Confirm
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096457944785535103, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: -690362293
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096457944785535103, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1180255078
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096457944785535103, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -1246797413
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096457944785535103, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 1225509181
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

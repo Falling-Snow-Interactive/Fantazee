@@ -1,6 +1,7 @@
 using System;
 using Fantazee.Battle;
 using Fantazee.Battle.Environments;
+using Fantazee.Characters;
 using Fantazee.Environments.Audio;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
@@ -71,6 +72,11 @@ namespace Fantazee
         public void NewGame()
         {
             gameInstance = GameInstance.Defaults;
+        }
+
+        public void NewGame(CharacterData character)
+        {
+            gameInstance = new GameInstance(character);
         }
 
         public void LoadGame()

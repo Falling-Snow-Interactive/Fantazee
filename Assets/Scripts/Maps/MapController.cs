@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Fantazee.Battle.Characters;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using FMOD.Studio;
@@ -13,16 +14,10 @@ namespace Fantazee.Maps
     {
         public class MapController : MbSingleton<MapController>
         {
-            private MapInstance Map => GameController.Instance.GameInstance.Map;
-            
-            [SerializeField]
-            private new Camera camera;
-            
-            [SerializeField]
-            private Map map;
+            private MapInstance Map => GameInstance.Current.Map;
 
-            [SerializeField]
-            private Transform player;
+            [SerializeReference]
+            private GameplayCharacterVisuals player;
 
             [Header("Input")]
 
@@ -50,6 +45,14 @@ namespace Fantazee.Maps
 
             [SerializeField]
             private EventReference nodeSelectSfxRef;
+            
+            [Header("References")]
+            
+            [SerializeField]
+            private new Camera camera;
+            
+            [SerializeField]
+            private Map map;
 
             protected override void Awake()
             {
@@ -85,6 +88,7 @@ namespace Fantazee.Maps
                     node = map.Nodes[^1];
                 }
 
+                player = Instantiate(GameInstance.Current.Character.Data.Visuals, node.transform);
                 player.transform.position = node.transform.position;
                 canInteract = false;
                 
@@ -195,7 +199,7 @@ namespace Fantazee.Maps
             {
                 Debug.Log("Map - Advance to next map");
                 player.transform.position = map.Nodes[^1].transform.position;
-                player.DOMove(map.Nodes[^1].transform.position + Vector3.right * 10f, 0.5f)
+                player.transform.DOMove(map.Nodes[^1].transform.position + Vector3.right * 10f, 0.5f)
                       .SetEase(Ease.InSine)
                       .SetDelay(0.5f)
                       .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
@@ -208,7 +212,7 @@ namespace Fantazee.Maps
             private void StartNewMap()
             {
                 player.transform.position = map.Nodes[0].transform.position + Vector3.right * -10;
-                player.DOLocalMoveX(map.Nodes[0].transform.position.x, 0.5f)
+                player.transform.DOLocalMoveX(map.Nodes[0].transform.position.x, 0.5f)
                       .SetEase(Ease.InSine)
                       .SetDelay(0.5f)
                       .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
 using Fantazee.Maps;
@@ -52,6 +53,15 @@ namespace Fantazee.Instance
                 
                 return instance;
             }
+        }
+        
+        public GameInstance(){}
+
+        public GameInstance(CharacterData character)
+        {
+            RandomizeSeed();
+            this.character = new CharacterInstance(character);
+            map = new MapInstance();
         }
 
         public void RandomizeSeed()

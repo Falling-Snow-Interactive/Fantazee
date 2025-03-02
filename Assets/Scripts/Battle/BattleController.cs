@@ -62,17 +62,17 @@ namespace Fantazee.Battle
 
         private bool hasScoredRoll = false;
 
-        [FormerlySerializedAs("gameplayPlayer")]
-        [Header("Characters")]
+        private BattlePlayer player;
+        public BattlePlayer Player => player;
 
-        [SerializeField]
-        private BattlePlayer battlePlayer;
-        public BattlePlayer Player => battlePlayer;
-
-        [SerializeReference]
         private List<BattleEnemy> enemies = new();
         public List<BattleEnemy> Enemies => enemies;
 
+        [Header("Characters")]
+
+        [SerializeField]
+        private Transform playerContainer;
+        
         [SerializeField]
         private Transform enemyContainer;
 
@@ -143,6 +143,7 @@ namespace Fantazee.Battle
             fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.ScoreTracker.Fantazee);
             BattleUi.Instance.Scoreboard.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
             
+            player = Instantiate(GameInstance.Current.Character.Data.BattleCharacter, playerContainer);
             Player.Initialize();
             SetupDice();
             SetupEnemies();
