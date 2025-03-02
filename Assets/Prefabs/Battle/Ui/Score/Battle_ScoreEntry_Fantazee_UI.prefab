@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5914527101944069431}
   - component: {fileID: 7567975503406417439}
   - component: {fileID: 4184314117986292700}
+  - component: {fileID: 2908066159260726819}
   m_Layer: 0
   m_Name: Battle_ScoreEntry_Fantazee_UI
   m_TagString: Untagged
@@ -123,8 +124,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5914527101944069431}
-        m_TargetAssemblyTypeName: Fantazee.Battle.Score.Ui.ScoreEntry, Assembly-CSharp
-        m_MethodName: OnClick
+        m_TargetAssemblyTypeName: Fantazee.Scores.Ui.ScoreEntries.ScoreEntry, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2908066159260726819}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -154,6 +167,37 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &2908066159260726819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131818729378993665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -735943947
+      Data2: 1250124614
+      Data3: -929631570
+      Data4: -1366487958
+    Path: event:/Ui/Button_Click
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &217345157282692834
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,6 +44,24 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f9f0d9c-9287-4c0a-bbcd-8a60856c0965"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9e45b8e-4080-43c9-80f9-80d169a0b6e5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,6 +84,28 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f20ca3c9-166a-4a79-95ab-3ca1a1779b63"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfae9da3-8305-4015-aed0-65ab59274706"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -387,6 +427,8 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Cursor = m_Gameplay.FindAction("Cursor", throwIfNotFound: true);
         m_Gameplay_Select = m_Gameplay.FindAction("Select", throwIfNotFound: true);
+        m_Gameplay_Exit = m_Gameplay.FindAction("Exit", throwIfNotFound: true);
+        m_Gameplay_Reset = m_Gameplay.FindAction("Reset", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Navigation = m_Ui.FindAction("Navigation", throwIfNotFound: true);
@@ -466,12 +508,16 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Cursor;
     private readonly InputAction m_Gameplay_Select;
+    private readonly InputAction m_Gameplay_Exit;
+    private readonly InputAction m_Gameplay_Reset;
     public struct GameplayActions
     {
         private @FsiInput m_Wrapper;
         public GameplayActions(@FsiInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cursor => m_Wrapper.m_Gameplay_Cursor;
         public InputAction @Select => m_Wrapper.m_Gameplay_Select;
+        public InputAction @Exit => m_Wrapper.m_Gameplay_Exit;
+        public InputAction @Reset => m_Wrapper.m_Gameplay_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -487,6 +533,12 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -497,6 +549,12 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -652,6 +710,8 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     {
         void OnCursor(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {

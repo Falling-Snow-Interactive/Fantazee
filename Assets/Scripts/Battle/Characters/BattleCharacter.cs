@@ -80,8 +80,11 @@ namespace Fantazee.Battle.Characters
         [SerializeField]
         private EventReference hitSfxRef;
         private EventInstance hitSfx;
+        
+        [SerializeField]
+        private EventReference deathSfxRef;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
             hitSfx = RuntimeManager.CreateInstance(hitSfxRef);
@@ -127,6 +130,7 @@ namespace Fantazee.Battle.Characters
                         {
                             if (Health.IsDead)
                             {
+                                RuntimeManager.PlayOneShot(deathSfxRef);
                                 visuals.Death(() =>
                                               {
                                                   Destroy(gameObject);

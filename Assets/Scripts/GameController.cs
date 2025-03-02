@@ -1,13 +1,14 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Battle;
+using Fantazee.Battle.Environments;
 using Fantazee.Environments.Audio;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
-using Fantazee.Relics;
+using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Fantazee
 {
@@ -43,12 +44,28 @@ namespace Fantazee
             
         [SerializeField]
         private EnvironmentAudio environmentAudio;
+
+        private FsiInput input;
         
         protected override void Awake()
         {
             base.Awake();
             gameInstance.RandomizeSeed();
             gameInstance = GameInstance.Defaults;
+            
+            input = new FsiInput();
+
+            input.Gameplay.Exit.performed += ctx => Application.Quit();
+        }
+
+        private void OnEnable()
+        {
+            input.Gameplay.Enable();
+        }
+
+        private void OnDisable()
+        {
+            input.Gameplay.Disable();
         }
 
         public void NewGame()

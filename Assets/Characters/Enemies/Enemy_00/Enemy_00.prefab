@@ -72,6 +72,13 @@ MonoBehaviour:
       Data3: -100147299
       Data4: -566887515
     Path: event:/Battle/Actions/Hit
+  deathSfxRef:
+    Guid:
+      Data1: 297599292
+      Data2: 1237536448
+      Data3: 296223911
+      Data4: -1783998385
+    Path: event:/Enemies/Enemy_00/Death
   damage:
     min: 8
     max: 12
@@ -84,6 +91,13 @@ MonoBehaviour:
       - name: Gold - 3
         type: 1
         amount: 3
+  attackSfxRef:
+    Guid:
+      Data1: 1271437393
+      Data2: 1333622549
+      Data3: 975107756
+      Data4: -1672151759
+    Path: event:/Enemies/Enemy_00/Attack
 --- !u!1001 &3951315687668274134
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ namespace Fantazee.Environments.Audio
         {
             if (current != environment)
             {
-                StopMusic(current);
+                StopMusic();
                 if (EnvironmentSettings.Settings.Information.TryGetInformation(environment,
                                                                                out EnvironmentInformation info))
                 {
@@ -28,14 +28,14 @@ namespace Fantazee.Environments.Audio
             }
         }
 
-        public void StopMusic(EnvironmentType environment)
+        public void StopMusic()
         {
-            if (environment != EnvironmentType.None)
+            if (current != EnvironmentType.None)
             {
                 return;
             }
             
-            if (EnvironmentSettings.Settings.Information.TryGetInformation(environment, 
+            if (EnvironmentSettings.Settings.Information.TryGetInformation(current, 
                                                                            out EnvironmentInformation info))
             {
                 eventEmitter.EventReference = info.MusicReference;

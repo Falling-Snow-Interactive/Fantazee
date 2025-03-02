@@ -34,7 +34,7 @@ namespace Fantazee.Maps
                 return;
             }
             
-            using(Draw.Command(cam, RenderPassEvent.AfterRendering))
+            using(Draw.Command(cam))
             {
                 Draw.LineGeometry = LineGeometry.Flat2D;
                 Draw.ThicknessSpace = ThicknessSpace.Pixels;
