@@ -14,6 +14,9 @@ namespace Fantazee.Shop
         [Header("Inventory")]
 
         [SerializeField]
+        private ShopData shopData;
+
+        [SerializeReference]
         private ShopInventory inventory;
         
         [Header("Scene References")]
@@ -34,9 +37,7 @@ namespace Fantazee.Shop
         private void Start()
         {
             Debug.Log("Shop - Start");
-            
-            // TODO - Generate shop inventory randomly - KD
-            shopUi.Initialize(inventory);
+            shopUi.Initialize(shopData.GetInventory());
             
             RuntimeManager.PlayOneShot(ShopSettings.Settings.EnterSfx);
             GameController.Instance.ShopReady();

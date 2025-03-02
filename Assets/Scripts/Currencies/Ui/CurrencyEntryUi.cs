@@ -46,7 +46,6 @@ namespace Fantazee.Currencies.Ui
 
         public void SetCurrency(Currency currency)
         {
-            Debug.Log($"CurrencyEntry - Set Currency {currency}");
             this.currency = currency;
             if (CurrencySettings.Settings.CurrencyInformation.TryGetInformation(currency.type, out CurrencyInformation info))
             {
@@ -63,7 +62,6 @@ namespace Fantazee.Currencies.Ui
 
         private void UpdateAmount()
         {
-            Debug.Log($"CurrencyEntry - UpdateAmount {currency}");
             text.text = currency.amount.ToString();
         }
 
