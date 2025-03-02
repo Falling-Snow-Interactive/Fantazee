@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
+using Fantazee.Scores;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,9 @@ namespace Fantazee.MainMenu.Character.Ui
 
         [SerializeField]
         private TMP_Text descText;
+
+        [SerializeField]
+        private List<CharacterScoreEntry> scoreEntries;
 
         private void Start()
         {
@@ -63,6 +67,13 @@ namespace Fantazee.MainMenu.Character.Ui
             characterSprite.sprite = character.Icon;
             nameText.text = character.LocName.GetLocalizedString();
             descText.text = character.LocDesc.GetLocalizedString();
+
+            for (int j = 0; j < scoreEntries.Count; j++)
+            {
+                CharacterScoreEntry scoreEntry = scoreEntries[j];
+                Score score = ScoreFactory.Create(character.ScoreData[j]);
+                scoreEntry.Initialize(score, null);
+            }
         }
 
         private void PrevCharacter()
