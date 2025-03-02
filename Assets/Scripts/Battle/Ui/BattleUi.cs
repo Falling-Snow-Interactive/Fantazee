@@ -1,3 +1,4 @@
+using System;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
 using Fsi.Gameplay;
@@ -19,6 +20,12 @@ namespace Fantazee.Battle.Ui
         private WinScreen winScreen;
         public WinScreen WinScreen => winScreen;
 
+        [SerializeField]
+        private GameObject helpScreen;
+        public GameObject HelpScreen => helpScreen;
+        
+        private FsiInput input;
+
         protected override void Awake()
         {
             base.Awake();
@@ -27,6 +34,20 @@ namespace Fantazee.Battle.Ui
             scoreboard.gameObject.SetActive(true);
             
             winScreen.gameObject.SetActive(false);
+            
+            input = new FsiInput();
+            
+            input.Gameplay.Help.performed += ctx => helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeInHierarchy);
+        }
+
+        private void OnEnable()
+        {
+            input.Gameplay.Enable();
+        }
+
+        private void OnDisable()
+        {
+            input.Gameplay.Disable();
         }
 
         public void ShowWinScreen()

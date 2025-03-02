@@ -62,6 +62,15 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Help"",
+                    ""type"": ""Button"",
+                    ""id"": ""3acd2e82-adfd-4df1-8433-ded99f0cd451"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -72,6 +81,17 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7dc90231-7fc1-4cdd-9e91-83e2d99f4a0e"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
                     ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -106,6 +126,17 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9545551-ca5b-437e-b31b-3a73e4bbac09"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Help"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -420,6 +451,17 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Touch"",
+            ""bindingGroup"": ""Touch"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Touchscreen>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -429,6 +471,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Gameplay_Select = m_Gameplay.FindAction("Select", throwIfNotFound: true);
         m_Gameplay_Exit = m_Gameplay.FindAction("Exit", throwIfNotFound: true);
         m_Gameplay_Reset = m_Gameplay.FindAction("Reset", throwIfNotFound: true);
+        m_Gameplay_Help = m_Gameplay.FindAction("Help", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Navigation = m_Ui.FindAction("Navigation", throwIfNotFound: true);
@@ -510,6 +553,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Select;
     private readonly InputAction m_Gameplay_Exit;
     private readonly InputAction m_Gameplay_Reset;
+    private readonly InputAction m_Gameplay_Help;
     public struct GameplayActions
     {
         private @FsiInput m_Wrapper;
@@ -518,6 +562,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         public InputAction @Select => m_Wrapper.m_Gameplay_Select;
         public InputAction @Exit => m_Wrapper.m_Gameplay_Exit;
         public InputAction @Reset => m_Wrapper.m_Gameplay_Reset;
+        public InputAction @Help => m_Wrapper.m_Gameplay_Help;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -539,6 +584,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Reset.started += instance.OnReset;
             @Reset.performed += instance.OnReset;
             @Reset.canceled += instance.OnReset;
+            @Help.started += instance.OnHelp;
+            @Help.performed += instance.OnHelp;
+            @Help.canceled += instance.OnHelp;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -555,6 +603,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Reset.started -= instance.OnReset;
             @Reset.performed -= instance.OnReset;
             @Reset.canceled -= instance.OnReset;
+            @Help.started -= instance.OnHelp;
+            @Help.performed -= instance.OnHelp;
+            @Help.canceled -= instance.OnHelp;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -706,12 +757,22 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
+    private int m_TouchSchemeIndex = -1;
+    public InputControlScheme TouchScheme
+    {
+        get
+        {
+            if (m_TouchSchemeIndex == -1) m_TouchSchemeIndex = asset.FindControlSchemeIndex("Touch");
+            return asset.controlSchemes[m_TouchSchemeIndex];
+        }
+    }
     public interface IGameplayActions
     {
         void OnCursor(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+        void OnHelp(InputAction.CallbackContext context);
     }
     public interface IUiActions
     {

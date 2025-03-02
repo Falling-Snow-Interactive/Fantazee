@@ -83,7 +83,7 @@ namespace Fantazee.Battle.Characters
         
         [SerializeField]
         private EventReference deathSfxRef;
-
+        
         protected virtual void Awake()
         {
             footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
