@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Fantazee.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
+using Fantazee.Spells;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui.Screens
@@ -48,8 +50,21 @@ namespace Fantazee.Shop.Ui.Screens
             
             Debug.Log($"Shop Spell: {scoreEntry.Score.Type} -> {purchase.Score.Type}");
 
+            List<SpellType> purchaseSpells = new List<SpellType>();
+            for (int i = 0; i < purchase.Spells.Count; i++)
+            {
+                if (purchase.Spells[i].Data.Type != SpellType.None)
+                {
+                    purchaseSpells.Add(purchase.Spells[i].Data.Type);
+                }
+                else
+                {
+                    purchaseSpells.Add(scoreEntry.Spells[i].Data.Type);
+                }
+            }
+
             int index = GameInstance.Current.Character.ScoreTracker.Scores.IndexOf(scoreEntry.Score);
-            GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(purchase.Score.Type, scoreEntry.Score.Spells);
+            GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(purchase.Score.Type, purchaseSpells);
             scoreEntry.Score = GameInstance.Current.Character.ScoreTracker.Scores[index];
             
             mainMenuSelected.gameObject.SetActive(false);
