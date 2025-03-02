@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Fantazee.Shop.Buckets.Scores;
 using Fantazee.Shop.Buckets.Spells;
+using Fantazee.Shop.Items;
 using UnityEngine;
 
 namespace Fantazee.Shop
@@ -17,7 +19,9 @@ namespace Fantazee.Shop
 
         public ShopInventory GetInventory()
         {
-            ShopInventory inventory = new(spells.GetRandom(4), scores.GetRandom(2));
+            List<SpellShopItem> spells = this.spells.GetRandom(4);
+            List<ScoreShopItem> scores = this.scores.GetRandom(2);
+            ShopInventory inventory = new(spells, scores);
             Debug.Log($"Shop - Inventory Generated\n{inventory}");
             return inventory;
         }

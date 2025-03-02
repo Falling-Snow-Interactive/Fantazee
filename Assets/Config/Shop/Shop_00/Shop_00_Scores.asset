@@ -13,81 +13,168 @@ MonoBehaviour:
   m_Name: Shop_00_Scores
   m_EditorClassIdentifier: 
   scores:
-  - name: Ones - None - None - 1
+  - name: 'Ones - None - None | Gold: 5 - 1'
     weight: 1
     value:
-      name: Ones - None - None
-      score: 1
-      spells: 0000000000000000
-  - name: Twos - None - None - 1
+      cost:
+        name: 'Gold: 5'
+        type: 1
+        amount: 5
+      data:
+        name: Ones - None - None
+        score: 1
+        spells: 0000000000000000
+  - name: 'Twos - None - None | Gold: 6 - 1'
     weight: 1
     value:
-      name: Twos - None - None
-      score: 2
-      spells: 0000000000000000
-  - name: Threes - None - None - 1
+      cost:
+        name: 'Gold: 6'
+        type: 1
+        amount: 6
+      data:
+        name: Twos - None - None
+        score: 2
+        spells: 0000000000000000
+  - name: 'Threes - None - None | Gold: 7 - 1'
     weight: 1
     value:
-      name: Threes - None - None
-      score: 3
-      spells: 0000000000000000
-  - name: Fours - None - None - 1
+      cost:
+        name: 'Gold: 7'
+        type: 1
+        amount: 7
+      data:
+        name: Threes - None - None
+        score: 3
+        spells: 0000000000000000
+  - name: 'Fours - None - None | Gold: 8 - 1'
     weight: 1
     value:
-      name: Fours - None - None
-      score: 4
-      spells: 0000000000000000
-  - name: Fives - None - None - 1
+      cost:
+        name: 'Gold: 8'
+        type: 1
+        amount: 8
+      data:
+        name: Fours - None - None
+        score: 4
+        spells: 0000000000000000
+  - name: 'Fives - None - None | Gold: 9 - 1'
     weight: 1
     value:
-      name: Fives - None - None
-      score: 5
-      spells: 0000000000000000
-  - name: Sixes - None - None - 1
+      cost:
+        name: 'Gold: 9'
+        type: 1
+        amount: 9
+      data:
+        name: Fives - None - None
+        score: 5
+        spells: 0000000000000000
+  - name: 'Sixes - None - None | Gold: 10 - 1'
     weight: 1
     value:
-      name: Sixes - None - None
-      score: 6
-      spells: 0000000000000000
-  - name: ThreeOfAKind - None - None - 1
+      cost:
+        name: 'Gold: 10'
+        type: 1
+        amount: 10
+      data:
+        name: Sixes - None - None
+        score: 6
+        spells: 0000000000000000
+  - name: 'ThreeOfAKind - None - None | Gold: 15 - 1'
     weight: 1
     value:
-      name: ThreeOfAKind - None - None
-      score: 7
-      spells: 0000000000000000
-  - name: FourOfAKind - None - None - 1
+      cost:
+        name: 'Gold: 15'
+        type: 1
+        amount: 15
+      data:
+        name: ThreeOfAKind - None - None
+        score: 7
+        spells: 0000000000000000
+  - name: 'FourOfAKind - None - None | Gold: 15 - 1'
     weight: 1
     value:
-      name: FourOfAKind - None - None
-      score: 8
-      spells: 0000000000000000
-  - name: FullHouse - None - None - 1
+      cost:
+        name: 'Gold: 15'
+        type: 1
+        amount: 15
+      data:
+        name: FourOfAKind - None - None
+        score: 8
+        spells: 0000000000000000
+  - name: 'FullHouse - None - None | Gold: 25 - 1'
     weight: 1
     value:
-      name: FullHouse - None - None
-      score: 9
-      spells: 0000000000000000
-  - name: SmallStraight - None - None - 1
+      cost:
+        name: 'Gold: 25'
+        type: 1
+        amount: 25
+      data:
+        name: FullHouse - None - None
+        score: 9
+        spells: 0000000000000000
+  - name: 'SmallStraight - None - None | Gold: 15 - 1'
     weight: 1
     value:
-      name: SmallStraight - None - None
-      score: 10
-      spells: 0000000000000000
-  - name: LargeStraight - None - None - 1
+      cost:
+        name: 'Gold: 15'
+        type: 1
+        amount: 15
+      data:
+        name: SmallStraight - None - None
+        score: 10
+        spells: 0000000000000000
+  - name: 'LargeStraight - None - None | Gold: 20 - 1'
     weight: 1
     value:
-      name: LargeStraight - None - None
-      score: 11
-      spells: 0000000000000000
-  - name: Chance - None - None - 1
+      cost:
+        name: 'Gold: 20'
+        type: 1
+        amount: 20
+      data:
+        name: LargeStraight - None - None
+        score: 11
+        spells: 0000000000000000
+  - name: 'Chance - None - None | Gold: 20 - 1'
     weight: 1
     value:
-      name: Chance - None - None
-      score: 12
-      spells: 0000000000000000
-  - name: FourOfAKind - Dagger - Pierce - 1
+      cost:
+        name: 'Gold: 20'
+        type: 1
+        amount: 20
+      data:
+        name: Chance - None - None
+        score: 12
+        spells: 0000000000000000
+  - name: 'Chance - Dagger - Pierce | Gold: 30 - 1'
     weight: 1
     value:
-      name: FourOfAKind - Dagger - Pierce
-      score: 8
-      spells: 0100000002000000
+      cost:
+        name: 'Gold: 30'
+        type: 1
+        amount: 30
+      data:
+        name: Chance - Dagger - Pierce
+        score: 12
+        spells: 0100000002000000
+  - name: 'FullHouse - Dagger - Shield | Gold: 25 - 1'
+    weight: 1
+    value:
+      cost:
+        name: 'Gold: 25'
+        type: 1
+        amount: 25
+      data:
+        name: FullHouse - Dagger - Shield
+        score: 9
+        spells: 0100000003000000
+  - name: 'ThreeOfAKind - Dagger - Dagger | Gold: 35 - 1'
+    weight: 1
+    value:
+      cost:
+        name: 'Gold: 35'
+        type: 1
+        amount: 35
+      data:
+        name: ThreeOfAKind - Dagger - Dagger
+        score: 7
+        spells: 0100000001000000

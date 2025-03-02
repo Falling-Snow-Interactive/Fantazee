@@ -13,12 +13,27 @@ MonoBehaviour:
   m_Name: Shop_00_Spells
   m_EditorClassIdentifier: 
   spells:
-  - name: Dagger - 1
+  - name: 'Dagger | Gold: 7 - 1'
     weight: 1
-    value: 1
-  - name: Pierce - 1
+    value:
+      cost:
+        name: 'Gold: 7'
+        type: 1
+        amount: 7
+      item: 1
+  - name: 'Pierce | Gold: 10 - 1'
     weight: 1
-    value: 2
-  - name: Shield - 1
+    value:
+      cost:
+        name: 'Gold: 10'
+        type: 1
+        amount: 10
+      item: 2
+  - name: 'Shield | Gold: 5 - 1'
     weight: 1
-    value: 3
+    value:
+      cost:
+        name: 'Gold: 5'
+        type: 1
+        amount: 5
+      item: 3

@@ -7,6 +7,7 @@ using Fantazee.Scores;
 using Fantazee.Scores.Information;
 using Fantazee.Scores.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Shop.Items;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.ScoreSelect;
 using Fantazee.Spells;
@@ -68,9 +69,9 @@ namespace Fantazee.Shop.Ui.Screens
             this.onRelicSelected = onRelicSelected;
             this.onScoreSelected = onScoreSelected;
             
-            foreach (SpellType spell in shopInventory.Spells)
+            foreach (SpellShopItem spell in shopInventory.Spells)
             {
-                if (SpellSettings.Settings.TryGetSpell(spell, out SpellData data))
+                if (SpellSettings.Settings.TryGetSpell(spell.Item, out SpellData data))
                 {
                     SpellEntry spellEntry = Instantiate(spellEntryPrefab, boonContent);
                     spellEntry.Initialize(data, OnSpellSelected);
@@ -83,9 +84,9 @@ namespace Fantazee.Shop.Ui.Screens
                 }
             }
 
-            foreach (ScoreData sd in shopInventory.Scores)
+            foreach (ScoreShopItem sd in shopInventory.Scores)
             {
-                Score score = ScoreFactory.Create(sd);
+                Score score = ScoreFactory.Create(sd.Item);
                 ShopScoreEntryPurchase scorePurchase = Instantiate(scorePurchaseEntry, scoreContent);
                 scorePurchase.Initialize(score, OnScoreSelected);
                 scorePurchaseEntries.Add(scorePurchase);
