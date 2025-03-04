@@ -26,7 +26,14 @@ namespace Fantazee.Battle.BattleSpells
             
             player.Visuals.Attack();
             yield return new WaitForSeconds(0.2f);
-            enemies[^1].Damage(damage.Value);
+            for (int i = enemies.Count - 1; i >= 0; i--)
+            {
+                if (enemies[i].Health.IsAlive)
+                {
+                    enemies[i].Damage(damage.Value);
+                    break;
+                }
+            }
             yield return new WaitForSeconds(1f);
             onComplete?.Invoke();
         }
