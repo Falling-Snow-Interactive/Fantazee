@@ -1,0 +1,64 @@
+using Fantazee.Battle;
+using Fantazee.Battle.Ui;
+using Fantazee.Relics.Data;
+using UnityEngine;
+
+namespace Fantazee.Relics.Instance
+{
+    public class MulliganRelicInstance : RelicInstance
+    {
+        private bool startRoll;
+        private bool firstRoll;
+        private bool hasScored;
+        
+        public MulliganRelicInstance(RelicData data) : base(data)
+        {
+            BattleController.PlayerTurnStart += OnPlayerStart;
+            BattleController.RollStarted += OnRollStarted;
+            BattleController.Scored += OnScored;
+
+            firstRoll = false;
+            hasScored = false;
+            startRoll = false;
+        }
+
+        private void OnPlayerStart()
+        {
+            startRoll = true;
+            firstRoll = true;
+            hasScored = false;
+        }
+
+        private void OnScored(int i)
+        {
+            hasScored = true;
+        }
+
+        private void OnRollStarted()
+        {
+            if (hasScored)
+            {
+                return;
+            }
+            
+            if (startRoll)
+            {
+                Debug.Log("Mulligan: start roll.");
+                startRoll = false;
+            }
+            else
+            {
+                if (firstRoll)
+                {
+                    firstRoll = false;
+                    Debug.Log($"Mulligan: Locked {BattleController.Instance.LockedDice.Count}.");
+                    if (BattleController.Instance.LockedDice.Count == 0)
+                    {
+                        BattleController.Instance.RemainingRolls++;
+                        Activate();
+                    }
+                }
+            }
+        }
+    }
+}

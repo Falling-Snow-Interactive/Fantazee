@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Currencies;
+using Fantazee.Relics;
+using Fantazee.Relics.Data;
 using Fantazee.Scores;
 using Fantazee.Spells;
 using Fsi.Gameplay.Visuals;
@@ -57,10 +59,16 @@ namespace Fantazee.Characters
         private List<SpellType> fantazeeSpells;
         public List<SpellType> FantazeeSpells => fantazeeSpells;
 
-        [Header("Waller")]
+        [Header("Wallet")]
 
         [SerializeField]
         private Wallet wallet;
         public Wallet Wallet => wallet;
+
+        [Header("Relic")]
+
+        [SerializeField]
+        private List<RelicData> relics;
+        public List<RelicData> Relics => relics;
     }
 }

@@ -9,7 +9,6 @@ using Fantazee.Battle.Characters.Player;
 using Fantazee.Battle.Score;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui;
-using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
 using Fantazee.Environments.Information;
@@ -18,7 +17,6 @@ using Fantazee.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fsi.Gameplay;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
@@ -58,7 +56,11 @@ namespace Fantazee.Battle
 
         [SerializeField]
         private int remainingRolls = 3;
-        public int RemainingRolls => remainingRolls;
+        public int RemainingRolls
+        {
+            get => remainingRolls;
+            set => remainingRolls = value;
+        }
 
         private readonly List<Die> lockedDice = new();
         public List<Die> LockedDice => lockedDice;
@@ -148,6 +150,7 @@ namespace Fantazee.Battle
             
             player = Instantiate(GameInstance.Current.Character.Data.BattleCharacter, playerContainer);
             Player.Initialize();
+            SetupRelics();
             SetupDice();
             SetupEnemies();
             
@@ -165,6 +168,12 @@ namespace Fantazee.Battle
             {
                 MusicController.Instance.PlayMusic(info.BattleMusicId);
             }
+        }
+
+        private void SetupRelics()
+        {
+            Debug.Log("Battle: Setup Relics");
+            BattleUi.Instance.RelicUi.Initialize(GameInstance.Current.Character.Relics);
         }
 
         private void SetupDice()

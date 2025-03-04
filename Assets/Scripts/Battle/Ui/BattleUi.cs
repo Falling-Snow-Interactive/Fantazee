@@ -1,4 +1,5 @@
 using System;
+using Fantazee.Battle.Relics.Ui;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
 using Fsi.Gameplay;
@@ -23,6 +24,10 @@ namespace Fantazee.Battle.Ui
         [SerializeField]
         private GameObject helpScreen;
         public GameObject HelpScreen => helpScreen;
+        
+        [SerializeField]
+        private RelicUi relicUi;
+        public RelicUi RelicUi => relicUi;
         
         private FsiInput input;
 

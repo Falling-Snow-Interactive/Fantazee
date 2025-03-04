@@ -4215,6 +4215,7 @@ MonoBehaviour:
   scoreboard: {fileID: 6475998910085001378}
   winScreen: {fileID: 4652402079735394866}
   helpScreen: {fileID: 2841611232426914415}
+  relicUi: {fileID: 8132233629355531193}
 --- !u!1 &3473778731539263074
 GameObject:
   m_ObjectHideFlags: 0
@@ -13442,7 +13443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778213150800199833, guid: b95e7531c8833468a96940b652c038c2, type: 3}
       propertyPath: m_Name
-      value: Boons_Ui
+      value: Relics_Ui
       objectReference: {fileID: 0}
     - target: {fileID: 8226986447638528308, guid: b95e7531c8833468a96940b652c038c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13494,6 +13495,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8226986447638528308, guid: b95e7531c8833468a96940b652c038c2, type: 3}
   m_PrefabInstance: {fileID: 5584235458949054054}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8132233629355531193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4441763052571108831, guid: b95e7531c8833468a96940b652c038c2, type: 3}
+  m_PrefabInstance: {fileID: 5584235458949054054}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faac5bb51c05471cbe5011d4e237a0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5957718897491662242
 PrefabInstance:
   m_ObjectHideFlags: 0

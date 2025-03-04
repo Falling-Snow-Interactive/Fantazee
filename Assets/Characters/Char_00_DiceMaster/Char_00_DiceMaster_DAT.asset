@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d94ae59c08f4d41b9883eb242434fc84, type: 3}
-  m_Name: Char_00_DiceMaster_DT
+  m_Name: Char_00_DiceMaster_DAT
   m_EditorClassIdentifier: 
   type: 0
   locName:
@@ -78,6 +78,8 @@ MonoBehaviour:
     - name: 'Gold: 50'
       type: 1
       amount: 50
+  relics:
+  - {fileID: 11400000, guid: 722568d798aba4f80b1a7c97a4694754, type: 2}
   references:
     version: 2
     RefIds: []

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Currencies;
 using Fantazee.Dice;
+using Fantazee.Relics;
+using Fantazee.Relics.Data;
 using Fantazee.Scores;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
@@ -42,6 +44,10 @@ namespace Fantazee.Instance
         private int rolls = 3;
         public int Rolls => rolls;
 
+        [SerializeReference]
+        private List<RelicInstance> relics;
+        public List<RelicInstance> Relics => relics;
+
         public CharacterInstance(CharacterData data)
         {
             this.data = data;
@@ -50,6 +56,13 @@ namespace Fantazee.Instance
             wallet = new Wallet(data.Wallet);
             scoreTracker = new ScoreTracker(data);
             dice = Die.DefaultDice(6);
+            
+            relics = new List<RelicInstance>();
+            foreach (RelicData r in data.Relics)
+            {
+                RelicInstance relic = RelicFactory.Create(r);
+                relics.Add(relic);
+            }
         }
     }
 }
