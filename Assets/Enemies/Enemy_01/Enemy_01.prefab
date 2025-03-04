@@ -88,7 +88,7 @@ MonoBehaviour:
   battleRewards:
     wallet:
       currencies:
-      - name: Gold - 3
+      - name: 'Gold: 3'
         type: 1
         amount: 3
   attackSfxRef:
@@ -112,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1578486915850449764, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 1578486915850449764, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -242,6 +242,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3356583933433768275}
     m_Modifications:
+    - target: {fileID: 2944858150234283115, guid: 7289b95bedfac48dca0519f17d5c9de6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -86033136, guid: 8c7cdacc749034ea49211131f1d13e48, type: 3}
     - target: {fileID: 4276900506129615786, guid: 7289b95bedfac48dca0519f17d5c9de6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

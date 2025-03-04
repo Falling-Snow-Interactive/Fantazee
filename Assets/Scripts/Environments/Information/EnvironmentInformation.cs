@@ -1,4 +1,5 @@
 using System;
+using Fantazee.Audio;
 using Fantazee.Battle.Environments;
 using FMODUnity;
 using fsi.settings.Informations;
@@ -18,5 +19,13 @@ namespace Fantazee.Environments.Information
         [SerializeField]
         private EventReference musicReference;
         public EventReference MusicReference => musicReference;
+
+        [SerializeField]
+        private MusicId mapMusicId;
+        public MusicId MapMusicId => mapMusicId;
+
+        [SerializeField]
+        private MusicId battleMusicId;
+        public MusicId BattleMusicId => battleMusicId;
     }
 }

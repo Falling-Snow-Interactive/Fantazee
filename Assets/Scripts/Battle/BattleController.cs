@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Fantazee.Audio;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Battle.Characters.Player;
@@ -11,6 +12,8 @@ using Fantazee.Battle.Ui;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
+using Fantazee.Environments.Information;
+using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fsi.Gameplay;
@@ -156,6 +159,12 @@ namespace Fantazee.Battle
             
             // Hide player
             Player.Hide(null, 0, true);
+
+            if (EnvironmentSettings.Settings.Information.TryGetInformation(GameInstance.Current.Map.Environment,
+                                                                           out EnvironmentInformation info))
+            {
+                MusicController.Instance.PlayMusic(info.BattleMusicId);
+            }
         }
 
         private void SetupDice()
@@ -184,9 +193,9 @@ namespace Fantazee.Battle
             {
                 BattleEnemy enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
                 
-                float y = i % 2 == 0 ? + 0.5f : -0.5f;
+                float y = i % 2 == 0 ? 0.05f : -0.05f;
                 
-                enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.forward * y;
+                enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
                 spawnOffset += enemy.Size;
 
                 enemy.Initialize();
@@ -471,6 +480,7 @@ namespace Fantazee.Battle
                               {
                                   BattleUi.Instance.ShowWinScreen();
                                   BattleUi.Instance.WinScreen.Initialize(rewards, OnBattleWinContinue);
+                                  Player.Visuals.Victory();
                               });
             exiting = false;
         }
@@ -487,6 +497,10 @@ namespace Fantazee.Battle
             exiting = true;
             DOTween.Complete(Player.transform);
             Player.transform.DOLocalMoveX(20, 0.5f).SetEase(Ease.InOutCubic)
+                  .OnPlay(() =>
+                          {
+                              Player.Visuals.Idle();
+                          })
                   .OnComplete(() =>
                               {
                                   rewards.Grant();

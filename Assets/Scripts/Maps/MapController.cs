@@ -1,6 +1,11 @@
 using System;
 using DG.Tweening;
+using Fantazee.Audio;
+using Fantazee.Audio.Information;
+using Fantazee.Audio.Settings;
 using Fantazee.Battle.Characters;
+using Fantazee.Environments.Information;
+using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using FMOD.Studio;
@@ -96,6 +101,12 @@ namespace Fantazee.Maps
                 canInteract = false;
                 
                 RuntimeManager.PlayOneShot(mapStartSfx);
+
+                if (EnvironmentSettings.Settings.Information.TryGetInformation(GameInstance.Current.Map.Environment,
+                                                                               out EnvironmentInformation info))
+                {
+                    MusicController.Instance.PlayMusic(info.MapMusicId);
+                }
                 
                 Debug.Log($"Map - Current Node: {node.name}");
                 Debug.Log($"Map - Player to {player.transform.position}");

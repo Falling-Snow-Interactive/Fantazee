@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21083fb7fa7247d1937b4909ff1ca606, type: 3}
+  m_Name: MusicSettings
+  m_EditorClassIdentifier: 
+  information:
+    information:
+    - name: Menu
+      type: 1
+      music:
+        Guid:
+          Data1: -123970929
+          Data2: 1319351180
+          Data3: -835566683
+          Data4: -910643426
+        Path: event:/Music/MainMenu
+    - name: Env_00_Casino_Map
+      type: 2
+      music:
+        Guid:
+          Data1: -1067094924
+          Data2: 1218896479
+          Data3: -2022586190
+          Data4: 992087444
+        Path: event:/Music/Woods
+    - name: Env_00_Casino_Battle
+      type: 3
+      music:
+        Guid:
+          Data1: -1674511727
+          Data2: 1083190776
+          Data3: 411028128
+          Data4: 1555930255
+        Path: event:/Music/Battle

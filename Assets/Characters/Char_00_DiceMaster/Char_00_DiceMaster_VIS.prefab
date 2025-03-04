@@ -166,34 +166,35 @@ MonoBehaviour:
   attack: {fileID: -1980291076, guid: c2e6f8e7fb99248baaa8e28f1dcb8d7e, type: 3}
   hit: {fileID: 431571564, guid: c2e6f8e7fb99248baaa8e28f1dcb8d7e, type: 3}
   death: {fileID: -124291780, guid: c2e6f8e7fb99248baaa8e28f1dcb8d7e, type: 3}
+  victory: {fileID: -2123001701, guid: c2e6f8e7fb99248baaa8e28f1dcb8d7e, type: 3}
   idleTween:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
     scale: {x: 0.9, y: 1.1, z: 1}
-    time: 1
+    time: 2
     ease: 4
     loops: -1
     loopType: 1
   actionPunch:
     positionPunch: {x: 0, y: 0.3, z: 0}
     rotationPunch: {x: 0, y: 0, z: 0}
-    scalePunch: {x: -0.1, y: 0.2, z: 0}
-    time: 0.3
+    scalePunch: {x: -0.1, y: 0.1, z: 0}
+    time: 0.5
     vibrato: 2
     elasticity: 2
     ease: 1
   attackPunch:
     positionPunch: {x: 1, y: 0, z: 0}
-    rotationPunch: {x: 0, y: 0, z: -30}
+    rotationPunch: {x: 0, y: 0, z: 0}
     scalePunch: {x: -0.1, y: 0.1, z: 0}
-    time: 0.3
+    time: 0.5
     vibrato: 2
     elasticity: 2
     ease: 1
   hitPunch:
     positionPunch: {x: -1, y: 0, z: 0}
-    rotationPunch: {x: 0, y: 0, z: 30}
-    scalePunch: {x: -0.1, y: 0.1, z: 0}
+    rotationPunch: {x: 0, y: 0, z: 0}
+    scalePunch: {x: 0.1, y: -0.1, z: 0}
     time: 0.6
     vibrato: 2
     elasticity: 2
@@ -206,6 +207,14 @@ MonoBehaviour:
     ease: 3
     loops: 0
     loopType: 0
+  victoryAnim:
+    position: {x: 0, y: 1, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    scale: {x: 0.9, y: 1.1, z: 1}
+    time: 0.8
+    ease: 1
+    loops: -1
+    loopType: 1
   spriteRenderer: {fileID: 2944858150234283115}
 --- !u!1 &8253058317029883481
 GameObject:

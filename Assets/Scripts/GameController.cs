@@ -1,8 +1,8 @@
 using System;
+using Fantazee.Audio;
 using Fantazee.Battle;
 using Fantazee.Battle.Environments;
 using Fantazee.Characters;
-using Fantazee.Environments.Audio;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
@@ -10,6 +10,7 @@ using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Fantazee
 {
@@ -41,10 +42,11 @@ namespace Fantazee
         [SerializeField]
         private LoadingScreen loadingScreen;
         
+        [FormerlySerializedAs("environmentAudio")]
         [Header("Environment")]
             
         [SerializeField]
-        private EnvironmentAudio environmentAudio;
+        private MusicController musicController;
 
         private FsiInput input;
         
@@ -108,7 +110,6 @@ namespace Fantazee
 
         public void MapReady()
         {
-            PlayEnvironmentMusic();
             loadingScreen.Hide(0,
                                () =>
                                {
@@ -240,15 +241,6 @@ namespace Fantazee
                                () => { });
         }
         
-        #endregion
-
-        #region Environment
-
-        private void PlayEnvironmentMusic()
-        {
-            environmentAudio.PlayMusic(GameInstance.Current.Map.Environment);
-        }
-
         #endregion
     }
 }

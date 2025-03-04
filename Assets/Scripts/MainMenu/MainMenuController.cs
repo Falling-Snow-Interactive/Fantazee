@@ -1,3 +1,4 @@
+using Fantazee.Audio;
 using Fantazee.Characters;
 using Fantazee.MainMenu.Character.Ui;
 using Fsi.Gameplay;
@@ -21,6 +22,7 @@ namespace Fantazee.MainMenu
         
         private void Start()
         {
+            MusicController.Instance.PlayMusic(MusicId.Menu);
             GameController.Instance.MainMenuReady();
         }
 

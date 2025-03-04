@@ -25,6 +25,9 @@ namespace Fantazee.Battle.Characters
         [SerializeField]
         private Sprite death;
 
+        [SerializeField]
+        private Sprite victory;
+
         [Header("Animations")]
 
         [SerializeField]
@@ -42,6 +45,9 @@ namespace Fantazee.Battle.Characters
 
         [SerializeField]
         private TweenAnim deathAnim;
+
+        [SerializeField]
+        private TweenAnim victoryAnim;
         
         [Header("References")]
         
@@ -107,6 +113,13 @@ namespace Fantazee.Battle.Characters
             ResetTransform();
             spriteRenderer.sprite = death;
             deathAnim.Play(spriteRenderer.transform, onComplete);
+        }
+
+        public void Victory(Action onComplete = null)
+        {
+            ResetTransform();
+            spriteRenderer.sprite = victory;
+            victoryAnim.Play(spriteRenderer.transform, onComplete);
         }
     }
 }
