@@ -9,6 +9,7 @@ using Fantazee.Spells;
 using Fsi.Gameplay.Visuals;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Characters
 {
@@ -65,10 +66,11 @@ namespace Fantazee.Characters
         private Wallet wallet;
         public Wallet Wallet => wallet;
 
+        [FormerlySerializedAs("relics")]
         [Header("Relic")]
 
         [SerializeField]
-        private List<RelicData> relics;
-        public List<RelicData> Relics => relics;
+        private RelicData relic;
+        public RelicData Relic => relic;
     }
 }

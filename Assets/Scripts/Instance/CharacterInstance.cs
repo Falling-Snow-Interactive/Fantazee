@@ -58,11 +58,8 @@ namespace Fantazee.Instance
             dice = Die.DefaultDice(6);
             
             relics = new List<RelicInstance>();
-            foreach (RelicData r in data.Relics)
-            {
-                RelicInstance relic = RelicFactory.Create(r);
-                relics.Add(relic);
-            }
+            RelicInstance relic = RelicFactory.Create(data.Relic);
+            relics.Add(relic);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Fantazee.Relics;
+using Fantazee.Relics.Ui;
 using UnityEngine;
 using UnityEngine.Serialization;
 

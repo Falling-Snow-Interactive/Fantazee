@@ -12,7 +12,7 @@ namespace Fantazee.Relics.Data
 
         [SerializeField]
         private LocalizedString locName;
-        public LocalizedString Name => locName;
+        public LocalizedString LocName => locName;
 
         [SerializeField]
         private LocalizedString locDesc;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
+using Fantazee.Relics.Ui;
 using Fantazee.Scores;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,9 @@ namespace Fantazee.MainMenu.Character.Ui
 
         [SerializeField]
         private List<CharacterScoreEntry> scoreEntries;
+
+        [SerializeField]
+        private RelicEntryUi relic;
 
         private void Start()
         {
@@ -74,6 +78,8 @@ namespace Fantazee.MainMenu.Character.Ui
                 Score score = ScoreFactory.Create(character.ScoreData[j]);
                 scoreEntry.Initialize(score, null);
             }
+
+            relic.ShowData(character.Relic);
         }
 
         private void PrevCharacter()
