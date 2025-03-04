@@ -4,5 +4,6 @@ namespace Fantazee.Relics
     {
         None = 0,
         Mulligan = 1,
+        Explosive = 2,
     }
 }

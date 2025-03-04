@@ -13,6 +13,7 @@ namespace Fantazee.Relics
             return data switch
                    {
                        MulliganRelicData mulligan => new MulliganRelicInstance(mulligan),
+                       ExplosiveRelicData explosive => new ExplosiveRelicInstance(explosive),
                        _ => throw new ArgumentOutOfRangeException(nameof(data), data, null)
                    };
         }

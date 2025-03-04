@@ -381,6 +381,8 @@ namespace Fantazee.Battle
             {
                 enemies.Remove(enemy);
             }
+            
+            CheckWin();
         }
         
         #endregion

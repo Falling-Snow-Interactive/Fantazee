@@ -29,6 +29,7 @@ namespace Fantazee.Relics.Settings.Editor
 
         public override void OnGUI(string searchContext)
         {
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("information"));
             // EditorGUILayout.PropertyField(serializedSettings.FindProperty("prop"));
 
             EditorGUILayout.Space(20);
