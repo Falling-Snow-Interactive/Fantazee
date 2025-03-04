@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94ae59c08f4d41b9883eb242434fc84, type: 3}
+  m_Name: Player_01_DAT
+  m_EditorClassIdentifier: 
+  type: 1
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:3d07cd8e767f044af8c46bda7eaf6cb9
+    m_TableEntryReference:
+      m_KeyId: 2469220305592320
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:3d07cd8e767f044af8c46bda7eaf6cb9
+    m_TableEntryReference:
+      m_KeyId: 2469245328809984
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: -430766731, guid: 15e7a9d3ebaed4f1aa766c5f3c5d0743, type: 3}
+  visuals: {fileID: 5867789611335030042, guid: 3230223b801b5430ebb637b2a06aa857, type: 3}
+  maxHealth: 500
+  battleCharacter: {fileID: 5850074044104224665, guid: 1210e0a42f8524216a6501eb1e8b0b97, type: 3}
+  scoreData:
+  - name: Ones - Dagger - None
+    score: 1
+    spells: 0100000000000000
+  - name: Ones - Pierce - None
+    score: 1
+    spells: 0200000000000000
+  - name: Threes - Dagger - None
+    score: 3
+    spells: 0100000000000000
+  - name: Threes - Pierce - None
+    score: 3
+    spells: 0200000000000000
+  - name: Fives - Dagger - None
+    score: 5
+    spells: 0100000000000000
+  - name: Fives - Pierce - None
+    score: 5
+    spells: 0200000000000000
+  - name: ThreeOfAKind - Dagger - None
+    score: 7
+    spells: 0100000000000000
+  - name: FourOfAKind - Pierce - None
+    score: 8
+    spells: 0200000000000000
+  - name: FullHouse - Dagger - None
+    score: 9
+    spells: 0100000000000000
+  - name: FullHouse - Pierce - None
+    score: 9
+    spells: 0200000000000000
+  - name: LargeStraight - Dagger - None
+    score: 11
+    spells: 0100000000000000
+  - name: LargeStraight - Pierce - None
+    score: 11
+    spells: 0200000000000000
+  fantazeeSpells: 010000000000000001000000
+  wallet:
+    currencies:
+    - name: Gold - 50
+      type: 1
+      amount: 50
+  references:
+    version: 2
+    RefIds: []

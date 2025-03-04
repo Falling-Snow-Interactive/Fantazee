@@ -54,6 +54,9 @@ namespace Fantazee.Maps
             [SerializeField]
             private Map map;
 
+            [SerializeField]
+            private Transform playerSocket;
+
             protected override void Awake()
             {
                 base.Awake();
@@ -88,7 +91,7 @@ namespace Fantazee.Maps
                     node = map.Nodes[^1];
                 }
 
-                player = Instantiate(GameInstance.Current.Character.Data.Visuals, node.transform);
+                player = Instantiate(GameInstance.Current.Character.Data.Visuals, transform);
                 player.transform.position = node.transform.position;
                 canInteract = false;
                 

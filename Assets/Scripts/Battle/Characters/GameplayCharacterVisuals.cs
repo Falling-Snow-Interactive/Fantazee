@@ -14,6 +14,9 @@ namespace Fantazee.Battle.Characters
         private Sprite idle;
 
         [SerializeField]
+        private Sprite action;
+
+        [SerializeField]
         private Sprite attack;
 
         [SerializeField]
@@ -26,6 +29,9 @@ namespace Fantazee.Battle.Characters
 
         [SerializeField]
         private TweenAnim idleTween;
+
+        [SerializeField]
+        private PunchTweenAnim actionPunch;
 
         [SerializeField]
         private PunchTweenAnim attackPunch;
@@ -61,6 +67,17 @@ namespace Fantazee.Battle.Characters
             ResetTransform();
             spriteRenderer.sprite = idle;
             idleTween.Play(spriteRenderer.transform);
+        }
+        
+        public void Action(Action onComplete = null)
+        {
+            ResetTransform();
+            spriteRenderer.sprite = action;
+            actionPunch.Play(spriteRenderer.transform, () =>
+                                                       {
+                                                           Idle();
+                                                           onComplete?.Invoke();
+                                                       });
         }
 
         public void Attack(Action onComplete = null)
