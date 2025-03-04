@@ -39,10 +39,11 @@ namespace Fantazee.Instance
         [SerializeField]
         private List<Die> dice; // TODO - For some reason this is getting cleared when the game exits - KD
         public List<Die> Dice => dice;
-        
+
         [SerializeField]
-        private int rolls = 3;
-        public int Rolls => rolls;
+        private int baseRolls = 3;
+
+        public int Rolls { get; set; }
 
         [SerializeReference]
         private List<RelicInstance> relics;
@@ -52,13 +53,15 @@ namespace Fantazee.Instance
         {
             this.data = data;
             
+            Rolls = baseRolls;
+            
             health = new Health(data.MaxHealth);
             wallet = new Wallet(data.Wallet);
             scoreTracker = new ScoreTracker(data);
             dice = Die.DefaultDice(6);
             
             relics = new List<RelicInstance>();
-            RelicInstance relic = RelicFactory.Create(data.Relic);
+            RelicInstance relic = RelicFactory.Create(data.Relic, this);
             relics.Add(relic);
         }
     }

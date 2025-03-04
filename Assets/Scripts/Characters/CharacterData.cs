@@ -66,11 +66,10 @@ namespace Fantazee.Characters
         private Wallet wallet;
         public Wallet Wallet => wallet;
 
-        [FormerlySerializedAs("relics")]
         [Header("Relic")]
 
         [SerializeField]
-        private RelicData relic;
-        public RelicData Relic => relic;
+        private RelicType relic;
+        public RelicType Relic => relic;
     }
 }

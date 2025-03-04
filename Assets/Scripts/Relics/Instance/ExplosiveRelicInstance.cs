@@ -1,6 +1,7 @@
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Dice;
+using Fantazee.Instance;
 using Fantazee.Relics.Data;
 
 namespace Fantazee.Relics.Instance
@@ -9,7 +10,7 @@ namespace Fantazee.Relics.Instance
     {
         private readonly ExplosiveRelicData explosiveData;
         
-        public ExplosiveRelicInstance(ExplosiveRelicData data) : base(data)
+        public ExplosiveRelicInstance(ExplosiveRelicData data, CharacterInstance character) : base(data, character)
         {
             explosiveData = data;
 

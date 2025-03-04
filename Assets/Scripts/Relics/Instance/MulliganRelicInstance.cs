@@ -1,5 +1,6 @@
 using Fantazee.Battle;
 using Fantazee.Battle.Ui;
+using Fantazee.Instance;
 using Fantazee.Relics.Data;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Fantazee.Relics.Instance
         private bool firstRoll;
         private bool hasScored;
         
-        public MulliganRelicInstance(RelicData data) : base(data)
+        public MulliganRelicInstance(RelicData data, CharacterInstance character) : base(data, character)
         {
             BattleController.PlayerTurnStart += OnPlayerStart;
             BattleController.RollStarted += OnRollStarted;

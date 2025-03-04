@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Battle.Settings;
 using Fantazee.Currencies.Ui;
+using Fantazee.Instance;
 using Fantazee.Relics;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
@@ -95,7 +96,7 @@ namespace Fantazee.Shop.Ui.Screens
 
             foreach (RelicShopItem relic in shopInventory.Relics)
             {
-                RelicInstance r = RelicFactory.Create(relic.Item);
+                RelicInstance r = RelicFactory.Create(relic.Item, GameInstance.Current.Character);
                 RelicEntry relicEntry = Instantiate(relicEntryPrefab, relicContent);
                 relicEntry.Initialize(r, OnRelicSelected);
                 

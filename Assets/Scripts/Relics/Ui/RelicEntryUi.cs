@@ -1,5 +1,7 @@
 using DG.Tweening;
 using Fantazee.Relics.Data;
+using Fantazee.Relics.Information;
+using Fantazee.Relics.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,6 +63,14 @@ namespace Fantazee.Relics.Ui
             image.sprite = relicData.Icon;
             relicName.text = relicData.LocName.GetLocalizedString();
             relicDescription.text = relicData.LocDesc.GetLocalizedString();
+        }
+
+        public void ShowData(RelicType type)
+        {
+            if (RelicSettings.Settings.Information.TryGetInformation(type, out RelicInformation info))
+            {
+                ShowData(info.Data);
+            }
         }
 
         private void OnActivated()

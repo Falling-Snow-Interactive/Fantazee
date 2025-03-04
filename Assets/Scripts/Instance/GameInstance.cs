@@ -33,12 +33,6 @@ namespace Fantazee.Instance
         [SerializeReference]
         private MapInstance map;
         public MapInstance Map => map;
-
-        [Header("Relics")]
-
-        [SerializeField]
-        private List<RelicInstance> relics;
-        public List<RelicInstance> Relics => relics;
         
         public static GameInstance Defaults
         {
