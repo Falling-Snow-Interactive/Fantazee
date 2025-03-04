@@ -76,6 +76,7 @@ namespace Fantazee.Shop.Ui
             if (GameInstance.Current.Character.Wallet.CanAfford(relicEntry.Cost))
             {
                 ShopController.Instance.MakePurchase(relicEntry.Cost);
+                GameInstance.Current.Character.AddRelic(relicEntry.Relic);
                 Destroy(relicEntry.gameObject);
             }
             else

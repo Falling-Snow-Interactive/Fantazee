@@ -20,9 +20,9 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         [SerializeField]
         private Image icon;
-        
+
         [SerializeField]
-        private float offset = 100f;
+        private Vector3 offset = new(0f, 100f, 0f);
         
         [SerializeField]
         private float time = 5f;
@@ -49,12 +49,10 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             
             if (force)
             {
-                Vector3 vector3 = root.transform.localPosition;
-                vector3.y = offset;
-                root.transform.localPosition = vector3;
+                root.transform.localPosition = offset;
             }
 
-            root.transform.DOLocalMoveY(offset, time)
+            root.transform.DOLocalMove(offset, time)
                 .SetEase(showEase);
         }
 
@@ -64,13 +62,11 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
             if (force)
             {
-                Vector3 vector3 = root.transform.localPosition;
-                vector3.y = 0;
-                root.transform.localPosition = vector3;
+                root.transform.localPosition = Vector3.zero;
                 root.gameObject.SetActive(false);
             }
             
-            root.transform.DOLocalMoveY(0, time)
+            root.transform.DOLocalMove(Vector3.zero, time)
                 .SetEase(hideEase)
                 .OnComplete(() =>
                             {

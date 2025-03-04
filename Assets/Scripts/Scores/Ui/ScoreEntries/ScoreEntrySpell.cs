@@ -34,6 +34,8 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             {
                 icon.sprite = data.Icon;
             }
+
+            tooltip?.Hide(true);
         }
 
         public void Activate(Action<int> onSelect)

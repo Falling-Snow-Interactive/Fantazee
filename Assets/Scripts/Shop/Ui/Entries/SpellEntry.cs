@@ -1,7 +1,7 @@
 using System;
+using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Spells.Data;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Entries
 {
@@ -14,14 +14,14 @@ namespace Fantazee.Shop.Ui.Entries
         public SpellData Data => data;
 
         [SerializeField]
-        private Image icon;
+        private ScoreEntrySpell spellEntry;
         
         public void Initialize(SpellData data, Action<SpellEntry> onSelected)
         {
             this.onSelected = onSelected;
             this.data = data;
             
-            icon.sprite = data.Icon;
+            spellEntry.Initialize(0, data.Type);
             ShowEntry(data.LocName.GetLocalizedString(), data.LocDesc.GetLocalizedString(), data.Cost);
         }
         
