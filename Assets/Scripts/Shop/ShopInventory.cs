@@ -17,11 +17,18 @@ namespace Fantazee.Shop
         [SerializeField]
         private List<ScoreShopItem> scores;
         public List<ScoreShopItem> Scores => scores;
+        
+        [SerializeField]
+        private List<RelicShopItem> relics;
+        public List<RelicShopItem> Relics => relics;
 
-        public ShopInventory(List<SpellShopItem> spells, List<ScoreShopItem> scores)
+        public ShopInventory(List<SpellShopItem> spells, 
+                             List<ScoreShopItem> scores, 
+                             List<RelicShopItem> relics)
         {
             this.spells = spells;
             this.scores = scores;
+            this.relics = relics;
         }
 
         public override string ToString()
@@ -41,6 +48,16 @@ namespace Fantazee.Shop
             {
                 s += $"\t{score}\n";
                 if (score != scores[^1])
+                {
+                    s += "\n";
+                }
+            }
+            
+            s += "Relics:\n";
+            foreach (RelicShopItem relic in relics)
+            {
+                s += $"\t{relic}\n";
+                if (relic != relics[^1])
                 {
                     s += "\n";
                 }

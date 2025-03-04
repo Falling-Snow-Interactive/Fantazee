@@ -32,7 +32,11 @@ namespace Fantazee.Shop.Ui.Entries
 
         protected void ShowEntry(string name, string desc, Currency currency)
         {
-            nameText.text = name;
+            if (nameText != null)
+            {
+                nameText.text = name;
+            }
+
             if (descriptionText != null)
             {
                 descriptionText.text = desc;

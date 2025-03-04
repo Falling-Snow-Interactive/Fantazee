@@ -1,4 +1,5 @@
 using System;
+using Fantazee.Battle;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
@@ -72,7 +73,15 @@ namespace Fantazee.Shop.Ui
 
         private void OnRelicSelected(RelicEntry relicEntry)
         {
-            
+            if (GameInstance.Current.Character.Wallet.CanAfford(relicEntry.Cost))
+            {
+                ShopController.Instance.MakePurchase(relicEntry.Cost);
+                Destroy(relicEntry.gameObject);
+            }
+            else
+            {
+                relicEntry.PlayCantAfford();
+            }
         }
 
         private void OnScoreSelected(ShopScoreEntryPurchase purchaseScoreEntry)

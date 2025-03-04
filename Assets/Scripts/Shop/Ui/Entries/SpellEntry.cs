@@ -1,9 +1,5 @@
 using System;
-using DG.Tweening;
-using Fantazee.Currencies;
-using Fantazee.Spells;
 using Fantazee.Spells.Data;
-using Fantazee.Spells.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
