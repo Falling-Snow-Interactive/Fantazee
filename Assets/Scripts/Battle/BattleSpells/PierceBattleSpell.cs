@@ -11,11 +11,11 @@ namespace Fantazee.Battle.BattleSpells
     [Serializable]
     public class PierceBattleSpell : BattleSpell
     {
-        private PierceData data;
+        private PierceData pierceData;
         
         public PierceBattleSpell(PierceData data) : base(data)
         {
-            this.data = data;
+            pierceData = data;
         }
 
         protected override IEnumerator CastSequence(Damage damage, Action onComplete = null)
@@ -34,12 +34,12 @@ namespace Fantazee.Battle.BattleSpells
                 e1 = enemies[^2];
             }
 
-            e0.Damage(damage.Value);
+            e0.Damage(Mathf.RoundToInt(damage.Value * pierceData.FirstEnemyMod));
 
             if (e1)
             {
                 yield return new WaitForSeconds(0.2f);
-                e1.Damage(Mathf.RoundToInt(damage.Value/2f));
+                e1.Damage(Mathf.RoundToInt(damage.Value * pierceData.SecondEnemyMod));
             }
             
             yield return new WaitForSeconds(1f);

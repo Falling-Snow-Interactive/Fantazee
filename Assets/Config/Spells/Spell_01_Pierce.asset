@@ -38,11 +38,13 @@ MonoBehaviour:
       Data2: 1335843057
       Data3: -1977758823
       Data4: 1573746523
-    Path: event:/Battle/Spells/Spell_Pierce
+    Path: event:/Spells/Spell_01_Pierce
   cost:
-    name: Gold - 10
+    name: 'Gold: 10'
     type: 1
     amount: 10
+  firstEnemyMod: 0.75
+  secondEnemyMod: 0.25
   references:
     version: 2
     RefIds: []
