@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Fantazee.Battle.DamageNumbers;
 using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
 using FMOD.Studio;
@@ -40,6 +41,9 @@ namespace Fantazee.Battle.Characters
         private HealthUi healthUi;
         
         public abstract Health Health { get; }
+
+        [SerializeField]
+        private DamageNumbersController damageNumbers;
         
         [Header("Shield")]
         
@@ -125,12 +129,17 @@ namespace Fantazee.Battle.Characters
             Debug.Log($"Enemy: Damage {damage}");
             
             // shield first
-            int rem = damage - shield.Current;
-            shield.Remove(damage);
+            int dealt = shield.Remove(damage);
+            if (dealt > 0)
+            {
+                damageNumbers.AddShield(dealt);
+            }
 
+            int rem = damage - dealt;
             if (rem > 0)
             {
-                Health.Damage(rem);
+                int damaged = Health.Damage(rem);
+                damageNumbers.AddDamage(damaged);
             }
 
             hitSfx.start();
@@ -149,12 +158,13 @@ namespace Fantazee.Battle.Characters
         
         public void Heal(int heal)
         {
-            Health.Heal(heal);
+            int healed = Health.Heal(heal);
             if (healSfx.isValid())
             {
                 healSfx.start();
             }
 
+            damageNumbers.AddHealing(healed);
             visuals.Action();
         }
 
