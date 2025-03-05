@@ -8,8 +8,13 @@ namespace Fantazee.Spells.Data
     public class FireballSpellData : SpellData
     {
         public override SpellType Type => SpellType.Fireball;
-        
+
         [Header("Fireball")]
+
+        [Range(0f, 2f)]
+        [SerializeField]
+        private float damageMod = 1f;
+        public float DamageMod => damageMod;
         
         [Header("Transit")]
 

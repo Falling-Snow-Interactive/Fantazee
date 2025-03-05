@@ -45,18 +45,18 @@ MonoBehaviour:
   - name: Threes - Dagger - None
     score: 3
     spells: 0100000000000000
-  - name: Fours - Shield - None
+  - name: Fours - Heal - None
     score: 4
-    spells: 0300000000000000
-  - name: Fives - Dagger - Fireball
+    spells: 0400000000000000
+  - name: Fives - Dagger - None
     score: 5
-    spells: 0100000005000000
+    spells: 0100000000000000
   - name: Sixes - Dagger - None
     score: 6
     spells: 0100000000000000
-  - name: ThreeOfAKind - Dagger - Fireball
+  - name: ThreeOfAKind - Dagger - None
     score: 7
-    spells: 0100000005000000
+    spells: 0100000000000000
   - name: FourOfAKind - Shield - None
     score: 8
     spells: 0300000000000000
@@ -69,10 +69,10 @@ MonoBehaviour:
   - name: LargeStraight - Dagger - None
     score: 11
     spells: 0100000000000000
-  - name: Chance - Heal - None
+  - name: Chance - Shield - None
     score: 12
-    spells: 0400000000000000
-  fantazeeSpells: 010000000000000001000000
+    spells: 0300000000000000
+  fantazeeSpells: 010000000400000000000000
   wallet:
     currencies:
     - name: 'Gold: 50'

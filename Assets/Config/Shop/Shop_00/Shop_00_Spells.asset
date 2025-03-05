@@ -13,31 +13,43 @@ MonoBehaviour:
   m_Name: Shop_00_Spells
   m_EditorClassIdentifier: 
   spells:
-  - weight: 1
+  - name: 'Dagger | Gold: 7 - 1'
+    weight: 1
     value:
       cost:
         name: 'Gold: 7'
         type: 1
         amount: 7
       item: 1
-  - weight: 1
-    value:
-      cost:
-        name: 'Gold: 10'
-        type: 1
-        amount: 10
-      item: 2
-  - weight: 1
-    value:
-      cost:
-        name: 'Gold: 5'
-        type: 1
-        amount: 5
-      item: 3
-  - weight: 1
+  - name: 'Pierce | Gold: 12 - 1'
+    weight: 1
     value:
       cost:
         name: 'Gold: 12'
         type: 1
         amount: 12
+      item: 2
+  - name: 'Shield | Gold: 8 - 1'
+    weight: 1
+    value:
+      cost:
+        name: 'Gold: 8'
+        type: 1
+        amount: 8
+      item: 3
+  - name: 'Heal | Gold: 17 - 1'
+    weight: 1
+    value:
+      cost:
+        name: 'Gold: 17'
+        type: 1
+        amount: 17
       item: 4
+  - name: 'Fireball | Gold: 19 - 1'
+    weight: 1
+    value:
+      cost:
+        name: 'Gold: 19'
+        type: 1
+        amount: 19
+      item: 5

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using FMOD.Studio;
 using FMODUnity;
@@ -11,10 +12,7 @@ namespace Fantazee.Battle.BattleSpells
     [Serializable]
     public abstract class BattleSpell
     {
-        [SerializeReference]
         private SpellData data;
-        public SpellData Data { get => data; set => data = value; }
-
         private EventInstance castSfx;
 
         protected BattleSpell(SpellData spellData)
@@ -26,6 +24,8 @@ namespace Fantazee.Battle.BattleSpells
                 castSfx = RuntimeManager.CreateInstance(data.CastSfx);
             }
         }
+
+        public bool IsNone => data.Type == SpellType.None;
 
         public void Cast(Damage damage, Action onComplete = null)
         {

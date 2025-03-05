@@ -14,7 +14,7 @@ namespace Fantazee.Battle.BattleSpells
 {
     public class FireballBattleSpell : BattleSpell
     {
-        private FireballSpellData fireballData;
+        private readonly FireballSpellData fireballData;
         
         private EventInstance loopSfx;
         private EventInstance hitSfx;
@@ -62,12 +62,13 @@ namespace Fantazee.Battle.BattleSpells
                                     });
 
                 yield return new WaitUntil(() => ready);
-                
+
+                int d = Mathf.RoundToInt(damage.Value * enemies.Count>1 ? fireballData.DamageMod : 1);
                 foreach (BattleEnemy enemy in enemies)
                 {
                     if (enemy.Health.IsAlive)
                     {
-                        enemy.Damage(Mathf.RoundToInt(damage.Value / count));
+                        enemy.Damage(Mathf.RoundToInt(d));
                     }
                 }
 

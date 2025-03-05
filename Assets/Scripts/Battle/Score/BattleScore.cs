@@ -67,7 +67,7 @@ namespace Fantazee.Battle.Score
             {
                 bool ready = false;
                 BattleSpell spell = spells[i];
-                if (spell.Data.Type != SpellType.None && BattleController.Instance.EnemiesRemaining() > 0)
+                if (!spell.IsNone && BattleController.Instance.EnemiesRemaining() > 0)
                 {
                     entryUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
                 
