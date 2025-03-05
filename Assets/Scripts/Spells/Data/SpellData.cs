@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Fantazee.Currencies;
 using FMODUnity;
+using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.VFX;
@@ -41,29 +43,21 @@ namespace Fantazee.Spells.Data
         private Color color = Color.white;
         public Color Color => color;
 
-        [SerializeField]
-        private GameObject playerVfx;
-        public GameObject PlayerVfx => playerVfx;
-
-        [SerializeField]
-        private GameObject tweenVfx;
-        public GameObject TweenVfx => tweenVfx;
-
-        [SerializeField]
-        private GameObject enemyVfx;
-        public GameObject EnemyVfx => enemyVfx;
-
-        [Header("Audio")]
-
-        [SerializeField]
-        private EventReference castSfx;
-        public EventReference CastSfx => castSfx;
-
         [Header("Shop")]
 
         [SerializeField]
         private Currency cost = new(CurrencyType.Gold, 10);
         public Currency Cost => cost;
+
+        [Header("Cast")]
+
+        [SerializeField]
+        private GameObject castVfx;
+        public GameObject CastVfx => castVfx;
+
+        [SerializeField]
+        private EventReference castSfx;
+        public EventReference CastSfx => castSfx;
         
         protected virtual Dictionary<string, string> GetDescArgs()
         {
