@@ -3,7 +3,7 @@ using Fantazee.Instance;
 using Fantazee.Relics.Data;
 using UnityEngine;
 
-namespace Fantazee.Relics
+namespace Fantazee.Relics.Instance
 {
     [Serializable]
     public class RelicInstance

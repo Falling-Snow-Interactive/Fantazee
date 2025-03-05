@@ -19,6 +19,7 @@ namespace Fantazee.Relics
                        ExplosiveRelicData explosive => new ExplosiveRelicInstance(explosive, character),
                        LuckyRelicData lucky => new LuckyRelicInstance(lucky, character),
                        NoVacancyRelicData noVacancy => new NoVacancyRelicInstance(noVacancy, character),
+                       VampireFangRelicData vampireFang => new VampireFangRelicInstance(vampireFang, character),
                        _ => throw new ArgumentOutOfRangeException(nameof(data), data, null)
                    };
         }

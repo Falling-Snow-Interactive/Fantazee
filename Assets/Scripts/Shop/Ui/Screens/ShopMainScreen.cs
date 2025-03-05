@@ -5,6 +5,7 @@ using Fantazee.Battle.Settings;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
 using Fantazee.Relics;
+using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
 using Fantazee.Scores.Ui;

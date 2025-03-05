@@ -5,6 +5,7 @@ using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Relics;
 using Fantazee.Relics.Data;
+using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fsi.Gameplay.Healths;
 using UnityEngine;

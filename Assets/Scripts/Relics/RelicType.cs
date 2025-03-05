@@ -7,5 +7,6 @@ namespace Fantazee.Relics
         Explosive = 2,
         Lucky = 3,
         NoVacancy = 4,
+        VampireFang = 5,
     }
 }

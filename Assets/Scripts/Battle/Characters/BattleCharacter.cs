@@ -12,7 +12,7 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Battle.Characters
 {
-    public abstract class BattleCharacter : MonoBehaviour, IDamageable
+    public abstract class BattleCharacter : MonoBehaviour, IDamageable, IHealable
     {
         public event Action Damaged;
 
@@ -80,6 +80,10 @@ namespace Fantazee.Battle.Characters
         [SerializeField]
         private EventReference hitSfxRef;
         private EventInstance hitSfx;
+
+        [SerializeField]
+        private EventReference healSfxRef;
+        private EventInstance healSfx;
         
         [SerializeField]
         private EventReference deathSfxRef;
@@ -88,6 +92,7 @@ namespace Fantazee.Battle.Characters
         {
             footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
             hitSfx = RuntimeManager.CreateInstance(hitSfxRef);
+            healSfx = RuntimeManager.CreateInstance(healSfxRef);
         }
         
         private void OnDestroy()
@@ -137,6 +142,13 @@ namespace Fantazee.Battle.Characters
                                               });
                             }
                         });
+        }
+        
+        public void Heal(int heal)
+        {
+            Health.Heal(heal);
+            healSfx.start();
+            visuals.Action();
         }
 
         public void Hide(Action onComplete, float delay = 0, bool force = false)

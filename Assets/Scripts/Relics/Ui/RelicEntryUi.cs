@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Fantazee.Relics.Data;
 using Fantazee.Relics.Information;
+using Fantazee.Relics.Instance;
 using Fantazee.Relics.Settings;
 using TMPro;
 using UnityEngine;

@@ -1,6 +1,7 @@
 using System;
 using Fantazee.Currencies;
 using Fantazee.Relics;
+using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
 using UnityEngine;
 
