@@ -1,17 +1,18 @@
+using Fantazee.Currencies;
 using UnityEngine;
 using UnityEngine.Localization;
-using RangeInt = Fsi.Gameplay.RangeInt;
 
-namespace Fantazee.Relics
+namespace Fantazee.Relics.Data
 {
-    [CreateAssetMenu(fileName = "RelicData", menuName = "Relics/Data")]
-    public class RelicData : ScriptableObject
+    public abstract class RelicData : ScriptableObject
     {
+        public abstract RelicType Type { get; }
+        
         [Header("Localization")]
 
         [SerializeField]
         private LocalizedString locName;
-        public LocalizedString Name => locName;
+        public LocalizedString LocName => locName;
 
         [SerializeField]
         private LocalizedString locDesc;
@@ -30,7 +31,9 @@ namespace Fantazee.Relics
         [Header("Shop")]
 
         [SerializeField]
-        private RangeInt cost = new(100, 150);
-        public RangeInt Cost => cost;
+        private Currency cost;
+        public Currency Cost => cost;
+        
+        public override string ToString() => Type.ToString();
     }
 }

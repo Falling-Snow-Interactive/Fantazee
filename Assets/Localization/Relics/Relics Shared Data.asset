@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Relics Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Relics
+  m_TableCollectionNameGuidString: 4ad468185a3464d3b98a9c7ca0902a51
+  m_Entries:
+  - m_Id: 4696563712
+    m_Key: relic_00_mulligan_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33616289792
+    m_Key: relic_00_mulligan_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38486638845952
+    m_Key: relic_01_explosive_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38520591736832
+    m_Key: relic_01_explosive_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69623390134272
+    m_Key: relic_02_lucky_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69652670570496
+    m_Key: relic_02_lucky_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92435534307328
+    m_Key: relic_03_novacancy_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92489678577664
+    m_Key: relic_03_novacancy_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98393983541248
+    m_Key: relic_04_vampirefang_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98419895951360
+    m_Key: relic_04_vampirefang_desc
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 554601466844414343
+  references:
+    version: 2
+    RefIds:
+    - rid: 554601466844414343
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1741110788862

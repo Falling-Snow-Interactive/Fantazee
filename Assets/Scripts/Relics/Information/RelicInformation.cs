@@ -1,18 +1,15 @@
 using System;
+using Fantazee.Relics.Data;
+using fsi.settings.Informations;
 using UnityEngine;
 
-namespace Fantazee.Relics
+namespace Fantazee.Relics.Information
 {
     [Serializable]
-    public class RelicInstance
+    public class RelicInformation: Information<RelicType>
     {
         [SerializeField]
         private RelicData data;
         public RelicData Data => data;
-
-        public RelicInstance(RelicData data)
-        {
-            this.data = data;
-        }
     }
 }

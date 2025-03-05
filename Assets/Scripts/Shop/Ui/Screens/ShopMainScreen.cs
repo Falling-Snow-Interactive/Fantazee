@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Battle.Settings;
 using Fantazee.Currencies.Ui;
+using Fantazee.Instance;
+using Fantazee.Relics;
+using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
 using Fantazee.Scores.Ui;
@@ -91,6 +94,15 @@ namespace Fantazee.Shop.Ui.Screens
                 scorePurchase.Initialize(score, OnScoreSelected);
                 scorePurchaseEntries.Add(scorePurchase);
             }
+
+            foreach (RelicShopItem relic in shopInventory.Relics)
+            {
+                RelicInstance r = RelicFactory.Create(relic.Item, GameInstance.Current.Character);
+                RelicEntry relicEntry = Instantiate(relicEntryPrefab, relicContent);
+                relicEntry.Initialize(r, OnRelicSelected);
+                
+                relicEntries.Add(relicEntry);
+            }
         }
 
         private void OnSpellSelected(SpellEntry spellEntry)
@@ -100,6 +112,7 @@ namespace Fantazee.Shop.Ui.Screens
 
         private void OnRelicSelected(RelicEntry relicEntry)
         {
+            Debug.Log($"Shop: OnRelicSelected: {relicEntry}");
             onRelicSelected?.Invoke(relicEntry);
         }
 
