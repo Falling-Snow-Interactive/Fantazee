@@ -20,8 +20,8 @@ namespace Fantazee.Battle.Shields
 
         public int Remove(int amount)
         {
-            int d = Mathf.Clamp(current - amount, 0, current);
-            current = d;
+            int d = Mathf.Clamp(amount, 0, current);
+            current -= d;
             Changed?.Invoke();
             return d;
         }

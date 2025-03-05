@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6673084207043963533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -769,9 +769,9 @@ RectTransform:
   m_Father: {fileID: 1831864719372312479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -15}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &4275363784300073680
 GameObject:
@@ -920,7 +920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -182.7, y: 0}
+  m_AnchoredPosition: {x: -175, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6194203776569960312
@@ -958,7 +958,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -10, y: -10}
+  m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7902071466248426939
 GameObject:
@@ -1013,7 +1013,7 @@ MonoBehaviour:
   name: {fileID: 8285898662115899843}
   desc: {fileID: 280593241379367643}
   icon: {fileID: 3276058478287024945}
-  offset: {x: -200, y: 0, z: 0}
+  offset: {x: -175, y: 0, z: 0}
   time: 0.3
   showEase: 30
   hideEase: 30
@@ -1580,15 +1580,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1889435202847096459, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
       propertyPath: m_Color.b
-      value: 0.17254902
+      value: 0.20345317
       objectReference: {fileID: 0}
     - target: {fileID: 1889435202847096459, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
       propertyPath: m_Color.g
-      value: 0.22352941
+      value: 0.27426127
       objectReference: {fileID: 0}
     - target: {fileID: 1889435202847096459, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
       propertyPath: m_Color.r
-      value: 0.27058825
+      value: 0.33962262
       objectReference: {fileID: 0}
     - target: {fileID: 3061378612325405171, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
       propertyPath: m_Color.b
