@@ -233,9 +233,8 @@ MonoBehaviour:
       rid: -2
     map:
       rid: -2
-    relics: []
   loadingScreen: {fileID: 5289247866963360002}
-  environmentAudio: {fileID: 5505610813834021074}
+  musicController: {fileID: 5505610813834021074}
   references:
     version: 2
     RefIds:
@@ -293,8 +292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f59f677a9c8a48e3bf26358b37a614f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  postShowDelay: 0.2
-  postHideDelay: 0.2
+  postShowDelay: 0
+  postHideDelay: 0.5
   fadeTime: 0.2
   showEase: 6
   hideEase: 5
@@ -311,6 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2387efc2a004ce88a72a4c32eb1497a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   eventEmitter: {fileID: 8953011610711814437}
 --- !u!114 &8953011610711814437
 MonoBehaviour:

@@ -33,6 +33,10 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private Ease tweenEase = Ease.Linear;
         public Ease TweenEase => tweenEase;
+        
+        [SerializeField]
+        private AnimationCurve tweenCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        public AnimationCurve TweenCurve => tweenCurve;
 
         [SerializeField]
         private float tweenTime = 0.6f;

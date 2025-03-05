@@ -11,6 +11,9 @@ namespace Fantazee.LoadingScreens
         [Header("Delays")]
         
         [SerializeField]
+        private float preShowDelay = 0.5f;
+        
+        [SerializeField]
         private float postShowDelay = 0.5f;
         
         [SerializeField]
@@ -37,7 +40,7 @@ namespace Fantazee.LoadingScreens
             Debug.Log("LoadingScreen: Show");
             overlay.gameObject.SetActive(true);
             overlay.DOColor(Color.black, fadeTime)
-                   .SetDelay(delay)
+                   .SetDelay(delay + preShowDelay)
                    .OnComplete(() =>
                                {
                                    StartCoroutine(Delay(postShowDelay, onComplete));

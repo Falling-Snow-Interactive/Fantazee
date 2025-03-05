@@ -52,10 +52,43 @@ MonoBehaviour:
       Data3: 1787140785
       Data4: 2125770194
     Path: event:/General/Swoosh_Small
-  tweenVfxSpawnOffset: {x: 0, y: 1.5, z: 0}
+  tweenVfxSpawnOffset: {x: 2, y: 1.5, z: 0}
   tweenVfxHitOffset: {x: 0, y: 1.3, z: 0}
-  tweenEase: 1
-  tweenTime: 0.5
+  tweenEase: 37
+  tweenCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.4359954
+      outSlope: -0.4359954
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07342096
+    - serializedVersion: 3
+      time: 0.3958263
+      value: -0.37576175
+      inSlope: -0.005887707
+      outSlope: -0.005887707
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.052526772
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  tweenTime: 1
   tweenDelay: 0
   hitVfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
   hitSfx:

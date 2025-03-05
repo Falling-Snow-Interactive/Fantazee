@@ -56,15 +56,30 @@ namespace Fantazee.Battle.BattleSpells
                 GameObject tweenVfx = UnityEngine.Object.Instantiate(dagger.TweenVfx, player.transform);
                 tweenVfx.transform.localPosition = dagger.TweenVfxSpawnOffset;
                 daggerLoopSfx.start();
-                tweenVfx.transform.DOMove(enemy.transform.position + dagger.TweenVfxHitOffset, dagger.TweenTime)
-                        .SetEase(dagger.TweenEase)
-                        .SetDelay(dagger.TweenDelay)
-                        .OnComplete(() =>
-                                    {
-                                        daggerLoopSfx.stop(STOP_MODE.IMMEDIATE);
-                                        UnityEngine.Object.Destroy(tweenVfx.gameObject);
-                                        ready = true;
-                                    });
+                if (dagger.TweenEase == Ease.INTERNAL_Custom)
+                {
+                    tweenVfx.transform.DOMove(enemy.transform.position + dagger.TweenVfxHitOffset, dagger.TweenTime)
+                            .SetEase(dagger.TweenCurve)
+                            .SetDelay(dagger.TweenDelay)
+                            .OnComplete(() =>
+                                        {
+                                            daggerLoopSfx.stop(STOP_MODE.IMMEDIATE);
+                                            UnityEngine.Object.Destroy(tweenVfx.gameObject);
+                                            ready = true;
+                                        });
+                }
+                else
+                {
+                    tweenVfx.transform.DOMove(enemy.transform.position + dagger.TweenVfxHitOffset, dagger.TweenTime)
+                            .SetEase(dagger.TweenEase)
+                            .SetDelay(dagger.TweenDelay)
+                            .OnComplete(() =>
+                                        {
+                                            daggerLoopSfx.stop(STOP_MODE.IMMEDIATE);
+                                            UnityEngine.Object.Destroy(tweenVfx.gameObject);
+                                            ready = true;
+                                        });
+                }
                 yield return new WaitUntil(() => ready);
                 enemy.Damage(damage.Value);
                 if (dagger.HitVfx)
