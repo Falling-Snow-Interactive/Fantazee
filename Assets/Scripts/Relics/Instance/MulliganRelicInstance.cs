@@ -38,6 +38,7 @@ namespace Fantazee.Relics.Instance
 
         private void OnRollStarted()
         {
+            Debug.Log("Mulligan");
             if (hasScored)
             {
                 return;
@@ -45,7 +46,6 @@ namespace Fantazee.Relics.Instance
             
             if (startRoll)
             {
-                Debug.Log("Mulligan: start roll.");
                 startRoll = false;
             }
             else
@@ -53,9 +53,9 @@ namespace Fantazee.Relics.Instance
                 if (firstRoll)
                 {
                     firstRoll = false;
-                    Debug.Log($"Mulligan: Locked {BattleController.Instance.LockedDice.Count}.");
                     if (BattleController.Instance.LockedDice.Count == 0)
                     {
+                        Debug.Log($"Mulligan: Activated: {BattleController.Instance.RemainingRolls} -> {BattleController.Instance.RemainingRolls + 1}");
                         BattleController.Instance.RemainingRolls++;
                         Activate();
                     }
