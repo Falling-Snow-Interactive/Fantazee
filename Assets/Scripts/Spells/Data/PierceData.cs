@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fantazee.Spells.Data
@@ -16,5 +17,13 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private float secondEnemyMod = 0.25f;
         public float SecondEnemyMod => secondEnemyMod;
+
+        protected override Dictionary<string, string> GetDescArgs()
+        {
+            Dictionary<string, string> dict = base.GetDescArgs();
+            dict.Add("FirstMod", $"{firstEnemyMod * 100f}");
+            dict.Add("SecondMod", $"{secondEnemyMod * 100f}");
+            return dict;
+        }
     }
 }

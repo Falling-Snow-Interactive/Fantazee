@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab417161ab6d24c38be767acdb47a72b, type: 3}
+  m_Name: Spell_04_Fireball
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 4292882511945728
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 4292911867879424
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 21300000, guid: 8c8c0c9c527454f2c80b7af549c05f3c, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  castSfx:
+    Guid:
+      Data1: 1568356413
+      Data2: 1191063327
+      Data3: 724200076
+      Data4: -1370872847
+    Path: event:/Spells/Spell_04_Fireball
+  cost:
+    name: 'Gold: 16'
+    type: 1
+    amount: 16
+  references:
+    version: 2
+    RefIds: []

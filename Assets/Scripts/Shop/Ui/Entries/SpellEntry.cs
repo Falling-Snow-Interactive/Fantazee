@@ -22,7 +22,7 @@ namespace Fantazee.Shop.Ui.Entries
             this.data = data;
             
             spellEntry.Initialize(0, data.Type);
-            ShowEntry(data.LocName.GetLocalizedString(), data.LocDesc.GetLocalizedString(), data.Cost);
+            ShowEntry(data.LocName.GetLocalizedString(), data.Desc, data.Cost);
         }
         
         public override void OnEntrySelected()

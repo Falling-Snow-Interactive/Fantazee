@@ -7,6 +7,7 @@ namespace Fantazee.Spells
         Pierce = 2,
         Shield = 3,
         Heal = 4,
+        Fireball = 5,
         
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Fantazee.Currencies;
 using FMODUnity;
 using UnityEngine;
@@ -15,10 +16,19 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private LocalizedString locName;
         public LocalizedString LocName => locName;
-
+        
         [SerializeField]
         private LocalizedString locDesc;
-        public LocalizedString LocDesc => locDesc;
+        public string Desc
+        {
+            get
+            {
+                args ??= GetDescArgs();
+                return locDesc.GetLocalizedString(args);
+            }
+        }
+
+        private Dictionary<string, string> args;
 
         [Header("Visuals")]
 
@@ -41,5 +51,10 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private Currency cost = new(CurrencyType.Gold, 10);
         public Currency Cost => cost;
+        
+        protected virtual Dictionary<string, string> GetDescArgs()
+        {
+            return new Dictionary<string, string>();
+        }
     }
 }

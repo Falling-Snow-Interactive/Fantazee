@@ -36,7 +36,7 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         public void FillTooltip(ScoreEntrySpell scoreSpell)
         {
             name.text = scoreSpell.Data.LocName.GetLocalizedString();
-            desc.text = scoreSpell.Data.LocDesc.GetLocalizedString();
+            desc.text = scoreSpell.Data.Desc;
             icon.sprite = scoreSpell.Data.Icon;
         }
         
