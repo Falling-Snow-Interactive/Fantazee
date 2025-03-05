@@ -3,6 +3,7 @@ using Fantazee.Currencies;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.VFX;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Spells.Data
@@ -39,6 +40,18 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private Color color = Color.white;
         public Color Color => color;
+
+        [SerializeField]
+        private GameObject playerVfx;
+        public GameObject PlayerVfx => playerVfx;
+
+        [SerializeField]
+        private GameObject tweenVfx;
+        public GameObject TweenVfx => tweenVfx;
+
+        [SerializeField]
+        private GameObject enemyVfx;
+        public GameObject EnemyVfx => enemyVfx;
 
         [Header("Audio")]
 
