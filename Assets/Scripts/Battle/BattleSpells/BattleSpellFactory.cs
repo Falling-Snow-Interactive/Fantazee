@@ -14,6 +14,7 @@ namespace Fantazee.Battle.BattleSpells
                        SpellType.Dagger => new DaggerBattleSpell(data as DaggerData),
                        SpellType.Pierce => new PierceBattleSpell(data as PierceData),
                        SpellType.Shield => new ShieldBattleSpell(data as ShieldData),
+                       SpellType.Heal => new HealBattleSpell(data as HealSpellData),
                        _ => throw new ArgumentOutOfRangeException()
                    };
         }

@@ -11,7 +11,7 @@ namespace Fantazee.Shop.Buckets.Spells
     public class ShopSpellBucket : Bucket<ShopSpellBucketEntry, SpellShopItem>
     {
         [SerializeField]
-        private List<ShopSpellBucketEntry> spells = new();
+        private List<ShopSpellBucketEntry> spells;
         public override List<ShopSpellBucketEntry> Entries => spells;
     }
 }
