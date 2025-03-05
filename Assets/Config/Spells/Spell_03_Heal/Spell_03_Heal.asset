@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a221c9ca3f42498652acb0bfcf705, type: 3}
+  m_Name: Spell_03_Heal
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 4285795870433280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 4285885049724928
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 21300000, guid: 1a7b0a05d0f9e42c997b338125333a81, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  cost:
+    name: 'Gold: 10'
+    type: 1
+    amount: 10
+  castVfx: {fileID: 4077048775125981775, guid: 5703726774bd84397b79fcdb74ee9d7e, type: 3}
+  castSfx:
+    Guid:
+      Data1: 819626076
+      Data2: 1221042994
+      Data3: -497408071
+      Data4: -829359310
+    Path: event:/Spells/Spell_03_Heal
+  healingModifier: 1
+  references:
+    version: 2
+    RefIds: []

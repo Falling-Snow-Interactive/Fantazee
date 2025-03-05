@@ -5,6 +5,7 @@ using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Spells.Data;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Fantazee.Battle.BattleSpells
 {
