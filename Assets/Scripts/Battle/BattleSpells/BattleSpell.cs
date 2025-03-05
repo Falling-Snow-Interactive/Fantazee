@@ -4,7 +4,6 @@ using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Fantazee.Battle.BattleSpells

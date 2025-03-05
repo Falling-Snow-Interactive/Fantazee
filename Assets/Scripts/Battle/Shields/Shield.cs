@@ -18,10 +18,12 @@ namespace Fantazee.Battle.Shields
             Changed?.Invoke();
         }
 
-        public void Remove(int amount)
+        public int Remove(int amount)
         {
-            current = Mathf.Clamp(current - amount, 0, current);
+            int d = Mathf.Clamp(current - amount, 0, current);
+            current = d;
             Changed?.Invoke();
+            return d;
         }
 
         public void Clear()
