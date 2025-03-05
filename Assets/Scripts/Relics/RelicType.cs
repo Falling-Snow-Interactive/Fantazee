@@ -6,5 +6,6 @@ namespace Fantazee.Relics
         Mulligan = 1,
         Explosive = 2,
         Lucky = 3,
+        NoVacancy = 4,
     }
 }

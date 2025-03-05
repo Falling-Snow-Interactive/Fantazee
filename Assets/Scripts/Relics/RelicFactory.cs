@@ -18,6 +18,7 @@ namespace Fantazee.Relics
                        MulliganRelicData mulligan => new MulliganRelicInstance(mulligan, character),
                        ExplosiveRelicData explosive => new ExplosiveRelicInstance(explosive, character),
                        LuckyRelicData lucky => new LuckyRelicInstance(lucky, character),
+                       NoVacancyRelicData noVacancy => new NoVacancyRelicInstance(noVacancy, character),
                        _ => throw new ArgumentOutOfRangeException(nameof(data), data, null)
                    };
         }

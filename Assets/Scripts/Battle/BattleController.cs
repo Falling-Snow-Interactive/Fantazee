@@ -31,7 +31,7 @@ namespace Fantazee.Battle
         public static event Action<Die> DieRolled;
         
         public static event Action<int> DiceScored;
-        public static event Action<int> Scored;
+        public static event Action<BattleScore> Scored;
         
         // Common instance references
         
@@ -291,14 +291,14 @@ namespace Fantazee.Battle
                 yield return new WaitForSeconds(0.5f);
                 entry.BattleScore.Cast(damage, () =>
                                          {
-                                             Scored?.Invoke(damage.Value);
+                                             Scored?.Invoke(entry.BattleScore);
                                              OnFinishedScoring();
                                          });
             }
             else
             {
                 entry.FinalizeScore();
-                Scored?.Invoke(0);
+                Scored?.Invoke(entry.BattleScore);
                 OnFinishedScoring();
             }
         }

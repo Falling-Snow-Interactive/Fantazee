@@ -1,4 +1,5 @@
 using Fantazee.Battle;
+using Fantazee.Battle.Score;
 using Fantazee.Battle.Ui;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
@@ -30,7 +31,7 @@ namespace Fantazee.Relics.Instance
             hasScored = false;
         }
 
-        private void OnScored(int i)
+        private void OnScored(BattleScore _)
         {
             hasScored = true;
         }

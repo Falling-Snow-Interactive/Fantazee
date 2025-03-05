@@ -1,6 +1,5 @@
-using System;
+using Fantazee.Battle.Score;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
@@ -39,7 +38,7 @@ namespace Fantazee.Battle.Ui
             button.interactable = false;
         }
         
-        private void OnScored(int obj)
+        private void OnScored(BattleScore _)
         {
             button.interactable = true;
         }
