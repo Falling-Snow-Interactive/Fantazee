@@ -21,9 +21,9 @@ namespace Fantazee.Shop
 
         public ShopInventory GetInventory()
         {
-            List<SpellShopItem> spells = this.spells.GetRandom(2);
-            List<ScoreShopItem> scores = this.scores.GetRandom(1);
-            List<RelicShopItem> relics = this.relics.GetRandom(1);
+            List<SpellShopItem> spells = this.spells.GetRandom(10);
+            List<ScoreShopItem> scores = this.scores.GetRandom(10);
+            List<RelicShopItem> relics = this.relics.GetRandom(10, false);
             ShopInventory inventory = new(spells, scores, relics);
             Debug.Log($"Shop - Inventory Generated\n{inventory}");
             return inventory;

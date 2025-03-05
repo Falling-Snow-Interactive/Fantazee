@@ -37,7 +37,10 @@ namespace Fantazee.Shop
         private void Start()
         {
             Debug.Log("Shop - Start");
-            shopUi.Initialize(shopData.GetInventory());
+            ShopInventory inv = shopData.GetInventory();
+            inv.Remove(GameInstance.Current.Character.Relics);
+            inv.Purge(3, 2, 1);
+            shopUi.Initialize(inv);
             
             RuntimeManager.PlayOneShot(ShopSettings.Settings.EnterSfx);
             GameController.Instance.ShopReady();

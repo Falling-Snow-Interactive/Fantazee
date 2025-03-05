@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Instance;
+using Fantazee.Relics.Information;
+using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fantazee.Shop.Items;
 using Fantazee.Spells;
@@ -29,6 +32,36 @@ namespace Fantazee.Shop
             this.spells = spells;
             this.scores = scores;
             this.relics = relics;
+        }
+
+        public void Remove(List<RelicInstance> relics)
+        {
+            foreach (RelicShopItem r in new List<RelicShopItem>(this.relics))
+            foreach (RelicInstance ri in relics)
+            {
+                if (r.Item.Type == ri.Data.Type)
+                {
+                    this.relics.Remove(r);
+                }
+            }
+        }
+
+        public void Purge(int spellCount, int scoreCount, int relicCount)
+        {
+            while (spells.Count > spellCount)
+            {
+                spells.RemoveAt(0);
+            }
+
+            while (scores.Count > scoreCount)
+            {
+                scores.RemoveAt(0);
+            }
+
+            while (relics.Count > relicCount)
+            {
+                relics.RemoveAt(0);
+            }
         }
 
         public override string ToString()

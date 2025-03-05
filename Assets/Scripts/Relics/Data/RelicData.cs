@@ -33,5 +33,7 @@ namespace Fantazee.Relics.Data
         [SerializeField]
         private Currency cost;
         public Currency Cost => cost;
+        
+        public override string ToString() => Type.ToString();
     }
 }

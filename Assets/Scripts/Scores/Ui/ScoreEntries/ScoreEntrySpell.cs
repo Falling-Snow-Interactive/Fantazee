@@ -67,11 +67,11 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             
             if (set)
             {
-                tooltip.Show(this);
+                tooltip?.Show(this);
             }
             else
             {
-                tooltip.Hide();
+                tooltip?.Hide();
             }
         }
     }
