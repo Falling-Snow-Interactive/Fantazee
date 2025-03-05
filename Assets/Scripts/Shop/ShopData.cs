@@ -11,13 +11,13 @@ namespace Fantazee.Shop
     public class ShopData : ScriptableObject
     {
         [SerializeField]
-        private ShopSpellBucket spells = new(); 
+        private ShopSpellBucket spells; 
         
         [SerializeField]
-        private ShopScoresBucket scores = new();
+        private ShopScoresBucket scores;
 
         [SerializeField]
-        private ShopRelicsBucket relics = new();
+        private ShopRelicsBucket relics;
 
         public ShopInventory GetInventory()
         {

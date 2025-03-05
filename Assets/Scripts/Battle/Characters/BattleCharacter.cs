@@ -92,7 +92,10 @@ namespace Fantazee.Battle.Characters
         {
             footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
             hitSfx = RuntimeManager.CreateInstance(hitSfxRef);
-            healSfx = RuntimeManager.CreateInstance(healSfxRef);
+            if (!healSfxRef.IsNull)
+            {
+                healSfx = RuntimeManager.CreateInstance(healSfxRef);
+            }
         }
         
         private void OnDestroy()
@@ -147,7 +150,11 @@ namespace Fantazee.Battle.Characters
         public void Heal(int heal)
         {
             Health.Heal(heal);
-            healSfx.start();
+            if (healSfx.isValid())
+            {
+                healSfx.start();
+            }
+
             visuals.Action();
         }
 

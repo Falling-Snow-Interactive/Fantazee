@@ -9,12 +9,14 @@ using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using Fantazee.Spells.Settings;
 using UnityEngine;
+#pragma warning disable CS0067 // Event is never used
 
 namespace Fantazee.Battle.Score
 {
     [Serializable]
     public class BattleScore
     {
+        // ReSharper disable once EventNeverSubscribedTo.Global
         public event Action Changed;
         public event Action DieAdded;
         public event Action ScoreReset;
@@ -65,7 +67,7 @@ namespace Fantazee.Battle.Score
             {
                 bool ready = false;
                 BattleSpell spell = spells[i];
-                if (spell.Data.Type != SpellType.None && BattleController.Instance.EnemiesRemaining() > 0)
+                if (!spell.IsNone && BattleController.Instance.EnemiesRemaining() > 0)
                 {
                     entryUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
                 

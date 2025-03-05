@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: 57fdf74a7778f4ae697d33d278f3678e, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 554601489323262043
   m_TableData:
   - m_Id: 3966754816
     m_Localized: Dagger
@@ -39,9 +40,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1042162685829120
-    m_Localized: Deals damage to front enemy and 50% damage to next enemy.
+    m_Localized: Deals {0.FirstMod}% damage to front enemy and {0.SecondMod}% damage
+      to next enemy.
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 554601489323262043
   - m_Id: 1045241879584768
     m_Localized: Shield
     m_Metadata:
@@ -50,6 +53,30 @@ MonoBehaviour:
     m_Localized: Shield from enemy attacks.
     m_Metadata:
       m_Items: []
+  - m_Id: 4285795870433280
+    m_Localized: Heal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4285885049724928
+    m_Localized: Heal self.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4292882511945728
+    m_Localized: Fireball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4292911867879424
+    m_Localized: I didn't ask how big the room is.
+    m_Metadata:
+      m_Items:
+      - rid: 554601489323262043
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 554601489323262043
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 1042162685829120
+        - id: 4292911867879424

@@ -19,6 +19,7 @@ using Fsi.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using RangeInt = Fsi.Gameplay.RangeInt;
+#pragma warning disable CS0067 // Event is never used
 
 namespace Fantazee.Battle
 {
