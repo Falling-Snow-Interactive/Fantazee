@@ -1393,7 +1393,7 @@ MonoBehaviour:
   name: {fileID: 69052977490888711}
   desc: {fileID: 3976668626835661787}
   icon: {fileID: 96918827441791395}
-  offset: 77
+  offset: {x: 0, y: 100, z: 0}
   time: 0.3
   showEase: 30
   hideEase: 30
@@ -1563,6 +1563,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181850611932158240, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1577,6 +1581,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4727089537856460245, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
@@ -1599,6 +1619,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5789027476595094841, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7707160475501549265, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_Name
       value: Dice_Vis
@@ -1610,6 +1634,22 @@ PrefabInstance:
     - target: {fileID: 8622129211867780052, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1826,6 +1866,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181850611932158240, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1840,6 +1884,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4727089537856460245, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
@@ -1862,6 +1922,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5789027476595094841, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7707160475501549265, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_Name
       value: Dice_Vis (1)
@@ -1869,6 +1933,22 @@ PrefabInstance:
     - target: {fileID: 8622129211867780052, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2085,6 +2165,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181850611932158240, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2099,6 +2183,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4727089537856460245, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
@@ -2121,6 +2221,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5789027476595094841, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7707160475501549265, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_Name
       value: Dice_Vis (4)
@@ -2128,6 +2232,22 @@ PrefabInstance:
     - target: {fileID: 8622129211867780052, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2887,6 +3007,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181850611932158240, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2901,6 +3025,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4727089537856460245, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
@@ -2923,6 +3063,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5789027476595094841, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7707160475501549265, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_Name
       value: Dice_Vis (3)
@@ -2930,6 +3074,22 @@ PrefabInstance:
     - target: {fileID: 8622129211867780052, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3146,6 +3306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181850611932158240, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3160,6 +3324,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2260072206012773027, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692399856201158946, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4727089537856460245, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
@@ -3182,6 +3362,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5789027476595094841, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7707160475501549265, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_Name
       value: Dice_Vis (2)
@@ -3189,6 +3373,22 @@ PrefabInstance:
     - target: {fileID: 8622129211867780052, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043149327876955602, guid: b1eb243b95b65402db491ec54c308b63, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

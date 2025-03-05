@@ -24,14 +24,20 @@ namespace Fantazee.Battle.DamageNumbers
         [SerializeField]
         private Ease ease;
 
+        [SerializeField]
+        private Vector3 scale;
+
+        [SerializeField]
+        private Ease scaleEase;
+
         private void Start()
         {
             dir = direction.Random().normalized;
-            Debug.Log($"{dir} * {distance} = {dir * distance}");
-            
             transform.DOMove(transform.position + dir * distance, time)
                 .SetEase(ease)
                 .OnComplete(() => Destroy(gameObject));
+            transform.DOScale(scale, time)
+                     .SetEase(scaleEase);
         }
         
         public void SetValue(int number)

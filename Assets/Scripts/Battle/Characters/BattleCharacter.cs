@@ -138,8 +138,8 @@ namespace Fantazee.Battle.Characters
             int rem = damage - dealt;
             if (rem > 0)
             {
-                Health.Damage(rem);
-                damageNumbers.AddDamage(rem);
+                int damaged = Health.Damage(rem);
+                damageNumbers.AddDamage(damaged);
             }
 
             hitSfx.start();
