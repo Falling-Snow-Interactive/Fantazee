@@ -17,6 +17,9 @@ namespace Fantazee.LoadingScreens
         private float postShowDelay = 0.5f;
         
         [SerializeField]
+        private float preHideDelay = 0.5f;
+        
+        [SerializeField]
         private float postHideDelay = 0.5f;
         
         [Header("Fade")]
@@ -52,7 +55,7 @@ namespace Fantazee.LoadingScreens
             Debug.Log("LoadingScreen: Hide");
             overlay.gameObject.SetActive(true);
             overlay.DOColor(Color.clear, fadeTime)
-                   .SetDelay(delay)
+                   .SetDelay(delay + preHideDelay)
                    .OnComplete(() =>
                                {
                                    overlay.gameObject.SetActive(false);
