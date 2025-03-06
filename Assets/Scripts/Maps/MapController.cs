@@ -1,8 +1,6 @@
 using System;
 using DG.Tweening;
 using Fantazee.Audio;
-using Fantazee.Audio.Information;
-using Fantazee.Audio.Settings;
 using Fantazee.Battle.Characters;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
@@ -198,7 +196,7 @@ namespace Fantazee.Maps
                         GameController.Instance.LoadBlacksmith();
                         break;
                     case NodeType.Inn:
-                        // GameController.Instance.LoadInn();
+                        GameController.Instance.LoadInn();
                         break;
                     case NodeType.Shop:
                         GameController.Instance.LoadShop();

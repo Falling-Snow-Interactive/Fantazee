@@ -170,7 +170,7 @@ namespace Fantazee
         
         #endregion
         
-        #region Inn
+        #region Shop
         
         public void LoadShop()
         {
@@ -239,6 +239,33 @@ namespace Fantazee
         {
             loadingScreen.Hide(0,
                                () => { });
+        }
+        
+        #endregion
+        
+        #region Inn
+        
+        public void LoadInn()
+        {
+            loadingScreen.Show(0,
+                               () =>
+                               {
+                                   ProjectSceneManager.Instance.LoadInn(null);
+                               });
+        }
+
+        public void InnReady()
+        {
+            loadingScreen.Hide(0,
+                               () =>
+                               {
+                                   
+                               });
+        }
+
+        public void ExitInn()
+        {
+            LoadMap();
         }
         
         #endregion

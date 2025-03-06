@@ -11,7 +11,7 @@ namespace Fantazee
         
         private void Start()
         {
-            GameController.Instance.LoadMainMenu();
+            // GameController.Instance.LoadMainMenu();
         }
     }
 }

@@ -40,6 +40,8 @@ namespace Fantazee.Battle.Ui
             
             winScreen.gameObject.SetActive(false);
             
+            helpScreen.gameObject.SetActive(false);
+            
             input = new FsiInput();
             
             input.Gameplay.Help.started += ctx => helpScreen.gameObject.SetActive(true);
