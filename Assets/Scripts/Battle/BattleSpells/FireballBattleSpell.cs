@@ -63,7 +63,8 @@ namespace Fantazee.Battle.BattleSpells
 
                 yield return new WaitUntil(() => ready);
 
-                int d = Mathf.RoundToInt(damage.Value * enemies.Count>1 ? fireballData.DamageMod : 1);
+                int d = Mathf.RoundToInt(damage.Value * (enemies.Count > 1 ? fireballData.DamageMod : 1));
+                Debug.Log($"Fireball: Damage {d} per enemy.");
                 foreach (BattleEnemy enemy in enemies)
                 {
                     if (enemy.Health.IsAlive)

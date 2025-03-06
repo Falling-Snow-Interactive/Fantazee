@@ -38,7 +38,6 @@ namespace Fantazee.Relics.Instance
 
         private void OnRollStarted()
         {
-            Debug.Log("Mulligan");
             if (hasScored)
             {
                 return;
@@ -47,19 +46,20 @@ namespace Fantazee.Relics.Instance
             if (startRoll)
             {
                 startRoll = false;
+                return;
             }
-            else
+
+            if (!firstRoll)
             {
-                if (firstRoll)
-                {
-                    firstRoll = false;
-                    if (BattleController.Instance.LockedDice.Count == 0)
-                    {
-                        Debug.Log($"Mulligan: Activated: {BattleController.Instance.RemainingRolls} -> {BattleController.Instance.RemainingRolls + 1}");
-                        BattleController.Instance.RemainingRolls++;
-                        Activate();
-                    }
-                }
+                return;
+            }
+            
+            firstRoll = false;
+            if (BattleController.Instance.LockedDice.Count == 0)
+            {
+                Debug.Log($"Mulligan: Activated: {BattleController.Instance.RemainingRolls} -> {BattleController.Instance.RemainingRolls + 1}");
+                BattleController.Instance.RemainingRolls++;
+                Activate();
             }
         }
     }

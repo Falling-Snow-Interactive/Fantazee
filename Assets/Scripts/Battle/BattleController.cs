@@ -67,6 +67,7 @@ namespace Fantazee.Battle
         public List<Die> LockedDice => lockedDice;
 
         private bool hasScoredRoll = false;
+        private bool isRolling = false;
 
         private BattlePlayer player;
         public BattlePlayer Player => player;
@@ -251,7 +252,7 @@ namespace Fantazee.Battle
         
         private void SelectScoreEntry(ScoreEntry scoreEntry)
         {
-            if (hasScoredRoll)
+            if (hasScoredRoll || isRolling)
             {
                 return;
             }
@@ -352,7 +353,7 @@ namespace Fantazee.Battle
 
         public void TryRoll()
         {
-            if (remainingRolls > 0)
+            if (remainingRolls > 0 && !isRolling)
             {
                 hasScoredRoll = false;
                 remainingRolls--;
@@ -363,9 +364,11 @@ namespace Fantazee.Battle
                         d.Roll();
                     }
                 }
-                
+
+                isRolling = true;
                 BattleUi.Instance.DiceControl.Roll(d =>
                                                      {
+                                                         isRolling = false;
                                                          DieRolled?.Invoke(d);
                                                      });
                 RollStarted?.Invoke();

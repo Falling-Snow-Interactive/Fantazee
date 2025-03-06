@@ -87,26 +87,23 @@ MonoBehaviour:
       Data2: 1237536448
       Data3: 296223911
       Data4: -1783998385
-    Path: event:/Enemies/Enemy_00/Death
+    Path: event:/Enemies/Enemy_00_Dealer/Death
   damage:
     min: 8
     max: 12
   health:
-    current: 20
-    max: 20
+    current: 24
+    max: 24
   battleRewards:
     wallet:
-      currencies:
-      - name: 'Gold: 3'
-        type: 1
-        amount: 3
+      currencies: []
   attackSfxRef:
     Guid:
       Data1: 1271437393
       Data2: 1333622549
       Data3: 975107756
       Data4: -1672151759
-    Path: event:/Enemies/Enemy_00/Attack
+    Path: event:/Enemies/Enemy_00_Dealer/Attack
 --- !u!1001 &1488176670032419352
 PrefabInstance:
   m_ObjectHideFlags: 0
