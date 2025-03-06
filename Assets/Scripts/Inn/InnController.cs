@@ -1,13 +1,17 @@
 using System.Collections;
-using System.Reflection;
+using DG.Tweening;
+using Fantazee.Audio;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
+using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay;
 using Fsi.Gameplay.Healths.Ui;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Fantazee.Inn
 {
@@ -38,6 +42,39 @@ namespace Fantazee.Inn
         [SerializeField]
         private EventReference purchaseSfx;
 
+        [SerializeField]
+        private EventReference ambianceSfxRef;
+        private EventInstance ambianceSfx;
+
+        [SerializeField]
+        private EventReference mealSfx;
+        
+        [SerializeField]
+        private EventReference roomSfx;
+
+        [Header("Npc Anim")]
+
+        [SerializeField]
+        private Image npc;
+
+        [SerializeField]
+        private Vector3 npcOffset;
+
+        [SerializeField]
+        private Vector3 npcScale;
+
+        [SerializeField]
+        private float npcTime;
+
+        [SerializeField]
+        private Ease npcMoveEase = Ease.Linear;
+        
+        [SerializeField]
+        private Ease npcScaleEase = Ease.Linear;
+        
+        [SerializeField]
+        private Ease npcFadeEase = Ease.Linear;
+
         [Header("References")]
 
         [SerializeField]
@@ -60,6 +97,13 @@ namespace Fantazee.Inn
 
         private bool purcahased;
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            ambianceSfx = RuntimeManager.CreateInstance(ambianceSfxRef);
+        }
+        
         private void Start()
         {
             mealCostEntry.SetCurrency(mealCost);
@@ -77,6 +121,22 @@ namespace Fantazee.Inn
             }
             
             purcahased = false;
+
+            ambianceSfx.start();
+            MusicController.Instance.PlayMusic(MusicId.Inn);
+
+            Vector3 move = npc.transform.localPosition;
+            npc.transform.localPosition += npcOffset;
+            npc.transform.DOLocalMove(move, npcTime).SetEase(npcMoveEase).SetDelay(0.5f);
+            
+            // Vector3 scale = npc.transform.localScale;
+            // npc.transform.localScale = npcScale;
+            // npc.transform.DOScale(scale, npcTime).SetEase(npcScaleEase);
+
+            Color color = npc.color;
+            color.a = 0;
+            npc.color = color;
+            npc.DOFade(1, npcTime).SetEase(npcFadeEase).SetDelay(0.5f);
             
             GameController.Instance.InnReady();
         }
@@ -93,6 +153,7 @@ namespace Fantazee.Inn
                 purcahased = true;
                 GameInstance.Current.Character.Health.Heal(Mathf.RoundToInt(GameInstance.Current.Character.Health.max * mealHealing));
                 RuntimeManager.PlayOneShot(purchaseSfx);
+                RuntimeManager.PlayOneShot(mealSfx);
                 StartCoroutine(DelayedLeave());
             }
             else
@@ -113,6 +174,7 @@ namespace Fantazee.Inn
                 purcahased = true;
                 GameInstance.Current.Character.Health.Heal(Mathf.RoundToInt(GameInstance.Current.Character.Health.max * roomHealing));
                 RuntimeManager.PlayOneShot(purchaseSfx);
+                RuntimeManager.PlayOneShot(roomSfx);
                 StartCoroutine(DelayedLeave());
             }
             else

@@ -753,7 +753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: shop_header
+  m_text: inn_header
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0e5b89e1724a4c95a22a852aa1878bf, type: 2}
   m_sharedMaterial: {fileID: 8168743664494980240, guid: a0e5b89e1724a4c95a22a852aa1878bf, type: 2}
@@ -1539,11 +1539,39 @@ MonoBehaviour:
   roomHealing: 0.3
   purchaseSfx:
     Guid:
-      Data1: 819626076
-      Data2: 1221042994
-      Data3: -497408071
-      Data4: -829359310
-    Path: event:/Spells/Spell_03_Heal
+      Data1: 1660722876
+      Data2: 1102191164
+      Data3: -1098327885
+      Data4: -1056742579
+    Path: event:/Shop/Purchase
+  ambianceSfxRef:
+    Guid:
+      Data1: 1679682364
+      Data2: 1183099717
+      Data3: 895150210
+      Data4: 1136908798
+    Path: event:/Inn/Ambiance
+  mealSfx:
+    Guid:
+      Data1: -1801450191
+      Data2: 1320070687
+      Data3: 1040665778
+      Data4: -733227498
+    Path: event:/Inn/Meal
+  roomSfx:
+    Guid:
+      Data1: 487661720
+      Data2: 1242826839
+      Data3: 1419693199
+      Data4: 1612736275
+    Path: event:/Inn/Room
+  npc: {fileID: 1029893190}
+  npcOffset: {x: -50, y: 0, z: 0}
+  npcScale: {x: 1, y: 1, z: 1}
+  npcTime: 1
+  npcMoveEase: 3
+  npcScaleEase: 3
+  npcFadeEase: 3
   mealCostEntry: {fileID: 1086802289}
   mealHealingText: {fileID: 1903602664}
   roomCostEntry: {fileID: 24250538595500929}

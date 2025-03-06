@@ -6,5 +6,6 @@ namespace Fantazee.Audio
         Menu = 1,
         Env_00_Casino_Map = 2,
         Env_00_Casino_Battle = 3,
+        Inn = 4,
     }
 }
