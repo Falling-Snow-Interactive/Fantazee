@@ -9,5 +9,10 @@ namespace Fantazee.Relics.Instance
         {
             character.Rolls++;
         }
+
+        public override void Clear()
+        {
+            Character.Rolls--;
+        }
     }
 }

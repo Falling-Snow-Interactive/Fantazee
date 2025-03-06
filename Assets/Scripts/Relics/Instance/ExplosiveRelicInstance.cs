@@ -30,5 +30,10 @@ namespace Fantazee.Relics.Instance
                 }
             }
         }
+
+        public override void Clear()
+        {
+            BattleController.DieRolled -= OnDieRolled;
+        }
     }
 }

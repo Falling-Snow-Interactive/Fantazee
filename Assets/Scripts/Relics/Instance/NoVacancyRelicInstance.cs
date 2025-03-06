@@ -22,5 +22,10 @@ namespace Fantazee.Relics.Instance
                 BattleController.Instance.RemainingRolls++;
             }
         }
+
+        public override void Clear()
+        {
+            BattleController.Scored -= OnScored;
+        }
     }
 }

@@ -154,6 +154,7 @@ namespace Fantazee.Inn
                 GameInstance.Current.Character.Health.Heal(Mathf.RoundToInt(GameInstance.Current.Character.Health.max * mealHealing));
                 RuntimeManager.PlayOneShot(purchaseSfx);
                 RuntimeManager.PlayOneShot(mealSfx);
+                GameInstance.Current.Character.Wallet.Remove(mealCost);
                 StartCoroutine(DelayedLeave());
             }
             else
@@ -175,6 +176,7 @@ namespace Fantazee.Inn
                 GameInstance.Current.Character.Health.Heal(Mathf.RoundToInt(GameInstance.Current.Character.Health.max * roomHealing));
                 RuntimeManager.PlayOneShot(purchaseSfx);
                 RuntimeManager.PlayOneShot(roomSfx);
+                GameInstance.Current.Character.Wallet.Remove(roomCost);
                 StartCoroutine(DelayedLeave());
             }
             else

@@ -21,5 +21,10 @@ namespace Fantazee.Relics.Instance
         {
             BattleController.Instance.Player.Heal(Mathf.RoundToInt(battleScore.Calculate() * data.LifeSteal));
         }
+
+        public override void Clear()
+        {
+            BattleController.Scored -= OnScored;
+        }
     }
 }

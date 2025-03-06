@@ -71,13 +71,9 @@ namespace Fantazee
             input.Gameplay.Disable();
         }
 
-        public void NewGame()
-        {
-            gameInstance = GameInstance.Defaults;
-        }
-
         public void NewGame(CharacterData character)
         {
+            gameInstance?.Clear();
             gameInstance = new GameInstance(character);
         }
 

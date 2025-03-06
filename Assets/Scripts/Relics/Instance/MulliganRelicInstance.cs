@@ -24,6 +24,13 @@ namespace Fantazee.Relics.Instance
             startRoll = false;
         }
 
+        public override void Clear()
+        {
+            BattleController.PlayerTurnStart -= OnPlayerStart;
+            BattleController.RollStarted -= OnRollStarted;
+            BattleController.Scored -= OnScored;
+        }
+
         private void OnPlayerStart()
         {
             startRoll = true;

@@ -62,5 +62,10 @@ namespace Fantazee.Instance
         {
             seed = (uint)Random.Range(0, int.MaxValue);
         }
+
+        public void Clear()
+        {
+            character?.Clear();
+        }
     }
 }

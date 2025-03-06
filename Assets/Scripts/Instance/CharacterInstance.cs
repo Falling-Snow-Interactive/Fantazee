@@ -70,5 +70,13 @@ namespace Fantazee.Instance
         {
             relics.Add(relic);
         }
+
+        public void Clear()
+        {
+            foreach (RelicInstance relic in relics)
+            {
+                relic.Clear();
+            }
+        }
     }
 }

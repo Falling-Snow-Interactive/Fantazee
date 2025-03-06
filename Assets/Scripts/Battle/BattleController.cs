@@ -315,6 +315,11 @@ namespace Fantazee.Battle
             else
             {
                 BattleUi.Instance.DiceControl.HideDice();
+                if (CheckEnemiesAlive())
+                {
+                    TryEndPlayerTurn();
+                    return;
+                }
             }
 
             if (CheckEnemiesAlive())
@@ -473,6 +478,10 @@ namespace Fantazee.Battle
             while (enemyQueue.Count > 0)
             {
                 BattleEnemy curr = enemyQueue.Dequeue();
+                if (curr.Health.IsDead)
+                {
+                    continue;
+                }
                 bool attacking = true;
                 curr.Attack(() => attacking = false);
                 yield return new WaitUntil(() => !attacking);

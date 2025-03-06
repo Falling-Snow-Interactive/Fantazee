@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Fantazee.Relics.Instance
 {
     [Serializable]
-    public class RelicInstance
+    public abstract class RelicInstance
     {
         public event Action Activated;
         
@@ -27,5 +27,7 @@ namespace Fantazee.Relics.Instance
         {
             Activated?.Invoke();
         }
+
+        public abstract void Clear();
     }
 }

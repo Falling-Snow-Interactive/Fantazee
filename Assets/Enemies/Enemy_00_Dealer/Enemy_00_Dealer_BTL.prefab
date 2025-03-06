@@ -96,7 +96,10 @@ MonoBehaviour:
     max: 24
   battleRewards:
     wallet:
-      currencies: []
+      currencies:
+      - name: 'Gold: 8'
+        type: 1
+        amount: 8
   attackSfxRef:
     Guid:
       Data1: 1271437393
