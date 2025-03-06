@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Scores Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Scores
+  m_TableCollectionNameGuidString: 2bec86fe6849f43f29fe5a67bc2fca95
+  m_Entries:
+  - m_Id: 4256161792
+    m_Key: score_ones_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26708271104
+    m_Key: score_ones_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36128677888
+    m_Key: score_twos_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47100977152
+    m_Key: score_twos_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57674817536
+    m_Key: score_threes_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66868731904
+    m_Key: score_threes_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77304160256
+    m_Key: score_fours_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100247003136
+    m_Key: score_fours_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 573700038656
+    m_Key: score_fives_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 595560751104
+    m_Key: score_fives_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610521833472
+    m_Key: score_sixes_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 630428000256
+    m_Key: score_sixes_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 648429953024
+    m_Key: score_threeofakind_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1364208902144
+    m_Key: score_threeofakind_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1244880953344
+    m_Key: score_fourofakind_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 721830273024
+    m_Key: score_fourofakind_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 746626998272
+    m_Key: score_fullhouse_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 771532775424
+    m_Key: score_fullhouse_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 802570625024
+    m_Key: score_smallstraight_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 829535805440
+    m_Key: score_smallstraight_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890529374208
+    m_Key: score_largestraight_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 913719681024
+    m_Key: score_largestraight_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 944690421760
+    m_Key: score_chance_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 970363756544
+    m_Key: score_chance_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 984796356608
+    m_Key: score_fantazee_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1007374295040
+    m_Key: score_fantazee_desc
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 554601507920019666
+  references:
+    version: 2
+    RefIds:
+    - rid: 554601507920019666
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1741262393577
