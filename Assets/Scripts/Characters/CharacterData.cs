@@ -46,15 +46,15 @@ namespace Fantazee.Characters
         private BattlePlayer battleCharacter;
         public BattlePlayer BattleCharacter => battleCharacter;
 
-        [Header("Scores")]
+        [Header("Scoresheet")]
 
         [SerializeField]
-        private List<CharacterScoreData> scoreData;
-        public List<CharacterScoreData> ScoreData => scoreData;
+        private List<CharacterScoreData> scores;
+        public List<CharacterScoreData> Scores => scores;
 
         [SerializeField]
-        private CharacterScoreData fantazeeData;
-        public CharacterScoreData FantazeeData => fantazeeData;
+        private CharacterScoreData fantazee;
+        public CharacterScoreData Fantazee => fantazee;
 
         [Header("Wallet")]
 

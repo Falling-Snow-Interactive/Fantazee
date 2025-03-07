@@ -2,6 +2,7 @@ using DG.Tweening;
 using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
@@ -12,39 +13,37 @@ namespace Fantazee.Spells.Data
         
         [Header("Dagger")]
         
-        [Header("Transit")]
-
         [SerializeField]
-        private GameObject tweenVfx;
-        public GameObject TweenVfx => tweenVfx;
+        private GameObject daggerVfx;
+        public GameObject DaggerVfx => daggerVfx;
         
         [SerializeField]
-        private EventReference tweenSfx;
-        public EventReference TweenSfx => tweenSfx;
+        private EventReference daggerSfx;
+        public EventReference DaggerSfx => daggerSfx;
 
         [SerializeField]
-        private Vector3 tweenVfxSpawnOffset;
-        public Vector3 TweenVfxSpawnOffset => tweenVfxSpawnOffset;
+        private Vector3 daggerSpawnOffset;
+        public Vector3 DaggerSpawnOffset => daggerSpawnOffset;
         
         [SerializeField]
-        private Vector3 tweenVfxHitOffset;
-        public Vector3 TweenVfxHitOffset => tweenVfxHitOffset;
+        private Vector3 daggerHitOffset;
+        public Vector3 DaggerHitOffset => daggerHitOffset;
 
         [SerializeField]
-        private Ease tweenEase = Ease.Linear;
-        public Ease TweenEase => tweenEase;
+        private Ease daggerEase = Ease.Linear;
+        public Ease DaggerEase => daggerEase;
         
         [SerializeField]
-        private AnimationCurve tweenCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-        public AnimationCurve TweenCurve => tweenCurve;
+        private AnimationCurve daggerCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        public AnimationCurve DaggerCurve => daggerCurve;
 
         [SerializeField]
-        private float tweenTime = 0.6f;
-        public float TweenTime => tweenTime;
+        private float daggerTime = 0.6f;
+        public float DaggerTime => daggerTime;
 
         [SerializeField]
-        private float tweenDelay = 0.35f;
-        public float TweenDelay => tweenDelay;
+        private float daggerDelay = 0.0f;
+        public float DaggerDelay => daggerDelay;
         
         [Header("Hit")]
 

@@ -10,7 +10,7 @@ namespace Fantazee.Spells
         {
             return data switch
                    {
-                       NoneSpellData d => new SpellInstance(d),
+                       NoneSpellData d => new NoneSpellInstance(d),
                        DaggerSpellData d => new DaggerSpellInstance(d),
                        PierceSpellData d => new PierceSpellInstance(d),
                        ShieldSpellData d => new ShieldSpellInstance(d),

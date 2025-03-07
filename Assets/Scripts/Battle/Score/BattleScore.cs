@@ -2,30 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using Fantazee.Battle.BattleSpells;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Dice;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells;
-using Fantazee.Spells.Data;
 using Fantazee.Spells.Instance;
-using Fantazee.Spells.Settings;
 using UnityEngine;
-#pragma warning disable CS0067 // Event is never used
 
 namespace Fantazee.Battle.Score
 {
     [Serializable]
     public class BattleScore
     {
-        // ReSharper disable once EventNeverSubscribedTo.Global
-        public event Action Changed;
         public event Action DieAdded;
         public event Action ScoreReset;
         
-        [SerializeReference]
-        private List<BattleSpell> spells;
-        public List<BattleSpell> Spells => spells;
+        public event Action<SpellInstance> SpellCastStart;
+        public event Action<SpellInstance> SpellCastEnd;
 
         [SerializeReference]
         private ScoreInstance score;
@@ -41,14 +34,6 @@ namespace Fantazee.Battle.Score
         public BattleScore(ScoreInstance score)
         {
             this.score = score;
-
-            spells = new List<BattleSpell>();
-            foreach(SpellInstance spell in score.Spells)
-            {
-                // TODO - Battle Spell will be replaced with the spell instances - KD
-                // BattleSpell battleSpell = BattleSpellFactory.Create(spell);
-                // spells.Add(battleSpell);
-            }
         }
 
         public void SetEntry(BattleScoreEntry entryUi)
@@ -63,15 +48,20 @@ namespace Fantazee.Battle.Score
 
         private IEnumerator CastSequence(Damage damage, Action onComplete)
         {
-            for (int i = 0; i < spells.Count; i++)
+            for (int i = 0; i < score.Spells.Count; i++)
             {
                 bool ready = false;
-                BattleSpell spell = spells[i];
-                if (!spell.IsNone && BattleController.Instance.EnemiesRemaining() > 0)
+                SpellInstance spell = score.Spells[i];
+                if (spell.Data.Type != SpellType.None && BattleController.Instance.EnemiesRemaining() > 0)
                 {
                     entryUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
                 
-                    spell.Cast(damage, () => { ready = true; });
+                    spell.Cast(damage, () =>
+                                       {
+                                           SpellCastEnd?.Invoke(spell);
+                                           ready = true;
+                                       });
+                    SpellCastStart?.Invoke(spell);
                     yield return new WaitUntil(() => ready);
                 }
             }
@@ -83,7 +73,7 @@ namespace Fantazee.Battle.Score
         {
             int results = score.Calculate(dice);
             string s = $"BattleScore: {results}\n";
-            foreach (var d in dice)
+            foreach (Die d in dice)
             {
                 s += $"{d}";
                 if (d == dice[^1])
@@ -91,7 +81,7 @@ namespace Fantazee.Battle.Score
                     s += " - ";
                 }
             }
-            Debug.Log($"BattleScore: {results} - {dice[0]}");
+            Debug.Log(s);
             return score.Calculate(dice);
         }
         

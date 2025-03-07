@@ -5,6 +5,7 @@ using Fantazee.Battle.Settings;
 using Fantazee.Dice.Settings;
 using Fantazee.Scores.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Spells.Instance;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,7 +14,6 @@ namespace Fantazee.Battle.Score.Ui
 {
     public class BattleScoreEntry : ScoreEntry
     {
-        [FormerlySerializedAs("score")]
         [SerializeReference]
         private BattleScore battleScore;
         public BattleScore BattleScore => battleScore;
@@ -24,6 +24,7 @@ namespace Fantazee.Battle.Score.Ui
             {
                 battleScore.DieAdded += OnDieAdded;
                 battleScore.ScoreReset += OnBattleScoreReset;
+                battleScore.SpellCastStart += OnSpellCastStart;
             }
         }
 
@@ -33,6 +34,7 @@ namespace Fantazee.Battle.Score.Ui
             {
                 battleScore.DieAdded -= OnDieAdded;
                 battleScore.ScoreReset -= OnBattleScoreReset;
+                battleScore.SpellCastStart -= OnSpellCastStart;
             }
         }
 
@@ -83,6 +85,17 @@ namespace Fantazee.Battle.Score.Ui
 
             button.interactable = battleScore.Dice.Count == 0;
             scoreText.text = battleScore.Dice.Count == 0 ? "" : battleScore.Calculate().ToString();
+        }
+
+        private void OnSpellCastStart(SpellInstance spell)
+        {
+            foreach (ScoreEntrySpell s in Spells)
+            {
+                if (s.Spell == spell)
+                {
+                    s.Punch();
+                }
+            }
         }
     }
 }

@@ -492,6 +492,21 @@ namespace Fantazee.Battle
             Debug.Log("Finished enemy turns");
             StartPlayerTurn();
         }
+
+        public bool TryGetFrontEnemy(out BattleEnemy enemy)
+        {
+            for (int i = enemies.Count - 1; i >= 0; i--)
+            {
+                if (enemies[i].Health.IsAlive)
+                {
+                    enemy = enemies[i];
+                    return true;
+                }
+            }
+
+            enemy = null;
+            return false;
+        }
         
         #endregion
         

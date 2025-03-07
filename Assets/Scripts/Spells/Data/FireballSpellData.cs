@@ -1,6 +1,7 @@
 using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
@@ -16,35 +17,37 @@ namespace Fantazee.Spells.Data
         private float damageMod = 1f;
         public float DamageMod => damageMod;
         
-        [Header("Transit")]
-
         [SerializeField]
-        private GameObject tweenVfx;
-        public GameObject TweenVfx => tweenVfx;
+        private GameObject fireballVfx;
+        public GameObject FireballVfx => fireballVfx;
         
         [SerializeField]
-        private EventReference tweenSfx;
-        public EventReference TweenSfx => tweenSfx;
+        private EventReference fireballSfx;
+        public EventReference FireballSfx => fireballSfx;
 
         [SerializeField]
-        private Vector3 tweenVfxSpawnOffset;
-        public Vector3 TweenVfxSpawnOffset => tweenVfxSpawnOffset;
+        private Vector3 fireballSpawnOffset;
+        public Vector3 FireballSpawnOffset => fireballSpawnOffset;
         
         [SerializeField]
-        private Vector3 tweenVfxHitOffset;
-        public Vector3 TweenVfxHitOffset => tweenVfxHitOffset;
+        private Vector3 fireballHitOffset;
+        public Vector3 FireballHitOffset => fireballHitOffset;
 
         [SerializeField]
-        private Ease tweenEase = Ease.Linear;
-        public Ease TweenEase => tweenEase;
+        private Ease fireballEase = Ease.Linear;
+        public Ease FireballEase => fireballEase;
+        
+        [SerializeField]
+        private AnimationCurve fireballCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        public AnimationCurve FireballCurve => fireballCurve;
 
         [SerializeField]
-        private float tweenTime = 0.6f;
-        public float TweenTime => tweenTime;
+        private float fireballTime = 0.6f;
+        public float FireballTime => fireballTime;
 
         [SerializeField]
-        private float tweenDelay = 0.35f;
-        public float TweenDelay => tweenDelay;
+        private float fireballDelay = 0.0f;
+        public float FireballDelay => fireballDelay;
         
         [Header("Hit")]
 

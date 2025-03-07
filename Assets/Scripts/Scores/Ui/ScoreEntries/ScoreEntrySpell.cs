@@ -23,6 +23,22 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         
         [SerializeField]
         private ScoreEntrySpellTooltip tooltip;
+        
+        [Header("Animations")]
+        
+        [Header("Punch")]
+
+        [SerializeField]
+        private float punchTime = 0.3f;
+
+        [SerializeField]
+        private Vector3 punchPosition;
+        
+        [SerializeField]
+        private Vector3 punchRotation;
+        
+        [SerializeField]
+        private Vector3 punchScale;
 
         public void Initialize(int i, SpellInstance spell)
         {
@@ -62,6 +78,18 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             {
                 tooltip?.Hide();
             }
+        }
+
+        public void Punch(Action onComplete = null)
+        {
+            Sequence sequence = DOTween.Sequence();
+            
+            sequence.Append(transform.DOPunchPosition(punchPosition, punchTime));
+            sequence.Insert(0, transform.DOPunchRotation(punchRotation, punchTime));
+            sequence.Insert(0, transform.DOPunchScale(punchScale, punchTime));
+            
+            sequence.OnComplete(() => onComplete?.Invoke());
+            sequence.Play();
         }
     }
 }

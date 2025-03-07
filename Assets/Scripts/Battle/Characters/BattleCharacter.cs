@@ -87,7 +87,6 @@ namespace Fantazee.Battle.Characters
 
         [SerializeField]
         private EventReference healSfxRef;
-        private EventInstance healSfx;
         
         [SerializeField]
         private EventReference deathSfxRef;
@@ -95,11 +94,6 @@ namespace Fantazee.Battle.Characters
         protected virtual void Awake()
         {
             footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
-            hitSfx = RuntimeManager.CreateInstance(hitSfxRef);
-            if (!healSfxRef.IsNull)
-            {
-                healSfx = RuntimeManager.CreateInstance(healSfxRef);
-            }
         }
         
         private void OnDestroy()
@@ -159,11 +153,6 @@ namespace Fantazee.Battle.Characters
         public void Heal(int heal)
         {
             int healed = Health.Heal(heal);
-            if (healSfx.isValid())
-            {
-                healSfx.start();
-            }
-
             damageNumbers.AddHealing(healed);
             visuals.Action();
         }

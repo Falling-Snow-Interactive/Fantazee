@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
@@ -24,35 +25,33 @@ namespace Fantazee.Spells.Data
         
         [Header("Effects")]
         
-        [Header("Transit")]
-
         [SerializeField]
-        private GameObject tweenVfx;
-        public GameObject TweenVfx => tweenVfx;
+        private GameObject pierceVfx;
+        public GameObject PierceVfx => pierceVfx;
         
         [SerializeField]
-        private EventReference tweenSfx;
-        public EventReference TweenSfx => tweenSfx;
+        private EventReference pierceSfx;
+        public EventReference PierceSfx => pierceSfx;
 
         [SerializeField]
-        private Vector3 tweenVfxSpawnOffset;
-        public Vector3 TweenVfxSpawnOffset => tweenVfxSpawnOffset;
+        private Vector3 pierceVfxSpawnOffset;
+        public Vector3 PierceVfxSpawnOffset => pierceVfxSpawnOffset;
         
         [SerializeField]
-        private Vector3 tweenVfxHitOffset;
-        public Vector3 TweenVfxHitOffset => tweenVfxHitOffset;
+        private Vector3 pierceVfxHitOffset;
+        public Vector3 PierceVfxHitOffset => pierceVfxHitOffset;
 
         [SerializeField]
-        private Ease tweenEase = Ease.Linear;
-        public Ease TweenEase => tweenEase;
+        private Ease pierceEase = Ease.Linear;
+        public Ease PierceEase => pierceEase;
 
         [SerializeField]
-        private float tweenTime = 0.6f;
-        public float TweenTime => tweenTime;
+        private float pierceTime = 0.6f;
+        public float PierceTime => pierceTime;
 
         [SerializeField]
-        private float tweenDelay = 0.35f;
-        public float TweenDelay => tweenDelay;
+        private float pierceDelay = 0.35f;
+        public float PierceDelay => pierceDelay;
         
         [Header("Hit")]
 

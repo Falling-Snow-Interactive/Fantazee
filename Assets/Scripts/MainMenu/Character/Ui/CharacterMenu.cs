@@ -76,7 +76,7 @@ namespace Fantazee.MainMenu.Character.Ui
             for (int j = 0; j < scoreEntries.Count; j++)
             {
                 CharacterScoreEntry scoreEntry = scoreEntries[j];
-                ScoreInstance score = ScoreFactory.CreateInstance(character.ScoreData[j]);
+                ScoreInstance score = ScoreFactory.CreateInstance(character.Scores[j]);
                 scoreEntry.Initialize(score, null);
             }
 

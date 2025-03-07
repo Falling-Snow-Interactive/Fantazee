@@ -6,6 +6,7 @@ using Fantazee.Items.Dice.Information;
 using Fantazee.Scores.Data;
 using Fantazee.Scores.Information;
 using Fantazee.Scores.Instance;
+using Fantazee.Spells.Instance;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

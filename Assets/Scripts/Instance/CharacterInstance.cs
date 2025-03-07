@@ -58,7 +58,7 @@ namespace Fantazee.Instance
             
             health = new Health(data.MaxHealth);
             wallet = new Wallet(data.Wallet);
-            scoresheet = new Scoresheet(data.ScoreData, data.FantazeeData);
+            scoresheet = new Scoresheet(data.Scores, data.Fantazee);
             dice = Die.DefaultDice(6);
             
             relics = new List<RelicInstance>();
