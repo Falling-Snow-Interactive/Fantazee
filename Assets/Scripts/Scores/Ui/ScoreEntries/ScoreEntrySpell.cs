@@ -65,7 +65,6 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         public void OnSelect()
         {
-            Debug.Log("selected");
             onSelect?.Invoke(spell);
         }
 
