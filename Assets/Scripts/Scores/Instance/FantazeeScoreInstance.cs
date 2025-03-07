@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
 using Fantazee.Scores.Data;
@@ -6,14 +7,14 @@ using UnityEngine;
 
 namespace Fantazee.Scores.Instance
 {
-    public class KindScoreInstance : ScoreInstance
+    [Serializable]
+    public class FantazeeScoreInstance : ScoreInstance
     {
-        [Header("Kind")]
-        
+        [Header("Fantazee")]
         [SerializeReference]
-        private KindScoreData data;
+        private FantazeeScoreData data;
         
-        public KindScoreInstance(KindScoreData data, List<SpellInstance> spells) : base(data, spells)
+        public FantazeeScoreInstance(FantazeeScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.data = data;
         }
@@ -22,18 +23,15 @@ namespace Fantazee.Scores.Instance
         {
             Dictionary<int, int> dict = DiceToDict(dice);
             bool isValid = false;
-            int total = 0;
-
             foreach (KeyValuePair<int, int> kvp in dict)
             {
-                total += kvp.Key * kvp.Value;
-                if (kvp.Value >= data.Kind)
+                if (kvp.Value >= 5)
                 {
                     isValid = true;
                 }
             }
 
-            return isValid ? total : 0;
+            return isValid ? 30 : 0;
         }
     }
 }

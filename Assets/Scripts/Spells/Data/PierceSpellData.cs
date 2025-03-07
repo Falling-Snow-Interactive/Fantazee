@@ -1,16 +1,28 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using FMODUnity;
-using Fsi.Gameplay;
 using UnityEngine;
 
 namespace Fantazee.Spells.Data
 {
-    [CreateAssetMenu(menuName = "Spells/Dagger")]
-    public class DaggerData : SpellData
+    [CreateAssetMenu(menuName = "Spells/Pierce")]
+    public class PierceSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Dagger;
+        public override SpellType Type => SpellType.Pierce;
         
-        [Header("Dagger")]
+        [Header("Pierce")]
+
+        [Range(0,2)]
+        [SerializeField]
+        private float firstEnemyMod = 0.75f;
+        public float FirstEnemyMod => firstEnemyMod;
+
+        [Range(0, 2)]
+        [SerializeField]
+        private float secondEnemyMod = 0.25f;
+        public float SecondEnemyMod => secondEnemyMod;
+        
+        [Header("Effects")]
         
         [Header("Transit")]
 
@@ -33,10 +45,6 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private Ease tweenEase = Ease.Linear;
         public Ease TweenEase => tweenEase;
-        
-        [SerializeField]
-        private AnimationCurve tweenCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-        public AnimationCurve TweenCurve => tweenCurve;
 
         [SerializeField]
         private float tweenTime = 0.6f;
@@ -55,5 +63,13 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private EventReference hitSfx;
         public EventReference HitSfx => hitSfx;
+
+        protected override Dictionary<string, string> GetDescArgs()
+        {
+            Dictionary<string, string> dict = base.GetDescArgs();
+            dict.Add("FirstMod", $"{firstEnemyMod * 100f}");
+            dict.Add("SecondMod", $"{secondEnemyMod * 100f}");
+            return dict;
+        }
     }
 }

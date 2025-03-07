@@ -124,10 +124,10 @@ namespace Fantazee.Scores.Ui.ScoreEntries
                 case ScoreType.FullHouse:
                     diceValues = new List<int> { 5,5,5,2,2 };
                     break;
-                case ScoreType.SmallStraight:
+                case ScoreType.SmallRun:
                     diceValues = new List<int> { 4,5,6,1,1 };
                     break;
-                case ScoreType.LargeStraight:
+                case ScoreType.LargeRun:
                     diceValues = new List<int> { 3,4,5,6,1 };
                     break;
                 case ScoreType.Chance:

@@ -11,20 +11,20 @@ namespace Fantazee.Battle.BattleSpells
     [Serializable]
     public abstract class BattleSpell
     {
-        private SpellData data;
+        private SpellData spellData;
         private EventInstance castSfx;
 
-        protected BattleSpell(SpellData spellData)
+        protected BattleSpell(SpellData spellSpellSpellData)
         {
-            data = spellData;
+            spellData = spellSpellSpellData;
 
-            if (!data.CastSfx.IsNull)
+            if (!spellData.CastSfx.IsNull)
             {
-                castSfx = RuntimeManager.CreateInstance(data.CastSfx);
+                castSfx = RuntimeManager.CreateInstance(spellData.CastSfx);
             }
         }
 
-        public bool IsNone => data.Type == SpellType.None;
+        public bool IsNone => spellData.Type == SpellType.None;
 
         public void Cast(Damage damage, Action onComplete = null)
         {
@@ -33,9 +33,9 @@ namespace Fantazee.Battle.BattleSpells
                 castSfx.start();
             }
 
-            if (data.CastVfx)
+            if (spellData.CastVfx)
             {
-                Object.Instantiate(data.CastVfx, BattleController.Instance.Player.transform);
+                Object.Instantiate(spellData.CastVfx, BattleController.Instance.Player.transform);
             }
             
             BattleController.Instance.StartCoroutine(CastSequence(damage, onComplete));

@@ -1,19 +1,39 @@
+using System;
+using System.Collections.Generic;
+using Fantazee.Dice;
+using Fantazee.Scores.Data;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 
-namespace Fantazee
+namespace Fantazee.Scores.Instance
 {
-    public class ScoreInstance : MonoBehaviour
+    [Serializable]
+    public abstract class ScoreInstance
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
+        [Header("Score")]
         
+        [SerializeReference]
+        private ScoreData data;
+        
+        public ScoreInstance(ScoreData data, List<SpellInstance> spellTypes)
+        {
+            this.data = data;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        public abstract int Calculate(List<Die> dice);
         
+        protected Dictionary<int, int> DiceToDict(List<Die> dice)
+        {
+            Dictionary<int, int> diceByValue = new();
+            foreach (Die d in dice)
+            {
+                if (!diceByValue.TryAdd(d.Value, 1))
+                {
+                    diceByValue[d.Value] += 1;
+                }
+            }
+            
+            return diceByValue;
         }
     }
 }

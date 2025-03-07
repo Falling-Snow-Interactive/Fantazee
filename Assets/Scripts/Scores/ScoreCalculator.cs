@@ -29,8 +29,8 @@ namespace Fantazee.Scores
                        ScoreType.ThreeOfAKind => CalculateThreeOfAKind(diceByValue),
                        ScoreType.FourOfAKind => CalculateFourOfAKind(diceByValue),
                        ScoreType.FullHouse => CalculateFullHouse(diceByValue),
-                       ScoreType.SmallStraight => CalculateStraight(4, diceByValue),
-                       ScoreType.LargeStraight => CalculateStraight(5, diceByValue),
+                       ScoreType.SmallRun => CalculateStraight(4, diceByValue),
+                       ScoreType.LargeRun => CalculateStraight(5, diceByValue),
                        ScoreType.Fantazee => CalculateFantazee(diceByValue),
                        ScoreType.Chance => CalculateChance(dice),
                        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)

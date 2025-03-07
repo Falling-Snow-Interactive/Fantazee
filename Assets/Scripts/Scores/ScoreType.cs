@@ -16,11 +16,20 @@ namespace Fantazee.Scores
         
         FullHouse = 9,
         
-        SmallStraight = 10,
-        LargeStraight = 11,
+        SmallRun = 10,
+        LargeRun = 11,
         
         Chance = 12,
         
         Fantazee = 13,
+        
+        Pair = 14,
+        TwoPair = 15,
+        
+        FiveOfAKind = 16,
+        FullRun = 17,
+        
+        Evens = 18,
+        Odds = 19,
     }
 }

@@ -12,6 +12,8 @@ namespace Fantazee.Scores.Data
         [SerializeField]
         private ScoreType type;
         public ScoreType Type => type;
+        
+        [Header("Localization")]
 
         [SerializeField]
         private LocalizedString locName;

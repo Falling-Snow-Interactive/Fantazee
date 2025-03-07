@@ -15,22 +15,22 @@ namespace Fantazee.Battle.BattleSpells
     [Serializable]
     public class DaggerBattleSpell : BattleSpell
     {
-        private DaggerData dagger;
+        private DaggerSpellData daggerSpell;
         
         private EventInstance daggerLoopSfx;
         private EventInstance daggerHitSfx;
         
-        public DaggerBattleSpell(DaggerData data) : base(data)
+        public DaggerBattleSpell(DaggerSpellData spellData) : base(spellData)
         {
-            dagger = data;
-            if (!dagger.TweenSfx.IsNull)
+            daggerSpell = spellData;
+            if (!daggerSpell.TweenSfx.IsNull)
             {
-                daggerLoopSfx = RuntimeManager.CreateInstance(data.TweenSfx);
+                daggerLoopSfx = RuntimeManager.CreateInstance(spellData.TweenSfx);
             }
 
-            if (!dagger.HitSfx.IsNull)
+            if (!daggerSpell.HitSfx.IsNull)
             {
-                daggerHitSfx = RuntimeManager.CreateInstance(data.HitSfx);
+                daggerHitSfx = RuntimeManager.CreateInstance(spellData.HitSfx);
             }
         }
 
@@ -53,14 +53,14 @@ namespace Fantazee.Battle.BattleSpells
             if (enemy)
             {
                 player.Visuals.Attack();
-                GameObject tweenVfx = UnityEngine.Object.Instantiate(dagger.TweenVfx, player.transform);
-                tweenVfx.transform.localPosition = dagger.TweenVfxSpawnOffset;
+                GameObject tweenVfx = UnityEngine.Object.Instantiate(daggerSpell.TweenVfx, player.transform);
+                tweenVfx.transform.localPosition = daggerSpell.TweenVfxSpawnOffset;
                 daggerLoopSfx.start();
-                if (dagger.TweenEase == Ease.INTERNAL_Custom)
+                if (daggerSpell.TweenEase == Ease.INTERNAL_Custom)
                 {
-                    tweenVfx.transform.DOMove(enemy.transform.position + dagger.TweenVfxHitOffset, dagger.TweenTime)
-                            .SetEase(dagger.TweenCurve)
-                            .SetDelay(dagger.TweenDelay)
+                    tweenVfx.transform.DOMove(enemy.transform.position + daggerSpell.TweenVfxHitOffset, daggerSpell.TweenTime)
+                            .SetEase(daggerSpell.TweenCurve)
+                            .SetDelay(daggerSpell.TweenDelay)
                             .OnComplete(() =>
                                         {
                                             daggerLoopSfx.stop(STOP_MODE.IMMEDIATE);
@@ -70,9 +70,9 @@ namespace Fantazee.Battle.BattleSpells
                 }
                 else
                 {
-                    tweenVfx.transform.DOMove(enemy.transform.position + dagger.TweenVfxHitOffset, dagger.TweenTime)
-                            .SetEase(dagger.TweenEase)
-                            .SetDelay(dagger.TweenDelay)
+                    tweenVfx.transform.DOMove(enemy.transform.position + daggerSpell.TweenVfxHitOffset, daggerSpell.TweenTime)
+                            .SetEase(daggerSpell.TweenEase)
+                            .SetDelay(daggerSpell.TweenDelay)
                             .OnComplete(() =>
                                         {
                                             daggerLoopSfx.stop(STOP_MODE.IMMEDIATE);
@@ -82,10 +82,10 @@ namespace Fantazee.Battle.BattleSpells
                 }
                 yield return new WaitUntil(() => ready);
                 enemy.Damage(damage.Value);
-                if (dagger.HitVfx)
+                if (daggerSpell.HitVfx)
                 {
-                    UnityEngine.Object.Instantiate(dagger.HitVfx,
-                                                   enemy.transform.position + dagger.TweenVfxHitOffset,
+                    UnityEngine.Object.Instantiate(daggerSpell.HitVfx,
+                                                   enemy.transform.position + daggerSpell.TweenVfxHitOffset,
                                                    enemy.transform.rotation);
                     daggerHitSfx.start();
 

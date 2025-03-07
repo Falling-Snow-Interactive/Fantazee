@@ -11,9 +11,9 @@ namespace Fantazee.Battle.BattleSpells
             return data.Type switch
                    {
                        SpellType.None => new NoneBattleSpell(data),
-                       SpellType.Dagger => new DaggerBattleSpell(data as DaggerData),
-                       SpellType.Pierce => new PierceBattleSpell(data as PierceData),
-                       SpellType.Shield => new ShieldBattleSpell(data as ShieldData),
+                       SpellType.Dagger => new DaggerBattleSpell(data as DaggerSpellData),
+                       SpellType.Pierce => new PierceBattleSpell(data as PierceSpellData),
+                       SpellType.Shield => new ShieldBattleSpell(data as ShieldSpellData),
                        SpellType.Heal => new HealBattleSpell(data as HealSpellData),
                        SpellType.Fireball => new FireballBattleSpell(data as FireballSpellData),
                        _ => throw new ArgumentOutOfRangeException()

@@ -16,8 +16,8 @@ namespace Fantazee.Scores
         {
             return straight switch
                    {
-                       3 => ScoreType.SmallStraight,
-                       4 => ScoreType.LargeStraight,
+                       3 => ScoreType.SmallRun,
+                       4 => ScoreType.LargeRun,
                        _ => throw new ArgumentOutOfRangeException(nameof(straight), straight, null)
                    };
         }
@@ -26,8 +26,8 @@ namespace Fantazee.Scores
         {
             return Type switch
                    {
-                       ScoreType.SmallStraight => 3,
-                       ScoreType.LargeStraight => 4,
+                       ScoreType.SmallRun => 3,
+                       ScoreType.LargeRun => 4,
                        _ => throw new ArgumentOutOfRangeException()
                    };
         }
@@ -60,7 +60,7 @@ namespace Fantazee.Scores
 
                     if (count >= GetLength())
                     {
-                        return Type == ScoreType.SmallStraight ? 10 : 15;
+                        return Type == ScoreType.SmallRun ? 10 : 15;
                     }
                 }
             }

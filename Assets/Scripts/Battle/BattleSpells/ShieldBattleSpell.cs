@@ -9,11 +9,11 @@ namespace Fantazee.Battle.BattleSpells
     [Serializable]
     public class ShieldBattleSpell : BattleSpell
     {
-        private ShieldData data;
+        private ShieldSpellData spellData;
         
-        public ShieldBattleSpell(ShieldData data) : base(data)
+        public ShieldBattleSpell(ShieldSpellData spellData) : base(spellData)
         {
-            this.data = data;
+            this.spellData = spellData;
         }
 
         protected override IEnumerator CastSequence(Damage damage, Action onComplete = null)
