@@ -4,6 +4,8 @@ using DG.Tweening;
 using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Scores.Instance;
+using Fantazee.Spells.Instance;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,8 +56,8 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         {
             tooltip.Hide(true);
             
-            scoreText.gameObject.SetActive(false);
-            previewText.gameObject.SetActive(false);
+            scoreText?.gameObject.SetActive(false);
+            previewText?.gameObject.SetActive(false);
         }
 
         public virtual void Initialize(ScoreInstance score, Action<ScoreEntry> onSelect)
@@ -116,10 +118,14 @@ namespace Fantazee.Scores.Ui.ScoreEntries
                     diceValues = new List<int>();
                     for (int i = 0; i < k.Data.Kind; i++)
                     {
-                        diceValues.Add(4);
+                        diceValues.Add(6);
                     }
-                    diceValues.Add(Random.Range(1, 4));
-                    diceValues.Add(Random.Range(1, 4));
+
+                    while (diceValues.Count < 5)
+                    {
+                        diceValues.Add(Random.Range(1, 6));
+                    }
+
                     break;
                 case RunScoreInstance r:
                     diceValues = new List<int>();
@@ -162,17 +168,18 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             }
         }
         
-        public void RequestSpell(Action<ScoreEntry> onSpellSelect)
+        public void RequestSpell(Action<SpellInstance, ScoreEntry> onSpellSelect)
         {
             foreach (ScoreEntrySpell spell in spells)
             {
-                spell.Activate(i =>
+                spell.Activate(select =>
                                {
                                    foreach (ScoreEntrySpell s in spells)
                                    {
                                        s.Deactivate();
                                    }
-                                   onSpellSelect?.Invoke(this);
+
+                                   onSpellSelect?.Invoke(select, this);
                                });
             }
         }

@@ -8,13 +8,13 @@ using UnityEngine;
 namespace Fantazee.Shop.Items
 {
     [Serializable]
-    public class SpellShopItem : ShopItem<SpellInstance>
+    public class SpellShopItem : ShopItem<SpellData>
     {
-        [SerializeReference]
-        private SpellInstance item;
-        public override SpellInstance Item => item;
+        [SerializeField]
+        private SpellData item;
+        public override SpellData Item => item;
 
-        public SpellShopItem(SpellInstance spell, Currency cost) : base(cost)
+        public SpellShopItem(SpellData spell, Currency cost) : base(cost)
         {
         }
     }

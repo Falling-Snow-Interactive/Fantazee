@@ -12,16 +12,16 @@ namespace Fantazee.Shop.Ui.Screens
 {
     public class SpellScoreScreen : ScoreScreen
     {
-        private SpellInstance spell;
         private SpellEntry purchaseSpell;
         
         [FormerlySerializedAs("entry")]
         [SerializeField]
         protected SpellEntry purchase;
 
+        private SpellInstance spellInstance;
+
         public void Initialize(SpellEntry selected, Action onComplete)
         {
-            spell = selected.Spell;
             purchaseSpell = selected;
             
             purchase.gameObject.SetActive(true);
@@ -48,13 +48,14 @@ namespace Fantazee.Shop.Ui.Screens
             fadeImage.raycastTarget = true;
             fadeImage.DOFade(fadeAmount, fadeTime)
                      .SetEase(fadeEase);
-            scoreEntry.RequestSpell((se) =>
+            scoreEntry.RequestSpell((spellInstance, se) =>
                                     {
+                                        this.spellInstance = spellInstance;
                                         OnSpellSelected(se, () =>
-                                                               {
-                                                                   scoreEntry.transform.SetParent(parent);
-                                                                   onComplete?.Invoke();
-                                                               });
+                                                            {
+                                                                scoreEntry.transform.SetParent(parent);
+                                                                onComplete?.Invoke();
+                                                            });
                                     });
         }
 
@@ -70,9 +71,9 @@ namespace Fantazee.Shop.Ui.Screens
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score} {scoreEntry.Score.Spells[0]} -> {spell}");
-            int index = scoreEntry.Score.Spells.IndexOf(spell);
-            scoreEntry.Score.Spells[index] = spell;
+            Debug.Log($"Shop Spell: {scoreEntry.Score} {spellInstance} -> {purchaseSpell.Spell}");
+            int index = scoreEntry.Score.Spells.IndexOf(spellInstance);
+            scoreEntry.Score.Spells[index] = purchaseSpell.Spell;
             
             purchaseSpell.gameObject.SetActive(false);
 

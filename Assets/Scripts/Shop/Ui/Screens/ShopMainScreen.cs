@@ -8,7 +8,12 @@ using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Items;
 using Fantazee.Shop.Ui.Entries;
+using Fantazee.Spells;
+using Fantazee.Spells.Data;
+using Fantazee.Spells.Instance;
+using Fantazee.Spells.Settings;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Shop.Ui.Screens
 {
@@ -40,8 +45,9 @@ namespace Fantazee.Shop.Ui.Screens
         
         [Header("References")]
 
+        [FormerlySerializedAs("boonContent")]
         [SerializeField]
-        private Transform boonContent;
+        private Transform spellContent;
         
         [SerializeField]
         private Transform relicContent;
@@ -65,8 +71,9 @@ namespace Fantazee.Shop.Ui.Screens
             
             foreach (SpellShopItem spell in shopInventory.Spells)
             {
-                SpellEntry spellEntry = Instantiate(spellEntryPrefab, boonContent);
-                spellEntry.Initialize(spell.Item, OnSpellSelected);
+                SpellInstance s = SpellFactory.CreateInstance(spell.Item);
+                SpellEntry spellEntry = Instantiate(spellEntryPrefab, spellContent);
+                spellEntry.Initialize(s, OnSpellSelected);
 
                 spellEntries.Add(spellEntry);
             }
