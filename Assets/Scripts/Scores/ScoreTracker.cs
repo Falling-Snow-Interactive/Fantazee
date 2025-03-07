@@ -22,7 +22,7 @@ namespace Fantazee.Scores
 
         public ScoreTracker(CharacterData data)
         {
-            foreach (ScoreData sd in data.ScoreData)
+            foreach (PlayerScoreData sd in data.ScoreData)
             {
                 Score score = ScoreFactory.Create(sd);
                 scores.Add(score);

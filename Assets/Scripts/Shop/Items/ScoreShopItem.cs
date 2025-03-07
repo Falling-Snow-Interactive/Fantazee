@@ -6,11 +6,11 @@ using UnityEngine;
 namespace Fantazee.Shop.Items
 {
     [Serializable]
-    public class ScoreShopItem : ShopItem<ScoreData>
+    public class ScoreShopItem : ShopItem<PlayerScoreData>
     {
         [SerializeField]
-        private ScoreData data;
-        public override ScoreData Item => data;
+        private PlayerScoreData data;
+        public override PlayerScoreData Item => data;
         
         public ScoreShopItem(Currency cost) : base(cost)
         {

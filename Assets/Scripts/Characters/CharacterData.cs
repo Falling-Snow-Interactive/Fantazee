@@ -53,8 +53,8 @@ namespace Fantazee.Characters
         [Header("Scores")]
 
         [SerializeField]
-        private List<ScoreData> scoreData;
-        public List<ScoreData> ScoreData => scoreData;
+        private List<PlayerScoreData> scoreData;
+        public List<PlayerScoreData> ScoreData => scoreData;
         
         [SerializeField]
         private List<SpellType> fantazeeSpells;

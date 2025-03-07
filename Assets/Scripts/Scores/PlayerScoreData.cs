@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Fantazee.Scores
 {
     [Serializable]
-    public class ScoreData : ISerializationCallbackReceiver
+    public class PlayerScoreData : ISerializationCallbackReceiver
     {
         [HideInInspector]
         [SerializeField]

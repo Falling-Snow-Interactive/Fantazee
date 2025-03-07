@@ -26,7 +26,7 @@ namespace Fantazee.Scores
                    };
         }
 
-        public static Score Create(ScoreData data)
+        public static Score Create(PlayerScoreData data)
         {
             return Create(data.Score, data.Spells);
         }
