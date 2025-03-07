@@ -3,6 +3,7 @@ using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Relics.Ui;
 using Fantazee.Scores;
+using Fantazee.Scores.Instance;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -75,7 +76,7 @@ namespace Fantazee.MainMenu.Character.Ui
             for (int j = 0; j < scoreEntries.Count; j++)
             {
                 CharacterScoreEntry scoreEntry = scoreEntries[j];
-                Score score = ScoreFactory.Create(character.ScoreData[j]);
+                ScoreInstance score = ScoreFactory.CreateInstance(character.ScoreData[j]);
                 scoreEntry.Initialize(score, null);
             }
 

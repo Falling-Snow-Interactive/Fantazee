@@ -3,13 +3,9 @@ using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Currencies;
 using Fantazee.Relics;
-using Fantazee.Relics.Data;
-using Fantazee.Scores;
 using Fantazee.Spells;
-using Fsi.Gameplay.Visuals;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Characters
 {
@@ -53,12 +49,12 @@ namespace Fantazee.Characters
         [Header("Scores")]
 
         [SerializeField]
-        private List<PlayerScoreData> scoreData;
-        public List<PlayerScoreData> ScoreData => scoreData;
-        
+        private List<CharacterScoreData> scoreData;
+        public List<CharacterScoreData> ScoreData => scoreData;
+
         [SerializeField]
-        private List<SpellType> fantazeeSpells;
-        public List<SpellType> FantazeeSpells => fantazeeSpells;
+        private CharacterScoreData fantazeeData;
+        public CharacterScoreData FantazeeData => fantazeeData;
 
         [Header("Wallet")]
 

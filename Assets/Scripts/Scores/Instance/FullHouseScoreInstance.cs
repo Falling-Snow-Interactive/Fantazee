@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
 using Fantazee.Scores.Data;
+using Fantazee.Spells.Data;
 using Fantazee.Spells.Instance;
 using UnityEngine;
 
@@ -15,7 +16,12 @@ namespace Fantazee.Scores.Instance
         [SerializeReference]
         private FullHouseScoreData data;
         
-        public FullHouseScoreInstance(FullHouseScoreData data, List<SpellInstance> spellTypes) : base(data, spellTypes)
+        public FullHouseScoreInstance(FullHouseScoreData data, List<SpellData> spellTypes) : base(data, spellTypes)
+        {
+            this.data = data;
+        }
+
+        public FullHouseScoreInstance(FullHouseScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.data = data;
         }

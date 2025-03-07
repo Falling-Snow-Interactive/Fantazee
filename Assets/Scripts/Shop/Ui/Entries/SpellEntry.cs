@@ -1,6 +1,7 @@
 using System;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Spells.Data;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui.Entries
@@ -10,19 +11,19 @@ namespace Fantazee.Shop.Ui.Entries
         private Action<SpellEntry> onSelected;
 
         [SerializeReference]
-        private SpellData data;
-        public SpellData Data => data;
+        private SpellInstance spell;
+        public SpellInstance Spell => spell;
 
         [SerializeField]
         private ScoreEntrySpell spellEntry;
         
-        public void Initialize(SpellData data, Action<SpellEntry> onSelected)
+        public void Initialize(SpellInstance spell, Action<SpellEntry> onSelected)
         {
             this.onSelected = onSelected;
-            this.data = data;
+            this.spell = spell;
             
-            spellEntry.Initialize(0, data.Type);
-            ShowEntry(data.LocName.GetLocalizedString(), data.Desc, data.Cost);
+            spellEntry.Initialize(0, spell);
+            ShowEntry(spell.Data.Name, spell.Data.Description, spell.Data.Cost);
         }
         
         public override void OnEntrySelected()

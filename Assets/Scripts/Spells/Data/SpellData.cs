@@ -18,11 +18,11 @@ namespace Fantazee.Spells.Data
 
         [SerializeField]
         private LocalizedString locName;
-        public LocalizedString LocName => locName;
+        public string Name => locName.GetLocalizedString();
         
         [SerializeField]
         private LocalizedString locDesc;
-        public string Desc
+        public string Description
         {
             get
             {
@@ -62,6 +62,11 @@ namespace Fantazee.Spells.Data
         protected virtual Dictionary<string, string> GetDescArgs()
         {
             return new Dictionary<string, string>();
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

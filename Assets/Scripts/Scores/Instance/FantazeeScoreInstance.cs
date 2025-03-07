@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Characters;
 using Fantazee.Dice;
 using Fantazee.Scores.Data;
+using Fantazee.Spells.Data;
 using Fantazee.Spells.Instance;
 using UnityEngine;
 
@@ -14,9 +16,19 @@ namespace Fantazee.Scores.Instance
         [SerializeReference]
         private FantazeeScoreData data;
         
+        public FantazeeScoreInstance(FantazeeScoreData data, List<SpellData> spells) : base(data, spells)
+        {
+            this.data = data;
+        }
+
         public FantazeeScoreInstance(FantazeeScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.data = data;
+        }
+
+        public FantazeeScoreInstance(CharacterScoreData data) : base(data.Score, data.Spells)
+        {
+            this.data = data.Score as FantazeeScoreData;
         }
 
         public override int Calculate(List<Die> dice)

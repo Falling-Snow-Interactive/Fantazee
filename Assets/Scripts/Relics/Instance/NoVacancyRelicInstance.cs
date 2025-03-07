@@ -2,7 +2,7 @@ using Fantazee.Battle;
 using Fantazee.Battle.Score;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
-using Fantazee.Scores;
+using Fantazee.Scores.Instance;
 using UnityEngine;
 
 namespace Fantazee.Relics.Instance
@@ -16,7 +16,7 @@ namespace Fantazee.Relics.Instance
 
         private void OnScored(BattleScore battleScore)
         {
-            if (battleScore.Score.Type == ScoreType.FullHouse)
+            if (battleScore.Score is FullHouseScoreInstance)
             {
                 Debug.Log($"No Vacancy: Activated. {BattleController.Instance.RemainingRolls} -> {BattleController.Instance.RemainingRolls + 1}");
                 BattleController.Instance.RemainingRolls++;

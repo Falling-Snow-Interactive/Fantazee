@@ -1,8 +1,6 @@
 using System;
 using DG.Tweening;
-using Fantazee.Spells;
-using Fantazee.Spells.Data;
-using Fantazee.Spells.Settings;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,12 +9,11 @@ namespace Fantazee.Scores.Ui.ScoreEntries
     public class ScoreEntrySpell : MonoBehaviour
     {
         private Action<int> onSelect;
-        private SpellType spell;
         private int i;
 
         [SerializeReference]
-        private SpellData data;
-        public SpellData Data => data;
+        private SpellInstance spell;
+        public SpellInstance Spell => spell;
 
         [SerializeField]
         private Image icon;
@@ -27,13 +24,10 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         [SerializeField]
         private ScoreEntrySpellTooltip tooltip;
 
-        public void Initialize(int i, SpellType spell)
+        public void Initialize(int i, SpellInstance spell)
         {
             this.i = i;
-            if (SpellSettings.Settings.TryGetSpell(spell, out data))
-            {
-                icon.sprite = data.Icon;
-            }
+            icon.sprite = spell.Data.Icon;
 
             tooltip?.Hide(true);
         }
@@ -60,11 +54,6 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         public void SetTooltip(bool set)
         {
-            if (data.Type == SpellType.None)
-            {
-                return;
-            }
-            
             if (set)
             {
                 tooltip?.Show(this);

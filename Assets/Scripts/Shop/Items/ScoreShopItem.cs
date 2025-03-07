@@ -1,16 +1,16 @@
 using System;
+using Fantazee.Characters;
 using Fantazee.Currencies;
-using Fantazee.Scores;
 using UnityEngine;
 
 namespace Fantazee.Shop.Items
 {
     [Serializable]
-    public class ScoreShopItem : ShopItem<PlayerScoreData>
+    public class ScoreShopItem : ShopItem<CharacterScoreData>
     {
         [SerializeField]
-        private PlayerScoreData data;
-        public override PlayerScoreData Item => data;
+        private CharacterScoreData data;
+        public override CharacterScoreData Item => data;
         
         public ScoreShopItem(Currency cost) : base(cost)
         {

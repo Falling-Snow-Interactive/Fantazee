@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
+using Fantazee.Scores.Data;
 using Fantazee.Scores.Information;
+using Fantazee.Scores.Instance;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Fantazee.Scores.Ui.ScoreEntries
 {
@@ -15,8 +18,8 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         private Action<ScoreEntry> onSelect;
         
         [SerializeReference]
-        private Score score;
-        public Score Score
+        private ScoreInstance score;
+        public ScoreInstance Score
         {
             get => score;
             set => score = value;
@@ -53,7 +56,7 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             tooltip.Hide(true);
         }
 
-        public virtual void Initialize(Score score, Action<ScoreEntry> onSelect)
+        public virtual void Initialize(ScoreInstance score, Action<ScoreEntry> onSelect)
         {
             this.score = score;
             this.onSelect = onSelect;
@@ -67,7 +70,7 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         public void UpdateVisuals()
         {
-            nameText.text = score.Information.LocName.GetLocalizedString();
+            nameText.text = score.Data.Name;
             scoreText.text = "";
             button.interactable = true;
 
@@ -95,45 +98,44 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         {
             List<int> diceValues = new();
 
-            switch (score.Type)
+            switch (score)
             {
-                case ScoreType.Ones:
-                    diceValues = new List<int> { 1,1,1,1,1 };
+                case NumberScoreInstance n:
+                    diceValues = new List<int>{n.Data.Number, n.Data.Number, n.Data.Number, n.Data.Number, n.Data.Number};
                     break;
-                case ScoreType.Twos:
-                    diceValues = new List<int> { 2,2,2,2,2 };
+                case KindScoreInstance k:
+                    diceValues = new List<int>();
+                    for (int i = 0; i < k.Data.Kind; i++)
+                    {
+                        diceValues.Add(4);
+                    }
+                    diceValues.Add(Random.Range(1, 4));
+                    diceValues.Add(Random.Range(1, 4));
                     break;
-                case ScoreType.Threes:
-                    diceValues = new List<int> { 3,3,3,3,3 };
+                case RunScoreInstance r:
+                    diceValues = new List<int>();
+                    for (int i = 0; i < r.Data.Run; i++)
+                    {
+                        diceValues.Add(1 + i);
+                    }
+
+                    while (diceValues.Count < 5)
+                    {
+                        diceValues.Add(Random.Range(1, r.Data.Run));
+                    }
+
                     break;
-                case ScoreType.Fours:
-                    diceValues = new List<int> { 4,4,4,4,4 };
-                    break;
-                case ScoreType.Fives:
-                    diceValues = new List<int> { 5,5,5,5,5 };
-                    break;
-                case ScoreType.Sixes:
-                    diceValues = new List<int> { 6,6,6,6,6 };
-                    break;
-                case ScoreType.ThreeOfAKind:
-                    diceValues = new List<int> { 6,6,6,5,4 };
-                    break;
-                case ScoreType.FourOfAKind:
-                    diceValues = new List<int> { 6,6,6,6,5 };
-                    break;
-                case ScoreType.FullHouse:
+                case FullHouseScoreInstance f:
                     diceValues = new List<int> { 5,5,5,2,2 };
                     break;
-                case ScoreType.SmallRun:
-                    diceValues = new List<int> { 4,5,6,1,1 };
+                case ChanceScoreInstance c:
+                    diceValues = new List<int>{Random.Range(1, 6), 
+                                                  Random.Range(1, 6), 
+                                                  Random.Range(1, 6), 
+                                                  Random.Range(1, 6), 
+                                                  Random.Range(1, 6)};
                     break;
-                case ScoreType.LargeRun:
-                    diceValues = new List<int> { 3,4,5,6,1 };
-                    break;
-                case ScoreType.Chance:
-                    diceValues = new List<int> { 6,4,5,1,5 };
-                    break;
-                case ScoreType.Fantazee:
+                case FantazeeScoreInstance f:
                     diceValues = new List<int> { 6,6,6,6,6 };
                     break;
             }

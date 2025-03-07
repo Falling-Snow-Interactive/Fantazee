@@ -4,11 +4,11 @@ using Fantazee.Characters;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Relics;
-using Fantazee.Relics.Data;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Instance
 {
@@ -32,8 +32,8 @@ namespace Fantazee.Instance
         [Header("Scores")]
         
         [SerializeField]
-        private ScoreTracker scoreTracker;
-        public ScoreTracker ScoreTracker => scoreTracker;
+        private Scoresheet scoresheet;
+        public Scoresheet Scoresheet => scoresheet;
         
         [Header("Dice")]
         
@@ -58,7 +58,7 @@ namespace Fantazee.Instance
             
             health = new Health(data.MaxHealth);
             wallet = new Wallet(data.Wallet);
-            scoreTracker = new ScoreTracker(data);
+            scoresheet = new Scoresheet(data.ScoreData, data.FantazeeData);
             dice = Die.DefaultDice(6);
             
             relics = new List<RelicInstance>();

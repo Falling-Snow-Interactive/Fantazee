@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
 using Fantazee.Scores.Data;
+using Fantazee.Spells;
+using Fantazee.Spells.Data;
 using Fantazee.Spells.Instance;
+using Fantazee.Spells.Settings;
 using UnityEngine;
 
 namespace Fantazee.Scores.Instance
@@ -14,10 +17,45 @@ namespace Fantazee.Scores.Instance
         
         [SerializeReference]
         private ScoreData data;
-        
-        public ScoreInstance(ScoreData data, List<SpellInstance> spellTypes)
+        public ScoreData Data => data;
+
+        [SerializeReference]
+        private List<SpellInstance> spells;
+        public List<SpellInstance> Spells => spells;
+
+        protected ScoreInstance(ScoreData data, List<SpellData> spells)
         {
             this.data = data;
+
+            this.spells = new List<SpellInstance>();
+            foreach (SpellData spell in spells)
+            {
+                SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
+                this.spells.Add(spellInstance);
+            }
+
+            if (spells.Count < 2 && SpellSettings.Settings.TryGetSpell(SpellType.None, out SpellData d))
+            {
+                while (spells.Count < 2)
+                {
+                    SpellInstance none = SpellFactory.CreateInstance(d);
+                    this.spells.Add(none);
+                }
+            }
+        }
+
+        protected ScoreInstance(ScoreData data, List<SpellInstance> spells)
+        {
+            this.data = data; 
+            this.spells = spells;
+            if (spells.Count < 2 && SpellSettings.Settings.TryGetSpell(SpellType.None, out SpellData d))
+            {
+                while (spells.Count < 2)
+                {
+                    SpellInstance none = SpellFactory.CreateInstance(d);
+                    this.spells.Add(none);
+                }
+            }
         }
 
         public abstract int Calculate(List<Die> dice);
@@ -34,6 +72,17 @@ namespace Fantazee.Scores.Instance
             }
             
             return diceByValue;
+        }
+
+        public override string ToString()
+        {
+            string s = $"{data.Name} : ";
+            foreach (SpellInstance spell in Spells)
+            {
+                s += spell.ToString();
+            }
+
+            return s;
         }
     }
 }

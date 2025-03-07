@@ -5,8 +5,10 @@ using DG.Tweening;
 using Fantazee.Battle.BattleSpells;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Dice;
+using Fantazee.Scores.Instance;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
+using Fantazee.Spells.Instance;
 using Fantazee.Spells.Settings;
 using UnityEngine;
 #pragma warning disable CS0067 // Event is never used
@@ -26,8 +28,8 @@ namespace Fantazee.Battle.Score
         public List<BattleSpell> Spells => spells;
 
         [SerializeReference]
-        private Scores.Score score;
-        public Scores.Score Score => score;
+        private ScoreInstance score;
+        public ScoreInstance Score => score;
         
         [SerializeField]
         private List<Die> dice = new();
@@ -36,18 +38,16 @@ namespace Fantazee.Battle.Score
         [SerializeReference]
         private BattleScoreEntry entryUi;
 
-        public BattleScore(Scores.Score score)
+        public BattleScore(ScoreInstance score)
         {
             this.score = score;
 
             spells = new List<BattleSpell>();
-            foreach(SpellType spell in score.Spells)
+            foreach(SpellInstance spell in score.Spells)
             {
-                if (SpellSettings.Settings.TryGetSpell(spell, out SpellData data))
-                {
-                    BattleSpell battleSpell = BattleSpellFactory.Create(data);
-                    spells.Add(battleSpell);
-                }
+                // TODO - Battle Spell will be replaced with the spell instances - KD
+                // BattleSpell battleSpell = BattleSpellFactory.Create(spell);
+                // spells.Add(battleSpell);
             }
         }
 

@@ -1,10 +1,10 @@
 using System;
 using DG.Tweening;
 using Fantazee.Instance;
-using Fantazee.Scores;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Spells;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,7 +12,7 @@ namespace Fantazee.Shop.Ui.Screens
 {
     public class SpellScoreScreen : ScoreScreen
     {
-        private SpellType spellType;
+        private SpellInstance spell;
         private SpellEntry purchaseSpell;
 
         private int selectedSpellIndex = -1;
@@ -23,18 +23,18 @@ namespace Fantazee.Shop.Ui.Screens
 
         public void Initialize(SpellEntry selected, Action onComplete)
         {
-            spellType = selected.Data.Type;
+            spell = selected.Spell;
             purchaseSpell = selected;
             
             purchase.gameObject.SetActive(true);
             purchase.transform.localPosition = Vector3.zero;
-            purchase.Initialize(selected.Data, null);
+            purchase.Initialize(selected.Spell, null);
 
-            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
+            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.Scoresheet.Scores.Count);
             for (int i = 0; i < scoreEntries.Count; i++)
             {
                 ShopScoreEntry scoreEntry = scoreEntries[i];
-                Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
+                ScoreInstance score = GameInstance.Current.Character.Scoresheet.Scores[i];
                 
                 scoreEntry.Initialize(score, se =>
                                              {
@@ -73,8 +73,8 @@ namespace Fantazee.Shop.Ui.Screens
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} {scoreEntry.Score.Spells[0]} -> {spellType}");
-            scoreEntry.Score.Spells[selectedSpellIndex] = spellType;
+            Debug.Log($"Shop Spell: {scoreEntry.Score} {scoreEntry.Score.Spells[0]} -> {spell}");
+            scoreEntry.Score.Spells[selectedSpellIndex] = spell;
             
             purchaseSpell.gameObject.SetActive(false);
 

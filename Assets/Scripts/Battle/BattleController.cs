@@ -14,6 +14,7 @@ using Fantazee.Dice.Ui;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fsi.Gameplay;
 using UnityEngine;
@@ -140,14 +141,14 @@ namespace Fantazee.Battle
         {
             Debug.Log($"Battle - Setup");
 
-            List<Scores.Score> scoreList = GameInstance.Current.Character.ScoreTracker.Scores;
-            foreach (Scores.Score score in scoreList)
+            List<ScoreInstance> scoreList = GameInstance.Current.Character.Scoresheet.Scores;
+            foreach (ScoreInstance score in scoreList)
             {
                 BattleScore bs = new(score);
                 battleScores.Add(bs);
             }
             
-            fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.ScoreTracker.Fantazee);
+            fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
             BattleUi.Instance.Scoreboard.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
             
             player = Instantiate(GameInstance.Current.Character.Data.BattleCharacter, playerContainer);

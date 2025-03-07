@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fantazee.Currencies;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -21,8 +22,30 @@ namespace Fantazee.Scores.Data
 
         [SerializeField]
         private LocalizedString locDesc;
-        public string Description => locDesc.GetLocalizedString();
 
+        public string Description
+        {
+            get
+            {
+                args ??= GetDescArgs();
+                return locDesc.GetLocalizedString(args);
+                
+            }
+        }
+        
+        private Dictionary<string, string> args;
+        
+        [Header("Cost")]
+
+        [SerializeField]
+        private Currency cost;
+        public Currency Cost => cost;
+        
         public abstract Dictionary<string, string> GetDescArgs();
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

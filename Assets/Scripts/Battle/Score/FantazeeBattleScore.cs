@@ -1,13 +1,16 @@
 using Fantazee.Scores;
+using Fantazee.Scores.Instance;
 
 namespace Fantazee.Battle.Score
 {
     public class FantazeeBattleScore : BattleScore
     {
-        public FantazeeScore FantazeeScore { get; }
-        public FantazeeBattleScore(FantazeeScore score) : base(score)
+        
+        // TODO - Check parent class
+        // public FantazeeScore FantazeeScore { get; }
+        public FantazeeBattleScore(ScoreInstance score) : base(score)
         {
-            FantazeeScore = score;
+            // FantazeeScore = score;
         }
     }
 }

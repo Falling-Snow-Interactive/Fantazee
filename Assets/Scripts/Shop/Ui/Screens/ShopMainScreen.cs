@@ -8,6 +8,7 @@ using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Information;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Items;
@@ -74,22 +75,15 @@ namespace Fantazee.Shop.Ui.Screens
             
             foreach (SpellShopItem spell in shopInventory.Spells)
             {
-                if (SpellSettings.Settings.TryGetSpell(spell.Item, out SpellData data))
-                {
-                    SpellEntry spellEntry = Instantiate(spellEntryPrefab, boonContent);
-                    spellEntry.Initialize(data, OnSpellSelected);
+                SpellEntry spellEntry = Instantiate(spellEntryPrefab, boonContent);
+                spellEntry.Initialize(spell.Item, OnSpellSelected);
 
-                    spellEntries.Add(spellEntry);
-                }
-                else
-                {
-                    Debug.LogWarning($"Shop: No spell found for type {spell}");
-                }
+                spellEntries.Add(spellEntry);
             }
 
             foreach (ScoreShopItem sd in shopInventory.Scores)
             {
-                Score score = ScoreFactory.Create(sd.Item);
+                ScoreInstance score = ScoreFactory.CreateInstance(sd.Item);
                 ShopScoreEntryPurchase scorePurchase = Instantiate(scorePurchaseEntry, scoreContent);
                 scorePurchase.Initialize(score, OnScoreSelected);
                 scorePurchaseEntries.Add(scorePurchase);

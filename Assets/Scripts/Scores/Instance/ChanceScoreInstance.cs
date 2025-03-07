@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
 using Fantazee.Scores.Data;
+using Fantazee.Spells.Data;
 using Fantazee.Spells.Instance;
 using UnityEngine;
 
@@ -15,7 +16,12 @@ namespace Fantazee.Scores.Instance
         [SerializeReference]
         private ChanceScoreData data;
         
-        public ChanceScoreInstance(ChanceScoreData data, List<SpellInstance> spellTypes) : base(data, spellTypes)
+        public ChanceScoreInstance(ChanceScoreData data, List<SpellData> spells) : base(data, spells)
+        {
+            this.data = data;
+        }
+
+        public ChanceScoreInstance(ChanceScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.data = data;
         }
