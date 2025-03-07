@@ -1,24 +1,14 @@
-
 using System;
 using System.Collections.Generic;
-using Fantazee.Battle.Settings;
-using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
-using Fantazee.Scores.Information;
 using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Items;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Shop.Ui.ScoreSelect;
-using Fantazee.Spells;
-using Fantazee.Spells.Data;
-using Fantazee.Spells.Settings;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Shop.Ui.Screens
 {

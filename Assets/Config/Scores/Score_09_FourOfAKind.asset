@@ -9,41 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea731eb58e854000bcbb8118463ce2e5, type: 3}
-  m_Name: _Spell_None
+  m_Script: {fileID: 11500000, guid: 0052530166c448a78a0b67d2806af5c4, type: 3}
+  m_Name: Score_09_FourOfAKind
   m_EditorClassIdentifier: 
   locName:
     m_TableReference:
-      m_TableCollectionName: GUID:5b0dae1e451ef4ad3845d37dfa0a9bdc
+      m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
     m_TableEntryReference:
-      m_KeyId: 3700146700279808
+      m_KeyId: 1244880953344
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   locDesc:
     m_TableReference:
-      m_TableCollectionName: GUID:5b0dae1e451ef4ad3845d37dfa0a9bdc
+      m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
     m_TableEntryReference:
-      m_KeyId: 3700146700279808
+      m_KeyId: 438963012624384
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  icon: {fileID: 21300000, guid: 3f1046bcc44ac40029a01bca560ce6d8, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
   cost:
-    name: 'Gold: 0'
+    name: 'Gold: 12'
     type: 1
-    amount: 0
-  castVfx: {fileID: 0}
-  castSfx:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+    amount: 12
+  kind: 4
   references:
     version: 2
     RefIds: []

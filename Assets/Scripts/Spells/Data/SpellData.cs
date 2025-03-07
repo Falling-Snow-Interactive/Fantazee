@@ -1,12 +1,8 @@
 using System.Collections.Generic;
-using DG.Tweening;
 using Fantazee.Currencies;
 using FMODUnity;
-using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.VFX;
-using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Spells.Data
 {

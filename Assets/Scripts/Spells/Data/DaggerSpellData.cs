@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
-    [CreateAssetMenu(menuName = "Spells/Dagger")]
+    [CreateAssetMenu(menuName = "Spells/Spell_00_Dagger", fileName = "Spell_00_Dagger", order = 0)]
     public class DaggerSpellData : SpellData
     {
         public override SpellType Type => SpellType.Dagger;

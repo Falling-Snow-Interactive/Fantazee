@@ -1,18 +1,9 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
-using Fantazee.Battle.Settings;
-using Fantazee.Scores;
-using Fantazee.Scores.Information;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
-using Fantazee.Spells;
-using Fantazee.Spells.Data;
-using Fantazee.Spells.Settings;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.ScoreSelect
 {

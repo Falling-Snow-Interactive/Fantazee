@@ -33,14 +33,11 @@ namespace Fantazee.Scores.Instance
                 SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
                 this.spells.Add(spellInstance);
             }
-
-            if (spells.Count < 2 && SpellSettings.Settings.TryGetSpell(SpellType.None, out SpellData d))
+            
+            while (spells.Count < 2)
             {
-                while (spells.Count < 2)
-                {
-                    SpellInstance none = SpellFactory.CreateInstance(d);
-                    this.spells.Add(none);
-                }
+                SpellInstance none = SpellFactory.CreateInstance(SpellSettings.Settings.None);
+                this.spells.Add(none);
             }
         }
 

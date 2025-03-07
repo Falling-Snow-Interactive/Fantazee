@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
-using Fantazee.Scores.Data;
-using Fantazee.Scores.Information;
 using Fantazee.Scores.Instance;
-using Fantazee.Spells.Instance;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,8 +46,6 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         [SerializeField]
         private ScoreEntrySpellTooltip tooltip;
-        
-        private ScoreInformation information;
         
         private void Awake()
         {

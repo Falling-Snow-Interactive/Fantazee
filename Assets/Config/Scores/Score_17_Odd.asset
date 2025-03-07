@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b668be4d9304d7a97578c8368a35413, type: 3}
-  m_Name: Score_01_Twos
+  m_Script: {fileID: 11500000, guid: 1ce59fc175704ad8b0c9a56b85865ef6, type: 3}
+  m_Name: Score_17_Odd
   m_EditorClassIdentifier: 
-  type: 2
   locName:
     m_TableReference:
       m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
     m_TableEntryReference:
-      m_KeyId: 36128677888
+      m_KeyId: 495440867876864
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -26,12 +25,16 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
     m_TableEntryReference:
-      m_KeyId: 438865268563968
+      m_KeyId: 496836933574656
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  number: 2
+  cost:
+    name: 'Gold: 15'
+    type: 1
+    amount: 15
+  even: 0
   references:
     version: 2
     RefIds: []

@@ -1,11 +1,10 @@
 using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
-    [CreateAssetMenu(menuName = "Spells/Fireball")]
+    [CreateAssetMenu(menuName = "Spells/Spell_04_Fireball", fileName = "Spell_04_Fireball", order = 4)]
     public class FireballSpellData : SpellData
     {
         public override SpellType Type => SpellType.Fireball;

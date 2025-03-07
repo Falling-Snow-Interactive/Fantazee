@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +13,25 @@ namespace Fantazee.Scores.Data
         [SerializeField]
         private int number;
         public int Number => number;
-        
-        public override Dictionary<string, string> GetDescArgs()
+
+        public override ScoreType Type
+        {
+            get
+            {
+                return number switch
+                       {
+                           1 => ScoreType.Ones,
+                           2 => ScoreType.Twos,
+                           3 => ScoreType.Threes,
+                           4 => ScoreType.Fours,
+                           5 => ScoreType.Fives,
+                           6 => ScoreType.Sixes,
+                           _ => throw new ArgumentOutOfRangeException()
+                       };
+            }
+        }
+
+        protected override Dictionary<string, string> GetDescArgs()
         {
             Dictionary<string, string> args = new() { { "Number", number.ToString() } };
             return args;

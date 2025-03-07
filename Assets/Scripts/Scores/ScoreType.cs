@@ -2,34 +2,37 @@ namespace Fantazee.Scores
 {
     public enum ScoreType
     {
-        None = 0,
+        None = 0, 
         
-        Ones = 1,
-        Twos = 2,
-        Threes = 3,
-        Fours = 4,
-        Fives = 5,
-        Sixes = 6,
+        // Best
+        Fantazee = 1,
         
-        ThreeOfAKind = 7,
-        FourOfAKind = 8,
+        // Numbers
+        Ones = 2,
+        Twos = 3,
+        Threes = 4,
+        Fours = 5,
+        Fives = 6,
+        Sixes = 7,
         
-        FullHouse = 9,
+        // Matches
+        TwoOfAKind = 8,
+        ThreeOfAKind = 9,
+        FourOfAKind = 10,
+        FiveOfAKind = 11,
+        TwoPair = 12,
+        FullHouse = 13,
         
-        SmallRun = 10,
-        LargeRun = 11,
+        // Runs
+        SmallRun = 14,
+        LargeRun = 15,
+        FullRun = 16,
         
-        Chance = 12,
+        // Even/Odds
+        Evens = 17,
+        Odds = 18,
         
-        Fantazee = 13,
-        
-        Pair = 14,
-        TwoPair = 15,
-        
-        FiveOfAKind = 16,
-        FullRun = 17,
-        
-        Evens = 18,
-        Odds = 19,
+        // Other
+        Chance = 19,
     }
 }

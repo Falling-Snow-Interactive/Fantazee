@@ -22,60 +22,28 @@ MonoBehaviour:
     m_Localized: Ones
     m_Metadata:
       m_Items: []
-  - m_Id: 26708271104
-    m_Localized: Sum of ones.
-    m_Metadata:
-      m_Items: []
   - m_Id: 36128677888
     m_Localized: Twos
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47100977152
-    m_Localized: Sum of twos.
     m_Metadata:
       m_Items: []
   - m_Id: 57674817536
     m_Localized: Threes
     m_Metadata:
       m_Items: []
-  - m_Id: 66868731904
-    m_Localized: Sum of threes.
-    m_Metadata:
-      m_Items: []
   - m_Id: 77304160256
     m_Localized: Fours
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100247003136
-    m_Localized: Sum of fours.
     m_Metadata:
       m_Items: []
   - m_Id: 573700038656
     m_Localized: Fives
     m_Metadata:
       m_Items: []
-  - m_Id: 595560751104
-    m_Localized: Sum of fives.
-    m_Metadata:
-      m_Items: []
   - m_Id: 610521833472
     m_Localized: Sixes
     m_Metadata:
       m_Items: []
-  - m_Id: 630428000256
-    m_Localized: Sum of sixes.
-    m_Metadata:
-      m_Items: []
   - m_Id: 648429953024
     m_Localized: Three of a Kind
-    m_Metadata:
-      m_Items: []
-  - m_Id: 721830273024
-    m_Localized: Sum of all dice if there are at least four matching.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1364208902144
-    m_Localized: Sum of all dice if there are at least three matching.
     m_Metadata:
       m_Items: []
   - m_Id: 1244880953344
@@ -87,23 +55,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 771532775424
-    m_Localized: Three of a kind and a pair. 25 points.
+    m_Localized: Three of a kind and a pair. 20 points.
     m_Metadata:
       m_Items: []
   - m_Id: 802570625024
     m_Localized: Baby Gay
     m_Metadata:
       m_Items: []
-  - m_Id: 829535805440
-    m_Localized: A run of at least 3 dice. 10 points.
-    m_Metadata:
-      m_Items: []
   - m_Id: 890529374208
     m_Localized: Elder Gay
-    m_Metadata:
-      m_Items: []
-  - m_Id: 913719681024
-    m_Localized: A run of at least 4 dice. 15 points.
     m_Metadata:
       m_Items: []
   - m_Id: 944690421760
@@ -122,16 +82,16 @@ MonoBehaviour:
     m_Localized: Five matching dice. 30 points.
     m_Metadata:
       m_Items: []
-  - m_Id: 438575408603136
-    m_Localized: Pair
+  - m_Id: 496836933574656
+    m_Localized: Sum of odd dice.
     m_Metadata:
       m_Items: []
-  - m_Id: 438604290580480
-    m_Localized: Sum of the best pair.
+  - m_Id: 496795183472640
+    m_Localized: Sum of even dice.
     m_Metadata:
       m_Items: []
   - m_Id: 438693385986048
-    m_Localized: Two Pair
+    m_Localized: Two Pairs
     m_Metadata:
       m_Items: []
   - m_Id: 438731185053696
@@ -148,6 +108,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 439454828322816
     m_Localized: Sum of run of {0.Run} dice.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495260621856768
+    m_Localized: Two of a Kind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495367991844864
+    m_Localized: Five of a Kind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495426099732480
+    m_Localized: Evens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495440867876864
+    m_Localized: Odds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495551928852480
+    m_Localized: Full Run
     m_Metadata:
       m_Items: []
   references:

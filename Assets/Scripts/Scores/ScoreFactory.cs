@@ -20,6 +20,8 @@ namespace Fantazee.Scores
                        RunScoreData d => new RunScoreInstance(d, spells),
                        ChanceScoreData d => new ChanceScoreInstance(d, spells),
                        FantazeeScoreData d => new FantazeeScoreInstance(d, spells),
+                       EvenOddScoreData d => new EvenOddScoreInstance(d, spells),
+                       TwoPairScoreData d => new TwoPairScoreInstance(d, spells),
                        _ => throw new ArgumentOutOfRangeException()
                    };
         }
@@ -34,6 +36,8 @@ namespace Fantazee.Scores
                        RunScoreData d => new RunScoreInstance(d, spells),
                        ChanceScoreData d => new ChanceScoreInstance(d, spells),
                        FantazeeScoreData d => new FantazeeScoreInstance(d, spells),
+                       EvenOddScoreData d => new EvenOddScoreInstance(d, spells),
+                       TwoPairScoreData d => new TwoPairScoreInstance(d, spells),
                        _ => throw new ArgumentOutOfRangeException()
                    };
         }

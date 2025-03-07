@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b668be4d9304d7a97578c8368a35413, type: 3}
-  m_Name: Score_02_Threes
+  m_Name: Score_01_Ones
   m_EditorClassIdentifier: 
-  type: 3
   locName:
     m_TableReference:
       m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
     m_TableEntryReference:
-      m_KeyId: 57674817536
+      m_KeyId: 4256161792
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,7 +30,11 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  number: 3
+  cost:
+    name: 'Gold: 1'
+    type: 1
+    amount: 1
+  number: 1
   references:
     version: 2
     RefIds: []

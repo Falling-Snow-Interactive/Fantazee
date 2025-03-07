@@ -29,7 +29,8 @@ namespace Fantazee.Spells.Settings
         
         public override void OnGUI(string searchContext)
         {
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("spellLibrary"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("none"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("spells"));
             // EditorGUILayout.PropertyField(serializedSettings.FindProperty("prop"));
             
             EditorGUILayout.Space(20);

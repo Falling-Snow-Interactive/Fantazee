@@ -11,8 +11,22 @@ namespace Fantazee.Scores.Data
         [SerializeField]
         private int run = 3;
         public int Run => run;
-        
-        public override Dictionary<string, string> GetDescArgs()
+
+        public override ScoreType Type
+        {
+            get
+            {
+                return run switch
+                       {
+                           3 => ScoreType.SmallRun,
+                           4 => ScoreType.LargeRun,
+                           5 => ScoreType.FullRun,
+                           _ => throw new System.NotImplementedException()
+                       };
+            }
+        }
+
+        protected override Dictionary<string, string> GetDescArgs()
         {
             Dictionary<string, string> args = new() { { "Run", run.ToString() } };
             return args;

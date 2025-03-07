@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6d0d9035b2f4171a1aba68312634fae, type: 3}
-  m_Name: Score_09_SmallRun
+  m_Script: {fileID: 11500000, guid: a98e3483fe7840fb92810a9c6cdbefe3, type: 3}
+  m_Name: Score_18_Chance
   m_EditorClassIdentifier: 
-  type: 10
   locName:
     m_TableReference:
       m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
     m_TableEntryReference:
-      m_KeyId: 802570625024
+      m_KeyId: 944690421760
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -26,16 +25,15 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
     m_TableEntryReference:
-      m_KeyId: 439454828322816
+      m_KeyId: 970363756544
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   cost:
-    name: 'None: 0'
-    type: 0
-    amount: 0
-  run: 3
+    name: 'Gold: 20'
+    type: 1
+    amount: 20
   references:
     version: 2
     RefIds: []

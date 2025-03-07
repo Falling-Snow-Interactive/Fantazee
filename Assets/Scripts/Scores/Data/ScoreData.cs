@@ -5,14 +5,9 @@ using UnityEngine.Localization;
 
 namespace Fantazee.Scores.Data
 {
-    // [CreateAssetMenu(menuName = "Fantazee/Data")]
     public abstract class ScoreData : ScriptableObject
     {
-        [Header("Score")]
-        
-        [SerializeField]
-        private ScoreType type;
-        public ScoreType Type => type;
+        public abstract ScoreType Type { get; }
         
         [Header("Localization")]
 
@@ -40,8 +35,12 @@ namespace Fantazee.Scores.Data
         [SerializeField]
         private Currency cost;
         public Currency Cost => cost;
-        
-        public abstract Dictionary<string, string> GetDescArgs();
+
+        protected virtual Dictionary<string, string> GetDescArgs()
+        {
+            Dictionary<string, string> args = new Dictionary<string, string>();
+            return args;
+        }
 
         public override string ToString()
         {
