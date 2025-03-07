@@ -13,6 +13,8 @@ namespace Fantazee.Scores.Instance
     [Serializable]
     public abstract class ScoreInstance
     {
+        public virtual int MaxSpells => 2;
+        
         [Header("Score")]
         
         [SerializeReference]
@@ -34,7 +36,7 @@ namespace Fantazee.Scores.Instance
                 this.spells.Add(spellInstance);
             }
             
-            while (spells.Count < 2)
+            while (this.spells.Count < MaxSpells)
             {
                 SpellInstance none = SpellFactory.CreateInstance(SpellSettings.Settings.None);
                 this.spells.Add(none);

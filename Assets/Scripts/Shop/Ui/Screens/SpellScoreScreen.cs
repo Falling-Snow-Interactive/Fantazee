@@ -14,8 +14,6 @@ namespace Fantazee.Shop.Ui.Screens
     {
         private SpellInstance spell;
         private SpellEntry purchaseSpell;
-
-        private int selectedSpellIndex = -1;
         
         [FormerlySerializedAs("entry")]
         [SerializeField]
@@ -50,9 +48,9 @@ namespace Fantazee.Shop.Ui.Screens
             fadeImage.raycastTarget = true;
             fadeImage.DOFade(fadeAmount, fadeTime)
                      .SetEase(fadeEase);
-            scoreEntry.RequestSpell((i, se) =>
+            scoreEntry.RequestSpell((se) =>
                                     {
-                                        OnSpellSelected(i, se, () =>
+                                        OnSpellSelected(se, () =>
                                                                {
                                                                    scoreEntry.transform.SetParent(parent);
                                                                    onComplete?.Invoke();
@@ -60,9 +58,8 @@ namespace Fantazee.Shop.Ui.Screens
                                     });
         }
 
-        private void OnSpellSelected(int i, ScoreEntry scoreEntry, Action onComplete)
+        private void OnSpellSelected(ScoreEntry scoreEntry, Action onComplete)
         {
-            selectedSpellIndex = i;
             ScoreSelectSequence(purchase.transform, scoreEntry, onComplete);
         }
 
@@ -74,7 +71,8 @@ namespace Fantazee.Shop.Ui.Screens
             }
             
             Debug.Log($"Shop Spell: {scoreEntry.Score} {scoreEntry.Score.Spells[0]} -> {spell}");
-            scoreEntry.Score.Spells[selectedSpellIndex] = spell;
+            int index = scoreEntry.Score.Spells.IndexOf(spell);
+            scoreEntry.Score.Spells[index] = spell;
             
             purchaseSpell.gameObject.SetActive(false);
 

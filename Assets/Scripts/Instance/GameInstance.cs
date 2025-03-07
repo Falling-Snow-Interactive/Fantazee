@@ -40,7 +40,7 @@ namespace Fantazee.Instance
             {
                 GameInstance instance = new()
                                         {
-                                            seed = DefaultSeed,
+                                            seed = (uint)Random.Range(0, int.MaxValue),
                                             character = new CharacterInstance(CharacterSettings.Settings.DefaultCharacter),
                                             map = new MapInstance(),
                                         };

@@ -27,14 +27,16 @@ namespace Fantazee.Scores.Instance
 
         public override int Calculate(List<Die> dice)
         {
-            Dictionary<int, int> dict = DiceToDict(dice);
-
-            if (dict.TryGetValue(data.Number, out int result))
+            int sum = 0;
+            foreach (Die d in dice)
             {
-                return result * data.Number;
+                if (d.Value == data.Number)
+                {
+                    sum += d.Value;
+                }
             }
 
-            return 0;
+            return sum;
         }
     }
 }

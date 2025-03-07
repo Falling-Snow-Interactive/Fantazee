@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Fantazee.Spells;
 using Fantazee.Spells.Instance;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,8 +9,7 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 {
     public class ScoreEntrySpell : MonoBehaviour
     {
-        private Action<int> onSelect;
-        private int i;
+        private Action<SpellInstance> onSelect;
 
         [SerializeReference]
         private SpellInstance spell;
@@ -40,15 +40,15 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         [SerializeField]
         private Vector3 punchScale;
 
-        public void Initialize(int i, SpellInstance spell)
+        public void Initialize(SpellInstance spell)
         {
-            this.i = i;
+            this.spell = spell;
             icon.sprite = spell.Data.Icon;
 
             tooltip?.Hide(true);
         }
 
-        public void Activate(Action<int> onSelect)
+        public void Activate(Action<SpellInstance> onSelect)
         {
             this.onSelect = onSelect;
             DOTween.Complete(transform);
@@ -65,11 +65,16 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         public void OnSelect()
         {
-            onSelect?.Invoke(i);
+            onSelect?.Invoke(spell);
         }
 
         public void SetTooltip(bool set)
         {
+            if (spell.Data.Type == SpellType.None)
+            {
+                return;
+            }
+            
             if (set)
             {
                 tooltip?.Show(this);

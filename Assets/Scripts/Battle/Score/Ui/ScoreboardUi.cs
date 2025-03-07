@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Environments.Information;
 using Fantazee.Battle.Settings;
+using Fantazee.Dice;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Scores.Bonus.Ui;
@@ -49,6 +50,20 @@ namespace Fantazee.Battle.Score.Ui
         [SerializeField]
         private Image background;
 
+        private void OnEnable()
+        {
+            BattleController.RollEnded += OnRollEnded;
+            BattleController.Scored += OnScored;
+            BattleController.RollStarted += OnRollStarted;
+        }
+
+        private void OnDisable()
+        {
+            BattleController.RollEnded -= OnRollEnded;
+            BattleController.Scored -= OnScored;
+            BattleController.RollStarted -= OnRollStarted;
+        }
+
         public void Initialize(List<BattleScore> battleScores, BattleScore fantazeeScore, Action<ScoreEntry> onSelect)
         {
             this.onSelect = onSelect;
@@ -75,6 +90,37 @@ namespace Fantazee.Battle.Score.Ui
         private void OnScoreEntrySelected(ScoreEntry scoreEntry)
         {
             onSelect?.Invoke(scoreEntry);
+        }
+
+        private void OnRollEnded()
+        {
+            ShowScorePreviews();
+        }
+
+        private void OnScored(BattleScore _)
+        {
+            HideScorePreviews();
+        }
+
+        private void ShowScorePreviews()
+        {
+            foreach (BattleScoreEntry entry in entries)
+            {
+                entry.ShowPreview();
+            }
+        }
+
+        private void HideScorePreviews()
+        {
+            foreach (BattleScoreEntry entry in entries)
+            {
+                entry.HidePreview();
+            }
+        }
+
+        private void OnRollStarted()
+        {
+            HideScorePreviews();
         }
     }
 }

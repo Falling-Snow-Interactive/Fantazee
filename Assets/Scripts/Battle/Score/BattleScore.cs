@@ -72,17 +72,13 @@ namespace Fantazee.Battle.Score
         public int Calculate()
         {
             int results = score.Calculate(dice);
-            string s = $"BattleScore: {results}\n";
-            foreach (Die d in dice)
-            {
-                s += $"{d}";
-                if (d == dice[^1])
-                {
-                    s += " - ";
-                }
-            }
-            Debug.Log(s);
-            return score.Calculate(dice);
+            return results;
+        }
+
+        public int Calculate(List<Die> dice)
+        {
+            int results = score.Calculate(dice);
+            return results;
         }
         
         public bool CanScore()

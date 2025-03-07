@@ -22,7 +22,7 @@ namespace Fantazee.Shop.Ui.Entries
             this.onSelected = onSelected;
             this.spell = spell;
             
-            spellEntry.Initialize(0, spell);
+            spellEntry.Initialize(spell);
             ShowEntry(spell.Data.Name, spell.Data.Description, spell.Data.Cost);
         }
         

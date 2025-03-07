@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Settings;
+using Fantazee.Dice;
 using Fantazee.Dice.Settings;
-using Fantazee.Scores.Ui;
+using Fantazee.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Spells.Instance;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Battle.Score.Ui
 {
@@ -17,6 +17,10 @@ namespace Fantazee.Battle.Score.Ui
         [SerializeReference]
         private BattleScore battleScore;
         public BattleScore BattleScore => battleScore;
+
+        [SerializeField]
+        private bool isFinalized = false;
+        public bool IsFinalized => isFinalized;
         
         private void OnEnable()
         {
@@ -45,6 +49,9 @@ namespace Fantazee.Battle.Score.Ui
             
             battleScore.DieAdded += OnDieAdded;
             battleScore.ScoreReset += OnBattleScoreReset;
+
+            isFinalized = false;
+            scoreText.gameObject.SetActive(false);
         }
 
         protected override List<int> GetDiceValues()
@@ -54,8 +61,10 @@ namespace Fantazee.Battle.Score.Ui
 
         public int FinalizeScore()
         {
+            isFinalized = true;
             int s = battleScore.Calculate();
             button.interactable = false;
+            scoreText.gameObject.SetActive(true);
             scoreText.text = s.ToString();
             RuntimeManager.PlayOneShot(BattleSettings.Settings.ScoreSfx);
             scoreContainer.transform.DOPunchScale(DiceSettings.Settings.SquishAmount, 
@@ -65,6 +74,18 @@ namespace Fantazee.Battle.Score.Ui
                           .SetEase(DiceSettings.Settings.SquishEase);
 
             return s;
+        }
+
+        public void ShowPreview()
+        {
+            previewText.gameObject.SetActive(true);
+            int score = battleScore.Calculate(GameInstance.Current.Character.Dice);
+            previewText.text = score.ToString();
+        }
+
+        public void HidePreview()
+        {
+            previewText.gameObject.SetActive(false);
         }
         
         private void OnDieAdded()
@@ -77,6 +98,7 @@ namespace Fantazee.Battle.Score.Ui
 
         private void OnBattleScoreReset()
         {
+            isFinalized = false;
             for (int i = 0; i < diceImages.Count; i++)
             {
                 int v = battleScore.Dice.Count > i ? battleScore.Dice[i].Value : 0;

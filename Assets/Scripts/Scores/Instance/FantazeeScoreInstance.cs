@@ -12,6 +12,8 @@ namespace Fantazee.Scores.Instance
     [Serializable]
     public class FantazeeScoreInstance : ScoreInstance
     {
+        public override int MaxSpells => 3;
+
         [Header("Fantazee")]
         [SerializeReference]
         private FantazeeScoreData data;

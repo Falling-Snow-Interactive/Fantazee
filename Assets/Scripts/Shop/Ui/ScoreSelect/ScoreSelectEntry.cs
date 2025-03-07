@@ -41,7 +41,7 @@ namespace Fantazee.Shop.Ui.ScoreSelect
             Debug.Assert(spells.Count == score.Spells.Count);
             for (int i = 0; i < score.Spells.Count; i++)
             {
-                spells[i].Initialize(i, score.Spells[i]);
+                spells[i].Initialize(score.Spells[i]);
             }
         }
 

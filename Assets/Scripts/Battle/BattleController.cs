@@ -30,6 +30,7 @@ namespace Fantazee.Battle
         public static event Action PlayerTurnEnd;
         
         public static event Action RollStarted;
+        public static event Action RollEnded;
         public static event Action<Die> DieRolled;
         
         public static event Action<int> DiceScored;
@@ -374,8 +375,23 @@ namespace Fantazee.Battle
                 isRolling = true;
                 BattleUi.Instance.DiceControl.Roll(d =>
                                                      {
-                                                         isRolling = false;
                                                          DieRolled?.Invoke(d);
+
+                                                         bool rolling = false;
+                                                         foreach (DieUi du in BattleUi.Instance.DiceControl.Dice)
+                                                         {
+                                                             if (du.rolling)
+                                                             {
+                                                                 rolling = true;
+                                                                 break;
+                                                             }
+                                                         }
+
+                                                         if (!rolling)
+                                                         {
+                                                             isRolling = false;
+                                                             RollEnded?.Invoke();
+                                                         }
                                                      });
                 RollStarted?.Invoke();
             }
@@ -438,16 +454,6 @@ namespace Fantazee.Battle
             PlayerTurnEnd?.Invoke();
             Debug.Log("Battle: Player turn end");
             StartEnemyTurn();
-        }
-
-        public void TryBonusAttack()
-        {
-            Debug.Log("No Bonus Yet");
-            // if (scoreTracker.BonusScore.IsReady)
-            // {
-            //     // Player.DoBonusAttack();
-            //     BattleUi.Instance.Scoreboard.BonusScoreUi.Disable();
-            // }
         }
         
         #endregion
