@@ -63,7 +63,7 @@ namespace Fantazee.Instance
             
             relics = new List<RelicInstance>();
             RelicInstance relic = RelicFactory.Create(data.Relic, this);
-            relics.Add(relic);
+            AddRelic(relic);
         }
 
         public void AddRelic(RelicInstance relic)
