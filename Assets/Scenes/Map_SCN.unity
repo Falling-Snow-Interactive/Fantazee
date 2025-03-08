@@ -447,6 +447,92 @@ MonoBehaviour:
   player: {fileID: 0}
   cursorActionRef: {fileID: 3495247442398311673, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
   selectActionRef: {fileID: 9090993431622607344, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  moveTime: 1.25
+  moveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.05034325
+    - serializedVersion: 3
+      time: 0.49692607
+      value: -0.23931083
+      inSlope: -0.0014910407
+      outSlope: -0.0014910407
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 0.45616496
+    - serializedVersion: 3
+      time: 0.79522324
+      value: 1.3243269
+      inSlope: 0.065215535
+      outSlope: 0.065215535
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.2841983
+      outWeight: 0.55707496
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.36057845
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  moveRotPunch: {x: 0, y: 0, z: -10}
+  moveRotPunchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.45491505
+      value: -0.24614507
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.767949
+      value: 1.0031686
+      inSlope: 0.042775076
+      outSlope: 0.042775076
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.56914777
+      outWeight: 0.5307004
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   mapStartSfx:
     Guid:
       Data1: -847252282

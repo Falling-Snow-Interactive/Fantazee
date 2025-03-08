@@ -34,6 +34,22 @@ namespace Fantazee.Maps
 
             private bool canInteract = false;
 
+            [Header("Animation")]
+
+            [Header("Move")]
+
+            [SerializeField]
+            private float moveTime = 1f;
+            
+            [SerializeField]
+            private AnimationCurve moveCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
+            [SerializeField]
+            private Vector3 moveRotPunch;
+            
+            [SerializeField]
+            private AnimationCurve moveRotPunchCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+            
             [Header("Audio")]
 
             [SerializeField]
@@ -164,14 +180,23 @@ namespace Fantazee.Maps
                 
                 canInteract = false;
 
+                Sequence sequence = DOTween.Sequence();
+                
                 footstepsSfx.start();
-                player.transform.DOMove(node.transform.position, 0.5f)
-                      .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
-                      .OnComplete(() =>
-                                  {
-                                      footstepsSfx.stop(STOP_MODE.IMMEDIATE);
-                                      OnFinishMoving(node);
-                                  });
+                sequence.Insert(0, player.transform.DOMove(node.transform.position, moveTime)
+                                         .SetEase(moveCurve)
+                                         .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable));
+                
+                sequence.Insert(0, player.transform.DORotate(moveRotPunch, moveTime).SetEase(moveRotPunchCurve));
+                sequence.AppendInterval(0.5f);
+
+                sequence.OnComplete(() =>
+                                    {
+                                        footstepsSfx.stop(STOP_MODE.IMMEDIATE);
+                                        OnFinishMoving(node);
+                                    });
+                
+                sequence.Play();
             }
 
             private void OnFinishMoving(Node node)
@@ -181,6 +206,7 @@ namespace Fantazee.Maps
                 Map.Node = map.Nodes.IndexOf(node);
                 Debug.Log($"Map - Node {node.NodeType} [{Map.Node}]");
                 RuntimeManager.PlayOneShot(mapEndSfx);
+                
                 switch (node.NodeType)
                 {
                     case NodeType.None:

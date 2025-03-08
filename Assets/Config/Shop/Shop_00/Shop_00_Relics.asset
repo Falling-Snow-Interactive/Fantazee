@@ -13,35 +13,40 @@ MonoBehaviour:
   m_Name: Shop_00_Relics
   m_EditorClassIdentifier: 
   entries:
-  - weight: 1
+  - name: 'Mulligan | Gold: 15 - 1'
+    weight: 1
     value:
       cost:
         name: 'Gold: 15'
         type: 1
         amount: 15
       data: {fileID: 11400000, guid: 722568d798aba4f80b1a7c97a4694754, type: 2}
-  - weight: 1
+  - name: 'Explosive | Gold: 10 - 1'
+    weight: 1
     value:
       cost:
         name: 'Gold: 10'
         type: 1
         amount: 10
       data: {fileID: 11400000, guid: 0f82484f7b7e14e8d875ae0f64be971f, type: 2}
-  - weight: 1
+  - name: 'Lucky | Gold: 17 - 10000000'
+    weight: 10000000
     value:
       cost:
         name: 'Gold: 17'
         type: 1
         amount: 17
       data: {fileID: 11400000, guid: 6544cb61f4399452486ad8273ff26f51, type: 2}
-  - weight: 1
+  - name: 'NoVacancy | Gold: 12 - 1'
+    weight: 1
     value:
       cost:
         name: 'Gold: 12'
         type: 1
         amount: 12
       data: {fileID: 11400000, guid: 2403856a727bc4b1d866e13625e5d631, type: 2}
-  - weight: 1
+  - name: 'VampireFang | Gold: 20 - 1'
+    weight: 1
     value:
       cost:
         name: 'Gold: 20'
