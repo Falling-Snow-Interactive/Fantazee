@@ -11,12 +11,10 @@ namespace Fantazee.Shop.Settings
         private const string ResourcePath = "Settings/ShopSettings";
         private const string FullPath = "Assets/Resources/" + ResourcePath + ".asset";
 
-        private static ShopSettings settings;
-        public static ShopSettings Settings => settings ??= GetOrCreateSettings();
+        private static ShopSettings _settings;
+        public static ShopSettings Settings => _settings ??= GetOrCreateSettings();
 
         [Header("Animation")]
-        
-        [Header("Purchase")]
         
         [SerializeField]
         private float selectTime = 0.6f;
