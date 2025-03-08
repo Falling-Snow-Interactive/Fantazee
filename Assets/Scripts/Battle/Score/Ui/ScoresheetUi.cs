@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Fantazee.Battle.Environments.Information;
-using Fantazee.Battle.Settings;
-using Fantazee.Dice;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Scores.Bonus.Ui;
@@ -14,7 +11,7 @@ using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui
 {
-    public class ScoreboardUi : MonoBehaviour
+    public class ScoresheetUi : MonoBehaviour
     {
         private Action<ScoreEntry> onSelect;
         
