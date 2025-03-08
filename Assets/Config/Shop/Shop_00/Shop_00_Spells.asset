@@ -13,43 +13,43 @@ MonoBehaviour:
   m_Name: Shop_00_Spells
   m_EditorClassIdentifier: 
   spells:
-  - name: 'Dagger | Gold: 7 - 12'
+  - name: 'Spell_00_Dagger | Gold: 7 - 12'
     weight: 12
     value:
       cost:
         name: 'Gold: 7'
         type: 1
         amount: 7
-      item: 1
-  - name: 'Pierce | Gold: 12 - 10'
+      item: {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
+  - name: 'Spell_01_Pierce | Gold: 12 - 10'
     weight: 10
     value:
       cost:
         name: 'Gold: 12'
         type: 1
         amount: 12
-      item: 2
-  - name: 'Shield | Gold: 8 - 10'
+      item: {fileID: 11400000, guid: d1acf298aa81143b5b00bd02f264e460, type: 2}
+  - name: 'Spell_02_Shield | Gold: 8 - 10'
     weight: 10
     value:
       cost:
         name: 'Gold: 8'
         type: 1
         amount: 8
-      item: 3
-  - name: 'Heal | Gold: 17 - 8'
+      item: {fileID: 11400000, guid: 0edaa33dc3a944031b001867d5e07fe1, type: 2}
+  - name: 'Spell_03_Heal | Gold: 17 - 8'
     weight: 8
     value:
       cost:
         name: 'Gold: 17'
         type: 1
         amount: 17
-      item: 4
-  - name: 'Fireball | Gold: 19 - 5'
+      item: {fileID: 11400000, guid: 21cbbad1555434d85bc28a3e1c007d34, type: 2}
+  - name: 'Spell_04_Fireball | Gold: 19 - 5'
     weight: 5
     value:
       cost:
         name: 'Gold: 19'
         type: 1
         amount: 19
-      item: 5
+      item: {fileID: 11400000, guid: ea956bf83210344669cc9bf913e8444e, type: 2}

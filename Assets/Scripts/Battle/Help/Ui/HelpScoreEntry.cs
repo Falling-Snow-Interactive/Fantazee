@@ -1,3 +1,4 @@
+using Fantazee.Scores.Instance;
 using TMPro;
 using UnityEngine;
 
@@ -11,10 +12,10 @@ namespace Fantazee.Battle.Help.Ui
         [SerializeField]
         private TMP_Text descText;
 
-        public void Initialize(Scores.Score score)
+        public void Initialize(ScoreInstance score)
         {
-            nameText.text = score.Information.LocName.GetLocalizedString();
-            descText.text = score.Information.LocDesc.GetLocalizedString();
+            nameText.text = score.Data.Name;
+            descText.text = score.Data.Description;
         }
     }
 }

@@ -1,6 +1,3 @@
-using DG.Tweening;
-using Fantazee.Battle.Environments.Information;
-using Fantazee.Scores.Information;
 using FMODUnity;
 using UnityEditor;
 using UnityEngine;
@@ -24,10 +21,6 @@ namespace Fantazee.Battle.Settings
         [SerializeField]
         private EventReference scoreSfx;
         public EventReference ScoreSfx => scoreSfx;
-        
-        [SerializeField]
-        private ScoreInformationGroup scoreInformation;
-        public ScoreInformationGroup ScoreInformation => scoreInformation;
         
         #region Settings
         

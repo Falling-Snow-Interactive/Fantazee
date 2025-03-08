@@ -7,12 +7,16 @@ namespace Fantazee.Relics.Instance
     {
         public LuckyRelicInstance(RelicData data, CharacterInstance character) : base(data, character)
         {
+        }
+
+        public override void Enable()
+        {
             character.Rolls++;
         }
 
-        public override void Clear()
+        public override void Disable()
         {
-            Character.Rolls--;
+            character.Rolls--;
         }
     }
 }

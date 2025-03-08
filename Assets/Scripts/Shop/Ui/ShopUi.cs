@@ -1,5 +1,4 @@
 using System;
-using Fantazee.Battle;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
@@ -60,7 +59,7 @@ namespace Fantazee.Shop.Ui
 
         private void OnSpellSelected(SpellEntry spellEntry)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(spellEntry.Data.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(spellEntry.Cost))
             {
                 ShowSpellScreen(spellEntry);
             }
@@ -87,7 +86,7 @@ namespace Fantazee.Shop.Ui
 
         private void OnScoreSelected(ShopScoreEntryPurchase purchaseScoreEntry)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(purchaseScoreEntry.Score.Information.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(purchaseScoreEntry.Score.Data.Cost))
             {
                 ShowScoreScoreScreen(purchaseScoreEntry);
             }

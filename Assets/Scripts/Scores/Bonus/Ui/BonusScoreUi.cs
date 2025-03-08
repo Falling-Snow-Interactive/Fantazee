@@ -60,11 +60,6 @@ namespace Fantazee.Scores.Bonus.Ui
             readyText.SetActive(bonusScore.IsReady);
         }
 
-        public void OnClick()
-        {
-            BattleController.Instance.TryBonusAttack();
-        }
-
         public void Enable()
         {
             button.interactable = true;

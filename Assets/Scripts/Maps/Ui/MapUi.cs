@@ -2,6 +2,7 @@ using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
 using Fsi.Gameplay;
+using Fsi.Gameplay.Healths.Ui;
 using UnityEngine;
 
 namespace Fantazee.Maps.Ui
@@ -10,6 +11,9 @@ namespace Fantazee.Maps.Ui
     {
         [SerializeField]
         private CurrencyEntryUi currencyEntry;
+        
+        [SerializeField]
+        private HealthUi health;
 
         private void Start()
         {
@@ -17,6 +21,8 @@ namespace Fantazee.Maps.Ui
             {
                 currencyEntry.SetCurrency(currency);
             }
+            
+            health.Initialize(GameInstance.Current.Character.Health);
         }
     }
 }

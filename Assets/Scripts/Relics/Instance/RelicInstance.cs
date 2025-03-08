@@ -14,7 +14,7 @@ namespace Fantazee.Relics.Instance
         private RelicData data;
         public RelicData Data => data;
 
-        private CharacterInstance character;
+        protected CharacterInstance character;
         public CharacterInstance Character => character;
 
         public RelicInstance(RelicData data, CharacterInstance character)
@@ -27,7 +27,9 @@ namespace Fantazee.Relics.Instance
         {
             Activated?.Invoke();
         }
-
-        public abstract void Clear();
+        
+        public abstract void Enable();
+        
+        public abstract void Disable();
     }
 }

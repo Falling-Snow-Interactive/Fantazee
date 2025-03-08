@@ -1,8 +1,7 @@
 using System;
 using DG.Tweening;
 using Fantazee.Spells;
-using Fantazee.Spells.Data;
-using Fantazee.Spells.Settings;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +9,11 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 {
     public class ScoreEntrySpell : MonoBehaviour
     {
-        private Action<int> onSelect;
-        private SpellType spell;
-        private int i;
+        private Action<SpellInstance> onSelect;
 
         [SerializeReference]
-        private SpellData data;
-        public SpellData Data => data;
+        private SpellInstance spell;
+        public SpellInstance Spell => spell;
 
         [SerializeField]
         private Image icon;
@@ -26,19 +23,32 @@ namespace Fantazee.Scores.Ui.ScoreEntries
         
         [SerializeField]
         private ScoreEntrySpellTooltip tooltip;
+        
+        [Header("Animations")]
+        
+        [Header("Punch")]
 
-        public void Initialize(int i, SpellType spell)
+        [SerializeField]
+        private float punchTime = 0.3f;
+
+        [SerializeField]
+        private Vector3 punchPosition;
+        
+        [SerializeField]
+        private Vector3 punchRotation;
+        
+        [SerializeField]
+        private Vector3 punchScale;
+
+        public void Initialize(SpellInstance spell)
         {
-            this.i = i;
-            if (SpellSettings.Settings.TryGetSpell(spell, out data))
-            {
-                icon.sprite = data.Icon;
-            }
+            this.spell = spell;
+            icon.sprite = spell.Data.Icon;
 
             tooltip?.Hide(true);
         }
 
-        public void Activate(Action<int> onSelect)
+        public void Activate(Action<SpellInstance> onSelect)
         {
             this.onSelect = onSelect;
             DOTween.Complete(transform);
@@ -55,12 +65,12 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         public void OnSelect()
         {
-            onSelect?.Invoke(i);
+            onSelect?.Invoke(spell);
         }
 
         public void SetTooltip(bool set)
         {
-            if (data.Type == SpellType.None)
+            if (spell.Data.Type == SpellType.None)
             {
                 return;
             }
@@ -73,6 +83,18 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             {
                 tooltip?.Hide();
             }
+        }
+
+        public void Punch(Action onComplete = null)
+        {
+            Sequence sequence = DOTween.Sequence();
+            
+            sequence.Append(transform.DOPunchPosition(punchPosition, punchTime));
+            sequence.Insert(0, transform.DOPunchRotation(punchRotation, punchTime));
+            sequence.Insert(0, transform.DOPunchScale(punchScale, punchTime));
+            
+            sequence.OnComplete(() => onComplete?.Invoke());
+            sequence.Play();
         }
     }
 }

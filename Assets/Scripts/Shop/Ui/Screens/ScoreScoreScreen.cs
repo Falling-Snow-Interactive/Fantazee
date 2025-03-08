@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Instance;
 using Fantazee.Scores;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui.Screens
@@ -14,24 +16,22 @@ namespace Fantazee.Shop.Ui.Screens
         [SerializeField]
         private ShopScoreEntryPurchase purchase;
 
-        [SerializeField]
-        private ShopScoreEntryPurchase mainMenuSelected;
+        private ShopScoreEntry selectMain;
 
         public void Initialize(ShopScoreEntryPurchase selected, Action onComplete)
         {
-            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
+            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.Scoresheet.Scores.Count);
 
-            mainMenuSelected = selected;
+            selectMain = selected;
             
             purchase.gameObject.SetActive(true);
             purchase.transform.localPosition = Vector3.zero;
-            
             purchase.Initialize(selected.Score, null);
             
             for (int i = 0; i < scoreEntries.Count; i++)
             {
                 ShopScoreEntry scoreEntry = scoreEntries[i];
-                Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
+                ScoreInstance score = GameInstance.Current.Character.Scoresheet.Scores[i];
 
                 // TODO - probably somrething
                 scoreEntry.Initialize(score, se =>
@@ -43,31 +43,29 @@ namespace Fantazee.Shop.Ui.Screens
 
         protected override bool Apply(ScoreEntry scoreEntry)
         {
-            if (!ShopController.Instance.MakePurchase(purchase.Score.Information.Cost))
+            if (!ShopController.Instance.MakePurchase(purchase.Score.Data.Cost))
             {
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} -> {purchase.Score.Type}");
+            Debug.Log($"Shop Spell: {scoreEntry.Score} -> {purchase.Score}");
 
-            List<SpellType> purchaseSpells = new List<SpellType>();
+            List<SpellInstance> purchaseSpells = new();
             for (int i = 0; i < purchase.Spells.Count; i++)
             {
-                if (purchase.Spells[i].Data.Type != SpellType.None)
-                {
-                    purchaseSpells.Add(purchase.Spells[i].Data.Type);
-                }
-                else
-                {
-                    purchaseSpells.Add(scoreEntry.Spells[i].Data.Type);
-                }
+                SpellInstance s = purchase.Spells[i].Spell.Data.Type != SpellType.None
+                                      ? purchase.Spells[i].Spell
+                                      : scoreEntry.Spells[i].Spell;
+                purchaseSpells.Add(s);
             }
 
-            int index = GameInstance.Current.Character.ScoreTracker.Scores.IndexOf(scoreEntry.Score);
-            GameInstance.Current.Character.ScoreTracker.Scores[index] = ScoreFactory.Create(purchase.Score.Type, purchaseSpells);
-            scoreEntry.Score = GameInstance.Current.Character.ScoreTracker.Scores[index];
+            int index = GameInstance.Current.Character.Scoresheet.Scores.IndexOf(scoreEntry.Score);
+            GameInstance.Current.Character.Scoresheet.Scores[index] = ScoreFactory.CreateInstance(purchase.Score.Data, purchaseSpells);
+            scoreEntry.Score = GameInstance.Current.Character.Scoresheet.Scores[index];
             
-            mainMenuSelected.gameObject.SetActive(false);
+            purchase.gameObject.SetActive(false);
+
+            selectMain.gameObject.SetActive(false);
             
             return true;
         }

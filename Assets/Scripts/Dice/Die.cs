@@ -39,7 +39,7 @@ namespace Fantazee.Dice
             value = dieRandomizer.Randomize();
         }
 
-        public void OnBeforeSerialize()
+        public override string ToString()
         {
             string s = "";
 
@@ -58,7 +58,12 @@ namespace Fantazee.Dice
                 }
             }
 
-            name = s;
+            return s;
+        }
+
+        public void OnBeforeSerialize()
+        {
+            name = ToString();
         }
 
         public void OnAfterDeserialize() { }

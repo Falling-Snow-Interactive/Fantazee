@@ -1,6 +1,5 @@
 using Fantazee.Battle;
 using Fantazee.Battle.Score;
-using Fantazee.Battle.Ui;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
 using UnityEngine;
@@ -15,16 +14,19 @@ namespace Fantazee.Relics.Instance
         
         public MulliganRelicInstance(RelicData data, CharacterInstance character) : base(data, character)
         {
-            BattleController.PlayerTurnStart += OnPlayerStart;
-            BattleController.RollStarted += OnRollStarted;
-            BattleController.Scored += OnScored;
-
             firstRoll = false;
             hasScored = false;
             startRoll = false;
         }
 
-        public override void Clear()
+        public override void Enable()
+        {
+            BattleController.PlayerTurnStart += OnPlayerStart;
+            BattleController.RollStarted += OnRollStarted;
+            BattleController.Scored += OnScored;
+        }
+
+        public override void Disable()
         {
             BattleController.PlayerTurnStart -= OnPlayerStart;
             BattleController.RollStarted -= OnRollStarted;

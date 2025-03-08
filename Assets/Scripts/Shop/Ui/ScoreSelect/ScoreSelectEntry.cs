@@ -1,16 +1,9 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
-using Fantazee.Battle.Settings;
-using Fantazee.Scores;
-using Fantazee.Scores.Information;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
-using Fantazee.Spells;
-using Fantazee.Spells.Data;
-using Fantazee.Spells.Settings;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.ScoreSelect
 {
@@ -19,8 +12,8 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         private Action<ScoreSelectEntry> onSelect;
         
         [SerializeReference]
-        private Score score;
-        public Score Score
+        private ScoreInstance score;
+        public ScoreInstance Score
         {
             get => score;
             set => score = value;
@@ -34,7 +27,7 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         [SerializeField]
         private TMP_Text scoreText;
 
-        public void Initialize(Score score, Action<ScoreSelectEntry> onSelect)
+        public void Initialize(ScoreInstance score, Action<ScoreSelectEntry> onSelect)
         {
             this.score = score;
             this.onSelect = onSelect;
@@ -44,14 +37,11 @@ namespace Fantazee.Shop.Ui.ScoreSelect
 
         public void UpdateVisuals()
         {
-            if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score.Type, out ScoreInformation scoreInfo))
-            {
-                scoreText.text = scoreInfo.LocName.GetLocalizedString();
-            }
-
+            scoreText.text = score.Data.Name;
+            Debug.Assert(spells.Count == score.Spells.Count);
             for (int i = 0; i < score.Spells.Count; i++)
             {
-                spells[i].Initialize(i, score.Spells[i]);
+                spells[i].Initialize(score.Spells[i]);
             }
         }
 
