@@ -150,7 +150,7 @@ namespace Fantazee.Battle
             }
             
             fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
-            BattleUi.Instance.Scoreboard.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
+            BattleUi.Instance.Scoresheet.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
             
             player = Instantiate(GameInstance.Current.Character.Data.BattleCharacter, playerContainer);
             Player.Initialize();

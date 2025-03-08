@@ -4,6 +4,7 @@ using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
 using Fsi.Gameplay;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Battle.Ui
 {
@@ -13,9 +14,10 @@ namespace Fantazee.Battle.Ui
         private DiceControlUi diceControl;
         public DiceControlUi DiceControl => diceControl;
         
+        [FormerlySerializedAs("scoreboard")]
         [SerializeField]
-        private ScoreboardUi scoreboard;
-        public ScoreboardUi Scoreboard => scoreboard;
+        private ScoresheetUi scoresheet;
+        public ScoresheetUi Scoresheet => scoresheet;
 
         [SerializeField]
         private WinScreen winScreen;
@@ -36,7 +38,7 @@ namespace Fantazee.Battle.Ui
             base.Awake();
 
             diceControl.gameObject.SetActive(true);
-            scoreboard.gameObject.SetActive(true);
+            scoresheet.gameObject.SetActive(true);
             
             winScreen.gameObject.SetActive(false);
             
