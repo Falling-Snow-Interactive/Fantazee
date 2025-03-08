@@ -44,7 +44,7 @@ namespace Fantazee.Spells.Instance
             player.Visuals.Attack();
 
             yield return new WaitForSeconds(0.2f);
-
+            
             BattleEnemy e0 = enemies[^1];
             if (e0)
             {
@@ -55,14 +55,13 @@ namespace Fantazee.Spells.Instance
                 }
 
                 Vector3 startPos = player.transform.position + data.PierceVfxSpawnOffset;
-                Vector3 endPos = e0.transform.position + data.PierceVfxSpawnOffset;
-                if (e1 != null)
-                {
-                    endPos = e1.transform.position + data.PierceVfxSpawnOffset;
-                }
+                Vector3 endPos = (e1 != null 
+                                      ? e1.transform.position 
+                                      : e0.transform.position) 
+                                 + data.PierceVfxHitOffset;
 
                 bool ready = false;
-                var arrow = Object.Instantiate(data.PierceVfx, startPos, Quaternion.identity);
+                GameObject arrow = Object.Instantiate(data.PierceVfx, startPos, Quaternion.identity);
                 arrow.transform.DOMove(endPos, data.PierceTime)
                      .SetDelay(data.PierceDelay)
                      .SetEase(data.PierceEase)

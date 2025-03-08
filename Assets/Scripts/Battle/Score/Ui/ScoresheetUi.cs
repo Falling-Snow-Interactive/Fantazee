@@ -23,12 +23,6 @@ namespace Fantazee.Battle.Score.Ui
         [SerializeField]
         private Ease scoreEase = Ease.InCirc;
         
-        [Header("Prefabs")]
-
-        [FormerlySerializedAs("scoreEntryPrefab")]
-        [SerializeField]
-        private BattleScoreEntry battleScoreEntryPrefab;
-        
         [Header("References")]
         
         [SerializeField]
