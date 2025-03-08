@@ -3,6 +3,7 @@ using DG.Tweening;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Shop.Settings;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells.Instance;
 using UnityEngine;
@@ -46,8 +47,8 @@ namespace Fantazee.Shop.Ui.Screens
             Transform parent = scoreEntry.transform.parent;
             scoreEntry.transform.SetParent(animGroup);
             fadeImage.raycastTarget = true;
-            fadeImage.DOFade(fadeAmount, fadeTime)
-                     .SetEase(fadeEase);
+            fadeImage.DOFade(ShopSettings.Settings.FadeAmount, ShopSettings.Settings.FadeTime)
+                     .SetEase(ShopSettings.Settings.FadeEase);
             scoreEntry.RequestSpell((spellInstance, se) =>
                                     {
                                         this.spellInstance = spellInstance;

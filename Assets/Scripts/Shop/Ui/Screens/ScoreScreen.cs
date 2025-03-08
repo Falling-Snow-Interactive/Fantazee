@@ -14,56 +14,6 @@ namespace Fantazee.Shop.Ui.Screens
 {
     public abstract class ScoreScreen : ShopScreen
     {
-        [Header("Select animation")]
-        
-        [SerializeField]
-        private float selectTime = 0.6f;
-
-        [SerializeField]
-        private Ease selectEase = Ease.InCubic;
-        
-        [SerializeField]
-        private float chargeTime = 0.2f;
-        
-        [SerializeField]
-        private Ease chargeEase = Ease.InCubic;
-
-        [SerializeField]
-        private float chargeOffset = 200f;
-
-        [FormerlySerializedAs("entryTime")]
-        [SerializeField]
-        private float purchaseTime = 0.5f;
-        
-        [FormerlySerializedAs("entryEase")]
-        [SerializeField]
-        private Ease purchaseEase = Ease.InCubic;
-
-        [FormerlySerializedAs("entryOffset")]
-        [SerializeField]
-        private float purchaseOffset = -150f;
-
-        [SerializeField]
-        private float punchAmount = 250f;
-
-        [SerializeField]
-        private float punchTime = 0.25f;
-
-        [SerializeField]
-        private float returnTime = 1f;
-        
-        [SerializeField]
-        private Ease returnEase = Ease.InCubic;
-
-        [SerializeField]
-        protected float fadeAmount = 0.6f;
-        
-        [SerializeField]
-        protected float fadeTime = 0.5f;
-        
-        [SerializeField]
-        protected Ease fadeEase = Ease.InOutCubic;
-        
         [Header("Score References")]
         
         [SerializeField]
@@ -102,7 +52,7 @@ namespace Fantazee.Shop.Ui.Screens
                                            ScoreEntry scoreEntry, 
                                            Action onComplete = null)
         {
-            
+            ShopSettings settings = ShopSettings.Settings;
 
             Vector3 pos = scoreEntry.transform.position;
             Transform parent = scoreEntry.transform.parent;
@@ -110,43 +60,76 @@ namespace Fantazee.Shop.Ui.Screens
             
             Sequence sequence = DOTween.Sequence();
             
-            sequence.Append(scoreEntry.transform.DOMove(selectedSocket.position, selectTime)
-                                      .SetEase(selectEase)
-                                      .SetDelay(0.15f)
+            // Selected score to upgrade area
+            Vector3 purchasePos = purchaseEntry.position;
+            Vector3 selectedPos = selectedSocket.position;
+            Vector3 mid = (purchasePos + selectedPos) / 2f;
+            Vector3 purchaseChargePos = purchasePos + Vector3.left * settings.ChargeOffset;
+            Vector3 selectedChargePos = selectedPos + Vector3.right * settings.ChargeOffset;
+            
+            sequence.Append(scoreEntry.transform.DOMove(selectedPos, settings.SelectTime)
+                                      .SetEase(settings.SelectEase)
                                       .OnStart(() => swooshSfx.start()));
-            sequence.Insert(0, fadeImage.DOFade(fadeAmount, fadeTime)
-                                        .SetEase(fadeEase)
+            // Fade background
+            sequence.Insert(0, fadeImage.DOFade(settings.FadeAmount, settings.FadeTime)
+                                        .SetEase(settings.FadeEase)
                                         .OnStart(() => fadeImage.raycastTarget = true));
-            sequence.Append(purchaseEntry.DOMove(purchaseEntry.position + Vector3.left * chargeOffset, chargeTime)
-                                         .SetEase(chargeEase)
-                                         .OnStart(() =>
-                                                  {
-                                                      RuntimeManager.PlayOneShot(ShopSettings.Settings.ChargeSfx);
-                                                  }));
-            sequence.Append(purchaseEntry.DOMove(selectedSocket.position + Vector3.right * purchaseOffset, purchaseTime)
-                                         .SetEase(purchaseEase)
-                                         .OnStart(() => swooshSfx.start())
-                                         .OnComplete(() =>
-                                                     {
-                                                         purchaseEntry.gameObject.SetActive(false);
-                                                         if (!Apply(scoreEntry))
-                                                         {
-                                                             Debug.LogWarning("Shop: Cannot apply spell. Returning to shop.");
-                                                             onComplete?.Invoke();
-                                                             return;
-                                                         }
-                                                         scoreEntry.UpdateVisuals();
-                                                     }));
-            sequence.Append(scoreEntry.transform.DOPunchPosition(Vector3.right * punchAmount, punchTime)
-                                      .OnStart(() => RuntimeManager.PlayOneShot(ShopSettings.Settings.UpgradeSfx)));
-            sequence.Append(scoreEntry.transform.DOMove(pos, returnTime)
-                                      .OnStart(() => swooshSfx.start())
-                                      .SetEase(returnEase)
-                                      .SetDelay(0.3f));
+
+            // // Charge up the scores
+            float chargeInsertTime = settings.ChargeTime + 0.25f;
+            sequence.Insert(chargeInsertTime, purchaseEntry.DOMove(purchaseChargePos, settings.ChargeTime)
+                                                           .SetEase(settings.ChargeEase)
+                                                           .OnStart(() =>
+                                                                    {
+                                                                        RuntimeManager.PlayOneShot(ShopSettings.Settings.ChargeSfx);
+                                                                    }));
+            sequence.Insert(chargeInsertTime, scoreEntry.transform.DOMove(selectedChargePos, settings.ChargeTime)
+                                                        .SetEase(settings.ChargeEase));
+            sequence.Insert(chargeInsertTime, purchaseEntry.DOShakeRotation(settings.ChargeTime,
+                                                                            new Vector3(0, 0, 3),
+                                                                            30,
+                                                                            90f,
+                                                                            false,
+                                                                            ShakeRandomnessMode.Full)
+                                                           .SetEase(Ease.OutQuad));
+            sequence.Insert(chargeInsertTime, scoreEntry.transform.DOShakeRotation(settings.ChargeTime, 
+                                                            new Vector3(0, 0, 3),
+                                                            30,
+                                                            90f,
+                                                            false,
+                                                            ShakeRandomnessMode.Full)
+                                                        .SetEase(Ease.OutQuad));
+            
+            // Move in to combine
+            float purchaseInsertTime = chargeInsertTime + settings.ChargeTime;
+            sequence.Insert(purchaseInsertTime, purchaseEntry.DOMove(mid, settings.PurchaseTime)
+                                                             .SetEase(settings.PurchaseEase)
+                                                             .OnStart(() => swooshSfx.start())
+                                                             .OnComplete(() =>
+                                                                         {
+                                                                             purchaseEntry.gameObject.SetActive(false);
+                                                                             if (!Apply(scoreEntry))
+                                                                             {
+                                                                                 Debug.LogWarning("Shop: Cannot apply spell. Returning to shop.");
+                                                                                 onComplete?.Invoke();
+                                                                                 return;
+                                                                             }
+                                                                             scoreEntry.UpdateVisuals();
+                                                                         }));
+            sequence.Insert(purchaseInsertTime, scoreEntry.transform.DOMove(mid, settings.PurchaseTime)
+                                                          .SetEase(settings.PurchaseEase));
+            
             sequence.AppendInterval(0.5f);
-            sequence.Insert(2, fadeImage.DOFade(0, fadeTime)
-                                        .SetEase(fadeEase)
+            float returnTime = purchaseInsertTime + settings.PurchaseTime;
+            sequence.Insert(returnTime, scoreEntry.transform.DOMove(pos, settings.ReturnTime)
+                                      .OnStart(() => swooshSfx.start())
+                                      .SetEase(settings.ReturnEase)
+                                      .SetDelay(0.3f));
+            sequence.Insert(returnTime, fadeImage.DOFade(0, settings.FadeTime)
+                                        .SetEase(settings.FadeEase)
                                         .OnComplete(() => fadeImage.raycastTarget = false));
+            
+            sequence.AppendInterval(0.5f);
 
             sequence.OnComplete(() =>
                                 {

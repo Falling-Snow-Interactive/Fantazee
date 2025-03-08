@@ -30,6 +30,22 @@ namespace Fantazee.Shop.Settings.Editor
         public override void OnGUI(string searchContext)
         {
             // Audio
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("selectTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("selectEase"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("chargeTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("chargeEase"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("chargeOffset"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("purchaseTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("purchaseEase"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("purchaseOffset"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("punchAmount"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("punchTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("returnTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("returnEase"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("fadeAmount"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("fadeTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("fadeEase"));
+            
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("enterSfx"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("exitSfx"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("chargeSfx"));
