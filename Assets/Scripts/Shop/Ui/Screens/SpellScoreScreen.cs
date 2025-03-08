@@ -21,6 +21,9 @@ namespace Fantazee.Shop.Ui.Screens
 
         private SpellInstance spellInstance;
 
+        [SerializeField]
+        private ShopScoreEntry fantazeeEntry;
+
         public void Initialize(SpellEntry selected, Action onComplete)
         {
             purchaseSpell = selected;
@@ -40,10 +43,14 @@ namespace Fantazee.Shop.Ui.Screens
                                                  OnScoreSelected(se, onComplete);
                                              });
             }
+            
+            fantazeeEntry.Initialize(GameInstance.Current.Character.Scoresheet.Fantazee, 
+                                     se => OnScoreSelected(se, onComplete));
         }
 
         private void OnScoreSelected(ScoreEntry scoreEntry, Action onComplete)
         {
+            Debug.Log($"{scoreEntry.name}");
             Transform parent = scoreEntry.transform.parent;
             scoreEntry.transform.SetParent(animGroup);
             fadeImage.raycastTarget = true;
