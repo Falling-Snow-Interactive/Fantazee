@@ -65,7 +65,7 @@ namespace Fantazee.Instance
 
         public void Clear()
         {
-            character?.Clear();
+            character.Clear();
         }
     }
 }

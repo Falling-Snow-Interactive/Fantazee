@@ -6,7 +6,6 @@ using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
-using Fantazee.Spells.Data;
 using Fantazee.Spells.Instance;
 using UnityEngine;
 
@@ -17,18 +16,16 @@ namespace Fantazee.Shop.Ui.Screens
         [SerializeField]
         private ShopScoreEntryPurchase purchase;
 
-        [SerializeField]
-        private ShopScoreEntryPurchase mainMenuSelected;
+        private ShopScoreEntry selectMain;
 
         public void Initialize(ShopScoreEntryPurchase selected, Action onComplete)
         {
             Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.Scoresheet.Scores.Count);
 
-            mainMenuSelected = selected;
+            selectMain = selected;
             
             purchase.gameObject.SetActive(true);
             purchase.transform.localPosition = Vector3.zero;
-            
             purchase.Initialize(selected.Score, null);
             
             for (int i = 0; i < scoreEntries.Count; i++)
@@ -66,7 +63,9 @@ namespace Fantazee.Shop.Ui.Screens
             GameInstance.Current.Character.Scoresheet.Scores[index] = ScoreFactory.CreateInstance(purchase.Score.Data, purchaseSpells);
             scoreEntry.Score = GameInstance.Current.Character.Scoresheet.Scores[index];
             
-            mainMenuSelected.gameObject.SetActive(false);
+            purchase.gameObject.SetActive(false);
+
+            selectMain.gameObject.SetActive(false);
             
             return true;
         }

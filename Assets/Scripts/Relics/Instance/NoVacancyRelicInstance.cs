@@ -11,7 +11,17 @@ namespace Fantazee.Relics.Instance
     {
         public NoVacancyRelicInstance(RelicData data, CharacterInstance character) : base(data, character)
         {
+            
+        }
+
+        public override void Enable()
+        {
             BattleController.Scored += OnScored;
+        }
+
+        public override void Disable()
+        {
+            BattleController.Scored -= OnScored;
         }
 
         private void OnScored(BattleScore battleScore)
@@ -21,11 +31,6 @@ namespace Fantazee.Relics.Instance
                 Debug.Log($"No Vacancy: Activated. {BattleController.Instance.RemainingRolls} -> {BattleController.Instance.RemainingRolls + 1}");
                 BattleController.Instance.RemainingRolls++;
             }
-        }
-
-        public override void Clear()
-        {
-            BattleController.Scored -= OnScored;
         }
     }
 }

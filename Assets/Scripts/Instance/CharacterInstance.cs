@@ -68,14 +68,21 @@ namespace Fantazee.Instance
 
         public void AddRelic(RelicInstance relic)
         {
+            relic.Enable();
             relics.Add(relic);
+        }
+
+        public void RemoveRelic(RelicInstance relic)
+        {
+            relic.Disable();
+            relics.Remove(relic);
         }
 
         public void Clear()
         {
-            foreach (RelicInstance relic in relics)
+            while (relics.Count > 0)
             {
-                relic.Clear();
+                RemoveRelic(relics[0]);
             }
         }
     }

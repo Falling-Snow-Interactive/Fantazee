@@ -11,5 +11,6 @@ namespace Fantazee.Scores.Data
 
         [SerializeField]
         private bool even = true;
+        public bool Even => even;
     }
 }

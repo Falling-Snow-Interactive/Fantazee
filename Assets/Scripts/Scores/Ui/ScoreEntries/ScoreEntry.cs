@@ -153,6 +153,18 @@ namespace Fantazee.Scores.Ui.ScoreEntries
                 case FantazeeScoreInstance f:
                     diceValues = new List<int> { 6,6,6,6,6 };
                     break;
+                case TwoPairScoreInstance tp:
+                    diceValues = new List<int> { 6, 6, 5, 5, Random.Range(1, 5) };
+                    break;
+                case EvenOddScoreInstance e when !e.Data.Even:
+                    diceValues = new List<int> { 1, 3, 5, 3, 1 };
+                    break;
+                case EvenOddScoreInstance e when e.Data.Even:
+                    diceValues = new List<int> { 2, 4, 6, 4, 2 };
+                    break;
+                default:
+                    Debug.LogError($"{nameof(score)} has not been implemented.");
+                    break;
             }
             
             return diceValues;

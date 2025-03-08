@@ -13,8 +13,16 @@ namespace Fantazee.Relics.Instance
         public ExplosiveRelicInstance(ExplosiveRelicData data, CharacterInstance character) : base(data, character)
         {
             explosiveData = data;
+        }
 
+        public override void Enable()
+        {
             BattleController.DieRolled += OnDieRolled;
+        }
+
+        public override void Disable()
+        {
+            BattleController.DieRolled -= OnDieRolled;
         }
 
         private void OnDieRolled(Die die)
@@ -29,11 +37,6 @@ namespace Fantazee.Relics.Instance
                     }
                 }
             }
-        }
-
-        public override void Clear()
-        {
-            BattleController.DieRolled -= OnDieRolled;
         }
     }
 }
