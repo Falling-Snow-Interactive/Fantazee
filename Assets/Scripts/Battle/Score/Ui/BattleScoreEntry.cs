@@ -80,6 +80,16 @@ namespace Fantazee.Battle.Score.Ui
         {
             previewText.gameObject.SetActive(true);
             int score = battleScore.Calculate(GameInstance.Current.Character.Dice);
+            string s = $"Score {score.GetType().DeclaringType}: {score} | ";
+            foreach (Die d in GameInstance.Current.Character.Dice)
+            {
+                s += $"{d.Value}";
+                if (d != GameInstance.Current.Character.Dice[^1])
+                {
+                    s += " - ";
+                }
+            }
+            Debug.Log($"{s}");
             previewText.text = score.ToString();
         }
 

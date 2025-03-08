@@ -8,18 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Shop_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Shop_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/BattleScoreEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/BattleScoreEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/ScoreboardUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/ScoreboardUi.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/ExplosiveRelicInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/ExplosiveRelicInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/LuckyRelicInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/LuckyRelicInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/MulliganRelicInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/MulliganRelicInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/NoVacancyRelicInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/NoVacancyRelicInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/RelicInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/RelicInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/VampireFangRelicInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/VampireFangRelicInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Data/EvenOddScoreData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Data/EvenOddScoreData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/ScoreScoreScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/ScoreScoreScreen.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,10 +115,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18276">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="29837">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="18276" />
+      <option name="pid" value="29837" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
         <list>
@@ -280,6 +275,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs</url>
+          <line>61</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs" containingFunctionPresentation="Constructor 'CharacterInstance'">
+            <startOffsets>
+              <option value="1577" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1603" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
