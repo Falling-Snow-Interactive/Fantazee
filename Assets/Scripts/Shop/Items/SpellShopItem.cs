@@ -1,18 +1,20 @@
 using System;
 using Fantazee.Currencies;
 using Fantazee.Spells;
+using Fantazee.Spells.Data;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 
 namespace Fantazee.Shop.Items
 {
     [Serializable]
-    public class SpellShopItem : ShopItem<SpellType>
+    public class SpellShopItem : ShopItem<SpellData>
     {
         [SerializeField]
-        private SpellType item;
-        public override SpellType Item => item;
+        private SpellData item;
+        public override SpellData Item => item;
 
-        public SpellShopItem(SpellType spell, Currency cost) : base(cost)
+        public SpellShopItem(SpellData spell, Currency cost) : base(cost)
         {
         }
     }

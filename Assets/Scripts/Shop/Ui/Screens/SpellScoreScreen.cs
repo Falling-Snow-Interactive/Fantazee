@@ -1,10 +1,10 @@
 using System;
 using DG.Tweening;
 using Fantazee.Instance;
-using Fantazee.Scores;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Spells;
+using Fantazee.Spells.Instance;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,29 +12,27 @@ namespace Fantazee.Shop.Ui.Screens
 {
     public class SpellScoreScreen : ScoreScreen
     {
-        private SpellType spellType;
         private SpellEntry purchaseSpell;
-
-        private int selectedSpellIndex = -1;
         
         [FormerlySerializedAs("entry")]
         [SerializeField]
         protected SpellEntry purchase;
 
+        private SpellInstance spellInstance;
+
         public void Initialize(SpellEntry selected, Action onComplete)
         {
-            spellType = selected.Data.Type;
             purchaseSpell = selected;
             
             purchase.gameObject.SetActive(true);
             purchase.transform.localPosition = Vector3.zero;
-            purchase.Initialize(selected.Data, null);
+            purchase.Initialize(selected.Spell, null);
 
-            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.ScoreTracker.Scores.Count);
+            Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.Scoresheet.Scores.Count);
             for (int i = 0; i < scoreEntries.Count; i++)
             {
                 ShopScoreEntry scoreEntry = scoreEntries[i];
-                Score score = GameInstance.Current.Character.ScoreTracker.Scores[i];
+                ScoreInstance score = GameInstance.Current.Character.Scoresheet.Scores[i];
                 
                 scoreEntry.Initialize(score, se =>
                                              {
@@ -50,19 +48,19 @@ namespace Fantazee.Shop.Ui.Screens
             fadeImage.raycastTarget = true;
             fadeImage.DOFade(fadeAmount, fadeTime)
                      .SetEase(fadeEase);
-            scoreEntry.RequestSpell((i, se) =>
+            scoreEntry.RequestSpell((spellInstance, se) =>
                                     {
-                                        OnSpellSelected(i, se, () =>
-                                                               {
-                                                                   scoreEntry.transform.SetParent(parent);
-                                                                   onComplete?.Invoke();
-                                                               });
+                                        this.spellInstance = spellInstance;
+                                        OnSpellSelected(se, () =>
+                                                            {
+                                                                scoreEntry.transform.SetParent(parent);
+                                                                onComplete?.Invoke();
+                                                            });
                                     });
         }
 
-        private void OnSpellSelected(int i, ScoreEntry scoreEntry, Action onComplete)
+        private void OnSpellSelected(ScoreEntry scoreEntry, Action onComplete)
         {
-            selectedSpellIndex = i;
             ScoreSelectSequence(purchase.transform, scoreEntry, onComplete);
         }
 
@@ -73,8 +71,9 @@ namespace Fantazee.Shop.Ui.Screens
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score.Type} {scoreEntry.Score.Spells[0]} -> {spellType}");
-            scoreEntry.Score.Spells[selectedSpellIndex] = spellType;
+            Debug.Log($"Shop Spell: {scoreEntry.Score} {spellInstance} -> {purchaseSpell.Spell}");
+            int index = scoreEntry.Score.Spells.IndexOf(spellInstance);
+            scoreEntry.Score.Spells[index] = purchaseSpell.Spell;
             
             purchaseSpell.gameObject.SetActive(false);
 

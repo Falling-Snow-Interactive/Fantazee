@@ -18,10 +18,10 @@ namespace Fantazee.Battle.Help.Ui
             {
                 HelpScoreEntry entry = entries[i];
 
-                if (i < GameInstance.Current.Character.ScoreTracker.Scores.Count)
+                if (i < GameInstance.Current.Character.Scoresheet.Scores.Count)
                 {
                     entry.gameObject.SetActive(true);
-                    entry.Initialize(GameInstance.Current.Character.ScoreTracker.Scores[i]);
+                    entry.Initialize(GameInstance.Current.Character.Scoresheet.Scores[i]);
                 }
                 else
                 {
@@ -30,7 +30,7 @@ namespace Fantazee.Battle.Help.Ui
             }
 
             fantazeeEntry.gameObject.SetActive(true);
-            fantazeeEntry.Initialize(GameInstance.Current.Character.ScoreTracker.Fantazee);
+            fantazeeEntry.Initialize(GameInstance.Current.Character.Scoresheet.Fantazee);
         }
     }
 }

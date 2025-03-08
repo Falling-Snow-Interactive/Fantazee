@@ -1,6 +1,8 @@
 using System;
+using Fantazee.Characters;
 using Fantazee.Currencies.Ui;
 using Fantazee.Scores;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using UnityEngine;
 
@@ -13,10 +15,10 @@ namespace Fantazee.Shop.Ui.Entries
         [SerializeField]
         private CurrencyEntryUi currencyEntryUi;
         
-        public override void Initialize(Score score, Action<ScoreEntry> onSelect)
+        public override void Initialize(ScoreInstance score, Action<ScoreEntry> onSelect)
         {
             base.Initialize(score, onSelect);
-            currencyEntryUi.SetCurrency(score.Information.Cost);
+            currencyEntryUi.SetCurrency(score.Data.Cost);
         }
     }
 }

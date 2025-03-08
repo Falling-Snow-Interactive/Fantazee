@@ -1,20 +1,16 @@
-
 using System;
 using System.Collections.Generic;
-using Fantazee.Battle.Settings;
-using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
-using Fantazee.Scores.Information;
-using Fantazee.Scores.Ui;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Items;
 using Fantazee.Shop.Ui.Entries;
-using Fantazee.Shop.Ui.ScoreSelect;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
+using Fantazee.Spells.Instance;
 using Fantazee.Spells.Settings;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -49,8 +45,9 @@ namespace Fantazee.Shop.Ui.Screens
         
         [Header("References")]
 
+        [FormerlySerializedAs("boonContent")]
         [SerializeField]
-        private Transform boonContent;
+        private Transform spellContent;
         
         [SerializeField]
         private Transform relicContent;
@@ -74,22 +71,16 @@ namespace Fantazee.Shop.Ui.Screens
             
             foreach (SpellShopItem spell in shopInventory.Spells)
             {
-                if (SpellSettings.Settings.TryGetSpell(spell.Item, out SpellData data))
-                {
-                    SpellEntry spellEntry = Instantiate(spellEntryPrefab, boonContent);
-                    spellEntry.Initialize(data, OnSpellSelected);
+                SpellInstance s = SpellFactory.CreateInstance(spell.Item);
+                SpellEntry spellEntry = Instantiate(spellEntryPrefab, spellContent);
+                spellEntry.Initialize(s, OnSpellSelected);
 
-                    spellEntries.Add(spellEntry);
-                }
-                else
-                {
-                    Debug.LogWarning($"Shop: No spell found for type {spell}");
-                }
+                spellEntries.Add(spellEntry);
             }
 
             foreach (ScoreShopItem sd in shopInventory.Scores)
             {
-                Score score = ScoreFactory.Create(sd.Item);
+                ScoreInstance score = ScoreFactory.CreateInstance(sd.Item);
                 ShopScoreEntryPurchase scorePurchase = Instantiate(scorePurchaseEntry, scoreContent);
                 scorePurchase.Initialize(score, OnScoreSelected);
                 scorePurchaseEntries.Add(scorePurchase);

@@ -2,21 +2,25 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Settings;
+using Fantazee.Dice;
 using Fantazee.Dice.Settings;
-using Fantazee.Scores.Ui;
+using Fantazee.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Spells.Instance;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Battle.Score.Ui
 {
     public class BattleScoreEntry : ScoreEntry
     {
-        [FormerlySerializedAs("score")]
         [SerializeReference]
         private BattleScore battleScore;
         public BattleScore BattleScore => battleScore;
+
+        [SerializeField]
+        private bool isFinalized = false;
+        public bool IsFinalized => isFinalized;
         
         private void OnEnable()
         {
@@ -24,6 +28,7 @@ namespace Fantazee.Battle.Score.Ui
             {
                 battleScore.DieAdded += OnDieAdded;
                 battleScore.ScoreReset += OnBattleScoreReset;
+                battleScore.SpellCastStart += OnSpellCastStart;
             }
         }
 
@@ -33,6 +38,7 @@ namespace Fantazee.Battle.Score.Ui
             {
                 battleScore.DieAdded -= OnDieAdded;
                 battleScore.ScoreReset -= OnBattleScoreReset;
+                battleScore.SpellCastStart -= OnSpellCastStart;
             }
         }
 
@@ -43,6 +49,9 @@ namespace Fantazee.Battle.Score.Ui
             
             battleScore.DieAdded += OnDieAdded;
             battleScore.ScoreReset += OnBattleScoreReset;
+
+            isFinalized = false;
+            scoreText.gameObject.SetActive(false);
         }
 
         protected override List<int> GetDiceValues()
@@ -52,8 +61,10 @@ namespace Fantazee.Battle.Score.Ui
 
         public int FinalizeScore()
         {
+            isFinalized = true;
             int s = battleScore.Calculate();
             button.interactable = false;
+            scoreText.gameObject.SetActive(true);
             scoreText.text = s.ToString();
             RuntimeManager.PlayOneShot(BattleSettings.Settings.ScoreSfx);
             scoreContainer.transform.DOPunchScale(DiceSettings.Settings.SquishAmount, 
@@ -63,6 +74,28 @@ namespace Fantazee.Battle.Score.Ui
                           .SetEase(DiceSettings.Settings.SquishEase);
 
             return s;
+        }
+
+        public void ShowPreview()
+        {
+            previewText.gameObject.SetActive(true);
+            int score = battleScore.Calculate(GameInstance.Current.Character.Dice);
+            string s = $"Score {score.GetType().DeclaringType}: {score} | ";
+            foreach (Die d in GameInstance.Current.Character.Dice)
+            {
+                s += $"{d.Value}";
+                if (d != GameInstance.Current.Character.Dice[^1])
+                {
+                    s += " - ";
+                }
+            }
+            Debug.Log($"{s}");
+            previewText.text = score.ToString();
+        }
+
+        public void HidePreview()
+        {
+            previewText.gameObject.SetActive(false);
         }
         
         private void OnDieAdded()
@@ -75,6 +108,7 @@ namespace Fantazee.Battle.Score.Ui
 
         private void OnBattleScoreReset()
         {
+            isFinalized = false;
             for (int i = 0; i < diceImages.Count; i++)
             {
                 int v = battleScore.Dice.Count > i ? battleScore.Dice[i].Value : 0;
@@ -83,6 +117,17 @@ namespace Fantazee.Battle.Score.Ui
 
             button.interactable = battleScore.Dice.Count == 0;
             scoreText.text = battleScore.Dice.Count == 0 ? "" : battleScore.Calculate().ToString();
+        }
+
+        private void OnSpellCastStart(SpellInstance spell)
+        {
+            foreach (ScoreEntrySpell s in Spells)
+            {
+                if (s.Spell == spell)
+                {
+                    s.Punch();
+                }
+            }
         }
     }
 }

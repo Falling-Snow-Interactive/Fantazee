@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Fantazee.Spells.Data;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Settings
 {
@@ -16,21 +17,27 @@ namespace Fantazee.Spells.Settings
         [Header("Library")]
 
         [SerializeField]
-        private List<SpellData> spellLibrary = new();
+        private SpellData none;
+        public SpellData None => none;
+
+        [FormerlySerializedAs("spellLibrary")]
+        [SerializeField]
+        private List<SpellData> spells = new();
+        private Dictionary<SpellType, SpellData> spellsDictionary = new();
 
         public bool TryGetSpell(SpellType type, out SpellData spell)
         {
-            foreach (SpellData spellData in spellLibrary)
+            spellsDictionary ??= GetSpellsDictionary();
+            return spellsDictionary.TryGetValue(type, out spell);
+        }
+
+        private Dictionary<SpellType, SpellData> GetSpellsDictionary()
+        {
+            foreach (SpellData spell in spells)
             {
-                if (spellData.Type == type)
-                {
-                    spell = spellData;
-                    return true;
-                }
+                spellsDictionary.Add(spell.Type, spell);
             }
-            
-            spell = null;
-            return false;
+            return spellsDictionary;
         }
         
         #region Settings

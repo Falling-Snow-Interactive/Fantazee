@@ -14,6 +14,7 @@ using Fantazee.Dice.Ui;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
+using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fsi.Gameplay;
 using UnityEngine;
@@ -29,6 +30,7 @@ namespace Fantazee.Battle
         public static event Action PlayerTurnEnd;
         
         public static event Action RollStarted;
+        public static event Action RollEnded;
         public static event Action<Die> DieRolled;
         
         public static event Action<int> DiceScored;
@@ -140,14 +142,14 @@ namespace Fantazee.Battle
         {
             Debug.Log($"Battle - Setup");
 
-            List<Scores.Score> scoreList = GameInstance.Current.Character.ScoreTracker.Scores;
-            foreach (Scores.Score score in scoreList)
+            List<ScoreInstance> scoreList = GameInstance.Current.Character.Scoresheet.Scores;
+            foreach (ScoreInstance score in scoreList)
             {
                 BattleScore bs = new(score);
                 battleScores.Add(bs);
             }
             
-            fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.ScoreTracker.Fantazee);
+            fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
             BattleUi.Instance.Scoreboard.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
             
             player = Instantiate(GameInstance.Current.Character.Data.BattleCharacter, playerContainer);
@@ -373,8 +375,23 @@ namespace Fantazee.Battle
                 isRolling = true;
                 BattleUi.Instance.DiceControl.Roll(d =>
                                                      {
-                                                         isRolling = false;
                                                          DieRolled?.Invoke(d);
+
+                                                         bool rolling = false;
+                                                         foreach (DieUi du in BattleUi.Instance.DiceControl.Dice)
+                                                         {
+                                                             if (du.rolling)
+                                                             {
+                                                                 rolling = true;
+                                                                 break;
+                                                             }
+                                                         }
+
+                                                         if (!rolling)
+                                                         {
+                                                             isRolling = false;
+                                                             RollEnded?.Invoke();
+                                                         }
                                                      });
                 RollStarted?.Invoke();
             }
@@ -438,16 +455,6 @@ namespace Fantazee.Battle
             Debug.Log("Battle: Player turn end");
             StartEnemyTurn();
         }
-
-        public void TryBonusAttack()
-        {
-            Debug.Log("No Bonus Yet");
-            // if (scoreTracker.BonusScore.IsReady)
-            // {
-            //     // Player.DoBonusAttack();
-            //     BattleUi.Instance.Scoreboard.BonusScoreUi.Disable();
-            // }
-        }
         
         #endregion
         
@@ -490,6 +497,21 @@ namespace Fantazee.Battle
             
             Debug.Log("Finished enemy turns");
             StartPlayerTurn();
+        }
+
+        public bool TryGetFrontEnemy(out BattleEnemy enemy)
+        {
+            for (int i = enemies.Count - 1; i >= 0; i--)
+            {
+                if (enemies[i].Health.IsAlive)
+                {
+                    enemy = enemies[i];
+                    return true;
+                }
+            }
+
+            enemy = null;
+            return false;
         }
         
         #endregion

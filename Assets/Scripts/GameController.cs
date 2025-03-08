@@ -1,15 +1,12 @@
 using System;
 using Fantazee.Audio;
 using Fantazee.Battle;
-using Fantazee.Battle.Environments;
 using Fantazee.Characters;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
-using FMODUnity;
 using Fsi.Gameplay;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace Fantazee
@@ -53,7 +50,6 @@ namespace Fantazee
         protected override void Awake()
         {
             base.Awake();
-            gameInstance.RandomizeSeed();
             gameInstance = GameInstance.Defaults;
             
             input = new FsiInput();

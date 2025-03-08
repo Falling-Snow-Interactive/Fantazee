@@ -1,7 +1,5 @@
 using System;
-using Fantazee.Battle.Settings;
-using Fantazee.Scores;
-using Fantazee.Scores.Information;
+using Fantazee.Scores.Instance;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui.Entries
@@ -11,28 +9,14 @@ namespace Fantazee.Shop.Ui.Entries
         private Action<ScoreShopEntry> onSelect;
         
         [SerializeField]
-        private ScoreType score;
-        public ScoreType Score
-        {
-            get => score;
-            set => score = value;
-        }
-
-        [SerializeReference]
-        private ScoreInformation information;
-        public ScoreInformation Information => information;
+        private ScoreInstance score;
+        public ScoreInstance Score => score;
         
-        public void Initialize(ScoreType score, Action<ScoreShopEntry> onSelect)
+        public void Initialize(ScoreInstance score, Action<ScoreShopEntry> onSelect)
         {
             this.onSelect = onSelect;
             this.score = score;
-
-            if (BattleSettings.Settings.ScoreInformation.TryGetInformation(score, out information))
-            {
-                ShowEntry(information.LocName.GetLocalizedString(), 
-                          information.LocDesc.GetLocalizedString(),
-                          information.Cost);
-            }
+            ShowEntry(score.Data.Name, score.Data.Description, score.Data.Cost);
         }
         
         public override void OnEntrySelected()

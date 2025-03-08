@@ -4,11 +4,11 @@ using Fantazee.Characters;
 using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Relics;
-using Fantazee.Relics.Data;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Instance
 {
@@ -32,13 +32,13 @@ namespace Fantazee.Instance
         [Header("Scores")]
         
         [SerializeField]
-        private ScoreTracker scoreTracker;
-        public ScoreTracker ScoreTracker => scoreTracker;
+        private Scoresheet scoresheet;
+        public Scoresheet Scoresheet => scoresheet;
         
         [Header("Dice")]
         
         [SerializeField]
-        private List<Die> dice; // TODO - For some reason this is getting cleared when the game exits - KD
+        private List<Die> dice;
         public List<Die> Dice => dice;
 
         [SerializeField]
@@ -58,24 +58,31 @@ namespace Fantazee.Instance
             
             health = new Health(data.MaxHealth);
             wallet = new Wallet(data.Wallet);
-            scoreTracker = new ScoreTracker(data);
-            dice = Die.DefaultDice(6);
+            scoresheet = new Scoresheet(data.Scores, data.Fantazee);
+            dice = Die.DefaultDice(5);
             
             relics = new List<RelicInstance>();
             RelicInstance relic = RelicFactory.Create(data.Relic, this);
-            relics.Add(relic);
+            AddRelic(relic);
         }
 
         public void AddRelic(RelicInstance relic)
         {
+            relic.Enable();
             relics.Add(relic);
+        }
+
+        public void RemoveRelic(RelicInstance relic)
+        {
+            relic.Disable();
+            relics.Remove(relic);
         }
 
         public void Clear()
         {
-            foreach (RelicInstance relic in relics)
+            while (relics.Count > 0)
             {
-                relic.Clear();
+                RemoveRelic(relics[0]);
             }
         }
     }
