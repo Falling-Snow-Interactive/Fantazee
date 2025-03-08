@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Shop_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Shop_SCN.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/SpellScoreScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/SpellScoreScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Battle_CTRL.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Battle_CTRL.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle/Environments/Wood_00_ENV.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle/Environments/Wood_00_ENV.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,19 +235,6 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpellTooltip.cs</url>
-          <line>37</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpellTooltip.cs" containingFunctionPresentation="Method 'FillTooltip'">
-            <startOffsets>
-              <option value="865" />
-            </startOffsets>
-            <endOffsets>
-              <option value="904" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs</url>
           <line>256</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" containingFunctionPresentation="Method 'SelectScoreEntry'">
@@ -257,43 +248,17 @@
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs</url>
-          <line>61</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs" containingFunctionPresentation="Constructor 'CharacterInstance'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Relics/Instance/LuckyRelicInstance.cs</url>
+          <line>13</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/LuckyRelicInstance.cs" containingFunctionPresentation="Method 'Enable'">
             <startOffsets>
-              <option value="1577" />
+              <option value="333" />
             </startOffsets>
             <endOffsets>
-              <option value="1603" />
+              <option value="351" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dice/Die.cs</url>
-          <line>72</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dice/Die.cs" containingFunctionPresentation="Method 'DefaultDice'">
-            <startOffsets>
-              <option value="1726" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1749" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntry.cs</url>
-          <line>83</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntry.cs" containingFunctionPresentation="Method 'UpdateVisuals'">
-            <startOffsets>
-              <option value="2123" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2155" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="46" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

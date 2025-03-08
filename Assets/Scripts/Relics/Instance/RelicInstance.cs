@@ -20,6 +20,7 @@ namespace Fantazee.Relics.Instance
         public RelicInstance(RelicData data, CharacterInstance character)
         {
             this.data = data;
+            this.character = character;
             Debug.Log($"Relic: Created {data.name}");
         }
 
