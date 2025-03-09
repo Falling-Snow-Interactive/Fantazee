@@ -2,7 +2,6 @@ using Fantazee.Maps.Nodes;
 using Fantazee.Maps.Settings;
 using Shapes;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Fantazee.Maps
 {
@@ -45,16 +44,16 @@ namespace Fantazee.Maps
                 // Draw.Color = Color.black;
                 foreach (Node node in map.Nodes)
                 {
-                    Draw.Ring(node.transform.position, Color.black);
+                    Draw.Ring(node.Point.value, Color.black);
                 }
                 
                 foreach (Node node in map.Nodes)
                 {
-                    foreach (Node connection in node.Next)
+                    foreach (int connection in node.Next)
                     {
                         Draw.Thickness = lineThickness + outlineThickness;
                         // Draw.Color = Color.black;
-                        Draw.Line(node.transform.position, connection.transform.position, Color.black);
+                        // Draw.Line(node.Point.value, connection.Point.value, Color.black);
                         
                         // Draw.Thickness = lineThickness;
                         // Draw.Color = Color.white;
@@ -67,10 +66,10 @@ namespace Fantazee.Maps
                 // Draw.Color = Color.white;
                 foreach (Node node in map.Nodes)
                 {
-                    if (MapSettings.Settings.NodeInformation.TryGetInformation(node.NodeType, out var info))
+                    if (MapSettings.Settings.NodeInformation.TryGetInformation(node.Type, out var info))
                     {
                         // Draw.Color = info.Color;
-                        Draw.Disc(node.transform.position, info.Color);
+                        Draw.Disc(node.Point.value, info.Color);
                     }
                 }
             }

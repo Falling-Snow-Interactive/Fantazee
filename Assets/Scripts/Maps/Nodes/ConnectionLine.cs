@@ -34,7 +34,7 @@ namespace Fantazee.Maps.Nodes
 
         public void SetLine(Node start, Node end)
         {
-            Vector3 root = start.transform.position;
+            Vector3 root = start.Point.value;
 
             Vector3Spline spline = new(start.Point, end.Point)
                                    {

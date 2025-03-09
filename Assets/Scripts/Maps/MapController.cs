@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using Fantazee.Audio;
 using Fantazee.Battle.Characters;
@@ -9,6 +10,8 @@ using Fantazee.Maps.Nodes;
 using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay;
+using Fsi.Spline;
+using Fsi.Spline.Vectors;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
@@ -33,6 +36,14 @@ namespace Fantazee.Maps
             private InputAction selectAction;
 
             private bool canInteract = false;
+            
+            [Header("Prefabs")]
+            
+            [SerializeField]
+            private NodeObject nodeObjectPrefab;
+            
+            [SerializeField]
+            private ConnectionLine connectionLinePrefab;
 
             [Header("Animation")]
 
@@ -42,13 +53,7 @@ namespace Fantazee.Maps
             private float moveTime = 1f;
             
             [SerializeField]
-            private AnimationCurve moveCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-
-            [SerializeField]
-            private Vector3 moveRotPunch;
-            
-            [SerializeField]
-            private AnimationCurve moveRotPunchCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+            private Ease moveEase = Ease.Linear;
             
             [Header("Audio")]
 
@@ -84,6 +89,8 @@ namespace Fantazee.Maps
                 selectAction = selectActionRef.action;
 
                 selectAction.performed += ctx => OnSelectAction();
+
+                BuildMap();
                 
                 footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
             }
@@ -111,7 +118,7 @@ namespace Fantazee.Maps
                 }
 
                 player = Instantiate(GameInstance.Current.Character.Data.Visuals, transform);
-                player.transform.position = node.transform.position;
+                player.transform.position = node.Point.value;
                 canInteract = false;
                 
                 RuntimeManager.PlayOneShot(mapStartSfx);
@@ -122,10 +129,26 @@ namespace Fantazee.Maps
                     MusicController.Instance.PlayMusic(info.MapMusicId);
                 }
                 
-                Debug.Log($"Map - Current Node: {node.name}");
+                Debug.Log($"Map - Current Node: {node.Point}");
                 Debug.Log($"Map - Player to {player.transform.position}");
                 Debug.Log("Map - Ready");
                 GameController.Instance.MapReady();
+            }
+
+            private void BuildMap()
+            {
+                GameObject mapVisuals = new("MapVisuals");
+                GameObject nodeContainer = new("NodeContainer");
+                GameObject lineContainer = new("LineContainer");
+
+                nodeContainer.transform.SetParent(mapVisuals.transform);
+                lineContainer.transform.SetParent(mapVisuals.transform);
+                
+                foreach (Node node in map.Nodes)
+                {
+                    NodeObject n = Instantiate(nodeObjectPrefab, nodeContainer.transform);
+                    n.Initialize(node);
+                }
             }
 
             public void StartMap()
@@ -154,21 +177,21 @@ namespace Fantazee.Maps
                     Ray ray = camera.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
                     if (Physics.Raycast(ray, out RaycastHit hit))
                     {
-                        if (hit.collider.TryGetComponent(out Node node))
+                        if (hit.collider.TryGetComponent(out NodeObject nodeObject))
                         {
                             RuntimeManager.PlayOneShot(nodeSelectSfxRef);
                             Node currentNode = map.Nodes[Map.Node];
-                            if (currentNode == node)
-                            {
-                                return;
-                            }
+                            // if (currentNode == node)
+                            // {
+                            //     return;
+                            // }
+                            //
+                            // if (!currentNode.Next.Contains(node))
+                            // {
+                            //     return;
+                            // }
 
-                            if (!currentNode.Next.Contains(node))
-                            {
-                                return;
-                            }
-
-                            MoveToNode(node);
+                            MoveToNode(nodeObject.Node);
                         }
                     }
                 }
@@ -176,27 +199,42 @@ namespace Fantazee.Maps
 
             private void MoveToNode(Node node)
             {
-                Debug.Log($"Map - Move to {node.name}", node.gameObject);
+                Debug.Log($"Map - Move to {node.Point.value}");
                 
                 canInteract = false;
+                StartCoroutine(MoveSequence(node));
+            }
 
-                Sequence sequence = DOTween.Sequence();
+            private IEnumerator MoveSequence(Node node)
+            {
+                int curr = GameInstance.Current.Map.Node;
+                Node currentNode = map.Nodes[curr];
+                
+                Vector3Spline spline = new(currentNode.Point, node.Point)
+                                       {
+                                           closed = false,
+                                           curveType = CurveType.Bezier,
+                                       };
                 
                 footstepsSfx.start();
-                sequence.Insert(0, player.transform.DOMove(node.transform.position, moveTime)
-                                         .SetEase(moveCurve)
-                                         .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable));
-                
-                sequence.Insert(0, player.transform.DORotate(moveRotPunch, moveTime).SetEase(moveRotPunchCurve));
-                sequence.AppendInterval(0.5f);
+                float time = 0;
+                float moveTime = 1f;
+                while (true)
+                {
+                    float t = time / moveTime;
+                    player.transform.position = spline.Evaluate(t).value;
+                    
+                    time += Time.deltaTime;
+                    if (time > moveTime)
+                    {
+                        break;
+                    }
 
-                sequence.OnComplete(() =>
-                                    {
-                                        footstepsSfx.stop(STOP_MODE.IMMEDIATE);
-                                        OnFinishMoving(node);
-                                    });
-                
-                sequence.Play();
+                    yield return null;
+                }
+                player.transform.position = spline.Evaluate(1).value;
+                footstepsSfx.stop(STOP_MODE.IMMEDIATE);
+                OnFinishMoving(node);
             }
 
             private void OnFinishMoving(Node node)
@@ -204,10 +242,10 @@ namespace Fantazee.Maps
                 Debug.Log($"Map - Finished move");
                 canInteract = true;
                 Map.Node = map.Nodes.IndexOf(node);
-                Debug.Log($"Map - Node {node.NodeType} [{Map.Node}]");
+                Debug.Log($"Map - Node {node.Type} [{Map.Node}]");
                 RuntimeManager.PlayOneShot(mapEndSfx);
                 
-                switch (node.NodeType)
+                switch (node.Type)
                 {
                     case NodeType.None:
                         break;
@@ -236,8 +274,8 @@ namespace Fantazee.Maps
             private void AdvanceToNextMap()
             {
                 Debug.Log("Map - Advance to next map");
-                player.transform.position = map.Nodes[^1].transform.position;
-                player.transform.DOMove(map.Nodes[^1].transform.position + Vector3.right * 10f, 0.5f)
+                player.transform.position = map.Nodes[^1].Point.value;
+                player.transform.DOMove(map.Nodes[^1].Point.value + Vector3.right * 10f, 0.5f)
                       .SetEase(Ease.InSine)
                       .SetDelay(0.5f)
                       .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
@@ -249,8 +287,8 @@ namespace Fantazee.Maps
 
             private void StartNewMap()
             {
-                player.transform.position = map.Nodes[0].transform.position + Vector3.right * -10;
-                player.transform.DOLocalMoveX(map.Nodes[0].transform.position.x, 0.5f)
+                player.transform.position = map.Nodes[0].Point.value + Vector3.right * -10;
+                player.transform.DOLocalMoveX(map.Nodes[0].Point.value.x, 0.5f)
                       .SetEase(Ease.InSine)
                       .SetDelay(0.5f)
                       .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
