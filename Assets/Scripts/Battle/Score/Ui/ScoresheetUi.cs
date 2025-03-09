@@ -6,7 +6,6 @@ using Fantazee.Environments.Settings;
 using Fantazee.Scores.Bonus.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui

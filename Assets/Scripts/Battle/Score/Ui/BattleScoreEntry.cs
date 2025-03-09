@@ -78,6 +78,11 @@ namespace Fantazee.Battle.Score.Ui
 
         public void ShowPreview()
         {
+            if (isFinalized)
+            {
+                return;
+            }
+            
             previewText.gameObject.SetActive(true);
             int score = battleScore.Calculate(GameInstance.Current.Character.Dice);
             previewText.text = score.ToString();
