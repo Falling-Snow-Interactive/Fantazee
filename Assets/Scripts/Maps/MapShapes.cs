@@ -50,7 +50,7 @@ namespace Fantazee.Maps
                 
                 foreach (Node node in map.Nodes)
                 {
-                    foreach (Node connection in node.Connections)
+                    foreach (Node connection in node.Next)
                     {
                         Draw.Thickness = lineThickness + outlineThickness;
                         // Draw.Color = Color.black;

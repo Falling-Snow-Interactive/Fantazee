@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map/Connection_PFB.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map/Connection_PFB.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map/Node_PFB.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map/Node_PFB.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_01_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_01_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/MapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/MapController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/MapShapes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/MapShapes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/ConnectionLine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/ConnectionLine.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Node.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +38,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Help/Ui/HelpScoreEntry.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Score/FantazeeBattleScore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Editor/NodeEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Relics/Ui/RelicEntryUi.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scores/Data/FantazeeScoreData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scores/Instance/FantazeeScoreInstance.cs" root0="FORCE_HIGHLIGHTING" />
@@ -58,21 +62,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Map",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/20250306/macOS/Fantazee-20250306.app/Contents/MacOS/Fantazee" />
@@ -111,13 +115,15 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="50801">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="50801" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -141,7 +147,7 @@
       <workItem from="1740699020399" duration="81310000" />
       <workItem from="1741097838497" duration="44765000" />
       <workItem from="1741259729854" duration="2831000" />
-      <workItem from="1741487438493" duration="394000" />
+      <workItem from="1741487438493" duration="4720000" />
     </task>
     <servers />
   </component>
@@ -179,10 +185,10 @@
           <line>205</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Maps/MapController.cs" containingFunctionPresentation="Method 'OnFinishMoving'">
             <startOffsets>
-              <option value="6614" />
+              <option value="6607" />
             </startOffsets>
             <endOffsets>
-              <option value="6649" />
+              <option value="6642" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="17" />
@@ -192,19 +198,6 @@
           <line>51</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreboardUi.cs" containingFunctionPresentation="Method 'Initialize'" />
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Node.cs</url>
-          <line>44</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Node.cs" containingFunctionPresentation="Method 'OnValidate'">
-            <startOffsets>
-              <option value="1048" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1143" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/ScoreScoreScreen.cs</url>

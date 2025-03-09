@@ -163,7 +163,7 @@ namespace Fantazee.Maps
                                 return;
                             }
 
-                            if (!currentNode.Connections.Contains(node))
+                            if (!currentNode.Next.Contains(node))
                             {
                                 return;
                             }
