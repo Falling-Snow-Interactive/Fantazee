@@ -116,7 +116,7 @@ namespace Fantazee.Maps
                     node = map.Nodes[^1];
                 }
 
-                player = Instantiate(GameInstance.Current.Character.Data.Visuals, transform);
+                player = Instantiate(GameInstance.Current.Character.Data.Visuals, playerSocket);
                 player.transform.position = node.Point.value;
                 canInteract = false;
                 
@@ -145,8 +145,17 @@ namespace Fantazee.Maps
                 
                 foreach (Node node in map.Nodes)
                 {
-                    NodeObject n = Instantiate(nodeObjectPrefab, nodeContainer.transform);
-                    n.Initialize(node);
+                    NodeObject nodeObject = Instantiate(nodeObjectPrefab, nodeContainer.transform);
+                    nodeObject.Initialize(node);
+
+                    foreach (string next in node.Next)
+                    {
+                        if(map.TryGetNode(next, out Node n))
+                        {
+                            ConnectionLine connectionLine = Instantiate(connectionLinePrefab, lineContainer.transform);
+                            connectionLine.SetLine(node.Point, n.Point);
+                        }
+                    }
                 }
             }
 
@@ -180,17 +189,23 @@ namespace Fantazee.Maps
                         {
                             RuntimeManager.PlayOneShot(nodeSelectSfxRef);
                             Node currentNode = map.Nodes[Map.Node];
-                            // if (currentNode == node)
-                            // {
-                            //     return;
-                            // }
-                            //
-                            // if (!currentNode.Next.Contains(node))
-                            // {
-                            //     return;
-                            // }
+                            bool valid = false;
+                            foreach (string next in currentNode.Next)
+                            {
+                                if (map.TryGetNode(next, out Node test))
+                                {
+                                    if (test == nodeObject.Node)
+                                    {
+                                        valid = true;
+                                        break;
+                                    }
+                                }
+                            }
 
-                            MoveToNode(nodeObject.Node);
+                            if (valid)
+                            {
+                                MoveToNode(nodeObject.Node);
+                            }
                         }
                     }
                 }
@@ -219,6 +234,7 @@ namespace Fantazee.Maps
                                     }, 
                            1, 
                            moveTime)
+                       .SetEase(moveEase)
                        .OnPlay(() =>
                                {
                                    footstepsSfx.start();

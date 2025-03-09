@@ -13,6 +13,9 @@ namespace Fantazee.Maps.Nodes
         
         [SerializeField] 
         private Disc disc;
+        
+        [SerializeField]
+        private SpriteRenderer spriteRenderer;
 
         public void Initialize(Node node)
         {
@@ -23,6 +26,7 @@ namespace Fantazee.Maps.Nodes
             if (MapSettings.Settings.NodeInformation.TryGetInformation(node.Type, out NodeInformation info))
             {
                 disc.Color = info.Color;
+                spriteRenderer.sprite = info.Sprite;
             }
         }
     }

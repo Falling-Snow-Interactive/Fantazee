@@ -22,10 +22,10 @@ namespace Fantazee.Maps.Nodes
             set => type = value; 
         }
         
-        [SerializeReference]
-        private List<int> next;
-        public List<int> Next => next;
-
+        [SerializeField]
+        private List<string> next;
+        public List<string> Next => next;
+        
         public override string ToString()
         {
             string s = $"{point.value} - Type: {type}";

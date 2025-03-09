@@ -17,38 +17,19 @@ namespace Fantazee.Maps.Nodes
         [SerializeField]
         private Polyline polyline;
 
-        public void SetLine(Vector3 localEnd)
+        public void SetLine(Vector3Point start, Vector3Point end)
         {
-            if (line)
-            {
-                line.Start = Vector3.zero;
-                line.End = localEnd;
-            }
-
-            if (outline)
-            {
-                outline.Start = Vector3.zero;
-                outline.End = localEnd;
-            }
-        }
-
-        public void SetLine(Node start, Node end)
-        {
-            Vector3 root = start.Point.value;
-
-            Vector3Spline spline = new(start.Point, end.Point)
+            Vector3Spline spline = new(start, end)
                                    {
                                        curveType = CurveType.Bezier
                                    };
             
             List<Vector3Point> points = spline.GetPoints(20);
-            List<Vector3> positions = new();
+            polyline.points.Clear();
             foreach (Vector3Point point in points)
             {
-                positions.Add(point.value - root); // Need to offset it to local positions;
+                polyline.AddPoint(point.value);
             }
-
-            polyline.SetPoints(positions);
         }
     }
 }

@@ -19,6 +19,8 @@ namespace Fantazee.Maps
         private const string PrefPrefix = "Map";
         private string LineThicknessPref => $"{PrefPrefix}.{nameof(lineThickness)}";
         private string NodeRadiusPref => $"{PrefPrefix}.{nameof(nodeRadius)}";
+
+        private Map map;
         
         private float lineThickness = 5f;
         private float nodeRadius = 0.1f;
@@ -32,6 +34,8 @@ namespace Fantazee.Maps
 
             if (target is Map map)
             {
+                this.map = map;
+                
                 root.Add(new Spacer());
                 VisualElement inspector = new();
                 InspectorElement.FillDefaultInspector(inspector, serializedObject, this);
@@ -68,7 +72,7 @@ namespace Fantazee.Maps
                                              Node from = nodes[selectedFrom];
                                              Node to = nodes[selectedTo];
 
-                                             from.Next.Add(selectedTo);
+                                             from.Next.Add(to.name);
                                              
                                              Debug.Log($"Map: Connected {from} - {to}");
                                              serializedObject.ApplyModifiedProperties();
@@ -166,23 +170,26 @@ namespace Fantazee.Maps
 
         private void DrawConnections(Node node, List<Node> nodes)
         {
-            foreach (int c in node.Next)
+            foreach (string c in node.Next)
             {
-                Handles.color = Color.grey;
-                Handles.DrawLine(node.Point.value, nodes[c].Point.value, lineThickness);
-                
-                Handles.color = Color.black;
-                Vector3Spline spline = new(node.Point, nodes[c].Point)
-                                       {
-                                           closed = false,
-                                           curveType = CurveType.Bezier
-                                       };
-                List<Vector3> points = spline.GetPointsValue(10);
-                for (int i = 0; i < points.Count - 1; i++)
+                if (map.TryGetNode(c, out Node n))
                 {
-                    Vector3 p0 = points[i];
-                    Vector3 p1 = points[i + 1];
-                    Handles.DrawLine(p0, p1, lineThickness);
+                    Handles.color = Color.grey;
+                    Handles.DrawLine(node.Point.value, n.Point.value, lineThickness);
+
+                    Handles.color = Color.black;
+                    Vector3Spline spline = new(node.Point, n.Point)
+                                           {
+                                               closed = false,
+                                               curveType = CurveType.Bezier
+                                           };
+                    List<Vector3> points = spline.GetPointsValue(10);
+                    for (int i = 0; i < points.Count - 1; i++)
+                    {
+                        Vector3 p0 = points[i];
+                        Vector3 p1 = points[i + 1];
+                        Handles.DrawLine(p0, p1, lineThickness);
+                    }
                 }
             }
         }

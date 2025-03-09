@@ -252,13 +252,13 @@ MonoBehaviour:
   thicknessSpace: 0
   endCaps: 2
   matchDashSpacingToSize: 1
-  dashed: 0
+  dashed: 1
   dashStyle:
     type: 0
     space: -1
     snap: 2
-    size: 4
-    spacing: 4
+    size: 2
+    spacing: 2
     offset: 0
     shapeModifier: 1
 --- !u!33 &3743880010348629214
@@ -394,10 +394,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb1cf2193571cf41b51b8f61d4c9c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blendMode: 1
+  blendMode: 3
   scaleMode: 0
-  color: {r: 0, g: 0, b: 0, a: 1}
-  detailLevel: 2
+  color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  detailLevel: 0
   culling: 0
   boundsPadding: 0
   renderQueue: -1
@@ -423,7 +423,7 @@ MonoBehaviour:
   geometry: 0
   joins: 2
   closed: 0
-  thickness: 0.125
+  thickness: 0.1
   thicknessSpace: 0
 --- !u!33 &3533444466729007301
 MeshFilter:
@@ -456,8 +456,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ed6c8840b3aa56409d5cddba935234b, type: 2}
-  - {fileID: 2100000, guid: b1a4091a668c75a498eedfe1de21e60f, type: 2}
+  - {fileID: 2100000, guid: 787c21d2aa8532343bd3af2d69b91700, type: 2}
+  - {fileID: 2100000, guid: e2d29838b8046454faf27b9664664412, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
