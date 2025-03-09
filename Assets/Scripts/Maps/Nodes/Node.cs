@@ -61,7 +61,8 @@ namespace Fantazee.Maps.Nodes
                 {
                     if (connectionLines.Count > i)
                     {
-                        connectionLines[i].SetLine(connections[i].transform.position - transform.position);
+                        Vector3 dif = connections[i].transform.position - transform.position;
+                        connectionLines[i].SetLine(dif);
                     }
                 }
 
