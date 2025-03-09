@@ -3,25 +3,12 @@ using Fantazee.Maps.Nodes.Information;
 using Fantazee.Maps.Settings;
 using Fsi.Spline.Vectors;
 using Shapes;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Maps.Nodes
 {
     public class Node : MonoBehaviour
     {
-        [Header("Connections")]
-        
-        [FormerlySerializedAs("connections")]
-        [SerializeField]
-        private List<Node> next;
-        public List<Node> Next => next;
-        
-        [SerializeField]
-        private List<Node> previous;
-        public List<Node> Previous => previous;
-
         [SerializeField]
         private NodeType nodeType;
         public NodeType NodeType 
@@ -29,6 +16,18 @@ namespace Fantazee.Maps.Nodes
             get => nodeType; 
             set => nodeType = value; 
         }
+        
+        [Header("Connections")]
+        
+        [SerializeField]
+        private List<Node> next;
+        public List<Node> Next => next;
+        
+        [SerializeField]
+        private List<Node> previous;
+        public List<Node> Previous => previous;
+        
+        [Header("Visuals")]
 
         [SerializeField]
         private float radius;
@@ -44,9 +43,6 @@ namespace Fantazee.Maps.Nodes
         
         [SerializeField]
         private SpriteRenderer spriteRenderer;
-        
-        [SerializeField]
-        private List<ConnectionLine> connectionLines;
         
         [SerializeField]
         private Transform connectionsContainer;
@@ -82,26 +78,6 @@ namespace Fantazee.Maps.Nodes
         {
             NodeType = nodeType;
             point.value = transform.position;
-
-            int attempts = 50;
-            while (connectionLines.Count < next.Count && attempts > 0)
-            {
-                attempts--;
-                ConnectionLine connectionLine = PrefabUtility.InstantiatePrefab(connectionLinePrefab, connectionsContainer) as ConnectionLine;
-                connectionLines.Add(connectionLine);
-            }
-
-            attempts = 50;
-            while (connectionLines.Count > next.Count && attempts > 0)
-            {
-                attempts--;
-                ConnectionLine connectionLine = connectionLines[^1];
-                connectionLines.Remove(connectionLine);
-                if (connectionLine)
-                {
-                    Destroy(connectionLine.gameObject);
-                }
-            }
             
             if (MapSettings.Settings.NodeInformation.TryGetInformation(NodeType, out NodeInformation info))
             {
@@ -118,14 +94,6 @@ namespace Fantazee.Maps.Nodes
                     outline.Radius = radius + thickness/4f;
                 }
 
-                for (int i = 0; i < next.Count; i++)
-                {
-                    if (connectionLines.Count > i)
-                    {
-                        connectionLines[i].SetLine(this, next[i]);
-                    }
-                }
-
                 if (spriteRenderer)
                 {
                     spriteRenderer.sprite = info.Sprite;
@@ -140,11 +108,6 @@ namespace Fantazee.Maps.Nodes
             {
                 Gizmos.DrawLine(transform.position, connection.transform.position);
             }
-            
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, point.tangentOut);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(transform.position, point.tangentIn);
         }
     }
 }
