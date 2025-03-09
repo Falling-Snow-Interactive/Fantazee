@@ -43,12 +43,6 @@ namespace Fantazee.Maps.Nodes
         
         [SerializeField]
         private SpriteRenderer spriteRenderer;
-        
-        [SerializeField]
-        private Transform connectionsContainer;
-        
-        [SerializeField]
-        private ConnectionLine connectionLinePrefab;
 
         [SerializeField]
         private Vector3Point point;

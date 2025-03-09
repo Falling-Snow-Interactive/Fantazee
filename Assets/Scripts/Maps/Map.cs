@@ -11,6 +11,14 @@ namespace Fantazee.Maps
         private List<Node> nodes = new();
         public List<Node> Nodes => nodes;
 
+        [Header("Connections")]
+
+        [SerializeField]
+        private ConnectionLine linePrefab;
+
+        [SerializeField]
+        private Transform lineContainer;
+
         private void OnValidate()
         {
             Node[] array = gameObject.GetComponentsInChildren<Node>();
