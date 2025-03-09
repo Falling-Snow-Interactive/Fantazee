@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using DG.Tweening;
 using Fantazee.Audio;
 using Fantazee.Battle.Characters;
@@ -202,39 +201,35 @@ namespace Fantazee.Maps
                 Debug.Log($"Map - Move to {node.Point.value}");
                 
                 canInteract = false;
-                StartCoroutine(MoveSequence(node));
-            }
 
-            private IEnumerator MoveSequence(Node node)
-            {
                 int curr = GameInstance.Current.Map.Node;
                 Node currentNode = map.Nodes[curr];
-                
+
                 Vector3Spline spline = new(currentNode.Point, node.Point)
                                        {
                                            closed = false,
                                            curveType = CurveType.Bezier,
                                        };
-                
-                footstepsSfx.start();
-                float time = 0;
-                float moveTime = 1f;
-                while (true)
-                {
-                    float t = time / moveTime;
-                    player.transform.position = spline.Evaluate(t).value;
-                    
-                    time += Time.deltaTime;
-                    if (time > moveTime)
-                    {
-                        break;
-                    }
 
-                    yield return null;
-                }
-                player.transform.position = spline.Evaluate(1).value;
-                footstepsSfx.stop(STOP_MODE.IMMEDIATE);
-                OnFinishMoving(node);
+                float t = 0;
+                DOTween.To(() => t, x =>
+                                    {
+                                        t = x;
+                                        player.transform.position = spline.Evaluate(t).value;
+                                    }, 
+                           1, 
+                           moveTime)
+                       .OnPlay(() =>
+                               {
+                                   footstepsSfx.start();
+                               })
+                       .OnComplete(() =>
+                                   {
+                                       player.transform.position = spline.Evaluate(1).value;
+                                       footstepsSfx.stop(STOP_MODE.IMMEDIATE);
+                                       OnFinishMoving(node);
+                                   });
+
             }
 
             private void OnFinishMoving(Node node)

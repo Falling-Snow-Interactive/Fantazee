@@ -25,10 +25,6 @@ namespace Fantazee.Maps.Nodes
         [SerializeReference]
         private List<int> next;
         public List<int> Next => next;
-        
-        [SerializeField]
-        private List<int> previous;
-        public List<int> Previous => previous;
 
         public override string ToString()
         {

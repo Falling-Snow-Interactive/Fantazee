@@ -69,7 +69,6 @@ namespace Fantazee.Maps
                                              Node to = nodes[selectedTo];
 
                                              from.Next.Add(selectedTo);
-                                             to.Previous.Add(selectedFrom);
                                              
                                              Debug.Log($"Map: Connected {from} - {to}");
                                              serializedObject.ApplyModifiedProperties();
