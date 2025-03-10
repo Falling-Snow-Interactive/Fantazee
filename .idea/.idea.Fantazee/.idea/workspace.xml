@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_00_Dagger/Spell_00_Dagger.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_00_Dagger/Spell_00_Dagger.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_01_Pierce/Spell_01_Pierce.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_01_Pierce/Spell_01_Pierce.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_02_Shield.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_02_Shield.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_03_Heal/Spell_03_Heal.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_03_Heal/Spell_03_Heal.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_04_Fireball/Spell_04_Fireball.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_04_Fireball/Spell_04_Fireball.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +41,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Help/Ui/HelpScoreEntry.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Score/FantazeeBattleScore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Instance/CharacterInstance.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maps/Nodes/Editor/NodeEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Relics/Ui/RelicEntryUi.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scores/Data/FantazeeScoreData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scores/Instance/FantazeeScoreInstance.cs" root0="FORCE_HIGHLIGHTING" />
@@ -43,6 +51,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/SpellScoreScreen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/Data/FireballSpellData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/Data/HealSpellData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/Data/OverflowSpellData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.fallingsnowinteractive.gameplay/Runtime/Scripts/Healths/IDamageable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../_Packages/fsi.gameplay/Runtime/Scripts/Healths/IDamageable.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -61,7 +72,7 @@
     "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Spell",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -109,15 +120,13 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="72664">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="72664" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list>
-          <MonoRuntime />
-        </list>
+        <list />
       </option>
       <option name="selectedOptions">
         <list />
@@ -163,13 +172,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs</url>
-          <line>132</line>
+          <line>135</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" containingFunctionPresentation="Method 'Damage'">
             <startOffsets>
-              <option value="3330" />
+              <option value="3385" />
             </startOffsets>
             <endOffsets>
-              <option value="3342" />
+              <option value="3397" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="14" />

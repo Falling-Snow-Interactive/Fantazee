@@ -118,12 +118,15 @@ namespace Fantazee.Battle.Characters
             shield.Clear();
         }
         
-        public void Damage(int damage)
+        public int Damage(int damage)
         {
             Debug.Log($"Enemy: Damage {damage}");
+
+            int total = 0;
             
             // shield first
             int dealt = shield.Remove(damage);
+            total += dealt;
             if (dealt > 0)
             {
                 damageNumbers.AddShield(dealt);
@@ -133,6 +136,7 @@ namespace Fantazee.Battle.Characters
             if (rem > 0)
             {
                 int damaged = Health.Damage(rem);
+                total += damaged;
                 damageNumbers.AddDamage(damaged);
             }
 
@@ -148,6 +152,8 @@ namespace Fantazee.Battle.Characters
                                               });
                             }
                         });
+
+            return total;
         }
         
         public void Heal(int heal)

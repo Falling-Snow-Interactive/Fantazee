@@ -30,8 +30,13 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  icon: {fileID: 21300000, guid: 9ae524608c4774755993cc7c2c0a8213, type: 3}
+  icon: {fileID: 1251935968, guid: 73bfa086f10b6451eb86261f43b7a49e, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
+  cost:
+    name: 'Gold: 5'
+    type: 1
+    amount: 5
+  castVfx: {fileID: 0}
   castSfx:
     Guid:
       Data1: -1424322623
@@ -39,10 +44,6 @@ MonoBehaviour:
       Data3: -19947625
       Data4: -1348847300
     Path: event:/Spells/Spell_02_Shield
-  cost:
-    name: 'Gold: 5'
-    type: 1
-    amount: 5
   references:
     version: 2
     RefIds: []
