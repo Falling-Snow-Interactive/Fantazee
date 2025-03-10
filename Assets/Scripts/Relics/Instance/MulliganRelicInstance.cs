@@ -66,7 +66,7 @@ namespace Fantazee.Relics.Instance
             firstRoll = false;
             if (BattleController.Instance.LockedDice.Count == 0)
             {
-                Debug.Log($"Mulligan: Activated: {BattleController.Instance.RemainingRolls} -> {BattleController.Instance.RemainingRolls + 1}");
+                Debug.Log($"Mulligan: Activated");
                 BattleController.Instance.RemainingRolls++;
                 Activate();
             }

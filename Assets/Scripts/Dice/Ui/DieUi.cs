@@ -1,13 +1,11 @@
 using System;
 using DG.Tweening;
 using Fantazee.Battle;
-using Fantazee.Battle.Settings;
 using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -131,13 +129,10 @@ namespace Fantazee.Dice.Ui
 
         public void Initialize(Die d)
         {
-            Debug.Log($"DiceUi - Initialize");
             ResetDice();
             rolling = false;
             Die = d;
             SetImage(Die.Value);
-            
-            
         }
 
         public void Roll(float delay = 0, Action<Die> onRollComplete = null)
