@@ -76,12 +76,27 @@ namespace Fantazee.Spells.Instance
 
                 yield return new WaitUntil(() => ready);
                 int total = damage.Value;
-                // int delt = enemy.Damage(damage.Value);
+                int d = enemy.Damage(damage.Value);
+                int rem = total - d;
+                
                 if (overflowData.HitVfx)
                 {
                     Object.Instantiate(overflowData.HitVfx,
                                        enemy.transform.position + overflowData.OverflowHitOffset,
                                        enemy.transform.rotation);
+                }
+
+                if (rem > 0 && BattleController.Instance.TryGetFrontEnemy(out BattleEnemy front))
+                {
+                    yield return new WaitForSeconds(0.2f);
+                    front.Damage(rem);
+                    
+                    if (overflowData.HitVfx)
+                    {
+                        Object.Instantiate(overflowData.HitVfx,
+                                           front.transform.position + overflowData.OverflowHitOffset,
+                                           front.transform.rotation);
+                    }
                 }
 
                 if (hitSfx.isValid())

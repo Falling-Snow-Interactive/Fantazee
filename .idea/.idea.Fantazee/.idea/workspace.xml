@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_00_Dagger/Spell_00_Dagger.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_00_Dagger/Spell_00_Dagger.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_01_Pierce/Spell_01_Pierce.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_01_Pierce/Spell_01_Pierce.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_02_Shield.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_02_Shield.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_03_Heal/Spell_03_Heal.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_03_Heal/Spell_03_Heal.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_04_Fireball/Spell_04_Fireball.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_04_Fireball/Spell_04_Fireball.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/Char_00_DiceMaster/Char_00_DiceMaster_DAT.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Char_00_DiceMaster/Char_00_DiceMaster_DAT.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Localization/Spells/Spells Shared Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/Spells/Spells Shared Data.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Localization/Spells/Spells_en.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/Spells/Spells_en.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Settings/SpellSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Settings/SpellSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellFactory.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,13 +116,15 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="72664">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="72664" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -253,6 +251,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs</url>
+          <line>73</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs" containingFunctionPresentation="Method 'SetTooltip'">
+            <startOffsets>
+              <option value="1689" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1727" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
