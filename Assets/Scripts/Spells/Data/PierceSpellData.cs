@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
