@@ -25,7 +25,17 @@ namespace Fantazee.Scores.Instance
 
         public override int Calculate(List<Die> dice)
         {
-            throw new System.NotImplementedException();
+            int check = data.Even ? 0 : 1;
+            int sum = 0;
+            foreach (Die d in dice)
+            {
+                if (d.Value % 2 == check)
+                {
+                    sum += d.Value;
+                }
+            }
+
+            return sum;
         }
     }
 }

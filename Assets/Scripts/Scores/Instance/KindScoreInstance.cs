@@ -27,20 +27,44 @@ namespace Fantazee.Scores.Instance
 
         public override int Calculate(List<Die> dice)
         {
-            Dictionary<int, int> dict = DiceToDict(dice);
-            bool isValid = false;
-            int total = 0;
-
-            foreach (KeyValuePair<int, int> kvp in dict)
+            List<int> values = new();
+            foreach (Die d in dice)
             {
-                total += kvp.Key * kvp.Value;
-                if (kvp.Value >= data.Kind)
+                values.Add(d.Value);
+            }
+            
+            values.Sort();
+            values.Reverse();
+
+            int checking = -1;
+            int count = 0;
+
+            foreach (int value in values)
+            {
+                if (checking == -1)
                 {
-                    isValid = true;
+                    checking = value;
+                    count++;
+                    continue;
+                }
+
+                if (checking == value)
+                {
+                    count++;
+
+                    if (count >= data.Kind)
+                    {
+                        return checking * count;
+                    }
+                }
+                else
+                {
+                    count = 1;
+                    checking = value;
                 }
             }
 
-            return isValid ? total : 0;
+            return 0;
         }
     }
 }
