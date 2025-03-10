@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using DG.Tweening;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Settings;
@@ -9,6 +10,7 @@ using FMODUnity;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Fantazee.Shop.Ui.Screens
 {
@@ -118,9 +120,10 @@ namespace Fantazee.Shop.Ui.Screens
                                                                          }));
             sequence.Insert(purchaseInsertTime, scoreEntry.transform.DOMove(mid, settings.PurchaseTime)
                                                           .SetEase(settings.PurchaseEase));
+
+            sequence.Append(scoreEntry.transform.DOPunchScale(Vector3.one * 0.5f, 0.3f, 5, 1f));
             
-            sequence.AppendInterval(0.5f);
-            float returnTime = purchaseInsertTime + settings.PurchaseTime;
+            float returnTime = purchaseInsertTime + settings.PurchaseTime + 1;
             sequence.Insert(returnTime, scoreEntry.transform.DOMove(pos, settings.ReturnTime)
                                       .OnStart(() => swooshSfx.start())
                                       .SetEase(settings.ReturnEase)
