@@ -10,6 +10,7 @@ namespace Fantazee.Spells
         Fireball = 5,
         Overflow = 6,
         ChainLightning = 7,
+        Push = 8,
         
     }
 }
