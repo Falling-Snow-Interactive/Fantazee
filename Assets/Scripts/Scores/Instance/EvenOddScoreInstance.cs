@@ -10,22 +10,22 @@ namespace Fantazee.Scores.Instance
     public class EvenOddScoreInstance : ScoreInstance
     {
         [SerializeReference]
-        private EvenOddScoreData data;
-        public new EvenOddScoreData Data => data;
+        private EvenOddScoreData evenOddData;
+        public EvenOddScoreData EvenOddData => evenOddData;
         
         public EvenOddScoreInstance(EvenOddScoreData data, List<SpellData> spells) : base(data, spells)
         {
-            this.data = data;
+            this.evenOddData = data;
         }
 
         public EvenOddScoreInstance(EvenOddScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
-            this.data = data;
+            this.evenOddData = data;
         }
 
         public override int Calculate(List<Die> dice)
         {
-            int check = data.Even ? 0 : 1;
+            int check = evenOddData.Even ? 0 : 1;
             int sum = 0;
             foreach (Die d in dice)
             {

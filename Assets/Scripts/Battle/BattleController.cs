@@ -154,6 +154,7 @@ namespace Fantazee.Battle
             
             player = Instantiate(GameInstance.Current.Character.Data.BattleCharacter, playerContainer);
             Player.Initialize();
+            remainingRolls = GameInstance.Current.Character.Rolls;
             SetupRelics();
             SetupDice();
             SetupEnemies();

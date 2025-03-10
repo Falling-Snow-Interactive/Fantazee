@@ -12,17 +12,17 @@ namespace Fantazee.Scores.Instance
         [Header("Kind")]
         
         [SerializeReference]
-        private KindScoreData data;
-        public new KindScoreData Data => data;
+        private KindScoreData kindData;
+        public KindScoreData KindData => kindData;
         
         public KindScoreInstance(KindScoreData data, List<SpellData> spells) : base(data, spells)
         {
-            this.data = data;
+            this.kindData = data;
         }
 
         public KindScoreInstance(KindScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
-            this.data = data;
+            this.kindData = data;
         }
 
         public override int Calculate(List<Die> dice)
@@ -52,7 +52,7 @@ namespace Fantazee.Scores.Instance
                 {
                     count++;
 
-                    if (count >= data.Kind)
+                    if (count >= kindData.Kind)
                     {
                         return checking * count;
                     }

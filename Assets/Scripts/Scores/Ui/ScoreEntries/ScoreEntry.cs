@@ -112,11 +112,15 @@ namespace Fantazee.Scores.Ui.ScoreEntries
             switch (score)
             {
                 case NumberScoreInstance n:
-                    diceValues = new List<int>{n.Data.Number, n.Data.Number, n.Data.Number, n.Data.Number, n.Data.Number};
+                    diceValues = new List<int>{n.NumberData.Number, 
+                                                  n.NumberData.Number, 
+                                                  n.NumberData.Number,
+                                                  n.NumberData.Number,
+                                                  n.NumberData.Number};
                     break;
                 case KindScoreInstance k:
                     diceValues = new List<int>();
-                    for (int i = 0; i < k.Data.Kind; i++)
+                    for (int i = 0; i < k.KindData.Kind; i++)
                     {
                         diceValues.Add(6);
                     }
@@ -129,14 +133,14 @@ namespace Fantazee.Scores.Ui.ScoreEntries
                     break;
                 case RunScoreInstance r:
                     diceValues = new List<int>();
-                    for (int i = 0; i < r.Data.Run; i++)
+                    for (int i = 0; i < r.RunData.Run; i++)
                     {
                         diceValues.Add(1 + i);
                     }
 
                     while (diceValues.Count < 5)
                     {
-                        diceValues.Add(Random.Range(1, r.Data.Run));
+                        diceValues.Add(Random.Range(1, r.RunData.Run));
                     }
 
                     break;
@@ -156,10 +160,10 @@ namespace Fantazee.Scores.Ui.ScoreEntries
                 case TwoPairScoreInstance tp:
                     diceValues = new List<int> { 6, 6, 5, 5, Random.Range(1, 5) };
                     break;
-                case EvenOddScoreInstance e when !e.Data.Even:
+                case EvenOddScoreInstance e when !e.EvenOddData.Even:
                     diceValues = new List<int> { 1, 3, 5, 3, 1 };
                     break;
-                case EvenOddScoreInstance e when e.Data.Even:
+                case EvenOddScoreInstance e when e.EvenOddData.Even:
                     diceValues = new List<int> { 2, 4, 6, 4, 2 };
                     break;
                 default:

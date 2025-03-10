@@ -12,17 +12,17 @@ namespace Fantazee.Scores.Instance
         [Header("Run")]
         
         [SerializeReference]
-        private RunScoreData data;
-        public new RunScoreData Data => data;
+        private RunScoreData runData;
+        public RunScoreData RunData => runData;
         
         public RunScoreInstance(RunScoreData data, List<SpellData> spells) : base(data, spells)
         {
-            this.data = data;
+            this.runData = data;
         }
 
         public RunScoreInstance(RunScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
-            this.data = data;
+            this.runData = data;
         }
 
         public override int Calculate(List<Die> dice)
@@ -78,7 +78,7 @@ namespace Fantazee.Scores.Instance
                 score = testScore;
             }
 
-            return run >= data.Run ? score : 0;
+            return run >= runData.Run ? score : 0;
         }
     }
 }

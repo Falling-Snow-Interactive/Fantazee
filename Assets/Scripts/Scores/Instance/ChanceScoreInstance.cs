@@ -14,16 +14,16 @@ namespace Fantazee.Scores.Instance
         [Header("Chance")]
         
         [SerializeReference]
-        private ChanceScoreData data;
+        private ChanceScoreData chanceData;
         
         public ChanceScoreInstance(ChanceScoreData data, List<SpellData> spells) : base(data, spells)
         {
-            this.data = data;
+            this.chanceData = data;
         }
 
         public ChanceScoreInstance(ChanceScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
-            this.data = data;
+            this.chanceData = data;
         }
 
         public override int Calculate(List<Die> dice)

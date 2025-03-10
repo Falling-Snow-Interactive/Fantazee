@@ -16,21 +16,21 @@ namespace Fantazee.Scores.Instance
 
         [Header("Fantazee")]
         [SerializeReference]
-        private FantazeeScoreData data;
+        private FantazeeScoreData fantazeeData;
         
         public FantazeeScoreInstance(FantazeeScoreData data, List<SpellData> spells) : base(data, spells)
         {
-            this.data = data;
+            this.fantazeeData = data;
         }
 
         public FantazeeScoreInstance(FantazeeScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
-            this.data = data;
+            this.fantazeeData = data;
         }
 
         public FantazeeScoreInstance(CharacterScoreData data) : base(data.Score, data.Spells)
         {
-            this.data = data.Score as FantazeeScoreData;
+            this.fantazeeData = data.Score as FantazeeScoreData;
         }
 
         public override int Calculate(List<Die> dice)

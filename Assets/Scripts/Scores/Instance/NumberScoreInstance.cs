@@ -12,17 +12,17 @@ namespace Fantazee.Scores.Instance
         [Header("Number")]
         
         [SerializeReference]
-        private NumberScoreData data;
-        public new NumberScoreData Data => data;
+        private NumberScoreData numberData;
+        public NumberScoreData NumberData => numberData;
         
         public NumberScoreInstance(NumberScoreData data, List<SpellData> spells) : base(data, spells)
         {
-            this.data = data;
+            this.numberData = data;
         }
 
         public NumberScoreInstance(NumberScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
-            this.data = data;
+            this.numberData = data;
         }
 
         public override int Calculate(List<Die> dice)
@@ -30,7 +30,7 @@ namespace Fantazee.Scores.Instance
             int sum = 0;
             foreach (Die d in dice)
             {
-                if (d.Value == data.Number)
+                if (d.Value == numberData.Number)
                 {
                     sum += d.Value;
                 }

@@ -14,16 +14,16 @@ namespace Fantazee.Scores.Instance
         [Header("Full House")]
         
         [SerializeReference]
-        private FullHouseScoreData data;
+        private FullHouseScoreData houseData;
         
         public FullHouseScoreInstance(FullHouseScoreData data, List<SpellData> spellTypes) : base(data, spellTypes)
         {
-            this.data = data;
+            this.houseData = data;
         }
 
         public FullHouseScoreInstance(FullHouseScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
-            this.data = data;
+            this.houseData = data;
         }
 
         public override int Calculate(List<Die> dice)
