@@ -1,84 +1,35 @@
 using System;
 using System.Collections.Generic;
-using Fantazee.Maps.Nodes.Information;
-using Fantazee.Maps.Settings;
-using Shapes;
+using Fsi.Spline.Vectors;
 using UnityEngine;
 
 namespace Fantazee.Maps.Nodes
 {
-    public class Node : MonoBehaviour
+    [Serializable]
+    public class Node
     {
-        [SerializeField]
-        private List<Node> connections;
-        public List<Node> Connections { get => connections; set => connections = value; }
-
-        [SerializeField]
-        private NodeType nodeType;
-        public NodeType NodeType 
-        {
-            get => nodeType; 
-            set => nodeType = value; 
-        }
-
-        [SerializeField]
-        private float radius;
-
-        [SerializeField]
-        private float thickness;
-
-        [SerializeField]
-        private Disc disc;
-
-        [SerializeField]
-        private Disc outline;
+        public string name;
         
         [SerializeField]
-        private SpriteRenderer spriteRenderer;
+        private Vector3Point point;
+        public Vector3Point Point => point;
         
         [SerializeField]
-        private List<ConnectionLine> connectionLines;
-
-        private void OnValidate()
+        private NodeType type;
+        public NodeType Type 
         {
-            NodeType = nodeType;
-            if (MapSettings.Settings.NodeInformation.TryGetInformation(NodeType, out NodeInformation info))
-            {
-                if (disc)
-                {
-                    disc.Color = info.Color;
-                    disc.Radius = radius;
-                }
-
-                if (outline)
-                {
-                    outline.Color = info.Outline;
-                    outline.Thickness = thickness/2f;
-                    outline.Radius = radius + thickness/4f;
-                }
-
-                for (int i = 0; i < connections.Count; i++)
-                {
-                    if (connectionLines.Count > i)
-                    {
-                        connectionLines[i].SetLine(connections[i].transform.position - transform.position);
-                    }
-                }
-
-                if (spriteRenderer)
-                {
-                    spriteRenderer.sprite = info.Sprite;
-                }
-            }
+            get => type; 
+            set => type = value; 
         }
-
-        private void OnDrawGizmos()
+        
+        [SerializeField]
+        private List<string> next;
+        public List<string> Next => next;
+        
+        public override string ToString()
         {
-            Gizmos.color = Color.red;
-            foreach (Node connection in connections)
-            {
-                Gizmos.DrawLine(transform.position, connection.transform.position);
-            }
+            string s = $"{point.value} - Type: {type}";
+            return name;
         }
     }
 }

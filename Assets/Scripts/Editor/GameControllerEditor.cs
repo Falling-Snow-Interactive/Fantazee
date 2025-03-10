@@ -1,7 +1,7 @@
-using Fsi.Prototyping.Editor.Spacers;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using Spacer = fsi.prototyping.Spacers.Spacer;
 
 namespace Fantazee
 {
