@@ -154,7 +154,7 @@ namespace Fantazee.Spells.Instance
             }
             
             onComplete?.Invoke();
-            return null;
+            yield return null;
         }
 
         protected virtual Vector3 GetHitPos()

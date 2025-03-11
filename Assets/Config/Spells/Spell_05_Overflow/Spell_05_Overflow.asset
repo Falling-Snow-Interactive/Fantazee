@@ -36,68 +36,62 @@ MonoBehaviour:
     name: 'Gold: 12'
     type: 1
     amount: 12
+  hasCast: 1
   castVfx: {fileID: 0}
   castSfx:
     Guid:
-      Data1: -722109001
-      Data2: 1322145341
-      Data3: -326632274
-      Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  overflowVfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
-  overflowSfx:
+      Data1: -681325413
+      Data2: 1312097142
+      Data3: 983141760
+      Data4: -142101089
+    Path: event:/Spells/Spell_05_Overflow/Spell_05_Overflow_Cast
+  hasProjectile: 1
+  projectileVfx: {fileID: 746035577024083052, guid: f506e218f265548fa8f0763ebed7e3f9, type: 3}
+  projectileSfx:
     Guid:
-      Data1: -722109001
-      Data2: 1322145341
-      Data3: -326632274
-      Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  overflowSpawnOffset: {x: 3, y: 2, z: 0}
-  overflowHitOffset: {x: 0, y: 1.3, z: 0}
-  overflowEase: 37
-  overflowCurve:
+      Data1: -1067057470
+      Data2: 1272014092
+      Data3: 792766612
+      Data4: -1919463158
+    Path: event:/Spells/Spell_05_Overflow/Spell_05_Overflow_Projectile
+  projectileSpawnOffset: {x: 0, y: 0, z: 0}
+  projectileHitOffset: {x: 0, y: 0, z: 0}
+  projectileEase: 1
+  projectileCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -0.08699223
-      outSlope: -0.08699223
+      inSlope: 0
+      outSlope: 1
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.12572813
-    - serializedVersion: 3
-      time: 0.6006204
-      value: -0.10566147
-      inSlope: -0.005887707
-      outSlope: -0.005887707
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.052526772
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 5.997694
-      outSlope: 5.997694
+      inSlope: 1
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.054432236
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  overflowTime: 0.6
-  overflowDelay: 0
-  hitVfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
+  projectileTime: 0.6
+  projectileDelay: 0
+  hasHit: 1
+  hitVfx: {fileID: 4077048775125981775, guid: e8d72b62caf77433b8fd1adb1892518b, type: 3}
   hitSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -427559338
+      Data2: 1152724192
+      Data3: 514286250
+      Data4: -113502172
+    Path: event:/Spells/Spell_05_Overflow/Spell_05_Overflow_Hit
   references:
     version: 2
     RefIds: []

@@ -36,37 +36,64 @@ MonoBehaviour:
     name: 'Gold: 10'
     type: 1
     amount: 10
+  hasCast: 1
   castVfx: {fileID: 0}
   castSfx:
     Guid:
-      Data1: -56119142
-      Data2: 1335843057
-      Data3: -1977758823
-      Data4: 1573746523
-    Path: event:/Spells/Spell_01_Pierce
-  firstEnemyMod: 0.75
-  secondEnemyMod: 0.25
-  pierceVfx: {fileID: 746035577024083052, guid: 8625d3649ca4a41eebadd47af1a4659d, type: 3}
-  pierceSfx:
+      Data1: 1959525381
+      Data2: 1135618643
+      Data3: 1200860343
+      Data4: -939196148
+    Path: event:/Spells/Spell_07_ChainLightning/Spell_07_ChainLightning_Cast
+  hasProjectile: 1
+  projectileVfx: {fileID: 746035577024083052, guid: 3d7e3d2a8e55247f7ac09648c8547c60, type: 3}
+  projectileSfx:
     Guid:
-      Data1: -56119142
-      Data2: 1335843057
-      Data3: -1977758823
-      Data4: 1573746523
-    Path: event:/Spells/Spell_01_Pierce
-  pierceVfxSpawnOffset: {x: 0, y: 1.5, z: 0}
-  pierceVfxHitOffset: {x: 0, y: 1.25, z: 0}
-  pierceEase: 1
-  pierceTime: 0.6
-  pierceDelay: 0
-  hitVfx: {fileID: 4077048775125981775, guid: 517ad0d199e7b4251859218d15128bf5, type: 3}
+      Data1: 550366539
+      Data2: 1248459270
+      Data3: 1639050908
+      Data4: -1387559003
+    Path: event:/Spells/Spell_07_ChainLightning/Spell_07_ChainLightning_Projectile
+  projectileSpawnOffset: {x: 0, y: 0, z: 0}
+  projectileHitOffset: {x: 0, y: 0, z: 0}
+  projectileEase: 1
+  projectileCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  projectileTime: 0.6
+  projectileDelay: 0
+  hasHit: 1
+  hitVfx: {fileID: 4077048775125981775, guid: 5345dcf19a9d6420cbfeaf6712d2c661, type: 3}
   hitSfx:
     Guid:
-      Data1: 1587142695
-      Data2: 1254140595
-      Data3: -1123422044
-      Data4: 2069711484
-    Path: event:/Battle/Actions/Arrow
+      Data1: -680256993
+      Data2: 1182642551
+      Data3: 216929671
+      Data4: 516910070
+    Path: event:/Spells/Spell_07_ChainLightning/Spell_07_ChainLightning_Hit
+  firstEnemyMod: 0.75
+  secondEnemyMod: 0.25
   references:
     version: 2
     RefIds: []

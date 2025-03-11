@@ -36,72 +36,66 @@ MonoBehaviour:
     name: 'Gold: 10'
     type: 1
     amount: 10
+  hasCast: 1
   castVfx: {fileID: 0}
   castSfx:
     Guid:
-      Data1: -722109001
-      Data2: 1322145341
-      Data3: -326632274
-      Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  pushDamageMod: 0.9
-  pushVfx: {fileID: 0}
-  pushSfx:
+      Data1: -1251887669
+      Data2: 1174107359
+      Data3: -1623365496
+      Data4: -1375659271
+    Path: event:/Spells/Spell_09_Push/Spell_09_Push_Cast
+  hasProjectile: 1
+  projectileVfx: {fileID: 746035577024083052, guid: 34ffa5ebfacb54f7cb730fced5634dae, type: 3}
+  projectileSfx:
     Guid:
-      Data1: -722109001
-      Data2: 1322145341
-      Data3: -326632274
-      Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  pushSpawnOffset: {x: 3, y: 2, z: 0}
-  pushHitOffset: {x: 0, y: 1.3, z: 0}
-  pushEase: 37
-  pushCurve:
+      Data1: 1889634783
+      Data2: 1160788409
+      Data3: -1546364271
+      Data4: -381896736
+    Path: event:/Spells/Spell_09_Push/Spell_09_Push_Projectile
+  projectileSpawnOffset: {x: 0, y: 0, z: 0}
+  projectileHitOffset: {x: 0, y: 0, z: 0}
+  projectileEase: 1
+  projectileCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -0.08699223
-      outSlope: -0.08699223
+      inSlope: 0
+      outSlope: 1
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.12572813
-    - serializedVersion: 3
-      time: 0.6006204
-      value: -0.10566147
-      inSlope: -0.005887707
-      outSlope: -0.005887707
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.052526772
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 5.997694
-      outSlope: 5.997694
+      inSlope: 1
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.054432236
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  pushTime: 0.6
-  pushDelay: 0
-  hitVfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
+  projectileTime: 0.6
+  projectileDelay: 0
+  hasHit: 1
+  hitVfx: {fileID: 4077048775125981775, guid: fdeaa1a3d741c47aab8ed9831a567f47, type: 3}
   hitSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  moveTime: 0.2
+      Data1: -83937844
+      Data2: 1109264569
+      Data3: -2090496635
+      Data4: 1085011402
+    Path: event:/Spells/Spell_09_Push/Spell_09_Push_Hit
+  pushDamageMod: 0.9
+  moveTime: 0.4
   moveEase: 11
-  moveDelay: 0.1
+  moveDelay: 0.2
   references:
     version: 2
     RefIds: []

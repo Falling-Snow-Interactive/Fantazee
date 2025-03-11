@@ -7,6 +7,8 @@ namespace Fantazee.Spells.Data
     public class HealSpellData : SpellData
     {
         public override SpellType Type => SpellType.Heal;
+     
+        [Header("Heal")]
         
         [Range(0,2)]
         [SerializeField]

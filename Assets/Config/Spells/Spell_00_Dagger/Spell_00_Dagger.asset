@@ -36,6 +36,7 @@ MonoBehaviour:
     name: 'Gold: 7'
     type: 1
     amount: 7
+  hasCast: 1
   castVfx: {fileID: 0}
   castSfx:
     Guid:
@@ -43,19 +44,20 @@ MonoBehaviour:
       Data2: 1322145341
       Data3: -326632274
       Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  daggerVfx: {fileID: 5405301624189521083, guid: 6f8206dddcc824ca6ad61a18c522c782, type: 3}
-  daggerSfx:
+    Path: event:/Spells/Spell_00/Spell_00_Dagger_Projectile
+  hasProjectile: 1
+  projectileVfx: {fileID: 5405301624189521083, guid: 6f8206dddcc824ca6ad61a18c522c782, type: 3}
+  projectileSfx:
     Guid:
       Data1: -722109001
       Data2: 1322145341
       Data3: -326632274
       Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  daggerSpawnOffset: {x: 3, y: 2, z: 0}
-  daggerHitOffset: {x: 0, y: 1.3, z: 0}
-  daggerEase: 37
-  daggerCurve:
+    Path: event:/Spells/Spell_00/Spell_00_Dagger_Projectile
+  projectileSpawnOffset: {x: 3, y: 2, z: 0}
+  projectileHitOffset: {x: 0, y: 1.3, z: 0}
+  projectileEase: 37
+  projectileCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -88,16 +90,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  daggerTime: 0.6
-  daggerDelay: 0
+  projectileTime: 0.6
+  projectileDelay: 0
+  hasHit: 1
   hitVfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
   hitSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -281306913
+      Data2: 1330631841
+      Data3: -1155045187
+      Data4: 1940489850
+    Path: event:/Spells/Spell_00/Spell_01_Dagger_Hit
   references:
     version: 2
     RefIds: []
