@@ -7,5 +7,12 @@ namespace Fantazee.Spells.Data
     public class ShieldSpellData : SpellData
     {
         public override SpellType Type => SpellType.Shield;
+
+        [Header("Shield")]
+
+        [Range(0f, 2f)]
+        [SerializeField]
+        private float shieldMod = 1f;
+        public float ShieldMod => shieldMod;
     }
 }

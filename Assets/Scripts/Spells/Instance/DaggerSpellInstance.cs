@@ -21,12 +21,14 @@ namespace Fantazee.Spells.Instance
             this.data = data;
         }
 
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
                 enemy.Damage(damage.Value);
             }
+            
+            onComplete?.Invoke();
         }
 
         protected override Vector3 GetHitPos()

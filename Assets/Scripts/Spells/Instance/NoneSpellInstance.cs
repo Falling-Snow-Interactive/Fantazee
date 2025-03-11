@@ -1,3 +1,4 @@
+using System;
 using Fantazee.Battle;
 using Fantazee.Spells.Data;
 using UnityEngine;
@@ -8,9 +9,10 @@ namespace Fantazee.Spells.Instance
     {
         public NoneSpellInstance(NoneSpellData data) : base(data) {}
 
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
             Debug.LogWarning("This shouldn't ever be casted.");
+            onComplete?.Invoke();
         }
     }
 }

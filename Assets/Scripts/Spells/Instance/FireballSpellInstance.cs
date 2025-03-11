@@ -16,13 +16,15 @@ namespace Fantazee.Spells.Instance
             this.data = data;
         }
 
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
             int d = Mathf.Max(Mathf.RoundToInt(damage.Value * data.DamageMod));
             foreach (BattleEnemy enemy in BattleController.Instance.Enemies)
             {
                 enemy.Damage(d);
             }
+            
+            onComplete?.Invoke();
         }
 
         protected override Vector3 GetHitPos()

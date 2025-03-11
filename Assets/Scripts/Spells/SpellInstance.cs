@@ -3,14 +3,13 @@ using System.Collections;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Player;
-using Fantazee.Spells.Data;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
-namespace Fantazee.Spells.Instance
+namespace Fantazee.Spells
 {
     [Serializable]
     public abstract class SpellInstance
@@ -58,31 +57,34 @@ namespace Fantazee.Spells.Instance
             BattleController.Instance.StartCoroutine(SpellSequence(damage, onComplete));
         }
 
-        protected abstract void Apply(Damage damage);
+        protected abstract void Apply(Damage damage, Action onComplete);
 
         private IEnumerator SpellSequence(Damage damage, Action onComplete = null)
         {
+            bool ready;
             yield return new WaitForSeconds(0.25f);
             
             if (data.CastAnim.HasCast)
             {
-                bool ready = false;
+                ready = false;
                 BattleController.Instance.StartCoroutine(CastSequence(() => ready = true));
                 yield return new WaitUntil(() => ready);
             }
 
             if (data.ProjectileAnim.HasProjectile)
             {
-                bool ready = false;
+                ready = false;
                 BattleController.Instance.StartCoroutine(ProjectileSequence(() => ready = true));
                 yield return new WaitUntil(() => ready);
             }
 
-            Apply(damage);
+            ready = false;
+            Apply(damage, () => ready = true);
+            yield return new WaitUntil(() => ready);
             
             if (data.HitAnim.HasHit)
             {
-                bool ready = false;
+                ready = false;
                 BattleController.Instance.StartCoroutine(HitSequence(() => ready = true));
                 yield return new WaitUntil(() => ready);
             }

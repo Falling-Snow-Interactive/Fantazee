@@ -15,12 +15,14 @@ namespace Fantazee.Spells.Instance
         {
             this.data = data;
         }
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onCompelte)
         {
             BattlePlayer player = BattleController.Instance.Player;
 
             player.Visuals.Action();
-            player.Shield.Add(damage.Value);
+            int d = Mathf.RoundToInt(damage.Value * data.ShieldMod);
+            player.Shield.Add(d);
+            onCompelte?.Invoke();
         }
 
         protected override Vector3 GetHitPos()

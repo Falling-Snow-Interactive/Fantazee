@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
@@ -12,7 +13,7 @@ namespace Fantazee.Spells.Data
         
         [Range(0,2)]
         [SerializeField]
-        private float healingModifier = 1;
-        public float HealingModifier => healingModifier;
+        private float healMod = 1;
+        public float HealMod => healMod;
     }
 }

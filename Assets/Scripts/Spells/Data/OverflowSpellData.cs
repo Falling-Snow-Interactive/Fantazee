@@ -1,7 +1,4 @@
-using DG.Tweening;
-using FMODUnity;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
@@ -10,5 +7,11 @@ namespace Fantazee.Spells.Data
     public class OverflowSpellData : SpellData
     {
         public override SpellType Type => SpellType.Overflow;
+
+        [Header("Overflow")]
+        
+        [SerializeField]
+        private float spreadTime = 0.2f;
+        public float SpreadTime => spreadTime;
     }
 }

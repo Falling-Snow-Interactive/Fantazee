@@ -6,17 +6,36 @@
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_00_Dagger/Spell_00_Dagger.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_00_Dagger/Spell_00_Dagger.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_01_Pierce/Spell_01_Pierce.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_01_Pierce/Spell_01_Pierce.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_03_Heal/Spell_03_Heal.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_03_Heal/Spell_03_Heal.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_04_Fireball/Spell_04_Fireball.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_04_Fireball/Spell_04_Fireball.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_07_Push/Spell_07_Push.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_07_Push/Spell_07_Push.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/BattleScoreEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/BattleScoreEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterScoreData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterScoreData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/ChanceScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/ChanceScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/EvenOddScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/EvenOddScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/FantazeeScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/FantazeeScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/FullHouseScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/FullHouseScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/KindScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/KindScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/NumberScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/NumberScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/RunScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/RunScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/TwoPairScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/TwoPairScoreInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/ScoreFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/ScoreFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/SpellEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Entries/SpellEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/SpellScoreScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/SpellScoreScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/HealSpellData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/HealSpellData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/OverflowSpellData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/OverflowSpellData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/ShieldSpellData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/ShieldSpellData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/SpellData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Data/SpellData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/ChainLightningSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/ChainLightningSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/DaggerSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/DaggerSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/FireballSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/FireballSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/HealSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/HealSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/NoneSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/NoneSpellInstance.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PierceSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PierceSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PushSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PushSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/ShieldSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/ShieldSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/SpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/SpellInstance.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellInstance.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +68,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/ShopData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/Ui/ScoreSelect/ScoreSelectEntry.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/SpellScoreScreen.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/Data/Editor/SpellDataEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/Data/FireballSpellData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/Data/HealSpellData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/Data/OverflowSpellData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/SpellData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.fallingsnowinteractive.gameplay/Runtime/Scripts/Healths/IDamageable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../_Packages/fsi.gameplay/Runtime/Scripts/Healths/IDamageable.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -154,7 +173,7 @@
       <workItem from="1741487438493" duration="32131000" />
       <workItem from="1741655258845" duration="5000" />
       <workItem from="1741655273004" duration="5000" />
-      <workItem from="1741696534568" duration="4228000" />
+      <workItem from="1741696534568" duration="5499000" />
     </task>
     <servers />
   </component>
@@ -247,13 +266,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Instance/TwoPairScoreInstance.cs</url>
-          <line>39</line>
+          <line>40</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/TwoPairScoreInstance.cs" containingFunctionPresentation="Method 'Calculate'">
             <startOffsets>
-              <option value="1094" />
+              <option value="1117" />
             </startOffsets>
             <endOffsets>
-              <option value="1109" />
+              <option value="1132" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="60" />

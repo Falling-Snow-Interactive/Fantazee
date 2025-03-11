@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
-using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Spells.Animations;
 using Fantazee.Spells.Data.Animations;
-using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.Serialization;
 
-namespace Fantazee.Spells.Data
+namespace Fantazee.Spells
 {
     public abstract class SpellData : ScriptableObject
     {

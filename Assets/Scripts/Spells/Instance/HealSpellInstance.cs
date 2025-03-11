@@ -15,9 +15,16 @@ namespace Fantazee.Spells.Instance
             this.data = data;
         }
 
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
-            BattleController.Instance.Player.Heal(damage.Value);
+            int h = Mathf.RoundToInt(damage.Value * data.HealMod);
+            BattleController.Instance.Player.Heal(h);
+            onComplete?.Invoke();
+        }
+
+        protected override Vector3 GetHitPos()
+        {
+            return BattleController.Instance.Player.transform.position;
         }
     }
 }

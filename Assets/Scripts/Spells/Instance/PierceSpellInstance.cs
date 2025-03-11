@@ -18,7 +18,7 @@ namespace Fantazee.Spells.Instance
             this.data = data;
         }
         
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
             if (BattleController.Instance.Enemies.Count > 0)
             {

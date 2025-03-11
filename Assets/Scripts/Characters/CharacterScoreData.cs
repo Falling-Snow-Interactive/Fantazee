@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Scores.Data;
+using Fantazee.Spells;
 using Fantazee.Spells.Data;
 using UnityEngine;
 

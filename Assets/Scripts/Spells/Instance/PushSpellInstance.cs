@@ -17,7 +17,7 @@ namespace Fantazee.Spells.Instance
             pushData = data;
         }
 
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
@@ -25,8 +25,16 @@ namespace Fantazee.Spells.Instance
                 enemy.Damage(d);
                 if (enemy.Health.IsAlive)
                 {
-                    PushToBack();
+                    PushToBack(onComplete);
                 }
+                else
+                {
+                    onComplete?.Invoke();
+                }
+            }
+            else
+            {
+                onComplete?.Invoke();
             }
         }
 

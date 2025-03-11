@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Spells.Data;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -17,7 +19,7 @@ namespace Fantazee.Spells.Instance
             overflowData = data;
         }
 
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
@@ -25,19 +27,28 @@ namespace Fantazee.Spells.Instance
                 int d = enemy.Damage(damage.Value);
                 int rem = total - d;
 
-                while (rem > 0 && BattleController.Instance.TryGetFrontEnemy(out BattleEnemy front))
-                {
-                    int o = front.Damage(rem);
-                    rem -= o;
+                BattleController.Instance.StartCoroutine(OverflowSequence(rem, onComplete));
+            }
+        }
+
+        private IEnumerator OverflowSequence(int remainingDamage, Action onComplete = null)
+        {
+            while (remainingDamage > 0 && BattleController.Instance.TryGetFrontEnemy(out BattleEnemy front))
+            {
+                yield return new WaitForSeconds(overflowData.SpreadTime);
+                
+                int o = front.Damage(remainingDamage);
+                remainingDamage -= o;
                     
-                    if (overflowData.HitAnim.Vfx)
-                    {
-                        Object.Instantiate(overflowData.HitAnim.Vfx,
-                                           front.transform.position + overflowData.HitAnim.Offset,
-                                           front.transform.rotation);
-                    }
+                if (overflowData.HitAnim.Vfx)
+                {
+                    Object.Instantiate(overflowData.HitAnim.Vfx,
+                                       front.transform.position + overflowData.HitAnim.Offset,
+                                       front.transform.rotation);
                 }
             }
+            
+            onComplete?.Invoke();
         }
 
         protected override Vector3 GetHitPos()

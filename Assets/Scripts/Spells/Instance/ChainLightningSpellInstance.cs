@@ -15,7 +15,7 @@ namespace Fantazee.Spells.Instance
             this.lightningData = lightningData;
         }
 
-        protected override void Apply(Damage damage)
+        protected override void Apply(Damage damage, Action onComplete)
         {
             if (BattleController.Instance.Enemies.Count > 0)
             {
@@ -37,6 +37,8 @@ namespace Fantazee.Spells.Instance
                     e0.Damage(damage.Value);
                 }
             }
+            
+            onComplete?.Invoke();
         }
 
         protected override Vector3 GetHitPos()
