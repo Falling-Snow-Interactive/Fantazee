@@ -1,12 +1,9 @@
 using System;
-using Fantazee.Battle.Environments;
 using Fantazee.Environments;
-using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Fantazee
 {
@@ -54,9 +51,12 @@ namespace Fantazee
                                                                          onComplete));
         }
 
-        public void LoadMap(Action onComplete)
+        public void LoadMap(EnvironmentType environmentType, Action onComplete)
         {
-            LoadSceneAsync(mapScene.Name, LoadSceneMode.Single, onComplete);
+            if(EnvironmentSettings.Settings.TryGetEnvironment(environmentType, out EnvironmentData data))
+            {
+                LoadSceneAsync(data.Map.Name, LoadSceneMode.Single, onComplete);
+            }
         }
 
         public void LoadBlacksmith(Action onComplete)
@@ -78,7 +78,7 @@ namespace Fantazee
         {
             if (EnvironmentSettings.Settings.TryGetEnvironment(env, out EnvironmentData data))
             {
-                LoadSceneAsync(data.Scene.Name, LoadSceneMode.Additive, onComplete);
+                LoadSceneAsync(data.Battle.Name, LoadSceneMode.Additive, onComplete);
             }
         }
     }

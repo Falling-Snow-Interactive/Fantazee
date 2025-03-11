@@ -32,12 +32,16 @@ namespace Fantazee.Environments
         [SerializeField]
         private Color color = Color.black;
         public Color Color => color;
-        
+
         [Header("Scene")]
 
         [SerializeField]
-        private FsiSceneEntry scene;
-        public FsiSceneEntry Scene => scene;
+        private FsiSceneEntry map;
+        public FsiSceneEntry Map => map;
+
+        [SerializeField]
+        private FsiSceneEntry battle;
+        public FsiSceneEntry Battle => battle;
 
         [Header("Audio")]
 
