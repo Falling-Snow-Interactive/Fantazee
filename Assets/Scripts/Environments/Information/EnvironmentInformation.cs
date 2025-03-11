@@ -1,7 +1,7 @@
 using System;
 using Fantazee.Audio;
-using Fantazee.Battle.Environments;
 using FMODUnity;
+using Fsi.Gameplay.SceneManagement;
 using fsi.settings.Informations;
 using UnityEngine;
 
@@ -13,6 +13,12 @@ namespace Fantazee.Environments.Information
         [SerializeField]
         private Color color = Color.white;
         public Color Color => color;
+
+        [Header("Scene")]
+
+        [SerializeField]
+        private FsiSceneEntry scene;
+        public FsiSceneEntry Scene => scene;
 
         [Header("Audio")]
 

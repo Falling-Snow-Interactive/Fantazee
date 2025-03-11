@@ -11,6 +11,7 @@ using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
+using Fantazee.Environments;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
@@ -169,10 +170,10 @@ namespace Fantazee.Battle
             // Hide player
             Player.Hide(null, 0, true);
 
-            if (EnvironmentSettings.Settings.Information.TryGetInformation(GameInstance.Current.Map.Environment,
-                                                                           out EnvironmentInformation info))
+            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
+                                                                           out EnvironmentData data))
             {
-                MusicController.Instance.PlayMusic(info.BattleMusicId);
+                MusicController.Instance.PlayMusic(data.BattleMusicId);
             }
         }
 

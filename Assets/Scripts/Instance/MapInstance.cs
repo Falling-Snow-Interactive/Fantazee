@@ -1,5 +1,5 @@
 using System;
-using Fantazee.Battle.Environments;
+using Fantazee.Environments;
 using UnityEngine;
 
 namespace Fantazee.Instance
@@ -33,7 +33,7 @@ namespace Fantazee.Instance
         {
             index = 0;
             node = 0;
-            environment = EnvironmentType.Woods;
+            environment = EnvironmentType.ForbiddenThicket;
             ReadyToAdvance = false;
         }
 

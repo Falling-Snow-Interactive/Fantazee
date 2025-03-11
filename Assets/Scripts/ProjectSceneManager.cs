@@ -1,5 +1,8 @@
 using System;
 using Fantazee.Battle.Environments;
+using Fantazee.Environments;
+using Fantazee.Environments.Information;
+using Fantazee.Environments.Settings;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,16 +34,6 @@ namespace Fantazee
 
         [SerializeField]
         private FsiSceneEntry innScene;
-        
-        [Header("Battle Environments")]
-        
-        [FormerlySerializedAs("sandboxEnv")]
-        [SerializeField]
-        private FsiSceneEntry environmentEnv;
-
-        [FormerlySerializedAs("grassEnv")]
-        [SerializeField]
-        private FsiSceneEntry woodsEnv;
 
         public void LoadMainMenu(Action onComplete)
         {
@@ -49,48 +42,16 @@ namespace Fantazee
         
         public void LoadBattle(EnvironmentType environmentType, Action onComplete = null)
         {
-            LoadSceneAsync(battleScene.Name, LoadSceneMode.Single, () =>
-                                                                   {
-                                                                       switch (environmentType)
-                                                                       {
-                                                                           case EnvironmentType.Woods:
-                                                                               LoadWoodsEnvironment(onComplete);
-                                                                               break;
-                                                                           case EnvironmentType.Plains:
-                                                                               break;
-                                                                           case EnvironmentType.Beach:
-                                                                               break;
-                                                                           case EnvironmentType.Mountains:
-                                                                               break;
-                                                                           case EnvironmentType.Volcano:
-                                                                               break;
-                                                                           default:
-                                                                               throw new ArgumentOutOfRangeException(nameof(environmentType), environmentType, null);
-                                                                       }
-                                                                   });
+            LoadSceneAsync(battleScene.Name, LoadSceneMode.Single, () => 
+                                                                       LoadBattleEnvironment(environmentType, 
+                                                                           onComplete));
         }
         
         public void LoadBossBattle(EnvironmentType environmentType, Action onComplete = null)
         {
-            LoadSceneAsync(bossScene.Name, LoadSceneMode.Single, () =>
-                                                                   {
-                                                                       switch (environmentType)
-                                                                       {
-                                                                           case EnvironmentType.Woods:
-                                                                               LoadWoodsEnvironment(onComplete);
-                                                                               break;
-                                                                           case EnvironmentType.Plains:
-                                                                               break;
-                                                                           case EnvironmentType.Beach:
-                                                                               break;
-                                                                           case EnvironmentType.Mountains:
-                                                                               break;
-                                                                           case EnvironmentType.Volcano:
-                                                                               break;
-                                                                           default:
-                                                                               throw new ArgumentOutOfRangeException(nameof(environmentType), environmentType, null);
-                                                                       }
-                                                                   });
+            LoadSceneAsync(bossScene.Name, LoadSceneMode.Single, () => 
+                                                                     LoadBattleEnvironment(environmentType, 
+                                                                         onComplete));
         }
 
         public void LoadMap(Action onComplete)
@@ -112,15 +73,13 @@ namespace Fantazee
         {
             LoadSceneAsync(innScene.Name, LoadSceneMode.Single, onComplete);
         }
-        
-        public void LoadBattleEnvironment(Action onComplete)
-        {
-            LoadSceneAsync(environmentEnv.Name, LoadSceneMode.Additive, onComplete);
-        }
 
-        private void LoadWoodsEnvironment(Action onComplete)
+        private void LoadBattleEnvironment(EnvironmentType env, Action onComplete)
         {
-            LoadSceneAsync(woodsEnv.Name, LoadSceneMode.Additive, onComplete);
+            if (EnvironmentSettings.Settings.TryGetEnvironment(env, out EnvironmentData data))
+            {
+                LoadSceneAsync(data.Scene.Name, LoadSceneMode.Additive, onComplete);
+            }
         }
     }
 }

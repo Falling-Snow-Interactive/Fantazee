@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using Fantazee.Audio;
 using Fantazee.Battle.Characters;
+using Fantazee.Environments;
 using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
@@ -122,8 +123,8 @@ namespace Fantazee.Maps
                 
                 RuntimeManager.PlayOneShot(mapStartSfx);
 
-                if (EnvironmentSettings.Settings.Information.TryGetInformation(GameInstance.Current.Map.Environment,
-                                                                               out EnvironmentInformation info))
+                if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
+                                                                               out EnvironmentData info))
                 {
                     MusicController.Instance.PlayMusic(info.MapMusicId);
                 }

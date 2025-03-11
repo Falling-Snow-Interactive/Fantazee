@@ -12,17 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce372de07e634bc7841a001da32d7d97, type: 3}
   m_Name: EnvironmentSettings
   m_EditorClassIdentifier: 
-  information:
-    information:
-    - name: Woods
-      type: 1
-      color: {r: 0.20392157, g: 0.3019608, b: 0.45490196, a: 1}
-      musicReference:
-        Guid:
-          Data1: -1067094924
-          Data2: 1218896479
-          Data3: -2022586190
-          Data4: 992087444
-        Path: event:/Music/Woods
-      mapMusicId: 2
-      battleMusicId: 3
+  data:
+  - {fileID: 11400000, guid: 5375567c076164cffba0c24e1a0a173d, type: 2}
