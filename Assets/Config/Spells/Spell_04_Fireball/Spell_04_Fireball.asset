@@ -57,7 +57,7 @@ MonoBehaviour:
         Data4: 286484647
       Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Projectile
     spawnOffset: {x: 2, y: 4, z: 0}
-    ease: 8
+    ease: 2
     curve:
       serializedVersion: 2
       m_Curve:
@@ -82,8 +82,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    time: 0.5
-    delay: 0
+    time: 0.8
+    delay: 0.2
   hitAnim:
     hasHit: 1
     vfx: {fileID: 4077048775125981775, guid: dc98f7c5ab0d44a6289a7d07dfe0d4ff, type: 3}

@@ -25,9 +25,10 @@ namespace Fantazee.Spells.Instance
                 int d = enemy.Damage(damage.Value);
                 int rem = total - d;
 
-                if (rem > 0 && BattleController.Instance.TryGetFrontEnemy(out BattleEnemy front))
+                while (rem > 0 && BattleController.Instance.TryGetFrontEnemy(out BattleEnemy front))
                 {
-                    front.Damage(rem);
+                    int o = front.Damage(rem);
+                    rem -= o;
                     
                     if (overflowData.HitAnim.Vfx)
                     {

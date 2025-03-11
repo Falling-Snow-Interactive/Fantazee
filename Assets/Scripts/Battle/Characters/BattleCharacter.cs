@@ -103,7 +103,7 @@ namespace Fantazee.Battle.Characters
         
         public void Initialize()
         {
-            Debug.Log($"Player - Initialize");
+            Debug.Log($"Character: {name} - Initialize");
             localRoot = transform.localPosition;
             
             healthUi.Initialize(Health);
@@ -167,11 +167,11 @@ namespace Fantazee.Battle.Characters
         {
             if (force)
             {
-                transform.localPosition = localRoot + hideOffset;
+                transform.localPosition = hideOffset;
                 return;
             }
 
-            transform.DOLocalMove(localRoot + hideOffset, hideTime)
+            transform.DOLocalMove(hideOffset, hideTime)
                      .SetEase(hideEase)
                      .SetDelay(delay)
                      .OnComplete(() => onComplete?.Invoke());

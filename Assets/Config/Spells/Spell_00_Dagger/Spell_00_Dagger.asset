@@ -56,54 +56,45 @@ MonoBehaviour:
         Data3: -326632274
         Data4: 1185304194
       Path: event:/Spells/Spell_00/Spell_00_Dagger_Projectile
-    spawnOffset: {x: 2, y: 3, z: 0}
-    ease: 37
+    spawnOffset: {x: 1.1, y: 1.4, z: 0}
+    ease: 1
     curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: -0.08699223
-        outSlope: -0.08699223
-        tangentMode: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.12572813
-      - serializedVersion: 3
-        time: 0.6006204
-        value: -0.10566147
-        inSlope: -0.005887707
-        outSlope: -0.005887707
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.052526772
+        outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 5.997694
-        outSlope: 5.997694
-        tangentMode: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
         weightedMode: 0
-        inWeight: 0.054432236
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    time: 0.6
+    time: 0.4
     delay: 0
   hitAnim:
     hasHit: 1
-    vfx: {fileID: 0}
+    vfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
     sfx:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-    offset: {x: 0, y: 0, z: 0}
+        Data1: -281306913
+        Data2: 1330631841
+        Data3: -1155045187
+        Data4: 1940489850
+      Path: event:/Spells/Spell_00/Spell_01_Dagger_Hit
+    offset: {x: 0, y: 1.4, z: 0}
   references:
     version: 2
     RefIds: []
