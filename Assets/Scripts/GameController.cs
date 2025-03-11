@@ -96,7 +96,7 @@ namespace Fantazee
             loadingScreen.Show(0,
                                () =>
                                {
-                                   ProjectSceneManager.Instance.LoadMap(null);
+                                   ProjectSceneManager.Instance.LoadMap(GameInstance.Map.Environment, null);
                                });
         }
 
