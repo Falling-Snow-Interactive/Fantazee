@@ -47,11 +47,11 @@ namespace Fantazee.Spells.Instance
         {
             return BattleController.Instance.Enemies.Count switch
                    {
-                       1 => BattleController.Instance.Enemies[0].transform.position + data.ProjectileHitOffset,
+                       1 => BattleController.Instance.Enemies[0].transform.position + data.HitAnim.Offset,
                        > 1 => (BattleController.Instance.Enemies[0].transform.position +
                                BattleController.Instance.Enemies[1].transform.position) 
                               / 2f +
-                              data.ProjectileHitOffset,
+                              data.HitAnim.Offset,
                        _ => Vector3.zero
                    };
         }

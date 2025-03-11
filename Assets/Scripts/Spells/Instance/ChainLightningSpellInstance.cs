@@ -42,7 +42,7 @@ namespace Fantazee.Spells.Instance
         protected override Vector3 GetHitPos()
         {
             return BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy) 
-                       ? enemy.transform.position + lightningData.ProjectileHitOffset
+                       ? enemy.transform.position + lightningData.HitAnim.Offset
                        : Vector3.zero;
         }
     }

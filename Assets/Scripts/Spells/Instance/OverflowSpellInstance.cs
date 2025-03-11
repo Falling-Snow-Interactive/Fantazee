@@ -24,22 +24,15 @@ namespace Fantazee.Spells.Instance
                 int total = damage.Value;
                 int d = enemy.Damage(damage.Value);
                 int rem = total - d;
-                
-                if (overflowData.HitVfx)
-                {
-                    Object.Instantiate(overflowData.HitVfx,
-                                       enemy.transform.position + overflowData.ProjectileHitOffset,
-                                       enemy.transform.rotation);
-                }
 
                 if (rem > 0 && BattleController.Instance.TryGetFrontEnemy(out BattleEnemy front))
                 {
                     front.Damage(rem);
                     
-                    if (overflowData.HitVfx)
+                    if (overflowData.HitAnim.Vfx)
                     {
-                        Object.Instantiate(overflowData.HitVfx,
-                                           front.transform.position + overflowData.ProjectileHitOffset,
+                        Object.Instantiate(overflowData.HitAnim.Vfx,
+                                           front.transform.position + overflowData.HitAnim.Offset,
                                            front.transform.rotation);
                     }
                 }
@@ -49,7 +42,7 @@ namespace Fantazee.Spells.Instance
         protected override Vector3 GetHitPos()
         {
             return BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy) 
-                       ? enemy.transform.position + overflowData.ProjectileHitOffset
+                       ? enemy.transform.position + overflowData.HitAnim.Offset
                        : Vector3.zero;
         }
     }

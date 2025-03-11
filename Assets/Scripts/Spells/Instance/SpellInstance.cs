@@ -27,19 +27,19 @@ namespace Fantazee.Spells.Instance
         {
             this.data = data;
 
-            if (!data.CastSfx.IsNull)
+            if (!data.CastAnim.CastSfx.IsNull)
             {
-                castSfx = RuntimeManager.CreateInstance(data.CastSfx);
+                castSfx = RuntimeManager.CreateInstance(data.CastAnim.CastSfx);
             }
             
-            if (!data.ProjectileSfx.IsNull)
+            if (!data.ProjectileAnim.Sfx.IsNull)
             {
-                projectileSfx = RuntimeManager.CreateInstance(data.ProjectileSfx);
+                projectileSfx = RuntimeManager.CreateInstance(data.ProjectileAnim.Sfx);
             }
             
-            if (!data.HitSfx.IsNull)
+            if (!data.HitAnim.Sfx.IsNull)
             {
-                hitSfx = RuntimeManager.CreateInstance(data.HitSfx);
+                hitSfx = RuntimeManager.CreateInstance(data.HitAnim.Sfx);
             }
         }
         
@@ -50,9 +50,9 @@ namespace Fantazee.Spells.Instance
                 castSfx.start();
             }
 
-            if (data.CastVfx)
+            if (data.CastAnim.CastVfx)
             {
-                Object.Instantiate(data.CastVfx, BattleController.Instance.Player.transform);
+                Object.Instantiate(data.CastAnim.CastVfx, BattleController.Instance.Player.transform);
             }
             
             BattleController.Instance.StartCoroutine(SpellSequence(damage, onComplete));
@@ -64,14 +64,14 @@ namespace Fantazee.Spells.Instance
         {
             yield return new WaitForSeconds(0.25f);
             
-            if (data.HasCast)
+            if (data.CastAnim.HasCast)
             {
                 bool ready = false;
                 BattleController.Instance.StartCoroutine(CastSequence(() => ready = true));
                 yield return new WaitUntil(() => ready);
             }
 
-            if (data.HasProjectile)
+            if (data.ProjectileAnim.HasProjectile)
             {
                 bool ready = false;
                 BattleController.Instance.StartCoroutine(ProjectileSequence(() => ready = true));
@@ -80,7 +80,7 @@ namespace Fantazee.Spells.Instance
 
             Apply(damage);
             
-            if (data.HasHit)
+            if (data.HitAnim.HasHit)
             {
                 bool ready = false;
                 BattleController.Instance.StartCoroutine(HitSequence(() => ready = true));
@@ -105,15 +105,15 @@ namespace Fantazee.Spells.Instance
             Vector3 hitPos = GetHitPos();
             
             player.Visuals.Attack();
-            GameObject projectileVfx = Object.Instantiate(data.ProjectileVfx, player.transform);
-            projectileVfx.transform.localPosition = data.ProjectileSpawnOffset;
+            GameObject projectileVfx = Object.Instantiate(data.ProjectileAnim.Vfx, player.transform);
+            projectileVfx.transform.localPosition = data.ProjectileAnim.SpawnOffset;
             projectileSfx.start();
             
-            if (data.ProjectileEase is Ease.INTERNAL_Custom or Ease.INTERNAL_Zero)
+            if (data.ProjectileAnim.Ease is Ease.INTERNAL_Custom or Ease.INTERNAL_Zero)
             {
-                projectileVfx.transform.DOMove(hitPos, data.ProjectileTime)
-                             .SetEase(data.ProjectileCurve)
-                             .SetDelay(data.ProjectileDelay)
+                projectileVfx.transform.DOMove(hitPos, data.ProjectileAnim.Time)
+                             .SetEase(data.ProjectileAnim.Curve)
+                             .SetDelay(data.ProjectileAnim.Delay)
                              .OnComplete(() =>
                                          {
                                              projectileSfx.stop(STOP_MODE.IMMEDIATE);
@@ -123,9 +123,9 @@ namespace Fantazee.Spells.Instance
             }
             else
             {
-                projectileVfx.transform.DOMove(hitPos, data.ProjectileTime)
-                             .SetEase(data.ProjectileEase)
-                             .SetDelay(data.ProjectileDelay)
+                projectileVfx.transform.DOMove(hitPos, data.ProjectileAnim.Time)
+                             .SetEase(data.ProjectileAnim.Ease)
+                             .SetDelay(data.ProjectileAnim.Delay)
                              .OnComplete(() =>
                                          {
                                              projectileSfx.stop(STOP_MODE.IMMEDIATE);
@@ -143,9 +143,9 @@ namespace Fantazee.Spells.Instance
         {
             Vector3 hitPos = GetHitPos();
             
-            if (data.HitVfx)
+            if (data.HitAnim.Vfx)
             {
-                Object.Instantiate(data.HitVfx, hitPos, Quaternion.identity);
+                Object.Instantiate(data.HitAnim.Vfx, hitPos, Quaternion.identity);
             }
 
             if (hitSfx.isValid())

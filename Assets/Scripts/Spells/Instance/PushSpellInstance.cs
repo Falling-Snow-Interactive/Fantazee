@@ -34,7 +34,7 @@ namespace Fantazee.Spells.Instance
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
-                return enemy.transform.position + pushData.ProjectileHitOffset;
+                return enemy.transform.position + pushData.HitAnim.Offset;
             }
             
             return Vector3.zero;

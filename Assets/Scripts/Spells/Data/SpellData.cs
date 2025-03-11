@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Currencies;
+using Fantazee.Spells.Animations;
+using Fantazee.Spells.Data.Animations;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -48,80 +51,18 @@ namespace Fantazee.Spells.Data
         public Currency Cost => cost;
 
         [Header("Battle Animations")]
-
-        [Header("Cast")]
-
-        [SerializeField]
-        private bool hasCast = true;
-        public bool HasCast => hasCast;
         
         [SerializeField]
-        private GameObject castVfx;
-        public GameObject CastVfx => castVfx;
-
-        [SerializeField]
-        private EventReference castSfx;
-        public EventReference CastSfx => castSfx;
-        
-        [Header("Projectile")]
+        private CastAnimProp castAnim;
+        public CastAnimProp CastAnim => castAnim;
         
         [SerializeField]
-        private bool hasProjectile = true;
-        public bool HasProjectile => hasProjectile;
-        
-        [FormerlySerializedAs("daggerVfx")]
-        [SerializeField]
-        private GameObject projectileVfx;
-        public GameObject ProjectileVfx => projectileVfx;
-        
-        [FormerlySerializedAs("daggerSfx")]
-        [SerializeField]
-        private EventReference projectileSfx;
-        public EventReference ProjectileSfx => projectileSfx;
-
-        [FormerlySerializedAs("daggerSpawnOffset")]
-        [SerializeField]
-        private Vector3 projectileSpawnOffset;
-        public Vector3 ProjectileSpawnOffset => projectileSpawnOffset;
-        
-        [FormerlySerializedAs("daggerHitOffset")]
-        [SerializeField]
-        private Vector3 projectileHitOffset;
-        public Vector3 ProjectileHitOffset => projectileHitOffset;
-
-        [FormerlySerializedAs("daggerEase")]
-        [SerializeField]
-        private Ease projectileEase = Ease.Linear;
-        public Ease ProjectileEase => projectileEase;
-        
-        [FormerlySerializedAs("daggerCurve")]
-        [SerializeField]
-        private AnimationCurve projectileCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-        public AnimationCurve ProjectileCurve => projectileCurve;
-
-        [FormerlySerializedAs("daggerTime")]
-        [SerializeField]
-        private float projectileTime = 0.6f;
-        public float ProjectileTime => projectileTime;
-
-        [FormerlySerializedAs("daggerDelay")]
-        [SerializeField]
-        private float projectileDelay = 0.0f;
-        public float ProjectileDelay => projectileDelay;
-        
-        [Header("Hit")]
+        private ProjectileAnimProp projectileAnim;
+        public ProjectileAnimProp ProjectileAnim => projectileAnim;
         
         [SerializeField]
-        private bool hasHit = true;
-        public bool HasHit => hasHit;
-
-        [SerializeField]
-        private GameObject hitVfx;
-        public GameObject HitVfx => hitVfx;
-
-        [SerializeField]
-        private EventReference hitSfx;
-        public EventReference HitSfx => hitSfx;
+        private HitAnimProp hitAnim;
+        public HitAnimProp HitAnim => hitAnim;
         
         protected virtual Dictionary<string, string> GetDescArgs()
         {

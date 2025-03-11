@@ -30,7 +30,7 @@ namespace Fantazee.Spells.Instance
             Vector3 hitPos = Vector3.zero;
             foreach (BattleEnemy e in BattleController.Instance.Enemies)
             {
-                hitPos += e.transform.position + data.ProjectileHitOffset;
+                hitPos += e.transform.position + data.HitAnim.Offset;
             }
             return hitPos / BattleController.Instance.Enemies.Count;
         }
