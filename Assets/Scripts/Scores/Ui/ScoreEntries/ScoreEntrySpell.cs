@@ -70,7 +70,6 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         public void SetTooltip(bool set)
         {
-            Debug.Log(set);
             if (spell.Data.Type == SpellType.None)
             {
                 return;

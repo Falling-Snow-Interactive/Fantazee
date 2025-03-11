@@ -25,7 +25,7 @@ namespace Fantazee.Spells.Instance
                 enemy.Damage(d);
                 if (enemy.Health.IsAlive)
                 {
-                    PushToBack(onComplete);
+                    PushToBack(enemy, onComplete);
                 }
                 else
                 {
@@ -48,30 +48,31 @@ namespace Fantazee.Spells.Instance
             return Vector3.zero;
         }
 
-        private void PushToBack(Action onComplete = null)
+        private void PushToBack(BattleEnemy push, Action onComplete = null)
         {
             List<BattleEnemy> enemies = BattleController.Instance.Enemies;
 
-            Vector3 root = enemies[0].transform.position;
-            Vector3 pos = root;
-            
-            BattleEnemy push = enemies[^1];
+            Vector3 pos = Vector3.zero;
+
             enemies.Remove(push);
-            enemies.Insert(0, push);
+            enemies.Add(push);
+
+            float offset = 0.05f;
+            pos.y = offset;
 
             Sequence sequence = DOTween.Sequence();
-            for (int i = 0; i < enemies.Count; i++)
+            
+            for (int i = enemies.Count - 1; i >= 0; i--)
             {
                 BattleEnemy enemy = enemies[i];
-                Tween tween = enemy.transform.DOMove(pos, pushData.MoveTime)
-                                   .SetEase(pushData.MoveEase);
-                sequence.Insert(pushData.MoveDelay * i, tween);
                 
-                float y = i % 2 == 0 
-                              ? root.y + 0.05f 
-                              : root.y - 0.05f;
+                Tween tween = enemy.transform.DOLocalMove(pos, pushData.MoveTime)
+                                   .SetEase(pushData.MoveEase);
+                sequence.Insert(pushData.MoveDelay * (enemies.Count - i), tween);
+                
                 pos.x -= enemy.Size;
-                pos.y = y;
+                pos.y = offset;
+                offset *= -1;
             }
 
             sequence.OnComplete(() => onComplete?.Invoke());

@@ -6,16 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_05_Overflow/Spell_05_Overflow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_05_Overflow/Spell_05_Overflow.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/Char_00_DiceMaster/Char_00_DiceMaster_DAT.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Char_00_DiceMaster/Char_00_DiceMaster_DAT.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Config/Spells/Spell_07_Push/Spell_07_Push.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Spells/Spell_07_Push/Spell_07_Push.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemies/Enemy_00_Dealer/Enemy_00_Dealer_BTL.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Enemies/Enemy_00_Dealer/Enemy_00_Dealer_BTL.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemies/Enemy_01_Cuard/Enemy_01_Cuard.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemies/Enemy_01_Cuard/Enemy_01_Cuard.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu_SCN.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Relics/Ui/RelicEntryUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Relics/Ui/RelicEntryUi.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/ChanceScoreInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Instance/ChanceScoreInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/OverflowSpellInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PierceSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PierceSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Battle_CTRL.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Battle_CTRL.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/Fantazee_ScoreEntry_Ui.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/Fantazee_ScoreEntry_Ui.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_01_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_01_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/ChainLightningSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/ChainLightningSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PushSpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/Instance/PushSpellInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spells/SpellInstance.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,13 +127,15 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="1413">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="1413" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -153,7 +162,7 @@
       <workItem from="1741487438493" duration="32131000" />
       <workItem from="1741655258845" duration="5000" />
       <workItem from="1741655273004" duration="5000" />
-      <workItem from="1741696534568" duration="7290000" />
+      <workItem from="1741696534568" duration="12114000" />
     </task>
     <servers />
   </component>
@@ -174,75 +183,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs</url>
-          <line>135</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/Characters/BattleCharacter.cs" containingFunctionPresentation="Method 'Damage'">
-            <startOffsets>
-              <option value="3396" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3408" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreboardUi.cs</url>
           <line>51</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreboardUi.cs" containingFunctionPresentation="Method 'Initialize'" />
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/ScoreScoreScreen.cs</url>
-          <line>38</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Shop/Ui/Screens/ScoreScoreScreen.cs" containingFunctionPresentation="Lambda expression inside Method 'Initialize'">
-            <startOffsets>
-              <option value="1325" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1381" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Inn/InnController.cs</url>
-          <line>112</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Inn/InnController.cs" containingFunctionPresentation="Method 'Start'">
-            <startOffsets>
-              <option value="2596" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2664" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs</url>
-          <line>258</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" containingFunctionPresentation="Method 'SelectScoreEntry'">
-            <startOffsets>
-              <option value="7575" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7606" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Relics/Instance/LuckyRelicInstance.cs</url>
-          <line>13</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Relics/Instance/LuckyRelicInstance.cs" containingFunctionPresentation="Method 'Enable'">
-            <startOffsets>
-              <option value="333" />
-            </startOffsets>
-            <endOffsets>
-              <option value="351" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Instance/TwoPairScoreInstance.cs</url>
@@ -258,17 +202,17 @@
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs</url>
-          <line>73</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Scores/Ui/ScoreEntries/ScoreEntrySpell.cs" containingFunctionPresentation="Method 'SetTooltip'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Inn/InnController.cs</url>
+          <line>172</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Inn/InnController.cs" containingFunctionPresentation="Method 'OnSelectRoom'">
             <startOffsets>
-              <option value="1689" />
+              <option value="4690" />
             </startOffsets>
             <endOffsets>
-              <option value="1727" />
+              <option value="4752" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="61" />
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

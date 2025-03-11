@@ -77,15 +77,19 @@ namespace Fantazee.Spells
                 BattleController.Instance.StartCoroutine(ProjectileSequence(() => ready = true));
                 yield return new WaitUntil(() => ready);
             }
-
-            ready = false;
-            Apply(damage, () => ready = true);
-            yield return new WaitUntil(() => ready);
             
             if (data.HitAnim.HasHit)
             {
                 ready = false;
+                bool ready2 = false;
                 BattleController.Instance.StartCoroutine(HitSequence(() => ready = true));
+                Apply(damage, () => ready2 = true);
+                yield return new WaitUntil(() => ready && ready2);
+            }
+            else
+            {
+                ready = false;
+                Apply(damage, () => ready = true);
                 yield return new WaitUntil(() => ready);
             }
 
