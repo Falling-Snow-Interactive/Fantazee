@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Fantazee.Currencies;
-using FMODUnity;
+using Fantazee.Spells.Animations;
+using Fantazee.Spells.Data.Animations;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace Fantazee.Spells.Data
+namespace Fantazee.Spells
 {
     public abstract class SpellData : ScriptableObject
     {
@@ -45,15 +46,19 @@ namespace Fantazee.Spells.Data
         private Currency cost = new(CurrencyType.Gold, 10);
         public Currency Cost => cost;
 
-        [Header("Cast")]
-
+        [Header("Battle Animations")]
+        
         [SerializeField]
-        private GameObject castVfx;
-        public GameObject CastVfx => castVfx;
-
+        private CastAnimProp castAnim;
+        public CastAnimProp CastAnim => castAnim;
+        
         [SerializeField]
-        private EventReference castSfx;
-        public EventReference CastSfx => castSfx;
+        private ProjectileAnimProp projectileAnim;
+        public ProjectileAnimProp ProjectileAnim => projectileAnim;
+        
+        [SerializeField]
+        private HitAnimProp hitAnim;
+        public HitAnimProp HitAnim => hitAnim;
         
         protected virtual Dictionary<string, string> GetDescArgs()
         {

@@ -30,75 +30,72 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  icon: {fileID: 21300000, guid: bfe463cae60764e429a97da945eeb6da, type: 3}
+  icon: {fileID: 120050794, guid: 73bfa086f10b6451eb86261f43b7a49e, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   cost:
     name: 'Gold: 16'
     type: 1
     amount: 16
-  castVfx: {fileID: 0}
-  castSfx:
-    Guid:
-      Data1: 1568356413
-      Data2: 1191063327
-      Data3: 724200076
-      Data4: -1370872847
-    Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Hit
-  damageMod: 0.7
-  fireballVfx: {fileID: 5405301624189521083, guid: c865450a53e524c89b762d2aac965779, type: 3}
-  fireballSfx:
-    Guid:
-      Data1: 1718545549
-      Data2: 1105268704
-      Data3: -121445749
-      Data4: 286484647
-    Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Loop
-  fireballSpawnOffset: {x: 3, y: 2, z: 0}
-  fireballHitOffset: {x: 0, y: 1.3, z: 0}
-  fireballEase: 37
-  fireballCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: -0.022188073
-      outSlope: -0.022188073
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.1792155
-    - serializedVersion: 3
-      time: 0.6006204
-      value: -0.10566147
-      inSlope: -0.005887707
-      outSlope: -0.005887707
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.052526772
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  fireballTime: 0.6
-  fireballDelay: 0
-  hitVfx: {fileID: 4077048775125981775, guid: dc98f7c5ab0d44a6289a7d07dfe0d4ff, type: 3}
-  hitSfx:
-    Guid:
-      Data1: 1568356413
-      Data2: 1191063327
-      Data3: 724200076
-      Data4: -1370872847
-    Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Hit
+  castAnim:
+    hasCast: 1
+    castVfx: {fileID: 0}
+    castSfx:
+      Guid:
+        Data1: -2133629864
+        Data2: 1184318197
+        Data3: -758983552
+        Data4: -1452170019
+      Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Cast
+  projectileAnim:
+    hasProjectile: 1
+    vfx: {fileID: 5405301624189521083, guid: c865450a53e524c89b762d2aac965779, type: 3}
+    sfx:
+      Guid:
+        Data1: 1718545549
+        Data2: 1105268704
+        Data3: -121445749
+        Data4: 286484647
+      Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Projectile
+    spawnOffset: {x: 2, y: 4, z: 0}
+    ease: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    time: 0.8
+    delay: 0.2
+  hitAnim:
+    hasHit: 1
+    vfx: {fileID: 4077048775125981775, guid: dc98f7c5ab0d44a6289a7d07dfe0d4ff, type: 3}
+    sfx:
+      Guid:
+        Data1: 1568356413
+        Data2: 1191063327
+        Data3: 724200076
+        Data4: -1370872847
+      Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Hit
+    offset: {x: 0, y: 0, z: 0}
+  damageMod: 0.8
   references:
     version: 2
     RefIds: []

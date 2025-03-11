@@ -97,9 +97,9 @@ MonoBehaviour:
   battleRewards:
     wallet:
       currencies:
-      - name: 'Gold: 8'
+      - name: 'Gold: 4'
         type: 1
-        amount: 8
+        amount: 4
   attackSfxRef:
     Guid:
       Data1: 1271437393
@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Status_Ui
       objectReference: {fileID: 0}
+    - target: {fileID: 3619707345519702963, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4857287455001043403, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -278,10 +282,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5569822369578459321, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9175780796554710513, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
-      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

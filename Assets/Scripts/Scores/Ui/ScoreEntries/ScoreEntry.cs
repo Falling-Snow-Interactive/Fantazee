@@ -4,6 +4,7 @@ using DG.Tweening;
 using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
 using Fantazee.Scores.Instance;
+using Fantazee.Spells;
 using Fantazee.Spells.Instance;
 using JetBrains.Annotations;
 using TMPro;

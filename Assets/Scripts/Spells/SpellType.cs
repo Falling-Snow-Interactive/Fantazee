@@ -8,6 +8,9 @@ namespace Fantazee.Spells
         Shield = 3,
         Heal = 4,
         Fireball = 5,
+        Overflow = 6,
+        ChainLightning = 7,
+        Push = 8,
         
     }
 }

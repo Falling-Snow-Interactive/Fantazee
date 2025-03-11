@@ -6,6 +6,7 @@ using Fantazee.Dice;
 using Fantazee.Dice.Settings;
 using Fantazee.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Spells;
 using Fantazee.Spells.Instance;
 using FMODUnity;
 using UnityEngine;

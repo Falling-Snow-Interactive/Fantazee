@@ -1,15 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
-using Fantazee.Battle.Characters.Player;
 using Fantazee.Spells.Data;
-using FMOD.Studio;
-using FMODUnity;
 using UnityEngine;
-using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Fantazee.Spells.Instance
 {
@@ -17,90 +12,44 @@ namespace Fantazee.Spells.Instance
     public class PierceSpellInstance : SpellInstance
     {
         private PierceSpellData data;
-        
-        private EventInstance daggerSfx;
-        private EventInstance hitSfx;
 
         public PierceSpellInstance(PierceSpellData data) : base(data)
         {
             this.data = data;
-            
-            if (!data.PierceSfx.IsNull)
-            {
-                daggerSfx = RuntimeManager.CreateInstance(data.PierceSfx);
-            }
-            
-            if (!data.HitSfx.IsNull)
-            {
-                hitSfx = RuntimeManager.CreateInstance(data.HitSfx);
-            }
         }
         
-        protected override IEnumerator CastSequence(Damage damage, Action onComplete = null)
+        protected override void Apply(Damage damage, Action onComplete)
         {
-            BattlePlayer player = BattleController.Instance.Player;
-            List<BattleEnemy> enemies = BattleController.Instance.Enemies;
-
-            player.Visuals.Attack();
-
-            yield return new WaitForSeconds(0.2f);
-            
-            BattleEnemy e0 = enemies[^1];
-            if (e0)
+            if (BattleController.Instance.Enemies.Count > 0)
             {
-                BattleEnemy e1 = null;
-                if (enemies.Count > 1)
+                if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy front))
                 {
-                    e1 = enemies[^2];
-                }
-
-                Vector3 startPos = player.transform.position + data.PierceVfxSpawnOffset;
-                Vector3 endPos = (e1 != null 
-                                      ? e1.transform.position 
-                                      : e0.transform.position) 
-                                 + data.PierceVfxHitOffset;
-
-                bool ready = false;
-                GameObject arrow = Object.Instantiate(data.PierceVfx, startPos, Quaternion.identity);
-                arrow.transform.DOMove(endPos, data.PierceTime)
-                     .SetDelay(data.PierceDelay)
-                     .SetEase(data.PierceEase)
-                     .OnComplete(() =>
-                                 {
-                                     Object.Destroy(arrow.gameObject);
-                                     
-                                     ready = true;
-                                 });
-
-                yield return new WaitUntil(() => ready);
-                
-                if (hitSfx.isValid())
-                {
-                    hitSfx.start();
-                }
-                e0.Damage(Mathf.RoundToInt(damage.Value * data.FirstEnemyMod));
-                if (data.HitVfx)
-                {
-                    Object.Instantiate(data.HitVfx,
-                                       e0.transform.position + data.PierceVfxHitOffset,
-                                       e0.transform.rotation);
-                }
-
-                if (e1)
-                {
-                    e1.Damage(Mathf.RoundToInt(damage.Value * data.SecondEnemyMod));
-                    if (data.HitVfx)
+                    int index = BattleController.Instance.Enemies.IndexOf(front);
+                    index++;
+                    if (BattleController.Instance.Enemies.Count > index)
                     {
-                        Object.Instantiate(data.HitVfx,
-                                           e1.transform.position + data.PierceVfxHitOffset,
-                                           e1.transform.rotation);
+                        BattleEnemy second = BattleController.Instance.Enemies[index];
+                        front.Damage(Mathf.Max(Mathf.RoundToInt(damage.Value * data.FirstEnemyMod), 1));
+                        second.Damage(Mathf.Max(Mathf.RoundToInt(damage.Value * data.SecondEnemyMod), 1));
+                    }
+                    else
+                    {
+                        front.Damage(damage.Value);
                     }
                 }
             }
-
-            yield return new WaitForSeconds(1f);
             
             onComplete?.Invoke();
+        }
+
+        protected override Vector3 GetHitPos()
+        {
+            return BattleController.Instance.Enemies.Count switch
+                   {
+                       1 => BattleController.Instance.Enemies[0].transform.position + data.HitAnim.Offset,
+                       > 1 => BattleController.Instance.Enemies[1].transform.position + data.HitAnim.Offset,
+                       _ => Vector3.zero
+                   };
         }
     }
 }

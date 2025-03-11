@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
 using Fantazee.Battle;
-using Fantazee.Battle.Characters.Player;
 using Fantazee.Spells.Data;
-using FMOD.Studio;
-using FMODUnity;
 using UnityEngine;
 
 namespace Fantazee.Spells.Instance
@@ -13,30 +9,22 @@ namespace Fantazee.Spells.Instance
     public class HealSpellInstance : SpellInstance
     {
         private HealSpellData data;
-        private EventInstance healSfx;
         
         public HealSpellInstance(HealSpellData data) : base(data)
         {
             this.data = data;
-            if (!data.CastSfx.IsNull)
-            {
-                healSfx = RuntimeManager.CreateInstance(data.CastSfx);
-            }
         }
-        
-        protected override IEnumerator CastSequence(Damage damage, Action onComplete = null)
+
+        protected override void Apply(Damage damage, Action onComplete)
         {
-            BattlePlayer player = BattleController.Instance.Player;
-            
-            player.Visuals.Action();
-            yield return new WaitForSeconds(0.3f);
-            player.Heal(damage.Value);
-            if (healSfx.isValid())
-            {
-                healSfx.start();
-            }
-            yield return new WaitForSeconds(1f);
+            int h = Mathf.RoundToInt(damage.Value * data.HealMod);
+            BattleController.Instance.Player.Heal(h);
             onComplete?.Invoke();
+        }
+
+        protected override Vector3 GetHitPos()
+        {
+            return BattleController.Instance.Player.transform.position;
         }
     }
 }
