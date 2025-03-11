@@ -3,7 +3,6 @@ using System.Collections;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Spells.Data;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

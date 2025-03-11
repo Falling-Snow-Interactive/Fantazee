@@ -5,6 +5,7 @@ using Fantazee.Relics.Instance;
 using Fantazee.Relics.Settings;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Relics.Ui
@@ -12,6 +13,9 @@ namespace Fantazee.Relics.Ui
     public class RelicEntryUi : MonoBehaviour
     {
         private RelicInstance relic;
+
+        [SerializeField]
+        private bool hideTooltipOnAwake = true;
 
         [Header("References")]
         
@@ -29,7 +33,7 @@ namespace Fantazee.Relics.Ui
 
         private void Awake()
         {
-            relicTooltip.SetActive(false);
+            relicTooltip.SetActive(!hideTooltipOnAwake);
         }
 
         private void OnEnable()
