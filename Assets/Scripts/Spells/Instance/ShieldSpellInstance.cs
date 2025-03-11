@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Spells.Data;
@@ -16,17 +15,17 @@ namespace Fantazee.Spells.Instance
         {
             this.data = data;
         }
-        
-        protected override IEnumerator CastSequence(Damage damage, Action onComplete = null)
+        protected override void Apply(Damage damage)
         {
             BattlePlayer player = BattleController.Instance.Player;
 
             player.Visuals.Action();
             player.Shield.Add(damage.Value);
+        }
 
-            yield return new WaitForSeconds(0.5f);
-            
-            onComplete?.Invoke();
+        protected override Vector3 GetHitPos()
+        {
+            return Vector3.zero;
         }
     }
 }

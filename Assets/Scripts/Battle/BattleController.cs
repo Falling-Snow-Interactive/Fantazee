@@ -215,7 +215,7 @@ namespace Fantazee.Battle
                 enemy.Initialize();
                 rewards.Add(enemy.BattleRewards);
 
-                enemies.Add(enemy);
+                enemies.Insert(0, enemy);
             }
         }
         
@@ -502,11 +502,11 @@ namespace Fantazee.Battle
 
         public bool TryGetFrontEnemy(out BattleEnemy enemy)
         {
-            for (int i = enemies.Count - 1; i >= 0; i--)
+            foreach(BattleEnemy e in enemies)
             {
-                if (enemies[i].Health.IsAlive)
+                if (e.Health.IsAlive)
                 {
-                    enemy = enemies[i];
+                    enemy = e;
                     return true;
                 }
             }
