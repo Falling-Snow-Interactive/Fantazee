@@ -104,7 +104,7 @@ namespace Fantazee.Battle
         private BattleRewards rewards;
         
         // Scores
-        private List<BattleScore> battleScores = new();
+        private readonly List<BattleScore> battleScores = new();
         private BattleScore fantazeeBattleScore;
         
         [Header("Scoring")]
