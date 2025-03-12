@@ -12,8 +12,11 @@ using FMODUnity;
 using Fsi.Gameplay;
 using Fsi.Spline;
 using Fsi.Spline.Vectors;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Splines;
+using Spline = UnityEngine.Splines.Spline;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Maps
@@ -178,33 +181,32 @@ namespace Fantazee.Maps
 
                 int curr = GameInstance.Current.Map.Node;
                 Node currentNode = map.Nodes[curr];
+                int nextIndex = currentNode.Next.IndexOf(node);
+                Spline spline = currentNode.SplineContainer.Splines[nextIndex];
                 
-                // TODO - Follow new splines.
-                // Vector3Spline spline = new(currentNode.Point, node.Point)
-                //                        {
-                //                            closed = false,
-                //                            curveType = CurveType.Bezier,
-                //                        };
-                //
-                // float t = 0;
-                // DOTween.To(() => t, x =>
-                //                     {
-                //                         t = x;
-                //                         player.transform.position = spline.Evaluate(t).value;
-                //                     }, 
-                //            1, 
-                //            moveTime)
-                //        .SetEase(moveEase)
-                //        .OnPlay(() =>
-                //                {
-                //                    footstepsSfx.start();
-                //                })
-                //        .OnComplete(() =>
-                //                    {
-                //                        player.transform.position = spline.Evaluate(1).value;
-                //                        footstepsSfx.stop(STOP_MODE.IMMEDIATE);
-                //                        OnFinishMoving(node);
-                //                    });
+                float t = 0;
+                DOTween.To(() => t, x =>
+                                    {
+                                        t = x;
+                                        float3 p = spline.EvaluatePosition(t);
+                                        player.transform.position = new Vector3(p.x, p.y, p.z) 
+                                                                    + currentNode.transform.position;
+                                    }, 
+                           1, 
+                           moveTime)
+                       .SetEase(moveEase)
+                       .OnPlay(() =>
+                               {
+                                   footstepsSfx.start();
+                               })
+                       .OnComplete(() =>
+                                   {
+                                       float3 p = spline.EvaluatePosition(1f);
+                                       player.transform.position = new Vector3(p.x, p.y, p.z)
+                                           + currentNode.transform.position;
+                                       footstepsSfx.stop(STOP_MODE.IMMEDIATE);
+                                       OnFinishMoving(node);
+                                   });
 
             }
 

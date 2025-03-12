@@ -23,6 +23,7 @@ namespace Fantazee.Maps.Nodes
         
         [SerializeField]
         private SplineContainer splineContainer;
+        public SplineContainer SplineContainer => splineContainer;
         
         [SerializeField] 
         private Disc disc;
