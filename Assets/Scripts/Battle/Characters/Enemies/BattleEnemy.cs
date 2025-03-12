@@ -1,42 +1,42 @@
 using System;
 using System.Collections;
+using DG.Tweening;
+using Fantazee.Enemies;
 using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
-using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Battle.Characters.Enemies
 {
     public class BattleEnemy : BattleCharacter
     {
-        [Header("Enemy")]
+        private EnemyData data;
+        public EnemyData Data => data;
         
-        [SerializeField]
-        private RangeInt damage;
-        
-        [Header("Health")]
-        
-        [SerializeField]
+        // Health
         private Health health;
         public override Health Health => health;
         
-        [Header("Rewards")]
+        private Vector3 localRoot;
         
-        [SerializeField]
-        private BattleRewards battleRewards;
-        public BattleRewards BattleRewards => battleRewards;
+        // Audio
+        protected override EventReference DeathSfxRef => data.DeathSfx;
+        protected override EventReference EnterSfxRef => data.EnterSfx;
 
-        [Header("Audio")]
-
-        [SerializeField]
-        private EventReference attackSfxRef;
         private EventInstance attackSfx;
 
-        protected override void Awake()
+        public void Initialize(EnemyData data)
         {
-            base.Awake();
-            attackSfx = RuntimeManager.CreateInstance(attackSfxRef);
+            this.data = data;
+            localRoot = transform.localPosition;
+            
+            health = new Health(data.Health);
+            attackSfx = RuntimeManager.CreateInstance(data.AttackSfx);
+            SpawnVisuals(data.Visuals);
+            base.Initialize();
+            
+            Debug.Log($"Enemy: {name} initialized");
         }
 
         #region Attack
@@ -51,18 +51,44 @@ namespace Fantazee.Battle.Characters.Enemies
             Visuals.Attack();
             attackSfx.start();
             yield return new WaitForSeconds(0.2f);
-            BattleController.Instance.Player.Damage(damage.Random()); // TODO - <----
+            BattleController.Instance.Player.Damage(data.Damage.Random()); // TODO - <----
             onComplete?.Invoke();
         }
         
         #endregion
         
+        public void Show(Action onComplete, float delay = 0, bool force = false)
+        {
+            if (force)
+            {
+                transform.localPosition = localRoot;
+                return;
+            }
+            
+            transform.DOLocalMove(localRoot, data.ShowTime)
+                     .SetEase(data.ShowEase)                     
+                     .SetDelay(delay)
+                     .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
+                     .OnComplete(() =>
+                                 {
+                                     onComplete?.Invoke();
+                                 });
+        }
+
+        public void Hide()
+        {
+            transform.localPosition = localRoot + data.HideOffset;
+        }
+        
         #region Gizmos
         
-        protected override void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            base.OnDrawGizmos();
+            if (data)
+            {
+                Gizmos.DrawWireCube(transform.position, new Vector3(data.Size, 0.2f, 0));
+            }
         }
         
         #endregion

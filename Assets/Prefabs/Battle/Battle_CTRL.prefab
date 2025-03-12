@@ -50,21 +50,16 @@ MonoBehaviour:
   camera: {fileID: 2592619355742368964}
   remainingRolls: 3
   playerContainer: {fileID: 5110455792011247413}
+  battlePlayerPrefab: {fileID: 5850074044104224665, guid: 4909486ccb1b84888aa5a93f2c0f15a7, type: 3}
   enemyContainer: {fileID: 6378522954758716472}
+  battleEnemyPrefab: {fileID: 4516146605308627700, guid: 468d011f6ca514b00bfa7c3a2d60053a, type: 3}
   enemyPool:
-  - {fileID: 3079497476993578450, guid: 24cd6dd13294249b7a3848cca090b724, type: 3}
-  - {fileID: 3079497476993578450, guid: 4690d9e039ed740df89133511a8fac87, type: 3}
+  - {fileID: 11400000, guid: 60192db45a97c41dcab97727f80cb3ac, type: 2}
   enemySpawns:
     min: 2
     max: 3
   rewards:
     rid: -2
-  battleScores: []
-  fantazeeBattleScore:
-    score:
-      rid: -2
-    dice: []
-    entryUi: {fileID: 0}
   scoreTime: 0.3
   scoreEase: 1
   references:

@@ -11,8 +11,8 @@ using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
+using Fantazee.Enemies;
 using Fantazee.Environments;
-using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
@@ -82,12 +82,20 @@ namespace Fantazee.Battle
 
         [SerializeField]
         private Transform playerContainer;
+
+        [SerializeField]
+        private BattlePlayer battlePlayerPrefab;
+        
+        [Header("Enemies")]
         
         [SerializeField]
         private Transform enemyContainer;
 
         [SerializeField]
-        private List<BattleEnemy> enemyPool = new();
+        private BattleEnemy battleEnemyPrefab;
+
+        [SerializeField]
+        private List<EnemyData> enemyPool = new();
 
         [SerializeField]
         private RangeInt enemySpawns = new(3, 5);
@@ -95,13 +103,8 @@ namespace Fantazee.Battle
         [SerializeReference]
         private BattleRewards rewards;
         
-        [Header("Battle Scores")]
-        
-        [SerializeField]
-        private List<BattleScore> battleScores = new();
-        public List<BattleScore> BattleScores => battleScores;
-
-        [SerializeField]
+        // Scores
+        private readonly List<BattleScore> battleScores = new();
         private BattleScore fantazeeBattleScore;
         
         [Header("Scoring")]
@@ -153,8 +156,8 @@ namespace Fantazee.Battle
             fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
             BattleUi.Instance.Scoresheet.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
             
-            player = Instantiate(GameInstance.Current.Character.Data.BattleCharacter, playerContainer);
-            Player.Initialize();
+            player = Instantiate(battlePlayerPrefab, playerContainer);
+            Player.Initialize(GameInstance.Current.Character);
             remainingRolls = GameInstance.Current.Character.Rolls;
             
             SetupRelics();
@@ -164,12 +167,9 @@ namespace Fantazee.Battle
             // Hide enemies
             foreach (BattleEnemy enemy in enemies)
             {
-                enemy.Hide(null, 0, true);
+                enemy.Hide();
             }
             
-            // Hide player
-            Player.Hide(null, 0, true);
-
             if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
                                                                            out EnvironmentData data))
             {
@@ -207,16 +207,17 @@ namespace Fantazee.Battle
             float spawnOffset = 0;
             for (int i = 0; i < spawns; i++)
             {
-                BattleEnemy enemy = Instantiate(enemyPool[Random.Range(0, enemyPool.Count)], enemyContainer);
+                EnemyData enemyData = enemyPool[Random.Range(0, enemyPool.Count)];
+                BattleEnemy enemy = Instantiate(battleEnemyPrefab, enemyContainer);
+                enemy.gameObject.name = $"{enemyData.Name} ({i})";
                 
                 float y = i % 2 == 0 ? 0.05f : -0.05f;
-                
                 enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
-                spawnOffset += enemy.Size;
-
-                enemy.Initialize();
-                rewards.Add(enemy.BattleRewards);
-
+                enemy.Initialize(enemyData);
+                
+                spawnOffset += enemy.Data.Size;
+                
+                rewards.Add(enemy.Data.BattleRewards);
                 enemies.Insert(0, enemy);
             }
         }
@@ -232,8 +233,6 @@ namespace Fantazee.Battle
 
         private IEnumerator IntroductionSequence(Action onComplete = null)
         {
-            // Show player
-            Player.Show(null);
             yield return new WaitForSeconds(0.2f);
             
             // Move enemies in
