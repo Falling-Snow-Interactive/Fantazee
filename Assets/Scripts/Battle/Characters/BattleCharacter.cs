@@ -22,8 +22,6 @@ namespace Fantazee.Battle.Characters
         public static event Action<BattleCharacter> Spawned;
         public static event Action<BattleCharacter> Despawned;
         
-        private Vector3 localRoot;
-        
         // Visuals
         private GameplayCharacterVisuals visuals;
         public GameplayCharacterVisuals Visuals => visuals;
@@ -43,25 +41,6 @@ namespace Fantazee.Battle.Characters
         private ShieldUi shieldUi;
         public ShieldUi ShieldUi => shieldUi;
         
-        [Header("Animations")]
-
-        [Header("Hide/Show")]
-
-        [SerializeField]
-        private Vector3 hideOffset = Vector3.zero;
-
-        [SerializeField]
-        private float hideTime = 0.5f;
-
-        [SerializeField]
-        private Ease hideEase = Ease.Linear;
-
-        [SerializeField]
-        private float showTime = 0.5f;
-        
-        [SerializeField]
-        private Ease showEase = Ease.Linear;
-        
         // Audio
         protected abstract EventReference DeathSfxRef { get; }
         protected abstract EventReference EnterSfxRef { get; }
@@ -74,8 +53,6 @@ namespace Fantazee.Battle.Characters
         protected void Initialize()
         {
             Debug.Log($"Character: {name} - Initialize");
-            localRoot = transform.localPosition;
-            
             healthUi.Initialize(Health);
             Spawned?.Invoke(this);
 
@@ -136,38 +113,6 @@ namespace Fantazee.Battle.Characters
             int healed = Health.Heal(heal);
             damageNumbers.AddHealing(healed);
             visuals.Action();
-        }
-
-        public void Hide(Action onComplete, float delay = 0, bool force = false)
-        {
-            if (force)
-            {
-                transform.localPosition = hideOffset;
-                return;
-            }
-
-            transform.DOLocalMove(hideOffset, hideTime)
-                     .SetEase(hideEase)
-                     .SetDelay(delay)
-                     .OnComplete(() => onComplete?.Invoke());
-        }
-        
-        public void Show(Action onComplete, float delay = 0, bool force = false)
-        {
-            if (force)
-            {
-                transform.localPosition = localRoot;
-                return;
-            }
-            
-            transform.DOLocalMove(localRoot, showTime)
-                     .SetEase(showEase)                     
-                     .SetDelay(delay)
-                     .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
-                     .OnComplete(() =>
-                                 {
-                                     onComplete?.Invoke();
-                                 });
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
 using FMODUnity;
@@ -68,5 +69,21 @@ namespace Fantazee.Enemies
         [SerializeField]
         private EventReference deathSfx;
         public EventReference DeathSfx => deathSfx;
+        
+        [Header("Animation")]
+        
+        [Header("Hide/Show")]
+
+        [SerializeField]
+        private Vector3 hideOffset = Vector3.zero;
+        public Vector3 HideOffset => hideOffset;
+
+        [SerializeField]
+        private float showTime = 0.5f;
+        public float ShowTime => showTime;
+        
+        [SerializeField]
+        private Ease showEase = Ease.Linear;
+        public Ease ShowEase => showEase;
     }
 }

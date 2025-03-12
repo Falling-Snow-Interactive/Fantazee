@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using Fantazee.Enemies;
 using FMOD.Studio;
 using FMODUnity;
@@ -17,6 +18,8 @@ namespace Fantazee.Battle.Characters.Enemies
         private Health health;
         public override Health Health => health;
         
+        private Vector3 localRoot;
+        
         // Audio
         protected override EventReference DeathSfxRef => data.DeathSfx;
         protected override EventReference EnterSfxRef => data.EnterSfx;
@@ -26,11 +29,14 @@ namespace Fantazee.Battle.Characters.Enemies
         public void Initialize(EnemyData data)
         {
             this.data = data;
+            localRoot = transform.localPosition;
             
             health = new Health(data.Health);
             attackSfx = RuntimeManager.CreateInstance(data.AttackSfx);
             SpawnVisuals(data.Visuals);
             base.Initialize();
+            
+            Debug.Log($"Enemy: {name} initialized");
         }
 
         #region Attack
@@ -50,6 +56,29 @@ namespace Fantazee.Battle.Characters.Enemies
         }
         
         #endregion
+        
+        public void Show(Action onComplete, float delay = 0, bool force = false)
+        {
+            if (force)
+            {
+                transform.localPosition = localRoot;
+                return;
+            }
+            
+            transform.DOLocalMove(localRoot, data.ShowTime)
+                     .SetEase(data.ShowEase)                     
+                     .SetDelay(delay)
+                     .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
+                     .OnComplete(() =>
+                                 {
+                                     onComplete?.Invoke();
+                                 });
+        }
+
+        public void Hide()
+        {
+            transform.localPosition = localRoot + data.HideOffset;
+        }
         
         #region Gizmos
         
