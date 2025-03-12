@@ -70,7 +70,7 @@ namespace Fantazee.Spells.Instance
                                    .SetEase(pushData.MoveEase);
                 sequence.Insert(pushData.MoveDelay * (enemies.Count - i), tween);
                 
-                pos.x -= enemy.Size;
+                pos.x -= enemy.Data.Size;
                 pos.y = offset;
                 offset *= -1;
             }
