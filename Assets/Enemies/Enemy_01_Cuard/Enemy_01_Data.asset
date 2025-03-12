@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2c21acc54b4e718d9357d99847f6ee, type: 3}
   m_Name: Enemy_01_Data
   m_EditorClassIdentifier: 
+  type: 1
+  locName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   health: 18
   visuals: {fileID: 2442580108402954977, guid: 7289b95bedfac48dca0519f17d5c9de6, type: 3}
   size: 2
@@ -45,3 +64,6 @@ MonoBehaviour:
       Data3: -988324478
       Data4: -428259744
     Path: event:/Enemies/Enemy_01/Death
+  references:
+    version: 2
+    RefIds: []

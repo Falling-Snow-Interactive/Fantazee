@@ -34,7 +34,6 @@ MonoBehaviour:
   icon: {fileID: -1007265682, guid: c2e6f8e7fb99248baaa8e28f1dcb8d7e, type: 3}
   visuals: {fileID: 5867789611335030042, guid: 7688337d8b01e4d2590985b94e0b3643, type: 3}
   maxHealth: 300
-  battleCharacter: {fileID: 5850074044104224665, guid: 4909486ccb1b84888aa5a93f2c0f15a7, type: 3}
   scores:
   - name: 'Score_01_Ones: Spell_02_Shield'
     score: {fileID: 11400000, guid: f5ebe56c594cb46c187090b47c002dff, type: 2}
@@ -48,10 +47,10 @@ MonoBehaviour:
     score: {fileID: 11400000, guid: 0f663f2ec63c343429c1186b93ca0d58, type: 2}
     spells:
     - {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
-  - name: 'Score_04_Fours: Spell_02_Shield'
+  - name: 'Score_04_Fours: Spell_01_Pierce'
     score: {fileID: 11400000, guid: e9f2137152c72442daf4a939f3c86fe6, type: 2}
     spells:
-    - {fileID: 11400000, guid: 0edaa33dc3a944031b001867d5e07fe1, type: 2}
+    - {fileID: 11400000, guid: d1acf298aa81143b5b00bd02f264e460, type: 2}
   - name: 'Score_05_Fives: Spell_00_Dagger'
     score: {fileID: 11400000, guid: 7ccb113764363446a8c928139c3d111d, type: 2}
     spells:
@@ -68,10 +67,24 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
   wallet:
     currencies:
-    - name: 'Gold: 50'
+    - name: 'Gold: 10'
       type: 1
-      amount: 50
+      amount: 10
   relic: 1
+  enterSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  deathSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   references:
     version: 2
     RefIds: []

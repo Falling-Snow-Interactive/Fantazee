@@ -13,7 +13,6 @@ using Fantazee.Dice;
 using Fantazee.Dice.Ui;
 using Fantazee.Enemies;
 using Fantazee.Environments;
-using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
@@ -86,6 +85,8 @@ namespace Fantazee.Battle
 
         [SerializeField]
         private BattlePlayer battlePlayerPrefab;
+        
+        [Header("Enemies")]
         
         [SerializeField]
         private Transform enemyContainer;

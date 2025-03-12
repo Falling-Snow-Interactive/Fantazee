@@ -1,7 +1,9 @@
+using System;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Localization;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Enemies
@@ -9,7 +11,23 @@ namespace Fantazee.Enemies
     [CreateAssetMenu(menuName = "Enemies/Data")]
     public class EnemyData : ScriptableObject
     {
+        [SerializeField]
+        private EnemyType type;
+        public EnemyType Type => type;
+
         [Header("Enemy")]
+
+        [Header("Localization")]
+
+        [SerializeField]
+        private LocalizedString locName;
+        public string Name => locName.IsEmpty ? "no loc" : locName.GetLocalizedString();
+
+        [SerializeField]
+        private LocalizedString locDesc;
+        public string Description => locDesc.IsEmpty ? "no loc" : locDesc.GetLocalizedString();
+        
+        [Header("Battle")]
 
         [SerializeField]
         private int health;
