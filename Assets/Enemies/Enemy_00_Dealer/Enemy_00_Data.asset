@@ -12,33 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2c21acc54b4e718d9357d99847f6ee, type: 3}
   m_Name: Enemy_00_Data
   m_EditorClassIdentifier: 
-  health: 0
-  visuals: {fileID: 0}
-  size: 1
+  health: 12
+  visuals: {fileID: 2442580108402954977, guid: 5423d1db218ea4dc8b7e737ea20fc15f, type: 3}
+  size: 2
   damage:
-    min: 0
-    max: 0
+    min: 4
+    max: 6
   battleRewards:
     wallet:
-      currencies: []
+      currencies:
+      - name: 'Gold: 3'
+        type: 1
+        amount: 3
   enterSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 843577980
+      Data2: 1104614023
+      Data3: -2092245356
+      Data4: 882678084
+    Path: event:/Enemies/Enemy_00/Enemy_00_Enter
   attackSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1271437393
+      Data2: 1333622549
+      Data3: 975107756
+      Data4: -1672151759
+    Path: event:/Enemies/Enemy_00/Enemy_00_Attack
   deathSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 297599292
+      Data2: 1237536448
+      Data3: 296223911
+      Data4: -1783998385
+    Path: event:/Enemies/Enemy_00/Enemy_00_Death

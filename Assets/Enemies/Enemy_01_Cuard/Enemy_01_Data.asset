@@ -20,25 +20,28 @@ MonoBehaviour:
     max: 12
   battleRewards:
     wallet:
-      currencies: []
+      currencies:
+      - name: 'Gold: 6'
+        type: 1
+        amount: 6
   enterSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 804779087
+      Data2: 1145722786
+      Data3: -1069358928
+      Data4: 260725895
+    Path: event:/Enemies/Enemy_01/Enter
   attackSfx:
     Guid:
-      Data1: 1271437393
-      Data2: 1333622549
-      Data3: 975107756
-      Data4: -1672151759
-    Path: event:/Enemies/Enemy_00_Dealer/Attack
+      Data1: -970978167
+      Data2: 1337504839
+      Data3: 1839687589
+      Data4: 1141626412
+    Path: event:/Enemies/Enemy_01/Attack
   deathSfx:
     Guid:
-      Data1: 297599292
-      Data2: 1237536448
-      Data3: 296223911
-      Data4: -1783998385
-    Path: event:/Enemies/Enemy_00_Dealer/Death
+      Data1: -292462534
+      Data2: 1286906948
+      Data3: -988324478
+      Data4: -428259744
+    Path: event:/Enemies/Enemy_01/Death
