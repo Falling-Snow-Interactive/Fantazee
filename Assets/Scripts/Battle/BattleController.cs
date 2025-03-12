@@ -214,13 +214,11 @@ namespace Fantazee.Battle
                 
                 float y = i % 2 == 0 ? 0.05f : -0.05f;
                 enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
-                
                 enemy.Initialize(enemyData);
                 
                 spawnOffset += enemy.Data.Size;
                 
                 rewards.Add(enemy.Data.BattleRewards);
-
                 enemies.Insert(0, enemy);
             }
         }
