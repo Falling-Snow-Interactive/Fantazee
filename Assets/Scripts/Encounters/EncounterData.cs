@@ -16,7 +16,7 @@ namespace Fantazee.Encounters
 
         [SerializeField]
         private new LocalizedString name;
-        public LocalizedString Name => name;
+        public string Name => name.GetLocalizedString();
 
         [SerializeField]
         private LocalizedString description;

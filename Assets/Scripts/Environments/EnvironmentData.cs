@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Fantazee.Audio;
+using Fantazee.Encounters;
 using FMODUnity;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
@@ -33,6 +35,10 @@ namespace Fantazee.Environments
         private Color color = Color.black;
         public Color Color => color;
 
+        [SerializeField]
+        private List<Sprite> backgrounds;
+        public List<Sprite> Backgrounds => backgrounds;
+
         [Header("Scene")]
 
         [SerializeField]
@@ -42,6 +48,11 @@ namespace Fantazee.Environments
         [SerializeField]
         private FsiSceneEntry battle;
         public FsiSceneEntry Battle => battle;
+
+        [Header("Encounters")]
+
+        [SerializeField]
+        private List<EncounterData> encounters = new();
 
         [Header("Audio")]
 
@@ -56,5 +67,15 @@ namespace Fantazee.Environments
         [SerializeField]
         private MusicId battleMusicId;
         public MusicId BattleMusicId => battleMusicId;
+        
+        public Sprite GetBackground()
+        {
+            return backgrounds[Random.Range(0, backgrounds.Count)];
+        }
+
+        public EncounterData GetEncounter()
+        {
+            return encounters[Random.Range(0, encounters.Count)];
+        }
     }
 }

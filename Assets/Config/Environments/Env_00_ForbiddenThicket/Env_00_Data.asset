@@ -32,13 +32,19 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   icon: {fileID: 21300000, guid: 89f4bef65908a4e7794dfcd4f546804a, type: 3}
-  color: {r: 0.22745098, g: 0.17254902, b: 0.13333334, a: 1}
+  color: {r: 0.254717, g: 0.19093761, b: 0.14538093, a: 1}
+  backgrounds:
+  - {fileID: 21300000, guid: 583e4a5f1a4c04de494e83f6dc8517d6, type: 3}
+  - {fileID: 21300000, guid: 7febcafdb81534216a16662f2f073253, type: 3}
+  - {fileID: 21300000, guid: 1714dcedf4e8d4cddbca5f6715e82efb, type: 3}
   map:
     name: Env_00_Scene_Map
     scene: {fileID: 102900000, guid: 50caefe56d8d049e7bbc06fae61fc70f, type: 3}
   battle:
     name: ENV_00_Scene_Battle
     scene: {fileID: 102900000, guid: 0df8b895d65d745dd827f1e55cc53003, type: 3}
+  encounters:
+  - {fileID: 11400000, guid: e8eac4a4a50c34436b5ce4bf1f24b0c8, type: 2}
   musicReference:
     Guid:
       Data1: -1067094924
