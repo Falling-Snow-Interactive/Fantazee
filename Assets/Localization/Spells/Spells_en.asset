@@ -70,6 +70,33 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 554601489323262043
+  - m_Id: 6168494985961472
+    m_Localized: Overflow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6168533846188032
+    m_Localized: Excess damage will hit the next enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6176929009885184
+    m_Localized: Chain Lightning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6176984131428352
+    m_Localized: Deals {0.FirstMod}% damage to front enemy and {0.SecondMod}% damage
+      to another random enemy.
+    m_Metadata:
+      m_Items:
+      - rid: 554601489323262043
+  - m_Id: 6209258193412096
+    m_Localized: Push
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6209309376503808
+    m_Localized: Deal {0.Percent}% damage and push front enemy to back.
+    m_Metadata:
+      m_Items:
+      - rid: 554601489323262043
   references:
     version: 2
     RefIds:
@@ -80,3 +107,5 @@ MonoBehaviour:
         m_SharedEntries:
         - id: 1042162685829120
         - id: 4292911867879424
+        - id: 6176984131428352
+        - id: 6209309376503808

@@ -30,74 +30,71 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  icon: {fileID: 21300000, guid: 6db258a9d28ba47dabc7702e48e94d73, type: 3}
+  icon: {fileID: -1423498855, guid: 73bfa086f10b6451eb86261f43b7a49e, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   cost:
     name: 'Gold: 7'
     type: 1
     amount: 7
-  castVfx: {fileID: 0}
-  castSfx:
-    Guid:
-      Data1: -722109001
-      Data2: 1322145341
-      Data3: -326632274
-      Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  daggerVfx: {fileID: 5405301624189521083, guid: 6f8206dddcc824ca6ad61a18c522c782, type: 3}
-  daggerSfx:
-    Guid:
-      Data1: -722109001
-      Data2: 1322145341
-      Data3: -326632274
-      Data4: 1185304194
-    Path: event:/Spells/Spell_00_Dagger
-  daggerSpawnOffset: {x: 3, y: 2, z: 0}
-  daggerHitOffset: {x: 0, y: 1.3, z: 0}
-  daggerEase: 37
-  daggerCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: -0.08699223
-      outSlope: -0.08699223
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.12572813
-    - serializedVersion: 3
-      time: 0.6006204
-      value: -0.10566147
-      inSlope: -0.005887707
-      outSlope: -0.005887707
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.052526772
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 5.997694
-      outSlope: 5.997694
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.054432236
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  daggerTime: 0.6
-  daggerDelay: 0
-  hitVfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
-  hitSfx:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+  castAnim:
+    hasCast: 1
+    castVfx: {fileID: 0}
+    castSfx:
+      Guid:
+        Data1: -671123189
+        Data2: 1247591617
+        Data3: 544987048
+        Data4: 1532767943
+      Path: event:/Spells/Spell_00/Spell_01_Dagger_Cast
+  projectileAnim:
+    hasProjectile: 1
+    vfx: {fileID: 5405301624189521083, guid: 6f8206dddcc824ca6ad61a18c522c782, type: 3}
+    sfx:
+      Guid:
+        Data1: -722109001
+        Data2: 1322145341
+        Data3: -326632274
+        Data4: 1185304194
+      Path: event:/Spells/Spell_00/Spell_00_Dagger_Projectile
+    spawnOffset: {x: 1.1, y: 1.4, z: 0}
+    ease: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    time: 0.4
+    delay: 0
+  hitAnim:
+    hasHit: 1
+    vfx: {fileID: 4077048775125981775, guid: 2e8c52db15cc640c78ffd11738d7f0cc, type: 3}
+    sfx:
+      Guid:
+        Data1: -281306913
+        Data2: 1330631841
+        Data3: -1155045187
+        Data4: 1940489850
+      Path: event:/Spells/Spell_00/Spell_01_Dagger_Hit
+    offset: {x: 0, y: 1.4, z: 0}
   references:
     version: 2
     RefIds: []

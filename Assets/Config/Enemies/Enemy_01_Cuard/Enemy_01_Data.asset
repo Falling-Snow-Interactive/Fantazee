@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2c21acc54b4e718d9357d99847f6ee, type: 3}
+  m_Name: Enemy_01_Data
+  m_EditorClassIdentifier: 
+  type: 1
+  locName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  health: 18
+  visuals: {fileID: 2442580108402954977, guid: 7289b95bedfac48dca0519f17d5c9de6, type: 3}
+  size: 2
+  damage:
+    min: 8
+    max: 12
+  battleRewards:
+    wallet:
+      currencies:
+      - name: 'Gold: 6'
+        type: 1
+        amount: 6
+  enterSfx:
+    Guid:
+      Data1: 804779087
+      Data2: 1145722786
+      Data3: -1069358928
+      Data4: 260725895
+    Path: event:/Enemies/Enemy_01/Enter
+  attackSfx:
+    Guid:
+      Data1: -970978167
+      Data2: 1337504839
+      Data3: 1839687589
+      Data4: 1141626412
+    Path: event:/Enemies/Enemy_01/Attack
+  deathSfx:
+    Guid:
+      Data1: -292462534
+      Data2: 1286906948
+      Data3: -988324478
+      Data4: -428259744
+    Path: event:/Enemies/Enemy_01/Death
+  references:
+    version: 2
+    RefIds: []

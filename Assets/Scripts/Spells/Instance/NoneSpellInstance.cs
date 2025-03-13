@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Fantazee.Battle;
 using Fantazee.Spells.Data;
 using UnityEngine;
@@ -8,14 +7,12 @@ namespace Fantazee.Spells.Instance
 {
     public class NoneSpellInstance : SpellInstance
     {
-        public NoneSpellInstance(NoneSpellData data) : base(data)
-        {
-        }
+        public NoneSpellInstance(NoneSpellData data) : base(data) {}
 
-        protected override IEnumerator CastSequence(Damage damage, Action onComplete = null)
+        protected override void Apply(Damage damage, Action onComplete)
         {
-            Debug.Log("This shouldn't ever be casted.");
-            throw new NotImplementedException();
+            Debug.LogWarning("This shouldn't ever be casted.");
+            onComplete?.Invoke();
         }
     }
 }

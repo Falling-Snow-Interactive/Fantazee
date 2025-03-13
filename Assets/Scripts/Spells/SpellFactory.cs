@@ -16,6 +16,9 @@ namespace Fantazee.Spells
                        ShieldSpellData d => new ShieldSpellInstance(d),
                        HealSpellData d => new HealSpellInstance(d),
                        FireballSpellData d => new FireballSpellInstance(d),
+                       OverflowSpellData o => new OverflowSpellInstance(o),
+                       ChainLightningSpellData c => new ChainLightningSpellInstance(c),
+                       PushSpellData p => new PushSpellInstance(p),
                        _ => throw new ArgumentOutOfRangeException()
                    };
         }

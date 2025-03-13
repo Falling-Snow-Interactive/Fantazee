@@ -1,4 +1,5 @@
 using System;
+using Fantazee.Environments;
 using Fantazee.Environments.Information;
 using fsi.settings.Informations;
 

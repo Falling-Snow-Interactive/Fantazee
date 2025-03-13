@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf8066866054ddb9a232cf2a4c4903d, type: 3}
+  m_Name: Spell_07_Push
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 6209258193412096
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 6209309376503808
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 1579987857, guid: 73bfa086f10b6451eb86261f43b7a49e, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  cost:
+    name: 'Gold: 10'
+    type: 1
+    amount: 10
+  castAnim:
+    hasCast: 1
+    castVfx: {fileID: 0}
+    castSfx:
+      Guid:
+        Data1: -1251887669
+        Data2: 1174107359
+        Data3: -1623365496
+        Data4: -1375659271
+      Path: event:/Spells/Spell_09_Push/Spell_09_Push_Cast
+  projectileAnim:
+    hasProjectile: 1
+    vfx: {fileID: 746035577024083052, guid: 34ffa5ebfacb54f7cb730fced5634dae, type: 3}
+    sfx:
+      Guid:
+        Data1: 1889634783
+        Data2: 1160788409
+        Data3: -1546364271
+        Data4: -381896736
+      Path: event:/Spells/Spell_09_Push/Spell_09_Push_Projectile
+    spawnOffset: {x: 0, y: 1.2, z: 0}
+    ease: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    time: 0.4
+    delay: 0
+  hitAnim:
+    hasHit: 1
+    vfx: {fileID: 4077048775125981775, guid: fdeaa1a3d741c47aab8ed9831a567f47, type: 3}
+    sfx:
+      Guid:
+        Data1: -83937844
+        Data2: 1109264569
+        Data3: -2090496635
+        Data4: 1085011402
+      Path: event:/Spells/Spell_09_Push/Spell_09_Push_Hit
+    offset: {x: 0, y: 1.2, z: 0}
+  pushDamageMod: 0.9
+  moveTime: 0.3
+  moveEase: 27
+  moveDelay: 0.2
+  references:
+    version: 2
+    RefIds: []

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Fantazee.Instance;
+using Fantazee.Scores.Instance;
 using UnityEngine;
 
 namespace Fantazee.Battle.Help.Ui
@@ -7,30 +8,20 @@ namespace Fantazee.Battle.Help.Ui
     public class ScoreHelpUi : MonoBehaviour
     {
         [SerializeField]
-        private List<HelpScoreEntry> entries = new List<HelpScoreEntry>();
+        private HelpScoreEntry helpEntryPrefab;
+        
+        private readonly List<HelpScoreEntry> entries = new();
 
         [SerializeField]
-        private HelpScoreEntry fantazeeEntry;
+        private Transform content;
 
         private void Start()
         {
-            for (int i = 0; i < entries.Count; i++)
+            foreach (ScoreInstance score in GameInstance.Current.Character.Scoresheet.Scores)
             {
-                HelpScoreEntry entry = entries[i];
-
-                if (i < GameInstance.Current.Character.Scoresheet.Scores.Count)
-                {
-                    entry.gameObject.SetActive(true);
-                    entry.Initialize(GameInstance.Current.Character.Scoresheet.Scores[i]);
-                }
-                else
-                {
-                    entry.gameObject.SetActive(false);
-                }
+                HelpScoreEntry entry = Instantiate(helpEntryPrefab, content);
+                entry.Initialize(score);
             }
-
-            fantazeeEntry.gameObject.SetActive(true);
-            fantazeeEntry.Initialize(GameInstance.Current.Character.Scoresheet.Fantazee);
         }
     }
 }

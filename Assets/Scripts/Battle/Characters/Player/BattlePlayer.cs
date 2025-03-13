@@ -1,16 +1,24 @@
+using Fantazee.Instance;
+using FMODUnity;
 using Fsi.Gameplay.Healths;
-using UnityEngine;
 
 namespace Fantazee.Battle.Characters.Player
 {
     public class BattlePlayer : BattleCharacter
     {
         public override Health Health => GameController.Instance.GameInstance.Character.Health;
+
+        private CharacterInstance instance;
         
-        protected override void OnDrawGizmos()
+        // Audio
+        protected override EventReference DeathSfxRef => instance.Data.DeathSfx;
+        protected override EventReference EnterSfxRef => instance.Data.EnterSfx;
+
+        public void Initialize(CharacterInstance character)
         {
-            Gizmos.color = Color.green;
-            base.OnDrawGizmos();
+            instance = character;
+            SpawnVisuals(character.Data.Visuals);
+            base.Initialize();
         }
     }
 }

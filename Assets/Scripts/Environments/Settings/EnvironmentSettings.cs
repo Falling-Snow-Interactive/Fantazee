@@ -1,4 +1,4 @@
-using Fantazee.Battle.Environments.Information;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,14 +9,33 @@ namespace Fantazee.Environments.Settings
         private const string ResourcePath = "Settings/EnvironmentSettings";
         private const string FullPath = "Assets/Resources/" + ResourcePath + ".asset";
 
-        private static EnvironmentSettings settings;
-        public static EnvironmentSettings Settings => settings ??= GetOrCreateSettings();
+        private static EnvironmentSettings _settings;
+        public static EnvironmentSettings Settings => _settings ??= GetOrCreateSettings();
 
-        [Header("Audio")]
+        [Header("Data")]
 
         [SerializeField]
-        private EnvironmentInformationGroup information;
-        public EnvironmentInformationGroup Information => information;
+        private List<EnvironmentData> data = new List<EnvironmentData>();
+        public List<EnvironmentData> Data => data;
+
+        private Dictionary<EnvironmentType, EnvironmentData> dataByType;
+
+        public bool TryGetEnvironment(EnvironmentType environmentType, 
+                                      out EnvironmentData environmentData)
+        {
+            dataByType ??= BuildDict();
+            return dataByType.TryGetValue(environmentType, out environmentData);
+        }
+
+        private Dictionary<EnvironmentType, EnvironmentData> BuildDict()
+        {
+            Dictionary<EnvironmentType, EnvironmentData> dict = new Dictionary<EnvironmentType, EnvironmentData>();
+            foreach (EnvironmentData d in data)
+            {
+                dict.TryAdd(d.Type, d);
+            }
+            return dict;
+        }
             
         #region Settings
             

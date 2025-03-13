@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Enemies Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Enemies
+  m_TableCollectionNameGuidString: 0cb1bad1c57c24280b374f35a6955fa4
+  m_Entries:
+  - m_Id: 4843364352
+    m_Key: enemy_00_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35524698112
+    m_Key: enemy_00_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104277729280
+    m_Key: enemy_01_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130492129280
+    m_Key: enemy_01_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159453798400
+    m_Key: enemy_02_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200713166848
+    m_Key: enemy_02_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 236231521722368
+    m_Key: enemy_03_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 236249133604864
+    m_Key: enemy_03_desc
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 554601627060011322
+  references:
+    version: 2
+    RefIds:
+    - rid: 554601627060011322
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1741731646665

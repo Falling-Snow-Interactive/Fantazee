@@ -4,6 +4,7 @@ using Fantazee.Battle.Characters.Player;
 using Fantazee.Currencies;
 using Fantazee.Relics;
 using Fantazee.Spells;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -36,15 +37,11 @@ namespace Fantazee.Characters
         private GameplayCharacterVisuals visuals;
         public GameplayCharacterVisuals Visuals => visuals;
 
-        [Header("Battle")]
+        [Header("Health")]
 
         [SerializeField]
         private int maxHealth = 500;
         public int MaxHealth => maxHealth;
-
-        [SerializeField]
-        private BattlePlayer battleCharacter;
-        public BattlePlayer BattleCharacter => battleCharacter;
 
         [Header("Scoresheet")]
 
@@ -67,5 +64,15 @@ namespace Fantazee.Characters
         [SerializeField]
         private RelicType relic;
         public RelicType Relic => relic;
+        
+        [Header("Audio")]
+        
+        [SerializeField]
+        private EventReference enterSfx;
+        public EventReference EnterSfx => enterSfx;
+        
+        [SerializeField]
+        private EventReference deathSfx;
+        public EventReference DeathSfx => deathSfx;
     }
 }

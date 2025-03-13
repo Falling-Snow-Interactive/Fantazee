@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac3a00f14b064b2f8f52f46ea3f7553, type: 3}
+  m_Name: Spell_05_Overflow
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 6168494985961472
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
+    m_TableEntryReference:
+      m_KeyId: 6168533846188032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 1884988835, guid: 73bfa086f10b6451eb86261f43b7a49e, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  cost:
+    name: 'Gold: 12'
+    type: 1
+    amount: 12
+  castAnim:
+    hasCast: 1
+    castVfx: {fileID: 0}
+    castSfx:
+      Guid:
+        Data1: -681325413
+        Data2: 1312097142
+        Data3: 983141760
+        Data4: -142101089
+      Path: event:/Spells/Spell_05_Overflow/Spell_05_Overflow_Cast
+  projectileAnim:
+    hasProjectile: 1
+    vfx: {fileID: 746035577024083052, guid: f506e218f265548fa8f0763ebed7e3f9, type: 3}
+    sfx:
+      Guid:
+        Data1: -1067057470
+        Data2: 1272014092
+        Data3: 792766612
+        Data4: -1919463158
+      Path: event:/Spells/Spell_05_Overflow/Spell_05_Overflow_Projectile
+    spawnOffset: {x: 0, y: 0, z: 0}
+    ease: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    time: 0.4
+    delay: 0
+  hitAnim:
+    hasHit: 1
+    vfx: {fileID: 4077048775125981775, guid: e8d72b62caf77433b8fd1adb1892518b, type: 3}
+    sfx:
+      Guid:
+        Data1: -427559338
+        Data2: 1152724192
+        Data3: 514286250
+        Data4: -113502172
+      Path: event:/Spells/Spell_05_Overflow/Spell_05_Overflow_Hit
+    offset: {x: 0, y: 0, z: 0}
+  spreadTime: 0.2
+  references:
+    version: 2
+    RefIds: []
