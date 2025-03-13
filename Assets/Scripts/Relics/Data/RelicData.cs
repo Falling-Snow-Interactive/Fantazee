@@ -12,11 +12,11 @@ namespace Fantazee.Relics.Data
 
         [SerializeField]
         private LocalizedString locName;
-        public LocalizedString LocName => locName;
+        public string Name => locName.IsEmpty ? "no-loc" : locName.GetLocalizedString();
 
         [SerializeField]
         private LocalizedString locDesc;
-        public LocalizedString LocDesc => locDesc;
+        public string Description => locDesc.IsEmpty ? "no-loc" : locDesc.GetLocalizedString();
 
         [Header("Visuals")]
 

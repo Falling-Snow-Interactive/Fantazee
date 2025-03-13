@@ -261,5 +261,27 @@ namespace Fantazee
         }
         
         #endregion
+
+        #region Encounters
+
+        public void LoadEncounter()
+        {
+            loadingScreen.Show(0,
+                               () =>
+                               {
+                                   ProjectSceneManager.Instance.LoadEncounter(null);
+                               });
+        }
+
+        public void EncounterReady()
+        {
+            loadingScreen.Hide(0,
+                               () =>
+                               {
+                                   
+                               });
+        }
+
+        #endregion
     }
 }

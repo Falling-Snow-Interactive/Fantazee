@@ -3,15 +3,12 @@ using DG.Tweening;
 using Fantazee.Audio;
 using Fantazee.Battle.Characters;
 using Fantazee.Environments;
-using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay;
-using Fsi.Spline;
-using Fsi.Spline.Vectors;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -238,7 +235,9 @@ namespace Fantazee.Maps
                     case NodeType.Shop:
                         GameController.Instance.LoadShop();
                         break;
-                    
+                    case NodeType.Encounter:
+                        GameController.Instance.LoadEncounter();
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

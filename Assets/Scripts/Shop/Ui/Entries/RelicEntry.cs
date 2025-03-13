@@ -1,6 +1,5 @@
 using System;
 using Fantazee.Currencies;
-using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
 using UnityEngine;
@@ -23,8 +22,8 @@ namespace Fantazee.Shop.Ui.Entries
             
             relicEntryUi.Initialize(relic);
             
-            string name = relic.Data.LocName.GetLocalizedString();
-            string desc = relic.Data.LocName.GetLocalizedString();
+            string name = relic.Data.Name;
+            string desc = relic.Data.Description;
             Currency cost = relic.Data.Cost;
             ShowEntry(name, desc, cost);
         }

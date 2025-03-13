@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: a6ed889d0e8da4e2fbe7bb40cc4f0b55, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 554601666657648960
   m_TableData:
   - m_Id: 5430566912
     m_Localized: The Wary Adventurer
@@ -35,9 +36,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1263449137152
-    m_Localized: Offer a portion {0.hp} of your HP in exchange for Coren's treasure.
+    m_Localized: Exchange {0.MaxHp} Max HP for Coren's treasure.
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 554601666657648960
   - m_Id: 1291588722688
     m_Localized: Decline Coren
     m_Metadata:
@@ -45,15 +47,42 @@ MonoBehaviour:
   - m_Id: 53907278520320
     m_Localized: Politely refuse and continue on your way.
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 554601666657648960
   - m_Id: 53947141185536
     m_Localized: Try to intimidate Coren into giving up the treasure without payment.
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 554601666657648960
   - m_Id: 53932582756352
-    m_Localized: Take the Treasure by Force
+    m_Localized: Take by Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71754444693504
+    m_Localized: You feel your strength wane slightly as Coren's eyes flash with
+      satisfaction. 'A fair trade,' he mutters, handing over the pouch. Inside, you
+      find a glimmering relic.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71873298685952
+    m_Localized: Coren nods solemnly. 'Perhaps wiser to keep your strength,' he says,
+      turning his gaze back to the shadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71925303861248
+    m_Localized: With a speed born of countless dangers, Coren lashes out. You're
+      left bruised, your pride smarting more than your wound. 'Trust is earned,'
+      he warns, fading back into the darkness.
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 554601666657648960
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 1263449137152
+        - id: 53907278520320
+        - id: 53947141185536

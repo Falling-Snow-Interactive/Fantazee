@@ -32,6 +32,9 @@ namespace Fantazee
         [SerializeField]
         private FsiSceneEntry innScene;
 
+        [SerializeField]
+        private FsiSceneEntry encounterScene;
+
         public void LoadMainMenu(Action onComplete)
         {
             LoadSceneAsync(mainMenuScene.Name, LoadSceneMode.Single, onComplete);
@@ -80,6 +83,11 @@ namespace Fantazee
             {
                 LoadSceneAsync(data.Battle.Name, LoadSceneMode.Additive, onComplete);
             }
+        }
+
+        public void LoadEncounter(Action onComplete)
+        {
+            LoadSceneAsync(encounterScene.Name, LoadSceneMode.Single, onComplete);
         }
     }
 }

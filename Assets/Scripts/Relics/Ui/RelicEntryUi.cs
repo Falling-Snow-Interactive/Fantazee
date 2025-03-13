@@ -57,8 +57,8 @@ namespace Fantazee.Relics.Ui
             this.relic = relic;
 
             image.sprite = relic.Data.Icon;
-            relicName.text = relic.Data.LocName.GetLocalizedString();
-            relicDescription.text = relic.Data.LocDesc.GetLocalizedString();
+            relicName.text = relic.Data.Name;
+            relicDescription.text = relic.Data.Description;
 
             relic.Activated += OnActivated;
         }
@@ -66,8 +66,8 @@ namespace Fantazee.Relics.Ui
         public void ShowData(RelicData relicData)
         {
             image.sprite = relicData.Icon;
-            relicName.text = relicData.LocName.GetLocalizedString();
-            relicDescription.text = relicData.LocDesc.GetLocalizedString();
+            relicName.text = relicData.Name;
+            relicDescription.text = relicData.Description;
         }
 
         public void ShowData(RelicType type)

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Fantazee.Encounters.Responses;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -15,12 +14,12 @@ namespace Fantazee.Encounters
         [Header("Localization")]
 
         [SerializeField]
-        private new LocalizedString name;
-        public string Name => name.GetLocalizedString();
+        private LocalizedString title;
+        public string Title => title.GetLocalizedString();
 
         [SerializeField]
-        private LocalizedString description;
-        public string Description => description.GetLocalizedString();
+        private LocalizedString body;
+        public string Body => body.GetLocalizedString();
 
         [SerializeField]
         private List<EncounterResponse> responses = new();
