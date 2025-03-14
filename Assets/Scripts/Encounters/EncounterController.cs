@@ -223,7 +223,7 @@ namespace Fantazee.Encounters
             {
                 SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
                 SpellButton spellButtonReward = Instantiate(spellButtonPrefab, rewardsContainer);
-                spellButtonReward.Initialize(spellInstance);
+                spellButtonReward.Initialize(spellInstance, null);
 
                 spellsToReward.Add(spellInstance);
             }

@@ -22,9 +22,7 @@ namespace Fantazee.Battle.Score.Ui
 
         [SerializeField]
         private ScoreButton fantazeeButton;
-
-        private readonly Dictionary<ScoreInstance, ScoreButton> buttons = new();
-
+        
         public void Initialize(Scoresheet scoresheet)
         {
             Debug.Assert(scoresheet.Scores.Count == scoreButtons.Count);
@@ -33,23 +31,24 @@ namespace Fantazee.Battle.Score.Ui
                 ScoreInstance score = scoresheet.Scores[i];
                 ScoreButton button = scoreButtons[i];
                 button.Initialize(score, OnScoreEntrySelected);
-                
-                buttons.Add(score, button);
             }
             
             fantazeeButton.Initialize(scoresheet.Fantazee, OnScoreEntrySelected);
         }
 
-        public void RequestScore(Action<ScoreButton> onScoreSelect)
+        public void RequestScore(Action<ScoreButton> onScoreSelect, bool excludeFantazee = false)
         {
             this.onScoreSelect = onScoreSelect;
             spellRequested = false;
+
+            fantazeeButton.Button.interactable = !excludeFantazee;
         }
 
         public void RequestSpell(Action<ScoreButton, SpellButton> onSpellSelect)
         {
             this.onSpellSelect = onSpellSelect;
             spellRequested = true;
+            fantazeeButton.Button.interactable = true;
         }
 
         private void OnScoreEntrySelected(ScoreButton scoreButton)

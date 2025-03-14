@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Scores.Instance;
-using Fantazee.Spells;
 using Fantazee.Spells.Ui;
 using TMPro;
 using UnityEngine;
@@ -25,10 +24,12 @@ namespace Fantazee.Scores.Ui.Buttons
         [Header("References")]
         
         [SerializeField]
-        protected TMP_Text nameText;
+        private TMP_Text nameText;
+        public TMP_Text NameText => nameText;
 
         [SerializeField]
         protected Button button;
+        public Button Button => button;
         
         [SerializeField]
         private List<SpellButton> spells = new();
@@ -47,7 +48,7 @@ namespace Fantazee.Scores.Ui.Buttons
             Debug.Assert(spells.Count == score.Spells.Count);
             for (int i = 0; i < Spells.Count; i++)
             {
-                Spells[i].Initialize(score.Spells[i]);
+                Spells[i].Initialize(score.Spells[i], null);
             }
             
             UpdateVisuals();
@@ -79,7 +80,7 @@ namespace Fantazee.Scores.Ui.Buttons
                          gameObject);
             for (int i = 0; i < spells.Count; i++)
             {
-                spells[i].Initialize(score.Spells[i]);
+                spells[i].Initialize(score.Spells[i], null);
             }
         }
 

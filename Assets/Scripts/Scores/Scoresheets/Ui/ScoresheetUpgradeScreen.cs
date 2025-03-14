@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Instance;
@@ -109,26 +110,38 @@ namespace Fantazee.Scores.Scoresheets.Ui
         [SerializeField]
         private EventReference upgradeSfx;
 
+        private bool isSpellUpgrade = false;
+
         public void StartScoreUpgrade(ScoreInstance scoreToReceive, Action onComplete = null)
         {
+            isSpellUpgrade = false;
+            
             this.onComplete = onComplete;
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(false);
             toReceiveScore.gameObject.SetActive(true);
+            toReceiveScore.transform.localPosition = Vector3.zero;
+            toReceiveScore.transform.localRotation = Quaternion.identity;
+            toReceiveScore.transform.localScale = Vector3.one;
             toReceiveScore.Initialize(scoreToReceive, null);
 
-            scoresheet.RequestScore(OnScoreSelect);
+            scoresheet.RequestScore(OnScoreSelect, true);
         }
         
         public void StartSpellUpgrade(SpellInstance spellToReceive, Action onComplete = null)
         {
+            isSpellUpgrade = true;
+            
             this.onComplete = onComplete;
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(true);
             toReceiveScore.gameObject.SetActive(false);
-            toReceiveSpell.Initialize(spellToReceive);
+            toReceiveSpell.transform.localPosition = Vector3.zero;
+            toReceiveSpell.transform.localRotation = Quaternion.identity;
+            toReceiveSpell.transform.localScale = Vector3.one;
+            toReceiveSpell.Initialize(spellToReceive, null);
 
             scoresheet.RequestSpell(OnSpellSelect);
         }
@@ -148,9 +161,30 @@ namespace Fantazee.Scores.Scoresheets.Ui
         
         private void Apply()
         {
-            Debug.Log($"Scoresheet Upgrade: {toUpgradeScore.Score} {toUpgradeSpell.Spell} -> {toReceiveSpell.Spell}");
-            int index = toUpgradeScore.Score.Spells.IndexOf(toUpgradeSpell.Spell);
-            toUpgradeScore.Score.Spells[index] = toReceiveSpell.Spell;
+            if (isSpellUpgrade)
+            {
+                Debug.Log($"Scoresheet Upgrade: {toUpgradeScore.Score} {toUpgradeSpell.Spell} -> {toReceiveSpell.Spell}");
+                int index = toUpgradeScore.Score.Spells.IndexOf(toUpgradeSpell.Spell);
+                toUpgradeScore.Score.Spells[index] = toReceiveSpell.Spell;
+            }
+            else
+            {
+                List<SpellInstance> spells = new();
+                for (int i = 0; i < toReceiveScore.Score.Spells.Count; i++)
+                {
+                    if (toReceiveScore.Score.Spells[i].Data.Type != SpellType.spell_none)
+                    {
+                        spells.Add(toReceiveScore.Score.Spells[i]);
+                    }
+                    else
+                    {
+                        spells.Add(toUpgradeScore.Score.Spells[i]);
+                    }
+                }
+
+                ScoreInstance nextScore = ScoreFactory.CreateInstance(toReceiveScore.Score.Data, spells);
+                toUpgradeScore.Score = nextScore;
+            }
         }
         
         #region Animation Sequence
@@ -169,6 +203,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
             // Selected score to upgrade area
             Vector3 toReceivePos = toReceiveTransform.position;
             Vector3 toUpgradePos = toUpgradeContainer.position;
+            Vector3 returnPos = toUpgradeButton.transform.position;
             Vector3 mid = (toReceivePos + toUpgradePos) / 2f;
             Vector3 toReceiveChargePos = toReceivePos + Vector3.left * chargeOffset;
             Vector3 toUpgradeChargePos = toUpgradePos + Vector3.right * chargeOffset;
@@ -227,7 +262,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
             sequence.Append(toUpgradeButton.transform.DOPunchScale(Vector3.one * punchAmount, punchTime, 5, 1f));
             
             float returnInsertTime = crashTime + crashInsertTime + punchTime;
-            sequence.Insert(returnInsertTime, toReceiveScore.transform.DOMove(pos, returnTime)
+            sequence.Insert(returnInsertTime, toUpgradeButton.transform.DOMove(returnPos, returnTime)
                                                             .OnStart(() => RuntimeManager.PlayOneShot(swooshSfx))
                                                             .SetEase(returnEase)
                                                             .SetDelay(0.3f));
@@ -239,7 +274,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
 
             sequence.OnComplete(() =>
                                 {
-                                    toReceiveScore.transform.SetParent(returnParent);
+                                    toUpgradeButton.transform.SetParent(returnParent);
                                     onComplete?.Invoke();
                                 });
             sequence.Play();

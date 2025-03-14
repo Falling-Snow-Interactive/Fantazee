@@ -38,8 +38,10 @@ namespace Fantazee.Spells.Ui
         [SerializeField]
         private Vector3 punchScale;
 
-        public void Initialize(SpellInstance spell)
+        public virtual void Initialize(SpellInstance spell, Action<SpellButton> onSelect)
         {
+            this.onSelect = onSelect;
+            
             this.spell = spell;
             icon.sprite = spell.Data.Icon;
 
