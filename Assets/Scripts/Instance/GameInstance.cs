@@ -6,6 +6,7 @@ using Fantazee.Currencies;
 using Fantazee.Maps;
 using Fantazee.Relics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Fantazee.Instance
@@ -28,11 +29,12 @@ namespace Fantazee.Instance
         private CharacterInstance character;
         public CharacterInstance Character => character;
 
+        [FormerlySerializedAs("map")]
         [Header("Maps")]
 
         [SerializeReference]
-        private MapInstance map;
-        public MapInstance Map => map;
+        private EnvironmentInstance environment;
+        public EnvironmentInstance Environment => environment;
         
         public static GameInstance Defaults
         {
@@ -42,7 +44,7 @@ namespace Fantazee.Instance
                                         {
                                             seed = (uint)Random.Range(0, int.MaxValue),
                                             character = new CharacterInstance(CharacterSettings.Settings.DefaultCharacter),
-                                            map = new MapInstance(),
+                                            environment = new EnvironmentInstance(),
                                         };
                 
                 return instance;
@@ -55,7 +57,7 @@ namespace Fantazee.Instance
         {
             RandomizeSeed();
             this.character = new CharacterInstance(character);
-            map = new MapInstance();
+            environment = new EnvironmentInstance();
         }
 
         public void RandomizeSeed()

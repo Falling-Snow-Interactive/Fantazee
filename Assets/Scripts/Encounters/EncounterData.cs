@@ -22,14 +22,16 @@ namespace Fantazee.Encounters
         private LocalizedString body;
         public string Body => body.GetLocalizedString();
 
-        [SerializeField]
-        private List<EncounterResponse> responses = new();
-        public List<EncounterResponse> Responses => responses;
-
         [Header("Npc")]
 
         [SerializeField]
         private NpcType npc;
         public NpcType Npc => npc;
+        
+        [Space(20)]
+        
+        [SerializeField]
+        private List<EncounterResponse> responses = new();
+        public List<EncounterResponse> Responses => responses;
     }
 }

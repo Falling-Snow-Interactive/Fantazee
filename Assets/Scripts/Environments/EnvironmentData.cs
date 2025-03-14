@@ -54,7 +54,7 @@ namespace Fantazee.Environments
 
         [SerializeField]
         private List<EncounterData> encounters = new();
-        private List<EncounterData> encountersRemaining;
+        public List<EncounterData> Encounters => encounters;
 
         [Header("Audio")]
 
@@ -73,18 +73,6 @@ namespace Fantazee.Environments
         public Sprite GetBackground()
         {
             return backgrounds[Random.Range(0, backgrounds.Count)];
-        }
-
-        public EncounterData GetEncounter()
-        {
-            if (encountersRemaining == null || encountersRemaining.Count == 0)
-            {
-                encountersRemaining = new List<EncounterData>(encounters);
-            }
-            
-            EncounterData e = encountersRemaining[Random.Range(0, encountersRemaining.Count)];
-            encountersRemaining.Remove(e);
-            return e;
         }
     }
 }

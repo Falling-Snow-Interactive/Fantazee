@@ -71,7 +71,7 @@ namespace Fantazee.Battle.Score.Ui
             fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
             fantazeeScore.SetEntry(fantazeeEntry);
             
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameController.Instance.GameInstance.Map.Environment, 
+            if (EnvironmentSettings.Settings.TryGetEnvironment(GameController.Instance.GameInstance.Environment.Environment, 
                                                                            out EnvironmentData data))
             {
                 background.color = data.Color;

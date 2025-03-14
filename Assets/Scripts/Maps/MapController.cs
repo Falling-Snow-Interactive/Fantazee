@@ -20,7 +20,7 @@ namespace Fantazee.Maps
     {
         public class MapController : MbSingleton<MapController>
         {
-            private MapInstance Map => GameInstance.Current.Map;
+            private EnvironmentInstance Environment => GameInstance.Current.Environment;
 
             [SerializeReference]
             private GameplayCharacterVisuals player;
@@ -106,8 +106,8 @@ namespace Fantazee.Maps
             {
                 Debug.Log("Map - Start");
 
-                Node node = map.Nodes[Map.Node];
-                if (Map.ReadyToAdvance)
+                Node node = map.Nodes[Environment.Node];
+                if (Environment.ReadyToAdvance)
                 {
                     node = map.Nodes[^1];
                 }
@@ -118,7 +118,7 @@ namespace Fantazee.Maps
                 
                 RuntimeManager.PlayOneShot(mapStartSfx);
 
-                if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
+                if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Environment,
                                                                                out EnvironmentData info))
                 {
                     MusicController.Instance.PlayMusic(info.GeneralMusic);
@@ -132,9 +132,9 @@ namespace Fantazee.Maps
 
             public void StartMap()
             {
-                canInteract = !Map.ReadyToAdvance;
+                canInteract = !Environment.ReadyToAdvance;
 
-                if (Map.ReadyToAdvance)
+                if (Environment.ReadyToAdvance)
                 {
                     AdvanceToNextMap();
                 }
@@ -159,7 +159,7 @@ namespace Fantazee.Maps
                         if (hit.collider.TryGetComponent(out Node clickedNode))
                         {
                             RuntimeManager.PlayOneShot(nodeSelectSfxRef);
-                            Node currentNode = map.Nodes[Map.Node];
+                            Node currentNode = map.Nodes[Environment.Node];
 
                             if (currentNode.Next.Contains(clickedNode))
                             {
@@ -176,7 +176,7 @@ namespace Fantazee.Maps
                 
                 canInteract = false;
 
-                int curr = GameInstance.Current.Map.Node;
+                int curr = GameInstance.Current.Environment.Node;
                 Node currentNode = map.Nodes[curr];
                 int nextIndex = currentNode.Next.IndexOf(node);
                 Spline spline = currentNode.SplineContainer.Splines[nextIndex];
@@ -211,8 +211,8 @@ namespace Fantazee.Maps
             {
                 Debug.Log($"Map - Finished move");
                 canInteract = true;
-                Map.Node = map.Nodes.IndexOf(node);
-                Debug.Log($"Map - Node {node.Type} [{Map.Node}]");
+                Environment.Node = map.Nodes.IndexOf(node);
+                Debug.Log($"Map - Node {node.Type} [{Environment.Node}]");
                 RuntimeManager.PlayOneShot(mapEndSfx);
                 
                 switch (node.Type)

@@ -95,7 +95,7 @@ namespace Fantazee.Encounters
 
         private void Start()
         {
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment, 
+            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Environment, 
                                                                out EnvironmentData env))
             {
                 encounter = env.GetEncounter();
@@ -130,57 +130,57 @@ namespace Fantazee.Encounters
             }
 
             responses.Clear();
-            bodyText.text = response.Result.Body;
+            bodyText.text = response.Result;
             responsesContainer.gameObject.SetActive(false);
             rewardsParent.gameObject.SetActive(true);
 
             // Cost
-            if (response.Health.max > 0)
+            if (response.Cost.Health.max > 0)
             {
                 Health health = GameInstance.Current.Character.Health;
-                health.max -= response.Health.max;
+                health.max -= response.Cost.Health.max;
                 health.current = Mathf.Clamp(health.current, 0, health.max);
                 health.Damage(0);
                 Hit();
             }
 
-            if (response.Health.current > 0)
+            if (response.Cost.Health.current > 0)
             {
-                GameInstance.Current.Character.Health.Damage(response.Health.current);
+                GameInstance.Current.Character.Health.Damage(response.Cost.Health.current);
                 Hit();
             }
 
-            foreach (Currency currency in response.Wallet.Currencies)
+            foreach (Currency currency in response.Cost.Wallet.Currencies)
             {
                 GameInstance.Current.Character.Wallet.Remove(currency);
             }
             
             // Rewards
-            if (response.Result.Health.max > 0)
+            if (response.Rewards.Health.max > 0)
             {
-                GameInstance.Current.Character.Health.max += response.Result.Health.max;
+                GameInstance.Current.Character.Health.max += response.Rewards.Health.max;
                 HealthEncounterReward healthReward = Instantiate(healthEncounterReward, rewardsContainer);
-                healthReward.Initialize(response.Result.Health.max);
+                healthReward.Initialize(response.Rewards.Health.max);
             }
             
-            if (response.Result.Health.current > 0)
+            if (response.Rewards.Health.current > 0)
             {
-                GameInstance.Current.Character.Health.current += response.Result.Health.current;
+                GameInstance.Current.Character.Health.current += response.Rewards.Health.current;
                 HealthEncounterReward healthReward = Instantiate(healthEncounterReward, rewardsContainer);
-                healthReward.Initialize(response.Result.Health.max);
+                healthReward.Initialize(response.Rewards.Health.max);
             }
 
-            if (response.Result.Wallet.Currencies.Count > 0)
+            if (response.Rewards.Wallet.Currencies.Count > 0)
             {
-                GameInstance.Current.Character.Wallet.Add(response.Result.Wallet);
-                foreach (Currency currency in response.Wallet.Currencies)
+                GameInstance.Current.Character.Wallet.Add(response.Rewards.Wallet);
+                foreach (Currency currency in response.Rewards.Wallet.Currencies)
                 {
                     CurrencyEncounterReward currencyReward = Instantiate(currencyEncounterReward, rewardsContainer);
                     currencyReward.Initialize(currency);
                 }
             }
 
-            foreach (RelicType relic in response.Result.Relics)
+            foreach (RelicType relic in response.Rewards.Relics)
             {
                 RelicInstance relicInstance = RelicFactory.Create(relic, GameInstance.Current.Character);
                 RelicEntryUi relicReward = Instantiate(relicEntryUi, rewardsContainer);

@@ -30,17 +30,21 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  health:
-    current: 0
-    max: 0
-  wallet:
-    currencies: []
   result:
+    m_TableReference:
+      m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
+    m_TableEntryReference:
+      m_KeyId: 379496027906048
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  cost:
     body:
       m_TableReference:
-        m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
+        m_TableCollectionName: 
       m_TableEntryReference:
-        m_KeyId: 379496027906048
+        m_KeyId: 0
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -51,6 +55,24 @@ MonoBehaviour:
     wallet:
       currencies: []
     relics: 
+    spells: 
+  rewards:
+    body:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    health:
+      current: 0
+      max: 0
+    wallet:
+      currencies: []
+    relics: 
+    spells: 
   references:
     version: 2
     RefIds: []

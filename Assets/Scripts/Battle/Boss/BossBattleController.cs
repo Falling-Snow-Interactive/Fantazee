@@ -10,7 +10,7 @@ namespace Fantazee.Battle.Boss
     {
         protected override void PlayMusic()
         {
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
+            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Environment,
                                                                out EnvironmentData data))
             {
                 MusicController.Instance.PlayMusic(data.BossMusic);
@@ -21,7 +21,7 @@ namespace Fantazee.Battle.Boss
         {
             base.BattleWin();
 
-            GameController.Instance.GameInstance.Map.SetReadyToAdvance();
+            GameController.Instance.GameInstance.Environment.SetReadyToAdvance();
         }
     }
 }
