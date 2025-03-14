@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fantazee.Npcs;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -24,5 +25,11 @@ namespace Fantazee.Encounters
         [SerializeField]
         private List<EncounterResponse> responses = new();
         public List<EncounterResponse> Responses => responses;
+
+        [Header("Npc")]
+
+        [SerializeField]
+        private NpcType npc;
+        public NpcType Npc => npc;
     }
 }

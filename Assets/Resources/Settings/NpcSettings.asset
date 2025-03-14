@@ -13,26 +13,4 @@ MonoBehaviour:
   m_Name: NpcSettings
   m_EditorClassIdentifier: 
   npcs:
-  - name: Npc_00
-    type: 0
-    locName:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    locDescription:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  references:
-    version: 2
-    RefIds: []
+  - {fileID: 11400000, guid: 081b253f32d4944c6b2ffc7d89319c6b, type: 2}

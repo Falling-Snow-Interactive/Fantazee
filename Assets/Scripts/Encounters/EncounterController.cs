@@ -6,9 +6,12 @@ using Fantazee.Encounters.Ui.Rewards;
 using Fantazee.Environments;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
+using Fantazee.Npcs;
+using Fantazee.Npcs.Settings;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
+using FMODUnity;
 using Fsi.Gameplay;
 using Fsi.Gameplay.Healths;
 using TMPro;
@@ -20,9 +23,6 @@ namespace Fantazee.Encounters
     public class EncounterController : MbSingleton<EncounterController>
     {
         private EncounterData encounter;
-
-        [SerializeField]
-        private EncounterData data;
 
         [Header("Responses")]
 
@@ -82,6 +82,9 @@ namespace Fantazee.Encounters
         [SerializeField]
         private Image hitFlash;
 
+        [SerializeField]
+        private Image npcImage;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -101,7 +104,14 @@ namespace Fantazee.Encounters
                 bodyText.text = encounter.Body;
             }
 
-            foreach (EncounterResponse response in data.Responses)
+            if (NpcSettings.Settings.TryGetNpc(encounter.Npc, out NpcData npc))
+            {
+                npcImage.sprite = npc.Sprite;
+                var s = npc.EnterAnimation.Apply(npcImage);
+                s.Play();
+            }
+
+            foreach (EncounterResponse response in encounter.Responses)
             {
                 EncounterResponseUi responseUi = Instantiate(responsePrefab, responsesContainer);
                 responseUi.Initialize(response, OnResponse);
@@ -131,15 +141,13 @@ namespace Fantazee.Encounters
                 health.max -= response.Health.max;
                 health.current = Mathf.Clamp(health.current, 0, health.max);
                 health.Damage(0);
-                
-                hitFlash.color = hitColor;
-                hitFlash.DOColor(hitFinishColor, hitTime)
-                        .SetEase(hitEase);
+                Hit();
             }
 
             if (response.Health.current > 0)
             {
                 GameInstance.Current.Character.Health.Damage(response.Health.current);
+                Hit();
             }
 
             foreach (Currency currency in response.Wallet.Currencies)
@@ -177,6 +185,7 @@ namespace Fantazee.Encounters
                 RelicInstance relicInstance = RelicFactory.Create(relic, GameInstance.Current.Character);
                 RelicEntryUi relicReward = Instantiate(relicEntryUi, rewardsContainer);
                 relicReward.Initialize(relicInstance);
+                GameInstance.Current.Character.AddRelic(relicInstance);
             }
         }
 
@@ -188,6 +197,14 @@ namespace Fantazee.Encounters
                                           Debug.Log("OnLeave");
                                           GameController.Instance.LoadMap();
                                       });
+        }
+
+        private void Hit()
+        {
+            RuntimeManager.PlayOneShot(GameInstance.Current.Character.Data.HitSfx);
+            hitFlash.color = hitColor;
+            hitFlash.DOColor(hitFinishColor, hitTime)
+                    .SetEase(hitEase);
         }
     }
 }

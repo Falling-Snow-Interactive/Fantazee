@@ -72,6 +72,14 @@ namespace Fantazee.Characters
         public EventReference EnterSfx => enterSfx;
         
         [SerializeField]
+        private EventReference exitSfx;
+        public EventReference ExitSfx => exitSfx;
+
+        [SerializeField]
+        private EventReference hitSfx;
+        public EventReference HitSfx => hitSfx;
+        
+        [SerializeField]
         private EventReference deathSfx;
         public EventReference DeathSfx => deathSfx;
     }

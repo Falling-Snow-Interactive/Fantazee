@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Fantazee.Npcs.Information;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,21 +13,21 @@ namespace Fantazee.Npcs.Settings
         public static NpcSettings Settings => _settings ??= GetOrCreateSettings();
         
         [SerializeField]
-        private List<NpcInformation> npcs = new();
-        public List<NpcInformation> Npcs => npcs;
+        private List<NpcData> npcs = new();
+        public List<NpcData> Npcs => npcs;
         
-        private Dictionary<NpcType, NpcInformation> npcDict = new();
+        private Dictionary<NpcType, NpcData> npcDict;
 
-        public bool TryGetEncounter(NpcType type, out NpcInformation data)
+        public bool TryGetNpc(NpcType type, out NpcData data)
         {
             npcDict ??= BuildDictionary();
             return npcDict.TryGetValue(type, out data);
         }
 
-        private Dictionary<NpcType, NpcInformation> BuildDictionary()
+        private Dictionary<NpcType, NpcData> BuildDictionary()
         {
-            Dictionary<NpcType, NpcInformation> dictionary = new();
-            foreach (NpcInformation npc in npcs)
+            Dictionary<NpcType, NpcData> dictionary = new();
+            foreach (NpcData npc in npcs)
             {
                 if (npc == null)
                 {
