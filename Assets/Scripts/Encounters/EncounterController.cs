@@ -17,7 +17,6 @@ using Fsi.Gameplay;
 using Fsi.Gameplay.Healths;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Encounters
@@ -97,6 +96,9 @@ namespace Fantazee.Encounters
 
         [SerializeField]
         private Image npcImage;
+
+        [SerializeField]
+        private Image fadeImage;
         
         // Some rewards need a selection, so lets save them.
         private List<SpellInstance> spellsToReward = new();
@@ -107,6 +109,14 @@ namespace Fantazee.Encounters
 
             responsesContainer.gameObject.SetActive(true);
             rewardsParent.gameObject.SetActive(false);
+            
+            scoresheetUpgradeScreen.gameObject.SetActive(false);
+
+            var color = fadeImage.color;
+            color.a = 0;
+            fadeImage.color = color;
+
+            fadeImage.raycastTarget = false;
         }
 
         private void Start()
@@ -219,7 +229,7 @@ namespace Fantazee.Encounters
             }
         }
 
-        public void OnContinue(EncounterSelection rewards)
+        public void OnContinue()
         {
             continueButton.transform.DOPunchScale(Vector3.one * -0.1f, 0.2f)
                           .OnComplete(() =>
@@ -243,6 +253,8 @@ namespace Fantazee.Encounters
 
         private void SetupUpgrades(List<SpellInstance> spells)
         {
+            fadeImage.raycastTarget = true;
+            fadeImage.DOFade(0.6f, 0.2f).SetEase(Ease.InOutSine);
             Queue<SpellInstance> spellQueue = new(spells);
             UpgradeSpell(spellQueue);
         }

@@ -143,7 +143,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
         {
             toUpgradeScore = scoreToUpgrade;
             toUpgradeSpell = spellToUpgrade;
-            ScoreSelectSequence(toReceiveScore.transform, scoreToUpgrade, () => onComplete?.Invoke());
+            ScoreSelectSequence(toReceiveSpell.transform, scoreToUpgrade, () => onComplete?.Invoke());
         }
         
         private void Apply()
@@ -160,8 +160,9 @@ namespace Fantazee.Scores.Scoresheets.Ui
                                            Action onComplete = null)
         {
             Vector3 pos = toReceiveScore.transform.position;
-            Transform parent = toReceiveScore.transform.parent;
-            toReceiveScore.transform.SetParent(animGroup, true);
+            
+            Transform returnParent = toUpgradeButton.transform.parent;
+            toUpgradeButton.transform.SetParent(animGroup, true);
             
             Sequence sequence = DOTween.Sequence();
             
@@ -172,7 +173,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
             Vector3 toReceiveChargePos = toReceivePos + Vector3.left * chargeOffset;
             Vector3 toUpgradeChargePos = toUpgradePos + Vector3.right * chargeOffset;
 
-            sequence.Append(toReceiveScore.transform.DOMove(toReceivePos, selectTime)
+            sequence.Append(toUpgradeButton.transform.DOMove(toUpgradePos, selectTime)
                                        .SetEase(selectEase)
                                        .OnStart(() => RuntimeManager.PlayOneShot(swooshSfx)));
             // Fade background
@@ -181,7 +182,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
                                         .OnStart(() => fadeImage.raycastTarget = true));
 
             // // Charge up the scores
-            float chargeInsertTime = chargeTime + 0.25f;
+            float chargeInsertTime = selectTime + 0.25f;
             sequence.Insert(chargeInsertTime, toReceiveTransform.DOMove(toReceiveChargePos,
                                                                         chargeTime)
                                                                 .SetEase(chargeEase)
@@ -201,13 +202,13 @@ namespace Fantazee.Scores.Scoresheets.Ui
                                                                          false,
                                                                          ShakeRandomnessMode.Full)
                                                                 .SetEase(Ease.OutQuad));
-            sequence.Insert(chargeInsertTime, toReceiveScore.transform.DOShakeRotation(chargeTime,
-                                                                     new Vector3(0, 0, 3),
-                                                                     30,
-                                                                     90f,
-                                                                     false,
-                                                                     ShakeRandomnessMode.Full)
-                                                            .SetEase(Ease.OutQuad));
+            sequence.Insert(chargeInsertTime, toReceiveTransform.DOShakeRotation(chargeTime,
+                                                                    new Vector3(0, 0, 3),
+                                                                    30,
+                                                                    90f,
+                                                                    false,
+                                                                    ShakeRandomnessMode.Full)
+                                                                .SetEase(Ease.OutQuad));
             
             // Move in to combine
             float crashInsertTime = chargeInsertTime + chargeTime;
@@ -220,10 +221,10 @@ namespace Fantazee.Scores.Scoresheets.Ui
                                                                                Apply();
                                                                                toUpgradeButton.UpdateVisuals();
                                                                            }));
-            sequence.Insert(crashInsertTime, toReceiveScore.transform.DOMove(mid, crashTime)
+            sequence.Insert(crashInsertTime, toUpgradeButton.transform.DOMove(mid, crashTime)
                                                            .SetEase(crashEase));
 
-            sequence.Append(toReceiveScore.transform.DOPunchScale(Vector3.one * punchAmount, punchTime, 5, 1f));
+            sequence.Append(toUpgradeButton.transform.DOPunchScale(Vector3.one * punchAmount, punchTime, 5, 1f));
             
             float returnInsertTime = crashTime + crashInsertTime + punchTime;
             sequence.Insert(returnInsertTime, toReceiveScore.transform.DOMove(pos, returnTime)
@@ -238,7 +239,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
 
             sequence.OnComplete(() =>
                                 {
-                                    toReceiveScore.transform.SetParent(parent);
+                                    toReceiveScore.transform.SetParent(returnParent);
                                     onComplete?.Invoke();
                                 });
             sequence.Play();

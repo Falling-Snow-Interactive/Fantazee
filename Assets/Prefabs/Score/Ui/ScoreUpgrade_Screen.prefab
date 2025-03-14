@@ -155,8 +155,8 @@ RectTransform:
   m_Children:
   - {fileID: 8517152593726385823}
   - {fileID: 4598114172087457617}
-  - {fileID: 6563214775873045555}
   - {fileID: 7750655415244329894}
+  - {fileID: 6563214775873045555}
   m_Father: {fileID: 8442801274684245394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -491,46 +491,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoresheet: {fileID: 5562408463687141412}
-  toReceiveSpell: {fileID: 0}
-  toReceiveScore: {fileID: 0}
+  toReceiveSpell: {fileID: 6837288604478222394}
+  toReceiveScore: {fileID: 9190075242662823301}
   toUpgradeContainer: {fileID: 6563214775873045555}
-  animGroup: {fileID: 0}
-  fadeImage: {fileID: 0}
+  animGroup: {fileID: 6563214775873045555}
+  fadeImage: {fileID: 8241695379640402266}
   selectTime: 0.6
-  selectEase: 8
+  selectEase: 6
   chargeTime: 0.7
-  chargeEase: 8
+  chargeEase: 6
   chargeOffset: 200
-  crashTime: 0.5
-  crashEase: 8
-  punchAmount: 250
+  crashTime: 0.3
+  crashEase: 5
+  punchAmount: 1
   punchTime: 0.25
   returnTime: 1
-  returnEase: 8
+  returnEase: 6
   fadeAmount: 0.6
   fadeTime: 0.5
   fadeEase: 10
   chargeSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
   swooshSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
   upgradeSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -396252863
+      Data2: 1214135050
+      Data3: 1697879727
+      Data4: 2014184088
+    Path: event:/Shop/Upgrade
 --- !u!1 &5975604612477867053
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +851,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2519913216688146339, guid: 715280ea8f0a544ca9f71591cfa008c6, type: 3}
   m_PrefabInstance: {fileID: 2301852581482548254}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9190075242662823301 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6951418208831326619, guid: 715280ea8f0a544ca9f71591cfa008c6, type: 3}
+  m_PrefabInstance: {fileID: 2301852581482548254}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3804d1cb2af845898e9ce9af871dcf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6710476246784872968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2634,3 +2645,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2634476024805937163, guid: fdb3f7ce97cf74ffd915d63f3544955a, type: 3}
   m_PrefabInstance: {fileID: 7581004059675132100}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6837288604478222394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4023912134923202814, guid: fdb3f7ce97cf74ffd915d63f3544955a, type: 3}
+  m_PrefabInstance: {fileID: 7581004059675132100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a637db90ba64414b131f075a3df93c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
