@@ -121,7 +121,7 @@ namespace Fantazee.Maps
                 if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
                                                                                out EnvironmentData info))
                 {
-                    MusicController.Instance.PlayMusic(info.MapMusicId);
+                    MusicController.Instance.PlayMusic(info.GeneralMusic);
                 }
                 
                 Debug.Log($"Map - Current Node: {node.transform.position}");

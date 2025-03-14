@@ -15,7 +15,7 @@ namespace Fantazee.Encounters
 
         [SerializeField]
         private LocalizedString body;
-        public string Body// => body.GetLocalizedString();
+        public string Body
         {
             get
             {
@@ -24,10 +24,6 @@ namespace Fantazee.Encounters
             }
         }
         private Dictionary<string, string> args;
-
-        [SerializeField]
-        private EncounterResult result;
-        public EncounterResult Result => result;
 
         [Header("Cost")]
 
@@ -38,6 +34,12 @@ namespace Fantazee.Encounters
         [SerializeField]
         private Wallet wallet;
          public Wallet Wallet => wallet;
+         
+         [Header("Result")]
+         
+         [SerializeField]
+         private EncounterResult result;
+         public EncounterResult Result => result;
         
         private Dictionary<string, string> BuildDictionary()
         {

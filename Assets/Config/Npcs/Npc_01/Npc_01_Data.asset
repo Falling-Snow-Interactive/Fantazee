@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7afb463a9c9f4c43b09fc612891441ea, type: 3}
+  m_Name: Npc_01_Data
+  m_EditorClassIdentifier: 
+  type: 0
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:8ff77082df584406f86a470c046635ed
+    m_TableEntryReference:
+      m_KeyId: 233378406400
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:8ff77082df584406f86a470c046635ed
+    m_TableEntryReference:
+      m_KeyId: 253372653568
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sprite: {fileID: 381322439, guid: 84a67044a01784ec6b9011a25152240c, type: 3}
+  enterAnimation:
+    position: {x: -200, y: 0, z: 0}
+    positionTime: 0.8
+    prePositionTime: 0.8
+    positionEase: 27
+    scale: {x: 0.9, y: 0.9, z: 0.9}
+    scaleTime: 0.8
+    preScaleTime: 0.8
+    scaleEase: 27
+    fade: 0
+    fadeTime: 0.3
+    preFadeTime: 0.7
+    fadeEase: 1
+    finishTime: 0.2
+  exitAnimation:
+    position: {x: 0, y: 0, z: 0}
+    positionTime: 0
+    prePositionTime: 0
+    positionEase: 0
+    scale: {x: 0, y: 0, z: 0}
+    scaleTime: 0
+    preScaleTime: 0
+    scaleEase: 0
+    fade: 0
+    fadeTime: 0
+    preFadeTime: 0
+    fadeEase: 0
+    finishTime: 0
+  references:
+    version: 2
+    RefIds: []

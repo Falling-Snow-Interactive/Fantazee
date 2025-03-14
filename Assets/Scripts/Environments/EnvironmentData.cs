@@ -5,6 +5,7 @@ using FMODUnity;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Environments
 {
@@ -58,16 +59,16 @@ namespace Fantazee.Environments
         [Header("Audio")]
 
         [SerializeField]
-        private EventReference musicReference;
-        public EventReference MusicReference => musicReference;
+        private MusicId generalMusic;
+        public MusicId GeneralMusic => generalMusic;
 
         [SerializeField]
-        private MusicId mapMusicId;
-        public MusicId MapMusicId => mapMusicId;
+        private MusicId battleMusic;
+        public MusicId BattleMusic => battleMusic;
 
         [SerializeField]
-        private MusicId battleMusicId;
-        public MusicId BattleMusicId => battleMusicId;
+        private MusicId bossMusic;
+        public MusicId BossMusic => bossMusic;
         
         public Sprite GetBackground()
         {

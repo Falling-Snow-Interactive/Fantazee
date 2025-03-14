@@ -170,10 +170,15 @@ namespace Fantazee.Battle
                 enemy.Hide();
             }
             
+            PlayMusic();
+        }
+
+        protected virtual void PlayMusic()
+        {
             if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
-                                                                           out EnvironmentData data))
+                                                               out EnvironmentData data))
             {
-                MusicController.Instance.PlayMusic(data.BattleMusicId);
+                MusicController.Instance.PlayMusic(data.BattleMusic);
             }
         }
 
