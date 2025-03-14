@@ -11,13 +11,14 @@ using Fantazee.Npcs.Settings;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
-using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Spells;
+using Fantazee.Spells.Ui;
 using FMODUnity;
 using Fsi.Gameplay;
 using Fsi.Gameplay.Healths;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Encounters
@@ -47,8 +48,9 @@ namespace Fantazee.Encounters
         [SerializeField]
         private RelicEntryUi relicEntryUi;
         
+        [FormerlySerializedAs("spellEntryUi")]
         [SerializeField]
-        private ScoreEntrySpell spellEntryUi;
+        private SpellButton spellButtonEntryUi;
         
         [SerializeField]
         private Transform rewardsContainer;
@@ -204,8 +206,8 @@ namespace Fantazee.Encounters
             foreach (SpellType spell in response.Rewards.Spells)
             {
                 SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
-                ScoreEntrySpell spellReward = Instantiate(spellEntryUi, rewardsContainer);
-                spellReward.Initialize(spellInstance);
+                SpellButton spellButtonReward = Instantiate(spellButtonEntryUi, rewardsContainer);
+                spellButtonReward.Initialize(spellInstance);
 
                 spellsToReward.Add(spellInstance);
             }

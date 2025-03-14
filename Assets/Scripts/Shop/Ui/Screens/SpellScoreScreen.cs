@@ -2,10 +2,11 @@ using System;
 using DG.Tweening;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Shop.Settings;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
+using Fantazee.Spells.Ui;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -21,8 +22,9 @@ namespace Fantazee.Shop.Ui.Screens
 
         private SpellInstance spellInstance;
 
+        [FormerlySerializedAs("fantazeeEntry")]
         [SerializeField]
-        private ShopScoreEntry fantazeeEntry;
+        private ShopScoreButton fantazeeButton;
 
         public void Initialize(SpellEntry selected, Action onComplete)
         {
@@ -35,53 +37,52 @@ namespace Fantazee.Shop.Ui.Screens
             Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.Scoresheet.Scores.Count);
             for (int i = 0; i < scoreEntries.Count; i++)
             {
-                ShopScoreEntry scoreEntry = scoreEntries[i];
+                ShopScoreButton scoreButton = scoreEntries[i];
                 ScoreInstance score = GameInstance.Current.Character.Scoresheet.Scores[i];
                 
-                scoreEntry.Initialize(score, se =>
+                scoreButton.Initialize(score, se =>
                                              {
                                                  OnScoreSelected(se, onComplete);
                                              });
             }
             
-            fantazeeEntry.Initialize(GameInstance.Current.Character.Scoresheet.Fantazee, 
+            fantazeeButton.Initialize(GameInstance.Current.Character.Scoresheet.Fantazee, 
                                      se => OnScoreSelected(se, onComplete));
         }
 
-        private void OnScoreSelected(ScoreEntry scoreEntry, Action onComplete)
+        private void OnScoreSelected(ScoreButton scoreButton, Action onComplete)
         {
-            Debug.Log($"{scoreEntry.name}");
-            Transform parent = scoreEntry.transform.parent;
-            scoreEntry.transform.SetParent(animGroup);
+            Transform parent = scoreButton.transform.parent;
+            scoreButton.transform.SetParent(animGroup);
             fadeImage.raycastTarget = true;
             fadeImage.DOFade(ShopSettings.Settings.FadeAmount, ShopSettings.Settings.FadeTime)
                      .SetEase(ShopSettings.Settings.FadeEase);
-            scoreEntry.RequestSpell((spellInstance, se) =>
+            scoreButton.RequestSpell(spellButton =>
                                     {
-                                        this.spellInstance = spellInstance;
-                                        OnSpellSelected(se, () =>
+                                        OnSpellSelected(scoreButton, spellButton, () =>
                                                             {
-                                                                scoreEntry.transform.SetParent(parent);
+                                                                scoreButton.transform.SetParent(parent);
                                                                 onComplete?.Invoke();
                                                             });
                                     });
         }
 
-        private void OnSpellSelected(ScoreEntry scoreEntry, Action onComplete)
+        private void OnSpellSelected(ScoreButton scoreButton, SpellButton spellButton, Action onComplete)
         {
-            ScoreSelectSequence(purchase.transform, scoreEntry, onComplete);
+            // TODO - Do the right spell, probably somrthing here
+            ScoreSelectSequence(purchase.transform, scoreButton, onComplete);
         }
 
-        protected override bool Apply(ScoreEntry scoreEntry)
+        protected override bool Apply(ScoreButton scoreButton)
         {
             if (!ShopController.Instance.MakePurchase(purchase.Cost))
             {
                 return false;
             }
             
-            Debug.Log($"Shop Spell: {scoreEntry.Score} {spellInstance} -> {purchaseSpell.Spell}");
-            int index = scoreEntry.Score.Spells.IndexOf(spellInstance);
-            scoreEntry.Score.Spells[index] = purchaseSpell.Spell;
+            Debug.Log($"Shop Spell: {scoreButton.Score} {spellInstance} -> {purchaseSpell.Spell}");
+            int index = scoreButton.Score.Spells.IndexOf(spellInstance);
+            scoreButton.Score.Spells[index] = purchaseSpell.Spell;
             
             purchaseSpell.gameObject.SetActive(false);
 

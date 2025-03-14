@@ -1,116 +1,75 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
-using Fantazee.Environments;
-using Fantazee.Environments.Settings;
-using Fantazee.Scores.Bonus.Ui;
-using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Scores.Instance;
+using Fantazee.Scores.Scoresheets;
+using Fantazee.Scores.Ui.Buttons;
+using Fantazee.Spells.Ui;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui
 {
     public class ScoresheetUi : MonoBehaviour
     {
-        private Action<ScoreEntry> onSelect;
+        private Action<ScoreButton> onScoreSelect;
+        private Action<ScoreButton, SpellButton> onSpellSelect;
+
+        private bool spellRequested = false;
         
-        [Header("Animation")]
-        
-        [SerializeField]
-        private float scoreTime = 0.6f;
-        
-        [SerializeField]
-        private Ease scoreEase = Ease.InCirc;
-        
-        [Header("References")]
+        [Header("Buttons")]
         
         [SerializeField]
-        private Transform entryContainer;
-        
-        [SerializeField]
-        private List<BattleScoreEntry> entries = new List<BattleScoreEntry>();
+        private List<ScoreButton> scoreButtons = new();
 
         [SerializeField]
-        private BattleScoreEntry fantazeeEntry;
+        private ScoreButton fantazeeButton;
 
-        [SerializeField]
-        private BonusScoreUi bonusScoreUi;
-        public BonusScoreUi BonusScoreUi => bonusScoreUi;
+        private readonly Dictionary<ScoreInstance, ScoreButton> buttons = new();
 
-        [SerializeField]
-        private Image background;
-
-        private void OnEnable()
+        public void Initialize(Scoresheet scoresheet)
         {
-            BattleController.RollEnded += OnRollEnded;
-            BattleController.Scored += OnScored;
-            BattleController.RollStarted += OnRollStarted;
-        }
-
-        private void OnDisable()
-        {
-            BattleController.RollEnded -= OnRollEnded;
-            BattleController.Scored -= OnScored;
-            BattleController.RollStarted -= OnRollStarted;
-        }
-
-        public void Initialize(List<BattleScore> battleScores, BattleScore fantazeeScore, Action<ScoreEntry> onSelect)
-        {
-            this.onSelect = onSelect;
-            
-            for (int i = 0; i < battleScores.Count; i++)
+            Debug.Assert(scoresheet.Scores.Count == scoreButtons.Count);
+            for (int i = 0; i < scoresheet.Scores.Count; i++)
             {
-                BattleScore score = battleScores[i];
-                BattleScoreEntry entry = entries[i];
-                entry.Initialize(score, OnScoreEntrySelected);
-                score.SetEntry(entry);
+                ScoreInstance score = scoresheet.Scores[i];
+                ScoreButton button = scoreButtons[i];
+                button.Initialize(score, OnScoreEntrySelected);
+                
+                buttons.Add(score, button);
             }
             
-            // TODO - Fix fantazee entry
-            fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
-            fantazeeScore.SetEntry(fantazeeEntry);
-            
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameController.Instance.GameInstance.Environment.Data.Type, 
-                                                                           out EnvironmentData data))
+            fantazeeButton.Initialize(scoresheet.Fantazee, OnScoreEntrySelected);
+        }
+
+        public void RequestScore(Action<ScoreButton> onScoreSelect)
+        {
+            this.onScoreSelect = onScoreSelect;
+            spellRequested = false;
+        }
+
+        public void RequestSpell(Action<ScoreButton, SpellButton> onSpellSelect)
+        {
+            this.onSpellSelect = onSpellSelect;
+            spellRequested = true;
+        }
+
+        private void OnScoreEntrySelected(ScoreButton scoreButton)
+        {
+            if (spellRequested)
             {
-                background.color = data.Color;
+                scoreButton.RequestSpell(spellButton =>
+                                          {
+                                              OnSpellSelected(scoreButton, spellButton);
+                                          });
+            }
+            else
+            {
+                onScoreSelect?.Invoke(scoreButton);
             }
         }
 
-        private void OnScoreEntrySelected(ScoreEntry scoreEntry)
+        private void OnSpellSelected(ScoreButton scoreButton, SpellButton spellButton)
         {
-            onSelect?.Invoke(scoreEntry);
-        }
-
-        private void OnRollEnded()
-        {
-            ShowScorePreviews();
-        }
-
-        private void OnScored(BattleScore _)
-        {
-            HideScorePreviews();
-        }
-
-        private void ShowScorePreviews()
-        {
-            foreach (BattleScoreEntry entry in entries)
-            {
-                entry.ShowPreview();
-            }
-        }
-
-        private void HideScorePreviews()
-        {
-            foreach (BattleScoreEntry entry in entries)
-            {
-                entry.HidePreview();
-            }
-        }
-
-        private void OnRollStarted()
-        {
-            HideScorePreviews();
+            onSpellSelect?.Invoke(scoreButton, spellButton);
         }
     }
 }

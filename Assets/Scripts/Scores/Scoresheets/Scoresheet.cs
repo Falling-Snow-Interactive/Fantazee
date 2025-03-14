@@ -4,7 +4,7 @@ using Fantazee.Characters;
 using Fantazee.Scores.Instance;
 using UnityEngine;
 
-namespace Fantazee.Scores
+namespace Fantazee.Scores.Scoresheets
 {
     [Serializable]
     public class Scoresheet

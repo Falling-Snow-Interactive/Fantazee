@@ -6,6 +6,7 @@ using Fantazee.Dice;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
+using Fantazee.Scores.Scoresheets;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
 using UnityEngine.Serialization;

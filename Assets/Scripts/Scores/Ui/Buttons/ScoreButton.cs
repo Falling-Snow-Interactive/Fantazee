@@ -1,0 +1,188 @@
+using System;
+using System.Collections.Generic;
+using Fantazee.Scores.Instance;
+using Fantazee.Spells;
+using Fantazee.Spells.Ui;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
+namespace Fantazee.Scores.Ui.Buttons
+{
+    public class ScoreButton : MonoBehaviour
+    {
+        private Action<ScoreButton> onSelect;
+        
+        [SerializeReference]
+        private ScoreInstance score;
+        public ScoreInstance Score
+        {
+            get => score;
+            set => score = value;
+        }
+
+        [Header("References")]
+        
+        [SerializeField]
+        protected TMP_Text nameText;
+
+        [SerializeField]
+        protected Button button;
+        
+        [SerializeField]
+        private List<SpellButton> spells = new();
+        public List<SpellButton> Spells => spells;
+        
+        private void Awake()
+        {
+            spells[0]?.SetTooltip(false);
+        }
+
+        public virtual void Initialize(ScoreInstance score, Action<ScoreButton> onSelect)
+        {
+            this.score = score;
+            this.onSelect = onSelect;
+            
+            Debug.Assert(spells.Count == score.Spells.Count);
+            for (int i = 0; i < Spells.Count; i++)
+            {
+                Spells[i].Initialize(score.Spells[i]);
+            }
+            
+            UpdateVisuals();
+        }
+        
+        public void OnSelect()
+        {
+            onSelect?.Invoke(this);
+        }
+
+        public void UpdateVisuals()
+        {
+            nameText.text = score.Data.Name;
+            button.interactable = true;
+
+            // List<int> d = GetDiceValues();
+            //
+            // Debug.Assert(diceImages.Count == d.Count, 
+            //              $"DiceImages Count ({diceImages.Count}) != Dice Count ({d.Count}).", 
+            //              gameObject);
+            //
+            // for (int i = 0; i < diceImages.Count; i++)
+            // {
+            //     ShowDieInSlot(i, d[i]);
+            // }
+
+            Debug.Assert(spells.Count == score.Spells.Count, 
+                         $"Spells Count ({spells.Count}) != Score Spells Count ({score.Spells.Count}).", 
+                         gameObject);
+            for (int i = 0; i < spells.Count; i++)
+            {
+                spells[i].Initialize(score.Spells[i]);
+            }
+        }
+
+        // TODO - This will be reused
+        protected virtual List<int> GetDiceValues()
+        {
+            List<int> diceValues = new();
+
+            switch (score)
+            {
+                case NumberScoreInstance n:
+                    diceValues = new List<int>{n.NumberData.Number, 
+                                                  n.NumberData.Number, 
+                                                  n.NumberData.Number,
+                                                  n.NumberData.Number,
+                                                  n.NumberData.Number};
+                    break;
+                case KindScoreInstance k:
+                    diceValues = new List<int>();
+                    for (int i = 0; i < k.KindData.Kind; i++)
+                    {
+                        diceValues.Add(6);
+                    }
+
+                    while (diceValues.Count < 5)
+                    {
+                        diceValues.Add(Random.Range(1, 6));
+                    }
+
+                    break;
+                case RunScoreInstance r:
+                    diceValues = new List<int>();
+                    for (int i = 0; i < r.RunData.Run; i++)
+                    {
+                        diceValues.Add(1 + i);
+                    }
+
+                    while (diceValues.Count < 5)
+                    {
+                        diceValues.Add(Random.Range(1, r.RunData.Run));
+                    }
+
+                    break;
+                case FullHouseScoreInstance f:
+                    diceValues = new List<int> { 5,5,5,2,2 };
+                    break;
+                case ChanceScoreInstance c:
+                    diceValues = new List<int>{Random.Range(1, 6), 
+                                                  Random.Range(1, 6), 
+                                                  Random.Range(1, 6), 
+                                                  Random.Range(1, 6), 
+                                                  Random.Range(1, 6)};
+                    break;
+                case FantazeeScoreInstance f:
+                    diceValues = new List<int> { 6,6,6,6,6 };
+                    break;
+                case TwoPairScoreInstance tp:
+                    diceValues = new List<int> { 6, 6, 5, 5, Random.Range(1, 5) };
+                    break;
+                case EvenOddScoreInstance e when !e.EvenOddData.Even:
+                    diceValues = new List<int> { 1, 3, 5, 3, 1 };
+                    break;
+                case EvenOddScoreInstance e when e.EvenOddData.Even:
+                    diceValues = new List<int> { 2, 4, 6, 4, 2 };
+                    break;
+                default:
+                    Debug.LogError($"{nameof(score)} has not been implemented.");
+                    break;
+            }
+            
+            return diceValues;
+        }
+        
+        // public void ShowDieInSlot(int index, int value)
+        // {
+        //     if (diceImages.Count >= index &&
+        //         DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
+        //     {
+        //         diceImages[index].sprite = info.Sprite;
+        //         diceImages[index].transform.parent.DOPunchScale(Vector3.one * 0.1f, 0.2f, 2, 0.5f);
+        //     }
+        // }
+
+        #region Request Spell
+        
+        public void RequestSpell(Action<SpellButton> onSpellSelect)
+        {
+            foreach (SpellButton spell in spells)
+            {
+                spell.Activate(s => OnSpellSelected(s, onSpellSelect));
+            }
+        }
+
+        private void OnSpellSelected(SpellButton spell, Action<SpellButton> onSpellSelect)
+        {
+            foreach (SpellButton s in spells)
+            {
+                s.Deactivate();
+            }
+
+            onSpellSelect?.Invoke(spell);
+        }
+        
+        #endregion
+    }
+}

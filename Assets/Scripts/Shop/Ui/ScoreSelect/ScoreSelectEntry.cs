@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Spells.Ui;
 using TMPro;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ namespace Fantazee.Shop.Ui.ScoreSelect
         [Header("References")]
 
         [SerializeField]
-        private List<ScoreEntrySpell> spells = new();
+        private List<SpellButton> spells = new();
 
         [SerializeField]
         private TMP_Text scoreText;

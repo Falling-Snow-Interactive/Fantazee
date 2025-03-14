@@ -28,7 +28,7 @@ namespace Fantazee.MainMenu.Character.Ui
         private TMP_Text descText;
 
         [SerializeField]
-        private List<CharacterScoreEntry> scoreEntries;
+        private List<CharacterScoreButton> scoreEntries;
 
         [SerializeField]
         private RelicEntryUi relic;
@@ -75,9 +75,9 @@ namespace Fantazee.MainMenu.Character.Ui
 
             for (int j = 0; j < scoreEntries.Count; j++)
             {
-                CharacterScoreEntry scoreEntry = scoreEntries[j];
+                CharacterScoreButton scoreButton = scoreEntries[j];
                 ScoreInstance score = ScoreFactory.CreateInstance(character.Scores[j]);
-                scoreEntry.Initialize(score, null);
+                scoreButton.Initialize(score, null);
             }
 
             relic.ShowData(character.Relic);

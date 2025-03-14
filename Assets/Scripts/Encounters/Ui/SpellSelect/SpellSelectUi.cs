@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Spells;
+using Fantazee.Spells.Ui;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Encounters.Ui.SpellSelect
 {
@@ -13,13 +15,14 @@ namespace Fantazee.Encounters.Ui.SpellSelect
         private SpellInstance spell;
 
         [SerializeField]
-        private ScoreEntrySpell selectedEntry;
+        private SpellButton selectedEntry;
 
         [SerializeField]
-        private List<ScoreEntry> scoreEntries = new();
+        private List<ScoreButton> scoreEntries = new();
 
+        [FormerlySerializedAs("fantazeeEntry")]
         [SerializeField]
-        private ScoreEntry fantazeeEntry;
+        private ScoreButton fantazeeButton;
         
         public void Initialize(SpellInstance spell, Action onComplete)
         {
@@ -29,20 +32,20 @@ namespace Fantazee.Encounters.Ui.SpellSelect
             Debug.Assert(scoreEntries.Count == GameInstance.Current.Character.Scoresheet.Scores.Count);
             for (int i = 0; i < scoreEntries.Count; i++)
             {
-                ScoreEntry scoreEntry = scoreEntries[i];
+                ScoreButton scoreButton = scoreEntries[i];
                 ScoreInstance score = GameInstance.Current.Character.Scoresheet.Scores[i];
                 
-                scoreEntry.Initialize(score, se =>
+                scoreButton.Initialize(score, se =>
                                              {
                                                  OnScoreSelected(se, onComplete);
                                              });
             }
             
-            fantazeeEntry.Initialize(GameInstance.Current.Character.Scoresheet.Fantazee, 
+            fantazeeButton.Initialize(GameInstance.Current.Character.Scoresheet.Fantazee, 
                                      se => OnScoreSelected(se, onComplete));
         }
 
-        private void OnScoreSelected(ScoreEntry scoreEntry, Action onComplete)
+        private void OnScoreSelected(ScoreButton scoreButton, Action onComplete)
         {
             
         }

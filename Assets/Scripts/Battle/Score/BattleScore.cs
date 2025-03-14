@@ -7,6 +7,7 @@ using Fantazee.Dice;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Battle.Score
 {
@@ -27,17 +28,18 @@ namespace Fantazee.Battle.Score
         private List<Die> dice = new();
         public List<Die> Dice => dice;
 
+        [FormerlySerializedAs("entryUi")]
         [SerializeReference]
-        private BattleScoreEntry entryUi;
+        private BattleScoreButton buttonUi;
 
         public BattleScore(ScoreInstance score)
         {
             this.score = score;
         }
 
-        public void SetEntry(BattleScoreEntry entryUi)
+        public void SetEntry(BattleScoreButton buttonUi)
         {
-            this.entryUi = entryUi;
+            this.buttonUi = buttonUi;
         }
 
         public void Cast(Damage damage, Action onComplete)
@@ -53,7 +55,7 @@ namespace Fantazee.Battle.Score
                 SpellInstance spell = score.Spells[i];
                 if (spell.Data.Type != SpellType.spell_none && BattleController.Instance.EnemiesRemaining() > 0)
                 {
-                    entryUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
+                    buttonUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
                 
                     spell.Cast(damage, () =>
                                        {
