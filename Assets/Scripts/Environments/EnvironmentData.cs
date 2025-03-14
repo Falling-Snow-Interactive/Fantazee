@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Fantazee.Audio;
 using Fantazee.Encounters;
-using FMODUnity;
+using Fantazee.Environments.Settings;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Environments
 {
@@ -74,5 +73,7 @@ namespace Fantazee.Environments
         {
             return backgrounds[Random.Range(0, backgrounds.Count)];
         }
+
+        public static EnvironmentData Default => EnvironmentSettings.Settings.DefaultEnvironment;
     }
 }

@@ -6,29 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Encounters/Enc_01/Responses/Enc_01_Response_A.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Encounters/Enc_01/Responses/Enc_01_Response_A.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Encounters/Enc_01/Responses/Enc_01_Response_B.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Encounters/Enc_01/Responses/Enc_01_Response_B.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Config/Npcs/Npc_01/Npc_01_Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Npcs/Npc_01/Npc_01_Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Body.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/Encounters/Encounters_en.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/Encounters/Encounters_en.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Settings/EncounterSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Settings/EncounterSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Settings/NpcSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Settings/NpcSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Encounters/Encounter_Scn.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Encounters/Encounter_Scn.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Boss/BossBattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Boss/BossBattleController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/ScoresheetUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Score/Ui/ScoresheetUi.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterSelection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterResult.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterSelection.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Environments/EnvironmentData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Environments/EnvironmentData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Environments/Settings/EnvironmentSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Environments/Settings/EnvironmentSettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instance/GameInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instance/MapInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instance/EnvironmentInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instance/MapInstance.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instance/EnvironmentInstance.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenuController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maps/MapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maps/MapController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProjectSceneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProjectSceneManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,10 +223,10 @@
           <line>222</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" containingFunctionPresentation="Method 'SetupEnemies'">
             <startOffsets>
-              <option value="6677" />
+              <option value="6675" />
             </startOffsets>
             <endOffsets>
-              <option value="6708" />
+              <option value="6706" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="63" />
@@ -255,19 +243,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterController.cs</url>
-          <line>106</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterController.cs" containingFunctionPresentation="Method 'Start'">
-            <startOffsets>
-              <option value="2794" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2861" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="66" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

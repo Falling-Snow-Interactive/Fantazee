@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Environments;
-using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Scores.Bonus.Ui;
 using Fantazee.Scores.Ui.ScoreEntries;
@@ -71,7 +70,7 @@ namespace Fantazee.Battle.Score.Ui
             fantazeeEntry.Initialize(fantazeeScore, OnScoreEntrySelected);
             fantazeeScore.SetEntry(fantazeeEntry);
             
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameController.Instance.GameInstance.Environment.Environment, 
+            if (EnvironmentSettings.Settings.TryGetEnvironment(GameController.Instance.GameInstance.Environment.Data.Type, 
                                                                            out EnvironmentData data))
             {
                 background.color = data.Color;

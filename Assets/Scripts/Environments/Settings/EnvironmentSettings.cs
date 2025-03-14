@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Environments.Settings
 {
@@ -13,6 +14,10 @@ namespace Fantazee.Environments.Settings
         public static EnvironmentSettings Settings => _settings ??= GetOrCreateSettings();
 
         [Header("Data")]
+
+        [SerializeField]
+        private EnvironmentData defaultEnvironment;
+        public EnvironmentData DefaultEnvironment => defaultEnvironment;
 
         [SerializeField]
         private List<EnvironmentData> data = new List<EnvironmentData>();

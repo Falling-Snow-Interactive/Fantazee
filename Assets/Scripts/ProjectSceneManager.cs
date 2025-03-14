@@ -39,27 +39,24 @@ namespace Fantazee
         {
             LoadSceneAsync(mainMenuScene.Name, LoadSceneMode.Single, onComplete);
         }
-        
-        public void LoadBattle(EnvironmentType environmentType, Action onComplete = null)
+
+        public void LoadBattle(EnvironmentData environment, Action onComplete = null)
         {
             LoadSceneAsync(battleScene.Name, LoadSceneMode.Single, () => 
-                                                                       LoadBattleEnvironment(environmentType, 
+                                                                       LoadBattleEnvironment(environment, 
                                                                            onComplete));
         }
         
-        public void LoadBossBattle(EnvironmentType environmentType, Action onComplete = null)
+        public void LoadBossBattle(EnvironmentData environment, Action onComplete = null)
         {
             LoadSceneAsync(bossScene.Name, LoadSceneMode.Single, () => 
-                                                                     LoadBattleEnvironment(environmentType, 
+                                                                     LoadBattleEnvironment(environment, 
                                                                          onComplete));
         }
 
-        public void LoadMap(EnvironmentType environmentType, Action onComplete)
+        public void LoadMap(EnvironmentData data, Action onComplete)
         {
-            if(EnvironmentSettings.Settings.TryGetEnvironment(environmentType, out EnvironmentData data))
-            {
-                LoadSceneAsync(data.Map.Name, LoadSceneMode.Single, onComplete);
-            }
+            LoadSceneAsync(data.Map.Name, LoadSceneMode.Single, onComplete);
         }
 
         public void LoadBlacksmith(Action onComplete)
@@ -76,13 +73,10 @@ namespace Fantazee
         {
             LoadSceneAsync(innScene.Name, LoadSceneMode.Single, onComplete);
         }
-
-        private void LoadBattleEnvironment(EnvironmentType env, Action onComplete)
+        
+        private void LoadBattleEnvironment(EnvironmentData data, Action onComplete)
         {
-            if (EnvironmentSettings.Settings.TryGetEnvironment(env, out EnvironmentData data))
-            {
-                LoadSceneAsync(data.Battle.Name, LoadSceneMode.Additive, onComplete);
-            }
+            LoadSceneAsync(data.Battle.Name, LoadSceneMode.Additive, onComplete);
         }
 
         public void LoadEncounter(Action onComplete)

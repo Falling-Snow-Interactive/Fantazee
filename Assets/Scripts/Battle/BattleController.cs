@@ -175,7 +175,7 @@ namespace Fantazee.Battle
 
         protected virtual void PlayMusic()
         {
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Environment,
+            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Data.Type,
                                                                out EnvironmentData data))
             {
                 MusicController.Instance.PlayMusic(data.BattleMusic);

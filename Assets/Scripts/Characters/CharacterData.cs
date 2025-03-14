@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
+using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
 using Fantazee.Relics;
 using Fantazee.Spells;
@@ -82,5 +83,7 @@ namespace Fantazee.Characters
         [SerializeField]
         private EventReference deathSfx;
         public EventReference DeathSfx => deathSfx;
+
+        public static CharacterData Default => CharacterSettings.Settings.DefaultCharacter;
     }
 }

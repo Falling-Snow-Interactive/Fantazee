@@ -117,12 +117,7 @@ namespace Fantazee.Maps
                 canInteract = false;
                 
                 RuntimeManager.PlayOneShot(mapStartSfx);
-
-                if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Environment,
-                                                                               out EnvironmentData info))
-                {
-                    MusicController.Instance.PlayMusic(info.GeneralMusic);
-                }
+                MusicController.Instance.PlayMusic(GameInstance.Current.Environment.Data.GeneralMusic);
                 
                 Debug.Log($"Map - Current Node: {node.transform.position}");
                 Debug.Log($"Map - Player to {player.transform.position}");

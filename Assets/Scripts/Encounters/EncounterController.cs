@@ -95,19 +95,16 @@ namespace Fantazee.Encounters
 
         private void Start()
         {
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Environment, 
-                                                               out EnvironmentData env))
-            {
-                encounter = env.GetEncounter();
-                backgroundImage.sprite = env.GetBackground();
-                headerText.text = encounter.Title;
-                bodyText.text = encounter.Body;
-            }
+            EnvironmentInstance env = GameInstance.Current.Environment;
+            encounter = env.GetEncounter();
+            backgroundImage.sprite = env.Data.GetBackground();
+            headerText.text = encounter.Title;
+            bodyText.text = encounter.Body;
 
             if (NpcSettings.Settings.TryGetNpc(encounter.Npc, out NpcData npc))
             {
                 npcImage.sprite = npc.Sprite;
-                var s = npc.EnterAnimation.Apply(npcImage);
+                Sequence s = npc.EnterAnimation.Apply(npcImage);
                 s.Play();
             }
 

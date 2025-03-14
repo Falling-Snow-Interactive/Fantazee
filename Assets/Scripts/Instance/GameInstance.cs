@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
+using Fantazee.Environments;
+using Fantazee.Environments.Settings;
 using Fantazee.Maps;
 using Fantazee.Relics;
 using UnityEngine;
@@ -44,7 +46,7 @@ namespace Fantazee.Instance
                                         {
                                             seed = (uint)Random.Range(0, int.MaxValue),
                                             character = new CharacterInstance(CharacterSettings.Settings.DefaultCharacter),
-                                            environment = new EnvironmentInstance(),
+                                            environment = new EnvironmentInstance(EnvironmentSettings.Settings.DefaultEnvironment),
                                         };
                 
                 return instance;
@@ -53,11 +55,11 @@ namespace Fantazee.Instance
         
         public GameInstance(){}
 
-        public GameInstance(CharacterData character)
+        public GameInstance(CharacterData character, EnvironmentData environment)
         {
             RandomizeSeed();
             this.character = new CharacterInstance(character);
-            environment = new EnvironmentInstance();
+            this.environment = new EnvironmentInstance(environment);
         }
 
         public void RandomizeSeed()
