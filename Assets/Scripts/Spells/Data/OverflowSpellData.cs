@@ -6,7 +6,7 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_05_Overflow", order = 5)]
     public class OverflowSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Overflow;
+        public override SpellType Type => SpellType.spell_05_overflow;
 
         [Header("Overflow")]
         

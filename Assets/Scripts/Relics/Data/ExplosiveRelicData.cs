@@ -5,7 +5,7 @@ namespace Fantazee.Relics.Data
     [CreateAssetMenu(fileName = "Explosive Data", menuName = "Relics/Explosive")]
     public class ExplosiveRelicData : RelicData
     {
-        public override RelicType Type => RelicType.Explosive;
+        public override RelicType Type => RelicType.relic_01_explosive;
 
         [SerializeField]
         private int damage = 1;

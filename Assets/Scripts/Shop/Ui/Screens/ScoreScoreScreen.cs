@@ -6,7 +6,6 @@ using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
-using Fantazee.Spells.Instance;
 using UnityEngine;
 
 namespace Fantazee.Shop.Ui.Screens
@@ -53,7 +52,7 @@ namespace Fantazee.Shop.Ui.Screens
             List<SpellInstance> purchaseSpells = new();
             for (int i = 0; i < purchase.Spells.Count; i++)
             {
-                SpellInstance s = purchase.Spells[i].Spell.Data.Type != SpellType.None
+                SpellInstance s = purchase.Spells[i].Spell.Data.Type != SpellType.spell_none
                                       ? purchase.Spells[i].Spell
                                       : scoreEntry.Spells[i].Spell;
                 purchaseSpells.Add(s);

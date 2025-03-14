@@ -5,7 +5,7 @@ using UnityEngine.Localization;
 
 namespace Fantazee.Encounters
 {
-    [CreateAssetMenu(fileName = "EncounterResponse", menuName = "Encounters/Response")]
+    [CreateAssetMenu(fileName = "Enc_", menuName = "Encounters/Response")]
     public class EncounterResponse : ScriptableObject
     {
         [Header("Localization")]
@@ -35,6 +35,8 @@ namespace Fantazee.Encounters
         [SerializeField]
         private EncounterSelection cost;
         public EncounterSelection Cost => cost;
+        
+        [Space(10)]
         
         [SerializeField]
         private EncounterSelection rewards;

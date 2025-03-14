@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using Fantazee.Battle.Characters;
-using Fantazee.Battle.Characters.Player;
 using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
 using Fantazee.Relics;
-using Fantazee.Spells;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;

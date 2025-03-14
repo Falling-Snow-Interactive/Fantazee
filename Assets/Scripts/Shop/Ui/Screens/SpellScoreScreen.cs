@@ -6,7 +6,6 @@ using Fantazee.Scores.Ui.ScoreEntries;
 using Fantazee.Shop.Settings;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
-using Fantazee.Spells.Instance;
 using UnityEngine;
 using UnityEngine.Serialization;
 

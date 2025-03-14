@@ -47,7 +47,7 @@ namespace Fantazee.Scores.Instance
         {
             this.data = data; 
             this.spells = spells;
-            if (spells.Count < 2 && SpellSettings.Settings.TryGetSpell(SpellType.None, out SpellData d))
+            if (spells.Count < 2 && SpellSettings.Settings.TryGetSpell(SpellType.spell_none, out SpellData d))
             {
                 while (spells.Count < 2)
                 {

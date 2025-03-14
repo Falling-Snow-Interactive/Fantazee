@@ -1,7 +1,6 @@
 using System;
 using DG.Tweening;
 using Fantazee.Spells;
-using Fantazee.Spells.Instance;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,7 +69,7 @@ namespace Fantazee.Scores.Ui.ScoreEntries
 
         public void SetTooltip(bool set)
         {
-            if (spell.Data.Type == SpellType.None)
+            if (spell.Data.Type == SpellType.spell_none)
             {
                 return;
             }

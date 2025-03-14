@@ -6,7 +6,6 @@ using Fantazee.Battle.Score.Ui;
 using Fantazee.Dice;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells;
-using Fantazee.Spells.Instance;
 using UnityEngine;
 
 namespace Fantazee.Battle.Score
@@ -52,7 +51,7 @@ namespace Fantazee.Battle.Score
             {
                 bool ready = false;
                 SpellInstance spell = score.Spells[i];
-                if (spell.Data.Type != SpellType.None && BattleController.Instance.EnemiesRemaining() > 0)
+                if (spell.Data.Type != SpellType.spell_none && BattleController.Instance.EnemiesRemaining() > 0)
                 {
                     entryUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
                 

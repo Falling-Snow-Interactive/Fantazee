@@ -11,6 +11,8 @@ using Fantazee.Npcs.Settings;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
+using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Spells;
 using FMODUnity;
 using Fsi.Gameplay;
 using Fsi.Gameplay.Healths;
@@ -44,6 +46,9 @@ namespace Fantazee.Encounters
         
         [SerializeField]
         private RelicEntryUi relicEntryUi;
+        
+        [SerializeField]
+        private ScoreEntrySpell spellEntryUi;
         
         [SerializeField]
         private Transform rewardsContainer;
@@ -85,6 +90,9 @@ namespace Fantazee.Encounters
         [SerializeField]
         private Image npcImage;
         
+        // Some rewards need a selection, so lets save them.
+        private List<SpellInstance> spellsToReward = new();
+        
         protected override void Awake()
         {
             base.Awake();
@@ -118,6 +126,14 @@ namespace Fantazee.Encounters
             
             GameController.Instance.EncounterReady();
         }
+        
+        private void HitEffect()
+        {
+            RuntimeManager.PlayOneShot(GameInstance.Current.Character.Data.HitSfx);
+            hitFlash.color = hitColor;
+            hitFlash.DOColor(hitFinishColor, hitTime)
+                    .SetEase(hitEase);
+        }
 
         private void OnResponse(EncounterResponse response)
         {
@@ -138,13 +154,13 @@ namespace Fantazee.Encounters
                 health.max -= response.Cost.Health.max;
                 health.current = Mathf.Clamp(health.current, 0, health.max);
                 health.Damage(0);
-                Hit();
+                HitEffect();
             }
 
             if (response.Cost.Health.current > 0)
             {
                 GameInstance.Current.Character.Health.Damage(response.Cost.Health.current);
-                Hit();
+                HitEffect();
             }
 
             foreach (Currency currency in response.Cost.Wallet.Currencies)
@@ -184,24 +200,43 @@ namespace Fantazee.Encounters
                 relicReward.Initialize(relicInstance);
                 GameInstance.Current.Character.AddRelic(relicInstance);
             }
+
+            foreach (SpellType spell in response.Rewards.Spells)
+            {
+                SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
+                ScoreEntrySpell spellReward = Instantiate(spellEntryUi, rewardsContainer);
+                spellReward.Initialize(spellInstance);
+
+                spellsToReward.Add(spellInstance);
+            }
         }
 
-        public void OnLeave()
+        public void OnContinue(EncounterSelection rewards)
         {
             continueButton.transform.DOPunchScale(Vector3.one * -0.1f, 0.2f)
                           .OnComplete(() =>
                                       {
-                                          Debug.Log("OnLeave");
-                                          GameController.Instance.LoadMap();
+                                          if (rewards.Spells.Count > 0)
+                                          {
+                                              
+                                          }
+                                          else
+                                          {
+                                              LeaveEncounter();
+                                          }
                                       });
+            
         }
 
-        private void Hit()
+        private void LeaveEncounter()
         {
-            RuntimeManager.PlayOneShot(GameInstance.Current.Character.Data.HitSfx);
-            hitFlash.color = hitColor;
-            hitFlash.DOColor(hitFinishColor, hitTime)
-                    .SetEase(hitEase);
+            Debug.Log("Encounter: Leaving");
+            GameController.Instance.LoadMap();
+        }
+
+        private void SelectSpellSlot()
+        {
+            
         }
     }
 }

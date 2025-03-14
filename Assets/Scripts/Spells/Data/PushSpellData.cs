@@ -8,7 +8,7 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_07_Push", order = 7)]
     public class PushSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Push;
+        public override SpellType Type => SpellType.spell_07_push;
 
         [Header("Push")]
 
