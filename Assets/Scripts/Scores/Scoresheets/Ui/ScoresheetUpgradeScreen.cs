@@ -15,6 +15,8 @@ namespace Fantazee.Scores.Scoresheets.Ui
 {
     public class ScoresheetUpgradeScreen : MonoBehaviour
     {
+        private Action onComplete;
+        
         [SerializeField]
         private ScoresheetUi scoresheet;
         
@@ -42,14 +44,11 @@ namespace Fantazee.Scores.Scoresheets.Ui
         [SerializeField]
         private Image fadeImage;
         
-        [Header("Animation")]
+        [Header("Animation Properties")]
         
         [SerializeField]
         private float selectTime = 0.6f;
-        public float SelectTime => selectTime;
         
-        [Header("Sequence Properties")]
-
         [SerializeField]
         private Ease selectEase = Ease.InCubic;
         
@@ -110,8 +109,9 @@ namespace Fantazee.Scores.Scoresheets.Ui
         [SerializeField]
         private EventReference upgradeSfx;
 
-        public void StartScoreUpgrade(ScoreInstance scoreToReceive)
+        public void StartScoreUpgrade(ScoreInstance scoreToReceive, Action onComplete = null)
         {
+            this.onComplete = onComplete;
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(false);
@@ -121,8 +121,9 @@ namespace Fantazee.Scores.Scoresheets.Ui
             scoresheet.RequestScore(OnScoreSelect);
         }
         
-        public void StartSpellUpgrade(SpellInstance spellToReceive)
+        public void StartSpellUpgrade(SpellInstance spellToReceive, Action onComplete = null)
         {
+            this.onComplete = onComplete;
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(true);
@@ -135,14 +136,14 @@ namespace Fantazee.Scores.Scoresheets.Ui
         private void OnScoreSelect(ScoreButton scoreToUpgrade)
         {
             toUpgradeScore = scoreToUpgrade;
-            ScoreSelectSequence(toReceiveScore.transform, scoreToUpgrade, () => { });
+            ScoreSelectSequence(toReceiveScore.transform, scoreToUpgrade, () => onComplete?.Invoke());
         }
 
         private void OnSpellSelect(ScoreButton scoreToUpgrade, SpellButton spellToUpgrade)
         {
             toUpgradeScore = scoreToUpgrade;
             toUpgradeSpell = spellToUpgrade;
-            ScoreSelectSequence(toReceiveScore.transform, scoreToUpgrade, () => { });
+            ScoreSelectSequence(toReceiveScore.transform, scoreToUpgrade, () => onComplete?.Invoke());
         }
         
         private void Apply()

@@ -1954,13 +1954,15 @@ MonoBehaviour:
   currencyEncounterReward: {fileID: 8583896141239639255, guid: 2bdf03094d645436ab03a9c252ee86f3, type: 3}
   healthEncounterReward: {fileID: 2073497935092971775, guid: 82516a9ab4f5d4be2b1d4334816d3d09, type: 3}
   relicEntryUi: {fileID: 8198472345287739592, guid: 409d804774aab41789460910f94a4141, type: 3}
-  spellButtonEntryUi: {fileID: 0}
+  spellButtonPrefab: {fileID: 4023912134923202814, guid: fdb3f7ce97cf74ffd915d63f3544955a, type: 3}
   rewardsContainer: {fileID: 1687377539}
   rewardsParent: {fileID: 2021236263}
   hitTime: 0.2
   hitEase: 1
   hitColor: {r: 1, g: 0, b: 0, a: 0.5882353}
   hitFinishColor: {r: 1, g: 0, b: 0, a: 0}
+  scoresheetUpgradeScreen: {fileID: 1598268048}
+  root: {fileID: 1334725670}
   backgroundImage: {fileID: 1311326390}
   headerText: {fileID: 602112022}
   bodyText: {fileID: 2015796642}
@@ -2093,6 +2095,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6635410727559701332, guid: 22e1956d1e19e405da9cad90577f1c7f, type: 3}
   m_PrefabInstance: {fileID: 1710124728207714287}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1598268048 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5196051903640485100, guid: 22e1956d1e19e405da9cad90577f1c7f, type: 3}
+  m_PrefabInstance: {fileID: 1710124728207714287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889260e44aef4c81b018343af571f61c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687377538
 GameObject:
   m_ObjectHideFlags: 0

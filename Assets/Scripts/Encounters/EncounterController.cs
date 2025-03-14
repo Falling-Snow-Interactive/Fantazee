@@ -3,14 +3,13 @@ using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Encounters.Ui;
 using Fantazee.Encounters.Ui.Rewards;
-using Fantazee.Environments;
-using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Npcs;
 using Fantazee.Npcs.Settings;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
+using Fantazee.Scores.Scoresheets.Ui;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
 using FMODUnity;
@@ -48,9 +47,8 @@ namespace Fantazee.Encounters
         [SerializeField]
         private RelicEntryUi relicEntryUi;
         
-        [FormerlySerializedAs("spellEntryUi")]
         [SerializeField]
-        private SpellButton spellButtonEntryUi;
+        private SpellButton spellButtonPrefab;
         
         [SerializeField]
         private Transform rewardsContainer;
@@ -72,7 +70,15 @@ namespace Fantazee.Encounters
         [SerializeField]
         private Color hitFinishColor = Color.clear;
         
+        [Header("Scoresheet")]
+        
+        [SerializeField]
+        private ScoresheetUpgradeScreen scoresheetUpgradeScreen;
+
         [Header("References")]
+
+        [SerializeField]
+        private GameObject root;
 
         [SerializeField]
         private Image backgroundImage;
@@ -206,7 +212,7 @@ namespace Fantazee.Encounters
             foreach (SpellType spell in response.Rewards.Spells)
             {
                 SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
-                SpellButton spellButtonReward = Instantiate(spellButtonEntryUi, rewardsContainer);
+                SpellButton spellButtonReward = Instantiate(spellButtonPrefab, rewardsContainer);
                 spellButtonReward.Initialize(spellInstance);
 
                 spellsToReward.Add(spellInstance);
@@ -218,16 +224,15 @@ namespace Fantazee.Encounters
             continueButton.transform.DOPunchScale(Vector3.one * -0.1f, 0.2f)
                           .OnComplete(() =>
                                       {
-                                          if (rewards.Spells.Count > 0)
+                                          if (spellsToReward.Count > 0)
                                           {
-                                              
+                                              SetupUpgrades(spellsToReward);
                                           }
                                           else
                                           {
                                               LeaveEncounter();
                                           }
                                       });
-            
         }
 
         private void LeaveEncounter()
@@ -236,9 +241,28 @@ namespace Fantazee.Encounters
             GameController.Instance.LoadMap();
         }
 
-        private void SelectSpellSlot()
+        private void SetupUpgrades(List<SpellInstance> spells)
         {
-            
+            Queue<SpellInstance> spellQueue = new(spells);
+            UpgradeSpell(spellQueue);
+        }
+
+        private void UpgradeSpell(Queue<SpellInstance> spellQueue)
+        {
+            SpellInstance spell = spellQueue.Dequeue();
+            root.SetActive(false);
+            scoresheetUpgradeScreen.gameObject.SetActive(true);
+            scoresheetUpgradeScreen.StartSpellUpgrade(spell, () =>
+                                                      {
+                                                          if (spellQueue.Count > 0)
+                                                          {
+                                                              UpgradeSpell(spellQueue);
+                                                          }
+                                                          else
+                                                          {
+                                                              LeaveEncounter();
+                                                          }
+                                                      });
         }
     }
 }

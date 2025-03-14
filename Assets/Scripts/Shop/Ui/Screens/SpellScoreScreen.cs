@@ -55,8 +55,8 @@ namespace Fantazee.Shop.Ui.Screens
             Transform parent = scoreButton.transform.parent;
             scoreButton.transform.SetParent(animGroup);
             fadeImage.raycastTarget = true;
-            fadeImage.DOFade(ShopSettings.Settings.FadeAmount, ShopSettings.Settings.FadeTime)
-                     .SetEase(ShopSettings.Settings.FadeEase);
+            // fadeImage.DOFade(ShopSettings.Settings.FadeAmount, ShopSettings.Settings.FadeTime)
+            //          .SetEase(ShopSettings.Settings.FadeEase);
             scoreButton.RequestSpell(spellButton =>
                                     {
                                         OnSpellSelected(scoreButton, spellButton, () =>

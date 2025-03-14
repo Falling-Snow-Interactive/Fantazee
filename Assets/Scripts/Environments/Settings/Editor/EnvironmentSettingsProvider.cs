@@ -29,6 +29,7 @@ namespace Fantazee.Environments.Settings.Editor
             
         public override void OnGUI(string searchContext)
         {
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("defaultEnvironment"));
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("data"));
             
             // EditorGUILayout.PropertyField(serializedSettings.FindProperty("prop"));
