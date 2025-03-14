@@ -1,10 +1,10 @@
 using System;
 using Fantazee.Battle.Relics.Ui;
+using Fantazee.Battle.Score;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
 using Fsi.Gameplay;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Battle.Ui
 {
@@ -14,10 +14,9 @@ namespace Fantazee.Battle.Ui
         private DiceControlUi diceControl;
         public DiceControlUi DiceControl => diceControl;
         
-        [FormerlySerializedAs("scoreboard")]
         [SerializeField]
-        private ScoresheetUi scoresheet;
-        public ScoresheetUi Scoresheet => scoresheet;
+        private BattleScoresheetUi scoresheet;
+        public BattleScoresheetUi Scoresheet => scoresheet;
 
         [SerializeField]
         private WinScreen winScreen;

@@ -153,9 +153,8 @@ namespace Fantazee.Battle
                 battleScores.Add(bs);
             }
             
-            fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
-            // TODO - Get this working with new scoresheet system
-            // BattleUi.Instance.Scoresheet.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
+            fantazeeBattleScore = new BattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
+            BattleUi.Instance.Scoresheet.Initialize(battleScores, fantazeeBattleScore, SelectScoreButton);
             
             player = Instantiate(battlePlayerPrefab, playerContainer);
             Player.Initialize(GameInstance.Current.Character);
@@ -260,7 +259,7 @@ namespace Fantazee.Battle
         
         #region Score/Damage
         
-        private void SelectScoreEntry(ScoreButton scoreButton)
+        private void SelectScoreButton(BattleScoreButton battleScoreButton)
         {
             if (hasScoredRoll || isRolling)
             {
@@ -269,14 +268,10 @@ namespace Fantazee.Battle
             
             hasScoredRoll = true;
             
-            // This should always be true. Something going on if its not
-            Debug.Assert(scoreButton is BattleScoreButton);
-            if (scoreButton is BattleScoreButton bEntry)
+            
+            if (battleScoreButton.BattleScore.CanScore())
             {
-                if (bEntry.BattleScore.CanScore())
-                {
-                    StartCoroutine(StartScoreSequence(bEntry, BattleUi.Instance.DiceControl.Dice));
-                }
+                StartCoroutine(StartScoreSequence(battleScoreButton, BattleUi.Instance.DiceControl.Dice));
             }
         }
 

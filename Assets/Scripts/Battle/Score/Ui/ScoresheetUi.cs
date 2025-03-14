@@ -19,6 +19,7 @@ namespace Fantazee.Battle.Score.Ui
         
         [SerializeField]
         private List<ScoreButton> scoreButtons = new();
+        public List<ScoreButton> ScoreButtons => scoreButtons;
 
         [SerializeField]
         private ScoreButton fantazeeButton;

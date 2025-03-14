@@ -34,18 +34,13 @@ namespace Fantazee.Scores.Ui.Buttons
         [SerializeField]
         private List<SpellButton> spells = new();
         public List<SpellButton> Spells => spells;
-        
-        private void Awake()
-        {
-            spells[0]?.SetTooltip(false);
-        }
 
-        public virtual void Initialize(ScoreInstance score, Action<ScoreButton> onSelect)
+        public void Initialize(ScoreInstance score, Action<ScoreButton> onSelect)
         {
             this.score = score;
             this.onSelect = onSelect;
             
-            Debug.Assert(spells.Count == score.Spells.Count);
+            Debug.Assert(spells.Count <= score.Spells.Count);
             for (int i = 0; i < Spells.Count; i++)
             {
                 Spells[i].Initialize(score.Spells[i], null);
@@ -64,17 +59,6 @@ namespace Fantazee.Scores.Ui.Buttons
             nameText.text = score.Data.Name;
             button.interactable = true;
 
-            // List<int> d = GetDiceValues();
-            //
-            // Debug.Assert(diceImages.Count == d.Count, 
-            //              $"DiceImages Count ({diceImages.Count}) != Dice Count ({d.Count}).", 
-            //              gameObject);
-            //
-            // for (int i = 0; i < diceImages.Count; i++)
-            // {
-            //     ShowDieInSlot(i, d[i]);
-            // }
-
             Debug.Assert(spells.Count == score.Spells.Count, 
                          $"Spells Count ({spells.Count}) != Score Spells Count ({score.Spells.Count}).", 
                          gameObject);
@@ -84,8 +68,7 @@ namespace Fantazee.Scores.Ui.Buttons
             }
         }
 
-        // TODO - This will be reused
-        protected virtual List<int> GetDiceValues()
+        protected List<int> GetDiceValues()
         {
             List<int> diceValues = new();
 
@@ -153,16 +136,6 @@ namespace Fantazee.Scores.Ui.Buttons
             
             return diceValues;
         }
-        
-        // public void ShowDieInSlot(int index, int value)
-        // {
-        //     if (diceImages.Count >= index &&
-        //         DiceSettings.Settings.SideInformation.TryGetInformation(value, out SideInformation info))
-        //     {
-        //         diceImages[index].sprite = info.Sprite;
-        //         diceImages[index].transform.parent.DOPunchScale(Vector3.one * 0.1f, 0.2f, 2, 0.5f);
-        //     }
-        // }
 
         #region Request Spell
         
