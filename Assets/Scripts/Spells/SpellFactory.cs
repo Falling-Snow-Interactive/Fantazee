@@ -2,6 +2,7 @@ using System;
 using Fantazee.Spells.Data;
 using Fantazee.Spells.Instance;
 using Fantazee.Spells.Settings;
+using UnityEngine;
 
 namespace Fantazee.Spells
 {
@@ -43,6 +44,7 @@ namespace Fantazee.Spells
                        };
             }
 
+            Debug.LogWarning($"No Spell Data found for spell type {type}");
             throw new ArgumentOutOfRangeException();
         }
     }

@@ -43,6 +43,7 @@ namespace Fantazee.Spells.Ui
             this.spell = spell;
             icon.sprite = spell.Data.Icon;
 
+            tooltip.Initialize(spell);
             tooltip?.Hide(true);
         }
 

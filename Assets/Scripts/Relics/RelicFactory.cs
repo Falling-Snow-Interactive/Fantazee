@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
 using Fantazee.Relics.Information;
@@ -12,7 +13,6 @@ namespace Fantazee.Relics
     {
         public static RelicInstance Create(RelicData data, CharacterInstance character)
         {
-            Debug.Log($"Relic: Creating {data.name}");
             return data switch
                    {
                        MulliganRelicData mulligan => new MulliganRelicInstance(mulligan, character),
@@ -30,7 +30,7 @@ namespace Fantazee.Relics
             {
                 return Create(info.Data, character);
             }
-            throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            throw new ArgumentOutOfRangeException(nameof(type), $"Relic type {type} not found in settings.");
         }
     }
 }

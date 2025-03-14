@@ -32,20 +32,28 @@ namespace Fantazee.Spells.Ui
         
         [SerializeField]
         private Ease hideEase = Ease.OutBounce;
-        
-        public void FillTooltip(SpellButton scoreSpellButton)
+
+        public void Initialize(SpellInstance spell)
         {
-            name.text = scoreSpellButton.Spell.Data.Name;
-            desc.text = scoreSpellButton.Spell.Data.Description;
-            icon.sprite = scoreSpellButton.Spell.Data.Icon;
+            FillTooltip(spell);
+        }
+
+        private void FillTooltip(SpellInstance spell)
+        {
+            name.text = spell.Data.Name;
+            desc.text = spell.Data.Description;
+            icon.sprite = spell.Data.Icon;
         }
         
-        public void Show(SpellButton scoreSpellButton, bool force = false)
+        public void Show(bool force = false)
         {
+            root.gameObject.SetActive(true);
+            return;
+            
             DOTween.Complete(root);
             
             root.gameObject.SetActive(true);
-            FillTooltip(scoreSpellButton);
+            // FillTooltip(scoreSpellButton);
             
             if (force)
             {
@@ -58,6 +66,9 @@ namespace Fantazee.Spells.Ui
 
         public void Hide(bool force = false)
         {
+            root.gameObject.SetActive(false);
+            return;
+            
             DOTween.Complete(root);
 
             if (force)
