@@ -110,7 +110,7 @@ namespace Fantazee.Encounters
             responsesContainer.gameObject.SetActive(true);
             rewardsParent.gameObject.SetActive(false);
             
-            scoresheetUpgradeScreen.gameObject.SetActive(false);
+            scoresheetUpgradeScreen.Hide(true);
 
             var color = fadeImage.color;
             color.a = 0;
@@ -263,7 +263,7 @@ namespace Fantazee.Encounters
         {
             SpellInstance spell = spellQueue.Dequeue();
             root.SetActive(false);
-            scoresheetUpgradeScreen.gameObject.SetActive(true);
+            scoresheetUpgradeScreen.Show();
             scoresheetUpgradeScreen.StartSpellUpgrade(spell, () =>
                                                       {
                                                           if (spellQueue.Count > 0)
