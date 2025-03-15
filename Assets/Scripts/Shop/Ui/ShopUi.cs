@@ -30,12 +30,30 @@ namespace Fantazee.Shop.Ui
         private CurrencyEntryUi currencyEntry;
         
         // Audio
-        private EventInstance swooshSfx;
+        [Header("Audio")]
+
+        [SerializeField]
+        private EventReference swooshSfxRef;
+        private EventInstance? swooshSfx;
+        
+        [SerializeField]
+        private EventReference purchaseSfxRef;
+        private EventInstance? purchaseSfx;
 
         private void Awake()
         {
             mainScreen.Show(true);
-            scoresheetUpgradeScreen.gameObject.SetActive(false);
+            scoresheetUpgradeScreen.Hide(true);
+
+            if (!swooshSfxRef.IsNull)
+            {
+                swooshSfx = RuntimeManager.CreateInstance(swooshSfxRef);
+            }
+
+            if (!purchaseSfxRef.IsNull)
+            {
+                purchaseSfx = RuntimeManager.CreateInstance(purchaseSfxRef);
+            }
         }
 
         public void Initialize(ShopInventory inventory)
@@ -96,27 +114,37 @@ namespace Fantazee.Shop.Ui
         private void SelectScore(ShopScoreButton shopScoreButton)
         {
             mainScreen.Hide();
-            scoresheetUpgradeScreen.gameObject.SetActive(true);
+            scoresheetUpgradeScreen.Show();
             scoresheetUpgradeScreen.StartScoreUpgrade(shopScoreButton.Score, () =>
                                                                              {
-                                                                                 shopScoreButton.gameObject
-                                                                                     .SetActive(false);
-                                                                                 scoresheetUpgradeScreen.gameObject.SetActive(false);
-                                                                                 mainScreen.Show();
+                                                                                 UpgradeFinished(shopScoreButton.Score.Data.Cost,
+                                                                                     shopScoreButton.gameObject);
                                                                              });
         }
 
         private void SelectSpell(ShopSpellButton spellButton)
         {
             mainScreen.Hide();
-            scoresheetUpgradeScreen.gameObject.SetActive(true);
+            scoresheetUpgradeScreen.Show();
             scoresheetUpgradeScreen.StartSpellUpgrade(spellButton.Spell, () =>
                                                                              {
-                                                                                 spellButton.gameObject
-                                                                                     .SetActive(false);
-                                                                                 scoresheetUpgradeScreen.gameObject.SetActive(false);
-                                                                                 mainScreen.Show();
+                                                                                 UpgradeFinished(spellButton.Spell.Data.Cost, 
+                                                                                     spellButton.gameObject);
                                                                              });
+        }
+
+        private void UpgradeFinished(Currency cost, GameObject objectToDisable)
+        {
+            MakePurchase(cost);
+            objectToDisable.SetActive(false);
+            scoresheetUpgradeScreen.Hide();
+            mainScreen.Show();
+        }
+
+        private void MakePurchase(Currency currency)
+        {
+            GameInstance.Current.Character.Wallet.Remove(currency);
+            purchaseSfx?.start();
         }
         
         public void OnLeaveButtonClicked()

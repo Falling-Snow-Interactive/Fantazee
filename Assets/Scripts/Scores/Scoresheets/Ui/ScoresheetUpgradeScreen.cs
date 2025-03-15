@@ -6,6 +6,7 @@ using Fantazee.Instance;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Shop.Settings;
+using Fantazee.Shop.Ui;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
 using FMODUnity;
@@ -44,8 +45,30 @@ namespace Fantazee.Scores.Scoresheets.Ui
 
         [SerializeField]
         private Image fadeImage;
+
+        [SerializeField]
+        private List<MonoBehaviour> offWhileAnimating;
+
+        [Header("Animation")]
+
+        [Header("Show/Hide")]
+
+        [SerializeField]
+        private Vector3 showHidePosition;
         
-        [Header("Animation Properties")]
+        [SerializeField]
+        private float showTime = 1f;
+
+        [SerializeField]
+        private Ease showEase;
+        
+        [SerializeField]
+        private float hideTime = 1f;
+        
+        [SerializeField]
+        private Ease hideEase;
+        
+        [Header("Upgrade Sequence")]
         
         [SerializeField]
         private float selectTime = 0.6f;
@@ -109,6 +132,11 @@ namespace Fantazee.Scores.Scoresheets.Ui
         
         [SerializeField]
         private EventReference upgradeSfx;
+
+        [Header("References")]
+
+        [SerializeField]
+        private Transform root;
 
         private bool isSpellUpgrade = false;
 
@@ -183,18 +211,26 @@ namespace Fantazee.Scores.Scoresheets.Ui
                 }
 
                 ScoreInstance nextScore = ScoreFactory.CreateInstance(toReceiveScore.Score.Data, spells);
+                int index = GameInstance.Current.Character.Scoresheet.Scores.IndexOf(toUpgradeScore.Score);
+                GameInstance.Current.Character.Scoresheet.Scores[index] = nextScore;
                 toUpgradeScore.Score = nextScore;
             }
         }
         
-        #region Animation Sequence
+        #region Upgrade Sequence
         
         private void ScoreSelectSequence(Transform toReceiveTransform, 
                                            ScoreButton toUpgradeButton, 
                                            Action onComplete = null)
         {
-            Vector3 pos = toReceiveScore.transform.position;
+            foreach (MonoBehaviour mb in offWhileAnimating)
+            {
+                mb.enabled = false;
+            }
             
+            Vector3 pos = toReceiveScore.transform.position;
+
+            int siblingIndex = toUpgradeButton.transform.GetSiblingIndex();
             Transform returnParent = toUpgradeButton.transform.parent;
             toUpgradeButton.transform.SetParent(animGroup, true);
             
@@ -275,9 +311,53 @@ namespace Fantazee.Scores.Scoresheets.Ui
             sequence.OnComplete(() =>
                                 {
                                     toUpgradeButton.transform.SetParent(returnParent);
+                                    toUpgradeButton.transform.SetSiblingIndex(siblingIndex);
+                                    foreach (MonoBehaviour mb in offWhileAnimating)
+                                    {
+                                        mb.enabled = true;
+                                    }
                                     onComplete?.Invoke();
                                 });
             sequence.Play();
+        }
+        
+        #endregion
+        
+        #region Show/Hide
+
+        public void Show(bool force = false, Action onComplete = null)
+        {
+            if (force)
+            {
+                root.gameObject.SetActive(true);
+                transform.localPosition = Vector3.zero;
+                onComplete?.Invoke();
+                return;
+            }
+            
+            root.gameObject.SetActive(true);
+            transform.DOLocalMove(Vector3.zero, showTime)
+                     .SetEase(showEase)
+                     .OnComplete(() => onComplete?.Invoke());
+        }
+
+        public void Hide(bool force = false, Action onComplete = null)
+        {
+            if (force)
+            {
+                transform.localPosition = showHidePosition;
+                root.gameObject.SetActive(false);
+                onComplete?.Invoke();
+                return;
+            }
+            
+            transform.DOLocalMove(showHidePosition, hideTime)
+                     .SetEase(hideEase)
+                     .OnComplete(() =>
+                                 {
+                                     root.gameObject.SetActive(false);
+                                     onComplete?.Invoke();
+                                 });
         }
         
         #endregion
