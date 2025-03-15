@@ -94,6 +94,13 @@ namespace Fantazee.Battle.Score.Ui
             isFinalized = false;
             scoreText.gameObject.SetActive(false);
             previewText.gameObject.SetActive(false);
+
+            List<int> vs = GetDiceValues();
+            for (int i = 0; i < vs.Count; i++)
+            {
+                int v = vs[i];
+                ShowDieInSlot(i, v);
+            }
         }
 
         private List<int> GetDiceValues()

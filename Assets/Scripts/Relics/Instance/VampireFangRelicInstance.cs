@@ -8,7 +8,7 @@ namespace Fantazee.Relics.Instance
 {
     public class VampireFangRelicInstance : RelicInstance
     {
-        private VampireFangRelicData data;
+        private readonly VampireFangRelicData data;
         
         public VampireFangRelicInstance(VampireFangRelicData data, CharacterInstance character) : base(data, character)
         {
@@ -27,7 +27,9 @@ namespace Fantazee.Relics.Instance
 
         private void OnScored(BattleScore battleScore)
         {
-            BattleController.Instance.Player.Heal(Mathf.RoundToInt(battleScore.Calculate() * data.LifeSteal));
+            int amount = Mathf.RoundToInt(battleScore.Calculate() * data.LifeSteal);
+            int adjustedAmount = Mathf.Max(data.MinLifeStealAmount, amount);
+            BattleController.Instance.Player.Heal(adjustedAmount);
         }
     }
 }

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55dc1255810e4e38af77cbe27d4eafb, type: 3}
+  m_Name: Enc_00_Response_C
+  m_EditorClassIdentifier: 
+  header:
+    m_TableReference:
+      m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
+    m_TableEntryReference:
+      m_KeyId: 53932582756352
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  body:
+    m_TableReference:
+      m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
+    m_TableEntryReference:
+      m_KeyId: 53947141185536
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  result:
+    m_TableReference:
+      m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
+    m_TableEntryReference:
+      m_KeyId: 71925303861248
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  cost:
+    health:
+      current: 0
+      max: 0
+    wallet:
+      currencies: []
+    relic: 0
+    spell: 0
+  rewards:
+    health:
+      current: 50
+      max: 0
+    wallet:
+      currencies: []
+    relics: {fileID: 0}
+    numberOfRelics:
+      min: 0
+      max: 0
+    spells: {fileID: 0}
+    numberOfSpells:
+      min: 0
+      max: 0
+  references:
+    version: 2
+    RefIds: []

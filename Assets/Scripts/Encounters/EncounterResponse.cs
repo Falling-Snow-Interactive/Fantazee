@@ -35,14 +35,14 @@ namespace Fantazee.Encounters
         [Header("Selection")]
 
         [SerializeField]
-        private EncounterSelection cost;
-        public EncounterSelection Cost => cost;
+        private EncounterCost cost;
+        public EncounterCost Cost => cost;
         
         [Space(10)]
         
         [SerializeField]
-        private EncounterSelection rewards;
-        public EncounterSelection Rewards => rewards;
+        private EncounterRewards rewards;
+        public EncounterRewards Rewards => rewards;
 
         private Dictionary<string, string> BuildDictionary()
         {

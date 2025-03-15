@@ -11,5 +11,9 @@ namespace Fantazee.Relics.Data
         [SerializeField]
         private float lifeSteal = 0.1f;
         public float LifeSteal => lifeSteal;
+
+        [SerializeField]
+        private int minLifeStealAmount = 1;
+        public int MinLifeStealAmount => minLifeStealAmount;
     }
 }

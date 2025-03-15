@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Fantazee.Relics.Data;
 using Fsi.Gameplay.Buckets;
@@ -6,7 +5,7 @@ using UnityEngine;
 
 namespace Fantazee.Relics.Bucket
 {
-    [Serializable]
+    [CreateAssetMenu(menuName = "Relics/Bucket")]
     public class RelicBucket : Bucket<RelicBucketEntry, RelicData>
     {
         [Header("Relics")]

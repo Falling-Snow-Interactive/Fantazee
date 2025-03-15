@@ -7,6 +7,7 @@ using Fantazee.Instance;
 using Fantazee.Npcs;
 using Fantazee.Npcs.Settings;
 using Fantazee.Relics;
+using Fantazee.Relics.Data;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
 using Fantazee.Scores.Scoresheets.Ui;
@@ -210,8 +211,8 @@ namespace Fantazee.Encounters
                     currencyReward.Initialize(currency);
                 }
             }
-
-            foreach (RelicType relic in response.Rewards.Relics)
+            
+            foreach (RelicData relic in response.Rewards.Relics)
             {
                 RelicInstance relicInstance = RelicFactory.Create(relic, GameInstance.Current.Character);
                 RelicEntryUi relicReward = Instantiate(relicEntryUi, rewardsContainer);
@@ -219,7 +220,7 @@ namespace Fantazee.Encounters
                 GameInstance.Current.Character.AddRelic(relicInstance);
             }
 
-            foreach (SpellType spell in response.Rewards.Spells)
+            foreach (SpellData spell in response.Rewards.Spells)
             {
                 SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
                 SpellButton spellButtonReward = Instantiate(spellButtonPrefab, rewardsContainer);
