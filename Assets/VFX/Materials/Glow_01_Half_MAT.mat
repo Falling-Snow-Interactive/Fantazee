@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glow_01_MAT
+  m_Name: Glow_01_Half_MAT
   m_Shader: {fileID: -6465566751694194690, guid: a40254557b4fd7b47b4ba54af948b174, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -140,7 +140,7 @@ Material:
     m_Colors:
     - _Alpha_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Alpha_Remap_Strength: {r: 0, g: 1, b: 0, a: 0}
-    - _Alpha_Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Alpha_Tiling: {r: 1, g: 0.5, b: 0, a: 0}
     - _Alpha_UV_Movement: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
