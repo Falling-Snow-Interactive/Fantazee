@@ -45,16 +45,24 @@ MonoBehaviour:
       max: 0
     wallet:
       currencies: []
-    relics: 
-    spells: 
+    relic: 0
+    spell: 0
   rewards:
     health:
       current: 0
       max: 0
     wallet:
       currencies: []
-    relics: 
-    spells: 00000000
+    relics: {fileID: 0}
+    numberOfRelics:
+      entries: []
+    spells: {fileID: 11400000, guid: 42d03747c6fa5449c8a793e648e7cf46, type: 2}
+    numberOfSpells:
+      entries:
+      - weight: 5
+        value: 1
+      - weight: 1
+        value: 2
   references:
     version: 2
     RefIds: []

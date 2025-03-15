@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fantazee.Relics.Data
@@ -15,5 +16,12 @@ namespace Fantazee.Relics.Data
         [SerializeField]
         private int minLifeStealAmount = 1;
         public int MinLifeStealAmount => minLifeStealAmount;
+
+        protected override Dictionary<string, string> BuildDescArgs()
+        {
+            Dictionary<string, string> args = base.BuildDescArgs();
+            args.Add("Percent", $"{lifeSteal * 100}");
+            return args;
+        }
     }
 }

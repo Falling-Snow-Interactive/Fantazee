@@ -41,7 +41,7 @@ MonoBehaviour:
     m_LocalVariables: []
   cost:
     health:
-      current: 0
+      current: 50
       max: 0
     wallet:
       currencies: []
@@ -49,18 +49,16 @@ MonoBehaviour:
     spell: 0
   rewards:
     health:
-      current: 50
+      current: 0
       max: 0
     wallet:
       currencies: []
     relics: {fileID: 0}
     numberOfRelics:
-      min: 0
-      max: 0
+      entries: []
     spells: {fileID: 0}
     numberOfSpells:
-      min: 0
-      max: 0
+      entries: []
   references:
     version: 2
     RefIds: []

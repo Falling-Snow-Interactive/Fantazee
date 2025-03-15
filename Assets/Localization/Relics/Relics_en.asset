@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: 4ad468185a3464d3b98a9c7ca0902a51, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 554601698518369115
   m_TableData:
   - m_Id: 4696563712
     m_Localized: Mulligan
@@ -32,7 +33,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 38520591736832
-    m_Localized: 'All enemies take 1 point of damage when a six is rolled. '
+    m_Localized: 'All enemies take {0.Damage} damage when a {0.Number} is rolled. '
     m_Metadata:
       m_Items: []
   - m_Id: 69623390134272
@@ -48,7 +49,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 92489678577664
-    m_Localized: Gain a reroll when scoring Full House.
+    m_Localized: Gain a reroll when scoring {0.Score}.
     m_Metadata:
       m_Items: []
   - m_Id: 98393983541248
@@ -56,9 +57,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 98419895951360
-    m_Localized: Heal for 10% of score.
+    m_Localized: Heal {0.Percent}% of damage.
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 554601698518369115
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 554601698518369115
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 98419895951360

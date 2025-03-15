@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Currencies;
+using Fantazee.Randomizers;
 using Fantazee.Relics.Bucket;
 using Fantazee.Relics.Data;
 using Fantazee.Spells;
@@ -24,56 +25,43 @@ namespace Fantazee.Encounters
 
         [SerializeField]
         private RelicBucket relics;
-        private List<RelicData> relicRewards = null;
-        public List<RelicData> Relics
-        {
-            get
-            {
-                if (relicRewards == null || relicRewards.Count == 0)
-                {
-                    relicRewards = BuildRelicRewards();
-                }
-                return relicRewards;
-            }
-        }
 
         [SerializeField]
-        private RangeInt numberOfRelics = new(0,0);
+        private IntRandomizer numberOfRelics;
 
         [SerializeField]
         private SpellBucket spells;
-        private List<SpellData> spellRewards = null;
-        public List<SpellData> Spells
-        {
-            get
-            {
-                if (spellRewards == null || spellRewards.Count == 0)
-                {
-                    spellRewards = BuildSpellRewards();
-                }
-                return spellRewards;
-            }
-        }
 
         [SerializeField]
-        private RangeInt numberOfSpells = new(0,0);
+        private IntRandomizer numberOfSpells;
 
-        private List<RelicData> BuildRelicRewards()
+        public List<RelicData> GetRelicRewards()
         {
             List<RelicData> relics = new();
-            for (int i = 0; i < numberOfRelics.Random() && this.relics != null; i++)
+            if (this.relics != null)
             {
-                relics.Add(this.relics.GetRandom());
+                int number = numberOfRelics.Randomize();
+                Debug.Log($"Getting {number} relics.");
+                for (int i = 0; i < number; i++)
+                {
+                    relics.Add(this.relics.GetRandom());
+                }
             }
+
             return relics;
         }
-        
-        private List<SpellData> BuildSpellRewards()
+
+        public List<SpellData> GetSpellRewards()
         {
             List<SpellData> spells = new();
-            for (int i = 0; i < numberOfSpells.Random() && this.spells != null; i++)
+            if (this.spells != null)
             {
-                spells.Add(this.spells.GetRandom());
+                int number = numberOfSpells.Randomize();
+                Debug.Log($"Getting {number} spells.");
+                for (int i = 0; i < number; i++)
+                {
+                    spells.Add(this.spells.GetRandom());
+                }
             }
             return spells;
         }

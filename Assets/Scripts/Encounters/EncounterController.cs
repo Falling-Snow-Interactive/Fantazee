@@ -103,6 +103,7 @@ namespace Fantazee.Encounters
         
         // Some rewards need a selection, so lets save them.
         private List<SpellInstance> spellsToReward = new();
+        private List<RelicInstance> relicsToReward = new();
         
         protected override void Awake()
         {
@@ -212,7 +213,7 @@ namespace Fantazee.Encounters
                 }
             }
             
-            foreach (RelicData relic in response.Rewards.Relics)
+            foreach (RelicData relic in response.Rewards.GetRelicRewards())
             {
                 RelicInstance relicInstance = RelicFactory.Create(relic, GameInstance.Current.Character);
                 RelicEntryUi relicReward = Instantiate(relicEntryUi, rewardsContainer);
@@ -220,7 +221,9 @@ namespace Fantazee.Encounters
                 GameInstance.Current.Character.AddRelic(relicInstance);
             }
 
-            foreach (SpellData spell in response.Rewards.Spells)
+            spellsToReward.Clear();
+            List<SpellData> spellData = response.Rewards.GetSpellRewards();
+            foreach (SpellData spell in spellData)
             {
                 SpellInstance spellInstance = SpellFactory.CreateInstance(spell);
                 SpellButton spellButtonReward = Instantiate(spellButtonPrefab, rewardsContainer);

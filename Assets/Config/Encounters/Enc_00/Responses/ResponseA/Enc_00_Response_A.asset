@@ -55,12 +55,12 @@ MonoBehaviour:
       currencies: []
     relics: {fileID: 11400000, guid: 9516b859c47024ad69c7eff0ad313d92, type: 2}
     numberOfRelics:
-      min: 1
-      max: 1
+      entries:
+      - weight: 1
+        value: 1
     spells: {fileID: 0}
     numberOfSpells:
-      min: 0
-      max: 0
+      entries: []
   references:
     version: 2
     RefIds: []
