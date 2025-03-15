@@ -16,7 +16,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
     m_TableEntryReference:
-      m_KeyId: 379437672554496
+      m_KeyId: 788607135637504
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
     m_TableEntryReference:
-      m_KeyId: 379480156659712
+      m_KeyId: 788665197387776
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -34,17 +34,20 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:a6ed889d0e8da4e2fbe7bb40cc4f0b55
     m_TableEntryReference:
-      m_KeyId: 379496027906048
+      m_KeyId: 788859737595904
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   cost:
     health:
-      current: 100
+      current: 0
       max: 0
     wallet:
-      currencies: []
+      currencies:
+      - name: 'Gold: 100'
+        type: 1
+        amount: 100
     relics: 
     spells: 
   rewards:
@@ -53,8 +56,8 @@ MonoBehaviour:
       max: 0
     wallet:
       currencies: []
-    relics: 
-    spells: 00000000
+    relics: 02000000
+    spells: 
   references:
     version: 2
     RefIds: []

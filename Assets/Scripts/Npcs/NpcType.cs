@@ -2,10 +2,11 @@ namespace Fantazee.Npcs
 {
     public enum NpcType
     {
-        Npc_00 = 0,
-        Npc_01 = 1,
-        Npc_02 = 2,
-        Npc_03 = 3,
-        Npc_04 = 4,
+        npc_default = -1,
+        npc_00 = 0,
+        npc_01 = 1,
+        npc_02 = 2,
+        npc_03 = 3,
+        npc_04 = 4,
     }
 }

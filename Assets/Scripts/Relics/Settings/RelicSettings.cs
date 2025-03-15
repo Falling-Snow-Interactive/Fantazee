@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Fantazee.Relics.Data;
 using Fantazee.Relics.Information;
 using UnityEditor;
 using UnityEngine;
@@ -12,9 +14,51 @@ namespace Fantazee.Relics.Settings
         private static RelicSettings settings;
         public static RelicSettings Settings => settings ??= GetOrCreateSettings();
 
+        [Header("Data")]
+
         [SerializeField]
-        private RelicInformationGroup information;
-        public RelicInformationGroup Information => information;
+        private RelicData defaultRelic;
+        public RelicData DefaultRelic => defaultRelic;
+
+        [SerializeField]
+        private List<RelicData> relics;
+        public List<RelicData> Relics => relics;
+        private Dictionary<RelicType, RelicData> relicDict = null;
+        
+        public bool TryGetRelic(RelicType type, out RelicData data)
+        {
+            if (type == RelicType.relic_default)
+            {
+                data = defaultRelic;
+                return true;
+            }
+            
+            relicDict ??= BuildDictionary();
+            return relicDict.TryGetValue(type, out data);
+        }
+
+        private Dictionary<RelicType, RelicData> BuildDictionary()
+        {
+            Dictionary<RelicType, RelicData> dictionary = new();
+            foreach (RelicData relic in relics)
+            {
+                if (relic == null)
+                {
+                    continue;
+                }
+
+                if (!dictionary.TryAdd(relic.Type, relic))
+                {
+                    Debug.LogError($"Cannot add {relic.name} to dictionary, {relic.Type} already exists.", relic);
+                }
+            }
+            return dictionary;
+        }
+
+        public void RebuildDictionary()
+        {
+            relicDict = BuildDictionary();
+        }
         
         #region Settings
 

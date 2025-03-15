@@ -2,7 +2,7 @@ namespace Fantazee.Relics
 {
     public enum RelicType
     {
-        relic_none = -1,
+        relic_default = -1,
         
         relic_00_mulligan = 0,
         relic_01_explosive = 1,

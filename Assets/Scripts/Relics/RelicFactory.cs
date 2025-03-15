@@ -26,10 +26,11 @@ namespace Fantazee.Relics
 
         public static RelicInstance Create(RelicType type, CharacterInstance character)
         {
-            if (RelicSettings.Settings.Information.TryGetInformation(type, out RelicInformation info))
+            if (RelicSettings.Settings.TryGetRelic(type, out RelicData data))
             {
-                return Create(info.Data, character);
+                return Create(data, character);
             }
+            Debug.LogError($"Relic type {type} not found in settings.");
             throw new ArgumentOutOfRangeException(nameof(type), $"Relic type {type} not found in settings.");
         }
     }

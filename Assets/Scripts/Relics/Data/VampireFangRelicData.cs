@@ -5,7 +5,7 @@ namespace Fantazee.Relics.Data
     [CreateAssetMenu(fileName = "Vampire Fang Data", menuName = "Relics/Vampire Fang")]
     public class VampireFangRelicData : RelicData
     {
-        public override RelicType Type => RelicType.relic_03_no_vacancy;
+        public override RelicType Type => RelicType.relic_04_vampire_fang;
 
         [Tooltip("Damage that acts as life steal. \nEx: 10% => 0.1")]
         [SerializeField]

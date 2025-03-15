@@ -2,8 +2,8 @@ namespace Fantazee.Currencies
 {
     public enum CurrencyType
     {
-        None = 0,
-        Gold = 1,
-        Gems = 2,
+        currency_none = -1,
+        currency_00_gold = 0,
+        currency_01_gems = 1,
     }
 }

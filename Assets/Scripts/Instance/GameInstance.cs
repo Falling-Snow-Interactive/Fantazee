@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
-using Fantazee.Currencies;
 using Fantazee.Environments;
 using Fantazee.Environments.Settings;
-using Fantazee.Maps;
-using Fantazee.Relics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;

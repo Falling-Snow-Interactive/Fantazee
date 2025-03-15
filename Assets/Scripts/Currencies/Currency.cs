@@ -1,4 +1,6 @@
 using System;
+using Fantazee.Currencies.Information;
+using Fantazee.Currencies.Settings;
 using Fsi.Currencies;
 
 namespace Fantazee.Currencies

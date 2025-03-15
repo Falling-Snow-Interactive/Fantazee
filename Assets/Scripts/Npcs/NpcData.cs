@@ -1,4 +1,3 @@
-using DG.Tweening;
 using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.Localization;

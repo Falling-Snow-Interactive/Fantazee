@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Fantazee.Currencies;
+using Fantazee.Currencies.Information;
+using Fantazee.Currencies.Settings;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -52,7 +54,11 @@ namespace Fantazee.Encounters
 
             foreach (Currency currency in Cost.Wallet.Currencies)
             {
-                dictionary.Add(currency.type.ToString(), currency.ToString());
+                if (CurrencySettings.Settings.CurrencyInformation.TryGetInformation(currency.type,
+                             out CurrencyInformation information))
+                {
+                    dictionary.Add($"{currency.type}", $"{currency.amount} {information.Name}");
+                }
             }
 
             return dictionary;

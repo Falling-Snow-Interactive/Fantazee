@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2c21acc54b4e718d9357d99847f6ee, type: 3}
   m_Name: Enemy_00_Data
   m_EditorClassIdentifier: 
+  type: 0
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:0cb1bad1c57c24280b374f35a6955fa4
+    m_TableEntryReference:
+      m_KeyId: 4843364352
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:0cb1bad1c57c24280b374f35a6955fa4
+    m_TableEntryReference:
+      m_KeyId: 35524698112
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   health: 12
   visuals: {fileID: 2442580108402954977, guid: 5423d1db218ea4dc8b7e737ea20fc15f, type: 3}
   size: 2
@@ -21,7 +40,7 @@ MonoBehaviour:
   battleRewards:
     wallet:
       currencies:
-      - name: 'Gold: 3'
+      - name: 'currency_01: 3'
         type: 1
         amount: 3
   enterSfx:
@@ -45,3 +64,9 @@ MonoBehaviour:
       Data3: 296223911
       Data4: -1783998385
     Path: event:/Enemies/Enemy_00/Death
+  hideOffset: {x: 0, y: 0, z: 0}
+  showTime: 0.5
+  showEase: 1
+  references:
+    version: 2
+    RefIds: []

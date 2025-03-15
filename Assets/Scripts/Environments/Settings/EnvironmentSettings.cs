@@ -27,6 +27,12 @@ namespace Fantazee.Environments.Settings
         public bool TryGetEnvironment(EnvironmentType environmentType, 
                                       out EnvironmentData environmentData)
         {
+            if (environmentType == EnvironmentType.env_default)
+            {
+                environmentData = defaultEnvironment;
+                return true;
+            }
+            
             dataByType ??= BuildDict();
             return dataByType.TryGetValue(environmentType, out environmentData);
         }

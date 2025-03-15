@@ -72,9 +72,9 @@ namespace Fantazee.Relics.Ui
 
         public void ShowData(RelicType type)
         {
-            if (RelicSettings.Settings.Information.TryGetInformation(type, out RelicInformation info))
+            if (RelicSettings.Settings.TryGetRelic(type, out RelicData data))
             {
-                ShowData(info.Data);
+                ShowData(data);
             }
         }
 
