@@ -2,6 +2,7 @@ using System;
 using Fantazee.Audio;
 using Fantazee.Battle;
 using Fantazee.Characters;
+using Fantazee.Environments;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
@@ -67,10 +68,10 @@ namespace Fantazee
             input.Gameplay.Disable();
         }
 
-        public void NewGame(CharacterData character)
+        public void NewGame(CharacterData character, EnvironmentData environment)
         {
             gameInstance?.Clear();
-            gameInstance = new GameInstance(character);
+            gameInstance = new GameInstance(character, environment);
         }
 
         public void LoadGame()
@@ -96,7 +97,7 @@ namespace Fantazee
             loadingScreen.Show(0,
                                () =>
                                {
-                                   ProjectSceneManager.Instance.LoadMap(GameInstance.Map.Environment, null);
+                                   ProjectSceneManager.Instance.LoadMap(GameInstance.Environment.Data, null);
                                });
         }
 
@@ -114,7 +115,7 @@ namespace Fantazee
             loadingScreen.Show(0.5f,
                                () =>
                                {
-                                   GameInstance.Map.Advance();
+                                   GameInstance.Environment.Advance();
                                    // TODO this is also where the new map will be generated and then sent to the map controller to display
                                    loadingScreen.Hide(0.5f,
                                                       () =>
@@ -133,7 +134,7 @@ namespace Fantazee
             loadingScreen.Show(0,
                                () =>
                                {
-                                   ProjectSceneManager.Instance.LoadBattle(GameInstance.Map.Environment);
+                                   ProjectSceneManager.Instance.LoadBattle(GameInstance.Environment.Data);
                                });
         }
 
@@ -142,7 +143,7 @@ namespace Fantazee
             loadingScreen.Show(0,
                                () =>
                                {
-                                   ProjectSceneManager.Instance.LoadBossBattle(GameInstance.Map.Environment);
+                                   ProjectSceneManager.Instance.LoadBossBattle(GameInstance.Environment.Data);
                                });
         }
 
@@ -260,6 +261,28 @@ namespace Fantazee
             LoadMap();
         }
         
+        #endregion
+
+        #region Encounters
+
+        public void LoadEncounter()
+        {
+            loadingScreen.Show(0,
+                               () =>
+                               {
+                                   ProjectSceneManager.Instance.LoadEncounter(null);
+                               });
+        }
+
+        public void EncounterReady()
+        {
+            loadingScreen.Hide(0,
+                               () =>
+                               {
+                                   
+                               });
+        }
+
         #endregion
     }
 }

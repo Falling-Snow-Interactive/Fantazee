@@ -40,8 +40,8 @@ MonoBehaviour:
   battleRewards:
     wallet:
       currencies:
-      - name: 'Gold: 6'
-        type: 1
+      - name: 'currency_00_gold: 6'
+        type: 0
         amount: 6
   enterSfx:
     Guid:
@@ -64,6 +64,9 @@ MonoBehaviour:
       Data3: 633245350
       Data4: -822333793
     Path: event:/Enemies/Enemy_03/Death
+  hideOffset: {x: 0, y: 0, z: 0}
+  showTime: 0.5
+  showEase: 1
   references:
     version: 2
     RefIds: []

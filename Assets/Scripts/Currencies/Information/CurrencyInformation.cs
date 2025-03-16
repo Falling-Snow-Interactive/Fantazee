@@ -12,11 +12,11 @@ namespace Fantazee.Currencies.Information
 
         [SerializeField]
         private LocalizedString locName;
-        public LocalizedString LocName => locName;
+        public string Name => locName.IsEmpty ? "no_loc" : locName.GetLocalizedString();
         
         [SerializeField]
         private LocalizedString locDesc;
-        public LocalizedString LocDesc => locDesc;
+        public string Description => locDesc.IsEmpty ? "no_loc" : locDesc.GetLocalizedString();
 
         [Header("Visuals")]
 

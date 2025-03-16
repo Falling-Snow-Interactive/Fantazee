@@ -33,7 +33,7 @@ MonoBehaviour:
     m_LocalVariables: []
   icon: {fileID: -1007265682, guid: c2e6f8e7fb99248baaa8e28f1dcb8d7e, type: 3}
   visuals: {fileID: 5867789611335030042, guid: 7688337d8b01e4d2590985b94e0b3643, type: 3}
-  maxHealth: 300
+  maxHealth: 200
   scores:
   - name: 'Score_01_Ones: Spell_02_Shield'
     score: {fileID: 11400000, guid: f5ebe56c594cb46c187090b47c002dff, type: 2}
@@ -67,24 +67,38 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
   wallet:
     currencies:
-    - name: 'Gold: 10'
-      type: 1
-      amount: 10
-  relic: 1
+    - name: 'currency_00_gold: 5'
+      type: 0
+      amount: 5
+  relic: 0
   enterSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
+  exitSfx:
+    Guid:
+      Data1: -835223915
+      Data2: 1207027261
+      Data3: 1787140785
+      Data4: 2125770194
+    Path: event:/General/Swoosh_Small
+  hitSfx:
+    Guid:
+      Data1: -1674464923
+      Data2: 1278895241
+      Data3: -100147299
+      Data4: -566887515
+    Path: event:/Battle/Actions/Hit
   deathSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 297599292
+      Data2: 1237536448
+      Data3: 296223911
+      Data4: -1783998385
+    Path: event:/Enemies/Enemy_00/Death
   references:
     version: 2
     RefIds: []

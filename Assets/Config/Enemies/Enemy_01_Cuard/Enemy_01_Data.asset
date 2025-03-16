@@ -15,18 +15,18 @@ MonoBehaviour:
   type: 1
   locName:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:0cb1bad1c57c24280b374f35a6955fa4
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 104277729280
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   locDesc:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:0cb1bad1c57c24280b374f35a6955fa4
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 130492129280
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -40,8 +40,8 @@ MonoBehaviour:
   battleRewards:
     wallet:
       currencies:
-      - name: 'Gold: 6'
-        type: 1
+      - name: 'currency_00_gold: 6'
+        type: 0
         amount: 6
   enterSfx:
     Guid:
@@ -64,6 +64,9 @@ MonoBehaviour:
       Data3: -988324478
       Data4: -428259744
     Path: event:/Enemies/Enemy_01/Death
+  hideOffset: {x: 0, y: 0, z: 0}
+  showTime: 0.5
+  showEase: 1
   references:
     version: 2
     RefIds: []

@@ -9,7 +9,7 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_01_Pierce", order = 1)]
     public class PierceSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Pierce;
+        public override SpellType Type => SpellType.spell_01_pierce;
         
         [Header("Pierce")]
 

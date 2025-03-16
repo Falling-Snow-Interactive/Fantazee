@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using Fantazee.Battle.Characters;
-using Fantazee.Battle.Characters.Player;
+using Fantazee.Characters.Settings;
 using Fantazee.Currencies;
 using Fantazee.Relics;
-using Fantazee.Spells;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -72,7 +71,17 @@ namespace Fantazee.Characters
         public EventReference EnterSfx => enterSfx;
         
         [SerializeField]
+        private EventReference exitSfx;
+        public EventReference ExitSfx => exitSfx;
+
+        [SerializeField]
+        private EventReference hitSfx;
+        public EventReference HitSfx => hitSfx;
+        
+        [SerializeField]
         private EventReference deathSfx;
         public EventReference DeathSfx => deathSfx;
+
+        public static CharacterData Default => CharacterSettings.Settings.DefaultCharacter;
     }
 }

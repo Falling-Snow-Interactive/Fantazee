@@ -21,7 +21,7 @@ namespace Fantazee.Relics.Instance
         {
             this.data = data;
             this.character = character;
-            Debug.Log($"Relic: Created {data.name}");
+            Debug.Log($"Relic: {data.name} Initialized");
         }
 
         public void Activate()

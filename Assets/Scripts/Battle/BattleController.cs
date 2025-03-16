@@ -16,7 +16,7 @@ using Fantazee.Environments;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Scores.Ui.Buttons;
 using Fsi.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -153,8 +153,8 @@ namespace Fantazee.Battle
                 battleScores.Add(bs);
             }
             
-            fantazeeBattleScore = new FantazeeBattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
-            BattleUi.Instance.Scoresheet.Initialize(battleScores, fantazeeBattleScore, SelectScoreEntry);
+            fantazeeBattleScore = new BattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
+            BattleUi.Instance.Scoresheet.Initialize(battleScores, fantazeeBattleScore, SelectScoreButton);
             
             player = Instantiate(battlePlayerPrefab, playerContainer);
             Player.Initialize(GameInstance.Current.Character);
@@ -170,10 +170,15 @@ namespace Fantazee.Battle
                 enemy.Hide();
             }
             
-            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
-                                                                           out EnvironmentData data))
+            PlayMusic();
+        }
+
+        protected virtual void PlayMusic()
+        {
+            if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Environment.Data.Type,
+                                                               out EnvironmentData data))
             {
-                MusicController.Instance.PlayMusic(data.BattleMusicId);
+                MusicController.Instance.PlayMusic(data.BattleMusic);
             }
         }
 
@@ -254,7 +259,7 @@ namespace Fantazee.Battle
         
         #region Score/Damage
         
-        private void SelectScoreEntry(ScoreEntry scoreEntry)
+        private void SelectScoreButton(BattleScoreButton battleScoreButton)
         {
             if (hasScoredRoll || isRolling)
             {
@@ -263,24 +268,20 @@ namespace Fantazee.Battle
             
             hasScoredRoll = true;
             
-            // This should always be true. Something going on if its not
-            Debug.Assert(scoreEntry is BattleScoreEntry);
-            if (scoreEntry is BattleScoreEntry bEntry)
+            
+            if (battleScoreButton.BattleScore.CanScore())
             {
-                if (bEntry.BattleScore.CanScore())
-                {
-                    StartCoroutine(StartScoreSequence(bEntry, BattleUi.Instance.DiceControl.Dice));
-                }
+                StartCoroutine(StartScoreSequence(battleScoreButton, BattleUi.Instance.DiceControl.Dice));
             }
         }
 
-        private IEnumerator StartScoreSequence(BattleScoreEntry entry, List<DieUi> diceUi)
+        private IEnumerator StartScoreSequence(BattleScoreButton button, List<DieUi> diceUi)
         {
             foreach (DieUi d in diceUi)
             {
                 d.ResetDice();
                 d.Squish();
-                entry.BattleScore.AddDie(d.Die);
+                button.BattleScore.AddDie(d.Die);
                 
                 yield return new WaitForSeconds(scoreTime);
             }
@@ -289,22 +290,22 @@ namespace Fantazee.Battle
             
             // Calculate damage
             
-            int s = entry.FinalizeScore();
+            int s = button.FinalizeScore();
             Damage damage = new(s);
             
             if (damage.Value > 0)
             {
                 yield return new WaitForSeconds(0.5f);
-                entry.BattleScore.Cast(damage, () =>
+                button.BattleScore.Cast(damage, () =>
                                          {
-                                             Scored?.Invoke(entry.BattleScore);
+                                             Scored?.Invoke(button.BattleScore);
                                              OnFinishedScoring();
                                          });
             }
             else
             {
-                entry.FinalizeScore();
-                Scored?.Invoke(entry.BattleScore);
+                button.FinalizeScore();
+                Scored?.Invoke(button.BattleScore);
                 OnFinishedScoring();
             }
         }

@@ -6,6 +6,6 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_00_Dagger", order = 0)]
     public class DaggerSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Dagger;
+        public override SpellType Type => SpellType.spell_00_dagger;
     }
 }

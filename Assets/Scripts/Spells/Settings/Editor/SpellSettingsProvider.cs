@@ -1,45 +1,59 @@
 using System.Collections.Generic;
+using Fantazee.Encounters.Settings;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Fantazee.Spells.Settings
 {
-    public class SpellSettingsProvider : SettingsProvider
+    public static class SpellSettingsProvider
     {
-        private const string SettingsPath = "Fantazee/Spells";
-        
-        private SerializedObject serializedSettings;
-        
-        public SpellSettingsProvider(string path, SettingsScope scopes, IEnumerable<string> keywords = null) 
-            : base(path, scopes, keywords)
-        {
-        }
-        
         [SettingsProvider]
-        public static SettingsProvider CreateMyCustomSettingsProvider()
+        public static SettingsProvider CreateSettingsProvider()
         {
-            return new SpellSettingsProvider(SettingsPath, SettingsScope.Project);
-        }
-        
-        public override void OnActivate(string searchContext, VisualElement rootElement)
-        {
-            serializedSettings = SpellSettings.GetSerializedSettings();
-        }
-        
-        public override void OnGUI(string searchContext)
-        {
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("none"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("spells"));
-            // EditorGUILayout.PropertyField(serializedSettings.FindProperty("prop"));
+            SettingsProvider provider = new("Fantazee/Spells", SettingsScope.Project)
+                                        {
+                                            label = "Spells",
+                                            activateHandler = OnActivate,
+                                        };
             
-            EditorGUILayout.Space(20);
-            if (GUILayout.Button("Save"))
+            return provider;
+        }
+
+        private static void OnActivate(string searchContext, VisualElement root)
+        {
+            // Build the Ui
+            SerializedObject encounterSettingsProp = SpellSettings.GetSerializedSettings();
+            
+            Label title = new ("Spell Settings");
+            root.Add(title);
+            
+            SerializedProperty noneProp = encounterSettingsProp.FindProperty("none");
+            PropertyField noneField = new(noneProp);
+            root.Add(noneField);
+            
+            SerializedProperty spellsProp = encounterSettingsProp.FindProperty("spells");
+            PropertyField spellsField = new(spellsProp);
+            spellsField.RegisterValueChangeCallback(evt =>
+                                                        {
+                                                            if (encounterSettingsProp.targetObject is SpellSettings spellSettings)
+                                                            {
+                                                                spellSettings.RebuildDictionary();
+                                                            }
+                                                            encounterSettingsProp.ApplyModifiedProperties();
+                                                        });
+            
+            
+            root.Add(spellsField);
+            
+            root.Bind(encounterSettingsProp);
+            
+            // Update the dictionary
+            if (encounterSettingsProp.targetObject is SpellSettings spellSettings)
             {
-                serializedSettings.ApplyModifiedProperties();
+                spellSettings.RebuildDictionary();
             }
-            
-            serializedSettings.ApplyModifiedProperties();
         }
     }
 }

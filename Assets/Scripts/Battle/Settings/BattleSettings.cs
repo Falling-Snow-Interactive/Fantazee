@@ -15,10 +15,6 @@ namespace Fantazee.Battle.Settings
         [Header("Scores")]
 
         [SerializeField]
-        private int bonusScore = 200;
-        public int BonusScore => bonusScore;
-
-        [SerializeField]
         private EventReference scoreSfx;
         public EventReference ScoreSfx => scoreSfx;
         

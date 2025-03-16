@@ -6,6 +6,6 @@ namespace Fantazee.Spells.Data
                      fileName = "None", order = -1)]
     public class NoneSpellData : SpellData
     {
-        public override SpellType Type => SpellType.None;
+        public override SpellType Type => SpellType.spell_none;
     }
 }

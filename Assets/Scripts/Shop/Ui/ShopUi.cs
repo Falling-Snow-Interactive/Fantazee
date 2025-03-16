@@ -1,7 +1,7 @@
-using System;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
+using Fantazee.Scores.Scoresheets.Ui;
 using Fantazee.Shop.Settings;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.Screens;
@@ -22,51 +22,63 @@ namespace Fantazee.Shop.Ui
 
         [SerializeField]
         private ShopMainScreen mainScreen;
-        
+
         [SerializeField]
-        private SpellScoreScreen spellScoreScreen;
-        
-        [SerializeField]
-        private ScoreScoreScreen scoreScoreScreen;
+        private ScoresheetUpgradeScreen scoresheetUpgradeScreen;
         
         [SerializeField]
         private CurrencyEntryUi currencyEntry;
         
         // Audio
-        private EventInstance swooshSfx;
+        [Header("Audio")]
+
+        [SerializeField]
+        private EventReference swooshSfxRef;
+        private EventInstance? swooshSfx;
+        
+        [SerializeField]
+        private EventReference purchaseSfxRef;
+        private EventInstance? purchaseSfx;
 
         private void Awake()
         {
             mainScreen.Show(true);
-            spellScoreScreen.Hide(true);
-            scoreScoreScreen.Hide(true);
+            scoresheetUpgradeScreen.Hide(true);
+
+            if (!swooshSfxRef.IsNull)
+            {
+                swooshSfx = RuntimeManager.CreateInstance(swooshSfxRef);
+            }
+
+            if (!purchaseSfxRef.IsNull)
+            {
+                purchaseSfx = RuntimeManager.CreateInstance(purchaseSfxRef);
+            }
         }
 
         public void Initialize(ShopInventory inventory)
         {
-            Debug.Log("ShopUi - Initialize");
-            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency currency))
+            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.currency_00_gold, out Currency currency))
             {
                 currencyEntry.SetCurrency(currency);
             }
 
             swooshSfx = RuntimeManager.CreateInstance(ShopSettings.Settings.SwooshSfx);
-
             mainScreen.Initialize(inventory, OnSpellSelected, OnRelicSelected, OnScoreSelected);
         }
         
         #region Main screen
 
-        private void OnSpellSelected(SpellEntry spellEntry)
+        private void OnSpellSelected(ShopSpellButton spellButton)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(spellEntry.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(spellButton.Spell.Data.Cost))
             {
-                ShowSpellScreen(spellEntry);
+                SelectSpell(spellButton);
             }
             else
             {
                 currencyEntry.PlayCantAfford();
-                spellEntry.PlayCantAfford();
+                spellButton.PlayCantAfford();
             }
         }
 
@@ -84,64 +96,56 @@ namespace Fantazee.Shop.Ui
             }
         }
 
-        private void OnScoreSelected(ShopScoreEntryPurchase purchaseScoreEntry)
+        private void OnScoreSelected(ShopScoreButton shopScoreButton)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(purchaseScoreEntry.Score.Data.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(shopScoreButton.Score.Data.Cost))
             {
-                ShowScoreScoreScreen(purchaseScoreEntry);
+                SelectScore(shopScoreButton);
             }
             else
             {
                 currencyEntry.PlayCantAfford();
-                purchaseScoreEntry.PlayCantAfford();
+                shopScoreButton.PlayCantAfford();
             }
         }
         
         #endregion
-        
-        #region Score spell screen
 
-        private void ShowSpellScreen(SpellEntry purchase, Action onComplete = null)
+        private void SelectScore(ShopScoreButton shopScoreButton)
         {
-            spellScoreScreen.Initialize(purchase, OnSpellScreenComplete);
-            
             mainScreen.Hide();
-            spellScoreScreen.Show();
-
-            swooshSfx.start();
+            scoresheetUpgradeScreen.Show();
+            scoresheetUpgradeScreen.StartScoreUpgrade(shopScoreButton.Score, () =>
+                                                                             {
+                                                                                 UpgradeFinished(shopScoreButton.Score.Data.Cost,
+                                                                                     shopScoreButton.gameObject);
+                                                                             });
         }
 
-        private void OnSpellScreenComplete()
+        private void SelectSpell(ShopSpellButton spellButton)
         {
-            spellScoreScreen.Hide();
-            mainScreen.Show();
-            
-            swooshSfx.start();
-        }
-        
-        #endregion
-        
-        #region Score spell screen
-        
-        private void ShowScoreScoreScreen(ShopScoreEntryPurchase scoreShopEntry, Action onComplete = null)
-        {
-            scoreScoreScreen.Initialize(scoreShopEntry, OnScoreScoreScreenComplete);
-            
             mainScreen.Hide();
-            scoreScoreScreen.Show();
-            
-            swooshSfx.start();
+            scoresheetUpgradeScreen.Show();
+            scoresheetUpgradeScreen.StartSpellUpgrade(spellButton.Spell, () =>
+                                                                             {
+                                                                                 UpgradeFinished(spellButton.Spell.Data.Cost, 
+                                                                                     spellButton.gameObject);
+                                                                             });
         }
 
-        private void OnScoreScoreScreenComplete()
+        private void UpgradeFinished(Currency cost, GameObject objectToDisable)
         {
-            scoreScoreScreen.Hide();
+            MakePurchase(cost);
+            objectToDisable.SetActive(false);
+            scoresheetUpgradeScreen.Hide();
             mainScreen.Show();
-            
-            swooshSfx.start();
         }
-        
-        #endregion
+
+        private void MakePurchase(Currency currency)
+        {
+            GameInstance.Current.Character.Wallet.Remove(currency);
+            purchaseSfx?.start();
+        }
         
         public void OnLeaveButtonClicked()
         {

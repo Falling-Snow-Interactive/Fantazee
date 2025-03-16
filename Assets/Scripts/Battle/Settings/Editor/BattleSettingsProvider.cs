@@ -28,11 +28,8 @@ namespace Fantazee.Battle.Settings.Editor
         }
         
         public override void OnGUI(string searchContext)
-        {
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("bonusScore"));
+        { 
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreSfx"));
-            
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreInformation"));
             
             EditorGUILayout.Space(20);
             if (GUILayout.Button("Save"))

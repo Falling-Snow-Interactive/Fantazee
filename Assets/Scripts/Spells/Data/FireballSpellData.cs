@@ -6,7 +6,7 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_04_Fireball", order = 4)]
     public class FireballSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Fireball;
+        public override SpellType Type => SpellType.spell_04_fireball;
 
         [Header("Fireball")]
 

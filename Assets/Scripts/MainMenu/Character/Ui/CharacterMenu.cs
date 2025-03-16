@@ -4,6 +4,7 @@ using Fantazee.Characters.Settings;
 using Fantazee.Relics.Ui;
 using Fantazee.Scores;
 using Fantazee.Scores.Instance;
+using Fantazee.Scores.Ui.Buttons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ namespace Fantazee.MainMenu.Character.Ui
         private TMP_Text descText;
 
         [SerializeField]
-        private List<CharacterScoreEntry> scoreEntries;
+        private List<ScoreButton> scoreEntries;
 
         [SerializeField]
         private RelicEntryUi relic;
@@ -75,9 +76,9 @@ namespace Fantazee.MainMenu.Character.Ui
 
             for (int j = 0; j < scoreEntries.Count; j++)
             {
-                CharacterScoreEntry scoreEntry = scoreEntries[j];
+                ScoreButton scoreButton = scoreEntries[j];
                 ScoreInstance score = ScoreFactory.CreateInstance(character.Scores[j]);
-                scoreEntry.Initialize(score, null);
+                scoreButton.Initialize(score, null);
             }
 
             relic.ShowData(character.Relic);

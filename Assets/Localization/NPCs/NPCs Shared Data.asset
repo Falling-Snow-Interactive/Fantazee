@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: NPCs Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: NPCs
+  m_TableCollectionNameGuidString: 8ff77082df584406f86a470c046635ed
+  m_Entries:
+  - m_Id: 18495823872
+    m_Key: npc_00_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44919939072
+    m_Key: npc_00_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233378406400
+    m_Key: npc_01_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253372653568
+    m_Key: npc_01_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 739000624078848
+    m_Key: npc_02_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 739023973769216
+    m_Key: npc_02_desc
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 554601666657648946
+  references:
+    version: 2
+    RefIds:
+    - rid: 554601666657648946
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1741876302308

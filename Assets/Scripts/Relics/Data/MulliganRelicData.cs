@@ -5,6 +5,6 @@ namespace Fantazee.Relics.Data
     [CreateAssetMenu(fileName = "Mulligan Data", menuName = "Relics/Mulligan")]
     public class MulliganRelicData : RelicData
     {
-        public override RelicType Type => RelicType.Mulligan;
+        public override RelicType Type => RelicType.relic_00_mulligan;
     }
 }

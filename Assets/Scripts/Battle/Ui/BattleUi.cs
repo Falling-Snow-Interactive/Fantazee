@@ -1,10 +1,12 @@
-using System;
 using Fantazee.Battle.Relics.Ui;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
+using Fantazee.Environments.Settings;
+using Fantazee.Instance;
 using Fsi.Gameplay;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
 {
@@ -14,10 +16,9 @@ namespace Fantazee.Battle.Ui
         private DiceControlUi diceControl;
         public DiceControlUi DiceControl => diceControl;
         
-        [FormerlySerializedAs("scoreboard")]
         [SerializeField]
-        private ScoresheetUi scoresheet;
-        public ScoresheetUi Scoresheet => scoresheet;
+        private BattleScoresheetUi scoresheet;
+        public BattleScoresheetUi Scoresheet => scoresheet;
 
         [SerializeField]
         private WinScreen winScreen;
@@ -30,6 +31,9 @@ namespace Fantazee.Battle.Ui
         [SerializeField]
         private RelicUi relicUi;
         public RelicUi RelicUi => relicUi;
+        
+        [SerializeField]
+        private Image backgroundImage;
         
         private FsiInput input;
 
@@ -58,6 +62,14 @@ namespace Fantazee.Battle.Ui
         private void OnDisable()
         {
             input.Gameplay.Disable();
+        }
+
+        private void Start()
+        {
+            if (backgroundImage)
+            {
+                backgroundImage.color = GameInstance.Current.Environment.Data.Color;
+            }
         }
 
         public void ShowWinScreen()

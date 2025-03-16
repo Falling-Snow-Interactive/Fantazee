@@ -11,8 +11,8 @@ namespace Fantazee.Spells.Settings
         private const string ResourcePath = "Settings/SpellSettings";
         private const string FullPath = "Assets/Resources/" + ResourcePath + ".asset";
 
-        private static SpellSettings settings;
-        public static SpellSettings Settings => settings ??= GetOrCreateSettings();
+        private static SpellSettings _settings;
+        public static SpellSettings Settings => _settings ??= GetOrCreateSettings();
 
         [Header("Library")]
 
@@ -20,24 +20,29 @@ namespace Fantazee.Spells.Settings
         private SpellData none;
         public SpellData None => none;
 
-        [FormerlySerializedAs("spellLibrary")]
         [SerializeField]
         private List<SpellData> spells = new();
-        private Dictionary<SpellType, SpellData> spellsDictionary = new();
+        private Dictionary<SpellType, SpellData> spellsDictionary;
 
         public bool TryGetSpell(SpellType type, out SpellData spell)
         {
-            spellsDictionary ??= GetSpellsDictionary();
+            spellsDictionary ??= BuildDictionary();
             return spellsDictionary.TryGetValue(type, out spell);
         }
 
-        private Dictionary<SpellType, SpellData> GetSpellsDictionary()
+        private Dictionary<SpellType, SpellData> BuildDictionary()
         {
+            Dictionary<SpellType, SpellData> dict = new();
             foreach (SpellData spell in spells)
             {
-                spellsDictionary.Add(spell.Type, spell);
+                dict.Add(spell.Type, spell);
             }
-            return spellsDictionary;
+            return dict;
+        }
+        
+        public void RebuildDictionary()
+        {
+            spellsDictionary = BuildDictionary();
         }
         
         #region Settings

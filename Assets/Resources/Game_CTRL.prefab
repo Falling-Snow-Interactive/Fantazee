@@ -263,7 +263,7 @@ MonoBehaviour:
     name: Battle_Boss_SCN
     scene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
   mapScene:
-    name: Map_01_SCN
+    name: Env_00_Scene_Map
     scene: {fileID: 102900000, guid: 50caefe56d8d049e7bbc06fae61fc70f, type: 3}
   blacksmithScene:
     name: Blacksmith_SCN
@@ -274,12 +274,9 @@ MonoBehaviour:
   innScene:
     name: Inn_SCN
     scene: {fileID: 102900000, guid: c87e4c56fe7b54aef803ea59323deea1, type: 3}
-  environmentEnv:
-    name: Environment_00_ENV
-    scene: {fileID: 102900000, guid: 10a7e8fab2609416a95149894feb229c, type: 3}
-  woodsEnv:
-    name: ENV_Wood
-    scene: {fileID: 102900000, guid: 0df8b895d65d745dd827f1e55cc53003, type: 3}
+  encounterScene:
+    name: Encounter_Scn
+    scene: {fileID: 102900000, guid: 157f2a4cb35f44c648cb73a67ce9d5f7, type: 3}
 --- !u!114 &5289247866963360002
 MonoBehaviour:
   m_ObjectHideFlags: 0

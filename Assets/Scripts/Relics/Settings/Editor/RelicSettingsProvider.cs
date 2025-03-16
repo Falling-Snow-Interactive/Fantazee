@@ -1,44 +1,51 @@
-using System.Collections.Generic;
+using fsi.prototyping.Spacers;
 using UnityEditor;
-using UnityEngine;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Fantazee.Relics.Settings.Editor
 {
-    public class RelicSettingsProvider : SettingsProvider
+    public static class RelicSettingsProvider
     {
-        private const string SettingsPath = "Fantazee/Relic";
-
-        private SerializedObject serializedSettings;
-
-        public RelicSettingsProvider(string path, SettingsScope scopes, IEnumerable<string> keywords = null)
-            : base(path, scopes, keywords)
-        {
-        }
-
         [SettingsProvider]
-        public static SettingsProvider CreateMyCustomSettingsProvider()
+        public static SettingsProvider CreateSettingsProvider()
         {
-            return new RelicSettingsProvider(SettingsPath, SettingsScope.Project);
+            SettingsProvider provider = new("Fantazee/Relics", SettingsScope.Project)
+                                        {
+                                            label = "Relics",
+                                            activateHandler = OnActivate,
+                                        };
+            
+            return provider;
         }
 
-        public override void OnActivate(string searchContext, VisualElement rootElement)
+        private static void OnActivate(string searchContext, VisualElement root)
         {
-            serializedSettings = RelicSettings.GetSerializedSettings();
-        }
-
-        public override void OnGUI(string searchContext)
-        {
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("information"));
-            // EditorGUILayout.PropertyField(serializedSettings.FindProperty("prop"));
-
-            EditorGUILayout.Space(20);
-            if (GUILayout.Button("Save"))
-            {
-                serializedSettings.ApplyModifiedProperties();
-            }
-
-            serializedSettings.ApplyModifiedProperties();
+            SerializedObject relicSettingsProp = RelicSettings.GetSerializedSettings();
+            
+            Label title = new ("Relic Settings");
+            root.Add(title);
+            root.Add(new Spacer());
+            
+            SerializedProperty defaultProp = relicSettingsProp.FindProperty("defaultRelic");
+            PropertyField defaultField = new(defaultProp);
+            root.Add(defaultField);
+            
+            SerializedProperty relicsProp = relicSettingsProp.FindProperty("relics");
+            PropertyField relicsField = new(relicsProp);
+            relicsField.RegisterValueChangeCallback(evt =>
+                                                        {
+                                                            if (relicSettingsProp.targetObject is RelicSettings relicSettings)
+                                                            {
+                                                                relicSettings.RebuildDictionary();
+                                                            }
+                                                            relicSettingsProp.ApplyModifiedProperties();
+                                                        });
+            
+            
+            root.Add(relicsField);
+            
+            root.Bind(relicSettingsProp);
         }
     }
 }

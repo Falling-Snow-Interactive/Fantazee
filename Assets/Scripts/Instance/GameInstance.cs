@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
-using Fantazee.Currencies;
-using Fantazee.Maps;
-using Fantazee.Relics;
+using Fantazee.Environments;
+using Fantazee.Environments.Settings;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Fantazee.Instance
@@ -28,11 +27,12 @@ namespace Fantazee.Instance
         private CharacterInstance character;
         public CharacterInstance Character => character;
 
+        [FormerlySerializedAs("map")]
         [Header("Maps")]
 
         [SerializeReference]
-        private MapInstance map;
-        public MapInstance Map => map;
+        private EnvironmentInstance environment;
+        public EnvironmentInstance Environment => environment;
         
         public static GameInstance Defaults
         {
@@ -42,7 +42,7 @@ namespace Fantazee.Instance
                                         {
                                             seed = (uint)Random.Range(0, int.MaxValue),
                                             character = new CharacterInstance(CharacterSettings.Settings.DefaultCharacter),
-                                            map = new MapInstance(),
+                                            environment = new EnvironmentInstance(EnvironmentSettings.Settings.DefaultEnvironment),
                                         };
                 
                 return instance;
@@ -51,11 +51,11 @@ namespace Fantazee.Instance
         
         public GameInstance(){}
 
-        public GameInstance(CharacterData character)
+        public GameInstance(CharacterData character, EnvironmentData environment)
         {
             RandomizeSeed();
             this.character = new CharacterInstance(character);
-            map = new MapInstance();
+            this.environment = new EnvironmentInstance(environment);
         }
 
         public void RandomizeSeed()

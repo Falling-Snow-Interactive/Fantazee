@@ -7,7 +7,7 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_06_ChainLightning", order = 6)]
     public class ChainLightningSpellData : SpellData
     {
-        public override SpellType Type => SpellType.ChainLightning;
+        public override SpellType Type => SpellType.spell_06_chainlightning;
 
         [Header("Chain Lightning")]
 

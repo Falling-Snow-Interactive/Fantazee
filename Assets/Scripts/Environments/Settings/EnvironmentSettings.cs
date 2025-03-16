@@ -15,7 +15,15 @@ namespace Fantazee.Environments.Settings
         [Header("Data")]
 
         [SerializeField]
-        private List<EnvironmentData> data = new List<EnvironmentData>();
+        private EnvironmentData defaultEnvironment;
+        public EnvironmentData DefaultEnvironment => defaultEnvironment;
+        
+        [SerializeField]
+        private EnvironmentData startingEnvironment;
+        public EnvironmentData StartingEnvironment => startingEnvironment;
+
+        [SerializeField]
+        private List<EnvironmentData> data = new();
         public List<EnvironmentData> Data => data;
 
         private Dictionary<EnvironmentType, EnvironmentData> dataByType;
@@ -23,6 +31,12 @@ namespace Fantazee.Environments.Settings
         public bool TryGetEnvironment(EnvironmentType environmentType, 
                                       out EnvironmentData environmentData)
         {
+            if (environmentType == EnvironmentType.env_default)
+            {
+                environmentData = defaultEnvironment;
+                return true;
+            }
+            
             dataByType ??= BuildDict();
             return dataByType.TryGetValue(environmentType, out environmentData);
         }

@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Encounters_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: a6ed889d0e8da4e2fbe7bb40cc4f0b55, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 554601666657648960
+  m_TableData:
+  - m_Id: 5430566912
+    m_Localized: The Wary Adventurer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163108802560
+    m_Localized: "While navigating the shadowy paths of the Forbidden Thicket, you
+      stumble upon a resting adventurer by a dim lantern. Coren looks up, his gaze
+      weary but alert.\n\n\"These woods take more than they give,\" he says gruffly.
+      \"I have something of value... but I'll not part with it lightly. A bit of
+      your strength, and it\u2019s yours. Or perhaps you'd prefer to walk away."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1235296968704
+    m_Localized: Spare Some Strength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1263449137152
+    m_Localized: Exchange <color="red">{0.MaxHp} Max HP</color> for Coren's treasure.
+    m_Metadata:
+      m_Items:
+      - rid: 554601666657648960
+  - m_Id: 1291588722688
+    m_Localized: Decline Coren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53907278520320
+    m_Localized: Politely refuse and continue on your way.
+    m_Metadata:
+      m_Items:
+      - rid: 554601666657648960
+  - m_Id: 53947141185536
+    m_Localized: Try to intimidate Coren into giving up the treasure without payment.
+    m_Metadata:
+      m_Items:
+      - rid: 554601666657648960
+  - m_Id: 53932582756352
+    m_Localized: Take by Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71754444693504
+    m_Localized: You feel your strength wane slightly as Coren's eyes flash with
+      satisfaction. 'A fair trade,' he mutters, handing over the pouch. Inside, you
+      find a glimmering relic.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71873298685952
+    m_Localized: Coren nods solemnly. 'Perhaps wiser to keep your strength,' he says,
+      turning his gaze back to the shadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71925303861248
+    m_Localized: With a speed born of countless dangers, Coren lashes out. You're
+      left bruised, your pride smarting more than your wound. 'Trust is earned,'
+      he warns, fading back into the darkness.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379378050523136
+    m_Localized: The Wounded Wolf Pup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379412246683648
+    m_Localized: 'While walking along a dim, winding path, you hear frantic whimpers
+      and the crashing of underbrush. A wounded wolf pup bursts into view, limping
+      and wide-eyed. Hot on its heels are monstrous shadows, their growls echoing
+      through the forest.
+
+
+      The pup looks at you, pleading for aid. Helping
+      will mean risking harm, but turning away may leave the pup to its fate... or
+      worse.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379437672554496
+    m_Localized: Help the Pup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379480156659712
+    m_Localized: Rush to its aid, fighting off the shadowy creatures.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379496027906048
+    m_Localized: You lunge forward, fending off the snarling shadows. Though they
+      leave you bloodied, the pup licks your hand in gratitude. It limps away into
+      the thicket, leaving behind a small token of its loyalty.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379517452410880
+    m_Localized: Turn Away
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379618363170816
+    m_Localized: Leave the pup to its fate and continue on your way.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379633915650048
+    m_Localized: You turn from the cries, walking swiftly onward. Yet, a shadow brushes
+      past, leaving an icy sensation and a lingering presence.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788481134551040
+    m_Localized: The Mysterious Merchant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788538097393664
+    m_Localized: 'As you tread deeper into the Forbidden Thicket, a soft chime draws
+      your attention. Veylin, the shadowed trader, appears as if from the mist.
+
+
+      "Traveler,"
+      she says, her grin visible beneath her hood. "Fortune and folly, all for sale.
+      But every prize carries a price." She gestures to a collection of strange relics
+      and baubles.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788607135637504
+    m_Localized: Purchase the mysterious relic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788665197387776
+    m_Localized: Exchange {0.currency_00_gold} for a relic.
+    m_Metadata:
+      m_Items:
+      - rid: 554601666657648960
+  - m_Id: 788859737595904
+    m_Localized: Veylin's hand brushes yours, cold as shadow. You feel lighter, though
+      not only in coin. 'May it serve you well,' she whispers, her grin sharp, as
+      she vanishes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788890066608128
+    m_Localized: Barter with an Existing Relic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788955699077120
+    m_Localized: Offer one of your current relics in exchange for a new one.  (NOT
+      IMPLEMENTED)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789087647686656
+    m_Localized: Veylin examines your offering, fingers tracing ancient symbols.
+      'Ah, a fair trade,' she says, though her eyes tell a different story.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789149282983936
+    m_Localized: Decline the Offer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789195634237440
+    m_Localized: Refuse to trade and continue on your way.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789230031724544
+    m_Localized: Veylin chuckles as you leave. 'Perhaps next time,' she murmurs as
+      she fades into the mist.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 554601666657648960
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 1263449137152
+        - id: 53907278520320
+        - id: 53947141185536
+        - id: 788665197387776

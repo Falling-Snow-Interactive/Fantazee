@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
-using Fantazee.Battle.Score.Ui;
 using Fantazee.Dice;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells;
-using Fantazee.Spells.Instance;
 using UnityEngine;
 
 namespace Fantazee.Battle.Score
@@ -28,17 +25,9 @@ namespace Fantazee.Battle.Score
         private List<Die> dice = new();
         public List<Die> Dice => dice;
 
-        [SerializeReference]
-        private BattleScoreEntry entryUi;
-
         public BattleScore(ScoreInstance score)
         {
             this.score = score;
-        }
-
-        public void SetEntry(BattleScoreEntry entryUi)
-        {
-            this.entryUi = entryUi;
         }
 
         public void Cast(Damage damage, Action onComplete)
@@ -48,14 +37,11 @@ namespace Fantazee.Battle.Score
 
         private IEnumerator CastSequence(Damage damage, Action onComplete)
         {
-            for (int i = 0; i < score.Spells.Count; i++)
+            foreach (SpellInstance spell in score.Spells)
             {
                 bool ready = false;
-                SpellInstance spell = score.Spells[i];
-                if (spell.Data.Type != SpellType.None && BattleController.Instance.EnemiesRemaining() > 0)
+                if (spell.Data.Type != SpellType.spell_none && BattleController.Instance.EnemiesRemaining() > 0)
                 {
-                    entryUi.Spells[i].transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
-                
                     spell.Cast(damage, () =>
                                        {
                                            SpellCastEnd?.Invoke(spell);
@@ -65,7 +51,7 @@ namespace Fantazee.Battle.Score
                     yield return new WaitUntil(() => ready);
                 }
             }
-            
+
             onComplete?.Invoke();
         }
 

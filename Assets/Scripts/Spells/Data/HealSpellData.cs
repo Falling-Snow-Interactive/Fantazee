@@ -7,7 +7,7 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_03_Heal", order = 3)]
     public class HealSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Heal;
+        public override SpellType Type => SpellType.spell_03_heal;
      
         [Header("Heal")]
         

@@ -5,13 +5,11 @@ using Fantazee.Relics;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui.ScoreEntries;
+using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Shop.Items;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
-using Fantazee.Spells.Data;
-using Fantazee.Spells.Instance;
-using Fantazee.Spells.Settings;
+using Fantazee.Spells.Ui;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,17 +17,17 @@ namespace Fantazee.Shop.Ui.Screens
 {
     public class ShopMainScreen : ShopScreen
     {
-        private Action<SpellEntry> onSpellSelected;
+        private Action<ShopSpellButton> onSpellSelected;
         private Action<RelicEntry> onRelicSelected;
-        private Action<ShopScoreEntryPurchase> onScoreSelected;
-        
+        private Action<ShopScoreButton> onScoreSelected;
+
         [Header("Prefabs")]
-        
+
         [SerializeField]
-        private SpellEntry spellEntryPrefab;
+        private ShopSpellButton shopSpellButtonPrefab;
         
         [SerializeReference]
-        private List<SpellEntry> spellEntries = new();
+        private List<ShopSpellButton> spellEntries = new();
         
         [SerializeField]
         private RelicEntry relicEntryPrefab;
@@ -38,10 +36,10 @@ namespace Fantazee.Shop.Ui.Screens
         private List<RelicEntry> relicEntries = new();
 
         [SerializeField]
-        private ShopScoreEntryPurchase scorePurchaseEntry;
+        private ShopScoreButton shopScoreButtonPrefab;
         
         [SerializeReference]
-        private List<ShopScoreEntryPurchase> scorePurchaseEntries = new();
+        private List<ShopScoreButton> scorePurchaseEntries = new();
         
         [Header("References")]
 
@@ -61,9 +59,9 @@ namespace Fantazee.Shop.Ui.Screens
         }
 
         public void Initialize(ShopInventory shopInventory, 
-                               Action<SpellEntry> onSpellSelected,
+                               Action<ShopSpellButton> onSpellSelected,
                                Action<RelicEntry> onRelicSelected,
-                               Action<ShopScoreEntryPurchase> onScoreSelected)
+                               Action<ShopScoreButton> onScoreSelected)
         {
             this.onSpellSelected = onSpellSelected;
             this.onRelicSelected = onRelicSelected;
@@ -72,16 +70,16 @@ namespace Fantazee.Shop.Ui.Screens
             foreach (SpellShopItem spell in shopInventory.Spells)
             {
                 SpellInstance s = SpellFactory.CreateInstance(spell.Item);
-                SpellEntry spellEntry = Instantiate(spellEntryPrefab, spellContent);
-                spellEntry.Initialize(s, OnSpellSelected);
+                ShopSpellButton spellButton = Instantiate(shopSpellButtonPrefab, spellContent);
+                spellButton.Initialize(s, OnSpellSelected);
 
-                spellEntries.Add(spellEntry);
+                spellEntries.Add(spellButton);
             }
 
             foreach (ScoreShopItem sd in shopInventory.Scores)
             {
                 ScoreInstance score = ScoreFactory.CreateInstance(sd.Item);
-                ShopScoreEntryPurchase scorePurchase = Instantiate(scorePurchaseEntry, scoreContent);
+                ShopScoreButton scorePurchase = Instantiate(shopScoreButtonPrefab, scoreContent);
                 scorePurchase.Initialize(score, OnScoreSelected);
                 scorePurchaseEntries.Add(scorePurchase);
             }
@@ -96,9 +94,10 @@ namespace Fantazee.Shop.Ui.Screens
             }
         }
 
-        private void OnSpellSelected(SpellEntry spellEntry)
+        private void OnSpellSelected(ShopSpellButton spellButton)
         {
-            onSpellSelected?.Invoke(spellEntry);
+            Debug.Log("onSpellSelected");
+            onSpellSelected?.Invoke(spellButton);
         }
 
         private void OnRelicSelected(RelicEntry relicEntry)
@@ -107,13 +106,9 @@ namespace Fantazee.Shop.Ui.Screens
             onRelicSelected?.Invoke(relicEntry);
         }
 
-        private void OnScoreSelected(ScoreEntry shopScoreEntry)
+        private void OnScoreSelected(ShopScoreButton scoreButton)
         {
-            Debug.Assert(shopScoreEntry is ShopScoreEntryPurchase, 
-                         "Should be a purchase score entry.", 
-                         gameObject);
-            
-            onScoreSelected?.Invoke((ShopScoreEntryPurchase)shopScoreEntry);
+            onScoreSelected?.Invoke(scoreButton);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Fantazee.Maps.Ui
 
         private void Start()
         {
-            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency currency))
+            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.currency_00_gold, out Currency currency))
             {
                 currencyEntry.SetCurrency(currency);
             }

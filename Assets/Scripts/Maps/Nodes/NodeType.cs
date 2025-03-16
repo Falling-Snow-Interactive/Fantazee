@@ -10,5 +10,6 @@ namespace Fantazee.Maps.Nodes
         Start = 5,
         Boss = 6,
         MiniBoss = 7,
+        Encounter = 8,
     }
 }

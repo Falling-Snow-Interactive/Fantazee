@@ -17,6 +17,8 @@ namespace Fantazee.Battle.Characters
 {
     public abstract class BattleCharacter : MonoBehaviour, IDamageable, IHealable
     {
+        public static event Action<BattleCharacter, int> EnemyDamaged;
+        
         public event Action Damaged;
 
         public static event Action<BattleCharacter> Spawned;
@@ -105,6 +107,7 @@ namespace Fantazee.Battle.Characters
                             }
                         });
 
+            EnemyDamaged?.Invoke(this, total);
             return total;
         }
         

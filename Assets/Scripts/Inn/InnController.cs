@@ -115,7 +115,7 @@ namespace Fantazee.Inn
             
             healthUi.Initialize(GameInstance.Current.Character.Health);
 
-            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.Gold, out Currency gold))
+            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.currency_00_gold, out Currency gold))
             {
                 wallet.SetCurrency(gold);
             }

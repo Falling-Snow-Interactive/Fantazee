@@ -6,7 +6,7 @@ namespace Fantazee.Spells.Data
                      fileName = "Spell_02_Shield", order = 2)]
     public class ShieldSpellData : SpellData
     {
-        public override SpellType Type => SpellType.Shield;
+        public override SpellType Type => SpellType.spell_02_shield;
 
         [Header("Shield")]
 

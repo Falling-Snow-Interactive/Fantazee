@@ -3,15 +3,12 @@ using DG.Tweening;
 using Fantazee.Audio;
 using Fantazee.Battle.Characters;
 using Fantazee.Environments;
-using Fantazee.Environments.Information;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay;
-using Fsi.Spline;
-using Fsi.Spline.Vectors;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,7 +20,7 @@ namespace Fantazee.Maps
     {
         public class MapController : MbSingleton<MapController>
         {
-            private MapInstance Map => GameInstance.Current.Map;
+            private EnvironmentInstance Environment => GameInstance.Current.Environment;
 
             [SerializeReference]
             private GameplayCharacterVisuals player;
@@ -109,8 +106,8 @@ namespace Fantazee.Maps
             {
                 Debug.Log("Map - Start");
 
-                Node node = map.Nodes[Map.Node];
-                if (Map.ReadyToAdvance)
+                Node node = map.Nodes[Environment.Node];
+                if (Environment.ReadyToAdvance)
                 {
                     node = map.Nodes[^1];
                 }
@@ -120,12 +117,7 @@ namespace Fantazee.Maps
                 canInteract = false;
                 
                 RuntimeManager.PlayOneShot(mapStartSfx);
-
-                if (EnvironmentSettings.Settings.TryGetEnvironment(GameInstance.Current.Map.Environment,
-                                                                               out EnvironmentData info))
-                {
-                    MusicController.Instance.PlayMusic(info.MapMusicId);
-                }
+                MusicController.Instance.PlayMusic(GameInstance.Current.Environment.Data.GeneralMusic);
                 
                 Debug.Log($"Map - Current Node: {node.transform.position}");
                 Debug.Log($"Map - Player to {player.transform.position}");
@@ -135,9 +127,9 @@ namespace Fantazee.Maps
 
             public void StartMap()
             {
-                canInteract = !Map.ReadyToAdvance;
+                canInteract = !Environment.ReadyToAdvance;
 
-                if (Map.ReadyToAdvance)
+                if (Environment.ReadyToAdvance)
                 {
                     AdvanceToNextMap();
                 }
@@ -162,7 +154,7 @@ namespace Fantazee.Maps
                         if (hit.collider.TryGetComponent(out Node clickedNode))
                         {
                             RuntimeManager.PlayOneShot(nodeSelectSfxRef);
-                            Node currentNode = map.Nodes[Map.Node];
+                            Node currentNode = map.Nodes[Environment.Node];
 
                             if (currentNode.Next.Contains(clickedNode))
                             {
@@ -179,7 +171,7 @@ namespace Fantazee.Maps
                 
                 canInteract = false;
 
-                int curr = GameInstance.Current.Map.Node;
+                int curr = GameInstance.Current.Environment.Node;
                 Node currentNode = map.Nodes[curr];
                 int nextIndex = currentNode.Next.IndexOf(node);
                 Spline spline = currentNode.SplineContainer.Splines[nextIndex];
@@ -214,8 +206,8 @@ namespace Fantazee.Maps
             {
                 Debug.Log($"Map - Finished move");
                 canInteract = true;
-                Map.Node = map.Nodes.IndexOf(node);
-                Debug.Log($"Map - Node {node.Type} [{Map.Node}]");
+                Environment.Node = map.Nodes.IndexOf(node);
+                Debug.Log($"Map - Node {node.Type} [{Environment.Node}]");
                 RuntimeManager.PlayOneShot(mapEndSfx);
                 
                 switch (node.Type)
@@ -238,7 +230,9 @@ namespace Fantazee.Maps
                     case NodeType.Shop:
                         GameController.Instance.LoadShop();
                         break;
-                    
+                    case NodeType.Encounter:
+                        GameController.Instance.LoadEncounter();
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

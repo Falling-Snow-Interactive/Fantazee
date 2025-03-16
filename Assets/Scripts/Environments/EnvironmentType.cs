@@ -2,6 +2,7 @@ namespace Fantazee.Environments
 {
     public enum EnvironmentType
     {
-        ForbiddenThicket = 0,
+        env_default = -1,
+        env_00 = 0,
     }
 }

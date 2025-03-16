@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Fantazee.Audio;
-using FMODUnity;
+using Fantazee.Encounters;
+using Fantazee.Environments.Settings;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -33,6 +35,10 @@ namespace Fantazee.Environments
         private Color color = Color.black;
         public Color Color => color;
 
+        [SerializeField]
+        private List<Sprite> backgrounds;
+        public List<Sprite> Backgrounds => backgrounds;
+
         [Header("Scene")]
 
         [SerializeField]
@@ -43,18 +49,32 @@ namespace Fantazee.Environments
         private FsiSceneEntry battle;
         public FsiSceneEntry Battle => battle;
 
+        [Header("Encounters")]
+
+        [SerializeField]
+        private List<EncounterData> encounters = new();
+        public List<EncounterData> Encounters => encounters;
+
         [Header("Audio")]
 
         [SerializeField]
-        private EventReference musicReference;
-        public EventReference MusicReference => musicReference;
+        private MusicId generalMusic;
+        public MusicId GeneralMusic => generalMusic;
 
         [SerializeField]
-        private MusicId mapMusicId;
-        public MusicId MapMusicId => mapMusicId;
+        private MusicId battleMusic;
+        public MusicId BattleMusic => battleMusic;
 
         [SerializeField]
-        private MusicId battleMusicId;
-        public MusicId BattleMusicId => battleMusicId;
+        private MusicId bossMusic;
+        public MusicId BossMusic => bossMusic;
+        
+        public Sprite GetBackground()
+        {
+            return backgrounds[Random.Range(0, backgrounds.Count)];
+        }
+
+        public static EnvironmentData Default => EnvironmentSettings.Settings.DefaultEnvironment;
+        public static EnvironmentData Starting => EnvironmentSettings.Settings.StartingEnvironment;
     }
 }

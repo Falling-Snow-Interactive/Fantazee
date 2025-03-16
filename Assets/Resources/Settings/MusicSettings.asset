@@ -23,26 +23,8 @@ MonoBehaviour:
           Data3: -835566683
           Data4: -910643426
         Path: event:/Music/MainMenu
-    - name: Env_00_Casino_Map
-      type: 2
-      music:
-        Guid:
-          Data1: -1067094924
-          Data2: 1218896479
-          Data3: -2022586190
-          Data4: 992087444
-        Path: event:/Music/Woods
-    - name: Env_00_Casino_Battle
-      type: 3
-      music:
-        Guid:
-          Data1: -1674511727
-          Data2: 1083190776
-          Data3: 411028128
-          Data4: 1555930255
-        Path: event:/Music/Battle
     - name: Inn
-      type: 4
+      type: 7
       music:
         Guid:
           Data1: 807585370
@@ -50,3 +32,39 @@ MonoBehaviour:
           Data3: -1043518067
           Data4: 22742130
         Path: event:/Inn/Music
+    - name: Shop
+      type: 8
+      music:
+        Guid:
+          Data1: 1219729327
+          Data2: 1154160780
+          Data3: 670049426
+          Data4: 896530709
+        Path: event:/Shop/Music
+    - name: env_00_general
+      type: 14
+      music:
+        Guid:
+          Data1: 25635229
+          Data2: 1281859215
+          Data3: 1306433926
+          Data4: 650186579
+        Path: event:/Environments/Env_00/General
+    - name: env_00_battle
+      type: 15
+      music:
+        Guid:
+          Data1: 915832769
+          Data2: 1081473960
+          Data3: -1394769224
+          Data4: -405318
+        Path: event:/Environments/Env_00/Battle
+    - name: env_00_boss
+      type: 16
+      music:
+        Guid:
+          Data1: 299263399
+          Data2: 1309522426
+          Data3: -219260023
+          Data4: 22577678
+        Path: event:/Environments/Env_00/Boss

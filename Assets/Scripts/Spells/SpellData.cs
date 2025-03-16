@@ -43,7 +43,7 @@ namespace Fantazee.Spells
         [Header("Shop")]
 
         [SerializeField]
-        private Currency cost = new(CurrencyType.Gold, 10);
+        private Currency cost = new(CurrencyType.currency_00_gold, 10);
         public Currency Cost => cost;
 
         [Header("Battle Animations")]
