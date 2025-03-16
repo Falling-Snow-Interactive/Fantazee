@@ -7,17 +7,16 @@
     <list default="true" id="355f84bc-4e15-4984-bc3c-ca5ede232084" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fantazee/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Config/Environments/_Default/Env_Default_Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Config/Environments/_Default/Env_Default_Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0_Outline_White_01.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/Credits/Credits Shared Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/Credits/Credits Shared Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/Credits/Credits_en.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/Credits/Credits_en.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/General/General Shared Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/General/General Shared Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/General/General_en.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/General/General_en.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Launch/SplashScreens/SplashScreen_TML.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Launch/SplashScreens/SplashScreen_TML.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Launch/SplashScreens/Splashscreen_CTRL.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Launch/SplashScreens/Splashscreen_CTRL.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Encounters/Encounter_Scn.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Encounters/Encounter_Scn.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Launch_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Launch_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Font_Header0.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Battle_Ui.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Battle_Ui.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/Battle_Fantazee_Button.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/Battle_Fantazee_Button.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/Battle_Score_Button.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Ui/Score/Battle_Score_Button.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Score/Ui/Base_Score_Button.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Score/Ui/Base_Score_Button.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Spells/Spell_Button.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Spells/Spell_Button.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_Boss_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_Boss_SCN.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_SCN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle/Battle_SCN.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Encounters/EncounterController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +72,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables/Runtime/AddressablesImpl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../_Packages/fsi.gameplay/Runtime/Scripts/Healths/Health.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../_Packages/fsi.gameplay/Runtime/Scripts/Healths/IDamageable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../_Packages/fsi.gameplay/Runtime/Scripts/Healths/Ui/HealthUi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../_Packages/fsi.gameplay/Runtime/Scripts/Healths/Ui/HealthUi.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../_Packages/fsi.settings/Runtime/Scripts/Informations/InformationGroup.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -88,24 +87,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Encounters&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/20250311/macOS/Fantazee-20250311.app/Contents/MacOS/Fantazee" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/20250315/macOS/Fantazee-20250315.app/Contents/MacOS/Fantazee" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Builds/20250224/macOS/Fantazee-20250224.app/Contents/MacOS" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -178,6 +177,7 @@
       <workItem from="1741864395978" duration="11687000" />
       <workItem from="1741882193925" duration="12529000" />
       <workItem from="1742078486119" duration="2880000" />
+      <workItem from="1742097121685" duration="1312000" />
     </task>
     <servers />
   </component>

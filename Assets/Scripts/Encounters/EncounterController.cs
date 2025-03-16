@@ -273,7 +273,7 @@ namespace Fantazee.Encounters
                 return false;
             }
 
-            if (response.Cost.Health.max >= GameInstance.Current.Character.Health.current)
+            if (response.Cost.Health.max >= GameInstance.Current.Character.Health.max)
             {
                 return false;
             }
