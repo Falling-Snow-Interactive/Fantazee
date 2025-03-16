@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
+using Fantazee.SaveLoad;
 using Fantazee.Spells.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Fantazee.Spells.Instance
 {
+    [Serializable]
     public class ChainLightningSpellInstance : SpellInstance
     {
         private ChainLightningSpellData lightningData;
@@ -15,6 +17,11 @@ namespace Fantazee.Spells.Instance
         public ChainLightningSpellInstance(ChainLightningSpellData lightningData) : base(lightningData)
         {
             this.lightningData = lightningData;
+        }
+
+        public ChainLightningSpellInstance(SpellSave save) : base(save)
+        {
+            lightningData = save.Data as ChainLightningSpellData;
         }
 
         protected override void Apply(Damage damage, Action onComplete)

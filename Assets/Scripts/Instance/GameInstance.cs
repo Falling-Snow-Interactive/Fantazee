@@ -3,6 +3,7 @@ using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Environments;
 using Fantazee.Environments.Settings;
+using Fantazee.SaveLoad;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -56,6 +57,13 @@ namespace Fantazee.Instance
             RandomizeSeed();
             this.character = new CharacterInstance(character);
             this.environment = new EnvironmentInstance(environment);
+        }
+
+        public GameInstance(GameSave save)
+        {
+            seed = save.Seed;
+            character = new CharacterInstance(save.Character);
+            environment = new EnvironmentInstance(save.Environment);
         }
 
         public void RandomizeSeed()

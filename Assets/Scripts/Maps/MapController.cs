@@ -6,6 +6,7 @@ using Fantazee.Environments;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
+using Fantazee.SaveLoad;
 using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay;
@@ -123,6 +124,8 @@ namespace Fantazee.Maps
                 Debug.Log($"Map - Player to {player.transform.position}");
                 Debug.Log("Map - Ready");
                 GameController.Instance.MapReady();
+                
+                SaveManager.SaveGame(GameInstance.Current);
             }
 
             public void StartMap()

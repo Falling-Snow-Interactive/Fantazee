@@ -1,5 +1,6 @@
 using System;
 using Fantazee.Battle;
+using Fantazee.SaveLoad;
 using Fantazee.Spells.Data;
 using UnityEngine;
 
@@ -13,6 +14,11 @@ namespace Fantazee.Spells.Instance
         public HealSpellInstance(HealSpellData data) : base(data)
         {
             this.data = data;
+        }
+
+        public HealSpellInstance(SpellSave save) : base(save)
+        {
+            data = save.Data as HealSpellData;
         }
 
         protected override void Apply(Damage damage, Action onComplete)

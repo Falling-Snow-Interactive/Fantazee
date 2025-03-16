@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.SaveLoad;
 using Fantazee.Scores.Data;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -11,13 +12,17 @@ using UnityEngine;
 namespace Fantazee.Scores.Instance
 {
     [Serializable]
-    public abstract class ScoreInstance
+    public abstract class ScoreInstance : ISerializationCallbackReceiver
     {
         public virtual int MaxSpells => 2;
+
+        [HideInInspector]
+        [SerializeField]
+        private string name;
         
         [Header("Score")]
         
-        [SerializeReference]
+        [SerializeField]
         private ScoreData data;
         public ScoreData Data => data;
 
@@ -57,6 +62,17 @@ namespace Fantazee.Scores.Instance
             }
         }
 
+        protected ScoreInstance(ScoreSave save)
+        {
+            data = save.Data;
+            spells = new List<SpellInstance>();
+            foreach (SpellSave ss in save.Spells)
+            {
+                SpellInstance spell = SpellFactory.CreateInstance(ss);
+                spells.Add(spell);
+            }
+        }
+
         public abstract int Calculate(List<Die> dice);
         
         protected Dictionary<int, int> DiceToDict(List<Die> dice)
@@ -83,5 +99,12 @@ namespace Fantazee.Scores.Instance
 
             return s;
         }
+
+        public void OnBeforeSerialize()
+        {
+            name = ToString();
+        }
+
+        public void OnAfterDeserialize() { }
     }
 }

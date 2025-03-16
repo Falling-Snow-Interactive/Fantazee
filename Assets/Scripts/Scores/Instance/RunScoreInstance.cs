@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.SaveLoad;
 using Fantazee.Scores.Data;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -8,6 +10,7 @@ using UnityEngine;
 
 namespace Fantazee.Scores.Instance
 {
+    [Serializable]
     public class RunScoreInstance : ScoreInstance
     {
         [Header("Run")]
@@ -24,6 +27,11 @@ namespace Fantazee.Scores.Instance
         public RunScoreInstance(RunScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.runData = data;
+        }
+
+        public RunScoreInstance(ScoreSave save) : base(save)
+        {
+            runData = save.Data as RunScoreData;
         }
 
         public override int Calculate(List<Die> dice)

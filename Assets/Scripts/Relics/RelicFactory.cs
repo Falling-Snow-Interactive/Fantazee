@@ -5,6 +5,7 @@ using Fantazee.Relics.Data;
 using Fantazee.Relics.Information;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Settings;
+using Fantazee.SaveLoad;
 using UnityEngine;
 
 namespace Fantazee.Relics
@@ -32,6 +33,11 @@ namespace Fantazee.Relics
             }
             Debug.LogError($"Relic type {type} not found in settings.");
             throw new ArgumentOutOfRangeException(nameof(type), $"Relic type {type} not found in settings.");
+        }
+
+        public static RelicInstance Create(RelicSave save, CharacterInstance character)
+        {
+            return Create(save.Data, character);
         }
     }
 }

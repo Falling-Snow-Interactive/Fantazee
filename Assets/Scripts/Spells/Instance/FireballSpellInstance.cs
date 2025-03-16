@@ -1,6 +1,7 @@
 using System;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
+using Fantazee.SaveLoad;
 using Fantazee.Spells.Data;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ namespace Fantazee.Spells.Instance
         public FireballSpellInstance(FireballSpellData data) : base(data)
         {
             this.data = data;
+        }
+
+        public FireballSpellInstance(SpellSave save) : base(save)
+        {
+            data = save.Data as FireballSpellData;
         }
 
         protected override void Apply(Damage damage, Action onComplete)

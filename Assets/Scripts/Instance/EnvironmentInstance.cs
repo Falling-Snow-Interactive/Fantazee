@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Encounters;
 using Fantazee.Environments;
+using Fantazee.SaveLoad;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -44,6 +45,15 @@ namespace Fantazee.Instance
             
             this.data = data;
             encounters = new List<EncounterData>(data.Encounters);
+        }
+
+        public EnvironmentInstance(EnvironmentSave save)
+        {
+            index = save.Index;
+            node = save.Node;
+            ReadyToAdvance = false;
+            data = save.Data;
+            encounters = new List<EncounterData>(save.Encounters);
         }
 
         public void SetReadyToAdvance()

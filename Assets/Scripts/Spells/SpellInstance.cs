@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Player;
+using Fantazee.SaveLoad;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Fantazee.Spells
     [Serializable]
     public abstract class SpellInstance
     {
-        [SerializeReference]
+        [SerializeField]
         private SpellData data;
         public SpellData Data => data;
 
@@ -25,7 +26,17 @@ namespace Fantazee.Spells
         protected SpellInstance(SpellData data)
         {
             this.data = data;
+            SetupAudio();
+        }
 
+        protected SpellInstance(SpellSave save)
+        {
+            data = save.Data;
+            SetupAudio();
+        }
+
+        private void SetupAudio()
+        {
             if (!data.CastAnim.CastSfx.IsNull)
             {
                 castSfx = RuntimeManager.CreateInstance(data.CastAnim.CastSfx);

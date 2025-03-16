@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Dice;
+using Fantazee.SaveLoad;
 using Fantazee.Scores.Data;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -32,6 +33,11 @@ namespace Fantazee.Scores.Instance
         public FantazeeScoreInstance(CharacterScoreData data) : base(data.Score, data.Spells)
         {
             this.fantazeeData = data.Score as FantazeeScoreData;
+        }
+
+        public FantazeeScoreInstance(ScoreSave save) : base(save)
+        {
+            fantazeeData = save.Data as FantazeeScoreData;
         }
 
         public override int Calculate(List<Die> dice)

@@ -6,9 +6,13 @@ using UnityEngine;
 namespace Fantazee.Relics.Instance
 {
     [Serializable]
-    public abstract class RelicInstance
+    public abstract class RelicInstance : ISerializationCallbackReceiver
     {
         public event Action Activated;
+
+        [HideInInspector]
+        [SerializeField]
+        private string name;
         
         [SerializeField]
         private RelicData data;
@@ -32,5 +36,18 @@ namespace Fantazee.Relics.Instance
         public abstract void Enable();
         
         public abstract void Disable();
+        
+        public override string ToString()
+        {
+            string s = $"{data.Type}";
+            return s;
+        }
+
+        public void OnBeforeSerialize()
+        {
+            name = ToString();
+        }
+
+        public void OnAfterDeserialize() { }
     }
 }
