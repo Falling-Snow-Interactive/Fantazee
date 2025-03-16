@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Characters;
-using Fantazee.SaveLoad;
 using Fantazee.Scores.Instance;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace Fantazee.Scores.Scoresheets
         private List<ScoreInstance> scores = new();
         public List<ScoreInstance> Scores => scores;
 
-        [SerializeField]
+        [SerializeReference]
         private FantazeeScoreInstance fantazee;
         public FantazeeScoreInstance Fantazee => fantazee;
 
@@ -27,17 +26,6 @@ namespace Fantazee.Scores.Scoresheets
             }
             
             fantazee = new FantazeeScoreInstance(fantazeeData);
-        }
-
-        public Scoresheet(ScoresheetSave save)
-        {
-            foreach (ScoreSave scoreSave in save.Scores)
-            {
-                ScoreInstance score = ScoreFactory.CreateInstance(scoreSave);
-                scores.Add(score);
-            }
-
-            fantazee = new FantazeeScoreInstance(save.FantazeeScore);
         }
     }
 }

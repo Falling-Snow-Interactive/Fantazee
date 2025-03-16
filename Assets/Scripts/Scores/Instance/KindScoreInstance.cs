@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using Fantazee.SaveLoad;
 using Fantazee.Scores.Data;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -10,7 +8,6 @@ using UnityEngine;
 
 namespace Fantazee.Scores.Instance
 {
-    [Serializable]
     public class KindScoreInstance : ScoreInstance
     {
         [Header("Kind")]
@@ -27,11 +24,6 @@ namespace Fantazee.Scores.Instance
         public KindScoreInstance(KindScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.kindData = data;
-        }
-
-        public KindScoreInstance(ScoreSave save) : base(save)
-        {
-            kindData = save.Data as KindScoreData;
         }
 
         public override int Calculate(List<Die> dice)

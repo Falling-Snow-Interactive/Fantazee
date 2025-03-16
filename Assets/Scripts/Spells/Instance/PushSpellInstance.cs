@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
-using Fantazee.SaveLoad;
 using Fantazee.Spells.Data;
 using UnityEngine;
 
 namespace Fantazee.Spells.Instance
 {
-    [Serializable]
     public class PushSpellInstance : SpellInstance
     {
         private readonly PushSpellData pushData;
@@ -17,11 +15,6 @@ namespace Fantazee.Spells.Instance
         public PushSpellInstance(PushSpellData data) : base(data)
         {
             pushData = data;
-        }
-
-        public PushSpellInstance(SpellSave save) : base(save)
-        {
-            pushData = save.Data as PushSpellData;
         }
 
         protected override void Apply(Damage damage, Action onComplete)

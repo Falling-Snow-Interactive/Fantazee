@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
-using Fantazee.SaveLoad;
 using Fantazee.Spells.Data;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -17,11 +16,6 @@ namespace Fantazee.Spells.Instance
         public OverflowSpellInstance(OverflowSpellData data) : base(data)
         {
             overflowData = data;
-        }
-
-        public OverflowSpellInstance(SpellSave save) : base(save)
-        {
-            overflowData = save.Data as OverflowSpellData;
         }
 
         protected override void Apply(Damage damage, Action onComplete)

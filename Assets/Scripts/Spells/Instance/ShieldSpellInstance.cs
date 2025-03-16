@@ -1,7 +1,6 @@
 using System;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Player;
-using Fantazee.SaveLoad;
 using Fantazee.Spells.Data;
 using UnityEngine;
 
@@ -15,11 +14,6 @@ namespace Fantazee.Spells.Instance
         public ShieldSpellInstance(ShieldSpellData data) : base(data)
         {
             this.data = data;
-        }
-
-        public ShieldSpellInstance(SpellSave save) : base(save)
-        {
-            data = save.Data as ShieldSpellData;
         }
         protected override void Apply(Damage damage, Action onCompelte)
         {

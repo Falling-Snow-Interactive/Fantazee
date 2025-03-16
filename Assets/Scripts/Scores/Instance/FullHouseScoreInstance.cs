@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using Fantazee.SaveLoad;
 using Fantazee.Scores.Data;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -26,11 +25,6 @@ namespace Fantazee.Scores.Instance
         public FullHouseScoreInstance(FullHouseScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.houseData = data;
-        }
-
-        public FullHouseScoreInstance(ScoreSave save) : base(save)
-        {
-            houseData = save.Data as FullHouseScoreData;
         }
 
         public override int Calculate(List<Die> dice)

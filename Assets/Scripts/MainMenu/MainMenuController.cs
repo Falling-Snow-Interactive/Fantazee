@@ -50,12 +50,6 @@ namespace Fantazee.MainMenu
             GameController.Instance.NewGame(character, environment);
             GameController.Instance.LoadMap();
         }
-
-        public void LoadGame()
-        {
-            GameController.Instance.LoadGame();
-            GameController.Instance.LoadMap();
-        }
         
         #endregion
 

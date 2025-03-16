@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Fantazee.Dice;
-using Fantazee.SaveLoad;
 using Fantazee.Scores.Data;
 using Fantazee.Spells;
 using Fantazee.Spells.Data;
@@ -10,7 +8,6 @@ using UnityEngine;
 
 namespace Fantazee.Scores.Instance
 {
-    [Serializable]
     public class EvenOddScoreInstance : ScoreInstance
     {
         [SerializeReference]
@@ -25,11 +22,6 @@ namespace Fantazee.Scores.Instance
         public EvenOddScoreInstance(EvenOddScoreData data, List<SpellInstance> spells) : base(data, spells)
         {
             this.evenOddData = data;
-        }
-
-        public EvenOddScoreInstance(ScoreSave save) : base(save)
-        {
-            evenOddData = save.Data as EvenOddScoreData;
         }
 
         public override int Calculate(List<Die> dice)

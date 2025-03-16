@@ -6,7 +6,6 @@ using Fantazee.Environments;
 using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
-using Fantazee.SaveLoad;
 using Fsi.Gameplay;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -52,6 +51,7 @@ namespace Fantazee
         protected override void Awake()
         {
             base.Awake();
+            gameInstance = GameInstance.Defaults;
             
             input = new FsiInput();
 
@@ -68,23 +68,20 @@ namespace Fantazee
             input.Gameplay.Disable();
         }
 
-        private void Start()
-        {
-            gameInstance = GameInstance.Defaults;
-        }
-
         public void NewGame(CharacterData character, EnvironmentData environment)
         {
             gameInstance?.Clear();
             gameInstance = new GameInstance(character, environment);
-            SaveManager.SaveGame(gameInstance);
         }
 
         public void LoadGame()
         {
-            gameInstance?.Clear();
-            GameSave save = SaveManager.LoadGame();
-            gameInstance = new GameInstance(save);
+            // TODO - Load a saved game instance.
+        }
+
+        public void SaveGame()
+        {
+            // TODO - Save the current game.
         }
 
         public void Reset()

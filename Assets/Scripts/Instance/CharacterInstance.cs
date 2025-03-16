@@ -5,7 +5,6 @@ using Fantazee.Currencies;
 using Fantazee.Dice;
 using Fantazee.Relics;
 using Fantazee.Relics.Instance;
-using Fantazee.SaveLoad;
 using Fantazee.Scores;
 using Fantazee.Scores.Scoresheets;
 using Fsi.Gameplay.Healths;
@@ -17,8 +16,6 @@ namespace Fantazee.Instance
     [Serializable]
     public class CharacterInstance
     {
-        private const int BaseRolls = 3;
-        
         [SerializeField]
         private CharacterData data;
         public CharacterData Data => data;
@@ -45,6 +42,9 @@ namespace Fantazee.Instance
         private List<Die> dice;
         public List<Die> Dice => dice;
 
+        [SerializeField]
+        private int baseRolls = 3;
+
         public int Rolls { get; set; }
 
         [SerializeReference]
@@ -55,7 +55,7 @@ namespace Fantazee.Instance
         {
             this.data = data;
             
-            Rolls = BaseRolls;
+            Rolls = baseRolls;
             
             health = new Health(data.MaxHealth);
             wallet = new Wallet(data.Wallet);
@@ -65,25 +65,6 @@ namespace Fantazee.Instance
             relics = new List<RelicInstance>();
             RelicInstance relic = RelicFactory.Create(data.Relic, this);
             AddRelic(relic);
-        }
-
-        public CharacterInstance(CharacterSave save)
-        {
-            data = save.Data;
-            Rolls = save.Rolls;
-            health = new Health(save.Health.max)
-                     {
-                         current = save.Health.current,
-                     };
-            wallet = new Wallet(save.Wallet);
-            scoresheet = new Scoresheet(save.Scoresheet);
-            dice = Die.DefaultDice(5);
-            relics = new List<RelicInstance>();
-            foreach (RelicSave rs in save.Relics)
-            {
-                RelicInstance r = RelicFactory.Create(rs, this);
-                AddRelic(r);
-            }
         }
 
         public void AddRelic(RelicInstance relic)

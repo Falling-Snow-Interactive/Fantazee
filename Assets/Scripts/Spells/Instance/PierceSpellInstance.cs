@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
-using Fantazee.SaveLoad;
 using Fantazee.Spells.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,11 +16,6 @@ namespace Fantazee.Spells.Instance
         public PierceSpellInstance(PierceSpellData data) : base(data)
         {
             this.data = data;
-        }
-
-        public PierceSpellInstance(SpellSave save) : base(save)
-        {
-            data = save.Data as PierceSpellData;
         }
         
         protected override void Apply(Damage damage, Action onComplete)
@@ -52,7 +46,6 @@ namespace Fantazee.Spells.Instance
         {
             return BattleController.Instance.Enemies.Count switch
                    {
-                       
                        1 => BattleController.Instance.Enemies[0].transform.position + data.HitAnim.Offset,
                        > 1 => BattleController.Instance.Enemies[1].transform.position + data.HitAnim.Offset,
                        _ => Vector3.zero
