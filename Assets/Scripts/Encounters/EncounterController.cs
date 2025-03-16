@@ -17,6 +17,7 @@ using Fantazee.Spells.Ui;
 using FMODUnity;
 using Fsi.Gameplay;
 using Fsi.Gameplay.Healths;
+using Fsi.Gameplay.Healths.Ui;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -108,6 +109,9 @@ namespace Fantazee.Encounters
         private CurrencyEntryUi currencyUi;
         public CurrencyEntryUi CurrencyUi => currencyUi;
         
+        [SerializeField]
+        private HealthUi healthUi;
+        
         // Some rewards need a selection, so lets save them.
         private List<SpellInstance> spellsToReward = new();
         private List<RelicInstance> relicsToReward = new();
@@ -135,6 +139,8 @@ namespace Fantazee.Encounters
             backgroundImage.sprite = env.Data.GetBackground();
             headerText.text = encounter.Title;
             bodyText.text = encounter.Body;
+
+            healthUi.Initialize(GameInstance.Current.Character.Health);
 
             if (NpcSettings.Settings.TryGetNpc(encounter.Npc, out NpcData npc))
             {
