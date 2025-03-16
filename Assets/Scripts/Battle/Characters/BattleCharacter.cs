@@ -1,17 +1,11 @@
 using System;
-using DG.Tweening;
 using Fantazee.Battle.DamageNumbers;
 using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
-using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
 using Fsi.Gameplay.Healths.Ui;
-using UnityEditor;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
-using UnityEngine.Serialization;
-using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Battle.Characters
 {

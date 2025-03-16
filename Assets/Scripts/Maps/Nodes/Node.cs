@@ -35,8 +35,15 @@ namespace Fantazee.Maps.Nodes
         {
             if (MapSettings.Settings.NodeInformation.TryGetInformation(Type, out NodeInformation info))
             {
-                disc.Color = info.Color;
-                spriteRenderer.sprite = info.Sprite;
+                if (disc != null)
+                {
+                    disc.Color = info.Color;
+                }
+
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.sprite = info.Sprite;
+                }
             }
         }
         

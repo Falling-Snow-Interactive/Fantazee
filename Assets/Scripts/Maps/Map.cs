@@ -17,12 +17,15 @@ namespace Fantazee.Maps
             
             foreach (Node node in nodes)
             {
-                for (int i = 0; i < node.Next.Count; i++)
+                if (node && node.Next != null)
                 {
-                    if (node.Next[i] == null)
+                    for (int i = 0; i < node.Next.Count; i++)
                     {
-                        node.Next.RemoveAt(i);
-                        i--;
+                        if (!node.Next[i])
+                        {
+                            node.Next.RemoveAt(i);
+                            i--;
+                        }
                     }
                 }
             }
