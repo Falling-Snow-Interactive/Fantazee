@@ -2,7 +2,6 @@ using Fantazee.Battle;
 using Fantazee.Battle.Score;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
-using Fantazee.Scores.Instance;
 using UnityEngine;
 
 namespace Fantazee.Relics.Instance

@@ -31,55 +31,49 @@ namespace Fantazee.Scores.Instance
             List<int> values = new();
             foreach (Die d in dice)
             {
-                values.Add(d.Value);
+                if (!values.Contains(d.Value))
+                {
+                    values.Add(d.Value);
+                }
             }
             
             values.Sort();
             values.Reverse();
-
-            int run = 0;
+            
+            int prev = -1;
             int score = 0;
-
-            int curr = -1;
-            int testScore = 0;
-            int testRun = 0;
+            int run = 0;
             // 6, 5, 3, 2, 1
             foreach (int value in values)
             {
-                if (curr < 0)
+                if (prev < 0)
                 {
-                    curr = value;
-                    testScore = curr;
-                    testRun = 1;
+                    prev = value;
+                    score = prev;
+                    run = 1;
                     continue;
                 }
 
-                if (value == curr - 1)
+                if (value == prev - 1)
                 {
-                    curr = value;
-                    testScore += curr;
-                    testRun++;
+                    prev = value;
+                    score += prev;
+                    run++;
                 }
                 else
                 {
-                    if (testRun > run)
-                    {
-                        score = testScore;
-                        run = testRun;
-                    }
-                    
-                    curr = 0;
-                    testScore = 0;
-                    testRun = 0;
+                    prev = value;
+                    score = 0;
+                    run = 0;
+                }
+                
+                if (run >= runData.Run)
+                {
+                    return score;
                 }
             }
-            
-            if (testRun > run)
-            {
-                score = testScore;
-            }
 
-            return run >= runData.Run ? score : 0;
+            return 0;
         }
     }
 }

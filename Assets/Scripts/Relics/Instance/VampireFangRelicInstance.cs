@@ -1,5 +1,6 @@
 using Fantazee.Battle;
-using Fantazee.Battle.Score;
+using Fantazee.Battle.Characters;
+using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
 using UnityEngine;
@@ -17,18 +18,23 @@ namespace Fantazee.Relics.Instance
 
         public override void Enable()
         {
-            BattleController.Scored += OnScored;
+            BattleEnemy.EnemyDamaged += OnDamaged;
         }
 
         public override void Disable()
         {
-            BattleController.Scored -= OnScored;
+            BattleEnemy.EnemyDamaged-= OnDamaged;
         }
 
-        private void OnScored(BattleScore battleScore)
+        private void OnDamaged(BattleCharacter battleCharacter, int damage)
         {
-            int amount = Mathf.RoundToInt(battleScore.Calculate() * data.LifeSteal);
-            int adjustedAmount = Mathf.Max(data.MinLifeStealAmount, amount);
+            if (battleCharacter is not BattleEnemy enemy)
+            {
+                return;
+            }
+            
+            int adjustedAmount = Mathf.RoundToInt(Mathf.Max(data.MinLifeStealAmount, damage * data.LifeSteal));
+            Debug.Log($"Vampire Fang: Healing {adjustedAmount}");
             BattleController.Instance.Player.Heal(adjustedAmount);
         }
     }

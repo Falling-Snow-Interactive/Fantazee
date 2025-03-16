@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fantazee.Scores;
+using Fantazee.Scores.Data;
 using Fantazee.Scores.Settings;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Fantazee.Relics.Data
         protected override Dictionary<string, string> BuildDescArgs()
         {
             Dictionary<string, string> args = base.BuildDescArgs();
-            if (ScoreSettings.Settings.TryGetScore(score, out var data))
+            if (ScoreSettings.Settings.TryGetScore(score, out ScoreData data))
             {
                 args.Add("Score", $"{data.Name}");
             }

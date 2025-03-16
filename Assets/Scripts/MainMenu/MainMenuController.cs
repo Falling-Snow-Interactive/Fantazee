@@ -36,7 +36,7 @@ namespace Fantazee.MainMenu
 
         public void NewGame(CharacterData character)
         {
-            NewGame(character, EnvironmentData.Default);
+            NewGame(character, EnvironmentData.Starting);
         }
 
         public void NewGame(EnvironmentData environment)

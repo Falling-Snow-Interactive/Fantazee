@@ -17,9 +17,13 @@ namespace Fantazee.Environments.Settings
         [SerializeField]
         private EnvironmentData defaultEnvironment;
         public EnvironmentData DefaultEnvironment => defaultEnvironment;
+        
+        [SerializeField]
+        private EnvironmentData startingEnvironment;
+        public EnvironmentData StartingEnvironment => startingEnvironment;
 
         [SerializeField]
-        private List<EnvironmentData> data = new List<EnvironmentData>();
+        private List<EnvironmentData> data = new();
         public List<EnvironmentData> Data => data;
 
         private Dictionary<EnvironmentType, EnvironmentData> dataByType;

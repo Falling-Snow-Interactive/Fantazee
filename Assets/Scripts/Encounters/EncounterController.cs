@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Currencies;
+using Fantazee.Currencies.Ui;
 using Fantazee.Encounters.Ui;
 using Fantazee.Encounters.Ui.Rewards;
 using Fantazee.Instance;
@@ -18,6 +19,7 @@ using Fsi.Gameplay;
 using Fsi.Gameplay.Healths;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Encounters
@@ -100,6 +102,11 @@ namespace Fantazee.Encounters
 
         [SerializeField]
         private Image fadeImage;
+
+        [FormerlySerializedAs("currency")]
+        [SerializeField]
+        private CurrencyEntryUi currencyUi;
+        public CurrencyEntryUi CurrencyUi => currencyUi;
         
         // Some rewards need a selection, so lets save them.
         private List<SpellInstance> spellsToReward = new();
@@ -143,7 +150,11 @@ namespace Fantazee.Encounters
 
                 responses.Add(responseUi);
             }
-            
+
+            if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.currency_00_gold, out var gold))
+            {
+                currencyUi.SetCurrency(gold);
+            }
             GameController.Instance.EncounterReady();
         }
         
@@ -157,6 +168,11 @@ namespace Fantazee.Encounters
 
         private void OnResponse(EncounterResponse response)
         {
+            if (!CheckResponse(response))
+            {
+                return;
+            }
+            
             foreach (EncounterResponseUi responseUi in responses)
             {
                 Destroy(responseUi.gameObject);
@@ -231,6 +247,32 @@ namespace Fantazee.Encounters
 
                 spellsToReward.Add(spellInstance);
             }
+        }
+
+        private bool CheckResponse(EncounterResponse response)
+        {
+            // Check if can afford 
+            foreach (Currency currency in response.Cost.Wallet.Currencies)
+            {
+                if (!GameInstance.Current.Character.Wallet.CanAfford(currency))
+                {
+                    Debug.Log($"Encounter: Cannot afford {currency} in {response.name}.");
+                    currencyUi.PlayCantAfford();
+                    return false;
+                }
+            }
+
+            if (response.Cost.Health.current >= GameInstance.Current.Character.Health.current)
+            {
+                return false;
+            }
+
+            if (response.Cost.Health.max >= GameInstance.Current.Character.Health.current)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public void OnContinue()

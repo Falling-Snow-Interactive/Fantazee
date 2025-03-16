@@ -75,5 +75,6 @@ namespace Fantazee.Environments
         }
 
         public static EnvironmentData Default => EnvironmentSettings.Settings.DefaultEnvironment;
+        public static EnvironmentData Starting => EnvironmentSettings.Settings.StartingEnvironment;
     }
 }

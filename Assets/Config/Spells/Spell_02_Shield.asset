@@ -33,8 +33,8 @@ MonoBehaviour:
   icon: {fileID: 1251935968, guid: 73bfa086f10b6451eb86261f43b7a49e, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   cost:
-    name: 'Gold: 5'
-    type: 1
+    name: 'currency_00_gold: 5'
+    type: 0
     amount: 5
   castAnim:
     hasCast: 1
@@ -95,6 +95,7 @@ MonoBehaviour:
         Data4: 0
       Path: 
     offset: {x: 0, y: 0, z: 0}
+  shieldMod: 1
   references:
     version: 2
     RefIds: []

@@ -33,9 +33,7 @@ namespace Fantazee.Encounters.Ui
         
         [SerializeField]
         private TMP_Text bodyText;
-
-        private bool selected = false;
-
+        
         public void Initialize(EncounterResponse response, Action<EncounterResponse> onSelected)
         {
             this.response = response;
@@ -43,21 +41,10 @@ namespace Fantazee.Encounters.Ui
             
             headerText.text = response.Header;
             bodyText.text = response.Body;
-
-            selected = false;
         }
 
         public void OnClick()
         {
-            // TODO - Make sure we can afford this
-            
-            if (selected)
-            {
-                return;
-            }
-            
-            selected = true;
-
             transform.DOPunchScale(selectAmount, selectTime, selectVibrato, selectElasticity)
                      .OnComplete(() =>
                                  {
