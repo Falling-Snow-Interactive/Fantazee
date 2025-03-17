@@ -96,10 +96,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 379480156659712
-    m_Localized: Rush to its aid, fighting off the shadowy creatures. Lose {0.CurrentHp}
+    m_Localized: Rush to its aid, fighting off the shadowy creatures. Lose {0.Hp}
       HP.
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 554601666657648960
   - m_Id: 379496027906048
     m_Localized: You lunge forward, fending off the snarling shadows. Though they
       leave you bloodied, the pup licks your hand in gratitude. It limps away into
@@ -187,3 +188,4 @@ MonoBehaviour:
         - id: 53907278520320
         - id: 53947141185536
         - id: 788665197387776
+        - id: 379480156659712
