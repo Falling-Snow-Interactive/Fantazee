@@ -5,6 +5,10 @@ using Fantazee.Battle.CallbackReceivers;
 using Fantazee.Battle.DamageNumbers;
 using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
+using Fantazee.Battle.StatusEffects;
+using Fantazee.Battle.StatusEffects.Ui;
+using Fantazee.StatusEffects;
+using Fantazee.StatusEffects.Settings;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
 using Fsi.Gameplay.Healths.Ui;
@@ -20,6 +24,8 @@ namespace Fantazee.Battle.Characters
 
         public static event Action<BattleCharacter> Spawned;
         public static event Action<BattleCharacter> Despawned;
+
+        public event Action TurnStarted;
         
         // Callbacks
         private Action onTurnCompleteCallback;
@@ -42,6 +48,10 @@ namespace Fantazee.Battle.Characters
         [SerializeField]
         private ShieldUi shieldUi;
         public ShieldUi ShieldUi => shieldUi;
+        
+        [SerializeField]
+        private BattleStatusUi statusEffectUi;
+        private List<BattleStatusEffect> statusEffects = new();
         
         // Audio
         protected abstract EventReference DeathSfxRef { get; }
@@ -71,7 +81,7 @@ namespace Fantazee.Battle.Characters
             visuals = Instantiate(prefab, transform);
         }
 
-        public virtual void StartTurn(Action onTurnComplete)
+        public void StartTurn(Action onTurnComplete)
         {
             onTurnCompleteCallback = onTurnComplete;
             
@@ -79,11 +89,13 @@ namespace Fantazee.Battle.Characters
             Shield.Clear();
 
             StartCoroutine(CallTurnStartReceivers(CharacterStartTurn));
+            
+            TurnStarted?.Invoke();
         }
 
         public virtual void EndTurn()
         {
-            onTurnCompleteCallback?.Invoke();
+            StartCoroutine(CallTurnEndReceivers(onTurnCompleteCallback));
         }
 
         protected abstract void CharacterStartTurn();
@@ -132,6 +144,36 @@ namespace Fantazee.Battle.Characters
             damageNumbers.AddHealing(healed);
             visuals.Action();
         }
+
+        public void AddStatusEffect(StatusEffectType type, int turns)
+        {
+            Debug.Log($"BattleCharacter: Status Effect {type} - {turns} turns");
+
+            bool found = false;
+            foreach (BattleStatusEffect statusEffect in statusEffects)
+            {
+                if (statusEffect.Data.Type == type)
+                {
+                    statusEffect.Add(turns);
+                    found = true;
+                }
+            }
+            
+            if (!found && StatusEffectSettings.Settings.TryGetStatus(type, out StatusEffectData data))
+            {
+                BattleStatusEffect statusEffect = BattleStatusFactory.CreateInstance(data, turns, this);
+                statusEffect.Activate();
+                statusEffectUi.AddStatus(statusEffect);
+                statusEffects.Add(statusEffect);
+            }
+        }
+
+        public void RemoveStatusEffect(BattleStatusEffect statusEffect)
+        {
+            statusEffect.Deactivate();
+            statusEffectUi.RemoveStatus(statusEffect);
+            statusEffects.Remove(statusEffect);
+        }
         
         // Callback Registers
         #region Callback Registers
@@ -156,7 +198,17 @@ namespace Fantazee.Battle.Characters
                 }
 
                 bool ready = false;
-                receiver.OnTurnStart(() => ready = true);
+                receiver.OnTurnStart(() =>
+                                     {
+                                         if (Health.IsDead)
+                                         {
+                                             EndTurn();
+                                         }
+                                         else
+                                         {
+                                             ready = true;
+                                         }
+                                     });
                 yield return new WaitUntil(() => ready);
             }
 
@@ -176,7 +228,7 @@ namespace Fantazee.Battle.Characters
 
         public IEnumerator CallTurnEndReceivers(Action onComplete)
         {
-            foreach (ITurnEndCallbackReceiver receiver in turnEndReceivers)
+            foreach (ITurnEndCallbackReceiver receiver in new List<ITurnEndCallbackReceiver>(turnEndReceivers))
             {
                 if (receiver == null)
                 {

@@ -5,6 +5,7 @@ using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Scores;
 using Fantazee.Spells.Data;
+using Fantazee.StatusEffects;
 using UnityEngine;
 
 namespace Fantazee.Spells.Instance

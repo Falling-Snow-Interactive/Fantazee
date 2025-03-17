@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
 {
-    public class RollButton : MonoBehaviour, ITurnStartCallbackReceiver, IRollStartedCallbackReceiver
+    public class RollButton : MonoBehaviour
     {
         private BattlePlayer player;
         
@@ -26,19 +26,19 @@ namespace Fantazee.Battle.Ui
 
             if (player)
             {
-                player.RegisterTurnStartReceiver(this);
-                player.RegisterRollStartedReceiver(this);
+                player.TurnStarted += OnTurnStarted;
+                player.RollStarted += OnRollStarted;
             }
         }
-        
+
         private void OnDisable()
         {
             BattlePlayer.Spawned += OnCharacterSpawned;
 
             if (player)
             {
-                player.UnregisterTurnStartReceiver(this);
-                player.UnregisterRollStartedReceiver(this);
+                player.TurnStarted -= OnTurnStarted;
+                player.RollStarted -= OnRollStarted;
             }
         }
 
@@ -48,8 +48,8 @@ namespace Fantazee.Battle.Ui
             {
                 this.player = player;
 
-                player.RegisterTurnStartReceiver(this);
-                player.RegisterRollStartedReceiver(this);
+                player.TurnStarted += OnTurnStarted;
+                player.RollStarted += OnRollStarted;
             }
         }
 
@@ -64,13 +64,13 @@ namespace Fantazee.Battle.Ui
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
         }
         
-        public void OnTurnStart(Action onComplete)
+        private void OnTurnStarted()
         {
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
             button.interactable = true;
         }
 
-        public void OnRollStarted(Action onComplete)
+        private void OnRollStarted()
         {
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
             button.interactable = BattleController.Instance.Player.RollsRemaining > 0;

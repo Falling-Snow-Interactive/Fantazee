@@ -6,9 +6,7 @@ namespace Fantazee.StatusEffects
 {
     public abstract class StatusEffectData : ScriptableObject
     {
-        [SerializeField]
-        private StatusEffectType type;
-        public StatusEffectType Type => type;
+        public abstract StatusEffectType Type { get; }
         
         [Header("Localization")]
 

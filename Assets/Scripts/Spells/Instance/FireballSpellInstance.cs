@@ -3,7 +3,9 @@ using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Scores;
 using Fantazee.Spells.Data;
+using Fantazee.StatusEffects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Fantazee.Spells.Instance
 {
@@ -23,6 +25,11 @@ namespace Fantazee.Spells.Instance
             foreach (BattleEnemy enemy in BattleController.Instance.Enemies)
             {
                 enemy.Damage(d);
+
+                if (Random.value > data.BurnRoll)
+                {
+                    enemy.AddStatusEffect(StatusEffectType.status_00_burn, data.Turns);
+                }
             }
             
             onComplete?.Invoke();

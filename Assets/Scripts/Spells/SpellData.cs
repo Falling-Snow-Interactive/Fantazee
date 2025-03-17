@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Fantazee.Currencies;
 using Fantazee.Spells.Animations;
 using Fantazee.Spells.Data.Animations;
+using Fantazee.StatusEffects;
 using UnityEngine;
 using UnityEngine.Localization;
 

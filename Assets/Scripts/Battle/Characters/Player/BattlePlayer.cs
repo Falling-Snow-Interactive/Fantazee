@@ -19,6 +19,8 @@ namespace Fantazee.Battle.Characters.Player
 {
     public class BattlePlayer : BattleCharacter
     {
+        public event Action RollStarted;
+        
         // Ui Shortcuts
         private DiceControlUi DiceControl => BattleUi.Instance.DiceControl;
 
@@ -105,12 +107,6 @@ namespace Fantazee.Battle.Characters.Player
                 }
             }
         }
-        
-        public override void StartTurn(Action onComplete)
-        {
-            base.StartTurn(onComplete);
-            TryRoll();
-        }
 
         public override void EndTurn()
         {
@@ -121,6 +117,7 @@ namespace Fantazee.Battle.Characters.Player
         protected override void CharacterStartTurn()
         {
             // Check if there's any score unscored. If all have been scored, take a turn to reset.
+            Debug.Log("BattlePlayer: Start Turn");
             bool canPlay = false;
             foreach (BattleScore battleScore in battleScores)
             {
@@ -237,18 +234,19 @@ namespace Fantazee.Battle.Characters.Player
                 }
 
                 isRolling = true;
+                StartCoroutine(CallRollStartedReceivers(null));
                 DiceControl.Roll(this, d =>
                                        {
                                            StartCoroutine(CallDieRolledReceivers(d, null));
-                                       }, () =>
-                                          {
-                                              StartCoroutine(CallRollFinishedReceivers(() =>
-                                                             {
-                                                                 isRolling = false;
-                                                             }));
-                                          });
-                
-                StartCoroutine(CallRollStartedReceivers(null));
+                                       },
+                                 () =>
+                                 {
+                                     StartCoroutine(CallRollFinishedReceivers(() =>
+                                                                              {
+                                                                                  isRolling = false;
+                                                                              }));
+                                 });
+                RollStarted?.Invoke();
             }
         }
         

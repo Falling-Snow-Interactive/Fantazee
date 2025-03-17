@@ -8,10 +8,7 @@ using UnityEngine;
 
 namespace Fantazee.Relics.Instance
 {
-    public class MulliganRelicInstance : RelicInstance, 
-                                         ITurnStartCallbackReceiver, 
-                                         IRollStartedCallbackReceiver, 
-                                         IScoreCallbackReceiver
+    public class MulliganRelicInstance : RelicInstance, IScoreCallbackReceiver
     {
         private bool startRoll;
         private bool firstRoll;
@@ -38,26 +35,26 @@ namespace Fantazee.Relics.Instance
 
         private void OnBattleStart()
         {
-            BattleController.Instance.Player.RegisterTurnStartReceiver(this);
-            BattleController.Instance.Player.RegisterRollStartedReceiver(this);
+            BattleController.Instance.Player.TurnStarted += OnTurnStart;
+            BattleController.Instance.Player.RollStarted += OnRollStarted;
             BattleController.Instance.Player.RegisterScoreReceiver(this);
         }
 
         private void OnBattleEnd()
         {
-            BattleController.Instance.Player.UnregisterTurnStartReceiver(this);
-            BattleController.Instance.Player.UnregisterRollStartedReceiver(this);
+            BattleController.Instance.Player.TurnStarted -= OnTurnStart;
+            BattleController.Instance.Player.RollStarted -= OnRollStarted;
             BattleController.Instance.Player.UnregisterScoreReceiver(this);
         }
         
-        public void OnTurnStart(Action onComplete)
+        private void OnTurnStart()
         {
             startRoll = true;
             firstRoll = true;
             hasScored = false;
         }
-
-        public void OnRollStarted(Action onComplete)
+        
+        private void OnRollStarted()
         {
             if (hasScored)
             {

@@ -14,5 +14,14 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private float damageMod = 1f;
         public float DamageMod => damageMod;
+
+        [Range(0, 1f)]
+        [SerializeField]
+        private float burnRoll = 0.2f;
+        public float BurnRoll => burnRoll;
+
+        [SerializeField]
+        private int turns = 2;
+        public int Turns => turns;
     }
 }
