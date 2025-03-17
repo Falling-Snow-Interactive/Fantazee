@@ -7,6 +7,7 @@ using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
 using Fantazee.Battle.StatusEffects;
 using Fantazee.Battle.StatusEffects.Ui;
+using Fantazee.Scores;
 using Fantazee.StatusEffects;
 using Fantazee.StatusEffects.Settings;
 using FMODUnity;
@@ -16,7 +17,7 @@ using UnityEngine;
 
 namespace Fantazee.Battle.Characters
 {
-    public abstract class BattleCharacter : MonoBehaviour, IDamageable, IHealable
+    public abstract class BattleCharacter : MonoBehaviour, IHealable
     {
         public static event Action<BattleCharacter, int> CharacterDamaged;
         
@@ -60,6 +61,7 @@ namespace Fantazee.Battle.Characters
         // Callback registers
         private List<ITurnStartCallbackReceiver> turnStartReceivers = new();
         private List<ITurnEndCallbackReceiver> turnEndReceivers = new();
+        private List<ITakingDamageCallback> takingDamageReceivers = new();
         
         private void OnDestroy()
         {
@@ -102,40 +104,40 @@ namespace Fantazee.Battle.Characters
         
         public int Damage(int damage)
         {
-            Debug.Log($"Enemy: Damage {damage}");
-
+            damage = CallTakingDamageReceivers(damage); 
             int total = 0;
-            
-            // shield first
-            int dealt = Shield.Remove(damage);
-            total += dealt;
-            if (dealt > 0)
-            {
-                damageNumbers.AddShield(dealt);
-            }
+           // shield first
+           int dealt = Shield.Remove(damage);
+           total += dealt;
+           if (dealt > 0)
+           {
+               damageNumbers.AddShield(dealt);
+           }
 
-            int rem = damage - dealt;
-            if (rem > 0)
-            {
-                int damaged = Health.Damage(rem);
-                total += damaged;
-                damageNumbers.AddDamage(damaged);
-            }
+           int rem = damage - dealt;
+           if (rem > 0)
+           {
+               int damaged = Health.Damage(rem);
+               total += damaged;
+               damageNumbers.AddDamage(damaged);
+           }
 
-            visuals.Hit(() =>
-                        {
-                            if (Health.IsDead)
-                            {
-                                RuntimeManager.PlayOneShot(DeathSfxRef);
-                                visuals.Death(() =>
-                                              {
-                                                  Destroy(gameObject);
-                                              });
-                            }
-                        });
+           visuals.Hit(() =>
+           {
+               if (Health.IsDead)
+               {
+                   RuntimeManager
+                       .PlayOneShot(DeathSfxRef);
+                   visuals.Death(() =>
+                   {
+                       Destroy(gameObject);
+                   });
+               }
+           });
 
-            CharacterDamaged?.Invoke(this, total);
-            return total;
+           Debug.Log($"Enemy: Damage {damage}");
+           CharacterDamaged?.Invoke(this, total);
+           return total;
         }
         
         public void Heal(int heal)
@@ -178,6 +180,7 @@ namespace Fantazee.Battle.Characters
         // Callback Registers
         #region Callback Registers
 
+        #region Turn Start
         public void RegisterTurnStartReceiver(ITurnStartCallbackReceiver callbackReceiver)
         {
             turnStartReceivers.Add(callbackReceiver);
@@ -215,7 +218,9 @@ namespace Fantazee.Battle.Characters
             yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
+        #endregion
 
+        #region Turn End
         public void RegisterTurnEndReceiver(ITurnEndCallbackReceiver callbackReceiver)
         {
             turnEndReceivers.Add(callbackReceiver);
@@ -244,6 +249,36 @@ namespace Fantazee.Battle.Characters
             onComplete?.Invoke();
         }
         
+        #endregion
+        
+        #region Take Damage
+        public void RegisterTakingDamageReceiver(ITakingDamageCallback callbackReceiver)
+        {
+            takingDamageReceivers.Add(callbackReceiver);
+        }
+
+        public void UnregisterTakingDamageReceiver(ITakingDamageCallback callbackReceiver)
+        {
+            takingDamageReceivers.Remove(callbackReceiver);
+        }
+
+        private int CallTakingDamageReceivers(int damage)
+        {
+            int d = damage;
+            foreach (ITakingDamageCallback receiver in new List<ITakingDamageCallback>(takingDamageReceivers))
+            {
+                if (receiver == null)
+                {
+                    continue;
+                }
+
+                d = receiver.OnTakingDamage(damage);
+            }
+
+            return d;
+        }
+        
+        #endregion
         #endregion
     }
 }

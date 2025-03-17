@@ -11,7 +11,8 @@ namespace Fantazee.Battle.StatusEffects
         {
             return data switch
                    {
-                       BurnStatusData burn => new BurnBattleBattleStatus(burn, turns, character),
+                       BurnStatusData burn => new BurnBattleStatus(burn, turns, character),
+                       BleedStatusData bleed => new BleedBattleEffect(bleed, turns, character),
                        _ => throw new ArgumentOutOfRangeException(nameof(data))
                    };
         }

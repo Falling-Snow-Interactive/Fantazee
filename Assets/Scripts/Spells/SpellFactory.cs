@@ -21,6 +21,7 @@ namespace Fantazee.Spells
                        OverflowSpellData o => new OverflowSpellInstance(o),
                        ChainLightningSpellData c => new ChainLightningSpellInstance(c),
                        PushSpellData p => new PushSpellInstance(p),
+                       BiteSpellData b => new BiteSpellInstance(b),
                        _ => throw new ArgumentOutOfRangeException()
                    };
         }
@@ -40,6 +41,7 @@ namespace Fantazee.Spells
                            OverflowSpellData o => new OverflowSpellInstance(o),
                            ChainLightningSpellData c => new ChainLightningSpellInstance(c),
                            PushSpellData p => new PushSpellInstance(p),
+                           BiteSpellData b => new BiteSpellInstance(b),
                            _ => throw new ArgumentOutOfRangeException()
                        };
             }
