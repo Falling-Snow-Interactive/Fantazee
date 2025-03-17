@@ -1,14 +1,18 @@
+using System;
 using Fantazee.Battle;
+using Fantazee.Battle.CallbackReceivers;
+using Fantazee.Battle.Characters.Player;
 using Fantazee.Battle.Score;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
+using Fantazee.Scores;
 using UnityEngine;
 
 namespace Fantazee.Relics.Instance
 {
-    public class NoVacancyRelicInstance : RelicInstance
+    public class NoVacancyRelicInstance : RelicInstance, IScoreCallbackReceiver
     {
-        private NoVacancyRelicData noVacancyData;
+        private readonly NoVacancyRelicData noVacancyData;
         
         public NoVacancyRelicInstance(NoVacancyRelicData data, CharacterInstance character) : base(data, character)
         {
@@ -17,21 +21,24 @@ namespace Fantazee.Relics.Instance
 
         public override void Enable()
         {
-            BattleController.Scored += OnScored;
+            BattleController.Instance.Player.RegisterScoreReceiver(this);
         }
 
         public override void Disable()
         {
-            BattleController.Scored -= OnScored;
+            BattleController.Instance.Player.UnregisterScoreReceiver(this);
         }
 
-        private void OnScored(BattleScore battleScore)
+        public void OnScore(ref ScoreResults scoreResults, Action onComplete)
         {
-            if (battleScore.Score.Data.Type == noVacancyData.Score) 
+            if (scoreResults.Score.Data.Type == noVacancyData.Score) 
             {
-                Debug.Log($"No Vacancy: Activated. {BattleController.Instance.RemainingRolls} -> {BattleController.Instance.RemainingRolls + 1}");
-                BattleController.Instance.RemainingRolls++;
+                Debug.Log($"No Vacancy: Activated. Rolls: {BattleController.Instance.Player.RollsRemaining} " +
+                          $"-> {BattleController.Instance.Player.RollsRemaining + 1}");
+                BattleController.Instance.Player.RollsRemaining++;
             }
+            
+            onComplete?.Invoke();
         }
     }
 }

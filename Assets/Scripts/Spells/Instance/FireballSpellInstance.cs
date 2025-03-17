@@ -1,6 +1,7 @@
 using System;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
+using Fantazee.Scores;
 using Fantazee.Spells.Data;
 using UnityEngine;
 
@@ -16,9 +17,9 @@ namespace Fantazee.Spells.Instance
             this.data = data;
         }
 
-        protected override void Apply(Damage damage, Action onComplete)
+        protected override void Apply(ScoreResults scoreResults, Action onComplete)
         {
-            int d = Mathf.Max(Mathf.RoundToInt(damage.Value * data.DamageMod));
+            int d = Mathf.Max(Mathf.RoundToInt(scoreResults.Value * data.DamageMod));
             foreach (BattleEnemy enemy in BattleController.Instance.Enemies)
             {
                 enemy.Damage(d);

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
+using Fantazee.Scores;
 using Fantazee.Spells.Data;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -18,12 +19,12 @@ namespace Fantazee.Spells.Instance
             overflowData = data;
         }
 
-        protected override void Apply(Damage damage, Action onComplete)
+        protected override void Apply(ScoreResults scoreResults, Action onComplete)
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
-                int total = damage.Value;
-                int d = enemy.Damage(damage.Value);
+                int total = scoreResults.Value;
+                int d = enemy.Damage(scoreResults.Value);
                 int rem = total - d;
 
                 BattleController.Instance.StartCoroutine(OverflowSequence(rem, onComplete));

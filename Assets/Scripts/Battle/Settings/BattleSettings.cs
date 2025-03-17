@@ -1,3 +1,4 @@
+using DG.Tweening;
 using FMODUnity;
 using UnityEditor;
 using UnityEngine;
@@ -17,6 +18,18 @@ namespace Fantazee.Battle.Settings
         [SerializeField]
         private EventReference scoreSfx;
         public EventReference ScoreSfx => scoreSfx;
+        
+        [Header("Animations")]
+        
+        [Header("Score Sequence")]
+        
+        [SerializeField]
+        private float scoreTime = 0.2f;
+        public float ScoreTime => scoreTime;
+        
+        [SerializeField]
+        private Ease scoreEase = Ease.Linear;
+        public Ease ScoreEase => scoreEase;
         
         #region Settings
         

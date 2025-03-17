@@ -16,10 +16,10 @@ namespace Fantazee.Battle.Boss
                 MusicController.Instance.PlayMusic(data.BossMusic);
             }
         }
-        
-        protected override void BattleWin()
+
+        public override void PlayerWin()
         {
-            base.BattleWin();
+            base.PlayerWin();
 
             GameController.Instance.GameInstance.Environment.SetReadyToAdvance();
         }

@@ -86,5 +86,10 @@ namespace Fantazee.Instance
                 RemoveRelic(relics[0]);
             }
         }
+
+        public override string ToString()
+        {
+            return data.ToString();
+        }
     }
 }

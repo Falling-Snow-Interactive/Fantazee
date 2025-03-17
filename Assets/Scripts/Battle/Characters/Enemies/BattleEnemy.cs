@@ -38,10 +38,15 @@ namespace Fantazee.Battle.Characters.Enemies
             
             Debug.Log($"Enemy: {name} initialized");
         }
+        
+        protected override void CharacterStartTurn()
+        {
+            Attack(EndTurn);
+        }
 
         #region Attack
         
-        public void Attack(Action onComplete)
+        private void Attack(Action onComplete)
         {
             StartCoroutine(AttackSequence(onComplete));
         }

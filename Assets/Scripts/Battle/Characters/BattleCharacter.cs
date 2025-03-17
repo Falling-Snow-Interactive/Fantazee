@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Fantazee.Battle.CallbackReceivers;
 using Fantazee.Battle.DamageNumbers;
 using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
@@ -11,12 +14,15 @@ namespace Fantazee.Battle.Characters
 {
     public abstract class BattleCharacter : MonoBehaviour, IDamageable, IHealable
     {
-        public static event Action<BattleCharacter, int> EnemyDamaged;
+        public static event Action<BattleCharacter, int> CharacterDamaged;
         
         public event Action Damaged;
 
         public static event Action<BattleCharacter> Spawned;
         public static event Action<BattleCharacter> Despawned;
+        
+        // Callbacks
+        private Action onTurnCompleteCallback;
         
         // Visuals
         private GameplayCharacterVisuals visuals;
@@ -41,6 +47,10 @@ namespace Fantazee.Battle.Characters
         protected abstract EventReference DeathSfxRef { get; }
         protected abstract EventReference EnterSfxRef { get; }
         
+        // Callback registers
+        private List<ITurnStartCallbackReceiver> turnStartReceivers = new();
+        private List<ITurnEndCallbackReceiver> turnEndReceivers = new();
+        
         private void OnDestroy()
         {
             Despawned?.Invoke(this);
@@ -61,11 +71,22 @@ namespace Fantazee.Battle.Characters
             visuals = Instantiate(prefab, transform);
         }
 
-        public void StartTurn()
+        public virtual void StartTurn(Action onTurnComplete)
         {
+            onTurnCompleteCallback = onTurnComplete;
+            
             visuals.Idle();
             Shield.Clear();
+
+            StartCoroutine(CallTurnStartReceivers(CharacterStartTurn));
         }
+
+        public virtual void EndTurn()
+        {
+            onTurnCompleteCallback?.Invoke();
+        }
+
+        protected abstract void CharacterStartTurn();
         
         public int Damage(int damage)
         {
@@ -101,7 +122,7 @@ namespace Fantazee.Battle.Characters
                             }
                         });
 
-            EnemyDamaged?.Invoke(this, total);
+            CharacterDamaged?.Invoke(this, total);
             return total;
         }
         
@@ -111,5 +132,66 @@ namespace Fantazee.Battle.Characters
             damageNumbers.AddHealing(healed);
             visuals.Action();
         }
+        
+        // Callback Registers
+        #region Callback Registers
+
+        public void RegisterTurnStartReceiver(ITurnStartCallbackReceiver callbackReceiver)
+        {
+            turnStartReceivers.Add(callbackReceiver);
+        }
+
+        public void UnregisterTurnStartReceiver(ITurnStartCallbackReceiver callbackReceiver)
+        {
+            turnStartReceivers.Remove(callbackReceiver);
+        }
+
+        public IEnumerator CallTurnStartReceivers(Action onComplete)
+        {
+            foreach (ITurnStartCallbackReceiver receiver in turnStartReceivers)
+            {
+                if (receiver == null)
+                {
+                    continue;
+                }
+
+                bool ready = false;
+                receiver.OnTurnStart(() => ready = true);
+                yield return new WaitUntil(() => ready);
+            }
+
+            yield return new WaitForSeconds(0.5f);
+            onComplete?.Invoke();
+        }
+
+        public void RegisterTurnEndReceiver(ITurnEndCallbackReceiver callbackReceiver)
+        {
+            turnEndReceivers.Add(callbackReceiver);
+        }
+
+        public void UnregisterTurnEndReceiver(ITurnEndCallbackReceiver callbackReceiver)
+        {
+            turnEndReceivers.Remove(callbackReceiver);
+        }
+
+        public IEnumerator CallTurnEndReceivers(Action onComplete)
+        {
+            foreach (ITurnEndCallbackReceiver receiver in turnEndReceivers)
+            {
+                if (receiver == null)
+                {
+                    continue;
+                }
+
+                bool ready = false;
+                receiver.OnTurnEnd(() => ready = true);
+                yield return new WaitUntil(() => ready);
+            }
+
+            yield return new WaitForSeconds(0.5f);
+            onComplete?.Invoke();
+        }
+        
+        #endregion
     }
 }

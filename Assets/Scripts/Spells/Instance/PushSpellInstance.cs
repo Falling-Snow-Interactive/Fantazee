@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
+using Fantazee.Scores;
 using Fantazee.Spells.Data;
 using UnityEngine;
 
@@ -17,11 +18,11 @@ namespace Fantazee.Spells.Instance
             pushData = data;
         }
 
-        protected override void Apply(Damage damage, Action onComplete)
+        protected override void Apply(ScoreResults scoreResults, Action onComplete)
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
-                int d = Mathf.RoundToInt(damage.Value * pushData.PushDamageMod);
+                int d = Mathf.RoundToInt(scoreResults.Value * pushData.PushDamageMod);
                 enemy.Damage(d);
                 if (enemy.Health.IsAlive)
                 {

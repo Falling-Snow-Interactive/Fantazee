@@ -1,12 +1,17 @@
+using System;
 using Fantazee.Battle;
-using Fantazee.Battle.Score;
+using Fantazee.Battle.CallbackReceivers;
 using Fantazee.Instance;
 using Fantazee.Relics.Data;
+using Fantazee.Scores;
 using UnityEngine;
 
 namespace Fantazee.Relics.Instance
 {
-    public class MulliganRelicInstance : RelicInstance
+    public class MulliganRelicInstance : RelicInstance, 
+                                         ITurnStartCallbackReceiver, 
+                                         IRollStartedCallbackReceiver, 
+                                         IScoreCallbackReceiver
     {
         private bool startRoll;
         private bool firstRoll;
@@ -21,31 +26,38 @@ namespace Fantazee.Relics.Instance
 
         public override void Enable()
         {
-            BattleController.PlayerTurnStart += OnPlayerStart;
-            BattleController.RollStarted += OnRollStarted;
-            BattleController.Scored += OnScored;
+            BattleController.BattleStarted += OnBattleStart;
+            BattleController.BattleEnded += OnBattleEnd;
         }
 
         public override void Disable()
         {
-            BattleController.PlayerTurnStart -= OnPlayerStart;
-            BattleController.RollStarted -= OnRollStarted;
-            BattleController.Scored -= OnScored;
+            BattleController.BattleEnded -= OnBattleEnd;
+            BattleController.BattleStarted -= OnBattleStart;
         }
 
-        private void OnPlayerStart()
+        private void OnBattleStart()
+        {
+            BattleController.Instance.Player.RegisterTurnStartReceiver(this);
+            BattleController.Instance.Player.RegisterRollStartedReceiver(this);
+            BattleController.Instance.Player.RegisterScoreReceiver(this);
+        }
+
+        private void OnBattleEnd()
+        {
+            BattleController.Instance.Player.UnregisterTurnStartReceiver(this);
+            BattleController.Instance.Player.UnregisterRollStartedReceiver(this);
+            BattleController.Instance.Player.UnregisterScoreReceiver(this);
+        }
+        
+        public void OnTurnStart(Action onComplete)
         {
             startRoll = true;
             firstRoll = true;
             hasScored = false;
         }
 
-        private void OnScored(BattleScore _)
-        {
-            hasScored = true;
-        }
-
-        private void OnRollStarted()
+        public void OnRollStarted(Action onComplete)
         {
             if (hasScored)
             {
@@ -64,12 +76,18 @@ namespace Fantazee.Relics.Instance
             }
             
             firstRoll = false;
-            if (BattleController.Instance.LockedDice.Count == 0)
+            if (BattleController.Instance.Player.LockedDice.Count == 0)
             {
                 Debug.Log($"Mulligan: Activated");
-                BattleController.Instance.RemainingRolls++;
+                BattleController.Instance.Player.RollsRemaining++;
                 Activate();
             }
+        }
+
+        public void OnScore(ref ScoreResults scoreResults, Action onComplete)
+        {
+            hasScored = true;
+            onComplete?.Invoke();
         }
     }
 }

@@ -1,46 +1,66 @@
-using Fantazee.Battle.Score;
+using System;
+using Fantazee.Battle.CallbackReceivers;
+using Fantazee.Battle.Characters;
+using Fantazee.Battle.Characters.Player;
+using Fantazee.Scores;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
 {
-    public class EndTurnButton : MonoBehaviour
+    public class EndTurnButton : MonoBehaviour, IScoreCallbackReceiver, ITurnEndCallbackReceiver
     {
-        [SerializeField] 
+        private BattlePlayer player;
+
+        [Header("References")]
+
+        [SerializeField]
         private Button button;
-        
+
         private void OnEnable()
         {
-            BattleController.PlayerTurnStart += OnPlayerTurnStart;
-            BattleController.Scored += OnScored;
-            BattleController.PlayerTurnEnd += OnPlayerTurnEnd;
+            BattlePlayer.Spawned += OnCharacterSpawned;
+
+            if (player)
+            {
+                player.RegisterScoreReceiver(this);
+            }
         }
 
         private void OnDisable()
         {
-            BattleController.PlayerTurnStart -= OnPlayerTurnStart;
-            BattleController.Scored -= OnScored;
-            BattleController.PlayerTurnEnd -= OnPlayerTurnEnd;
+            BattlePlayer.Spawned -= OnCharacterSpawned;
+
+            if (player)
+            {
+                player.UnregisterScoreReceiver(this);
+            }
+        }
+
+        private void OnCharacterSpawned(BattleCharacter character)
+        {
+            if (character is BattlePlayer player)
+            {
+                this.player = player;
+                
+                player.RegisterScoreReceiver(this);
+            }
         }
 
         public void OnClick()
         {
-            BattleController.Instance.TryEndPlayerTurn();
+            BattleController.Instance.Player.EndTurn();
         }
-        
-        private void OnPlayerTurnStart()
-        {
-            button.interactable = false;
-        }
-        
-        private void OnPlayerTurnEnd()
-        {
-            button.interactable = false;
-        }
-        
-        private void OnScored(BattleScore _)
+
+        public void OnScore(ref ScoreResults scoreResults, Action onComplete)
         {
             button.interactable = true;
+            onComplete?.Invoke();
+        }
+
+        public void OnTurnEnd(Action onComplete)
+        {
+            button.interactable = false;
         }
     }
 }

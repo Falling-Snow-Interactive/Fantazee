@@ -6,36 +6,22 @@ using Fantazee.Audio;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Battle.Characters.Player;
-using Fantazee.Battle.Score;
-using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui;
-using Fantazee.Dice;
-using Fantazee.Dice.Ui;
 using Fantazee.Enemies;
 using Fantazee.Environments;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
-using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui.Buttons;
 using Fsi.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using RangeInt = Fsi.Gameplay.RangeInt;
-#pragma warning disable CS0067 // Event is never used
 
 namespace Fantazee.Battle
 {
     public class BattleController : MbSingleton<BattleController>
     {
-        public static event Action PlayerTurnStart;
-        public static event Action PlayerTurnEnd;
-        
-        public static event Action RollStarted;
-        public static event Action RollEnded;
-        public static event Action<Die> DieRolled;
-        
-        public static event Action<int> DiceScored;
-        public static event Action<BattleScore> Scored;
+        public static event Action BattleStarted;
+        public static event Action BattleEnded;
         
         // Common instance references
         
@@ -57,20 +43,6 @@ namespace Fantazee.Battle
         }
 
         [Header("Roll")]
-
-        [SerializeField]
-        private int remainingRolls = 3;
-        public int RemainingRolls
-        {
-            get => remainingRolls;
-            set => remainingRolls = value;
-        }
-
-        private readonly List<Die> lockedDice = new();
-        public List<Die> LockedDice => lockedDice;
-
-        private bool hasScoredRoll = false;
-        private bool isRolling = false;
 
         private BattlePlayer player;
         public BattlePlayer Player => player;
@@ -103,20 +75,6 @@ namespace Fantazee.Battle
         [SerializeReference]
         private BattleRewards rewards;
         
-        // Scores
-        private readonly List<BattleScore> battleScores = new();
-        private BattleScore fantazeeBattleScore;
-        
-        [Header("Scoring")]
-
-        [Header("Animation")]
-
-        [SerializeField]
-        private float scoreTime = 0.2f;
-        
-        [SerializeField]
-        private Ease scoreEase = Ease.Linear;
-        
         private void OnEnable()
         {
             BattleCharacter.Despawned += OnCharacterDespawned;
@@ -137,6 +95,7 @@ namespace Fantazee.Battle
 
         public void BattleStart()
         {
+            BattleStarted?.Invoke();
             StartIntroduction(OnIntroductionFinished);
         }
         
@@ -145,23 +104,11 @@ namespace Fantazee.Battle
         private void SetupBattle()
         {
             Debug.Log($"Battle - Setup");
-
-            List<ScoreInstance> scoreList = GameInstance.Current.Character.Scoresheet.Scores;
-            foreach (ScoreInstance score in scoreList)
-            {
-                BattleScore bs = new(score);
-                battleScores.Add(bs);
-            }
-            
-            fantazeeBattleScore = new BattleScore(GameInstance.Current.Character.Scoresheet.Fantazee);
-            BattleUi.Instance.Scoresheet.Initialize(battleScores, fantazeeBattleScore, SelectScoreButton);
             
             player = Instantiate(battlePlayerPrefab, playerContainer);
             Player.Initialize(GameInstance.Current.Character);
-            remainingRolls = GameInstance.Current.Character.Rolls;
             
             SetupRelics();
-            SetupDice();
             SetupEnemies();
             
             // Hide enemies
@@ -186,23 +133,6 @@ namespace Fantazee.Battle
         {
             Debug.Log("Battle: Setup Relics");
             BattleUi.Instance.RelicUi.Initialize(GameInstance.Current.Character.Relics);
-        }
-
-        private void SetupDice()
-        {
-            Debug.Log($"Battle - Setup Dice");
-            for (int i = 0; i < GameController.Instance.GameInstance.Character.Dice.Count; i++)
-            {
-                Die die = GameController.Instance.GameInstance.Character.Dice[i];
-                die.Roll();
-                if (BattleUi.Instance.DiceControl.Dice.Count > i)
-                {
-                    DieUi dieUi = BattleUi.Instance.DiceControl.Dice[i];
-                    dieUi.Initialize(die);
-
-                    dieUi.Hide(null, 0, true);
-                }
-            }
         }
 
         private void SetupEnemies()
@@ -258,83 +188,6 @@ namespace Fantazee.Battle
         #endregion
         
         #region Score/Damage
-        
-        private void SelectScoreButton(BattleScoreButton battleScoreButton)
-        {
-            if (hasScoredRoll || isRolling)
-            {
-                return;
-            }
-            
-            hasScoredRoll = true;
-            
-            
-            if (battleScoreButton.BattleScore.CanScore())
-            {
-                StartCoroutine(StartScoreSequence(battleScoreButton, BattleUi.Instance.DiceControl.Dice));
-            }
-        }
-
-        private IEnumerator StartScoreSequence(BattleScoreButton button, List<DieUi> diceUi)
-        {
-            foreach (DieUi d in diceUi)
-            {
-                d.ResetDice();
-                d.Squish();
-                button.BattleScore.AddDie(d.Die);
-                
-                yield return new WaitForSeconds(scoreTime);
-            }
-            
-            yield return new WaitForSeconds(0.5f);
-            
-            // Calculate damage
-            
-            int s = button.FinalizeScore();
-            Damage damage = new(s);
-            
-            if (damage.Value > 0)
-            {
-                yield return new WaitForSeconds(0.5f);
-                button.BattleScore.Cast(damage, () =>
-                                         {
-                                             Scored?.Invoke(button.BattleScore);
-                                             OnFinishedScoring();
-                                         });
-            }
-            else
-            {
-                button.FinalizeScore();
-                Scored?.Invoke(button.BattleScore);
-                OnFinishedScoring();
-            }
-        }
-
-        private void OnFinishedScoring()
-        {
-            lockedDice.Clear();
-            if (remainingRolls > 0)
-            {
-                BattleUi.Instance.DiceControl.ResetDice();
-            }
-            else
-            {
-                BattleUi.Instance.DiceControl.HideDice();
-                if (CheckEnemiesAlive())
-                {
-                    TryEndPlayerTurn();
-                    return;
-                }
-            }
-
-            if (CheckEnemiesAlive())
-            {
-                TryRoll();
-                return;
-            }
-
-            BattleWin();
-        }
 
         public bool CheckEnemiesAlive()
         {
@@ -353,50 +206,7 @@ namespace Fantazee.Battle
         {
             if (!CheckEnemiesAlive())
             {
-                BattleWin();
-            }
-        }
-        
-        #endregion
-        
-        #region Dice Control
-
-        public void TryRoll()
-        {
-            if (remainingRolls > 0 && !isRolling)
-            {
-                hasScoredRoll = false;
-                remainingRolls--;
-                foreach (Die d in GameController.Instance.GameInstance.Character.Dice)
-                {
-                    if(!lockedDice.Contains(d))
-                    {
-                        d.Roll();
-                    }
-                }
-
-                isRolling = true;
-                BattleUi.Instance.DiceControl.Roll(d =>
-                                                     {
-                                                         DieRolled?.Invoke(d);
-
-                                                         bool rolling = false;
-                                                         foreach (DieUi du in BattleUi.Instance.DiceControl.Dice)
-                                                         {
-                                                             if (du.rolling)
-                                                             {
-                                                                 rolling = true;
-                                                                 break;
-                                                             }
-                                                         }
-
-                                                         if (!rolling)
-                                                         {
-                                                             isRolling = false;
-                                                             RollEnded?.Invoke();
-                                                         }
-                                                     });
-                RollStarted?.Invoke();
+                PlayerWin();
             }
         }
         
@@ -420,42 +230,11 @@ namespace Fantazee.Battle
         
         private void StartPlayerTurn()
         {
-            PlayerTurnStart?.Invoke();
-            remainingRolls = GameInstance.Current.Character.Rolls;
-            lockedDice.Clear();
-            
-            bool canPlay = false;
-            foreach (BattleScore battleScore in battleScores)
-            {
-                if (battleScore.CanScore())
-                {
-                    canPlay = true;
-                    break;
-                }
-            }
-
-            if (canPlay || fantazeeBattleScore.CanScore())
-            {
-                Player.StartTurn();
-                BattleUi.Instance.DiceControl.ShowDice(TryRoll);
-            }
-            else
-            {
-                Debug.Log($"Battle: Battle scores filled. Clearing.");
-                foreach (BattleScore battleScore in battleScores)
-                {
-                    battleScore.ResetScore();
-                }
-                fantazeeBattleScore.ResetScore();
-                TryEndPlayerTurn();
-            }
+            player.StartTurn(OnPlayerTurnEnd);
         }
         
-        public void TryEndPlayerTurn()
+        private void OnPlayerTurnEnd()
         {
-            BattleUi.Instance.DiceControl.HideDice();
-            PlayerTurnEnd?.Invoke();
-            Debug.Log("Battle: Player turn end");
             StartEnemyTurn();
         }
         
@@ -478,27 +257,37 @@ namespace Fantazee.Battle
 
         private void StartEnemyTurn()
         {
-            StartCoroutine(EnemyTurnSequence());
+            Queue<BattleEnemy> enemyQueue = new(enemies);
+            DoNextEnemyTurn(enemyQueue);
         }
 
-        private IEnumerator EnemyTurnSequence()
+        private void DoNextEnemyTurn(Queue<BattleEnemy> queue)
         {
-            Queue<BattleEnemy> enemyQueue = new(enemies);
-            yield return new WaitForSeconds(0.5f);
-            while (enemyQueue.Count > 0)
+            if (queue.Count > 0)
             {
-                BattleEnemy curr = enemyQueue.Dequeue();
-                if (curr.Health.IsDead)
-                {
-                    continue;
-                }
-                bool attacking = true;
-                curr.Attack(() => attacking = false);
-                yield return new WaitUntil(() => !attacking);
-                yield return new WaitForSeconds(0.5f);
+                BattleEnemy enemy = queue.Dequeue();
+                enemy.StartTurn(() => OnEnemyTurnEnd(queue));
             }
-            
-            Debug.Log("Finished enemy turns");
+            else
+            {
+                Debug.LogError("Battle: Shouldn't be doing an enemy turn on an empty queue.", gameObject);
+            }
+        }
+
+        private void OnEnemyTurnEnd(Queue<BattleEnemy> queue)
+        {
+            if (queue.Count > 0)
+            {
+                DoNextEnemyTurn(queue);
+            }
+            else
+            {
+                EnemyTurnsFinished();
+            }
+        }
+
+        private void EnemyTurnsFinished()
+        {
             StartPlayerTurn();
         }
 
@@ -520,8 +309,8 @@ namespace Fantazee.Battle
         #endregion
         
         #region Battle End
-        
-        protected virtual void BattleWin()
+
+        public virtual void PlayerWin()
         {
             DOTween.Complete(Player.transform);
             Player.transform.DOLocalMoveX(9, 0.5f).SetEase(Ease.InOutCubic)
@@ -553,6 +342,7 @@ namespace Fantazee.Battle
                   .OnComplete(() =>
                               {
                                   rewards.Grant();
+                                  BattleEnded?.Invoke();
                                   GameController.Instance.FinishedBattle(true);
                               });
         }

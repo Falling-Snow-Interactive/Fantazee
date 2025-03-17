@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Fantazee.Battle.Characters.Player;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
 using Fantazee.Items.Dice;
@@ -13,14 +14,28 @@ namespace Fantazee.Battle.Ui
         private List<DieUi> dice = new();
         public List<DieUi> Dice => dice;
 
-        public void Roll(Action<Die> onRollComplete)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="onDieRollComplete">Called for each die.</param>
+        /// <param name="onDiceRollsComplete">Called when all dice have finished rolling.</param>
+        public void Roll(BattlePlayer player, Action<Die> onDieRollComplete, Action onDiceRollsComplete)
         {
             int i = 0;
             foreach (DieUi d in dice)
             {
-                if (!BattleController.Instance.LockedDice.Contains(d.Die))
+                if (!player.LockedDice.Contains(d.Die))
                 {
-                    d.Roll(i * 0.2f, onRollComplete);
+                    d.Roll(i * 0.2f, die =>
+                                     {
+                                         i--;
+                                         onDieRollComplete?.Invoke(die);
+                                         if (i == 0)
+                                         {
+                                             onDiceRollsComplete?.Invoke();
+                                         }
+                                     });
                     i++;
                 }
             }
