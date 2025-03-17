@@ -46,26 +46,18 @@ namespace Fantazee.Scores.Instance
             // 6, 5, 3, 2, 1
             foreach (int value in values)
             {
-                if (prev < 0)
-                {
-                    prev = value;
-                    score = prev;
-                    run = 1;
-                    continue;
-                }
-
                 if (value == prev - 1)
                 {
-                    prev = value;
                     score += prev;
                     run++;
                 }
                 else
                 {
-                    prev = value;
-                    score = 0;
-                    run = 0;
+                    score = value;
+                    run = 1;
                 }
+                
+                prev = value;
                 
                 if (run >= runData.Run)
                 {

@@ -2,6 +2,7 @@ using System;
 using Fantazee.Currencies;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Encounters
 {
@@ -17,11 +18,11 @@ namespace Fantazee.Encounters
         public Wallet Wallet => wallet;
 
         [SerializeField]
-        private bool relic;
-        public bool Relic => relic;
+        private bool randomRelic;
+        public bool RandomRelic => randomRelic;
 
         [SerializeField]
-        private bool spell;
-        public bool Spell => spell;
+        private bool randomSpell;
+        public bool RandomSpell => randomSpell;
     }
 }

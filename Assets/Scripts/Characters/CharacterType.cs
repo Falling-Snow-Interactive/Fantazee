@@ -2,11 +2,12 @@ namespace Fantazee.Characters
 {
     public enum CharacterType
     {
-        Character_00 = 0,
-        Character_01 = 1,
-        Character_02 = 2,
-        Character_03 = 3,
-        Character_04 = 4,
-        Character_05 = 5,
+        character_default = -1,
+        character_00 = 0,
+        character_01 = 1,
+        character_02 = 2,
+        character_03 = 3,
+        character_04 = 4,
+        character_05 = 5,
     }
 }
