@@ -209,6 +209,12 @@ namespace Fantazee.Encounters
             {
                 GameInstance.Current.Character.Wallet.Remove(currency);
             }
+
+            if (response.Cost.RandomRelic)
+            {
+                RelicInstance relic = GameInstance.Current.Character.Relics[Random.Range(0, GameInstance.Current.Character.Relics.Count)];
+                GameInstance.Current.Character.RemoveRelic(relic);
+            }
             
             // Rewards
             if (response.Rewards.Health.max > 0)
@@ -278,7 +284,8 @@ namespace Fantazee.Encounters
                 return false;
             }
 
-            return true;
+            return !response.Cost.RandomRelic
+                   || GameInstance.Current.Character.Relics.Count != 0;
         }
 
         public void OnContinue()
