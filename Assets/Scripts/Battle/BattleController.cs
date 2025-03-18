@@ -257,7 +257,15 @@ namespace Fantazee.Battle
 
         private void StartEnemyTurn()
         {
-            Queue<BattleEnemy> enemyQueue = new(enemies);
+            Queue<BattleEnemy> enemyQueue = new();
+            foreach (BattleEnemy e in enemies)
+            {
+                if (e.Health.IsAlive)
+                {
+                    enemyQueue.Enqueue(e);
+                }
+            }
+            
             DoNextEnemyTurn(enemyQueue);
         }
 

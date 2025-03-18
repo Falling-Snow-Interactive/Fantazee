@@ -13,43 +13,30 @@ MonoBehaviour:
   m_Name: Shop_00_Spells
   m_EditorClassIdentifier: 
   spells:
-  - name: 'Spell_00_Dagger | Gold: 7 - 12'
-    weight: 12
-    value:
-      cost:
-        name: 'Gold: 7'
-        type: 1
-        amount: 7
-      item: {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
-  - name: 'Spell_01_Pierce | Gold: 12 - 10'
-    weight: 10
-    value:
-      cost:
-        name: 'Gold: 12'
-        type: 1
-        amount: 12
-      item: {fileID: 11400000, guid: d1acf298aa81143b5b00bd02f264e460, type: 2}
-  - name: 'Spell_02_Shield | Gold: 8 - 10'
-    weight: 10
-    value:
-      cost:
-        name: 'Gold: 8'
-        type: 1
-        amount: 8
-      item: {fileID: 11400000, guid: 0edaa33dc3a944031b001867d5e07fe1, type: 2}
-  - name: 'Spell_03_Heal | Gold: 17 - 8'
-    weight: 8
-    value:
-      cost:
-        name: 'Gold: 17'
-        type: 1
-        amount: 17
-      item: {fileID: 11400000, guid: 21cbbad1555434d85bc28a3e1c007d34, type: 2}
-  - name: 'Spell_04_Fireball | Gold: 19 - 5'
+  - name: Spell_00_Dagger - 5
     weight: 5
-    value:
-      cost:
-        name: 'Gold: 19'
-        type: 1
-        amount: 19
-      item: {fileID: 11400000, guid: ea956bf83210344669cc9bf913e8444e, type: 2}
+    value: {fileID: 11400000, guid: 3a37c841cddab4cde94bec5b7ceabad9, type: 2}
+  - name: Spell_01_Pierce - 5
+    weight: 5
+    value: {fileID: 11400000, guid: d1acf298aa81143b5b00bd02f264e460, type: 2}
+  - name: Spell_02_Shield - 5
+    weight: 5
+    value: {fileID: 11400000, guid: 0edaa33dc3a944031b001867d5e07fe1, type: 2}
+  - name: Spell_03_Heal - 5
+    weight: 5
+    value: {fileID: 11400000, guid: 21cbbad1555434d85bc28a3e1c007d34, type: 2}
+  - name: Spell_04_Fireball - 5
+    weight: 5
+    value: {fileID: 11400000, guid: ea956bf83210344669cc9bf913e8444e, type: 2}
+  - name: Spell_05_Overflow - 5
+    weight: 5
+    value: {fileID: 11400000, guid: e590e2e25f3574bda92fb68cfbfcec2c, type: 2}
+  - name: Spell_06_ChainLightning - 5
+    weight: 5
+    value: {fileID: 11400000, guid: 88f7913510bcc44618337193b6e1f567, type: 2}
+  - name: Spell_07_Push - 5
+    weight: 5
+    value: {fileID: 11400000, guid: ac33825249b8641369971ee722d7c258, type: 2}
+  - name: Spell_08_Bite_Data - 5
+    weight: 5
+    value: {fileID: 11400000, guid: 44dcc371c9a00467d9da43c549ba768a, type: 2}

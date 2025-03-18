@@ -215,7 +215,6 @@ namespace Fantazee.Battle.Characters
                 yield return new WaitUntil(() => ready);
             }
 
-            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
         #endregion
@@ -245,7 +244,6 @@ namespace Fantazee.Battle.Characters
                 yield return new WaitUntil(() => ready);
             }
 
-            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
         
@@ -279,6 +277,7 @@ namespace Fantazee.Battle.Characters
         }
         
         #endregion
+        
         #endregion
     }
 }

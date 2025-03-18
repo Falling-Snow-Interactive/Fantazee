@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using Fantazee.Instance;
 using Fantazee.Relics;
+using Fantazee.Relics.Data;
 using Fantazee.Relics.Instance;
 using Fantazee.Scores;
 using Fantazee.Scores.Instance;
-using Fantazee.Scores.Ui.Buttons;
-using Fantazee.Shop.Items;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
-using Fantazee.Spells.Ui;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -67,9 +65,9 @@ namespace Fantazee.Shop.Ui.Screens
             this.onRelicSelected = onRelicSelected;
             this.onScoreSelected = onScoreSelected;
             
-            foreach (SpellShopItem spell in shopInventory.Spells)
+            foreach (SpellData spell in shopInventory.Spells)
             {
-                SpellInstance s = SpellFactory.CreateInstance(spell.Item);
+                SpellInstance s = SpellFactory.CreateInstance(spell);
                 ShopSpellButton spellButton = Instantiate(shopSpellButtonPrefab, spellContent);
                 spellButton.Initialize(s, OnSpellSelected);
 
@@ -78,15 +76,15 @@ namespace Fantazee.Shop.Ui.Screens
 
             foreach (ScoreShopItem sd in shopInventory.Scores)
             {
-                ScoreInstance score = ScoreFactory.CreateInstance(sd.Item);
+                ScoreInstance score = ScoreFactory.CreateInstance(sd.Data, sd.Spells);
                 ShopScoreButton scorePurchase = Instantiate(shopScoreButtonPrefab, scoreContent);
                 scorePurchase.Initialize(score, OnScoreSelected);
                 scorePurchaseEntries.Add(scorePurchase);
             }
 
-            foreach (RelicShopItem relic in shopInventory.Relics)
+            foreach (RelicData relic in shopInventory.Relics)
             {
-                RelicInstance r = RelicFactory.Create(relic.Item, GameInstance.Current.Character);
+                RelicInstance r = RelicFactory.Create(relic, GameInstance.Current.Character);
                 RelicEntry relicEntry = Instantiate(relicEntryPrefab, relicContent);
                 relicEntry.Initialize(r, OnRelicSelected);
                 

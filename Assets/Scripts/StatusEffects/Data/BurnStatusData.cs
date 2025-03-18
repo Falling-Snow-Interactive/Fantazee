@@ -8,6 +8,8 @@ namespace Fantazee.StatusEffects.Data
     {
         public override StatusEffectType Type => StatusEffectType.status_00_burn;
         
+        [Header("Burn")]
+        
         [SerializeField]
         private GameObject burnEffectPrefab;
         public GameObject BurnEffectPrefab => burnEffectPrefab;

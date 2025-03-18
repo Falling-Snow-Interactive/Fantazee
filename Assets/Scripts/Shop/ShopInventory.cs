@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Fantazee.Instance;
-using Fantazee.Relics.Information;
+using Fantazee.Relics.Data;
 using Fantazee.Relics.Instance;
-using Fantazee.Scores;
-using Fantazee.Shop.Items;
+using Fantazee.Scores.Data;
 using Fantazee.Spells;
 using UnityEngine;
 
@@ -14,20 +12,20 @@ namespace Fantazee.Shop
     public class ShopInventory
     {
         [SerializeField]
-        private List<SpellShopItem> spells; 
-        public List<SpellShopItem> Spells => spells;
+        private List<SpellData> spells; 
+        public List<SpellData> Spells => spells;
         
         [SerializeField]
         private List<ScoreShopItem> scores;
         public List<ScoreShopItem> Scores => scores;
         
         [SerializeField]
-        private List<RelicShopItem> relics;
-        public List<RelicShopItem> Relics => relics;
+        private List<RelicData> relics;
+        public List<RelicData> Relics => relics;
 
-        public ShopInventory(List<SpellShopItem> spells, 
+        public ShopInventory(List<SpellData> spells, 
                              List<ScoreShopItem> scores, 
-                             List<RelicShopItem> relics)
+                             List<RelicData> relics)
         {
             this.spells = spells;
             this.scores = scores;
@@ -36,10 +34,10 @@ namespace Fantazee.Shop
 
         public void Remove(List<RelicInstance> relics)
         {
-            foreach (RelicShopItem r in new List<RelicShopItem>(this.relics))
+            foreach (RelicData r in new List<RelicData>(this.relics))
             foreach (RelicInstance ri in relics)
             {
-                if (r.Item.Type == ri.Data.Type)
+                if (r.Type == ri.Data.Type)
                 {
                     this.relics.Remove(r);
                 }
@@ -67,7 +65,7 @@ namespace Fantazee.Shop
         public override string ToString()
         {
             string s = "Spells:\n";
-            foreach (var spell in spells)
+            foreach (SpellData spell in spells)
             {
                 s += $"\t{spell}\n";
                 if (spell == spells[^1])
@@ -87,7 +85,7 @@ namespace Fantazee.Shop
             }
             
             s += "Relics:\n";
-            foreach (RelicShopItem relic in relics)
+            foreach (RelicData relic in relics)
             {
                 s += $"\t{relic}\n";
                 if (relic != relics[^1])
