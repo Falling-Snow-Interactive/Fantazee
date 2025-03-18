@@ -235,6 +235,12 @@ namespace Fantazee.Battle
         
         private void OnPlayerTurnEnd()
         {
+            StartCoroutine(TurnEndDelay());
+        }
+
+        private IEnumerator TurnEndDelay()
+        {
+            yield return new WaitForSeconds(0.5f);
             StartEnemyTurn();
         }
         

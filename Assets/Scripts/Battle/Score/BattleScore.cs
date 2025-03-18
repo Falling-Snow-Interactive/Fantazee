@@ -53,6 +53,7 @@ namespace Fantazee.Battle.Score
                 }
             }
 
+            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
 

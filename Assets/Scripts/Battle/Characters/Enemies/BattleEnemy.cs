@@ -57,6 +57,8 @@ namespace Fantazee.Battle.Characters.Enemies
             attackSfx.start();
             yield return new WaitForSeconds(0.2f);
             BattleController.Instance.Player.Damage(data.Damage.Random()); // TODO - <----
+            
+            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
         
