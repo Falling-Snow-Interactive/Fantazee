@@ -24,7 +24,7 @@ namespace Fantazee.Scores.Settings
         private Dictionary<ScoreType, ScoreData> BuildScoreDict()
         {
             Dictionary<ScoreType, ScoreData> dict = new();
-            foreach (var score in scores)
+            foreach (ScoreData score in scores)
             {
                 dict.Add(score.Type, score);
             }

@@ -6,7 +6,7 @@ namespace Fantazee.StatusEffects.Settings
 {
     public class StatusEffectSettings : ScriptableObject
     {
-        private const string ResourcePath = "Settings/ScoreSettings";
+        private const string ResourcePath = "Settings/StatusEffectsSettings";
         private const string FullPath = "Assets/Resources/" + ResourcePath + ".asset";
 
         private static StatusEffectSettings _settings;

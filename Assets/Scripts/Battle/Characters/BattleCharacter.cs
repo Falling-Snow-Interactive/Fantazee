@@ -7,7 +7,6 @@ using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
 using Fantazee.Battle.StatusEffects;
 using Fantazee.Battle.StatusEffects.Ui;
-using Fantazee.Scores;
 using Fantazee.StatusEffects;
 using Fantazee.StatusEffects.Settings;
 using FMODUnity;
