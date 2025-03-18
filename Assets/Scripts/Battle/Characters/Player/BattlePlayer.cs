@@ -70,7 +70,6 @@ namespace Fantazee.Battle.Characters.Player
         protected override EventReference EnterSfxRef => instance.Data.EnterSfx;
         
         // Callback receivers
-        private List<IScoreCallbackReceiver> scoreReceivers = new();
         private List<IRollStartedCallbackReceiver> rollStartedReceivers = new();
         private List<IRollFinishedCallbackReceiver> rollFinishedReceivers = new();
         private List<IDieRolledCallbackReceivers> dieRolledCallbackReceivers = new();
@@ -144,8 +143,7 @@ namespace Fantazee.Battle.Characters.Player
             }
             else
             {
-                Debug.LogError("Can't play. No scores. Need to implement the reset");
-                EndTurn();
+                ResetScores(EndTurn);
             }
         }
 
@@ -227,6 +225,16 @@ namespace Fantazee.Battle.Characters.Player
             }
         }
         
+        private void ResetScores(Action onComplete)
+        {
+            foreach (BattleScore battleScore in battleScores)
+            {
+                battleScore.ResetScore();
+            }
+            
+            onComplete?.Invoke();
+        }
+        
         #region Dice Control
 
         public void TryRoll()
@@ -263,32 +271,6 @@ namespace Fantazee.Battle.Characters.Player
         #endregion
         
         #region Callback receivers
-        
-        public void RegisterScoreReceiver(IScoreCallbackReceiver callbackReceiver)
-        {
-            scoreReceivers.Add(callbackReceiver);
-        }
-
-        public void UnregisterScoreReceiver(IScoreCallbackReceiver callbackReceiver)
-        {
-            scoreReceivers.Remove(callbackReceiver);
-        }
-
-        public IEnumerator CallScoreReceivers(ScoreResults scoreResults, Action<ScoreResults> onComplete)
-        {
-            foreach (IScoreCallbackReceiver receiver in scoreReceivers)
-            {
-                if (receiver == null)
-                {
-                    continue;
-                }
-
-                bool ready = false;
-                receiver.OnScore(ref scoreResults, () => ready = true);
-                yield return new WaitUntil(() => ready);
-            }
-            onComplete?.Invoke(scoreResults);
-        }
         
         public void RegisterRollStartedReceiver(IRollStartedCallbackReceiver callbackReceiver)
         {

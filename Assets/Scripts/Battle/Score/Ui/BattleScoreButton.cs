@@ -183,6 +183,9 @@ namespace Fantazee.Battle.Score.Ui
 
             scoreButton.Button.interactable = battleScore.Dice.Count == 0;
             scoreText.text = battleScore.Dice.Count == 0 ? "" : battleScore.Calculate().ToString();
+            
+            transform.DOShakeRotation(0.3f, Vector3.one * 4f, 10, 90f, true, ShakeRandomnessMode.Full)
+                     .SetEase(Ease.Linear);
         }
 
         private void OnSpellCastStart(SpellInstance spell)

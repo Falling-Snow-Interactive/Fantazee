@@ -7,6 +7,7 @@ using Fantazee.Battle.Shields;
 using Fantazee.Battle.Shields.Ui;
 using Fantazee.Battle.StatusEffects;
 using Fantazee.Battle.StatusEffects.Ui;
+using Fantazee.Scores;
 using Fantazee.StatusEffects;
 using Fantazee.StatusEffects.Settings;
 using FMODUnity;
@@ -62,6 +63,7 @@ namespace Fantazee.Battle.Characters
         private List<ITurnStartCallbackReceiver> turnStartReceivers = new();
         private List<ITurnEndCallbackReceiver> turnEndReceivers = new();
         private List<ITakingDamageCallback> takingDamageReceivers = new();
+        protected List<IScoreCallbackReceiver> scoreReceivers = new();
         
         private void OnDestroy()
         {
@@ -283,6 +285,40 @@ namespace Fantazee.Battle.Characters
             return d;
         }
         
+        #endregion
+
+        #region Score Callback Receivers
+
+        public void RegisterScoreReceiver(IScoreCallbackReceiver callbackReceiver)
+        {
+            scoreReceivers.Add(callbackReceiver);
+        }
+
+        public void UnregisterScoreReceiver(IScoreCallbackReceiver callbackReceiver)
+        {
+            scoreReceivers.Remove(callbackReceiver);
+        }
+
+        public IEnumerator CallScoreReceivers(ScoreResults scoreResults, Action<ScoreResults> onComplete)
+        {
+            foreach (IScoreCallbackReceiver receiver in scoreReceivers)
+            {
+                if (receiver == null)
+                {
+                    continue;
+                }
+
+                bool ready = false;
+                receiver.OnScore(scoreResults, sr =>
+                                               {
+                                                   scoreResults = sr;
+                                                   ready = true;
+                                               });
+                yield return new WaitUntil(() => ready);
+            }
+            onComplete?.Invoke(scoreResults);
+        }
+
         #endregion
         
         #endregion
