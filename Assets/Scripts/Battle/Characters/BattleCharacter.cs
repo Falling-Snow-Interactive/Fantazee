@@ -27,6 +27,7 @@ namespace Fantazee.Battle.Characters
         public static event Action<BattleCharacter> Despawned;
 
         public event Action TurnStarted;
+        public event Action TurnEnded;
         
         // Callbacks
         private Action onTurnCompleteCallback;
@@ -90,14 +91,20 @@ namespace Fantazee.Battle.Characters
             visuals.Idle();
             Shield.Clear();
 
-            StartCoroutine(CallTurnStartReceivers(CharacterStartTurn));
-            
-            TurnStarted?.Invoke();
+            StartCoroutine(CallTurnStartReceivers(() =>
+                                                  {
+                                                      TurnStarted?.Invoke();
+                                                      CharacterStartTurn();
+                                                  }));
         }
 
         public virtual void EndTurn()
         {
-            StartCoroutine(CallTurnEndReceivers(onTurnCompleteCallback));
+            StartCoroutine(CallTurnEndReceivers(() =>
+                                                {
+                                                    TurnEnded?.Invoke();
+                                                    onTurnCompleteCallback?.Invoke();
+                                                }));
         }
 
         protected abstract void CharacterStartTurn();
@@ -244,6 +251,7 @@ namespace Fantazee.Battle.Characters
                 yield return new WaitUntil(() => ready);
             }
 
+            yield return new WaitForEndOfFrame();
             onComplete?.Invoke();
         }
         

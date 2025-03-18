@@ -1,5 +1,3 @@
-using System;
-using Fantazee.Battle.CallbackReceivers;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using TMPro;
@@ -26,8 +24,7 @@ namespace Fantazee.Battle.Ui
 
             if (player)
             {
-                player.TurnStarted += OnTurnStarted;
-                player.RollStarted += OnRollStarted;
+                player.RollsChanged += OnRollsChanged;
             }
         }
 
@@ -37,8 +34,7 @@ namespace Fantazee.Battle.Ui
 
             if (player)
             {
-                player.TurnStarted -= OnTurnStarted;
-                player.RollStarted -= OnRollStarted;
+                player.RollsChanged += OnRollsChanged;
             }
         }
 
@@ -48,8 +44,7 @@ namespace Fantazee.Battle.Ui
             {
                 this.player = player;
 
-                player.TurnStarted += OnTurnStarted;
-                player.RollStarted += OnRollStarted;
+                player.RollsChanged += OnRollsChanged;
             }
         }
 
@@ -64,16 +59,9 @@ namespace Fantazee.Battle.Ui
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
         }
         
-        private void OnTurnStarted()
+        private void OnRollsChanged()
         {
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
-            button.interactable = true;
-        }
-
-        private void OnRollStarted()
-        {
-            rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
-            button.interactable = BattleController.Instance.Player.RollsRemaining > 0;
         }
     }
 }

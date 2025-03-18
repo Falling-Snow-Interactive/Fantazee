@@ -20,6 +20,9 @@ namespace Fantazee.Battle.Characters.Player
     public class BattlePlayer : BattleCharacter
     {
         public event Action RollStarted;
+        public event Action<ScoreResults> Scored;
+
+        public event Action RollsChanged;
         
         // Ui Shortcuts
         private DiceControlUi DiceControl => BattleUi.Instance.DiceControl;
@@ -45,7 +48,11 @@ namespace Fantazee.Battle.Characters.Player
         public int RollsRemaining
         {
             get => rollsRemaining;
-            set => rollsRemaining = value;
+            set
+            {
+                rollsRemaining = value;
+                RollsChanged?.Invoke();
+            }
         }
 
         [SerializeReference]
@@ -130,7 +137,7 @@ namespace Fantazee.Battle.Characters.Player
 
             if (canPlay)
             {
-                rollsRemaining = instance.Rolls;
+                RollsRemaining = instance.Rolls;
                 lockedDice.Clear();
                 
                 TryRoll();
@@ -186,18 +193,20 @@ namespace Fantazee.Battle.Characters.Player
             if (scoreResults.Value > 0)
             {
                 yield return new WaitForSeconds(0.5f);
-                button.BattleScore.Cast(scoreResults, OnFinishedScoring);
+                button.BattleScore.Cast(scoreResults, () =>
+                                                      {
+                                                          OnFinishedScoring(scoreResults);
+                                                      });
             }
             else
             {
                 button.FinalizeScore(0);
-                // Scored?.Invoke(button.BattleScore);
-                OnFinishedScoring();
+                OnFinishedScoring(scoreResults);
             }
         }
         
         
-        private void OnFinishedScoring()
+        private void OnFinishedScoring(ScoreResults results)
         {
             if (!BattleController.Instance.CheckEnemiesAlive())
             {
@@ -206,7 +215,8 @@ namespace Fantazee.Battle.Characters.Player
             }
             
             lockedDice.Clear();
-            if (rollsRemaining > 0)
+            Scored?.Invoke(results);
+            if (RollsRemaining > 0)
             {
                 DiceControl.ResetDice();
                 TryRoll();
@@ -221,10 +231,10 @@ namespace Fantazee.Battle.Characters.Player
 
         public void TryRoll()
         {
-            if (rollsRemaining > 0 && !isRolling)
+            if (RollsRemaining > 0 && !isRolling)
             {
                 hasScoredRoll = false;
-                rollsRemaining--;
+                RollsRemaining--;
                 foreach (Die d in instance.Dice)
                 {
                     if(!lockedDice.Contains(d))
@@ -277,8 +287,6 @@ namespace Fantazee.Battle.Characters.Player
                 receiver.OnScore(ref scoreResults, () => ready = true);
                 yield return new WaitUntil(() => ready);
             }
-
-            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke(scoreResults);
         }
         

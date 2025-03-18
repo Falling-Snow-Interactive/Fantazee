@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Fantazee.Relics.Instance
 {
-    public class NoVacancyRelicInstance : RelicInstance, IScoreCallbackReceiver
+    public class NoVacancyRelicInstance : RelicInstance
     {
         private readonly NoVacancyRelicData noVacancyData;
         
@@ -21,24 +21,34 @@ namespace Fantazee.Relics.Instance
 
         public override void Enable()
         {
-            BattleController.Instance.Player.RegisterScoreReceiver(this);
+            BattleController.BattleStarted += OnBattleStart;
+            BattleController.BattleEnded += OnBattleEnd;
         }
 
         public override void Disable()
         {
-            BattleController.Instance.Player.UnregisterScoreReceiver(this);
+            BattleController.BattleStarted -= OnBattleStart;
+            BattleController.BattleEnded -= OnBattleEnd;
         }
 
-        public void OnScore(ref ScoreResults scoreResults, Action onComplete)
+        private void OnBattleStart()
         {
-            if (scoreResults.Score.Data.Type == noVacancyData.Score) 
+            BattleController.Instance.Player.Scored += OnScored;
+        }
+
+        private void OnBattleEnd()
+        {
+            
+        }
+
+        private void OnScored(ScoreResults results)
+        {
+            if (results.Score.Data.Type == noVacancyData.Score) 
             {
                 Debug.Log($"No Vacancy: Activated. Rolls: {BattleController.Instance.Player.RollsRemaining} " +
                           $"-> {BattleController.Instance.Player.RollsRemaining + 1}");
                 BattleController.Instance.Player.RollsRemaining++;
             }
-            
-            onComplete?.Invoke();
         }
     }
 }

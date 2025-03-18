@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
 {
-    public class EndTurnButton : MonoBehaviour, IScoreCallbackReceiver, ITurnEndCallbackReceiver
+    public class EndTurnButton : MonoBehaviour
     {
         private BattlePlayer player;
 
@@ -23,7 +23,8 @@ namespace Fantazee.Battle.Ui
 
             if (player)
             {
-                player.RegisterScoreReceiver(this);
+                player.Scored += OnScored;
+                player.TurnEnded += OnTurnEnd;
             }
         }
 
@@ -33,7 +34,8 @@ namespace Fantazee.Battle.Ui
 
             if (player)
             {
-                player.UnregisterScoreReceiver(this);
+                player.Scored -= OnScored;
+                player.TurnEnded -= OnTurnEnd;
             }
         }
 
@@ -43,7 +45,8 @@ namespace Fantazee.Battle.Ui
             {
                 this.player = player;
                 
-                player.RegisterScoreReceiver(this);
+                player.Scored += OnScored;
+                player.TurnEnded += OnTurnEnd;
             }
         }
 
@@ -52,13 +55,12 @@ namespace Fantazee.Battle.Ui
             BattleController.Instance.Player.EndTurn();
         }
 
-        public void OnScore(ref ScoreResults scoreResults, Action onComplete)
+        private void OnScored(ScoreResults scoreResults)
         {
             button.interactable = true;
-            onComplete?.Invoke();
         }
 
-        public void OnTurnEnd(Action onComplete)
+        private void OnTurnEnd()
         {
             button.interactable = false;
         }

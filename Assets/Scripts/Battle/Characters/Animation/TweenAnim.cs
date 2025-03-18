@@ -36,9 +36,18 @@ namespace Fantazee.Battle.Characters.Animation
             target.localRotation = Quaternion.identity;
             target.localScale = Vector3.one;
             
-            target.DOLocalMove(position, time).SetEase(ease).SetLoops(loops, loopType);
-            target.DOLocalRotate(rotation, time).SetEase(ease).SetLoops(loops, loopType);
-            target.DOScale(scale, time).SetEase(ease).SetLoops(loops, loopType)
+            target.DOLocalMove(position, time)
+                  .SetEase(ease)
+                  .SetLoops(loops, loopType)
+                  .SetLink(target.gameObject, LinkBehaviour.CompleteAndKillOnDisable);
+            target.DOLocalRotate(rotation, time)
+                  .SetEase(ease)
+                  .SetLoops(loops, loopType)
+                  .SetLink(target.gameObject, LinkBehaviour.CompleteAndKillOnDisable);
+            target.DOScale(scale, time)
+                  .SetEase(ease)
+                  .SetLoops(loops, loopType)
+                  .SetLink(target.gameObject, LinkBehaviour.CompleteAndKillOnDisable)
                   .OnComplete(() =>
                               {
                                   onComplete?.Invoke();

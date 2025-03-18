@@ -2,8 +2,6 @@ using System;
 using DG.Tweening;
 using Fantazee.Audio;
 using Fantazee.Battle.Characters;
-using Fantazee.Environments;
-using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
 using FMOD.Studio;
