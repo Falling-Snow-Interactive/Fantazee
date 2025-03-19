@@ -21,6 +21,7 @@ namespace Fantazee.Battle.Characters.Player
     {
         // Events
         public event Action RollStarted;
+        public event Action RollFinished;
         public event Action<ScoreResults> Scored;
 
         public event Action RollsChanged;
@@ -285,6 +286,7 @@ namespace Fantazee.Battle.Characters.Player
                                      StartCoroutine(CallRollFinishedReceivers(() =>
                                                                               {
                                                                                   isRolling = false;
+                                                                                  RollFinished?.Invoke();
                                                                               }));
                                  });
                 RollStarted?.Invoke();

@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Fantazee.Battle.CallbackReceivers;
-using Fantazee.Battle.Characters.Player;
 using Fantazee.Battle.Settings;
 using Fantazee.Dice.Settings;
 using Fantazee.Instance;
 using Fantazee.Items.Dice.Information;
+using Fantazee.Scores;
 using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
@@ -17,7 +16,7 @@ using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui
 {
-    public class BattleScoreButton : MonoBehaviour, IRollFinishedCallbackReceiver, IRollStartedCallbackReceiver
+    public class BattleScoreButton : MonoBehaviour
     {
         [SerializeField]
         private ScoreButton scoreButton;
@@ -64,8 +63,8 @@ namespace Fantazee.Battle.Score.Ui
             
             if (BattleController.Instance && BattleController.Instance.Player)
             {
-                BattleController.Instance.Player.RegisterRollFinishedReceiver(this);
-                BattleController.Instance.Player.RegisterRollStartedReceiver(this);
+                BattleController.Instance.Player.RollFinished += OnRollFinished;
+                BattleController.Instance.Player.RollStarted += OnRollStarted;
             }
         }
 
@@ -80,8 +79,8 @@ namespace Fantazee.Battle.Score.Ui
 
             if (BattleController.Instance.Player)
             {
-                BattleController.Instance.Player.UnregisterRollFinishedReceiver(this);
-                BattleController.Instance.Player.UnregisterRollStartedReceiver(this);
+                BattleController.Instance.Player.RollFinished -= OnRollFinished;
+                BattleController.Instance.Player.RollStarted -= OnRollStarted;
             }
         }
 
@@ -97,7 +96,8 @@ namespace Fantazee.Battle.Score.Ui
             battleScore.ScoreReset += OnBattleScoreReset;
             battleScore.SpellCastStart += OnSpellCastStart;
 
-            BattleController.Instance.Player.RegisterRollFinishedReceiver(this);
+            BattleController.Instance.Player.RollFinished += OnRollFinished;
+            BattleController.Instance.Player.RollStarted += OnRollStarted;
             
             isFinalized = false;
             scoreText.gameObject.SetActive(false);
@@ -139,8 +139,10 @@ namespace Fantazee.Battle.Score.Ui
             }
             
             previewText.gameObject.SetActive(true);
-            int score = battleScore.Calculate(GameInstance.Current.Character.Dice);
-            previewText.text = score.ToString();
+
+            ScoreResults results = new(battleScore.Score, GameInstance.Current.Character.Dice);
+            results = BattleController.Instance.Player.CheckScoreReceivers(results);
+            previewText.text = results.Value.ToString();
         }
         
         private void HidePreview()
@@ -199,13 +201,12 @@ namespace Fantazee.Battle.Score.Ui
             }
         }
 
-        public void OnRollFinished(Action onComplete)
+        private void OnRollFinished()
         {
             ShowPreview();
-            onComplete?.Invoke();
         }
 
-        public void OnRollStarted(Action onComplete)
+        private void OnRollStarted()
         {
             HidePreview();
         }

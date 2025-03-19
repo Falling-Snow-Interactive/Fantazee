@@ -62,8 +62,8 @@ namespace Fantazee.Battle.Characters
         // Callback registers
         private List<ITurnStartCallbackReceiver> turnStartReceivers = new();
         private List<ITurnEndCallbackReceiver> turnEndReceivers = new();
-        private List<ITakingDamageCallback> takingDamageReceivers = new();
-        protected List<IScoreCallbackReceiver> scoreReceivers = new();
+        private List<IDamageModifier> takingDamageReceivers = new();
+        protected List<IScoreModifier> scoreReceivers = new();
         
         private void OnDestroy()
         {
@@ -263,27 +263,27 @@ namespace Fantazee.Battle.Characters
         #endregion
         
         #region Take Damage
-        public void RegisterTakingDamageReceiver(ITakingDamageCallback callbackReceiver)
+        public void RegisterTakingDamageReceiver(IDamageModifier modifierReceiver)
         {
-            takingDamageReceivers.Add(callbackReceiver);
+            takingDamageReceivers.Add(modifierReceiver);
         }
 
-        public void UnregisterTakingDamageReceiver(ITakingDamageCallback callbackReceiver)
+        public void UnregisterTakingDamageReceiver(IDamageModifier modifierReceiver)
         {
-            takingDamageReceivers.Remove(callbackReceiver);
+            takingDamageReceivers.Remove(modifierReceiver);
         }
 
         private int CallTakingDamageReceivers(int damage)
         {
             int d = damage;
-            foreach (ITakingDamageCallback receiver in new List<ITakingDamageCallback>(takingDamageReceivers))
+            foreach (IDamageModifier receiver in new List<IDamageModifier>(takingDamageReceivers))
             {
                 if (receiver == null)
                 {
                     continue;
                 }
 
-                d = receiver.OnTakingDamage(damage);
+                d = receiver.ModifyDamage(damage);
             }
 
             return d;
@@ -293,19 +293,19 @@ namespace Fantazee.Battle.Characters
 
         #region Score Callback Receivers
 
-        public void RegisterScoreReceiver(IScoreCallbackReceiver callbackReceiver)
+        public void RegisterScoreReceiver(IScoreModifier modifier)
         {
-            scoreReceivers.Add(callbackReceiver);
+            scoreReceivers.Add(modifier);
         }
 
-        public void UnregisterScoreReceiver(IScoreCallbackReceiver callbackReceiver)
+        public void UnregisterScoreReceiver(IScoreModifier modifier)
         {
-            scoreReceivers.Remove(callbackReceiver);
+            scoreReceivers.Remove(modifier);
         }
 
         public IEnumerator CallScoreReceivers(ScoreResults scoreResults, Action<ScoreResults> onComplete)
         {
-            foreach (IScoreCallbackReceiver receiver in scoreReceivers)
+            foreach (IScoreModifier receiver in scoreReceivers)
             {
                 if (receiver == null)
                 {
@@ -313,7 +313,7 @@ namespace Fantazee.Battle.Characters
                 }
 
                 bool ready = false;
-                receiver.OnScore(scoreResults, sr =>
+                receiver.ModifyScoreWithCallback(scoreResults, sr =>
                                                {
                                                    scoreResults = sr;
                                                    ready = true;
@@ -321,6 +321,21 @@ namespace Fantazee.Battle.Characters
                 yield return new WaitUntil(() => ready);
             }
             onComplete?.Invoke(scoreResults);
+        }
+
+        public ScoreResults CheckScoreReceivers(ScoreResults scoreResults)
+        {
+            foreach (IScoreModifier receiver in scoreReceivers)
+            {
+                if (receiver == null)
+                {
+                    continue;
+                }
+
+                scoreResults = receiver.ModifyScore(scoreResults);
+            }
+            
+            return scoreResults;
         }
 
         #endregion

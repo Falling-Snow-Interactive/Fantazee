@@ -4,7 +4,7 @@ using Fantazee.StatusEffects.Data;
 
 namespace Fantazee.Battle.StatusEffects
 {
-    public class BleedBattleEffect : BattleStatusEffect, ITakingDamageCallback
+    public class BleedBattleEffect : BattleStatusEffect, IDamageModifier
     {
         public BleedBattleEffect(BleedStatusData data, int turns, BattleCharacter character) : base(data, turns, character)
         {
@@ -22,7 +22,7 @@ namespace Fantazee.Battle.StatusEffects
             Character.UnregisterTakingDamageReceiver(this);
         }
 
-        public int OnTakingDamage(int damage)
+        public int ModifyDamage(int damage)
         {
             if (damage <= 0)
             {
