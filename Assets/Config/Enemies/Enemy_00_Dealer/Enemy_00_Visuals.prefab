@@ -165,12 +165,13 @@ MonoBehaviour:
   attack: {fileID: 329022447, guid: 8c7cdacc749034ea49211131f1d13e48, type: 3}
   hit: {fileID: 768328105, guid: 8c7cdacc749034ea49211131f1d13e48, type: 3}
   death: {fileID: -2000834240, guid: 8c7cdacc749034ea49211131f1d13e48, type: 3}
+  victory: {fileID: 0}
   idleTween:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
     scale: {x: 0.9, y: 1.1, z: 1}
-    time: 1
-    ease: 1
+    time: 2
+    ease: 4
     loops: -1
     loopType: 1
   actionPunch:
@@ -205,6 +206,15 @@ MonoBehaviour:
     ease: 11
     loops: 0
     loopType: 0
+  victoryAnim:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    time: 1
+    ease: 1
+    loops: 0
+    loopType: 0
+  resetTime: 0.2
   spriteRenderer: {fileID: 2857701407936329830}
 --- !u!1 &8373743735867650273
 GameObject:

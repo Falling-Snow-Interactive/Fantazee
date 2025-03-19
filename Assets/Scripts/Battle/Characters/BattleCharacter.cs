@@ -134,12 +134,11 @@ namespace Fantazee.Battle.Characters
            {
                if (Health.IsDead)
                {
-                   RuntimeManager
-                       .PlayOneShot(DeathSfxRef);
+                   RuntimeManager.PlayOneShot(DeathSfxRef);
                    visuals.Death(() =>
-                   {
-                       Destroy(gameObject);
-                   });
+                                    {
+                                        Destroy(gameObject);
+                                    });
                }
            });
 

@@ -98,7 +98,11 @@ namespace Fantazee.Battle.Characters.Enemies
                      .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
                      .OnComplete(() =>
                                  {
-                                     onComplete?.Invoke();
+                                     Visuals.ResetTransform(() =>
+                                                            {
+                                                                Visuals.Idle();
+                                                                onComplete?.Invoke();
+                                                            });
                                  });
         }
 

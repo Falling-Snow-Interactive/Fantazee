@@ -170,8 +170,8 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
     scale: {x: 0.9, y: 1.1, z: 1}
-    time: 1
-    ease: 1
+    time: 2
+    ease: 4
     loops: -1
     loopType: 1
   actionPunch:
@@ -214,6 +214,7 @@ MonoBehaviour:
     ease: 1
     loops: 0
     loopType: 0
+  resetTime: 0.2
   spriteRenderer: {fileID: 2944858150234283115}
 --- !u!1 &8705838791818579239
 GameObject:

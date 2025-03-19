@@ -37,6 +37,9 @@ MonoBehaviour:
   damage:
     min: 4
     max: 6
+  statusEffect: -1
+  statusChance: 0.35
+  statusTurns: 2
   battleRewards:
     wallet:
       currencies:
@@ -64,9 +67,9 @@ MonoBehaviour:
       Data3: 296223911
       Data4: -1783998385
     Path: event:/Enemies/Enemy_00/Death
-  hideOffset: {x: 0, y: 0, z: 0}
+  hideOffset: {x: 10, y: 0, z: 0}
   showTime: 0.5
-  showEase: 1
+  showEase: 21
   references:
     version: 2
     RefIds: []
