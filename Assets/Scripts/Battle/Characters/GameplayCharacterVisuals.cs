@@ -77,13 +77,15 @@ namespace Fantazee.Battle.Characters
 
             Sequence reset = DOTween.Sequence();
             
-            Tween resetScale = spriteRenderer.transform.DOScale(Vector3.one, resetTime);
-            Tweener resetPos = spriteRenderer.transform.DOLocalMove(Vector3.zero, resetTime);
-            Tweener resetRot = spriteRenderer.transform.DOLocalRotate(Vector3.zero, resetTime);
+            Tween resetScale = spriteRenderer.transform.DOScale(Vector3.one, resetTime).SetEase(Ease.Linear);
+            Tween resetPos = spriteRenderer.transform.DOLocalMove(Vector3.zero, resetTime).SetEase(Ease.Linear);
+            Tween resetRot = spriteRenderer.transform.DOLocalRotate(Vector3.zero, resetTime).SetEase(Ease.Linear);
             
-            reset.Insert(0, resetScale);
-            reset.Insert(0, resetPos);
-            reset.Insert(0, resetRot);
+            // reset.Insert(0, resetScale);
+            // reset.Insert(0, resetPos);
+            // reset.Insert(0, resetRot);
+
+            reset.SetEase(Ease.InOutSine);
             
             reset.OnComplete(() => onComplete?.Invoke());
 

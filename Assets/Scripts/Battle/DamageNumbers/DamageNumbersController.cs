@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Fantazee.Battle.DamageNumbers
@@ -15,6 +16,12 @@ namespace Fantazee.Battle.DamageNumbers
 
         [SerializeField]
         private Transform content;
+
+        private bool isHolding;
+
+        private int damageHold;
+        private int healingHold;
+        private int shieldHold;
         
         public void AddDamage(int damage)
         {
@@ -22,8 +29,12 @@ namespace Fantazee.Battle.DamageNumbers
             {
                 return;
             }
-            DamageNumber dn = Instantiate(damageNumber, content);
-            dn.SetValue(damage);
+
+            damageHold += damage;
+            if (!isHolding)
+            {
+                StartCoroutine(NumberHold());
+            }
         }
 
         public void AddHealing(int healing)
@@ -32,8 +43,12 @@ namespace Fantazee.Battle.DamageNumbers
             {
                 return;
             }
-            DamageNumber dn = Instantiate(healingNumber, content);
-            dn.SetValue(healing);
+            healingHold += healing;
+            
+            if (!isHolding)
+            {
+                StartCoroutine(NumberHold());
+            }
         }
 
         public void AddShield(int shield)
@@ -42,8 +57,40 @@ namespace Fantazee.Battle.DamageNumbers
             {
                 return;
             }
-            DamageNumber dn = Instantiate(shieldNumber, content);
-            dn.SetValue(shield);
+            shieldHold += shield;
+            
+            if (!isHolding)
+            {
+                StartCoroutine(NumberHold());
+            }
+        }
+
+        private IEnumerator NumberHold()
+        {
+            isHolding = true;
+            yield return new WaitForEndOfFrame();
+            isHolding = false;
+
+            if (damageHold > 0)
+            {
+                DamageNumber dn = Instantiate(damageNumber, content);
+                dn.SetValue(damageHold);
+                damageHold = 0;
+            }
+            
+            if (healingHold > 0)
+            {
+                DamageNumber hn = Instantiate(healingNumber, content);
+                hn.SetValue(healingHold);
+                healingHold = 0;
+            }
+            
+            if (shieldHold > 0)
+            {
+                DamageNumber sn = Instantiate(shieldNumber, content);
+                sn.SetValue(shieldHold);
+                shieldHold = 0;
+            }
         }
     }
 }
