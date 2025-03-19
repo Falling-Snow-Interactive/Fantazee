@@ -73,10 +73,13 @@ namespace Fantazee.Spells.Ui
         {
             if (set && spell.Data.Type != SpellType.spell_none)
             {
+                tooltip.transform.SetParent(transform.parent.parent, true);
+                tooltip.transform.SetAsLastSibling();
                 tooltip?.Show();
             }
             else
             {
+                tooltip.transform.SetParent(transform, true);
                 tooltip?.Hide();
             }
         }

@@ -19,26 +19,24 @@ namespace Fantazee.Relics.Instance
 
         public override void Enable()
         {
-            BattleController.Instance.Player.RegisterDieRolledReceiver(this);
+            BattleController.BattleStarted += OnBattleStart;
+            BattleController.BattleEnded += OnBattleEnd;
         }
 
         public override void Disable()
         {
-            BattleController.Instance.Player.UnregisterDieRolledReceiver(this);
+            BattleController.BattleStarted -= OnBattleStart;
+            BattleController.BattleEnded -= OnBattleEnd;
         }
 
-        private void OnDieRolled(Die die)
+        private void OnBattleStart()
         {
-            if (die.Value == explosiveData.Number)
-            {
-                foreach (BattleEnemy enemy in BattleController.Instance.Enemies)
-                {
-                    if (enemy.Health.IsAlive)
-                    {
-                        enemy.Damage(explosiveData.Damage);
-                    }
-                }
-            }
+            BattleController.Instance.Player.RegisterDieRolledReceiver(this);
+        }
+
+        private void OnBattleEnd()
+        {
+            BattleController.Instance.Player.UnregisterDieRolledReceiver(this);
         }
 
         public void OnDieRolled(Die die, Action onComplete)
@@ -53,6 +51,8 @@ namespace Fantazee.Relics.Instance
                     }
                 }
             }
+            
+            onComplete?.Invoke();
         }
     }
 }
