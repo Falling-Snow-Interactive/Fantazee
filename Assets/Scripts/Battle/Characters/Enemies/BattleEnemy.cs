@@ -21,8 +21,6 @@ namespace Fantazee.Battle.Characters.Enemies
         private Health health;
         public override Health Health => health;
         
-        private Vector3 localRoot;
-        
         // Audio
         protected override EventReference DeathSfxRef => data.DeathSfx;
         protected override EventReference EnterSfxRef => data.EnterSfx;
@@ -34,10 +32,8 @@ namespace Fantazee.Battle.Characters.Enemies
         public void Initialize(EnemyData data)
         {
             this.data = data;
-            localRoot = transform.localPosition;
 
             int hp = data.Health * (GameInstance.Current.Environment.Index + 1);
-            Debug.Log(hp);
             health = new Health(hp); // TODO - Real scaling
             attackSfx = RuntimeManager.CreateInstance(data.AttackSfx);
             SpawnVisuals(data.Visuals);
@@ -88,27 +84,35 @@ namespace Fantazee.Battle.Characters.Enemies
         {
             if (force)
             {
-                transform.localPosition = localRoot;
+                Visuals.transform.localPosition = Vector3.zero;
                 return;
             }
-            
-            transform.DOLocalMove(localRoot, data.ShowTime)
+
+            Visuals.transform.DOLocalMove(Vector3.zero, data.ShowTime)
                      .SetEase(data.ShowEase)                     
                      .SetDelay(delay)
                      .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
                      .OnComplete(() =>
                                  {
-                                     Visuals.ResetTransform(() =>
-                                                            {
-                                                                Visuals.Idle();
-                                                                onComplete?.Invoke();
-                                                            });
+                                     onComplete?.Invoke();
                                  });
         }
 
-        public void Hide()
+        public void Hide(Action onComplete, bool force = false)
         {
-            transform.localPosition = localRoot + data.HideOffset;
+            if (force)
+            {
+                Visuals.transform.localPosition = data.HideOffset;
+                return;
+            }
+            
+            Visuals.transform.DOLocalMove(data.HideOffset, data.ShowTime)
+                   .SetEase(data.ShowEase)                     
+                   .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
+                   .OnComplete(() =>
+                               {
+                                   onComplete?.Invoke();
+                               });
         }
         
         #endregion

@@ -89,7 +89,6 @@ namespace Fantazee.Battle.Characters
         {
             onTurnCompleteCallback = onTurnComplete;
             
-            visuals.Idle();
             Shield.Clear();
 
             StartCoroutine(CallTurnStartReceivers(() =>
@@ -129,22 +128,27 @@ namespace Fantazee.Battle.Characters
                total += damaged;
                damageNumbers.AddDamage(damaged);
            }
-
-           visuals.Hit(() =>
+           
+           if (Health.IsDead)
            {
-               if (Health.IsDead)
-               {
-                   RuntimeManager.PlayOneShot(DeathSfxRef);
-                   visuals.Death(() =>
-                                    {
-                                        Destroy(gameObject);
-                                    });
-               }
-           });
+               RuntimeManager.PlayOneShot(DeathSfxRef);
+               visuals.Death();
+               StartCoroutine(DelayedDelete());
+           }
+           else
+           {
+               visuals.Hit();
+           }
 
            Debug.Log($"Enemy: Damage {damage}");
            CharacterDamaged?.Invoke(this, total);
            return total;
+        }
+
+        private IEnumerator DelayedDelete()
+        {
+            yield return new WaitForSeconds(1f);
+            Destroy(gameObject);
         }
         
         public void Heal(int heal)

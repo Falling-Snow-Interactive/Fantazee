@@ -1,163 +1,60 @@
-using System;
-using DG.Tweening;
-using Fantazee.Battle.Characters.Animation;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Battle.Characters
 {
     public class GameplayCharacterVisuals : MonoBehaviour
     {
-        [Header("Frames")]
+        [Header("Params")]
 
         [SerializeField]
-        private Sprite idle;
-
-        [SerializeField]
-        private Sprite action;
-
-        [SerializeField]
-        private Sprite attack;
-
-        [SerializeField]
-        private Sprite hit;
-
-        [SerializeField]
-        private Sprite death;
-
-        [SerializeField]
-        private Sprite victory;
-
-        [Header("Animations")]
-
-        [SerializeField]
-        private TweenAnim idleTween;
-
-        [SerializeField]
-        private PunchTweenAnim actionPunch;
-
-        [SerializeField]
-        private PunchTweenAnim attackPunch;
+        private string idleParam = "idle";
         
-        [FormerlySerializedAs("hitAnim")]
         [SerializeField]
-        private PunchTweenAnim hitPunch;
-
+        private string actionParam = "action";
+        
         [SerializeField]
-        private TweenAnim deathAnim;
-
+        private string attackParam = "attack";
+        
         [SerializeField]
-        private TweenAnim victoryAnim;
-
+        private string hitParam = "hit";
+        
         [SerializeField]
-        private float resetTime = 0.2f;
+        private string deathParam = "death";
+        
+        [SerializeField]
+        private string victoryParam = "victory";
         
         [Header("References")]
         
         [SerializeField]
         private SpriteRenderer spriteRenderer;
-
-        private void Start()
+        
+        [SerializeField]
+        private Animator animator;
+        
+        public void Action()
         {
-            Idle();
+            animator.SetTrigger(actionParam);
         }
 
-        public void ResetTransform(Action onComplete = null, bool force = false)
+        public void Attack()
         {
-            DOTween.Kill(spriteRenderer.transform);
-
-            if (force)
-            {
-                spriteRenderer.transform.localScale = Vector3.one;
-                spriteRenderer.transform.localPosition = Vector3.zero;
-                spriteRenderer.transform.localRotation = Quaternion.identity;
-                onComplete?.Invoke();
-                return;
-            }
-
-            Sequence reset = DOTween.Sequence();
-            
-            Tween resetScale = spriteRenderer.transform.DOScale(Vector3.one, resetTime).SetEase(Ease.Linear);
-            Tween resetPos = spriteRenderer.transform.DOLocalMove(Vector3.zero, resetTime).SetEase(Ease.Linear);
-            Tween resetRot = spriteRenderer.transform.DOLocalRotate(Vector3.zero, resetTime).SetEase(Ease.Linear);
-            
-            // reset.Insert(0, resetScale);
-            // reset.Insert(0, resetPos);
-            // reset.Insert(0, resetRot);
-
-            reset.SetEase(Ease.InOutSine);
-            
-            reset.OnComplete(() => onComplete?.Invoke());
-
-            reset.Play();
-        }
-
-        public void Idle()
-        {
-            ResetTransform(() =>
-                           {
-                               spriteRenderer.sprite = idle;
-                               idleTween.Play(spriteRenderer.transform);
-                           });
-            
+            animator.SetTrigger(attackParam);
         }
         
-        public void Action(Action onComplete = null)
+        public void Hit()
         {
-            ResetTransform(() =>
-                                  {
-                                      spriteRenderer.sprite = action;
-                                      actionPunch.Play(spriteRenderer.transform, () =>
-                                                       {
-                                                           Idle();
-                                                           onComplete?.Invoke();
-                                                       });
-                                  });
-            
+            animator.SetTrigger(hitParam);
         }
 
-        public void Attack(Action onComplete = null)
+        public void Death()
         {
-            ResetTransform(() =>
-                                  {
-                                      spriteRenderer.sprite = attack;
-                                      attackPunch.Play(spriteRenderer.transform, () =>
-                                                       {
-                                                           Idle();
-                                                           onComplete?.Invoke();
-                                                       });
-                                  });
-        }
-        
-        public void Hit(Action onComplete = null)
-        {
-            ResetTransform(() =>
-                           {
-                               spriteRenderer.sprite = hit;
-                               hitPunch.Play(spriteRenderer.transform, () =>
-                                                                       {
-                                                                           Idle();
-                                                                           onComplete?.Invoke();
-                                                                       });
-                           });
+            animator.SetTrigger(deathParam);
         }
 
-        public void Death(Action onComplete = null)
+        public void Victory()
         {
-            ResetTransform(() =>
-                           {
-                               spriteRenderer.sprite = death;
-                               deathAnim.Play(spriteRenderer.transform, onComplete);
-                           });
-        }
-
-        public void Victory(Action onComplete = null)
-        {
-            ResetTransform(() =>
-                           {
-                               spriteRenderer.sprite = victory;
-                               victoryAnim.Play(spriteRenderer.transform, onComplete);
-                           });
+            animator.SetTrigger(victoryParam);
         }
     }
 }

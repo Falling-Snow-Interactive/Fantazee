@@ -114,7 +114,7 @@ namespace Fantazee.Battle
             // Hide enemies
             foreach (BattleEnemy enemy in enemies)
             {
-                enemy.Hide();
+                enemy.Hide(null, true);
             }
             
             PlayMusic();
@@ -171,12 +171,13 @@ namespace Fantazee.Battle
             yield return new WaitForSeconds(0.2f);
             
             // Move enemies in
-            foreach (BattleEnemy enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
-                enemy.Show(null);
+                BattleEnemy enemy = enemies[i];
+                enemy.Show(null, i * 0.2f, false);
                 yield return new WaitForSeconds(0.2f);
             }
-            
+
             onComplete?.Invoke();
         }
 
@@ -351,7 +352,7 @@ namespace Fantazee.Battle
             Player.transform.DOLocalMoveX(20, 0.5f).SetEase(Ease.InOutCubic)
                   .OnPlay(() =>
                           {
-                              Player.Visuals.Idle();
+                              // Player.Visuals.Idle();
                           })
                   .OnComplete(() =>
                               {
