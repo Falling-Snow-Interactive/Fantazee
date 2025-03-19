@@ -19,6 +19,7 @@ namespace Fantazee.Battle.Characters.Player
 {
     public class BattlePlayer : BattleCharacter
     {
+        // Events
         public event Action RollStarted;
         public event Action<ScoreResults> Scored;
 
@@ -27,6 +28,8 @@ namespace Fantazee.Battle.Characters.Player
         // Ui Shortcuts
         private DiceControlUi DiceControl => BattleUi.Instance.DiceControl;
 
+        [Header("Player")]
+        
         [SerializeReference]
         private CharacterInstance instance;
         
@@ -70,10 +73,12 @@ namespace Fantazee.Battle.Characters.Player
         protected override EventReference EnterSfxRef => instance.Data.EnterSfx;
         
         // Callback receivers
-        private List<IRollStartedCallbackReceiver> rollStartedReceivers = new();
-        private List<IRollFinishedCallbackReceiver> rollFinishedReceivers = new();
-        private List<IDieRolledCallbackReceivers> dieRolledCallbackReceivers = new();
+        private readonly List<IRollStartedCallbackReceiver> rollStartedReceivers = new();
+        private readonly List<IRollFinishedCallbackReceiver> rollFinishedReceivers = new();
+        private readonly List<IDieRolledCallbackReceivers> dieRolledCallbackReceivers = new();
 
+        #region Initialize
+        
         public void Initialize(CharacterInstance character)
         {
             instance = character;
@@ -113,13 +118,11 @@ namespace Fantazee.Battle.Characters.Player
                 }
             }
         }
+        
+        #endregion
 
-        public override void EndTurn()
-        {
-            DiceControl.HideDice(null);
-            base.EndTurn();
-        }
-
+        #region Start Turn
+        
         protected override void CharacterStartTurn()
         {
             // Check if there's any score unscored. If all have been scored, take a turn to reset.
@@ -149,6 +152,20 @@ namespace Fantazee.Battle.Characters.Player
                 ResetScores(EndTurn);
             }
         }
+        
+        #endregion
+        
+        #region End Turn
+        
+        public override void EndTurn()
+        {
+            DiceControl.HideDice(null);
+            base.EndTurn();
+        }
+        
+        #endregion
+        
+        #region Score Selections
 
         private void OnSelectScoreButton(BattleScoreButton battleScoreButton)
         {
@@ -238,6 +255,8 @@ namespace Fantazee.Battle.Characters.Player
             
             onComplete?.Invoke();
         }
+        
+        #endregion
         
         #region Dice Control
 

@@ -29,6 +29,8 @@ namespace Fantazee.Battle.Characters.Enemies
 
         private EventInstance attackSfx;
 
+        #region Initialize
+
         public void Initialize(EnemyData data)
         {
             this.data = data;
@@ -43,11 +45,17 @@ namespace Fantazee.Battle.Characters.Enemies
             
             Debug.Log($"Enemy: {name} initialized");
         }
+
+        #endregion
+        
+        #region Start Turn
         
         protected override void CharacterStartTurn()
         {
             Attack(EndTurn);
         }
+        
+        #endregion
 
         #region Attack
         
@@ -74,6 +82,8 @@ namespace Fantazee.Battle.Characters.Enemies
         
         #endregion
         
+        #region Animations
+        
         public void Show(Action onComplete, float delay = 0, bool force = false)
         {
             if (force)
@@ -96,6 +106,8 @@ namespace Fantazee.Battle.Characters.Enemies
         {
             transform.localPosition = localRoot + data.HideOffset;
         }
+        
+        #endregion
         
         #region Gizmos
         
