@@ -71,8 +71,8 @@ namespace Fantazee.MainMenu.Character.Ui
         {
             CharacterData character = characters[i];
             characterSprite.sprite = character.Icon;
-            nameText.text = character.LocName.GetLocalizedString();
-            descText.text = character.LocDesc.GetLocalizedString();
+            nameText.text = character.Name;
+            descText.text = character.Description;
 
             for (int j = 0; j < scoreEntries.Count; j++)
             {

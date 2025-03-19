@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
+using Fantazee.StatusEffects;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -49,6 +50,21 @@ namespace Fantazee.Enemies
         [SerializeField]
         private RangeInt damage;
         public RangeInt Damage => damage;
+
+        [Header("Status Effect")]
+        
+        [SerializeField]
+        private StatusEffectType statusEffect = StatusEffectType.status_none;
+        public StatusEffectType StatusEffect => statusEffect;
+
+        [Range(0, 1f)]
+        [SerializeField]
+        private float statusChance = 0.35f;
+        public float StatusChance => statusChance;
+
+        [SerializeField]
+        private int statusTurns = 2;
+        public int StatusTurns => statusTurns;
         
         [Header("Rewards")]
         

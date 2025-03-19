@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Fantazee.Scores;
-using Fantazee.Shop.Items;
-using Fantazee.Shop.Ui.Entries;
 using Fsi.Gameplay.Buckets;
 using UnityEngine;
 

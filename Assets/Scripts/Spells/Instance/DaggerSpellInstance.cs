@@ -3,10 +3,9 @@ using System.Collections;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
-using Fantazee.Battle.Characters.Player;
+using Fantazee.Scores;
 using Fantazee.Spells.Data;
-using FMOD.Studio;
-using FMODUnity;
+using Fantazee.StatusEffects;
 using UnityEngine;
 
 namespace Fantazee.Spells.Instance
@@ -21,11 +20,11 @@ namespace Fantazee.Spells.Instance
             this.data = data;
         }
 
-        protected override void Apply(Damage damage, Action onComplete)
+        protected override void Apply(ScoreResults scoreResults, Action onComplete)
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
-                enemy.Damage(damage.Value);
+                enemy.Damage(scoreResults.Value);
             }
             
             onComplete?.Invoke();

@@ -31,6 +31,9 @@ namespace Fantazee.Battle.Settings.Editor
         { 
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreSfx"));
             
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreTime"));
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreEase"));
+            
             EditorGUILayout.Space(20);
             if (GUILayout.Button("Save"))
             {

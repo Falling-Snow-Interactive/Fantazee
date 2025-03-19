@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using Fantazee.Shop.Items;
+using Fantazee.Relics.Data;
 using Fsi.Gameplay.Buckets;
 using UnityEngine;
 
 namespace Fantazee.Shop.Buckets.Relics
 {
     [CreateAssetMenu(fileName = "ShopRelicBucket", menuName = "Shop/Relic Bucket")]
-    public class ShopRelicsBucket : Bucket<ShopRelicsBucketEntry, RelicShopItem>
+    public class ShopRelicsBucket : Bucket<ShopRelicsBucketEntry, RelicData>
     {
         [SerializeField]
         private List<ShopRelicsBucketEntry> entries = new List<ShopRelicsBucketEntry>();

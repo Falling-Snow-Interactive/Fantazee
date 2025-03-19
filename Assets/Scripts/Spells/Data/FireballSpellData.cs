@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using Fantazee.Battle.StatusEffects;
+using Fantazee.StatusEffects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fantazee.Spells.Data
 {
@@ -14,5 +18,23 @@ namespace Fantazee.Spells.Data
         [SerializeField]
         private float damageMod = 1f;
         public float DamageMod => damageMod;
+        
+        [Header("Status Effect")]
+        
+        [SerializeField]
+        private BattleStatusData statusEffect;
+        public BattleStatusData StatusEffect => statusEffect;
+        
+        protected override Dictionary<string, string> GetDescArgs()
+        {
+            Dictionary<string, string> args = base.GetDescArgs();
+
+            foreach (KeyValuePair<string, string> d in statusEffect.GetDescArgs())
+            {
+                args.Add(d.Key, d.Value);
+            }
+            
+            return args;
+        }
     }
 }

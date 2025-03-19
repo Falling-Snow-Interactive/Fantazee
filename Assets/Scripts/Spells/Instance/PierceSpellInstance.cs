@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
+using Fantazee.Scores;
 using Fantazee.Spells.Data;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Spells.Instance
 {
@@ -18,7 +17,7 @@ namespace Fantazee.Spells.Instance
             this.data = data;
         }
         
-        protected override void Apply(Damage damage, Action onComplete)
+        protected override void Apply(ScoreResults scoreResults, Action onComplete)
         {
             if (BattleController.Instance.Enemies.Count > 0)
             {
@@ -29,12 +28,12 @@ namespace Fantazee.Spells.Instance
                     if (BattleController.Instance.Enemies.Count > index)
                     {
                         BattleEnemy second = BattleController.Instance.Enemies[index];
-                        front.Damage(Mathf.Max(Mathf.RoundToInt(damage.Value * data.FirstEnemyMod), 1));
-                        second.Damage(Mathf.Max(Mathf.RoundToInt(damage.Value * data.SecondEnemyMod), 1));
+                        front.Damage(Mathf.Max(Mathf.RoundToInt(scoreResults.Value * data.FirstEnemyMod), 1));
+                        second.Damage(Mathf.Max(Mathf.RoundToInt(scoreResults.Value * data.SecondEnemyMod), 1));
                     }
                     else
                     {
-                        front.Damage(damage.Value);
+                        front.Damage(scoreResults.Value);
                     }
                 }
             }

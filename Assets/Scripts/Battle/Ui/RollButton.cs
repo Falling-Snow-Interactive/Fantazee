@@ -1,3 +1,5 @@
+using Fantazee.Battle.Characters;
+using Fantazee.Battle.Characters.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +8,8 @@ namespace Fantazee.Battle.Ui
 {
     public class RollButton : MonoBehaviour
     {
+        private BattlePlayer player;
+        
         [Header("References")]
 
         [SerializeField]
@@ -16,39 +20,48 @@ namespace Fantazee.Battle.Ui
 
         private void OnEnable()
         {
-            BattleController.PlayerTurnStart += OnPlayerTurnStart;
-            BattleController.RollStarted += OnRollStarted;
+            BattlePlayer.Spawned += OnCharacterSpawned;
+
+            if (player)
+            {
+                player.RollsChanged += OnRollsChanged;
+            }
         }
 
         private void OnDisable()
         {
-            BattleController.PlayerTurnStart -= OnPlayerTurnStart;
-            BattleController.RollStarted -= OnRollStarted;
+            BattlePlayer.Spawned += OnCharacterSpawned;
+
+            if (player)
+            {
+                player.RollsChanged += OnRollsChanged;
+            }
+        }
+
+        private void OnCharacterSpawned(BattleCharacter character)
+        {
+            if (character is BattlePlayer player)
+            {
+                this.player = player;
+
+                player.RollsChanged += OnRollsChanged;
+            }
         }
 
         private void Start()
         {
-            rollsText.text = BattleController.Instance.RemainingRolls.ToString();
+            rollsText.text = "";
         }
         
         public void OnClick()
         {
-            BattleController.Instance.TryRoll();
-            rollsText.text = BattleController.Instance.RemainingRolls.ToString();
+            BattleController.Instance.Player.TryRoll();
+            rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
         }
         
-        private void OnRollStarted()
+        private void OnRollsChanged()
         {
-            rollsText.text = BattleController.Instance.RemainingRolls.ToString();
-            if (BattleController.Instance.RemainingRolls == 0)
-            {
-                button.interactable = false;
-            }
-        }
-        
-        private void OnPlayerTurnStart()
-        {
-            button.interactable = true;
+            rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
         }
     }
 }

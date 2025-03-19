@@ -10,8 +10,8 @@ using Fsi.Gameplay;
 using Fsi.Gameplay.Healths.Ui;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Inn
 {
@@ -196,6 +196,7 @@ namespace Fantazee.Inn
         private IEnumerator DelayedLeave()
         {
             yield return new WaitForSeconds(1f);
+            ambianceSfx.stop(STOP_MODE.ALLOWFADEOUT);
             GameController.Instance.LoadMap();
         }
     }

@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using Fantazee.Enemies;
+using Fantazee.Instance;
+using Fantazee.StatusEffects;
 using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Fantazee.Battle.Characters.Enemies
 {
@@ -26,12 +29,16 @@ namespace Fantazee.Battle.Characters.Enemies
 
         private EventInstance attackSfx;
 
+        #region Initialize
+
         public void Initialize(EnemyData data)
         {
             this.data = data;
             localRoot = transform.localPosition;
-            
-            health = new Health(data.Health);
+
+            int hp = data.Health * (GameInstance.Current.Environment.Index + 1);
+            Debug.Log(hp);
+            health = new Health(hp); // TODO - Real scaling
             attackSfx = RuntimeManager.CreateInstance(data.AttackSfx);
             SpawnVisuals(data.Visuals);
             base.Initialize();
@@ -39,9 +46,20 @@ namespace Fantazee.Battle.Characters.Enemies
             Debug.Log($"Enemy: {name} initialized");
         }
 
+        #endregion
+        
+        #region Start Turn
+        
+        protected override void CharacterStartTurn()
+        {
+            Attack(EndTurn);
+        }
+        
+        #endregion
+
         #region Attack
         
-        public void Attack(Action onComplete)
+        private void Attack(Action onComplete)
         {
             StartCoroutine(AttackSequence(onComplete));
         }
@@ -51,11 +69,20 @@ namespace Fantazee.Battle.Characters.Enemies
             Visuals.Attack();
             attackSfx.start();
             yield return new WaitForSeconds(0.2f);
-            BattleController.Instance.Player.Damage(data.Damage.Random()); // TODO - <----
+            BattleController.Instance.Player.Damage(data.Damage.Random() * (GameInstance.Current.Environment.Index + 1));
+            if (data.StatusEffect != StatusEffectType.status_none 
+                && Random.value <= data.StatusChance)
+            {
+                BattleController.Instance.Player.AddStatusEffect(data.StatusEffect, data.StatusTurns);
+            }
+            
+            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
         
         #endregion
+        
+        #region Animations
         
         public void Show(Action onComplete, float delay = 0, bool force = false)
         {
@@ -79,6 +106,8 @@ namespace Fantazee.Battle.Characters.Enemies
         {
             transform.localPosition = localRoot + data.HideOffset;
         }
+        
+        #endregion
         
         #region Gizmos
         

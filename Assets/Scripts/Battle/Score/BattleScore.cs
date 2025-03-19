@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fantazee.Dice;
+using Fantazee.Scores;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells;
 using UnityEngine;
@@ -30,19 +31,19 @@ namespace Fantazee.Battle.Score
             this.score = score;
         }
 
-        public void Cast(Damage damage, Action onComplete)
+        public void Cast(ScoreResults scoreResults, Action onComplete)
         {
-            BattleController.Instance.StartCoroutine(CastSequence(damage, onComplete));
+            BattleController.Instance.StartCoroutine(CastSequence(scoreResults, onComplete));
         }
 
-        private IEnumerator CastSequence(Damage damage, Action onComplete)
+        private IEnumerator CastSequence(ScoreResults scoreResults, Action onComplete)
         {
             foreach (SpellInstance spell in score.Spells)
             {
                 bool ready = false;
                 if (spell.Data.Type != SpellType.spell_none && BattleController.Instance.EnemiesRemaining() > 0)
                 {
-                    spell.Cast(damage, () =>
+                    spell.Cast(scoreResults, () =>
                                        {
                                            SpellCastEnd?.Invoke(spell);
                                            ready = true;
@@ -52,6 +53,7 @@ namespace Fantazee.Battle.Score
                 }
             }
 
+            yield return new WaitForSeconds(0.5f);
             onComplete?.Invoke();
         }
 

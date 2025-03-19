@@ -181,15 +181,15 @@ namespace Fantazee.Dice.Ui
 
         public void ToggleLock()
         {
-            bool shouldLock = !BattleController.Instance.LockedDice.Contains(Die);
+            bool shouldLock = !BattleController.Instance.Player.LockedDice.Contains(Die);
             if (shouldLock)
             {
-                BattleController.Instance.LockedDice.Add(Die);
+                BattleController.Instance.Player.LockedDice.Add(Die);
                 lockSfx.start();
             }
             else
             {
-                BattleController.Instance.LockedDice.Remove(Die);
+                BattleController.Instance.Player.LockedDice.Remove(Die);
                 unlockSfx.start();
             }
 
@@ -202,7 +202,7 @@ namespace Fantazee.Dice.Ui
 
         public void ToggleOff()
         {
-            BattleController.Instance.LockedDice.Remove(Die);
+            BattleController.Instance.Player.LockedDice.Remove(Die);
             
             root.DOLocalRotate(Vector3.zero, lockTime).SetEase(lockEase);
             root.DOScale(Vector3.one, lockTime).SetEase(lockEase);

@@ -1,6 +1,7 @@
 using System;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Player;
+using Fantazee.Scores;
 using Fantazee.Spells.Data;
 using UnityEngine;
 
@@ -15,12 +16,12 @@ namespace Fantazee.Spells.Instance
         {
             this.data = data;
         }
-        protected override void Apply(Damage damage, Action onCompelte)
+        protected override void Apply(ScoreResults scoreResults, Action onCompelte)
         {
             BattlePlayer player = BattleController.Instance.Player;
 
             player.Visuals.Action();
-            int d = Mathf.RoundToInt(damage.Value * data.ShieldMod);
+            int d = Mathf.RoundToInt(scoreResults.Value * data.ShieldMod);
             player.Shield.Add(d);
             onCompelte?.Invoke();
         }

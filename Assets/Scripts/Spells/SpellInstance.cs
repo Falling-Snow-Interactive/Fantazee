@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Player;
+using Fantazee.Scores;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -42,7 +43,7 @@ namespace Fantazee.Spells
             }
         }
         
-        public void Cast(Damage damage, Action onComplete = null)
+        public void Cast(ScoreResults scoreResults, Action onComplete = null)
         {
             if (castSfx.isValid())
             {
@@ -54,12 +55,12 @@ namespace Fantazee.Spells
                 Object.Instantiate(data.CastAnim.CastVfx, BattleController.Instance.Player.transform);
             }
             
-            BattleController.Instance.StartCoroutine(SpellSequence(damage, onComplete));
+            BattleController.Instance.StartCoroutine(SpellSequence(scoreResults, onComplete));
         }
 
-        protected abstract void Apply(Damage damage, Action onComplete);
+        protected abstract void Apply(ScoreResults scoreResults, Action onComplete);
 
-        private IEnumerator SpellSequence(Damage damage, Action onComplete = null)
+        private IEnumerator SpellSequence(ScoreResults scoreResults, Action onComplete = null)
         {
             bool ready;
             yield return new WaitForSeconds(0.25f);
@@ -83,13 +84,13 @@ namespace Fantazee.Spells
                 ready = false;
                 bool ready2 = false;
                 BattleController.Instance.StartCoroutine(HitSequence(() => ready = true));
-                Apply(damage, () => ready2 = true);
+                Apply(scoreResults, () => ready2 = true);
                 yield return new WaitUntil(() => ready && ready2);
             }
             else
             {
                 ready = false;
-                Apply(damage, () => ready = true);
+                Apply(scoreResults, () => ready = true);
                 yield return new WaitUntil(() => ready);
             }
 

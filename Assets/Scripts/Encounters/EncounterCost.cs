@@ -2,7 +2,6 @@ using System;
 using Fantazee.Currencies;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Encounters
 {

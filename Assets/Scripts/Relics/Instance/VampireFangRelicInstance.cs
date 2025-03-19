@@ -18,12 +18,12 @@ namespace Fantazee.Relics.Instance
 
         public override void Enable()
         {
-            BattleEnemy.EnemyDamaged += OnDamaged;
+            BattleEnemy.CharacterDamaged += OnDamaged;
         }
 
         public override void Disable()
         {
-            BattleEnemy.EnemyDamaged-= OnDamaged;
+            BattleEnemy.CharacterDamaged-= OnDamaged;
         }
 
         private void OnDamaged(BattleCharacter battleCharacter, int damage)

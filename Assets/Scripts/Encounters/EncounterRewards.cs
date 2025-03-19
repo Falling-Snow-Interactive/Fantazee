@@ -8,7 +8,6 @@ using Fantazee.Spells;
 using Fantazee.Spells.Bucket;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
-using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Encounters
 {
