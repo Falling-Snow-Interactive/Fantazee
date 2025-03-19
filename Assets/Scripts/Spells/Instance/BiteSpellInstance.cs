@@ -3,7 +3,6 @@ using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Scores;
 using Fantazee.Spells.Data;
-using Fantazee.StatusEffects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,9 +23,9 @@ namespace Fantazee.Spells.Instance
             {
                 enemy.Damage(scoreResults.Value);
 
-                if (Random.value < data.Roll)
+                if (Random.value < data.Status.Chance)
                 {
-                    enemy.AddStatusEffect(StatusEffectType.status_01_bleed, data.Turns);
+                    enemy.AddStatusEffect(data.Status.Data, data.Status.Turns);
                 }
             }
             

@@ -46,7 +46,7 @@ namespace Fantazee.Spells.Ui
             icon.sprite = spell.Data.Icon;
 
             tooltip.Initialize(spell);
-            tooltip?.Hide(true);
+            tooltip?.Hide();
         }
 
         public void Activate(Action<SpellButton> onSelect)
@@ -73,7 +73,7 @@ namespace Fantazee.Spells.Ui
         {
             if (set && spell.Data.Type != SpellType.spell_none)
             {
-                tooltip?.Show(this);
+                tooltip?.Show();
             }
             else
             {

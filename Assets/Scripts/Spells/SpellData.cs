@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using Fantazee.Battle.StatusEffects;
 using Fantazee.Currencies;
 using Fantazee.Spells.Animations;
 using Fantazee.Spells.Data.Animations;
-using Fantazee.StatusEffects;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -63,7 +63,8 @@ namespace Fantazee.Spells
         
         protected virtual Dictionary<string, string> GetDescArgs()
         {
-            return new Dictionary<string, string>();
+            Dictionary<string, string> args = new();
+            return args;
         }
 
         public override string ToString()

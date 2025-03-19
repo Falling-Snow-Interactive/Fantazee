@@ -157,25 +157,29 @@ namespace Fantazee.Battle.Characters
 
         public void AddStatusEffect(StatusEffectType type, int turns)
         {
-            Debug.Log($"BattleCharacter: Status Effect {type} - {turns} turns");
+            if (StatusEffectSettings.Settings.TryGetStatus(type, out StatusEffectData data))
+            {
+                AddStatusEffect(data, turns);
+            }
+        }
+        
+        public void AddStatusEffect(StatusEffectData data, int turns)
+        {
+            Debug.Log($"BattleCharacter: {data} - {turns} turns");
 
-            bool found = false;
             foreach (BattleStatusEffect statusEffect in statusEffects)
             {
-                if (statusEffect.Data.Type == type)
+                if (statusEffect.Data == data)
                 {
                     statusEffect.Add(turns);
-                    found = true;
+                    return;
                 }
             }
             
-            if (!found && StatusEffectSettings.Settings.TryGetStatus(type, out StatusEffectData data))
-            {
-                BattleStatusEffect statusEffect = BattleStatusFactory.CreateInstance(data, turns, this);
-                statusEffect.Activate();
-                statusEffectUi.AddStatus(statusEffect);
-                statusEffects.Add(statusEffect);
-            }
+            BattleStatusEffect se = BattleStatusFactory.CreateInstance(data, turns, this);
+            se.Activate();
+            statusEffectUi.AddStatus(se);
+            statusEffects.Add(se);
         }
 
         public void RemoveStatusEffect(BattleStatusEffect statusEffect)

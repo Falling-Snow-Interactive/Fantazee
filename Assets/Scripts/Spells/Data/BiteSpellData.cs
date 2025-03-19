@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Fantazee.Battle.StatusEffects;
 using UnityEngine;
 
 namespace Fantazee.Spells.Data
@@ -7,16 +9,21 @@ namespace Fantazee.Spells.Data
     public class BiteSpellData : SpellData
     {
         public override SpellType Type => SpellType.spell_08_bite;
-
+        
         [Header("Bite")]
-
-        [Range(0, 1f)]
+        
         [SerializeField]
-        private float roll = 0.2f;
-        public float Roll => roll;
+        private BattleStatusData status;
+        public BattleStatusData Status => status;
 
-        [SerializeField]
-        private int turns = 2;
-        public int Turns => turns;
+        protected override Dictionary<string, string> GetDescArgs()
+        {
+            Dictionary<string, string> args = base.GetDescArgs();
+            foreach (KeyValuePair<string, string> d in status.GetDescArgs())
+            {
+                args.Add(d.Key, d.Value);
+            }
+            return args;
+        }
     }
 }

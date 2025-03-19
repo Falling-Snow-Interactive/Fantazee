@@ -25,7 +25,7 @@ namespace Fantazee.StatusEffects
                     return "no_loc";
                 }
 
-                descArgs ??= BuildDescArgs();
+                descArgs ??= GetDescArgs();
                 
                 return locDescription.GetLocalizedString();
             }
@@ -42,9 +42,13 @@ namespace Fantazee.StatusEffects
         private Color color = Color.white;
         public Color Color => color;
 
-        protected virtual Dictionary<string, string> BuildDescArgs()
+        public Dictionary<string, string> GetDescArgs()
         {
-            Dictionary<string,string> args = new Dictionary<string, string>();
+            Dictionary<string, string> args = new()
+                                              {
+                                                  { "StatusType", Type.ToString() },
+                                                  { "StatusColor", ColorUtility.ToHtmlStringRGB(Color) },
+                                              };
             return args;
         }
     }

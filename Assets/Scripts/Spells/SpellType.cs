@@ -12,7 +12,7 @@ namespace Fantazee.Spells
         spell_06_chainlightning = 6,
         spell_07_push = 7,
         spell_08_bite = 8,
-        spell_09 = 9,
+        spell_09_acid_spit = 9,
         spell_10 = 10,
         spell_11 = 11,
         spell_12 = 12,

@@ -17,12 +17,6 @@ namespace Fantazee.Spells.Ui
         
         [SerializeField]
         private TMP_Text desc;
-
-        [SerializeField]
-        private Image icon;
-
-        [SerializeField]
-        private Vector3 offset = new(0f, 100f, 0f);
         
         [SerializeField]
         private float time = 5f;
@@ -42,47 +36,16 @@ namespace Fantazee.Spells.Ui
         {
             name.text = spell.Data.Name;
             desc.text = spell.Data.Description;
-            icon.sprite = spell.Data.Icon;
         }
         
-        public void Show(bool force = false)
+        public void Show()
         {
             root.gameObject.SetActive(true);
-            return;
-            
-            DOTween.Complete(root);
-            
-            root.gameObject.SetActive(true);
-            // FillTooltip(scoreSpellButton);
-            
-            if (force)
-            {
-                root.transform.localPosition = offset;
-            }
-
-            root.transform.DOLocalMove(offset, time)
-                .SetEase(showEase);
         }
 
-        public void Hide(bool force = false)
+        public void Hide()
         {
             root.gameObject.SetActive(false);
-            return;
-            
-            DOTween.Complete(root);
-
-            if (force)
-            {
-                root.transform.localPosition = Vector3.zero;
-                root.gameObject.SetActive(false);
-            }
-            
-            root.transform.DOLocalMove(Vector3.zero, time)
-                .SetEase(hideEase)
-                .OnComplete(() =>
-                            {
-                                root.gameObject.SetActive(false);
-                            });
         }
     }
 }

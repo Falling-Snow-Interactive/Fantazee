@@ -124,13 +124,16 @@ namespace Fantazee.Battle.Characters.Player
         {
             // Check if there's any score unscored. If all have been scored, take a turn to reset.
             Debug.Log("BattlePlayer: Start Turn");
-            bool canPlay = false;
-            foreach (BattleScore battleScore in battleScores)
+            bool canPlay = fantazeeBattleScore.CanScore();
+            if (!canPlay)
             {
-                if (battleScore.CanScore())
+                foreach (BattleScore battleScore in battleScores)
                 {
-                    canPlay = true;
-                    break;
+                    if (battleScore.CanScore())
+                    {
+                        canPlay = true;
+                        break;
+                    }
                 }
             }
 
@@ -231,6 +234,7 @@ namespace Fantazee.Battle.Characters.Player
             {
                 battleScore.ResetScore();
             }
+            fantazeeBattleScore.ResetScore();
             
             onComplete?.Invoke();
         }

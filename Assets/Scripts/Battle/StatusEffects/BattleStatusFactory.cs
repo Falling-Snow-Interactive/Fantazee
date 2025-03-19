@@ -13,6 +13,7 @@ namespace Fantazee.Battle.StatusEffects
                    {
                        BurnStatusData burn => new BurnBattleStatus(burn, turns, character),
                        BleedStatusData bleed => new BleedBattleEffect(bleed, turns, character),
+                       PoisonStatusData poison => new PoisonBattleStatus(poison, turns, character),
                        _ => throw new ArgumentOutOfRangeException(nameof(data))
                    };
         }
