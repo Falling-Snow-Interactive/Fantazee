@@ -37,6 +37,8 @@ namespace Fantazee.Battle.Characters.Enemies
             }
         }
         
+        // Actions
+        
         // Audio
         protected override EventReference DeathSfxRef => data.DeathSfx;
         protected override EventReference EnterSfxRef => data.EnterSfx;

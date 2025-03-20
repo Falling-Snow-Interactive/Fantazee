@@ -9,33 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936da7fd563a4858a25ecc3c552d78d1, type: 3}
-  m_Name: Spell_00_Dagger
+  m_Script: {fileID: 11500000, guid: 68c18645e5a34b8a8e615d433f22aba3, type: 3}
+  m_Name: action_00_slash_data
   m_EditorClassIdentifier: 
-  locName:
-    m_TableReference:
-      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
-    m_TableEntryReference:
-      m_KeyId: 3966754816
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  locDesc:
-    m_TableReference:
-      m_TableCollectionName: GUID:57fdf74a7778f4ae697d33d278f3678e
-    m_TableEntryReference:
-      m_KeyId: 43649064960
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  icon: {fileID: -1423498855, guid: 73bfa086f10b6451eb86261f43b7a49e, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
-  cost:
-    name: 'currency_00_gold: 7'
-    type: 0
-    amount: 7
+  damage:
+    min: 8
+    max: 12
+  statusEffect:
+    data: {fileID: 0}
+    chance: 0
+    turns: 0
   castAnim:
     hasCast: 1
     castVfx: {fileID: 0}
@@ -64,9 +47,9 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 1
+        inSlope: 0
         outSlope: 1
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -74,8 +57,8 @@ MonoBehaviour:
         time: 1
         value: 1
         inSlope: 1
-        outSlope: 1
-        tangentMode: 34
+        outSlope: 0
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -95,6 +78,3 @@ MonoBehaviour:
         Data4: 1940489850
       Path: event:/Spells/Spell_00/Spell_01_Dagger_Hit
     offset: {x: 0, y: 1.1, z: 0}
-  references:
-    version: 2
-    RefIds: []
