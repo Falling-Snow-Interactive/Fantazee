@@ -64,7 +64,7 @@ namespace Fantazee.Battle.Characters.Enemies
         
         #region Intentions
 
-        public void SetupIntentions()
+        public virtual void SetupIntentions()
         {
             List<Intention> intentions = new();
             int damage = data.Damage.Random() * (GameInstance.Current.Environment.Index + 1);
@@ -143,7 +143,7 @@ namespace Fantazee.Battle.Characters.Enemies
         
         #endregion
         
-        #region Attack
+        #region Defend
         
         private void Defend(Intention intention, Action onComplete)
         {
