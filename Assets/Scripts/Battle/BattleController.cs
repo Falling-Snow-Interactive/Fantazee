@@ -231,6 +231,11 @@ namespace Fantazee.Battle
         
         private void StartPlayerTurn()
         {
+            foreach (BattleEnemy enemy in Enemies)
+            {
+                enemy.SetupIntentions();
+            }
+            
             player.StartTurn(OnPlayerTurnEnd);
         }
         
