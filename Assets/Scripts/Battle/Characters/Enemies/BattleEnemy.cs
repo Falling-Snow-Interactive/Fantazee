@@ -106,10 +106,10 @@ namespace Fantazee.Battle.Characters.Enemies
                     Attack(intention, () => ProgressIntentions(queue));
                     break;
                 case IntentionType.intention_01_defend:
-                    Attack(intention, () => ProgressIntentions(queue));
+                    Defend(intention, () => ProgressIntentions(queue));
                     break;
                 case IntentionType.intention_02_healing:
-                    Attack(intention, () => ProgressIntentions(queue));
+                    Heal(intention, () => ProgressIntentions(queue));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -162,14 +162,14 @@ namespace Fantazee.Battle.Characters.Enemies
         
         #endregion
         
-        #region Attack
+        #region Heal
         
-        private void Heal(Action onComplete)
+        private void Heal(Intention intention, Action onComplete)
         {
-            StartCoroutine(HealSequence(onComplete));
+            StartCoroutine(HealSequence(intention, onComplete));
         }
 
-        private IEnumerator HealSequence(Action onComplete)
+        private IEnumerator HealSequence(Intention intention, Action onComplete)
         {
             Visuals.Action();
             attackSfx.start(); // TODO - Heal SFX and VFX probably
