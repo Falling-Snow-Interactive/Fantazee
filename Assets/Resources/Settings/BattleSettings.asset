@@ -12,7 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19037ab111444fb697d14361cc12b747, type: 3}
   m_Name: BattleSettings
   m_EditorClassIdentifier: 
-  bonusScore: 200
+  intentions:
+    information:
+    - name: intention_00_attack
+      type: 0
+      locName:
+        m_TableReference:
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
+        m_TableEntryReference:
+          m_KeyId: 17290675702718464
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      locDescription:
+        m_TableReference:
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
+        m_TableEntryReference:
+          m_KeyId: 17290723115130880
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      icon: {fileID: 1277896095, guid: 1612e71f6127b4df49051814d79c42e8, type: 3}
+      color: {r: 1, g: 0, b: 0, a: 1}
+    - name: intention_01_defend
+      type: 1
+      locName:
+        m_TableReference:
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
+        m_TableEntryReference:
+          m_KeyId: 17290801515061248
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      locDescription:
+        m_TableReference:
+          m_TableCollectionName: GUID:01b7a2ce470564539a6d45019f34a376
+        m_TableEntryReference:
+          m_KeyId: 17290831240093696
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      icon: {fileID: -635280278, guid: 1612e71f6127b4df49051814d79c42e8, type: 3}
+      color: {r: 0, g: 0.98978424, b: 1, a: 1}
   scoreSfx:
     Guid:
       Data1: -1208026178
@@ -20,320 +65,8 @@ MonoBehaviour:
       Data3: -1899287667
       Data4: 1360962814
     Path: event:/Battle/Score
-  scoreInformation:
-    information:
-    - name: Ones
-      type: 1
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 4256161792
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 26708271104
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: Twos
-      type: 2
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 36128677888
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 47100977152
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: Threes
-      type: 3
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 57674817536
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 66868731904
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: Fours
-      type: 4
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 77304160256
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 100247003136
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: Fives
-      type: 5
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 573700038656
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 595560751104
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: Sixes
-      type: 6
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 610521833472
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 630428000256
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: ThreeOfAKind
-      type: 7
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 648429953024
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 1364208902144
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: FourOfAKind
-      type: 8
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 1244880953344
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 721830273024
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: FullHouse
-      type: 9
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 746626998272
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 771532775424
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: SmallStraight
-      type: 10
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 802570625024
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 829535805440
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: LargeStraight
-      type: 11
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 890529374208
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 913719681024
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: Chance
-      type: 12
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 944690421760
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 970363756544
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
-    - name: Fantazee
-      type: 13
-      locName:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 984796356608
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      locDesc:
-        m_TableReference:
-          m_TableCollectionName: GUID:2bec86fe6849f43f29fe5a67bc2fca95
-        m_TableEntryReference:
-          m_KeyId: 1007374295040
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      cost:
-        name: 'Gold: 20'
-        type: 1
-        amount: 20
+  scoreTime: 0.2
+  scoreEase: 1
   references:
     version: 2
     RefIds: []

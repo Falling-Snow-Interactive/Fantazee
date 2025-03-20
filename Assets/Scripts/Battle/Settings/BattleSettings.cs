@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Fantazee.Battle.Characters.Intentions.Information;
 using FMODUnity;
 using UnityEditor;
 using UnityEngine;
@@ -10,9 +11,15 @@ namespace Fantazee.Battle.Settings
         private const string ResourcePath = "Settings/BattleSettings";
         private const string FullPath = "Assets/Resources/" + ResourcePath + ".asset";
 
-        private static BattleSettings settings;
-        public static BattleSettings Settings => settings ??= GetOrCreateSettings();
+        private static BattleSettings _settings;
+        public static BattleSettings Settings => _settings ??= GetOrCreateSettings();
 
+        [Header("Intentions")]
+
+        [SerializeField]
+        private IntentionInformationGroup intentions;
+        public IntentionInformationGroup Intentions => intentions;
+        
         [Header("Scores")]
 
         [SerializeField]

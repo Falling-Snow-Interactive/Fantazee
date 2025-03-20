@@ -29,6 +29,8 @@ namespace Fantazee.Battle.Settings.Editor
         
         public override void OnGUI(string searchContext)
         { 
+            EditorGUILayout.PropertyField(serializedSettings.FindProperty("intentions"));
+            
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreSfx"));
             
             EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreTime"));
