@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95861ebde9fe484ebf28ba222e002576, type: 3}
+  m_Name: enemy_02_action_attack
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  castAnim:
+    hasCast: 0
+    castVfx: {fileID: 0}
+    castSfx:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+  hitAnim:
+    hasHit: 1
+    vfx: {fileID: 7065633942001766830, guid: 59ab54f7e18a84e48810213a4053fbac, type: 3}
+    sfx:
+      Guid:
+        Data1: -281306913
+        Data2: 1330631841
+        Data3: -1155045187
+        Data4: 1940489850
+      Path: event:/Spells/Spell_00/Spell_01_Dagger_Hit
+    offset: {x: 0, y: 1.1, z: 0}
+  damage:
+    min: 4
+    max: 6
+  statusEffect:
+    data: {fileID: 0}
+    chance: 0.5
+    turns: 2
+  projectileAnim:
+    hasProjectile: 1
+    vfx: {fileID: 5405301624189521083, guid: 6f8206dddcc824ca6ad61a18c522c782, type: 3}
+    sfx:
+      Guid:
+        Data1: -722109001
+        Data2: 1322145341
+        Data3: -326632274
+        Data4: 1185304194
+      Path: event:/Spells/Spell_00/Spell_00_Dagger_Projectile
+    spawnOffset: {x: 1.1, y: 1.4, z: 0}
+    ease: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    time: 0.4
+    delay: 0
+  references:
+    version: 2
+    RefIds: []

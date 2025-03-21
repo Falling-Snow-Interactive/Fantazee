@@ -233,7 +233,7 @@ namespace Fantazee.Battle
         {
             foreach (BattleEnemy enemy in Enemies)
             {
-                enemy.SetupIntentions();
+                enemy.SetupActions();
             }
             
             player.StartTurn(OnPlayerTurnEnd);
