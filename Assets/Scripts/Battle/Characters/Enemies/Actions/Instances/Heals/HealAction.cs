@@ -70,20 +70,18 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Heals
         
         private IEnumerator HealSequence(Action onComplete = null)
         {
-            bool ready;
             yield return new WaitForSeconds(0.25f);
             
             if (data.CastAnim.HasCast)
             {
-                ready = false;
-                Source.StartCoroutine(CastSequence(() => ready = true));
-                yield return new WaitUntil(() => ready);
+                Source.Visuals.Action();
+                PlayCastFx();
             }
             
             DoHeal();
             if (data.HitAnim.HasHit)
             {
-                HitSequence();
+                PlayHitFx();
             }
 
             onComplete?.Invoke();

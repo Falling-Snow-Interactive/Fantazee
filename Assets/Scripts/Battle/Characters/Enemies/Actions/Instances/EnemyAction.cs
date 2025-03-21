@@ -26,10 +26,8 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances
 
         protected abstract Vector3 GetHitPos();
         
-        protected IEnumerator CastSequence(Action onComplete = null)
+        protected void PlayCastFx()
         {
-            Source.Visuals.Action();
-            
             if (data.CastAnim.CastVfx)
             {
                 GameObject.Instantiate(data.CastAnim.CastVfx, Source.transform);
@@ -39,13 +37,9 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances
             {
                 RuntimeManager.PlayOneShot(data.CastAnim.CastSfx);
             }
-            
-            yield return new WaitForSeconds(0.5f);
-            
-            onComplete?.Invoke();
         }
 
-        protected void HitSequence()
+        protected void PlayHitFx()
         {
             Vector3 hitPos = GetHitPos();
             if (data.HitAnim.Vfx)
@@ -57,8 +51,6 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances
             {
                 RuntimeManager.PlayOneShot(data.HitAnim.Sfx);
             }
-            
-            BattleController.Instance.Player.Visuals.Hit();
         }
     }
 }

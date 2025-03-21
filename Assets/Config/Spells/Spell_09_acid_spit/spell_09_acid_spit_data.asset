@@ -37,7 +37,7 @@ MonoBehaviour:
     type: 0
     amount: 10
   castAnim:
-    hasCast: 0
+    hasCast: 1
     castVfx: {fileID: 0}
     castSfx:
       Guid:
@@ -55,7 +55,7 @@ MonoBehaviour:
         Data2: 1207027261
         Data3: 1787140785
         Data4: 2125770194
-      Path: event:/General/Swoosh_Small
+      Path: event:/Whooshes/Small
     spawnOffset: {x: 0, y: 1.4, z: 0}
     ease: 1
     curve:
@@ -95,7 +95,6 @@ MonoBehaviour:
         Data4: -1370872847
       Path: event:/Spells/Spell_04_Fireball/Spell_04_Fireball_Hit
     offset: {x: 0, y: 1.2, z: 0}
-  canInflictStatusEffect: 1
   status:
     data: {fileID: 11400000, guid: 0a090ec10e17147739db572ba73adcb8, type: 2}
     chance: 0.5

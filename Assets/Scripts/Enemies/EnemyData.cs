@@ -4,6 +4,7 @@ using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Enemies.Actions;
+using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
 using Fantazee.StatusEffects;
 using FMODUnity;
 using UnityEngine;

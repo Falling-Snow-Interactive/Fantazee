@@ -5,6 +5,7 @@ using DG.Tweening;
 using Fantazee.Battle.Characters.Enemies.Actions;
 using Fantazee.Battle.Characters.Enemies.Actions.ActionData;
 using Fantazee.Battle.Characters.Enemies.Actions.Instances;
+using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
 using Fantazee.Battle.Characters.Intentions;
 using Fantazee.Enemies;
 using Fantazee.Instance;

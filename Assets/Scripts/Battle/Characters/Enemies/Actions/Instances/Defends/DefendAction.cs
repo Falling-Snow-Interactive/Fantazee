@@ -69,22 +69,24 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Defends
         
         private IEnumerator DefendSequence(Action onComplete = null)
         {
-            bool ready;
             yield return new WaitForSeconds(0.25f);
             
             if (data.CastAnim.HasCast)
             {
-                ready = false;
-                BattleController.Instance.StartCoroutine(CastSequence(() => ready = true));
-                yield return new WaitUntil(() => ready);
+                Source.Visuals.Action();
+                PlayCastFx();
             }
+            
+            yield return new WaitForSeconds(0.2f);
             
             DoDefend();
             if (data.HitAnim.HasHit)
             {
-                HitSequence();
+                PlayHitFx();
             }
 
+            yield return new WaitForSeconds(0.5f);
+            
             onComplete?.Invoke();
         }
 

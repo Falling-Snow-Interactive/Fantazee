@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using Fantazee.Battle.Characters.Enemies.Actions.ActionData.Attacks;
 using Fantazee.Battle.Characters.Intentions;
+using Fantazee.Battle.Characters.Player;
 using Fantazee.StatusEffects;
 using FMODUnity;
 using UnityEngine;
@@ -30,12 +31,15 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Attacks
 
         private void DamagePlayer()
         {
-            BattleController.Instance.Player.Damage(Intention.Amount); // TODO do this properly.
+            BattlePlayer player = BattleController.Instance.Player;
+            
+            player.Visuals.Hit();
+            player.Damage(Intention.Amount); // TODO do this properly.
             if (data.StatusEffect.Data 
                 && data.StatusEffect.Data.Type != StatusEffectType.status_none 
                 && UnityEngine.Random.value <= data.StatusEffect.Chance)
             {
-                BattleController.Instance.Player.AddStatusEffect(data.StatusEffect.Data.Type, data.StatusEffect.Turns);
+                player.AddStatusEffect(data.StatusEffect.Data.Type, data.StatusEffect.Turns);
             }
         }
 
@@ -44,11 +48,10 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Attacks
             bool ready;
             yield return new WaitForSeconds(0.25f);
             
+            Source.Visuals.Attack();
             if (data.CastAnim.HasCast)
             {
-                ready = false;
-                Source.StartCoroutine(CastSequence(() => ready = true));
-                yield return new WaitUntil(() => ready);
+                PlayCastFx();
             }
             
             if (data.ProjectileAnim.HasProjectile)
@@ -61,8 +64,10 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Attacks
             DamagePlayer();
             if (data.HitAnim.HasHit)
             {
-                HitSequence();
+                PlayHitFx();
             }
+
+            yield return new WaitForSeconds(0.5f);
 
             onComplete?.Invoke();
         }
@@ -73,7 +78,6 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Attacks
 
             Vector3 hitPos = GetHitPos();
             
-            Source.Visuals.Attack();
             GameObject projectileVfx = Object.Instantiate(data.ProjectileAnim.Vfx, Source.transform);
             projectileVfx.transform.localPosition = data.ProjectileAnim.SpawnOffset;
 
@@ -87,6 +91,7 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Attacks
                          .SetDelay(data.ProjectileAnim.Delay)
                          .OnComplete(() =>
                                      {
+                                         BattleController.Instance.Player.Visuals.Hit();
                                          Object.Destroy(projectileVfx.gameObject);
                                          ready = true;
                                      });

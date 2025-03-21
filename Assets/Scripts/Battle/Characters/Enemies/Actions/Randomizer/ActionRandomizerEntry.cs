@@ -3,7 +3,7 @@ using Fantazee.Battle.Characters.Enemies.Actions.ActionData;
 using Fsi.Gameplay.Randomizers;
 using UnityEngine;
 
-namespace Fantazee.Battle.Characters.Enemies.Actions
+namespace Fantazee.Battle.Characters.Enemies.Actions.Randomizer
 {
     [Serializable]
     public class ActionRandomizerEntry : RandomizerEntry<EnemyActionData>, ISerializationCallbackReceiver
@@ -30,7 +30,7 @@ namespace Fantazee.Battle.Characters.Enemies.Actions
 
         public override string ToString()
         {
-            if (action)
+            if (!action)
             {
                 return "no_action";
             }

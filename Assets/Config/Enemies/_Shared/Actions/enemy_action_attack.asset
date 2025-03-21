@@ -33,7 +33,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   castAnim:
-    hasCast: 0
+    hasCast: 1
     castVfx: {fileID: 0}
     castSfx:
       Guid:
@@ -51,7 +51,7 @@ MonoBehaviour:
         Data2: 1330631841
         Data3: -1155045187
         Data4: 1940489850
-      Path: event:/Spells/Spell_00/Spell_01_Dagger_Hit
+      Path: event:/Spells/Spell_00_dagger/Spell_01_Dagger_Hit
     offset: {x: 0, y: 1.1, z: 0}
   damage:
     min: 4

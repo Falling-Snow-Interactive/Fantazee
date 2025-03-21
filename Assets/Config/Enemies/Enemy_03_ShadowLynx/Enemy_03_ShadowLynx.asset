@@ -35,7 +35,7 @@ MonoBehaviour:
   visuals: {fileID: 5867789611335030042, guid: d047ec9c1bfd6410691f0c44a4dc9c6a, type: 3}
   size: 2
   actionRandomizer:
-  - name: 'enemy_03_action_attack: 3'
+  - name: 'enemy_03_action_bite: 3'
     weight: 3
     action: {fileID: 11400000, guid: aeaf315af150e46dc9496a4d08fb48e3, type: 2}
   - name: 'enemy_03_action_defend_all: 1'
@@ -68,21 +68,21 @@ MonoBehaviour:
       Data2: 1104397301
       Data3: -1131600254
       Data4: 250192699
-    Path: event:/Enemies/Enemy_03/Enter
+    Path: event:/Enemies/Enemy_03_shadow_lynx/Enter
   attackSfx:
     Guid:
-      Data1: 161246867
-      Data2: 1331006427
-      Data3: -1523983444
-      Data4: 1800902712
-    Path: event:/Enemies/Enemy_03/Attack
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   deathSfx:
     Guid:
       Data1: -779337652
       Data2: 1325310143
       Data3: 633245350
       Data4: -822333793
-    Path: event:/Enemies/Enemy_03/Death
+    Path: event:/Enemies/Enemy_03_shadow_lynx/Death
   hideOffset: {x: 10, y: 0, z: 0}
   showTime: 0.35
   showEase: 21
