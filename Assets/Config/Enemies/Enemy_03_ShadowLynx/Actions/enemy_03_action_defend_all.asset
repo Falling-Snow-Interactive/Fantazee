@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3608dbcd964d18a6cbbb9c375ac2e7, type: 3}
+  m_Name: enemy_03_action_defend_all
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  castAnim:
+    hasCast: 1
+    castVfx: {fileID: 0}
+    castSfx:
+      Guid:
+        Data1: 797985991
+        Data2: 1300256610
+        Data3: -1566398045
+        Data4: 1820585275
+      Path: event:/Enemies/Enemy_03_shadow_lynx/shield_cast
+  hitAnim:
+    hasHit: 1
+    vfx: {fileID: 0}
+    sfx:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    offset: {x: 0, y: 0, z: 0}
+  amount:
+    min: 2
+    max: 3
+  target: 2
+  references:
+    version: 2
+    RefIds: []

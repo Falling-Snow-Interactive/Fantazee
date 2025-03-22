@@ -59,10 +59,6 @@ namespace Fantazee.Maps
             private EventReference mapEndSfx;
 
             [SerializeField]
-            private EventReference footstepsSfxRef;
-            private EventInstance footstepsSfx;
-
-            [SerializeField]
             private EventReference nodeSelectSfxRef;
             
             [Header("References")]
@@ -84,8 +80,6 @@ namespace Fantazee.Maps
                 selectAction = selectActionRef.action;
 
                 selectAction.performed += ctx => OnSelectAction();
-                
-                footstepsSfx = RuntimeManager.CreateInstance(footstepsSfxRef);
             }
 
             private void OnEnable()
@@ -185,16 +179,11 @@ namespace Fantazee.Maps
                            1, 
                            moveTime)
                        .SetEase(moveEase)
-                       .OnPlay(() =>
-                               {
-                                   footstepsSfx.start();
-                               })
                        .OnComplete(() =>
                                    {
                                        float3 p = spline.EvaluatePosition(1f);
                                        player.transform.position = new Vector3(p.x, p.y, p.z)
                                            + currentNode.transform.position;
-                                       footstepsSfx.stop(STOP_MODE.IMMEDIATE);
                                        OnFinishMoving(node);
                                    });
 

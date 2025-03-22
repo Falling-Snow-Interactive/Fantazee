@@ -75,7 +75,7 @@ namespace Fantazee.Spells.Ui
             {
                 tooltip.transform.SetParent(transform.parent.parent, true);
                 tooltip.transform.SetAsLastSibling();
-                tooltip?.Show();
+                tooltip?.Show(Spell);
             }
             else
             {

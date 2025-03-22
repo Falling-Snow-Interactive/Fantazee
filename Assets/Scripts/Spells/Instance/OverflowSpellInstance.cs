@@ -30,6 +30,12 @@ namespace Fantazee.Spells.Instance
                 BattleController.Instance.StartCoroutine(OverflowSequence(rem, onComplete));
             }
         }
+        
+        protected override void OnCast()
+        {
+            BattleController.Instance.Player.Visuals.Attack();
+            base.OnCast();
+        }
 
         private IEnumerator OverflowSequence(int remainingDamage, Action onComplete = null)
         {

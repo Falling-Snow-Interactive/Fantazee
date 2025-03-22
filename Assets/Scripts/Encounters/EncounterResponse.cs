@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Information;
 using Fantazee.Currencies.Settings;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -63,5 +64,11 @@ namespace Fantazee.Encounters
 
             return dictionary;
         }
+        
+        [Header("Sfx")]
+
+        [SerializeField]
+        private EventReference selectSfx;
+        public EventReference SelectSfx => selectSfx;
     }
 }

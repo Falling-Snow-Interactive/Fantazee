@@ -34,9 +34,13 @@ MonoBehaviour:
   health: 18
   visuals: {fileID: 5867789611335030042, guid: 0ea95088a27d34bb2a0d7e93ac21de53, type: 3}
   size: 2
-  damage:
-    min: 8
-    max: 12
+  actionRandomizer:
+  - name: 'enemy_action_attack: 1'
+    weight: 1
+    action: {fileID: 11400000, guid: cb361168252cf41388d873f2b59a77e0, type: 2}
+  actionsPerTurn:
+    min: 1
+    max: 2
   statusEffect: -1
   statusChance: 0.35
   statusTurns: 2

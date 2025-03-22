@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
+using Fantazee.Battle.Characters.Enemies.Actions;
+using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
 using Fantazee.StatusEffects;
 using FMODUnity;
 using UnityEngine;
@@ -48,8 +51,12 @@ namespace Fantazee.Enemies
         [Header("Battle")]
         
         [SerializeField]
-        private RangeInt damage;
-        public RangeInt Damage => damage;
+        private List<ActionRandomizerEntry> actionRandomizer;
+        public List<ActionRandomizerEntry> ActionRandomizer => actionRandomizer;
+
+        [SerializeField]
+        private RangeInt actionsPerTurn = new(1, 2);
+        public RangeInt ActionsPerTurn => actionsPerTurn;
 
         [Header("Status Effect")]
         

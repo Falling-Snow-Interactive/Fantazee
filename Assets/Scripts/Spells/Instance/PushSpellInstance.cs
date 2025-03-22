@@ -38,6 +38,12 @@ namespace Fantazee.Spells.Instance
                 onComplete?.Invoke();
             }
         }
+        
+        protected override void OnCast()
+        {
+            BattleController.Instance.Player.Visuals.Attack();
+            base.OnCast();
+        }
 
         protected override Vector3 GetHitPos()
         {

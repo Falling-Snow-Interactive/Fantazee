@@ -38,9 +38,10 @@ namespace Fantazee.Spells.Ui
             desc.text = spell.Data.Description;
         }
         
-        public void Show()
+        public void Show(SpellInstance spell)
         {
             root.gameObject.SetActive(true);
+            FillTooltip(spell);
         }
 
         public void Hide()

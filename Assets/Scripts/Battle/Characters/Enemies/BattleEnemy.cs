@@ -2,6 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Fantazee.Battle.Characters.Enemies.Actions;
+using Fantazee.Battle.Characters.Enemies.Actions.ActionData;
+using Fantazee.Battle.Characters.Enemies.Actions.Instances;
+using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
 using Fantazee.Battle.Characters.Intentions;
 using Fantazee.Enemies;
 using Fantazee.Instance;
@@ -37,11 +41,13 @@ namespace Fantazee.Battle.Characters.Enemies
             }
         }
         
+        // Actions
+        private Queue<EnemyAction> actions = new();
+        private ActionRandomizer actionRandomizer;
+        
         // Audio
         protected override EventReference DeathSfxRef => data.DeathSfx;
         protected override EventReference EnterSfxRef => data.EnterSfx;
-
-        private EventInstance attackSfx;
 
         #region Initialize
 
@@ -51,9 +57,14 @@ namespace Fantazee.Battle.Characters.Enemies
 
             int hp = data.Health * (GameInstance.Current.Environment.Index + 1);
             health = new Health(hp); // TODO - Real scaling
-            attackSfx = RuntimeManager.CreateInstance(data.AttackSfx);
             SpawnVisuals(data.Visuals);
             intentions = new List<Intention>();
+
+            actionRandomizer = new ActionRandomizer();
+            foreach (ActionRandomizerEntry a in data.ActionRandomizer)
+            {
+                actionRandomizer.Add(a);
+            }
             
             base.Initialize();
             
@@ -62,21 +73,24 @@ namespace Fantazee.Battle.Characters.Enemies
 
         #endregion
         
-        #region Intentions
-
-        public virtual void SetupIntentions()
+        #region Turn
+        
+        public virtual void SetupActions()
         {
+            actions = new Queue<EnemyAction>();
             List<Intention> intentions = new();
-            int damage = data.Damage.Random() * (GameInstance.Current.Environment.Index + 1);
-            Intention atkInt = new(IntentionType.intention_00_attack, damage);
-            intentions.Add(atkInt);
+
+            int actionCount = data.ActionsPerTurn.Random();
+            List<EnemyActionData> actionData = actionRandomizer.Randomize(actionCount, true);
+            foreach (EnemyActionData ad in actionData)
+            {
+                EnemyAction action = ActionFactory.Create(ad, this);
+                actions.Enqueue(action);
+                intentions.Add(action.Intention);
+            }
 
             Intentions = intentions;
         }
-        
-        #endregion
-        
-        #region Turn
 
         public override void EndTurn()
         {
@@ -87,11 +101,10 @@ namespace Fantazee.Battle.Characters.Enemies
 
         protected override void CharacterStartTurn()
         {
-            Queue<Intention> intentionQueue = new(Intentions);
-            ProgressIntentions(intentionQueue);
+            ProgressActions(actions);
         }
 
-        private void ProgressIntentions(Queue<Intention> queue)
+        private void ProgressActions(Queue<EnemyAction> queue)
         {
             if (queue.Count <= 0)
             {
@@ -99,84 +112,8 @@ namespace Fantazee.Battle.Characters.Enemies
                 return;
             }
             
-            Intention intention = queue.Dequeue();
-            switch (intention.Type)
-            {
-                case IntentionType.intention_00_attack:
-                    Attack(intention, () => ProgressIntentions(queue));
-                    break;
-                case IntentionType.intention_01_defend:
-                    Defend(intention, () => ProgressIntentions(queue));
-                    break;
-                case IntentionType.intention_02_healing:
-                    Heal(intention, () => ProgressIntentions(queue));
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-        
-        #endregion
-
-        #region Attack
-        
-        private void Attack(Intention intention, Action onComplete)
-        {
-            StartCoroutine(AttackSequence(intention, onComplete));
-        }
-
-        private IEnumerator AttackSequence(Intention intention, Action onComplete)
-        {
-            Visuals.Attack();
-            attackSfx.start();
-            yield return new WaitForSeconds(0.2f);
-            BattleController.Instance.Player.Damage(intention.Amount); // TODO do this properly.
-            if (data.StatusEffect != StatusEffectType.status_none 
-                && Random.value <= data.StatusChance)
-            {
-                BattleController.Instance.Player.AddStatusEffect(data.StatusEffect, data.StatusTurns);
-            }
-            
-            yield return new WaitForSeconds(0.5f);
-            onComplete?.Invoke();
-        }
-        
-        #endregion
-        
-        #region Defend
-        
-        private void Defend(Intention intention, Action onComplete)
-        {
-            StartCoroutine(DefendSequence(intention, onComplete));
-        }
-
-        private IEnumerator DefendSequence(Intention intention, Action onComplete)
-        {
-            Visuals.Action();
-            attackSfx.start(); // TODO defend SFX
-            yield return new WaitForSeconds(0.2f);
-            Shield.Add(intention.Amount); // TODO do this properly.
-            yield return new WaitForSeconds(0.5f);
-            onComplete?.Invoke();
-        }
-        
-        #endregion
-        
-        #region Heal
-        
-        private void Heal(Intention intention, Action onComplete)
-        {
-            StartCoroutine(HealSequence(intention, onComplete));
-        }
-
-        private IEnumerator HealSequence(Intention intention, Action onComplete)
-        {
-            Visuals.Action();
-            attackSfx.start(); // TODO - Heal SFX and VFX probably
-            yield return new WaitForSeconds(0.2f);
-            Health.Heal(intentions[0].Amount); // TODO do this properly.
-            yield return new WaitForSeconds(0.5f);
-            onComplete?.Invoke();
+            EnemyAction action = queue.Dequeue();
+            action.Perform(() => ProgressActions(queue));
         }
         
         #endregion

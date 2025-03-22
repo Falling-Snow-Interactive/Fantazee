@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1511676562460742705, guid: cf40b1a16b199423381b193676e808e3, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 3583592087025849831}
     - target: {fileID: 1539346587835382375, guid: cf40b1a16b199423381b193676e808e3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -600,6 +604,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5513587902053280937, guid: cf40b1a16b199423381b193676e808e3, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 3583592087025849831}
     - target: {fileID: 5558115664870523647, guid: cf40b1a16b199423381b193676e808e3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -972,6 +980,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9043041124932353635, guid: cf40b1a16b199423381b193676e808e3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9085299157334041437, guid: cf40b1a16b199423381b193676e808e3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1001,6 +1013,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3983499447909558449, guid: cf40b1a16b199423381b193676e808e3, type: 3}
   m_PrefabInstance: {fileID: 4301425070896965308}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3583592087025849831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 723603221600695131, guid: cf40b1a16b199423381b193676e808e3, type: 3}
+  m_PrefabInstance: {fileID: 4301425070896965308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1157ce0dbf43aeb091a7326dac74b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5019721512315050699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1189,9 +1212,13 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4023912134923202814, guid: fdb3f7ce97cf74ffd915d63f3544955a, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 3583592087025849831}
     - target: {fileID: 4942678813629785735, guid: fdb3f7ce97cf74ffd915d63f3544955a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7197266778972579390, guid: fdb3f7ce97cf74ffd915d63f3544955a, type: 3}
       propertyPath: m_AnchorMax.x
