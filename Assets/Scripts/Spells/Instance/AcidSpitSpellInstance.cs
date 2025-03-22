@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Scores;
 using Fantazee.Spells.Data;
-using Fantazee.StatusEffects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -33,6 +31,12 @@ namespace Fantazee.Spells.Instance
             }
             
             onComplete?.Invoke();
+        }
+
+        protected override void OnCast()
+        {
+            BattleController.Instance.Player.Visuals.Attack();
+            base.OnCast();
         }
 
         protected override Vector3 GetHitPos()

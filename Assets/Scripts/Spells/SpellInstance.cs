@@ -45,16 +45,6 @@ namespace Fantazee.Spells
         
         public void Cast(ScoreResults scoreResults, Action onComplete = null)
         {
-            if (castSfx.isValid())
-            {
-                castSfx.start();
-            }
-
-            if (data.CastAnim.CastVfx)
-            {
-                Object.Instantiate(data.CastAnim.CastVfx, BattleController.Instance.Player.transform);
-            }
-            
             BattleController.Instance.StartCoroutine(SpellSequence(scoreResults, onComplete));
         }
 
@@ -62,14 +52,42 @@ namespace Fantazee.Spells
 
         private IEnumerator SpellSequence(ScoreResults scoreResults, Action onComplete = null)
         {
+            BattlePlayer player = BattleController.Instance.Player;
+            bool ready = false;
+            yield return new WaitForSeconds(0.25f);
+                
+            player.Visuals.Attack();
+            if (data.CastAnim.HasCast)
+            {
+                PlayCastFx();
+            }
+            
+            if (data.ProjectileAnim.HasProjectile)
+            {
+                ready = false;
+                player.StartCoroutine(ProjectileSequence(() => ready = true));
+                yield return new WaitUntil(() => ready);
+            }
+
+            ready = false;
+            Apply(scoreResults, () => { ready = true; });
+            yield return new WaitUntil(() => ready);
+            if (data.HitAnim.HasHit)
+            {
+                PlayHitFx();
+            }
+
+            yield return new WaitForSeconds(0.5f);
+
+            onComplete?.Invoke();
+            
+            /*
             bool ready;
             yield return new WaitForSeconds(0.25f);
             
             if (data.CastAnim.HasCast)
             {
-                ready = false;
-                BattleController.Instance.StartCoroutine(CastSequence(() => ready = true));
-                yield return new WaitUntil(() => ready);
+                CastSequence();
             }
 
             if (data.ProjectileAnim.HasProjectile)
@@ -95,17 +113,56 @@ namespace Fantazee.Spells
             }
 
             onComplete?.Invoke();
+            */
+        }
+        
+        protected void PlayCastFx()
+        {
+            if (data.CastAnim.CastVfx)
+            {
+                GameObject.Instantiate(data.CastAnim.CastVfx, BattleController.Instance.Player.transform);
+            }
+
+            if (!data.CastAnim.CastSfx.IsNull)
+            {
+                RuntimeManager.PlayOneShot(data.CastAnim.CastSfx);
+            }
         }
 
-        private IEnumerator CastSequence(Action onComplete = null)
+        protected void PlayHitFx()
         {
-            yield return new WaitForSeconds(0.5f);
-            
-            onComplete?.Invoke();
+            Vector3 hitPos = GetHitPos();
+            if (data.HitAnim.Vfx)
+            {
+                GameObject.Instantiate(data.HitAnim.Vfx, hitPos, Quaternion.identity);
+            }
+
+            if (!data.HitAnim.Sfx.IsNull)
+            {
+                RuntimeManager.PlayOneShot(data.HitAnim.Sfx);
+            }
         }
+
+        private void CastSequence()
+        {
+            OnCast();
+            
+            if (castSfx.isValid())
+            {
+                castSfx.start();
+            }
+
+            if (data.CastAnim.CastVfx)
+            {
+                Object.Instantiate(data.CastAnim.CastVfx, BattleController.Instance.Player.transform);
+            }
+        }
+        
+        protected virtual void OnCast(){}
 
         private IEnumerator ProjectileSequence(Action onComplete = null)
         {
+            OnProjectile();
             BattlePlayer player = BattleController.Instance.Player;
             bool ready = false;
 
@@ -146,8 +203,12 @@ namespace Fantazee.Spells
             onComplete?.Invoke();
         }
 
+        protected virtual void OnProjectile(){}
+
         private IEnumerator HitSequence(Action onComplete = null)
         {
+            OnHit();
+            
             Vector3 hitPos = GetHitPos();
             
             if (data.HitAnim.Vfx)
@@ -163,6 +224,8 @@ namespace Fantazee.Spells
             onComplete?.Invoke();
             yield return null;
         }
+        
+        protected virtual void OnHit(){}
 
         protected virtual Vector3 GetHitPos()
         {

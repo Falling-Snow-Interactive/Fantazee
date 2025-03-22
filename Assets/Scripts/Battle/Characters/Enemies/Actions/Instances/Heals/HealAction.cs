@@ -45,8 +45,6 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Heals
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            
-            BattleController.Instance.Player.Damage(Intention.Amount); // TODO do this properly.
         }
 
         private void HealRandom()

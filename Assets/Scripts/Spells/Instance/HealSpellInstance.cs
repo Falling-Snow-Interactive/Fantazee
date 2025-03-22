@@ -22,6 +22,12 @@ namespace Fantazee.Spells.Instance
             BattleController.Instance.Player.Heal(h);
             onComplete?.Invoke();
         }
+        
+        protected override void OnCast()
+        {
+            BattleController.Instance.Player.Visuals.Action();
+            base.OnCast();
+        }
 
         protected override Vector3 GetHitPos()
         {

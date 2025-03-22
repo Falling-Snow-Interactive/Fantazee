@@ -188,6 +188,8 @@ namespace Fantazee.Encounters
             bodyText.text = response.Result;
             responsesContainer.gameObject.SetActive(false);
             rewardsParent.gameObject.SetActive(true);
+            
+            RuntimeManager.PlayOneShot(response.SelectSfx);
 
             // Cost
             if (response.Cost.Health.max > 0)

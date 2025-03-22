@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1204988772256823949
@@ -146,7 +146,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1334317791251736342, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_Name
-      value: Character_Confirm_Button Variant
+      value: Character_Confirm_Button
       objectReference: {fileID: 0}
     - target: {fileID: 5279615504785741057, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_Pivot.x
@@ -174,11 +174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5279615504785741057, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5279615504785741057, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 5279615504785741057, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -227,6 +227,26 @@ PrefabInstance:
     - target: {fileID: 5279615504785741057, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239080819567296743, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Ui/Button_Confirm
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239080819567296743, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: -690362293
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239080819567296743, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1180255078
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239080819567296743, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -1246797413
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239080819567296743, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 1225509181
       objectReference: {fileID: 0}
     - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

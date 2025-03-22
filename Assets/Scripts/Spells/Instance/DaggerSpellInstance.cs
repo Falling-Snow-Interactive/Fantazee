@@ -11,6 +11,8 @@ namespace Fantazee.Spells.Instance
     public class DaggerSpellInstance : SpellInstance
     {
         private DaggerSpellData data;
+
+        private Vector3? cachedPosition;
         
         public DaggerSpellInstance(DaggerSpellData data) : base(data)
         {
@@ -21,10 +23,17 @@ namespace Fantazee.Spells.Instance
         {
             if (BattleController.Instance.TryGetFrontEnemy(out BattleEnemy enemy))
             {
+                cachedPosition = enemy.transform.position;
                 enemy.Damage(scoreResults.Value);
             }
             
             onComplete?.Invoke();
+        }
+        
+        protected override void OnCast()
+        {
+            BattleController.Instance.Player.Visuals.Attack();
+            base.OnCast();
         }
 
         protected override Vector3 GetHitPos()
@@ -34,7 +43,7 @@ namespace Fantazee.Spells.Instance
                 return enemy.transform.position + data.HitAnim.Offset;
             }
             
-            return Vector3.zero;
+            return cachedPosition ?? Vector3.zero;
         }
     }
 }
