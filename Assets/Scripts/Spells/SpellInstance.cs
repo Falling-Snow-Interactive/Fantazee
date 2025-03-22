@@ -68,52 +68,16 @@ namespace Fantazee.Spells
                 player.StartCoroutine(ProjectileSequence(() => ready = true));
                 yield return new WaitUntil(() => ready);
             }
-
-            ready = false;
-            Apply(scoreResults, () => { ready = true; });
-            yield return new WaitUntil(() => ready);
+            
             if (data.HitAnim.HasHit)
             {
                 PlayHitFx();
             }
-
-            yield return new WaitForSeconds(0.5f);
-
+            ready = false;
+            Apply(scoreResults, () => { ready = true; });
+            yield return new WaitUntil(() => ready);
+            
             onComplete?.Invoke();
-            
-            /*
-            bool ready;
-            yield return new WaitForSeconds(0.25f);
-            
-            if (data.CastAnim.HasCast)
-            {
-                CastSequence();
-            }
-
-            if (data.ProjectileAnim.HasProjectile)
-            {
-                ready = false;
-                BattleController.Instance.StartCoroutine(ProjectileSequence(() => ready = true));
-                yield return new WaitUntil(() => ready);
-            }
-            
-            if (data.HitAnim.HasHit)
-            {
-                ready = false;
-                bool ready2 = false;
-                BattleController.Instance.StartCoroutine(HitSequence(() => ready = true));
-                Apply(scoreResults, () => ready2 = true);
-                yield return new WaitUntil(() => ready && ready2);
-            }
-            else
-            {
-                ready = false;
-                Apply(scoreResults, () => ready = true);
-                yield return new WaitUntil(() => ready);
-            }
-
-            onComplete?.Invoke();
-            */
         }
         
         protected void PlayCastFx()

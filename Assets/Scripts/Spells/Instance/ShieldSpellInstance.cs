@@ -20,7 +20,6 @@ namespace Fantazee.Spells.Instance
         {
             BattlePlayer player = BattleController.Instance.Player;
 
-            player.Visuals.Action();
             int d = Mathf.RoundToInt(scoreResults.Value * data.ShieldMod);
             player.Shield.Add(d);
             onCompelte?.Invoke();

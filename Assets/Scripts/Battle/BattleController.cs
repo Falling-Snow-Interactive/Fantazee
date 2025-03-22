@@ -227,7 +227,7 @@ namespace Fantazee.Battle
         
         #endregion
         
-        #region Player Turn
+        #region Player Control
         
         private void StartPlayerTurn()
         {
@@ -252,7 +252,7 @@ namespace Fantazee.Battle
         
         #endregion
         
-        #region Enemies
+        #region Enemy Control
 
         public int EnemiesRemaining()
         {
@@ -302,10 +302,11 @@ namespace Fantazee.Battle
             }
             else
             {
-                EnemyTurnsFinished();
+                DOTween.Sequence().AppendInterval(0.5f).OnComplete(EnemyTurnsFinished).Play(); // Settings up a delay
+                // EnemyTurnsFinished();
             }
         }
-
+        
         private void EnemyTurnsFinished()
         {
             StartPlayerTurn();
