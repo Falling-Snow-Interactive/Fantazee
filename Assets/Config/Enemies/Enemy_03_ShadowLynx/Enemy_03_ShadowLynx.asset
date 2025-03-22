@@ -31,9 +31,10 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  health: 14
   visuals: {fileID: 5867789611335030042, guid: d047ec9c1bfd6410691f0c44a4dc9c6a, type: 3}
   size: 2
+  health: 14
+  statusBarPosition: {x: -30, y: 45, z: 0}
   actionRandomizer:
   - name: 'enemy_03_action_bite: 3'
     weight: 3
@@ -53,9 +54,6 @@ MonoBehaviour:
   actionsPerTurn:
     min: 1
     max: 2
-  statusEffect: 1
-  statusChance: 0.3
-  statusTurns: 2
   battleRewards:
     wallet:
       currencies:
@@ -69,13 +67,6 @@ MonoBehaviour:
       Data3: -1131600254
       Data4: 250192699
     Path: event:/Enemies/Enemy_03_shadow_lynx/Enter
-  attackSfx:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
   deathSfx:
     Guid:
       Data1: -779337652

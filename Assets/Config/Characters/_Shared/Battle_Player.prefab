@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthUi: {fileID: 527831753664105607}
+  statusRoot: {fileID: 0}
   damageNumbers: {fileID: 3999720778797684138}
   shieldUi: {fileID: 6594885032226077749}
   statusEffectUi: {fileID: 3811085256706171405}
@@ -194,7 +195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2178174668773754131, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2930433374583873317, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -286,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7398619927887434817, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 8333775486055190480, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
       propertyPath: m_fontSize

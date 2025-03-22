@@ -31,9 +31,10 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  health: 18
   visuals: {fileID: 5867789611335030042, guid: 0ea95088a27d34bb2a0d7e93ac21de53, type: 3}
   size: 2
+  health: 18
+  statusBarPosition: {x: -15, y: 45, z: 0}
   actionRandomizer:
   - name: 'enemy_action_attack: 1'
     weight: 1
@@ -41,9 +42,6 @@ MonoBehaviour:
   actionsPerTurn:
     min: 1
     max: 2
-  statusEffect: -1
-  statusChance: 0.35
-  statusTurns: 2
   battleRewards:
     wallet:
       currencies:
@@ -57,13 +55,6 @@ MonoBehaviour:
       Data3: -1069358928
       Data4: 260725895
     Path: event:/Enemies/Enemy_01/Enter
-  attackSfx:
-    Guid:
-      Data1: -970978167
-      Data2: 1337504839
-      Data3: 1839687589
-      Data4: 1141626412
-    Path: event:/Enemies/Enemy_01/Attack
   deathSfx:
     Guid:
       Data1: -292462534

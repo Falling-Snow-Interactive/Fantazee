@@ -52,9 +52,11 @@ MonoBehaviour:
   battlePlayerPrefab: {fileID: 5850074044104224665, guid: 4909486ccb1b84888aa5a93f2c0f15a7, type: 3}
   enemyContainer: {fileID: 6378522954758716472}
   battleEnemyPrefab: {fileID: 4516146605308627700, guid: 468d011f6ca514b00bfa7c3a2d60053a, type: 3}
-  enemyPool:
+  guaranteedEnemies:
+  - {fileID: 11400000, guid: 220dc260168b447759037fd34e320954, type: 2}
   - {fileID: 11400000, guid: 60192db45a97c41dcab97727f80cb3ac, type: 2}
-  - {fileID: 11400000, guid: ff459b7facd09485c97a8c8a532b3b3b, type: 2}
+  - {fileID: 11400000, guid: 60192db45a97c41dcab97727f80cb3ac, type: 2}
+  enemyPool: []
   enemySpawns:
     min: 4
     max: 5
@@ -150,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8264153455506140692, guid: 48ebd6668b9c64bbd8065c0eb253c9c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.385
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8264153455506140692, guid: 48ebd6668b9c64bbd8065c0eb253c9c6, type: 3}
       propertyPath: m_LocalPosition.z

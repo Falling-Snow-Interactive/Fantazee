@@ -31,9 +31,10 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  health: 14
   visuals: {fileID: 5867789611335030042, guid: 1be2eb45ae88d4794acacb5acfb8e4fe, type: 3}
   size: 2
+  health: 14
+  statusBarPosition: {x: -15, y: 35, z: 0}
   actionRandomizer:
   - name: 'enemy_02_action_acid: 5'
     weight: 5
@@ -50,9 +51,6 @@ MonoBehaviour:
   actionsPerTurn:
     min: 1
     max: 2
-  statusEffect: 2
-  statusChance: 0.25
-  statusTurns: 1
   battleRewards:
     wallet:
       currencies:
@@ -66,13 +64,6 @@ MonoBehaviour:
       Data3: -576084603
       Data4: -539096035
     Path: event:/Enemies/Enemy_02_vinebound_horror/Enter
-  attackSfx:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
   deathSfx:
     Guid:
       Data1: 1035271322

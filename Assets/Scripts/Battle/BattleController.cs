@@ -65,6 +65,9 @@ namespace Fantazee.Battle
 
         [SerializeField]
         private BattleEnemy battleEnemyPrefab;
+        
+        [SerializeField]
+        private List<EnemyData> guaranteedEnemies;
 
         [SerializeField]
         private List<EnemyData> enemyPool = new();
@@ -138,11 +141,10 @@ namespace Fantazee.Battle
         private void SetupEnemies()
         {
             rewards = new BattleRewards();
-            int spawns = enemySpawns.Random();
             float spawnOffset = 0;
-            for (int i = 0; i < spawns; i++)
+            for(int i = 0; i < guaranteedEnemies.Count; i++)
             {
-                EnemyData enemyData = enemyPool[Random.Range(0, enemyPool.Count)];
+                EnemyData enemyData = guaranteedEnemies[i];
                 BattleEnemy enemy = Instantiate(battleEnemyPrefab, enemyContainer);
                 enemy.gameObject.name = $"{enemyData.Name} ({i})";
                 
@@ -154,6 +156,26 @@ namespace Fantazee.Battle
                 
                 rewards.Add(enemy.Data.BattleRewards);
                 enemies.Insert(0, enemy);
+            }
+
+            if (enemyPool.Count > 0)
+            {
+                int spawns = enemySpawns.Random();
+                for (int i = 0; i < spawns; i++)
+                {
+                    EnemyData enemyData = enemyPool[Random.Range(0, enemyPool.Count)];
+                    BattleEnemy enemy = Instantiate(battleEnemyPrefab, enemyContainer);
+                    enemy.gameObject.name = $"{enemyData.Name} ({i})";
+
+                    float y = i % 2 == 0 ? 0.05f : -0.05f;
+                    enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
+                    enemy.Initialize(enemyData);
+
+                    spawnOffset += enemy.Data.Size;
+
+                    rewards.Add(enemy.Data.BattleRewards);
+                    enemies.Insert(0, enemy);
+                }
             }
         }
         

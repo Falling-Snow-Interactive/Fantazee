@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791f638a1a7745b2a8c4616b9a23752a, type: 3}
+  m_Name: boss_00_action_heal_all
+  m_EditorClassIdentifier: 
+  locName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  castAnim:
+    hasCast: 1
+    castVfx: {fileID: 0}
+    castSfx:
+      Guid:
+        Data1: -1104243381
+        Data2: 1123057236
+        Data3: 1093752455
+        Data4: -1035524645
+      Path: event:/Enemies/Enemy_02_vinebound_horror/heal_cast
+  hitAnim:
+    hasHit: 1
+    vfx: {fileID: 635997657070688871, guid: 8ec1602a5208a45898103852f46b0c14, type: 3}
+    sfx:
+      Guid:
+        Data1: 950065914
+        Data2: 1183236624
+        Data3: -2012059251
+        Data4: -1788787267
+      Path: event:/Enemies/Enemy_02_vinebound_horror/heal_hit
+    offset: {x: 0, y: 0, z: 0}
+  amount:
+    min: 5
+    max: 8
+  target: 2
+  references:
+    version: 2
+    RefIds: []

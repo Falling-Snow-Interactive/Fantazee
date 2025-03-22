@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
-using Fantazee.Battle.Characters.Enemies.Actions;
 using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
-using Fantazee.StatusEffects;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -32,12 +29,6 @@ namespace Fantazee.Enemies
         private LocalizedString locDesc;
         public string Description => locDesc.IsEmpty ? "no loc" : locDesc.GetLocalizedString();
         
-        [Header("Battle")]
-
-        [SerializeField]
-        private int health;
-        public int Health => health;
-        
         [Header("Visuals")]
 
         [SerializeField]
@@ -51,27 +42,20 @@ namespace Fantazee.Enemies
         [Header("Battle")]
         
         [SerializeField]
+        private int health;
+        public int Health => health;
+
+        [SerializeField]
+        private Vector3 statusBarPosition = new Vector3(-30, 45, 0f);
+        public Vector3 StatusBarPosition => statusBarPosition;
+        
+        [SerializeField]
         private List<ActionRandomizerEntry> actionRandomizer;
         public List<ActionRandomizerEntry> ActionRandomizer => actionRandomizer;
 
         [SerializeField]
         private RangeInt actionsPerTurn = new(1, 2);
         public RangeInt ActionsPerTurn => actionsPerTurn;
-
-        [Header("Status Effect")]
-        
-        [SerializeField]
-        private StatusEffectType statusEffect = StatusEffectType.status_none;
-        public StatusEffectType StatusEffect => statusEffect;
-
-        [Range(0, 1f)]
-        [SerializeField]
-        private float statusChance = 0.35f;
-        public float StatusChance => statusChance;
-
-        [SerializeField]
-        private int statusTurns = 2;
-        public int StatusTurns => statusTurns;
         
         [Header("Rewards")]
         
@@ -84,10 +68,6 @@ namespace Fantazee.Enemies
         [SerializeField]
         private EventReference enterSfx;
         public EventReference EnterSfx => enterSfx;
-        
-        [SerializeField]
-        private EventReference attackSfx;
-        public EventReference AttackSfx => attackSfx;
         
         [SerializeField]
         private EventReference deathSfx;

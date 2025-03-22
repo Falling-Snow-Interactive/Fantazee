@@ -13,6 +13,7 @@ using Fantazee.StatusEffects;
 using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
+using Fsi.Gameplay.Healths.Ui;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -67,6 +68,8 @@ namespace Fantazee.Battle.Characters.Enemies
             }
             
             base.Initialize();
+
+            statusRoot.transform.localPosition = data.StatusBarPosition;
             
             Debug.Log($"Enemy: {name} initialized");
         }
