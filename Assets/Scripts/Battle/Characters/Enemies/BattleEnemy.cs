@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Characters.Enemies.Actions;
@@ -9,12 +8,9 @@ using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
 using Fantazee.Battle.Characters.Intentions;
 using Fantazee.Enemies;
 using Fantazee.Instance;
-using Fantazee.StatusEffects;
-using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Battle.Characters.Enemies
 {
@@ -29,8 +25,8 @@ namespace Fantazee.Battle.Characters.Enemies
         
         // Intentions
         public event Action IntentionsUpdated;
-        
-        private List<Intention> intentions;
+
+        protected List<Intention> intentions;
         public List<Intention> Intentions
         {
             get => intentions;
@@ -43,7 +39,9 @@ namespace Fantazee.Battle.Characters.Enemies
         
         // Actions
         private Queue<EnemyAction> actions = new();
-        private ActionRandomizer actionRandomizer;
+        
+        protected ActionRandomizer actionRandomizer;
+        protected virtual ActionRandomizer ActionRandomizer => actionRandomizer;
         
         // Audio
         protected override EventReference DeathSfxRef => data.DeathSfx;
@@ -51,11 +49,11 @@ namespace Fantazee.Battle.Characters.Enemies
 
         #region Initialize
 
-        public void Initialize(EnemyData data)
+        public virtual void Initialize(EnemyData data)
         {
             this.data = data;
 
-            int hp = data.Health * (GameInstance.Current.Environment.Index + 1);
+            int hp = data.Health.Random() * (GameInstance.Current.Environment.Index + 1);
             health = new Health(hp); // TODO - Real scaling
             SpawnVisuals(data.Visuals);
             intentions = new List<Intention>();
@@ -67,6 +65,8 @@ namespace Fantazee.Battle.Characters.Enemies
             }
             
             base.Initialize();
+
+            statusRoot.transform.localPosition = data.StatusBarPosition;
             
             Debug.Log($"Enemy: {name} initialized");
         }
@@ -75,13 +75,13 @@ namespace Fantazee.Battle.Characters.Enemies
         
         #region Turn
         
-        public virtual void SetupActions()
+        public virtual void SetupTurnActions()
         {
             actions = new Queue<EnemyAction>();
             List<Intention> intentions = new();
 
-            int actionCount = data.ActionsPerTurn.Random();
-            List<EnemyActionData> actionData = actionRandomizer.Randomize(actionCount, true);
+            int actionCount = data.ActionsPerTurn.Randomize();
+            List<EnemyActionData> actionData = ActionRandomizer.Randomize(actionCount, true);
             foreach (EnemyActionData ad in actionData)
             {
                 EnemyAction action = ActionFactory.Create(ad, this);
@@ -131,7 +131,13 @@ namespace Fantazee.Battle.Characters.Enemies
             Visuals.transform.DOLocalMove(Vector3.zero, data.ShowTime)
                      .SetEase(data.ShowEase)                     
                      .SetDelay(delay)
-                     .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
+                     .OnPlay(() =>
+                             {
+                                 if (!EnterSfxRef.IsNull)
+                                 {
+                                     RuntimeManager.PlayOneShot(EnterSfxRef);
+                                 }
+                             })
                      .OnComplete(() =>
                                  {
                                      onComplete?.Invoke();
@@ -164,7 +170,7 @@ namespace Fantazee.Battle.Characters.Enemies
             Gizmos.color = Color.red;
             if (data)
             {
-                Gizmos.DrawWireCube(transform.position, new Vector3(data.Size, 0.2f, 0));
+                Gizmos.DrawWireCube(transform.position + Vector3.up * data.Size.y / 2, data.Size);
             }
         }
         

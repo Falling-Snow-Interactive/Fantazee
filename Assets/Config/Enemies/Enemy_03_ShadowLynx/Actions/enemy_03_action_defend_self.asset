@@ -43,7 +43,7 @@ MonoBehaviour:
         Data4: 1820585275
       Path: event:/Enemies/Enemy_03_shadow_lynx/shield_cast
   hitAnim:
-    hasHit: 1
+    hasHit: 0
     vfx: {fileID: 0}
     sfx:
       Guid:
@@ -54,8 +54,8 @@ MonoBehaviour:
       Path: 
     offset: {x: 0, y: 0, z: 0}
   amount:
-    min: 2
-    max: 5
+    min: 1
+    max: 2
   target: 0
   references:
     version: 2

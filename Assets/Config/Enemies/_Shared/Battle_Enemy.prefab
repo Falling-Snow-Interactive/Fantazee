@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthUi: {fileID: 7318764918372763849}
+  statusRoot: {fileID: 211500860826291164}
   damageNumbers: {fileID: 7694067330344914331}
   shieldUi: {fileID: 4127541613696202875}
   statusEffectUi: {fileID: 6206510167267354179}
@@ -320,6 +321,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+--- !u!224 &211500860826291164 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2178174668773754131, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}
+  m_PrefabInstance: {fileID: 2077576404773244623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &662840340224425387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1578486915850449764, guid: 64d3024fb45d24c7bab4fe6bd4af608b, type: 3}

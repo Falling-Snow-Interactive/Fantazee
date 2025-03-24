@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells.Ui;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Scores.Ui.Buttons
 {

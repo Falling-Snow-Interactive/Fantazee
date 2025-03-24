@@ -39,11 +39,14 @@ namespace Fantazee.Battle.Characters
         [Header("Health")]
 
         [SerializeField]
-        private HealthUi healthUi;
+        protected HealthUi healthUi;
         
         public abstract Health Health { get; }
         public Shield Shield { get; private set; }
 
+        [SerializeField]
+        protected Transform statusRoot;
+        
         [SerializeField]
         private DamageNumbersController damageNumbers;
 

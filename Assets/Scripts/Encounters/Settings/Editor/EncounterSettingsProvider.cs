@@ -10,7 +10,7 @@ namespace Fantazee.Encounters.Settings.Editor
         [SettingsProvider]
         public static SettingsProvider CreateSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider("Fantazee/Encounters", SettingsScope.Project)
+            SettingsProvider provider = new("Fantazee/Encounters", SettingsScope.Project)
                                         {
                                             label = "Encounters",
                                             activateHandler = OnActivate,

@@ -3,8 +3,6 @@ using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Scores;
 using Fantazee.Spells.Data;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Spells.Instance
 {
@@ -25,7 +23,7 @@ namespace Fantazee.Spells.Instance
             {
                 enemy.Damage(d);
 
-                if (Random.value > data.StatusEffect.Chance)
+                if (data.StatusEffect.Percent.Roll())
                 {
                     enemy.AddStatusEffect(data.StatusEffect.Data, data.StatusEffect.Turns);
                 }

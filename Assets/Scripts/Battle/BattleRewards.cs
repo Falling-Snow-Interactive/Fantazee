@@ -28,5 +28,12 @@ namespace Fantazee.Battle
             Debug.Log($"Battle: Rewards Granted\n{wallet}");
             GameInstance.Current.Character.Wallet.Add(wallet);
         }
+
+        public override string ToString()
+        {
+            string s = "Wallet: \n";
+            s += wallet.ToString();
+            return s;
+        }
     }
 }

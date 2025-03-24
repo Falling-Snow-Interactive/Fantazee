@@ -6,7 +6,7 @@ namespace Fantazee.Battle.Characters.Intentions
         intention_00_attack = 0,
         intention_01_defend = 1,
         intention_02_healing = 2,
-        intention_03 = 3,
+        intention_03_special = 3,
         intention_04 = 4,
         intention_05 = 5,
         intention_06 = 6,
