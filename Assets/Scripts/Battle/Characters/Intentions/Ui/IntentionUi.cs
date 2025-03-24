@@ -19,12 +19,18 @@ namespace Fantazee.Battle.Characters.Intentions.Ui
 
         private void OnEnable()
         {
-            battleEnemy.IntentionsUpdated += OnIntentionsUpdated;
+            if (battleEnemy)
+            {
+                battleEnemy.IntentionsUpdated += OnIntentionsUpdated;
+            }
         }
 
         private void OnDisable()
         {
-            battleEnemy.IntentionsUpdated -= OnIntentionsUpdated;
+            if (battleEnemy)
+            {
+                battleEnemy.IntentionsUpdated -= OnIntentionsUpdated;
+            }
         }
 
         private void OnIntentionsUpdated()

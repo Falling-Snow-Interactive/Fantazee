@@ -19,6 +19,7 @@ namespace Fantazee.Battle.Characters.Enemies.Actions
                        AttackActionData a => new AttackAction(a, enemy),
                        DefendActionData d => new DefendAction(d, enemy),
                        HealActionData h => new HealAction(h, enemy),
+                       SummonActionData s => new SummonAction(s, enemy),
                        _ => throw new ArgumentOutOfRangeException(nameof(data), data, null)
                    };
         }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Characters.Enemies.Actions;
@@ -9,13 +8,9 @@ using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
 using Fantazee.Battle.Characters.Intentions;
 using Fantazee.Enemies;
 using Fantazee.Instance;
-using Fantazee.StatusEffects;
-using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
-using Fsi.Gameplay.Healths.Ui;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Battle.Characters.Enemies
 {
@@ -30,8 +25,8 @@ namespace Fantazee.Battle.Characters.Enemies
         
         // Intentions
         public event Action IntentionsUpdated;
-        
-        private List<Intention> intentions;
+
+        protected List<Intention> intentions;
         public List<Intention> Intentions
         {
             get => intentions;
@@ -44,7 +39,9 @@ namespace Fantazee.Battle.Characters.Enemies
         
         // Actions
         private Queue<EnemyAction> actions = new();
-        private ActionRandomizer actionRandomizer;
+        
+        protected ActionRandomizer actionRandomizer;
+        protected virtual ActionRandomizer ActionRandomizer => actionRandomizer;
         
         // Audio
         protected override EventReference DeathSfxRef => data.DeathSfx;
@@ -52,7 +49,7 @@ namespace Fantazee.Battle.Characters.Enemies
 
         #region Initialize
 
-        public void Initialize(EnemyData data)
+        public virtual void Initialize(EnemyData data)
         {
             this.data = data;
 
@@ -78,13 +75,13 @@ namespace Fantazee.Battle.Characters.Enemies
         
         #region Turn
         
-        public virtual void SetupActions()
+        public virtual void SetupTurnActions()
         {
             actions = new Queue<EnemyAction>();
             List<Intention> intentions = new();
 
             int actionCount = data.ActionsPerTurn.Random();
-            List<EnemyActionData> actionData = actionRandomizer.Randomize(actionCount, true);
+            List<EnemyActionData> actionData = ActionRandomizer.Randomize(actionCount, true);
             foreach (EnemyActionData ad in actionData)
             {
                 EnemyAction action = ActionFactory.Create(ad, this);
@@ -134,7 +131,13 @@ namespace Fantazee.Battle.Characters.Enemies
             Visuals.transform.DOLocalMove(Vector3.zero, data.ShowTime)
                      .SetEase(data.ShowEase)                     
                      .SetDelay(delay)
-                     .OnPlay(() => RuntimeManager.PlayOneShot(EnterSfxRef))
+                     .OnPlay(() =>
+                             {
+                                 if (!EnterSfxRef.IsNull)
+                                 {
+                                     RuntimeManager.PlayOneShot(EnterSfxRef);
+                                 }
+                             })
                      .OnComplete(() =>
                                  {
                                      onComplete?.Invoke();

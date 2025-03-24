@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b093985ea014f23a49bee8c2b0b1e27, type: 3}
+  m_Name: boss_00_stumpy_data
+  m_EditorClassIdentifier: 
+  type: 30
+  locName:
+    m_TableReference:
+      m_TableCollectionName: GUID:0cb1bad1c57c24280b374f35a6955fa4
+    m_TableEntryReference:
+      m_KeyId: 3913325149675520
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  locDesc:
+    m_TableReference:
+      m_TableCollectionName: GUID:0cb1bad1c57c24280b374f35a6955fa4
+    m_TableEntryReference:
+      m_KeyId: 3913350365831168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  visuals: {fileID: 5867789611335030042, guid: fd134fc5df7e84e0b93c05ff43a322f8, type: 3}
+  size: 3
+  health: 300
+  statusBarPosition: {x: -15, y: 95, z: 0}
+  actionRandomizer:
+  - name: 'boss_00_action_heal_all: 1'
+    weight: 1
+    action: {fileID: 11400000, guid: 78871282d4ebf4d3dabd579d870c6565, type: 2}
+  - name: 'boss_00_action_heal_self: 2'
+    weight: 2
+    action: {fileID: 11400000, guid: a799f74e5133f4ff485f0e8ee322e2d3, type: 2}
+  - name: 'boss_00_action_spit: 5'
+    weight: 5
+    action: {fileID: 11400000, guid: 29fa52caeba4f4aa084caf9166679abb, type: 2}
+  actionsPerTurn:
+    min: 1
+    max: 2
+  battleRewards:
+    wallet:
+      currencies: []
+  enterSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  deathSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  hideOffset: {x: 0, y: -5, z: 0}
+  showTime: 0.5
+  showEase: 4
+  bossEnemy: {fileID: 1170165857335208582, guid: e838981f6e02c4fd1ac76c2e0748bb45, type: 3}
+  enemiesRemainingForSummon: 1
+  summonAction:
+    name: 'boss_00_action_summon: 3'
+    weight: 3
+    action: {fileID: 11400000, guid: 39d5b88bf121241f8a34009b2414b005, type: 2}
+  references:
+    version: 2
+    RefIds: []

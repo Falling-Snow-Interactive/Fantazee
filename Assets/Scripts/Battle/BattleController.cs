@@ -47,7 +47,7 @@ namespace Fantazee.Battle
         private BattlePlayer player;
         public BattlePlayer Player => player;
 
-        private List<BattleEnemy> enemies = new();
+        protected List<BattleEnemy> enemies = new();
         public List<BattleEnemy> Enemies => enemies;
 
         [Header("Characters")]
@@ -61,22 +61,13 @@ namespace Fantazee.Battle
         [Header("Enemies")]
         
         [SerializeField]
-        private Transform enemyContainer;
+        protected Transform enemyContainer;
 
         [SerializeField]
-        private BattleEnemy battleEnemyPrefab;
-        
-        [SerializeField]
-        private List<EnemyData> guaranteedEnemies;
-
-        [SerializeField]
-        private List<EnemyData> enemyPool = new();
-
-        [SerializeField]
-        private RangeInt enemySpawns = new(3, 5);
+        protected BattleEnemy battleEnemyPrefab;
 
         [SerializeReference]
-        private BattleRewards rewards;
+        protected BattleRewards rewards;
         
         private void OnEnable()
         {
@@ -110,15 +101,10 @@ namespace Fantazee.Battle
             
             player = Instantiate(battlePlayerPrefab, playerContainer);
             Player.Initialize(GameInstance.Current.Character);
+            rewards = new BattleRewards();
             
             SetupRelics();
             SetupEnemies();
-            
-            // Hide enemies
-            foreach (BattleEnemy enemy in enemies)
-            {
-                enemy.Hide(null, true);
-            }
             
             PlayMusic();
         }
@@ -138,45 +124,41 @@ namespace Fantazee.Battle
             BattleUi.Instance.RelicUi.Initialize(GameInstance.Current.Character.Relics);
         }
 
-        private void SetupEnemies()
+        protected virtual void SetupEnemies()
         {
-            rewards = new BattleRewards();
-            float spawnOffset = 0;
-            for(int i = 0; i < guaranteedEnemies.Count; i++)
+            EnvironmentInstance env = GameInstance.Current.Environment;
+            if (env.Data.EnemyPool.Count > 0)
             {
-                EnemyData enemyData = guaranteedEnemies[i];
-                BattleEnemy enemy = Instantiate(battleEnemyPrefab, enemyContainer);
-                enemy.gameObject.name = $"{enemyData.Name} ({i})";
-                
-                float y = i % 2 == 0 ? 0.05f : -0.05f;
-                enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
-                enemy.Initialize(enemyData);
-                
-                spawnOffset += enemy.Data.Size;
-                
-                rewards.Add(enemy.Data.BattleRewards);
-                enemies.Insert(0, enemy);
-            }
-
-            if (enemyPool.Count > 0)
-            {
-                int spawns = enemySpawns.Random();
+                int spawns = env.Data.EnemySpawns.Random();
                 for (int i = 0; i < spawns; i++)
                 {
-                    EnemyData enemyData = enemyPool[Random.Range(0, enemyPool.Count)];
-                    BattleEnemy enemy = Instantiate(battleEnemyPrefab, enemyContainer);
-                    enemy.gameObject.name = $"{enemyData.Name} ({i})";
-
-                    float y = i % 2 == 0 ? 0.05f : -0.05f;
-                    enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
-                    enemy.Initialize(enemyData);
-
-                    spawnOffset += enemy.Data.Size;
-
-                    rewards.Add(enemy.Data.BattleRewards);
-                    enemies.Insert(0, enemy);
+                    EnemyData enemyData = env.Data.EnemyPool[Random.Range(0, env.Data.EnemyPool.Count)];
+                    SpawnEnemy(enemyData);
                 }
             }
+        }
+
+        public BattleEnemy SpawnEnemy(EnemyData data)
+        {
+            BattleEnemy enemy = Instantiate(battleEnemyPrefab, enemyContainer);
+
+            float y = enemies.Count % 2 == 0 ? 0.05f : -0.05f;
+            float spawnOffset = 0;
+            foreach (BattleEnemy spawned in enemies)
+            {
+                spawnOffset += spawned.Data.Size;
+            }
+            enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
+            enemy.Initialize(data);
+            
+            enemy.gameObject.name = $"{data.Name}";
+
+            enemy.Hide(null, true);
+            
+            rewards.Add(enemy.Data.BattleRewards);
+            enemies.Insert(0, enemy);
+
+            return enemy;
         }
         
         #endregion
@@ -255,7 +237,7 @@ namespace Fantazee.Battle
         {
             foreach (BattleEnemy enemy in Enemies)
             {
-                enemy.SetupActions();
+                enemy.SetupTurnActions();
             }
             
             player.StartTurn(OnPlayerTurnEnd);

@@ -6,7 +6,7 @@ namespace Fantazee.Battle.Characters.Enemies.Actions
         action_00_attack = 0,
         action_01_defend = 1,
         action_02_heal = 2,
-        action_03 = 3,
+        action_03_summon = 3,
         action_04 = 4,
         action_05 = 5,
         action_06 = 6,

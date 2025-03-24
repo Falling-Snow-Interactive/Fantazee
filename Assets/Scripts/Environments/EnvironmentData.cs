@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Fantazee.Audio;
 using Fantazee.Encounters;
+using Fantazee.Enemies;
+using Fantazee.Enemies.Data;
 using Fantazee.Environments.Settings;
 using Fsi.Gameplay.SceneManagement;
 using UnityEngine;
@@ -54,6 +56,26 @@ namespace Fantazee.Environments
         [SerializeField]
         private List<EncounterData> encounters = new();
         public List<EncounterData> Encounters => encounters;
+        
+        [Header("Battles")]
+
+        [SerializeField]
+        private List<EnemyData> enemyPool = new();
+        public List<EnemyData> EnemyPool => enemyPool;
+
+        [SerializeField]
+        private Fsi.Gameplay.RangeInt enemySpawns = new(3, 5);
+        public Fsi.Gameplay.RangeInt EnemySpawns => enemySpawns;
+
+        [Header("Boss")]
+
+        [SerializeField]
+        private StumpyData boss;
+        public StumpyData Boss => boss;
+
+        [SerializeField]
+        private List<EnemyData> bossSpawns = new();
+        public List<EnemyData> BossSpawns => bossSpawns;
 
         [Header("Audio")]
 
