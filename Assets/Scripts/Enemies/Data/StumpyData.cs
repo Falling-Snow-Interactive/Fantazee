@@ -1,6 +1,5 @@
 using Fantazee.Battle.Boss.Bosses;
 using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
-using UnityEngine;
 
 namespace Fantazee.Enemies.Data
 {

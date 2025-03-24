@@ -34,12 +34,17 @@ MonoBehaviour:
   visuals: {fileID: 5867789611335030042, guid: fd134fc5df7e84e0b93c05ff43a322f8, type: 3}
   size: {x: 3, y: 3}
   health:
-    min: 150
-    max: 150
+    min: 75
+    max: 75
   statusBarPosition: {x: -15, y: 95, z: 0}
   actionsPerTurn:
-    min: 1
-    max: 3
+    entries:
+    - weight: 3
+      value: 1
+    - weight: 1
+      value: 3
+    - weight: 7
+      value: 2
   actionRandomizer:
   - name: 'boss_00_action_heal_all: 1'
     weight: 1
@@ -47,11 +52,11 @@ MonoBehaviour:
   - name: 'boss_00_action_heal_self: 2'
     weight: 2
     action: {fileID: 11400000, guid: a799f74e5133f4ff485f0e8ee322e2d3, type: 2}
-  - name: 'boss_00_action_spit: 10'
-    weight: 10
-    action: {fileID: 11400000, guid: 29fa52caeba4f4aa084caf9166679abb, type: 2}
-  - name: 'boss_00_action_punch: 5'
+  - name: 'boss_00_action_spit: 5'
     weight: 5
+    action: {fileID: 11400000, guid: 29fa52caeba4f4aa084caf9166679abb, type: 2}
+  - name: 'boss_00_action_punch: 10'
+    weight: 10
     action: {fileID: 11400000, guid: 298c4b2118dd2426fb3f36a233e3cd98, type: 2}
   battleRewards:
     wallet:
@@ -76,8 +81,8 @@ MonoBehaviour:
   bossEnemy: {fileID: 1170165857335208582, guid: e838981f6e02c4fd1ac76c2e0748bb45, type: 3}
   enemiesRemainingForSummon: 1
   summonAction:
-    name: 'boss_00_action_summon: 3'
-    weight: 3
+    name: 'boss_00_action_summon: 5'
+    weight: 5
     action: {fileID: 11400000, guid: 39d5b88bf121241f8a34009b2414b005, type: 2}
   references:
     version: 2

@@ -54,13 +54,13 @@ MonoBehaviour:
       Path: event:/Enemies/Enemy_03_shadow_lynx/bite_hit
     offset: {x: 0, y: 1.1, z: 0}
   damage:
-    min: 4
-    max: 6
+    min: 3
+    max: 5
   statusEffect:
     data: {fileID: 11400000, guid: b8bf71d42b5314951963eac940aa12af, type: 2}
     percent:
-      chance: 35
-    turns: 2
+      chance: 25
+    turns: 1
   projectileAnim:
     hasProjectile: 0
     vfx: {fileID: 0}

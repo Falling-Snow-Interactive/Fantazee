@@ -2,6 +2,7 @@ using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
+using Fantazee.Randomizers;
 using FMODUnity;
 using UnityEngine.Localization;
 using RangeInt = Fsi.Gameplay.RangeInt;
@@ -50,8 +51,8 @@ namespace Fantazee.Enemies
         [Header("Actions")]
         
         [SerializeField]
-        private RangeInt actionsPerTurn = new(1, 2);
-        public RangeInt ActionsPerTurn => actionsPerTurn;
+        private IntRandomizer actionsPerTurn = new();
+        public IntRandomizer ActionsPerTurn => actionsPerTurn;
         
         [SerializeField]
         private List<ActionRandomizerEntry> actionRandomizer;

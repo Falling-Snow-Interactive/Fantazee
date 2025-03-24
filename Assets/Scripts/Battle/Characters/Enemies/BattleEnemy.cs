@@ -80,7 +80,7 @@ namespace Fantazee.Battle.Characters.Enemies
             actions = new Queue<EnemyAction>();
             List<Intention> intentions = new();
 
-            int actionCount = data.ActionsPerTurn.Random();
+            int actionCount = data.ActionsPerTurn.Randomize();
             List<EnemyActionData> actionData = ActionRandomizer.Randomize(actionCount, true);
             foreach (EnemyActionData ad in actionData)
             {

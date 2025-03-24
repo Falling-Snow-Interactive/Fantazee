@@ -54,12 +54,13 @@ MonoBehaviour:
       Path: 
     offset: {x: 0, y: 1.1, z: 0}
   damage:
-    min: 4
+    min: 3
     max: 6
   statusEffect:
     data: {fileID: 11400000, guid: 0a090ec10e17147739db572ba73adcb8, type: 2}
-    chance: 0.35
-    turns: 2
+    percent:
+      chance: 25
+    turns: 1
   projectileAnim:
     hasProjectile: 1
     vfx: {fileID: 5405301624189521083, guid: c7214259e978e44b1a3281e98fbba136, type: 3}

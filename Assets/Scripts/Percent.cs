@@ -13,5 +13,10 @@ namespace Fantazee
         {
             return Random.Range(0, 100) < chance;
         }
+
+        public override string ToString()
+        {
+            return chance.ToString();
+        }
     }
 }
