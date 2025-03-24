@@ -53,7 +53,7 @@ namespace Fantazee.Battle.Characters.Enemies
         {
             this.data = data;
 
-            int hp = data.Health * (GameInstance.Current.Environment.Index + 1);
+            int hp = data.Health.Random() * (GameInstance.Current.Environment.Index + 1);
             health = new Health(hp); // TODO - Real scaling
             SpawnVisuals(data.Visuals);
             intentions = new List<Intention>();

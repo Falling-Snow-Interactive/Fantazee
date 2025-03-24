@@ -33,20 +33,19 @@ MonoBehaviour:
     m_LocalVariables: []
   visuals: {fileID: 5867789611335030042, guid: 1be2eb45ae88d4794acacb5acfb8e4fe, type: 3}
   size: 2
-  health: 14
+  health:
+    min: 14
+    max: 16
   statusBarPosition: {x: -15, y: 35, z: 0}
   actionRandomizer:
-  - name: 'enemy_02_action_acid: 5'
-    weight: 5
+  - name: 'enemy_02_action_acid: 10'
+    weight: 10
     action: {fileID: 11400000, guid: eee5b877050414761bb7ead4005f864c, type: 2}
-  - name: 'enemy_02_action_heal_self: 3'
-    weight: 3
-    action: {fileID: 11400000, guid: 13b2fbd07cef04c249936c8737b963db, type: 2}
-  - name: 'enemy_02_action_heal_all: 1'
-    weight: 1
-    action: {fileID: 11400000, guid: 3736ea11c56644f8ea9b05e9c5829487, type: 2}
-  - name: 'enemy_02_action_heal_rand: 2'
+  - name: 'enemy_02_action_heal_all: 2'
     weight: 2
+    action: {fileID: 11400000, guid: 3736ea11c56644f8ea9b05e9c5829487, type: 2}
+  - name: 'enemy_02_action_heal_rand: 4'
+    weight: 4
     action: {fileID: 11400000, guid: e869644ed470f4fd3b54d25f1928b5cb, type: 2}
   actionsPerTurn:
     min: 1
@@ -71,7 +70,7 @@ MonoBehaviour:
       Data3: -1346389598
       Data4: -578422992
     Path: event:/Enemies/Enemy_02_vinebound_horror/Death
-  hideOffset: {x: 10, y: 0, z: 0}
+  hideOffset: {x: 0, y: -5, z: 0}
   showTime: 0.35
   showEase: 21
   references:

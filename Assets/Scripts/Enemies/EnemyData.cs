@@ -39,23 +39,25 @@ namespace Fantazee.Enemies
         private float size = 1f;
         public float Size => size;
         
-        [Header("Battle")]
+        [Header("Health")]
         
         [SerializeField]
-        private int health;
-        public int Health => health;
+        private RangeInt health;
+        public RangeInt Health => health;
 
         [SerializeField]
         private Vector3 statusBarPosition = new Vector3(-30, 45, 0f);
         public Vector3 StatusBarPosition => statusBarPosition;
         
-        [SerializeField]
-        private List<ActionRandomizerEntry> actionRandomizer;
-        public List<ActionRandomizerEntry> ActionRandomizer => actionRandomizer;
-
+        [Header("Actions")]
+        
         [SerializeField]
         private RangeInt actionsPerTurn = new(1, 2);
         public RangeInt ActionsPerTurn => actionsPerTurn;
+        
+        [SerializeField]
+        private List<ActionRandomizerEntry> actionRandomizer;
+        public List<ActionRandomizerEntry> ActionRandomizer => actionRandomizer;
         
         [Header("Rewards")]
         

@@ -33,24 +33,20 @@ MonoBehaviour:
     m_LocalVariables: []
   visuals: {fileID: 5867789611335030042, guid: d047ec9c1bfd6410691f0c44a4dc9c6a, type: 3}
   size: 2
-  health: 14
+  health:
+    min: 14
+    max: 16
   statusBarPosition: {x: -30, y: 45, z: 0}
   actionRandomizer:
-  - name: 'enemy_03_action_bite: 3'
-    weight: 3
+  - name: 'enemy_03_action_bite: 10'
+    weight: 10
     action: {fileID: 11400000, guid: aeaf315af150e46dc9496a4d08fb48e3, type: 2}
-  - name: 'enemy_03_action_defend_all: 1'
-    weight: 1
+  - name: 'enemy_03_action_defend_all: 2'
+    weight: 2
     action: {fileID: 11400000, guid: ca652c5dfa02848eda5a890f642094f7, type: 2}
   - name: 'enemy_03_action_defend_front: 1'
     weight: 1
     action: {fileID: 11400000, guid: b4d44fdfc84d144a58b42c20b9adabc8, type: 2}
-  - name: 'enemy_03_action_defend_rand: 1'
-    weight: 1
-    action: {fileID: 11400000, guid: 1389de6d381f448309559a5634733157, type: 2}
-  - name: 'enemy_03_action_defend_self: 1'
-    weight: 1
-    action: {fileID: 11400000, guid: c009fe323f0b04d08818c0a274fe7207, type: 2}
   actionsPerTurn:
     min: 1
     max: 2
