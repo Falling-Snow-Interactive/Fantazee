@@ -37,6 +37,9 @@ MonoBehaviour:
     min: 14
     max: 16
   statusBarPosition: {x: -15, y: 35, z: 0}
+  actionsPerTurn:
+    min: 1
+    max: 2
   actionRandomizer:
   - name: 'enemy_02_action_acid: 10'
     weight: 10
@@ -47,9 +50,6 @@ MonoBehaviour:
   - name: 'enemy_02_action_heal_rand: 4'
     weight: 4
     action: {fileID: 11400000, guid: e869644ed470f4fd3b54d25f1928b5cb, type: 2}
-  actionsPerTurn:
-    min: 1
-    max: 2
   battleRewards:
     wallet:
       currencies:
@@ -62,14 +62,14 @@ MonoBehaviour:
       Data2: 1109064421
       Data3: -576084603
       Data4: -539096035
-    Path: event:/Enemies/Enemy_02_vinebound_horror/Enter
+    Path: event:/Enemies/Enemy_02_vinebound_horror/enemy_02_enter
   deathSfx:
     Guid:
       Data1: 1035271322
       Data2: 1162736183
       Data3: -1346389598
       Data4: -578422992
-    Path: event:/Enemies/Enemy_02_vinebound_horror/Death
+    Path: event:/Enemies/Enemy_02_vinebound_horror/enemy_02_death
   hideOffset: {x: 0, y: -5, z: 0}
   showTime: 0.35
   showEase: 21
