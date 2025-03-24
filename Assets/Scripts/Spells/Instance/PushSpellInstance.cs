@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Scores;
 using Fantazee.Spells.Data;
-using UnityEngine;
 
 namespace Fantazee.Spells.Instance
 {
@@ -77,7 +75,7 @@ namespace Fantazee.Spells.Instance
                                    .SetEase(pushData.MoveEase);
                 sequence.Insert(pushData.MoveDelay * (enemies.Count - i), tween);
                 
-                pos.x -= enemy.Data.Size;
+                pos.x -= enemy.Data.Size.x;
                 pos.y = offset;
                 offset *= -1;
             }

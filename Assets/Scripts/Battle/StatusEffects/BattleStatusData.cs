@@ -10,10 +10,9 @@ namespace Fantazee.Battle.StatusEffects
         private StatusEffectData data;
         public StatusEffectData Data => data;
         
-        [Range(0, 100)]
         [SerializeField]
-        private float percent = 35;
-        public float Percent => percent;
+        private Percent percent;
+        public Percent Percent => percent;
 
         [SerializeField]
         private int turns = 2;
@@ -34,11 +33,6 @@ namespace Fantazee.Battle.StatusEffects
             }
 
             return args;
-        }
-
-        public bool Roll()
-        {
-            return Random.Range(0, 100) <= Percent;
         }
     }
 }

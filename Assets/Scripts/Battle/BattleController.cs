@@ -119,7 +119,7 @@ namespace Fantazee.Battle
             float spawnOffset = 0;
             foreach (BattleEnemy spawned in Enemies)
             {
-                spawnOffset += spawned.Data.Size;
+                spawnOffset += spawned.Data.Size.x;
             }
             enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
             enemy.Initialize(data);
@@ -346,5 +346,16 @@ namespace Fantazee.Battle
         }
         
         #endregion
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Vector3 center = playerContainer.transform.position;
+            center.x = 0;
+            center.z = 0;
+            
+            Gizmos.DrawRay(center, Vector3.left * 25);
+            Gizmos.DrawRay(center, Vector3.right * 25);
+        }
     }
 }

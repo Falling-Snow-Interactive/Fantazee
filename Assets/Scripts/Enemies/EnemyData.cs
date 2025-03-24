@@ -34,8 +34,8 @@ namespace Fantazee.Enemies
         public GameplayCharacterVisuals Visuals => visuals;
 
         [SerializeField]
-        private float size = 1f;
-        public float Size => size;
+        private Vector2 size = Vector2.one;
+        public Vector2 Size => size;
         
         [Header("Health")]
         

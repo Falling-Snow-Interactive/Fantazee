@@ -37,7 +37,7 @@ namespace Fantazee.Battle.Boss
             boss.name = bossData.Name;
             Enemies.Add(boss);
 
-            spawnOffset += boss.Data.Size;
+            spawnOffset += boss.Data.Size.x;
             
             for(int i = 0; i < env.Data.BossSpawns.Count; i++)
             {
@@ -49,7 +49,7 @@ namespace Fantazee.Battle.Boss
                 enemy.transform.localPosition += Vector3.left * spawnOffset + Vector3.up * y;
                 enemy.Initialize(enemyData);
                 
-                spawnOffset += enemy.Data.Size;
+                spawnOffset += enemy.Data.Size.x;
                 
                 Rewards.Add(enemy.Data.BattleRewards);
                 Enemies.Insert(0, enemy);

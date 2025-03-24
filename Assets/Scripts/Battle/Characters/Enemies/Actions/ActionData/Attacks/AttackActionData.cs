@@ -1,6 +1,5 @@
 using Fantazee.Battle.StatusEffects;
 using Fantazee.Spells.Animations;
-using UnityEngine;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
 namespace Fantazee.Battle.Characters.Enemies.Actions.ActionData.Attacks

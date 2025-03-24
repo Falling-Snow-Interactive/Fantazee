@@ -21,7 +21,7 @@ namespace Fantazee.Spells.Instance
             {
                 enemy.Damage(scoreResults.Value);
 
-                if (data.Status.Roll())
+                if (data.Status.Percent.Roll())
                 {
                     enemy.AddStatusEffect(data.Status.Data, data.Status.Turns);
                 }

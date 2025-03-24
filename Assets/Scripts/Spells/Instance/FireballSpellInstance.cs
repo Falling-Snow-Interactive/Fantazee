@@ -23,7 +23,7 @@ namespace Fantazee.Spells.Instance
             {
                 enemy.Damage(d);
 
-                if (data.StatusEffect.Roll())
+                if (data.StatusEffect.Percent.Roll())
                 {
                     enemy.AddStatusEffect(data.StatusEffect.Data, data.StatusEffect.Turns);
                 }

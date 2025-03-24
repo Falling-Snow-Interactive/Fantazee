@@ -16,7 +16,7 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.ActionData.Defends
             FrontEnemy = 3,
         }
         
-        [Header("Heal")]
+        [Header("Defend")]
         
         [SerializeField]
         private RangeInt amount;

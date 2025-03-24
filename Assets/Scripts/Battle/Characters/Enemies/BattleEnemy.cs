@@ -170,7 +170,7 @@ namespace Fantazee.Battle.Characters.Enemies
             Gizmos.color = Color.red;
             if (data)
             {
-                Gizmos.DrawWireCube(transform.position, new Vector3(data.Size, 0.2f, 0));
+                Gizmos.DrawWireCube(transform.position + Vector3.up * data.Size.y / 2, data.Size);
             }
         }
         

@@ -37,7 +37,7 @@ namespace Fantazee.Battle.Characters.Enemies.Actions.Instances.Attacks
             player.Damage(Intention.Amount); // TODO do this properly.
             if (data.StatusEffect.Data 
                 && data.StatusEffect.Data.Type != StatusEffectType.status_none 
-                && data.StatusEffect.Roll())
+                && data.StatusEffect.Percent.Roll())
             {
                 player.AddStatusEffect(data.StatusEffect.Data.Type, data.StatusEffect.Turns);
             }
