@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Enemies.Actions.Randomizer;
 using FMODUnity;
-using UnityEngine;
 using UnityEngine.Localization;
 using RangeInt = Fsi.Gameplay.RangeInt;
 
