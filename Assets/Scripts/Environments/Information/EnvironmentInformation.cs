@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Audio;
 using FMODUnity;
 using Fsi.Gameplay.SceneManagement;
 using fsi.settings.Informations;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Environments.Information
 {

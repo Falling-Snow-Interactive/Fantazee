@@ -41,24 +41,24 @@ MonoBehaviour:
         Data2: 1137191269
         Data3: -1618391920
         Data4: -2028131108
-      Path: event:/Enemies/Enemy_02_vinebound_horror/acid_hit
+      Path: event:/Enemies/Enemy_02_vinebound_horror/enemy_02_acid_cast
   hitAnim:
     hasHit: 1
     vfx: {fileID: 7065633942001766830, guid: 4e8b8a28ec6274c599d7c1160b4b00e6, type: 3}
     sfx:
       Guid:
-        Data1: 1209311096
-        Data2: 1137191269
-        Data3: -1618391920
-        Data4: -2028131108
-      Path: event:/Enemies/Enemy_02_vinebound_horror/acid_hit
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
     offset: {x: 0, y: 1.1, z: 0}
   damage:
     min: 4
     max: 6
   statusEffect:
-    data: {fileID: 0}
-    chance: 0.5
+    data: {fileID: 11400000, guid: 0a090ec10e17147739db572ba73adcb8, type: 2}
+    chance: 0.35
     turns: 2
   projectileAnim:
     hasProjectile: 1

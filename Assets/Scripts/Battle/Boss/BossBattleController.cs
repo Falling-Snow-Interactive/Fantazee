@@ -5,7 +5,6 @@ using Fantazee.Enemies.Data;
 using Fantazee.Environments;
 using Fantazee.Environments.Settings;
 using Fantazee.Instance;
-using UnityEngine;
 
 namespace Fantazee.Battle.Boss
 {
@@ -36,7 +35,7 @@ namespace Fantazee.Battle.Boss
             BattleEnemy boss = Instantiate(bossData.BossEnemy, enemyContainer);
             boss.Initialize(bossData);
             boss.name = bossData.Name;
-            enemies.Add(boss);
+            Enemies.Add(boss);
 
             spawnOffset += boss.Data.Size;
             
@@ -52,8 +51,8 @@ namespace Fantazee.Battle.Boss
                 
                 spawnOffset += enemy.Data.Size;
                 
-                rewards.Add(enemy.Data.BattleRewards);
-                enemies.Insert(0, enemy);
+                Rewards.Add(enemy.Data.BattleRewards);
+                Enemies.Insert(0, enemy);
             }
         }
     }

@@ -3,8 +3,6 @@ using System.Collections;
 using Fantazee.Battle.Characters.Enemies.Actions.ActionData;
 using Fantazee.Battle.Characters.Intentions;
 using Fantazee.Enemies;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Battle.Characters.Enemies.Actions.Instances
 {

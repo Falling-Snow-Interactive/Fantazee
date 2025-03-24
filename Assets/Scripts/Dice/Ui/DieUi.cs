@@ -5,9 +5,7 @@ using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Dice.Ui
 {

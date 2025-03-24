@@ -3,9 +3,7 @@ using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Environments;
 using Fantazee.Environments.Settings;
-using UnityEngine;
 using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Instance
 {

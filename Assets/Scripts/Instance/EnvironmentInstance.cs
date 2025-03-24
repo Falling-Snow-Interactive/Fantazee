@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Encounters;
 using Fantazee.Environments;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Instance
 {

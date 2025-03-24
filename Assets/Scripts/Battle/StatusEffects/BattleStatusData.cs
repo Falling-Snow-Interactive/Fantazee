@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.StatusEffects;
-using UnityEngine;
 
 namespace Fantazee.Battle.StatusEffects
 {
@@ -12,10 +10,10 @@ namespace Fantazee.Battle.StatusEffects
         private StatusEffectData data;
         public StatusEffectData Data => data;
         
-        [Range(0f, 1f)]
+        [Range(0, 100)]
         [SerializeField]
-        private float chance = 0.5f;
-        public float Chance => chance;
+        private float percent = 35;
+        public float Percent => percent;
 
         [SerializeField]
         private int turns = 2;
@@ -23,8 +21,6 @@ namespace Fantazee.Battle.StatusEffects
         
         public Dictionary<string, string> GetDescArgs()
         {
-            float percent = chance * 100f;
-
             Dictionary<string, string> args = new()
                                               {
                                                   { "StatusName", data.Name },
@@ -38,6 +34,11 @@ namespace Fantazee.Battle.StatusEffects
             }
 
             return args;
+        }
+
+        public bool Roll()
+        {
+            return Random.Range(0, 100) <= Percent;
         }
     }
 }

@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Battle;
 using Fantazee.Battle.Characters.Enemies;
 using Fantazee.Scores;
 using Fantazee.Spells.Data;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Fantazee.Spells.Instance
 {
