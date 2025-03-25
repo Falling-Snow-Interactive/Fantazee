@@ -37,15 +37,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Select"",
-                    ""type"": ""Button"",
-                    ""id"": ""02170939-2893-4233-8043-012e9c05ba90"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Exit"",
                     ""type"": ""Button"",
                     ""id"": ""7f9f0d9c-9287-4c0a-bbcd-8a60856c0965"",
@@ -55,18 +46,54 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Reset"",
+                    ""name"": ""Help"",
                     ""type"": ""Button"",
-                    ""id"": ""f9e45b8e-4080-43c9-80f9-80d169a0b6e5"",
+                    ""id"": ""3acd2e82-adfd-4df1-8433-ded99f0cd451"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Help"",
+                    ""name"": ""Navigation"",
+                    ""type"": ""Value"",
+                    ""id"": ""201f1e3e-2c68-4d35-82f0-93d09b18fe6f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Submit"",
                     ""type"": ""Button"",
-                    ""id"": ""3acd2e82-adfd-4df1-8433-ded99f0cd451"",
+                    ""id"": ""37720b8c-fa01-415b-a1fe-639e6d89adef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""624b78cb-1ffd-4739-8bcc-51ddc55ea3d0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""Value"",
+                    ""id"": ""fea868a4-ad4a-4361-bc84-8318c09cc200"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f3c9c12-1d34-4065-a2c1-53cb5ae3a76b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -98,34 +125,12 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fc778c0e-d2cf-460a-a3fe-a5d7b979679e"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse"",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f20ca3c9-166a-4a79-95ab-3ca1a1779b63"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""Exit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cfae9da3-8305-4015-aed0-65ab59274706"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse"",
-                    ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -139,45 +144,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""action"": ""Help"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Ui"",
-            ""id"": ""96e34d1d-2653-4bd7-81c5-42a26586b3c0"",
-            ""actions"": [
-                {
-                    ""name"": ""Navigation"",
-                    ""type"": ""Value"",
-                    ""id"": ""b6b87ed5-323b-4f53-bb08-d4242eddf626"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
-                {
-                    ""name"": ""Submit"",
-                    ""type"": ""Button"",
-                    ""id"": ""7d97bfc9-06ac-414d-a74b-8aaa12293307"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""d5e0b8aa-535b-4b41-8bd6-00a7a27a9473"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""ae10d9e5-3911-4c37-b7f5-c12e8f5a3dcb"",
+                    ""id"": ""6e61338a-d7ad-40d1-b137-805fa84e6bb3"",
                     ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -188,7 +158,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b3b636b9-7681-401a-ba7d-aa4fcb0cc952"",
+                    ""id"": ""45d635ca-cf7e-4a89-b0a0-5b9790812ef4"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -199,7 +169,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""WASD [Keyboard]"",
-                    ""id"": ""cd604967-1e9c-477f-b204-31122af0f442"",
+                    ""id"": ""13feafe9-b707-4017-868f-693e2c082c42"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -210,7 +180,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""688ff950-ff7e-4891-85ce-6481a4081231"",
+                    ""id"": ""f3cdceb3-7089-4132-9859-5e6034034cb8"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -221,7 +191,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""b69dea1b-c188-4fd5-8407-bff1f3cb2f2d"",
+                    ""id"": ""7fde4980-480f-44b5-99aa-88e9d3b2ef4d"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -232,7 +202,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""0638252e-decc-4e14-8bfc-49128cef27c3"",
+                    ""id"": ""3049048f-6500-42ba-add9-3f347c7e87bd"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -243,7 +213,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""dc2629d8-efd2-459f-a54d-baf92839f4f1"",
+                    ""id"": ""38f3141d-25f7-429b-93e0-ead2d7fdf6d7"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -254,7 +224,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Arrows [Keyboard]"",
-                    ""id"": ""a93972d5-531a-4b06-8872-567a1d7e30ff"",
+                    ""id"": ""7c48506e-30f6-4a4b-85c1-2785036cb55e"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -265,7 +235,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""be5215a5-8cad-4122-bbeb-18771544fdf8"",
+                    ""id"": ""3f88fcae-bc86-4d61-a8c4-582a35c5140f"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -276,7 +246,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""29aab2ed-0283-480d-b5a4-e08a712301de"",
+                    ""id"": ""19efdfa7-e2f6-4b5c-9944-73e3f096807c"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -287,7 +257,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""b306c204-5198-46e8-92f2-a581a2f1946b"",
+                    ""id"": ""2a25a385-2a37-4175-b82b-f0858d3b8943"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -298,7 +268,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""3e43607c-68fa-4541-927c-07f082f3d17e"",
+                    ""id"": ""53c76cd1-5e30-4f3d-b059-89fdad970ab8"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -309,7 +279,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a53c1d6-61f6-4493-a09f-e8cce9391947"",
+                    ""id"": ""6b7260d7-579a-4456-8b3a-4757ce3dceb4"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -320,7 +290,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e7557a20-1d5e-498a-8d6b-a0e23f3c9b53"",
+                    ""id"": ""76477b04-d29d-4de1-8018-1b49ae87672a"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -331,7 +301,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e5baaf90-efe1-4bc7-ad93-9ab996ae8495"",
+                    ""id"": ""38ef9eec-d280-4d7a-b66d-af9c6475e966"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -342,7 +312,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bcc04e5e-a1a8-485f-a255-3b79bbb0e6cf"",
+                    ""id"": ""7dee419a-55d5-4f0b-88b5-3403d738343e"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -353,7 +323,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e9bfe5bb-7da5-4fd9-84c6-e681ea5750aa"",
+                    ""id"": ""c60d9912-afdf-4a25-ab3e-78f1a40611cd"",
                     ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -364,12 +334,34 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""63ed54cb-6573-4270-95a4-d2e7df861c77"",
+                    ""id"": ""552d5353-daa1-4a81-b2ac-5bf5d7ed61f1"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb7d4818-a2d0-4537-a00b-37f1787f9038"",
+                    ""path"": ""<Pointer>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse;Touch"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""947e3c2a-7854-4642-b4b1-5c6039affd55"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""LeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -468,15 +460,13 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Cursor = m_Gameplay.FindAction("Cursor", throwIfNotFound: true);
-        m_Gameplay_Select = m_Gameplay.FindAction("Select", throwIfNotFound: true);
         m_Gameplay_Exit = m_Gameplay.FindAction("Exit", throwIfNotFound: true);
-        m_Gameplay_Reset = m_Gameplay.FindAction("Reset", throwIfNotFound: true);
         m_Gameplay_Help = m_Gameplay.FindAction("Help", throwIfNotFound: true);
-        // Ui
-        m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
-        m_Ui_Navigation = m_Ui.FindAction("Navigation", throwIfNotFound: true);
-        m_Ui_Submit = m_Ui.FindAction("Submit", throwIfNotFound: true);
-        m_Ui_Cancel = m_Ui.FindAction("Cancel", throwIfNotFound: true);
+        m_Gameplay_Navigation = m_Gameplay.FindAction("Navigation", throwIfNotFound: true);
+        m_Gameplay_Submit = m_Gameplay.FindAction("Submit", throwIfNotFound: true);
+        m_Gameplay_Cancel = m_Gameplay.FindAction("Cancel", throwIfNotFound: true);
+        m_Gameplay_Point = m_Gameplay.FindAction("Point", throwIfNotFound: true);
+        m_Gameplay_LeftClick = m_Gameplay.FindAction("LeftClick", throwIfNotFound: true);
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Cursor = m_Map.FindAction("Cursor", throwIfNotFound: true);
@@ -486,7 +476,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     ~@FsiInput()
     {
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, FsiInput.Gameplay.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_Ui.enabled, "This will cause a leak and performance issues, FsiInput.Ui.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Map.enabled, "This will cause a leak and performance issues, FsiInput.Map.Disable() has not been called.");
     }
 
@@ -550,19 +539,25 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Cursor;
-    private readonly InputAction m_Gameplay_Select;
     private readonly InputAction m_Gameplay_Exit;
-    private readonly InputAction m_Gameplay_Reset;
     private readonly InputAction m_Gameplay_Help;
+    private readonly InputAction m_Gameplay_Navigation;
+    private readonly InputAction m_Gameplay_Submit;
+    private readonly InputAction m_Gameplay_Cancel;
+    private readonly InputAction m_Gameplay_Point;
+    private readonly InputAction m_Gameplay_LeftClick;
     public struct GameplayActions
     {
         private @FsiInput m_Wrapper;
         public GameplayActions(@FsiInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cursor => m_Wrapper.m_Gameplay_Cursor;
-        public InputAction @Select => m_Wrapper.m_Gameplay_Select;
         public InputAction @Exit => m_Wrapper.m_Gameplay_Exit;
-        public InputAction @Reset => m_Wrapper.m_Gameplay_Reset;
         public InputAction @Help => m_Wrapper.m_Gameplay_Help;
+        public InputAction @Navigation => m_Wrapper.m_Gameplay_Navigation;
+        public InputAction @Submit => m_Wrapper.m_Gameplay_Submit;
+        public InputAction @Cancel => m_Wrapper.m_Gameplay_Cancel;
+        public InputAction @Point => m_Wrapper.m_Gameplay_Point;
+        public InputAction @LeftClick => m_Wrapper.m_Gameplay_LeftClick;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -575,18 +570,27 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Cursor.started += instance.OnCursor;
             @Cursor.performed += instance.OnCursor;
             @Cursor.canceled += instance.OnCursor;
-            @Select.started += instance.OnSelect;
-            @Select.performed += instance.OnSelect;
-            @Select.canceled += instance.OnSelect;
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
-            @Reset.started += instance.OnReset;
-            @Reset.performed += instance.OnReset;
-            @Reset.canceled += instance.OnReset;
             @Help.started += instance.OnHelp;
             @Help.performed += instance.OnHelp;
             @Help.canceled += instance.OnHelp;
+            @Navigation.started += instance.OnNavigation;
+            @Navigation.performed += instance.OnNavigation;
+            @Navigation.canceled += instance.OnNavigation;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
+            @Point.started += instance.OnPoint;
+            @Point.performed += instance.OnPoint;
+            @Point.canceled += instance.OnPoint;
+            @LeftClick.started += instance.OnLeftClick;
+            @LeftClick.performed += instance.OnLeftClick;
+            @LeftClick.canceled += instance.OnLeftClick;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -594,18 +598,27 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Cursor.started -= instance.OnCursor;
             @Cursor.performed -= instance.OnCursor;
             @Cursor.canceled -= instance.OnCursor;
-            @Select.started -= instance.OnSelect;
-            @Select.performed -= instance.OnSelect;
-            @Select.canceled -= instance.OnSelect;
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
-            @Reset.started -= instance.OnReset;
-            @Reset.performed -= instance.OnReset;
-            @Reset.canceled -= instance.OnReset;
             @Help.started -= instance.OnHelp;
             @Help.performed -= instance.OnHelp;
             @Help.canceled -= instance.OnHelp;
+            @Navigation.started -= instance.OnNavigation;
+            @Navigation.performed -= instance.OnNavigation;
+            @Navigation.canceled -= instance.OnNavigation;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
+            @Point.started -= instance.OnPoint;
+            @Point.performed -= instance.OnPoint;
+            @Point.canceled -= instance.OnPoint;
+            @LeftClick.started -= instance.OnLeftClick;
+            @LeftClick.performed -= instance.OnLeftClick;
+            @LeftClick.canceled -= instance.OnLeftClick;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -623,68 +636,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
-
-    // Ui
-    private readonly InputActionMap m_Ui;
-    private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
-    private readonly InputAction m_Ui_Navigation;
-    private readonly InputAction m_Ui_Submit;
-    private readonly InputAction m_Ui_Cancel;
-    public struct UiActions
-    {
-        private @FsiInput m_Wrapper;
-        public UiActions(@FsiInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Navigation => m_Wrapper.m_Ui_Navigation;
-        public InputAction @Submit => m_Wrapper.m_Ui_Submit;
-        public InputAction @Cancel => m_Wrapper.m_Ui_Cancel;
-        public InputActionMap Get() { return m_Wrapper.m_Ui; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UiActions set) { return set.Get(); }
-        public void AddCallbacks(IUiActions instance)
-        {
-            if (instance == null || m_Wrapper.m_UiActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UiActionsCallbackInterfaces.Add(instance);
-            @Navigation.started += instance.OnNavigation;
-            @Navigation.performed += instance.OnNavigation;
-            @Navigation.canceled += instance.OnNavigation;
-            @Submit.started += instance.OnSubmit;
-            @Submit.performed += instance.OnSubmit;
-            @Submit.canceled += instance.OnSubmit;
-            @Cancel.started += instance.OnCancel;
-            @Cancel.performed += instance.OnCancel;
-            @Cancel.canceled += instance.OnCancel;
-        }
-
-        private void UnregisterCallbacks(IUiActions instance)
-        {
-            @Navigation.started -= instance.OnNavigation;
-            @Navigation.performed -= instance.OnNavigation;
-            @Navigation.canceled -= instance.OnNavigation;
-            @Submit.started -= instance.OnSubmit;
-            @Submit.performed -= instance.OnSubmit;
-            @Submit.canceled -= instance.OnSubmit;
-            @Cancel.started -= instance.OnCancel;
-            @Cancel.performed -= instance.OnCancel;
-            @Cancel.canceled -= instance.OnCancel;
-        }
-
-        public void RemoveCallbacks(IUiActions instance)
-        {
-            if (m_Wrapper.m_UiActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IUiActions instance)
-        {
-            foreach (var item in m_Wrapper.m_UiActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_UiActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public UiActions @Ui => new UiActions(this);
 
     // Map
     private readonly InputActionMap m_Map;
@@ -769,16 +720,13 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnCursor(InputAction.CallbackContext context);
-        void OnSelect(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
-        void OnReset(InputAction.CallbackContext context);
         void OnHelp(InputAction.CallbackContext context);
-    }
-    public interface IUiActions
-    {
         void OnNavigation(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnPoint(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
     }
     public interface IMapActions
     {

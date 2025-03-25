@@ -1,22 +1,43 @@
 using System;
+using DG.Tweening;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells.Ui;
+using Fantazee.Ui;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Scores.Ui.Buttons
 {
-    public class ScoreButton : MonoBehaviour
+    public class ScoreButton : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
-        private Action<ScoreButton> onSelect;
+        // Constants
+        private static Color DefaultBgColor => new(81f/255f, 45f/255f,13f/255f,255f/255f);
+        private static Color DefaultOutlineColor => new(127f/255f, 71f/255f,9f/255f,255f/255f);
         
-        [SerializeReference]
-        private ScoreInstance score;
-        public ScoreInstance Score
-        {
-            get => score;
-            set => score = value;
-        }
+        // Callback
+        private Action<ScoreButton> onClick;
+        
+        // Score
+        public ScoreInstance Score { get; set; }
+
+        [Header("Properties")]
+
+        [Header("Colors")]
+
+        [SerializeField]
+        private BackgroundColorProperties normalColors = new(DefaultBgColor, DefaultOutlineColor);
+        
+        [SerializeField]
+        private BackgroundColorProperties selectedColors = new(DefaultBgColor, DefaultOutlineColor);
+        
+        [SerializeField]
+        private BackgroundColorProperties disabledColors = new(DefaultBgColor, DefaultOutlineColor);
+
+        [SerializeField]
+        private BackgroundColorProperties clickedColors = new(DefaultBgColor, DefaultOutlineColor);
+        
+        private List<Tweener> colorTweens = new();
 
         [Header("References")]
         
@@ -32,10 +53,54 @@ namespace Fantazee.Scores.Ui.Buttons
         private List<SpellButton> spells = new();
         public List<SpellButton> Spells => spells;
 
-        public void Initialize(ScoreInstance score, Action<ScoreButton> onSelect)
+        [SerializeField]
+        private List<BackgroundRef> backgroundRefs = new();
+
+        private void OnValidate()
         {
-            this.score = score;
-            this.onSelect = onSelect;
+            foreach (BackgroundRef bg in backgroundRefs)
+            {
+                if (bg.IsValid)
+                {
+                    normalColors.Apply(bg);
+                }
+            }
+        }
+
+        private void Reset()
+        {
+            normalColors = new BackgroundColorProperties(DefaultBgColor, DefaultOutlineColor);
+            selectedColors = new BackgroundColorProperties(DefaultBgColor, DefaultOutlineColor);
+            disabledColors = new BackgroundColorProperties(DefaultBgColor, DefaultOutlineColor);
+            clickedColors = new BackgroundColorProperties(DefaultBgColor, DefaultOutlineColor);
+
+            TryGetComponent(out button);
+
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                if (text.name == "score_name")
+                {
+                    nameText = text;
+                    break;
+                }
+            }
+
+            spells = new List<SpellButton>();
+            foreach (SpellButton spell in GetComponentsInChildren<SpellButton>())
+            {
+                spells.Add(spell);
+            }
+        }
+
+        private void OnEnable()
+        {
+            // button.OnSelect();
+        }
+
+        public void Initialize(ScoreInstance score, Action<ScoreButton> onClick)
+        {
+            Score = score;
+            this.onClick = onClick;
             
             Debug.Assert(spells.Count <= score.Spells.Count);
             for (int i = 0; i < Spells.Count; i++)
@@ -46,22 +111,22 @@ namespace Fantazee.Scores.Ui.Buttons
             UpdateVisuals();
         }
         
-        public void OnSelect()
+        public void OnClick()
         {
-            onSelect?.Invoke(this);
+            onClick?.Invoke(this);
         }
 
         public void UpdateVisuals()
         {
-            nameText.text = score.Data.Name;
+            nameText.text = Score.Data.Name;
             button.interactable = true;
 
-            Debug.Assert(spells.Count == score.Spells.Count, 
-                         $"Spells Count ({spells.Count}) != Score Spells Count ({score.Spells.Count}).", 
+            Debug.Assert(spells.Count == Score.Spells.Count, 
+                         $"Spells Count ({spells.Count}) != Score Spells Count ({Score.Spells.Count}).", 
                          gameObject);
             for (int i = 0; i < spells.Count; i++)
             {
-                spells[i].Initialize(score.Spells[i], null);
+                spells[i].Initialize(Score.Spells[i], null);
             }
         }
 
@@ -69,7 +134,7 @@ namespace Fantazee.Scores.Ui.Buttons
         {
             List<int> diceValues = new();
 
-            switch (score)
+            switch (Score)
             {
                 case NumberScoreInstance n:
                     diceValues = new List<int>{n.NumberData.Number, 
@@ -127,7 +192,7 @@ namespace Fantazee.Scores.Ui.Buttons
                     diceValues = new List<int> { 2, 4, 6, 4, 2 };
                     break;
                 default:
-                    Debug.LogError($"{nameof(score)} has not been implemented.");
+                    Debug.LogError($"{nameof(Score)} has not been implemented.");
                     break;
             }
             
@@ -152,6 +217,28 @@ namespace Fantazee.Scores.Ui.Buttons
             }
 
             onSpellSelect?.Invoke(spell);
+        }
+        
+        #endregion
+        
+        #region Ui Events
+        
+        public void OnSelect(BaseEventData eventData)
+        {
+            Debug.Log($"OnSelect: {Score.Data.Name}");
+            foreach (var bg in backgroundRefs)
+            {
+                selectedColors.Apply(bg);
+            }
+        }
+
+        public void OnDeselect(BaseEventData eventData)
+        {
+            Debug.Log($"OnDeselect: {Score.Data.Name}");
+            foreach (var bg in backgroundRefs)
+            {
+                normalColors.Apply(bg);
+            }
         }
         
         #endregion

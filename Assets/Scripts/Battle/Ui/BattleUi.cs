@@ -1,11 +1,9 @@
 using Fantazee.Battle.Relics.Ui;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
-using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fsi.Gameplay;
-using JetBrains.Annotations;
-using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
@@ -70,6 +68,9 @@ namespace Fantazee.Battle.Ui
             {
                 backgroundImage.color = GameInstance.Current.Environment.Data.Color;
             }
+
+            Debug.Log($"BattleUi: Selecting Game Object ({scoresheet.ScoreButtons[0].gameObject.name}).");
+            EventSystem.current.SetSelectedGameObject(scoresheet.ScoreButtons[0].gameObject);
         }
 
         public void ShowWinScreen()
