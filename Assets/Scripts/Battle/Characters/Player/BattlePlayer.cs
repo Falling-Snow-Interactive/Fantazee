@@ -175,10 +175,9 @@ namespace Fantazee.Battle.Characters.Player
                 return;
             }
             
-            hasScoredRoll = true;
-            
             if (battleScoreButton.BattleScore.CanScore())
             {
+                hasScoredRoll = true;
                 StartCoroutine(StartScoreSequence(battleScoreButton, BattleUi.Instance.DiceControl.Dice));
             }
         }

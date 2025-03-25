@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
+  m_fontSize: 0
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
+  m_fontSize: 0
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5019608, g: 0.2784314, b: 0.039215688, a: 1}
+  m_Color: {r: 0.49803922, g: 0.2784314, b: 0.03529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -472,6 +472,14 @@ PrefabInstance:
       value: Roll_Button
       objectReference: {fileID: 0}
     - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.03529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_Color.r
+      value: 0.49803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
@@ -495,6 +503,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5880259569731127119}
   m_SourcePrefab: {fileID: 100100000, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+--- !u!114 &1730715285518125503 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+  m_PrefabInstance: {fileID: 2307042427149499290}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2031350941864958421 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4338246504755241551, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
@@ -509,6 +528,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6202864208823444902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+  m_PrefabInstance: {fileID: 2307042427149499290}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8368690557345302373 stripped
@@ -528,6 +558,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a6bdfce483453d9b24768abc1c5367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundRefs:
+  - background: {fileID: 1730715285518125503}
+    outline: {fileID: 6202864208823444902}
+  - background: {fileID: 0}
+    outline: {fileID: 8136315398898044746}
+  button: {fileID: 4388969651982494317}
   rollsText: {fileID: 1967492502869922692}
   button: {fileID: 4388969651982494317}
 --- !u!114 &5880259569731127119

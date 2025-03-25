@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Settings;
 using Fantazee.Dice.Settings;
@@ -8,19 +7,14 @@ using Fantazee.Items.Dice.Information;
 using Fantazee.Scores;
 using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Spells;
-using Fantazee.Spells.Ui;
 using FMODUnity;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui
 {
-    public class BattleScoreButton : MonoBehaviour
+    public class BattleScoreButton : ScoreButton
     {
-        [SerializeField]
-        private ScoreButton scoreButton;
-        
         private BattleScore battleScore;
         public BattleScore BattleScore => battleScore;
 
@@ -87,7 +81,7 @@ namespace Fantazee.Battle.Score.Ui
         public void Initialize(BattleScore battleScore, Action<BattleScoreButton> onSelect)
         {
             this.battleScore = battleScore;
-            scoreButton.Initialize(battleScore.Score, _ =>
+            base.Initialize(battleScore.Score, _ =>
                                                       {
                                                           onSelect?.Invoke(this);
                                                       });
@@ -111,7 +105,7 @@ namespace Fantazee.Battle.Score.Ui
             }
         }
 
-        private List<int> GetDiceValues()
+        private new List<int> GetDiceValues()
         {
             return new List<int>{0,0,0,0,0};
         }
@@ -119,7 +113,7 @@ namespace Fantazee.Battle.Score.Ui
         public void FinalizeScore(int score)
         {
             isFinalized = true;
-            scoreButton.Button.interactable = false;
+            SetInteractable(false);
             scoreText.gameObject.SetActive(true);
             scoreText.text = score.ToString();
             RuntimeManager.PlayOneShot(BattleSettings.Settings.ScoreSfx);
@@ -183,7 +177,7 @@ namespace Fantazee.Battle.Score.Ui
                 ShowDieInSlot(i, v);
             }
 
-            scoreButton.Button.interactable = battleScore.Dice.Count == 0;
+            // scoreButton.Button.interactable = battleScore.Dice.Count == 0;
             scoreText.text = battleScore.Dice.Count == 0 ? "" : battleScore.Calculate().ToString();
             
             transform.DOShakeRotation(0.3f, Vector3.one * 4f, 10, 90f, true, ShakeRandomnessMode.Full)
@@ -192,13 +186,13 @@ namespace Fantazee.Battle.Score.Ui
 
         private void OnSpellCastStart(SpellInstance spell)
         {
-            foreach (SpellButton s in scoreButton.Spells)
-            {
-                if (s.Spell == spell)
-                {
-                    s.Punch();
-                }
-            }
+            // foreach (SpellButton s in scoreButton.Spells)
+            // {
+            //     if (s.Spell == spell)
+            //     {
+            //         s.Punch();
+            //     }
+            // }
         }
 
         private void OnRollFinished()

@@ -1,12 +1,11 @@
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
+using Fantazee.Ui.Buttons;
 using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
 {
-    public class RollButton : MonoBehaviour
+    public class RollButton : SimpleButton
     {
         private BattlePlayer player;
         
@@ -14,9 +13,6 @@ namespace Fantazee.Battle.Ui
 
         [SerializeField]
         private TMP_Text rollsText;
-
-        [SerializeField]
-        private Button button;
 
         private void OnEnable()
         {

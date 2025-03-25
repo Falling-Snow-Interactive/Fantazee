@@ -13,6 +13,4 @@ public class BackgroundRef
     [SerializeField]
     private Image outline;
     public Image Outline => outline;
-    
-    public bool IsValid => background != null && outline != null;
 }

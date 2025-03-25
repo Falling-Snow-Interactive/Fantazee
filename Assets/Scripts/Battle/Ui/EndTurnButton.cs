@@ -1,22 +1,14 @@
-using System;
-using Fantazee.Battle.CallbackReceivers;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Scores;
-using UnityEngine;
-using UnityEngine.UI;
+using Fantazee.Ui.Buttons;
 
 namespace Fantazee.Battle.Ui
 {
-    public class EndTurnButton : MonoBehaviour
+    public class EndTurnButton : SimpleButton
     {
         private BattlePlayer player;
-
-        [Header("References")]
-
-        [SerializeField]
-        private Button button;
-
+        
         private void OnEnable()
         {
             BattlePlayer.Spawned += OnCharacterSpawned;
@@ -50,7 +42,7 @@ namespace Fantazee.Battle.Ui
             }
         }
 
-        public void OnClick()
+        public override void OnClick()
         {
             BattleController.Instance.Player.EndTurn();
         }
