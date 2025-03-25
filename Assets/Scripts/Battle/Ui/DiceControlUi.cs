@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
-using Fantazee.Items.Dice;
-using UnityEngine;
 
 namespace Fantazee.Battle.Ui
 {
