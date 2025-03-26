@@ -3,12 +3,26 @@ using Fantazee.Battle.Characters.Player;
 using Fantazee.Scores;
 using Fantazee.Ui.Buttons;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
     public class EndTurnButton : SimpleButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
     {
         private BattlePlayer player;
+
+        [Header("Ui")]
+
+        [SerializeField]
+        private InputActionReference endActionRef;
+        private InputAction endAction;
+
+        private void Awake()
+        {
+            endAction = endActionRef.ToInputAction();
+
+            endAction.performed += ctx => OnClick();
+        }
         
         private void OnEnable()
         {
@@ -19,6 +33,8 @@ namespace Fantazee.Battle.Ui
                 player.Scored += OnScored;
                 player.TurnEnded += OnTurnEnd;
             }
+            
+            endAction.Enable();
         }
 
         private void OnDisable()
@@ -30,6 +46,8 @@ namespace Fantazee.Battle.Ui
                 player.Scored -= OnScored;
                 player.TurnEnded -= OnTurnEnd;
             }
+            
+            endAction.Disable();
         }
 
         private void OnCharacterSpawned(BattleCharacter character)

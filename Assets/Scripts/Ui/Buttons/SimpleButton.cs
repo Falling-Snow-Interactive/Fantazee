@@ -35,7 +35,6 @@ public class SimpleButton : MonoBehaviour
 
     public virtual void OnClick()
     {
-        Debug.Log($"OnClick: {gameObject.name}");
         foreach (BackgroundRef bg in backgroundRefs)
         {
             ColorPalette.ClickedColors.InOut(bg);
@@ -44,7 +43,6 @@ public class SimpleButton : MonoBehaviour
 
     public void OnSelect(BaseEventData _ = null)
     {
-        Debug.Log($"OnSelect: {gameObject.name}");
         isSelected = true;
         UpdateColors();
         Selected?.Invoke(this);
@@ -52,7 +50,6 @@ public class SimpleButton : MonoBehaviour
 
     public void OnDeselect(BaseEventData _ = null)
     {
-        Debug.Log($"OnDeselect: {gameObject.name}");
         isSelected = false;
         UpdateColors();
         Deselected?.Invoke(this);
@@ -60,7 +57,6 @@ public class SimpleButton : MonoBehaviour
 
     public void OnPointerEnter(PointerEventData _ = null)
     {
-        Debug.Log($"OnPointerEnter: {gameObject.name}");
         EventSystem.current.SetSelectedGameObject(gameObject);
     }
 

@@ -1,8 +1,8 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
-using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui.WinScreens
 {
@@ -21,6 +21,9 @@ namespace Fantazee.Battle.Ui.WinScreens
         
         [SerializeField]
         private Transform currencyContainer;
+
+        [SerializeField]
+        private Button button;
         
         public void Initialize(BattleRewards rewards, Action onContinue)
         {
@@ -39,6 +42,8 @@ namespace Fantazee.Battle.Ui.WinScreens
                 
                 currencyEntries.Add(currencyEntry);
             }
+            
+            EventSystem.current.SetSelectedGameObject(button.gameObject);
         }
 
         public void OnContinueClicked()

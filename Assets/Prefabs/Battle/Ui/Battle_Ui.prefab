@@ -1397,6 +1397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currencyEntryPrefab: {fileID: 7968220311900906107, guid: b3f96105a713d43be9c57b22719b8b8c, type: 3}
   currencyContainer: {fileID: 4557848526874725434}
+  button: {fileID: 5781149884505403941}
 --- !u!114 &5951088654798661700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6926,6 +6927,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1145965746381557480, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
   m_PrefabInstance: {fileID: 5536691170343576530}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5781149884505403941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2084184180754928119, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+  m_PrefabInstance: {fileID: 5536691170343576530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797369650680782637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8134287623026557341 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4338246504755241551, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
@@ -8227,14 +8239,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 301084886240819588}
     m_Modifications:
-    - target: {fileID: 1670583391351141166, guid: 092fc5dd35fcb4171920b5637441b2da, type: 3}
-      propertyPath: m_fontSize
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967492502869922692, guid: 092fc5dd35fcb4171920b5637441b2da, type: 3}
-      propertyPath: m_fontSize
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 3450613950454347122, guid: 092fc5dd35fcb4171920b5637441b2da, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

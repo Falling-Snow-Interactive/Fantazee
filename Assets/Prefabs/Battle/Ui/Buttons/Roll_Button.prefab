@@ -381,11 +381,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1145965746381557480, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1145965746381557480, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1145965746381557480, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -568,6 +568,7 @@ MonoBehaviour:
   - background: {fileID: 0}
     outline: {fileID: 8136315398898044746}
   button: {fileID: 4388969651982494317}
+  rollActionRef: {fileID: 5325728275500659997, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
   rollsText: {fileID: 1967492502869922692}
 --- !u!114 &5880259569731127119
 MonoBehaviour:

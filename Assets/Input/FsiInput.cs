@@ -125,6 +125,24 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""13bf4564-e309-40cb-bff2-74a31279485e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EndTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b1b4a8c-ce74-4c68-a9c2-30e0421b738f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,11 +192,22 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6e61338a-d7ad-40d1-b137-805fa84e6bb3"",
-                    ""path"": ""<Gamepad>/dpad"",
+                    ""id"": ""3d2eebc8-37f0-4600-8a0c-aa06a95d2af7"",
+                    ""path"": ""<XInputController>/select"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""Help"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e61338a-d7ad-40d1-b137-805fa84e6bb3"",
+                    ""path"": ""<XInputController>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
                     ""action"": ""Navigation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -186,10 +215,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""45d635ca-cf7e-4a89-b0a0-5b9790812ef4"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<XInputController>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": ""Xbox"",
                     ""action"": ""Navigation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -329,10 +358,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""38ef9eec-d280-4d7a-b66d-af9c6475e966"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<XInputController>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": ""Xbox"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -362,10 +391,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""552d5353-daa1-4a81-b2ac-5bf5d7ed61f1"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": ""Xbox"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -406,10 +435,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""38b8fe63-3f31-42d9-b434-c7a0e85a466a"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<XInputController>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": ""Xbox"",
                     ""action"": ""NextDie"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -428,10 +457,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c4a7b542-58ca-4a4e-a04a-c7915da45de6"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": ""Xbox"",
                     ""action"": ""PrevDie"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -450,11 +479,55 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3ab29322-afa4-4427-b54d-7e3df8c1501e"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": ""Xbox"",
                     ""action"": ""ToggleDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""223a3488-ac34-493d-8a3c-470dc70e49d9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2cb5b14e-30a0-4fea-a28b-76bcc9285e8d"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d6d593c-0cac-4a7b-a296-9c5871fa0258"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""EndTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7f062b3-3ecd-4db5-b3ef-5d8da6d8d331"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""EndTurn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -527,11 +600,11 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Gamepad"",
-            ""bindingGroup"": ""Gamepad"",
+            ""name"": ""Xbox"",
+            ""bindingGroup"": ""Xbox"",
             ""devices"": [
                 {
-                    ""devicePath"": ""<Gamepad>"",
+                    ""devicePath"": ""<XInputController>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -563,6 +636,8 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Gameplay_NextDie = m_Gameplay.FindAction("NextDie", throwIfNotFound: true);
         m_Gameplay_PrevDie = m_Gameplay.FindAction("PrevDie", throwIfNotFound: true);
         m_Gameplay_ToggleDie = m_Gameplay.FindAction("ToggleDie", throwIfNotFound: true);
+        m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
+        m_Gameplay_EndTurn = m_Gameplay.FindAction("EndTurn", throwIfNotFound: true);
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Cursor = m_Map.FindAction("Cursor", throwIfNotFound: true);
@@ -645,6 +720,8 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_NextDie;
     private readonly InputAction m_Gameplay_PrevDie;
     private readonly InputAction m_Gameplay_ToggleDie;
+    private readonly InputAction m_Gameplay_Roll;
+    private readonly InputAction m_Gameplay_EndTurn;
     public struct GameplayActions
     {
         private @FsiInput m_Wrapper;
@@ -660,6 +737,8 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         public InputAction @NextDie => m_Wrapper.m_Gameplay_NextDie;
         public InputAction @PrevDie => m_Wrapper.m_Gameplay_PrevDie;
         public InputAction @ToggleDie => m_Wrapper.m_Gameplay_ToggleDie;
+        public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
+        public InputAction @EndTurn => m_Wrapper.m_Gameplay_EndTurn;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -702,6 +781,12 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @ToggleDie.started += instance.OnToggleDie;
             @ToggleDie.performed += instance.OnToggleDie;
             @ToggleDie.canceled += instance.OnToggleDie;
+            @Roll.started += instance.OnRoll;
+            @Roll.performed += instance.OnRoll;
+            @Roll.canceled += instance.OnRoll;
+            @EndTurn.started += instance.OnEndTurn;
+            @EndTurn.performed += instance.OnEndTurn;
+            @EndTurn.canceled += instance.OnEndTurn;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -739,6 +824,12 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @ToggleDie.started -= instance.OnToggleDie;
             @ToggleDie.performed -= instance.OnToggleDie;
             @ToggleDie.canceled -= instance.OnToggleDie;
+            @Roll.started -= instance.OnRoll;
+            @Roll.performed -= instance.OnRoll;
+            @Roll.canceled -= instance.OnRoll;
+            @EndTurn.started -= instance.OnEndTurn;
+            @EndTurn.performed -= instance.OnEndTurn;
+            @EndTurn.canceled -= instance.OnEndTurn;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -819,13 +910,13 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
         }
     }
-    private int m_GamepadSchemeIndex = -1;
-    public InputControlScheme GamepadScheme
+    private int m_XboxSchemeIndex = -1;
+    public InputControlScheme XboxScheme
     {
         get
         {
-            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
-            return asset.controlSchemes[m_GamepadSchemeIndex];
+            if (m_XboxSchemeIndex == -1) m_XboxSchemeIndex = asset.FindControlSchemeIndex("Xbox");
+            return asset.controlSchemes[m_XboxSchemeIndex];
         }
     }
     private int m_TouchSchemeIndex = -1;
@@ -850,6 +941,8 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         void OnNextDie(InputAction.CallbackContext context);
         void OnPrevDie(InputAction.CallbackContext context);
         void OnToggleDie(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
+        void OnEndTurn(InputAction.CallbackContext context);
     }
     public interface IMapActions
     {

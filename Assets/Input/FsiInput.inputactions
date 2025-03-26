@@ -103,6 +103,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Roll",
+                    "type": "Button",
+                    "id": "13bf4564-e309-40cb-bff2-74a31279485e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EndTurn",
+                    "type": "Button",
+                    "id": "8b1b4a8c-ce74-4c68-a9c2-30e0421b738f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -152,11 +170,22 @@
                 },
                 {
                     "name": "",
-                    "id": "6e61338a-d7ad-40d1-b137-805fa84e6bb3",
-                    "path": "<Gamepad>/dpad",
+                    "id": "3d2eebc8-37f0-4600-8a0c-aa06a95d2af7",
+                    "path": "<XInputController>/select",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": ";Xbox",
+                    "action": "Help",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e61338a-d7ad-40d1-b137-805fa84e6bb3",
+                    "path": "<XInputController>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
                     "action": "Navigation",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -164,10 +193,10 @@
                 {
                     "name": "",
                     "id": "45d635ca-cf7e-4a89-b0a0-5b9790812ef4",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<XInputController>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Xbox",
                     "action": "Navigation",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -307,10 +336,10 @@
                 {
                     "name": "",
                     "id": "38ef9eec-d280-4d7a-b66d-af9c6475e966",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Xbox",
                     "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -340,10 +369,10 @@
                 {
                     "name": "",
                     "id": "552d5353-daa1-4a81-b2ac-5bf5d7ed61f1",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Xbox",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -384,10 +413,10 @@
                 {
                     "name": "",
                     "id": "38b8fe63-3f31-42d9-b434-c7a0e85a466a",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<XInputController>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Xbox",
                     "action": "NextDie",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -406,10 +435,10 @@
                 {
                     "name": "",
                     "id": "c4a7b542-58ca-4a4e-a04a-c7915da45de6",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<XInputController>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Xbox",
                     "action": "PrevDie",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -428,11 +457,55 @@
                 {
                     "name": "",
                     "id": "3ab29322-afa4-4427-b54d-7e3df8c1501e",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Xbox",
                     "action": "ToggleDie",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "223a3488-ac34-493d-8a3c-470dc70e49d9",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard & Mouse",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2cb5b14e-30a0-4fea-a28b-76bcc9285e8d",
+                    "path": "<XInputController>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d6d593c-0cac-4a7b-a296-9c5871fa0258",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox",
+                    "action": "EndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7f062b3-3ecd-4db5-b3ef-5d8da6d8d331",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard & Mouse",
+                    "action": "EndTurn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -505,11 +578,11 @@
             ]
         },
         {
-            "name": "Gamepad",
-            "bindingGroup": "Gamepad",
+            "name": "Xbox",
+            "bindingGroup": "Xbox",
             "devices": [
                 {
-                    "devicePath": "<Gamepad>",
+                    "devicePath": "<XInputController>",
                     "isOptional": false,
                     "isOR": false
                 }

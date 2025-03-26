@@ -1,19 +1,34 @@
+using System;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Ui.Buttons;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
     public class RollButton : SimpleButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
     {
         private BattlePlayer player;
+
+        [Header("Input")]
+
+        [SerializeField]
+        private InputActionReference rollActionRef;
+        private InputAction rollAction;
         
         [Header("References")]
 
         [SerializeField]
         private TMP_Text rollsText;
+
+        private void Awake()
+        {
+            rollAction = rollActionRef.ToInputAction();
+
+            rollAction.performed += ctx => OnClick();
+        }
 
         private void OnEnable()
         {
@@ -23,6 +38,8 @@ namespace Fantazee.Battle.Ui
             {
                 player.RollsChanged += OnRollsChanged;
             }
+            
+            rollAction.Enable();
         }
 
         private void OnDisable()
@@ -33,6 +50,8 @@ namespace Fantazee.Battle.Ui
             {
                 player.RollsChanged += OnRollsChanged;
             }
+            
+            rollAction.Disable();
         }
 
         private void OnCharacterSpawned(BattleCharacter character)
@@ -50,8 +69,9 @@ namespace Fantazee.Battle.Ui
             rollsText.text = "";
         }
         
-        public void OnClick()
+        public override void OnClick()
         {
+            base.OnClick();
             BattleController.Instance.Player.TryRoll();
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
         }
