@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Fantazee.Ui.Buttons
 {
 
-    public class SimpleButton : MonoBehaviour
+    public class SimpleButton : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerClickHandler, IDeselectHandler
     {
         public event Action<SimpleButton> Selected;
         public event Action<SimpleButton> Deselected;
@@ -33,6 +33,11 @@ namespace Fantazee.Ui.Buttons
         }
 
         #region Ui Events
+        
+        public void OnPointerClick(PointerEventData _)
+        {
+            OnClick();
+        }
 
         public virtual void OnClick()
         {
@@ -42,7 +47,7 @@ namespace Fantazee.Ui.Buttons
             }
         }
 
-        public void OnSelect()
+        public virtual void OnSelect()
         {
             isSelected = true;
             UpdateColors();
@@ -54,7 +59,7 @@ namespace Fantazee.Ui.Buttons
             OnSelect();
         }
 
-        public void OnDeselect()
+        public virtual void OnDeselect()
         {
             isSelected = false;
             UpdateColors();
@@ -66,7 +71,7 @@ namespace Fantazee.Ui.Buttons
             OnDeselect();
         }
 
-        public void OnPointerEnter()
+        public virtual void OnPointerEnter()
         {
             EventSystem.current.SetSelectedGameObject(gameObject);
         }
@@ -76,7 +81,7 @@ namespace Fantazee.Ui.Buttons
             OnPointerEnter();
         }
 
-        public void OnPointerExit()
+        public virtual void OnPointerExit()
         {
             if (EventSystem.current.currentSelectedGameObject == gameObject)
             {
@@ -118,7 +123,10 @@ namespace Fantazee.Ui.Buttons
         {
             bool back = isSelected;
 
-            button.interactable = set;
+            if (button)
+            {
+                button.interactable = set;
+            }
             isDisabled = !set;
 
             if (back)

@@ -7,12 +7,11 @@ using Fantazee.Ui;
 using Fantazee.Ui.Buttons;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Dice.Ui
 {
-    public class DieUi : SimpleButton, ISelectHandler, IPointerEnterHandler
+    public class DieUi : SimpleButton
     {
         public Die Die { get; private set; }
 
@@ -252,6 +251,11 @@ namespace Fantazee.Dice.Ui
                                          10, 
                                          1f)
                  .SetEase(DiceSettings.Settings.SquishEase);
+        }
+
+        public override void OnPointerExit()
+        {
+            
         }
     }
 }

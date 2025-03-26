@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
-    public class EndTurnButton : SimpleButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
+    public class EndTurnButton : SimpleButton, IDeselectHandler, IPointerEnterHandler
     {
         private BattlePlayer player;
 

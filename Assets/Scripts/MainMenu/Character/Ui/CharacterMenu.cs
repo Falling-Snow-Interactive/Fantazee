@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Relics.Ui;
@@ -6,7 +6,7 @@ using Fantazee.Scores;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.Buttons;
 using TMPro;
-using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.MainMenu.Character.Ui
@@ -33,6 +33,14 @@ namespace Fantazee.MainMenu.Character.Ui
 
         [SerializeField]
         private RelicEntryUi relic;
+
+        [SerializeField]
+        private Button confirmButton;
+
+        private void OnEnable()
+        {
+            EventSystem.current.SetSelectedGameObject(confirmButton.gameObject);
+        }
 
         private void Start()
         {

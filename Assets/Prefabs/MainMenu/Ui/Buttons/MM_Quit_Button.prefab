@@ -265,15 +265,31 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 5598899063026172840}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
@@ -281,11 +297,23 @@ PrefabInstance:
       value: OnQuitButton
       objectReference: {fileID: 0}
     - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Fantazee.MainMenu.MainMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -390,38 +418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5598899063026172840}
-          m_TargetAssemblyTypeName: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
-          m_MethodName: OnPointerEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5598899063026172840}
-          m_TargetAssemblyTypeName: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
-          m_MethodName: OnSelect
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 10
     callback:
       m_PersistentCalls:

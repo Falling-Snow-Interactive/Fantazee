@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
-    public class RollButton : SimpleButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
+    public class RollButton : SimpleButton, IDeselectHandler
     {
         private BattlePlayer player;
 
