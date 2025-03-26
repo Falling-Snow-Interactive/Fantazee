@@ -7,11 +7,12 @@ using Fantazee.Ui;
 using Fantazee.Ui.Buttons;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Dice.Ui
 {
-    public class DieUi : SimpleButton
+    public class DieUi : SimpleButton, ISelectHandler, IPointerEnterHandler
     {
         public Die Die { get; private set; }
 

@@ -9,11 +9,12 @@ using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Spells;
 using FMODUnity;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui
 {
-    public class BattleScoreButton : ScoreButton
+    public class BattleScoreButton : ScoreButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
     {
         private BattleScore battleScore;
         public BattleScore BattleScore => battleScore;

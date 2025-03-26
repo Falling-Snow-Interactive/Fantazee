@@ -98,6 +98,33 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextDie"",
+                    ""type"": ""Button"",
+                    ""id"": ""7611ed36-b034-488a-bed2-6a0e5c9a400b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrevDie"",
+                    ""type"": ""Button"",
+                    ""id"": ""24761066-5c44-42ac-9e6a-11d17e7066f7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleDie"",
+                    ""type"": ""Button"",
+                    ""id"": ""7bb3315c-74e8-4e24-9e57-7cb17876079b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -364,6 +391,72 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""action"": ""LeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c210248b-d940-4222-84a4-d70179a8cd02"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""NextDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38b8fe63-3f31-42d9-b434-c7a0e85a466a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""NextDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7f3632e-e013-49eb-856e-069085d29b38"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""PrevDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4a7b542-58ca-4a4e-a04a-c7915da45de6"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PrevDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""596c9a8e-a7d4-4cdf-8be8-60fb933dd47d"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""ToggleDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ab29322-afa4-4427-b54d-7e3df8c1501e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ToggleDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -467,6 +560,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Gameplay_Cancel = m_Gameplay.FindAction("Cancel", throwIfNotFound: true);
         m_Gameplay_Point = m_Gameplay.FindAction("Point", throwIfNotFound: true);
         m_Gameplay_LeftClick = m_Gameplay.FindAction("LeftClick", throwIfNotFound: true);
+        m_Gameplay_NextDie = m_Gameplay.FindAction("NextDie", throwIfNotFound: true);
+        m_Gameplay_PrevDie = m_Gameplay.FindAction("PrevDie", throwIfNotFound: true);
+        m_Gameplay_ToggleDie = m_Gameplay.FindAction("ToggleDie", throwIfNotFound: true);
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Cursor = m_Map.FindAction("Cursor", throwIfNotFound: true);
@@ -546,6 +642,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Cancel;
     private readonly InputAction m_Gameplay_Point;
     private readonly InputAction m_Gameplay_LeftClick;
+    private readonly InputAction m_Gameplay_NextDie;
+    private readonly InputAction m_Gameplay_PrevDie;
+    private readonly InputAction m_Gameplay_ToggleDie;
     public struct GameplayActions
     {
         private @FsiInput m_Wrapper;
@@ -558,6 +657,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         public InputAction @Cancel => m_Wrapper.m_Gameplay_Cancel;
         public InputAction @Point => m_Wrapper.m_Gameplay_Point;
         public InputAction @LeftClick => m_Wrapper.m_Gameplay_LeftClick;
+        public InputAction @NextDie => m_Wrapper.m_Gameplay_NextDie;
+        public InputAction @PrevDie => m_Wrapper.m_Gameplay_PrevDie;
+        public InputAction @ToggleDie => m_Wrapper.m_Gameplay_ToggleDie;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -591,6 +693,15 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
+            @NextDie.started += instance.OnNextDie;
+            @NextDie.performed += instance.OnNextDie;
+            @NextDie.canceled += instance.OnNextDie;
+            @PrevDie.started += instance.OnPrevDie;
+            @PrevDie.performed += instance.OnPrevDie;
+            @PrevDie.canceled += instance.OnPrevDie;
+            @ToggleDie.started += instance.OnToggleDie;
+            @ToggleDie.performed += instance.OnToggleDie;
+            @ToggleDie.canceled += instance.OnToggleDie;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -619,6 +730,15 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
+            @NextDie.started -= instance.OnNextDie;
+            @NextDie.performed -= instance.OnNextDie;
+            @NextDie.canceled -= instance.OnNextDie;
+            @PrevDie.started -= instance.OnPrevDie;
+            @PrevDie.performed -= instance.OnPrevDie;
+            @PrevDie.canceled -= instance.OnPrevDie;
+            @ToggleDie.started -= instance.OnToggleDie;
+            @ToggleDie.performed -= instance.OnToggleDie;
+            @ToggleDie.canceled -= instance.OnToggleDie;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -727,6 +847,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
+        void OnNextDie(InputAction.CallbackContext context);
+        void OnPrevDie(InputAction.CallbackContext context);
+        void OnToggleDie(InputAction.CallbackContext context);
     }
     public interface IMapActions
     {

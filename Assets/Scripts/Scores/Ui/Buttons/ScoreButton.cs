@@ -4,10 +4,11 @@ using Fantazee.Scores.Instance;
 using Fantazee.Spells.Ui;
 using Fantazee.Ui.Buttons;
 using TMPro;
+using UnityEngine.EventSystems;
 
 namespace Fantazee.Scores.Ui.Buttons;
 
-public class ScoreButton : SimpleButton
+public class ScoreButton : SimpleButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
 {
     // Callback
     private Action<ScoreButton> onClickCallback;

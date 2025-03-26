@@ -225,6 +225,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2084184180754928119, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084184180754928119, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -338,7 +342,6 @@ MonoBehaviour:
   backgroundRefs:
   - background: {fileID: 7210961699957271856}
     outline: {fileID: 3027482409846440233}
-  button: {fileID: 4683189119606656738}
   button: {fileID: 4683189119606656738}
 --- !u!114 &3027482409846440233 stripped
 MonoBehaviour:

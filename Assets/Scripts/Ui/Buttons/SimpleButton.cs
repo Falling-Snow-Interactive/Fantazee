@@ -1,11 +1,15 @@
+using System;
 using Fantazee.Scores.Settings;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Ui.Buttons;
 
-public class SimpleButton : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler
+public class SimpleButton : MonoBehaviour
 {
+    public event Action<SimpleButton> Selected;
+    public event Action<SimpleButton> Deselected;
+    
     private bool isSelected;
     private bool isDisabled;
     
@@ -38,21 +42,23 @@ public class SimpleButton : MonoBehaviour, ISelectHandler, IDeselectHandler, IPo
         }
     }
 
-    public void OnSelect(BaseEventData eventData)
+    public void OnSelect(BaseEventData _ = null)
     {
         Debug.Log($"OnSelect: {gameObject.name}");
         isSelected = true;
         UpdateColors();
+        Selected?.Invoke(this);
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    public void OnDeselect(BaseEventData _ = null)
     {
         Debug.Log($"OnDeselect: {gameObject.name}");
         isSelected = false;
         UpdateColors();
+        Deselected?.Invoke(this);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData _ = null)
     {
         Debug.Log($"OnPointerEnter: {gameObject.name}");
         EventSystem.current.SetSelectedGameObject(gameObject);

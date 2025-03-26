@@ -2,10 +2,11 @@ using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Ui.Buttons;
 using TMPro;
+using UnityEngine.EventSystems;
 
 namespace Fantazee.Battle.Ui
 {
-    public class RollButton : SimpleButton
+    public class RollButton : SimpleButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
     {
         private BattlePlayer player;
         

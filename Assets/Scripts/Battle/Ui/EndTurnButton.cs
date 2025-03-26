@@ -2,10 +2,11 @@ using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Scores;
 using Fantazee.Ui.Buttons;
+using UnityEngine.EventSystems;
 
 namespace Fantazee.Battle.Ui
 {
-    public class EndTurnButton : SimpleButton
+    public class EndTurnButton : SimpleButton, ISelectHandler, IDeselectHandler, IPointerEnterHandler
     {
         private BattlePlayer player;
         
