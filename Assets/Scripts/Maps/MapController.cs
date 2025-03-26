@@ -4,15 +4,13 @@ using Fantazee.Audio;
 using Fantazee.Battle.Characters;
 using Fantazee.Instance;
 using Fantazee.Maps.Nodes;
-using FMOD.Studio;
 using FMODUnity;
 using Fsi.Gameplay;
+using JetBrains.Annotations;
 using Unity.Mathematics;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
 using Spline = UnityEngine.Splines.Spline;
-using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Fantazee.Maps
     {
@@ -32,6 +30,18 @@ namespace Fantazee.Maps
             [SerializeField]
             private InputActionReference selectActionRef;
             private InputAction selectAction;
+
+            [SerializeField]
+            private InputActionReference nextActionRef;
+            private InputAction nextAction;
+            
+            [SerializeField]
+            private InputActionReference previousActionRef;
+            private InputAction previousAction;
+            
+            [SerializeField]
+            private InputActionReference selectNodeActionRef;
+            private InputAction selectNode;
 
             private bool canInteract = false;
             
@@ -71,6 +81,12 @@ namespace Fantazee.Maps
 
             [SerializeField]
             private Transform playerSocket;
+            
+            // Selection
+            private int selectIndex = 0;
+            
+            [CanBeNull]
+            private Node selectedNode;
 
             protected override void Awake()
             {
@@ -80,18 +96,35 @@ namespace Fantazee.Maps
                 selectAction = selectActionRef.action;
 
                 selectAction.performed += ctx => OnSelectAction();
+                cursorAction.performed += ctx => OnCursor();
+
+                nextAction = nextActionRef.ToInputAction();
+                previousAction = previousActionRef.ToInputAction();
+                selectNode = selectNodeActionRef.ToInputAction();
+
+                nextAction.performed += ctx => NextNode();
+                previousAction.performed += ctx => PrevNode();
+                selectNode.performed += ctx => SelectNode();
             }
 
             private void OnEnable()
             {
                 cursorAction.Enable();
                 selectAction.Enable();
+                
+                nextAction.Enable();
+                previousAction.Enable();
+                selectNode.Enable();
             }
 
             private void OnDisable()
             {
                 cursorAction.Disable();
                 selectAction.Disable();
+                
+                nextAction.Disable();
+                previousAction.Disable();
+                selectNode.Disable();
             }
 
             private void Start()
@@ -110,6 +143,12 @@ namespace Fantazee.Maps
                 
                 RuntimeManager.PlayOneShot(mapStartSfx);
                 MusicController.Instance.PlayMusic(GameInstance.Current.Environment.Data.GeneralMusic);
+
+                if (node.Next.Count > selectIndex)
+                {
+                    node.Next[0].SetHighlight(true);
+                    selectedNode = node.Next[0];
+                }
                 
                 Debug.Log($"Map - Current Node: {node.transform.position}");
                 Debug.Log($"Map - Player to {player.transform.position}");
@@ -247,6 +286,71 @@ namespace Fantazee.Maps
                       .SetDelay(0.5f)
                       .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
                       .OnComplete(StartMap); 
+            }
+            
+            private void OnCursor()
+            {
+                camera ??= Camera.main;
+
+                selectedNode?.SetHighlight(false);
+                if (camera)
+                {
+                    Ray ray = camera.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        if (hit.collider.TryGetComponent(out Node highlightNode))
+                        {
+                            Node currentNode = map.Nodes[Environment.Node];
+                            if (currentNode.Next.Contains(highlightNode))
+                            {
+                                
+                                selectedNode = highlightNode;
+                            }
+                        }
+                    }
+                }
+                selectedNode?.SetHighlight(true);
+            }
+
+            private void NextNode()
+            {
+                var currentNode = map.Nodes[Environment.Node];
+                
+                selectIndex++;
+                selectIndex %= currentNode.Next.Count;
+                
+                selectedNode?.SetHighlight(false);
+                selectedNode = currentNode.Next[selectIndex];
+                selectedNode?.SetHighlight(true);
+            }
+
+            private void PrevNode()
+            {
+                var currentNode = map.Nodes[Environment.Node];
+                
+                selectIndex--;
+                if (selectIndex < 0)
+                {
+                    selectIndex += currentNode.Next.Count;
+                }
+                
+                selectedNode?.SetHighlight(false);
+                selectedNode = currentNode.Next[selectIndex];
+                selectedNode?.SetHighlight(true);
+            }
+
+            private void SelectNode()
+            {
+                if (selectedNode)
+                {
+                    RuntimeManager.PlayOneShot(nodeSelectSfxRef);
+                    Node currentNode = map.Nodes[Environment.Node];
+
+                    if (currentNode.Next.Contains(selectedNode))
+                    {
+                        MoveToNode(selectedNode);
+                    }
+                }
             }
         }
     }

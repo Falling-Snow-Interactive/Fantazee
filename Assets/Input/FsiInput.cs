@@ -554,6 +554,33 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextNode"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b7311ab-7800-4d85-b30a-94fc21989486"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrevNode"",
+                    ""type"": ""Button"",
+                    ""id"": ""84c2cdf1-4716-4646-b58a-e15435fbeaba"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectNode"",
+                    ""type"": ""Button"",
+                    ""id"": ""207746ba-e883-4455-ab3f-afc5165417f1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -576,6 +603,105 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e0edd64-63d8-4bee-a02b-f93196297552"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""NextNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bb16347-28cc-470f-9f9d-5461a116937a"",
+                    ""path"": ""<XInputController>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""NextNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f94032a5-586b-4fce-9622-f36209539fee"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""NextNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1132b99-2601-47e4-87c6-35d4d477702c"",
+                    ""path"": ""<XInputController>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""PrevNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df17b7a8-6c43-4f79-a0ff-058b70ecc76c"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""PrevNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09308b5c-2e2e-4501-aefc-41c78cd3e9d5"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""PrevNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a057394-c36e-4118-b5c6-40e5f21315df"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""SelectNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d53f9694-844d-42ba-baa3-43a674f640d4"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""SelectNode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a5fa618-f095-4a12-ae96-c61ca30e6e2a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""SelectNode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -642,6 +768,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Cursor = m_Map.FindAction("Cursor", throwIfNotFound: true);
         m_Map_Select = m_Map.FindAction("Select", throwIfNotFound: true);
+        m_Map_NextNode = m_Map.FindAction("NextNode", throwIfNotFound: true);
+        m_Map_PrevNode = m_Map.FindAction("PrevNode", throwIfNotFound: true);
+        m_Map_SelectNode = m_Map.FindAction("SelectNode", throwIfNotFound: true);
     }
 
     ~@FsiInput()
@@ -853,12 +982,18 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private List<IMapActions> m_MapActionsCallbackInterfaces = new List<IMapActions>();
     private readonly InputAction m_Map_Cursor;
     private readonly InputAction m_Map_Select;
+    private readonly InputAction m_Map_NextNode;
+    private readonly InputAction m_Map_PrevNode;
+    private readonly InputAction m_Map_SelectNode;
     public struct MapActions
     {
         private @FsiInput m_Wrapper;
         public MapActions(@FsiInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cursor => m_Wrapper.m_Map_Cursor;
         public InputAction @Select => m_Wrapper.m_Map_Select;
+        public InputAction @NextNode => m_Wrapper.m_Map_NextNode;
+        public InputAction @PrevNode => m_Wrapper.m_Map_PrevNode;
+        public InputAction @SelectNode => m_Wrapper.m_Map_SelectNode;
         public InputActionMap Get() { return m_Wrapper.m_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -874,6 +1009,15 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @NextNode.started += instance.OnNextNode;
+            @NextNode.performed += instance.OnNextNode;
+            @NextNode.canceled += instance.OnNextNode;
+            @PrevNode.started += instance.OnPrevNode;
+            @PrevNode.performed += instance.OnPrevNode;
+            @PrevNode.canceled += instance.OnPrevNode;
+            @SelectNode.started += instance.OnSelectNode;
+            @SelectNode.performed += instance.OnSelectNode;
+            @SelectNode.canceled += instance.OnSelectNode;
         }
 
         private void UnregisterCallbacks(IMapActions instance)
@@ -884,6 +1028,15 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @NextNode.started -= instance.OnNextNode;
+            @NextNode.performed -= instance.OnNextNode;
+            @NextNode.canceled -= instance.OnNextNode;
+            @PrevNode.started -= instance.OnPrevNode;
+            @PrevNode.performed -= instance.OnPrevNode;
+            @PrevNode.canceled -= instance.OnPrevNode;
+            @SelectNode.started -= instance.OnSelectNode;
+            @SelectNode.performed -= instance.OnSelectNode;
+            @SelectNode.canceled -= instance.OnSelectNode;
         }
 
         public void RemoveCallbacks(IMapActions instance)
@@ -948,5 +1101,8 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     {
         void OnCursor(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnNextNode(InputAction.CallbackContext context);
+        void OnPrevNode(InputAction.CallbackContext context);
+        void OnSelectNode(InputAction.CallbackContext context);
     }
 }
