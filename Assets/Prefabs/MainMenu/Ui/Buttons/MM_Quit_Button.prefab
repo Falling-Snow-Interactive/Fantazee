@@ -144,6 +144,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2171997420211884836, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.03529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171997420211884836, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_Color.r
+      value: 0.49803922
+      objectReference: {fileID: 0}
     - target: {fileID: 4191941181379241870, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_Name
       value: MM_Quit_Button
@@ -290,7 +298,24 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4191941181379241870, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8817236914626937839}
+    - targetCorrespondingSourceObject: {fileID: 4191941181379241870, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5598899063026172840}
+    - targetCorrespondingSourceObject: {fileID: 4191941181379241870, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1362400202359564822}
   m_SourcePrefab: {fileID: 100100000, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+--- !u!114 &1631413608229366321 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2171997420211884836, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+  m_PrefabInstance: {fileID: 614616198704052501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3651093726195113627 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4191941181379241870, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
@@ -336,8 +361,123 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &5598899063026172840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651093726195113627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90aa9ac9cf534345b68a32fcd2aa163a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundRefs:
+  - background: {fileID: 7563481822530529616}
+    outline: {fileID: 1631413608229366321}
+  button: {fileID: 8818054093048984467}
+--- !u!114 &1362400202359564822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651093726195113627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5598899063026172840}
+          m_TargetAssemblyTypeName: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5598899063026172840}
+          m_TargetAssemblyTypeName: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
+          m_MethodName: OnSelect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5598899063026172840}
+          m_TargetAssemblyTypeName: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
+          m_MethodName: OnDeselect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5598899063026172840}
+          m_TargetAssemblyTypeName: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!224 &6536987177199058987 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5926601977647561022, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
   m_PrefabInstance: {fileID: 614616198704052501}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7563481822530529616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6949455032017932357, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+  m_PrefabInstance: {fileID: 614616198704052501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8818054093048984467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8279739647444748934, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+  m_PrefabInstance: {fileID: 614616198704052501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651093726195113627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
