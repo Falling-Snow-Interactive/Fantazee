@@ -15,9 +15,10 @@ namespace Fantazee.Battle.Score.Ui
 {
     public class BattleScoreButton : ScoreButton
     {
-        private BattleScore battleScore;
-        public BattleScore BattleScore => battleScore;
+        public BattleScore BattleScore { get; private set; }
 
+        [Header("Battle Score Button")]
+        
         [SerializeField]
         private bool isFinalized = false;
         public bool IsFinalized => isFinalized;
@@ -46,13 +47,14 @@ namespace Fantazee.Battle.Score.Ui
         [SerializeField]
         private TMP_Text previewText;
         
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            if (battleScore != null)
+            base.OnEnable();
+            if (BattleScore != null)
             {
-                battleScore.DieAdded += OnDieAdded;
-                battleScore.ScoreReset += OnBattleScoreReset;
-                battleScore.SpellCastStart += OnSpellCastStart;
+                BattleScore.DieAdded += OnDieAdded;
+                BattleScore.ScoreReset += OnBattleScoreReset;
+                BattleScore.SpellCastStart += OnSpellCastStart;
             }
             
             if (BattleController.Instance && BattleController.Instance.Player)
@@ -62,13 +64,14 @@ namespace Fantazee.Battle.Score.Ui
             }
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
-            if (BattleController.Instance && battleScore != null)
+            base.OnDisable();
+            if (BattleController.Instance && BattleScore != null)
             {
-                battleScore.DieAdded -= OnDieAdded;
-                battleScore.ScoreReset -= OnBattleScoreReset;
-                battleScore.SpellCastStart -= OnSpellCastStart;
+                BattleScore.DieAdded -= OnDieAdded;
+                BattleScore.ScoreReset -= OnBattleScoreReset;
+                BattleScore.SpellCastStart -= OnSpellCastStart;
             }
 
             if (BattleController.Instance.Player)
@@ -80,7 +83,7 @@ namespace Fantazee.Battle.Score.Ui
 
         public void Initialize(BattleScore battleScore, Action<BattleScoreButton> onSelect)
         {
-            this.battleScore = battleScore;
+            this.BattleScore = battleScore;
             base.Initialize(battleScore.Score, _ =>
                                                       {
                                                           onSelect?.Invoke(this);
@@ -134,7 +137,7 @@ namespace Fantazee.Battle.Score.Ui
             
             previewText.gameObject.SetActive(true);
 
-            ScoreResults results = new(battleScore.Score, GameInstance.Current.Character.Dice);
+            ScoreResults results = new(BattleScore.Score, GameInstance.Current.Character.Dice);
             results = BattleController.Instance.Player.CheckScoreReceivers(results);
             previewText.text = results.Value.ToString();
         }
@@ -146,9 +149,9 @@ namespace Fantazee.Battle.Score.Ui
         
         private void OnDieAdded()
         {
-            for (int i = 0; i < battleScore.Dice.Count; i++)
+            for (int i = 0; i < BattleScore.Dice.Count; i++)
             {
-                ShowDieInSlot(i, battleScore.Dice[i].Value);
+                ShowDieInSlot(i, BattleScore.Dice[i].Value);
             }
         }
 
@@ -173,12 +176,12 @@ namespace Fantazee.Battle.Score.Ui
             isFinalized = false;
             for (int i = 0; i < diceImages.Count; i++)
             {
-                int v = battleScore.Dice.Count > i ? battleScore.Dice[i].Value : 0;
+                int v = BattleScore.Dice.Count > i ? BattleScore.Dice[i].Value : 0;
                 ShowDieInSlot(i, v);
             }
 
             // scoreButton.Button.interactable = battleScore.Dice.Count == 0;
-            scoreText.text = battleScore.Dice.Count == 0 ? "" : battleScore.Calculate().ToString();
+            scoreText.text = BattleScore.Dice.Count == 0 ? "" : BattleScore.Calculate().ToString();
             
             transform.DOShakeRotation(0.3f, Vector3.one * 4f, 10, 90f, true, ShakeRandomnessMode.Full)
                      .SetEase(Ease.Linear);

@@ -1,48 +1,92 @@
-using System.Collections.Generic;
+using fsi.prototyping.Spacers;
 using UnityEditor;
-using UnityEngine;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Fantazee.Battle.Settings.Editor
 {
-    public class BattleSettingsProvider : SettingsProvider
+    public static class BattleSettingsProvider
     {
-        private const string SettingsPath = "Fantazee/Battle";
-        
-        private SerializedObject serializedSettings;
-        
-        public BattleSettingsProvider(string path, SettingsScope scopes, IEnumerable<string> keywords = null) 
-            : base(path, scopes, keywords)
-        {
-        }
-        
         [SettingsProvider]
-        public static SettingsProvider CreateMyCustomSettingsProvider()
+        public static SettingsProvider CreateSettingsProvider()
         {
-            return new BattleSettingsProvider(SettingsPath, SettingsScope.Project);
+            SettingsProvider provider = new("Fantazee/Battle", SettingsScope.Project)
+                                        {
+                                            label = "Battle",
+                                            activateHandler = OnActivate,
+                                        };
+            
+            return provider;
         }
-        
-        public override void OnActivate(string searchContext, VisualElement rootElement)
+
+        private static void OnActivate(string searchContext, VisualElement root)
         {
-            serializedSettings = BattleSettings.GetSerializedSettings();
-        }
-        
-        public override void OnGUI(string searchContext)
-        { 
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("intentions"));
+            SerializedObject battleSettingsProp = BattleSettings.GetSerializedSettings();
+
+            ScrollView scrollView = new()
+                                    {
+                                        style =
+                                        {
+                                            marginTop = 5,
+                                            marginBottom = 5,
+                                            marginLeft = 5,
+                                            marginRight = 5,
+                                        }
+                                    };
+            root.Add(scrollView);
             
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreSfx"));
+            // Header
+            Label title = new Header("Battle Settings");
+            scrollView.Add(title);
             
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreTime"));
-            EditorGUILayout.PropertyField(serializedSettings.FindProperty("scoreEase"));
+            scrollView.Add(Spacer.Wide());
             
-            EditorGUILayout.Space(20);
-            if (GUILayout.Button("Save"))
-            {
-                serializedSettings.ApplyModifiedProperties();
-            }
+            // Intentions
+            scrollView.Add(new Header(1, "Intentions"));
             
-            serializedSettings.ApplyModifiedProperties();
+            SerializedProperty intentionsProp = battleSettingsProp.FindProperty("intentions");
+            PropertyField intentionsField = new(intentionsProp);
+            scrollView.Add(intentionsField);
+            
+            scrollView.Add(Spacer.Wide());
+            
+            // Ui
+            // Animations
+            scrollView.Add(new Header(1, "Ui Animation"));
+            
+            // Scores
+            scrollView.Add(new Header(2, "Scores"));
+
+            SerializedProperty scoreTimeProp = battleSettingsProp.FindProperty("scoreTime");
+            PropertyField scoreTimeField = new(scoreTimeProp);
+            scrollView.Add(scoreTimeField);
+            
+            SerializedProperty scoreEaseProp = battleSettingsProp.FindProperty("scoreEase");
+            PropertyField scoreEaseField = new(scoreEaseProp);
+            scrollView.Add(scoreEaseField);
+            
+            scrollView.Add(Spacer.Wide());
+            
+            // Audio
+            scrollView.Add(new Header(1, "Audio"));
+            
+            SerializedProperty sfxProp = battleSettingsProp.FindProperty("scoreSfx");
+            PropertyField sfxField = new(sfxProp)
+                                     {
+                                         style =
+                                         {
+                                             // marginBottom = 5,
+                                             // marginTop = 5,
+                                             marginLeft = 2,
+                                             // marginRight = 5,
+                                         }
+                                     };
+            scrollView.Add(sfxField);
+            
+            scrollView.Add(Spacer.Wide());
+            
+            // Bind everything togethers
+            root.Bind(battleSettingsProp);
         }
     }
 }

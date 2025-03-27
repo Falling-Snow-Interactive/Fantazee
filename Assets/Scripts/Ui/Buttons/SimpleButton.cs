@@ -1,18 +1,22 @@
 using System;
 using Fantazee.Scores.Settings;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Ui.Buttons
 {
 
-    public class SimpleButton : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerClickHandler, IDeselectHandler
+    public class SimpleButton : MonoBehaviour, 
+                                ISelectHandler, 
+                                IPointerEnterHandler, 
+                                IDeselectHandler
     {
         public event Action<SimpleButton> Selected;
         public event Action<SimpleButton> Deselected;
 
-        private bool isSelected;
-        private bool isDisabled;
+        public bool IsSelected { get; set; }
+        public bool IsDisabled { get; set; }
 
         [Header("Simple Button")]
 
@@ -49,7 +53,7 @@ namespace Fantazee.Ui.Buttons
 
         public virtual void OnSelect()
         {
-            isSelected = true;
+            IsSelected = true;
             UpdateColors();
             Selected?.Invoke(this);
         }
@@ -61,7 +65,7 @@ namespace Fantazee.Ui.Buttons
 
         public virtual void OnDeselect()
         {
-            isSelected = false;
+            IsSelected = false;
             UpdateColors();
             Deselected?.Invoke(this);
         }
@@ -91,7 +95,7 @@ namespace Fantazee.Ui.Buttons
         
         public void OnPointerExit(PointerEventData _)
         {
-            OnPointerEnter();
+            OnPointerExit();
         }
 
         private void UpdateColors()
@@ -102,7 +106,7 @@ namespace Fantazee.Ui.Buttons
             }
 
             // Select will just be the outline and take piority
-            if (isSelected)
+            if (IsSelected)
             {
                 foreach (BackgroundRef bg in backgroundRefs)
                 {
@@ -110,7 +114,7 @@ namespace Fantazee.Ui.Buttons
                 }
             }
 
-            if (isDisabled)
+            if (IsDisabled)
             {
                 foreach (BackgroundRef bg in backgroundRefs)
                 {
@@ -121,13 +125,13 @@ namespace Fantazee.Ui.Buttons
 
         public void SetInteractable(bool set)
         {
-            bool back = isSelected;
+            bool back = IsSelected;
 
             if (button)
             {
                 button.interactable = set;
             }
-            isDisabled = !set;
+            IsDisabled = !set;
 
             if (back)
             {

@@ -143,6 +143,15 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Expand"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fce8a82-5528-4bc2-9fee-cfe9f61e7e6d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -530,6 +539,28 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""action"": ""EndTurn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d53046c2-7f15-4300-bd18-db4f03033898"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Expand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""143c7223-9ca6-44de-97b7-685dd0a17853"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""Expand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -764,6 +795,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Gameplay_ToggleDie = m_Gameplay.FindAction("ToggleDie", throwIfNotFound: true);
         m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
         m_Gameplay_EndTurn = m_Gameplay.FindAction("EndTurn", throwIfNotFound: true);
+        m_Gameplay_Expand = m_Gameplay.FindAction("Expand", throwIfNotFound: true);
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Cursor = m_Map.FindAction("Cursor", throwIfNotFound: true);
@@ -851,6 +883,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_ToggleDie;
     private readonly InputAction m_Gameplay_Roll;
     private readonly InputAction m_Gameplay_EndTurn;
+    private readonly InputAction m_Gameplay_Expand;
     public struct GameplayActions
     {
         private @FsiInput m_Wrapper;
@@ -868,6 +901,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         public InputAction @ToggleDie => m_Wrapper.m_Gameplay_ToggleDie;
         public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
         public InputAction @EndTurn => m_Wrapper.m_Gameplay_EndTurn;
+        public InputAction @Expand => m_Wrapper.m_Gameplay_Expand;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -916,6 +950,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @EndTurn.started += instance.OnEndTurn;
             @EndTurn.performed += instance.OnEndTurn;
             @EndTurn.canceled += instance.OnEndTurn;
+            @Expand.started += instance.OnExpand;
+            @Expand.performed += instance.OnExpand;
+            @Expand.canceled += instance.OnExpand;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -959,6 +996,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @EndTurn.started -= instance.OnEndTurn;
             @EndTurn.performed -= instance.OnEndTurn;
             @EndTurn.canceled -= instance.OnEndTurn;
+            @Expand.started -= instance.OnExpand;
+            @Expand.performed -= instance.OnExpand;
+            @Expand.canceled -= instance.OnExpand;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1096,6 +1136,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         void OnToggleDie(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnEndTurn(InputAction.CallbackContext context);
+        void OnExpand(InputAction.CallbackContext context);
     }
     public interface IMapActions
     {

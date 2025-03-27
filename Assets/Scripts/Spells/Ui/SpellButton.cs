@@ -1,23 +1,22 @@
 using System;
 using DG.Tweening;
-using UnityEngine;
+using Fantazee.Ui.Buttons;
 using UnityEngine.UI;
 
 namespace Fantazee.Spells.Ui
 {
-    public class SpellButton : MonoBehaviour
+    public class SpellButton : SimpleButton
     {
-        private Action<SpellButton> onSelect;
-
+        private Action<SpellButton> onClick;
+        
+        [Header("Spell")]
+        
         [SerializeReference]
         private SpellInstance spell;
         public SpellInstance Spell => spell;
 
         [SerializeField]
         private Image icon;
-        
-        [SerializeField]
-        private Button button;
         
         [SerializeField]
         private SpellTooltip tooltip;
@@ -40,7 +39,7 @@ namespace Fantazee.Spells.Ui
 
         public void Initialize(SpellInstance spell, Action<SpellButton> onSelect)
         {
-            this.onSelect = onSelect;
+            this.onClick = onSelect;
             
             this.spell = spell;
             icon.sprite = spell.Data.Icon;
@@ -51,7 +50,7 @@ namespace Fantazee.Spells.Ui
 
         public void Activate(Action<SpellButton> onSelect)
         {
-            this.onSelect = onSelect;
+            this.onClick = onSelect;
             DOTween.Complete(transform);
             
             transform.DOScale(Vector3.one * 2f, 0.2f);
@@ -64,22 +63,22 @@ namespace Fantazee.Spells.Ui
             transform.DOScale(Vector3.one, 0.2f);
         }
 
-        public void OnSelect()
+        public override void OnClick()
         {
-            onSelect?.Invoke(this);
+            onClick?.Invoke(this);
         }
 
         public void SetTooltip(bool set)
         {
             if (set && spell.Data.Type != SpellType.spell_none)
             {
-                tooltip.transform.SetParent(transform.parent.parent, true);
-                tooltip.transform.SetAsLastSibling();
+                // tooltip.transform.SetParent(transform.parent.parent, true);
+                // tooltip.transform.SetAsLastSibling();
                 tooltip?.Show(Spell);
             }
             else
             {
-                tooltip.transform.SetParent(transform, true);
+                // tooltip.transform.SetParent(transform, true);
                 tooltip?.Hide();
             }
         }
@@ -94,6 +93,26 @@ namespace Fantazee.Spells.Ui
             
             sequence.OnComplete(() => onComplete?.Invoke());
             sequence.Play();
+        }
+
+        public override void OnPointerEnter()
+        {
+
+        }
+
+        public override void OnSelect()
+        {
+            
+        }
+
+        public override void OnPointerExit()
+        {
+
+        }
+
+        public override void OnDeselect()
+        {
+            
         }
     }
 }
