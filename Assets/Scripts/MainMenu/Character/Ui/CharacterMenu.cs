@@ -1,4 +1,3 @@
-using System;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Relics.Ui;
@@ -8,6 +7,7 @@ using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Ui.Buttons;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Fantazee.MainMenu.Character.Ui
@@ -44,23 +44,25 @@ namespace Fantazee.MainMenu.Character.Ui
         [SerializeField]
         private SimpleButton rightButton;
 
-        private FsiInput input;
+        [Header("     Input")]
 
+        [SerializeField]
+        private InputActionReference moveActionRef;
+        private InputAction moveAction;
+        
         private void Awake()
         {
-            input = new();
-
-            input.Gameplay.Navigation.performed += ctx => OnNavigate();
+            moveAction = moveActionRef.ToInputAction();
         }
 
         private void OnEnable()
         {
-            input.Gameplay.Enable();
+            moveAction.performed += OnNavigate;
         }
 
         private void OnDisable()
         {
-            input.Gameplay.Disable();
+            moveAction.performed -= OnNavigate;
         }
 
         private void Start()
@@ -76,11 +78,10 @@ namespace Fantazee.MainMenu.Character.Ui
         
         #region Ui Buttons
         
-        private void OnNavigate()
+        private void OnNavigate(InputAction.CallbackContext callbackContext)
         {
-            Vector2 dir = input.Gameplay.Navigation.ReadValue<Vector2>();
-            Debug.Log(dir);
-            switch (dir.x)
+            float dir = moveAction.ReadValue<Vector2>().x;
+            switch (dir)
             {
                 case < 0:
                     leftButton.ClickFlash();

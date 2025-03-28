@@ -141,11 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 111723e42891491ba394178cd7df90a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundRefs:
-  - background: {fileID: 0}
-    outline: {fileID: 5155963713056436114}
-  - background: {fileID: 0}
-    outline: {fileID: 0}
+  backgrounds: []
+  outlines:
+  - {fileID: 5155963713056436114}
   button: {fileID: 458663929710508687}
   colorPalette:
     normalColors:

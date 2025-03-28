@@ -3,7 +3,6 @@ using Fantazee.Characters;
 using Fantazee.Environments;
 using Fantazee.MainMenu.Character.Ui;
 using Fsi.Gameplay;
-using UnityEngine;
 
 namespace Fantazee.MainMenu
 {

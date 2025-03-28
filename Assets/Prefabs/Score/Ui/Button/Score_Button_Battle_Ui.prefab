@@ -1646,17 +1646,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0780647dee95b491ca7813e937888f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundRefs:
-  - background: {fileID: 9114824629972972686}
-    outline: {fileID: 3490255586485295255}
-  - background: {fileID: 702679667776722839}
-    outline: {fileID: 5175154032967875470}
-  - background: {fileID: 3205559238984902907}
-    outline: {fileID: 1955440151459324695}
-  - background: {fileID: 8359472608196808803}
-    outline: {fileID: 4854213381500148623}
-  - background: {fileID: 0}
-    outline: {fileID: 35238922821726577}
+  backgrounds:
+  - {fileID: 9114824629972972686}
+  - {fileID: 3205559238984902907}
+  - {fileID: 8359472608196808803}
+  - {fileID: 702679667776722839}
+  outlines:
+  - {fileID: 3490255586485295255}
+  - {fileID: 1955440151459324695}
+  - {fileID: 4854213381500148623}
+  - {fileID: 5175154032967875470}
   button: {fileID: 638286673693730482}
   tooltipPrefab: {fileID: 8001832737559493044, guid: 1c432fcb95a7846a69ed1c0334405618, type: 3}
   nameText: {fileID: 7353799673477012412}

@@ -1,4 +1,3 @@
-using System;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Ui.Buttons;
@@ -12,7 +11,7 @@ namespace Fantazee.Battle.Ui
     {
         private BattlePlayer player;
 
-        [Header("Input")]
+        [Header("     Input")]
 
         [SerializeField]
         private InputActionReference rollActionRef;

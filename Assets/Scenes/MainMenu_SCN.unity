@@ -964,6 +964,7 @@ MonoBehaviour:
   confirmButton: {fileID: 5279615503881734523}
   leftButton: {fileID: 5279615504500146146}
   rightButton: {fileID: 5279615505351551871}
+  moveActionRef: {fileID: -5230894306088747723, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
 --- !u!1 &648735132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,11 +3434,11 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
-  m_PointAction: {fileID: 1181127267535294605, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
-  m_MoveAction: {fileID: 3874891757249962134, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
-  m_SubmitAction: {fileID: 6146477294140011587, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
-  m_CancelAction: {fileID: -5889369648439427262, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
-  m_LeftClickAction: {fileID: 1443234946509695775, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  m_PointAction: {fileID: 1488459688216645975, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  m_MoveAction: {fileID: -5230894306088747723, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  m_SubmitAction: {fileID: -1364926623552830145, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  m_CancelAction: {fileID: -8589095092479290892, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  m_LeftClickAction: {fileID: -3261641908248697169, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}
@@ -5388,6 +5389,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1346721454}
     m_Modifications:
     - target: {fileID: 3296739926405742436, guid: 5a32590a670714e5d880492e34372282, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3296739926405742436, guid: 5a32590a670714e5d880492e34372282, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
       objectReference: {fileID: 949433922}
@@ -5499,6 +5504,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4546407152642762588, guid: 5a32590a670714e5d880492e34372282, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:1b8fc0acd80e24ef5ad20d8a3eea1971
+      objectReference: {fileID: 0}
     - target: {fileID: 7280931240157090412, guid: 5a32590a670714e5d880492e34372282, type: 3}
       propertyPath: m_Name
       value: MM_NewGame_Button
@@ -5519,6 +5528,10 @@ PrefabInstance:
     - target: {fileID: 3238011098209823549, guid: f8f784c9492f2417cad7ecc097e94492, type: 3}
       propertyPath: m_Name
       value: MM_Settings_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216163997136504373, guid: f8f784c9492f2417cad7ecc097e94492, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7216163997136504373, guid: f8f784c9492f2417cad7ecc097e94492, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -5555,6 +5568,10 @@ PrefabInstance:
     - target: {fileID: 7216163997136504373, guid: f8f784c9492f2417cad7ecc097e94492, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573935205408775693, guid: f8f784c9492f2417cad7ecc097e94492, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:1b8fc0acd80e24ef5ad20d8a3eea1971
       objectReference: {fileID: 0}
     - target: {fileID: 8588150437687630122, guid: f8f784c9492f2417cad7ecc097e94492, type: 3}
       propertyPath: m_Pivot.x
@@ -5839,6 +5856,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1258016514215843005, guid: 74be09c65f67a43418790d67c2430803, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 14044010329923584
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258016514215843005, guid: 74be09c65f67a43418790d67c2430803, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:1b8fc0acd80e24ef5ad20d8a3eea1971
+      objectReference: {fileID: 0}
     - target: {fileID: 5433129017071083917, guid: 74be09c65f67a43418790d67c2430803, type: 3}
       propertyPath: m_Name
       value: Character_Confirm_Button
@@ -5863,6 +5888,10 @@ PrefabInstance:
     - target: {fileID: 3651093726195113627, guid: 6db3a180d10c24060bbdd81241c2a272, type: 3}
       propertyPath: m_Name
       value: MM_Quit_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545868255811791787, guid: 6db3a180d10c24060bbdd81241c2a272, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:1b8fc0acd80e24ef5ad20d8a3eea1971
       objectReference: {fileID: 0}
     - target: {fileID: 7596392539241409676, guid: 6db3a180d10c24060bbdd81241c2a272, type: 3}
       propertyPath: m_Pivot.x
@@ -5943,6 +5972,10 @@ PrefabInstance:
     - target: {fileID: 7596392539241409676, guid: 6db3a180d10c24060bbdd81241c2a272, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818054093048984467, guid: 6db3a180d10c24060bbdd81241c2a272, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8818054093048984467, guid: 6db3a180d10c24060bbdd81241c2a272, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
