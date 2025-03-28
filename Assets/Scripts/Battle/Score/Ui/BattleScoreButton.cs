@@ -83,7 +83,7 @@ namespace Fantazee.Battle.Score.Ui
 
         public void Initialize(BattleScore battleScore, Action<BattleScoreButton> onSelect)
         {
-            this.BattleScore = battleScore;
+            BattleScore = battleScore;
             base.Initialize(battleScore.Score, _ =>
                                                       {
                                                           onSelect?.Invoke(this);

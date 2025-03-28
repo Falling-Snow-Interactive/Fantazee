@@ -18,9 +18,6 @@ namespace Fantazee.Spells.Ui
         [SerializeField]
         private Image icon;
         
-        [SerializeField]
-        private SpellTooltip tooltip;
-        
         [Header("Animations")]
         
         [Header("Punch")]
@@ -43,9 +40,6 @@ namespace Fantazee.Spells.Ui
             
             this.spell = spell;
             icon.sprite = spell.Data.Icon;
-
-            tooltip.Initialize(spell);
-            tooltip?.Hide();
         }
 
         public void Activate(Action<SpellButton> onSelect)
@@ -66,21 +60,6 @@ namespace Fantazee.Spells.Ui
         public override void OnClick()
         {
             onClick?.Invoke(this);
-        }
-
-        public void SetTooltip(bool set)
-        {
-            if (set && spell.Data.Type != SpellType.spell_none)
-            {
-                // tooltip.transform.SetParent(transform.parent.parent, true);
-                // tooltip.transform.SetAsLastSibling();
-                tooltip?.Show(Spell);
-            }
-            else
-            {
-                // tooltip.transform.SetParent(transform, true);
-                tooltip?.Hide();
-            }
         }
 
         public void Punch(Action onComplete = null)

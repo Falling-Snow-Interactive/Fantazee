@@ -1,6 +1,4 @@
-using DG.Tweening;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Fantazee.Spells.Ui
@@ -8,9 +6,9 @@ namespace Fantazee.Spells.Ui
     public class SpellTooltip : MonoBehaviour
     {
         [Header("References")]
-        
+
         [SerializeField]
-        private Transform root;
+        private Image icon;
         
         [SerializeField]
         private new TMP_Text name;
@@ -19,34 +17,15 @@ namespace Fantazee.Spells.Ui
         private TMP_Text desc;
         
         [SerializeField]
-        private float time = 5f;
-        
-        [SerializeField]
-        private Ease showEase = Ease.OutBounce;
-        
-        [SerializeField]
-        private Ease hideEase = Ease.OutBounce;
+        private RectTransform layoutGroup;
 
         public void Initialize(SpellInstance spell)
         {
-            FillTooltip(spell);
-        }
-
-        private void FillTooltip(SpellInstance spell)
-        {
+            icon.sprite = spell.Data.Icon;
             name.text = spell.Data.Name;
             desc.text = spell.Data.Description;
-        }
-        
-        public void Show(SpellInstance spell)
-        {
-            root.gameObject.SetActive(true);
-            FillTooltip(spell);
-        }
-
-        public void Hide()
-        {
-            root.gameObject.SetActive(false);
+            
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroup);
         }
     }
 }

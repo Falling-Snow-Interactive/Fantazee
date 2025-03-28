@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
 using Fantazee.Ui.Buttons;
 using TMPro;
+using UnityEngine.UI;
 
 namespace Fantazee.Scores.Ui.Buttons
 {
@@ -65,13 +67,22 @@ namespace Fantazee.Scores.Ui.Buttons
             List<SpellType> tooltipCreated = new();
             for (int i = 0; i < spells.Count; i++)
             {
-                spells[i].Initialize(score.Spells[i], null);
+                SpellButton button = spells[i];
+                SpellInstance spell = score.Spells[i];
                 
-                SpellTooltip tooltip = Instantiate(tooltipPrefab, tooltipContainer);
-                tooltip.Initialize(score.Spells[i]);
+                button.Initialize(spell, null);
+
+                if (spell.Data.Type != SpellType.spell_none 
+                    && !tooltipCreated.Contains(spell.Data.Type))
+                {
+                    SpellTooltip tooltip = Instantiate(tooltipPrefab, tooltipContainer);
+                    tooltip.Initialize(spell);
+                    tooltipCreated.Add(spell.Data.Type);
+                }
             }
 
             UpdateVisuals();
+            SetTooltips(false);
         }
 
         public void UpdateVisuals()
@@ -119,21 +130,10 @@ namespace Fantazee.Scores.Ui.Buttons
             onClickCallback?.Invoke(this);
         }
 
-        public void SetTooltips(bool set)
+        private void SetTooltips(bool set)
         {
-            foreach (SpellButton spell in spells)
-            {
-                spell.SetTooltip(set && IsSelected);
-            }
-        }
-
-        public override void OnSelect()
-        {
-            base.OnSelect();
-            // if (fsiInput.Gameplay.Expand.ReadValue<bool>())
-            // {
-            //     SetTooltips(true);
-            // }
+            tooltipContainer.gameObject.SetActive(set && IsSelected);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(tooltipContainer.transform as RectTransform);
         }
 
         public override void OnDeselect()
