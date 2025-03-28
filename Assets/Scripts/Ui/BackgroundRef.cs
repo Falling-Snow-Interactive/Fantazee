@@ -7,10 +7,10 @@ namespace Fantazee.Ui;
 public class BackgroundRef
 {
     [SerializeField]
-    private Image background;
-    public Image Background => background;
+    private Graphic background;
+    public Graphic Background => background;
     
     [SerializeField]
-    private Image outline;
-    public Image Outline => outline;
+    private Graphic outline;
+    public Graphic Outline => outline;
 }

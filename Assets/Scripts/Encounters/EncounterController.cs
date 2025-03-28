@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
@@ -19,7 +18,7 @@ using Fsi.Gameplay;
 using Fsi.Gameplay.Healths;
 using Fsi.Gameplay.Healths.Ui;
 using TMPro;
-using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -157,6 +156,11 @@ namespace Fantazee.Encounters
                 responses.Add(responseUi);
             }
 
+            if (responses.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(responses[0].gameObject);
+            }
+
             if (GameInstance.Current.Character.Wallet.TryGetCurrency(CurrencyType.currency_00_gold, out var gold))
             {
                 currencyUi.SetCurrency(gold);
@@ -188,6 +192,8 @@ namespace Fantazee.Encounters
             bodyText.text = response.Result;
             responsesContainer.gameObject.SetActive(false);
             rewardsParent.gameObject.SetActive(true);
+            
+            EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
             
             RuntimeManager.PlayOneShot(response.SelectSfx);
 

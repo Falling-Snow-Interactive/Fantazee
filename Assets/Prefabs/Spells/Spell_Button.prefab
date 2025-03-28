@@ -219,9 +219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a637db90ba64414b131f075a3df93c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundRefs:
-  - background: {fileID: 8079560293696268386}
-    outline: {fileID: 5151884973522002830}
+  backgrounds:
+  - {fileID: 8079560293696268386}
+  outlines:
+  - {fileID: 5151884973522002830}
   button: {fileID: 6262589440120209227}
   spell:
     rid: -2
@@ -280,9 +281,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4023912134923202814}
-        m_TargetAssemblyTypeName: Fantazee.Scores.Ui.ScoreEntries.ScoreEntrySpell,
-          Assembly-CSharp
-        m_MethodName: OnSelect
+        m_TargetAssemblyTypeName: Fantazee.Spells.Ui.SpellButton, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

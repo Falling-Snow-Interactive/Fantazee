@@ -223,6 +223,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e170be3634794ba49ada91a43e47370f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgrounds:
+  - {fileID: 6563021301297146514}
+  outlines:
+  - {fileID: 1514675511171810955}
+  button: {fileID: 7758011978496477696}
   selectTime: 0.2
   selectAmount: {x: -0.1, y: -0.1, z: -0.1}
   selectVibrato: 5
@@ -242,13 +247,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -591,6 +596,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbde9f723a7554750adb4242df2c4dfc, type: 3}
+--- !u!114 &1514675511171810955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061378612325405171, guid: dbde9f723a7554750adb4242df2c4dfc, type: 3}
+  m_PrefabInstance: {fileID: 4573694571539814264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6563021301297146514 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7236598381691289066, guid: dbde9f723a7554750adb4242df2c4dfc, type: 3}

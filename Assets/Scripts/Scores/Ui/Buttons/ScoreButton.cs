@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
 using DG.Tweening;
 using Fantazee.Scores.Instance;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
 using Fantazee.Ui.Buttons;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Scores.Ui.Buttons
@@ -110,6 +110,11 @@ namespace Fantazee.Scores.Ui.Buttons
             {
                 spell.Activate(s => OnSpellSelected(s, onSpellSelect));
             }
+
+            if (spells.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(spells[0].gameObject);
+            }
         }
 
         private void OnSpellSelected(SpellButton spell, Action<SpellButton> onSpellSelect)
@@ -119,6 +124,7 @@ namespace Fantazee.Scores.Ui.Buttons
                 s.Deactivate();
             }
 
+            EventSystem.current.SetSelectedGameObject(null);
             onSpellSelect?.Invoke(spell);
         }
 

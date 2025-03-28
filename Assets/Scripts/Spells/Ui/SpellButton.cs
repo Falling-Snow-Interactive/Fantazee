@@ -34,6 +34,8 @@ namespace Fantazee.Spells.Ui
         [SerializeField]
         private Vector3 punchScale;
 
+        private bool canSelect = false;
+
         public void Initialize(SpellInstance spell, Action<SpellButton> onSelect)
         {
             this.onClick = onSelect;
@@ -48,6 +50,7 @@ namespace Fantazee.Spells.Ui
             DOTween.Complete(transform);
             
             transform.DOScale(Vector3.one * 2f, 0.2f);
+            canSelect = true;
         }
 
         public void Deactivate()
@@ -55,10 +58,12 @@ namespace Fantazee.Spells.Ui
             DOTween.Complete(transform);
             
             transform.DOScale(Vector3.one, 0.2f);
+            canSelect = false;
         }
 
         public override void OnClick()
         {
+            base.OnClick();
             onClick?.Invoke(this);
         }
 
@@ -74,24 +79,25 @@ namespace Fantazee.Spells.Ui
             sequence.Play();
         }
 
-        public override void OnPointerEnter()
-        {
-
-        }
+        // public override void OnPointerEnter()
+        // {
+        //
+        // }
 
         public override void OnSelect()
         {
-            
+            if (canSelect)
+            {
+                base.OnSelect();
+            }
         }
 
-        public override void OnPointerExit()
-        {
-
-        }
-
-        public override void OnDeselect()
-        {
-            
-        }
+        // public override void OnPointerExit()
+        // {
+        // }
+        //
+        // public override void OnDeselect()
+        // {
+        // }
     }
 }

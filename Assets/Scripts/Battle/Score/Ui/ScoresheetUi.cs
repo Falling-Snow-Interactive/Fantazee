@@ -56,6 +56,7 @@ namespace Fantazee.Battle.Score.Ui
         {
             if (spellRequested)
             {
+                scoreButton.transform.SetAsLastSibling();
                 scoreButton.RequestSpell(spellButton =>
                                           {
                                               OnSpellSelected(scoreButton, spellButton);

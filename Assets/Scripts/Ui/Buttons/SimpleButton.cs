@@ -21,7 +21,10 @@ namespace Fantazee.Ui.Buttons
         [Header("Simple Button")]
 
         [SerializeField]
-        private List<BackgroundRef> backgroundRefs = new();
+        private List<Graphic> backgrounds = new();
+        
+        [SerializeField]
+        private List<Graphic> outlines = new();
 
         [SerializeField]
         protected Button button;
@@ -30,9 +33,9 @@ namespace Fantazee.Ui.Buttons
 
         private void OnValidate()
         {
-            foreach (BackgroundRef bg in backgroundRefs)
+            foreach (Graphic bg in backgrounds)
             {
-                ColorPalette.NormalColors.Apply(bg);
+                ColorPalette.NormalColors.ApplyBackground(bg);
             }
         }
 
@@ -45,9 +48,9 @@ namespace Fantazee.Ui.Buttons
 
         public virtual void OnClick()
         {
-            foreach (BackgroundRef bg in backgroundRefs)
+            foreach (Graphic bg in backgrounds)
             {
-                ColorPalette.ClickedColors.InOut(bg);
+                ColorPalette.ClickedColors.InOutBackground(bg);
             }
         }
 
@@ -100,23 +103,28 @@ namespace Fantazee.Ui.Buttons
 
         private void UpdateColors()
         {
-            foreach (BackgroundRef bg in backgroundRefs)
+            foreach (Graphic bg in backgrounds)
             {
-                ColorPalette.NormalColors.Apply(bg);
+                ColorPalette.NormalColors.ApplyBackground(bg);
+            }
+
+            foreach (Graphic outline in outlines)
+            {
+                ColorPalette.NormalColors.ApplyOutline(outline);
             }
 
             // Select will just be the outline and take piority
             if (IsSelected)
             {
-                foreach (BackgroundRef bg in backgroundRefs)
+                foreach (Graphic ol in outlines)
                 {
-                    ColorPalette.SelectedColors.ApplyOutline(bg);
+                    ColorPalette.SelectedColors.ApplyOutline(ol);
                 }
             }
 
             if (IsDisabled)
             {
-                foreach (BackgroundRef bg in backgroundRefs)
+                foreach (Graphic bg in backgrounds)
                 {
                     ColorPalette.DisabledColors.ApplyBackground(bg);
                 }
