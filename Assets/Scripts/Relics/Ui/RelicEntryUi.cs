@@ -1,16 +1,14 @@
 using DG.Tweening;
 using Fantazee.Relics.Data;
-using Fantazee.Relics.Information;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Settings;
+using Fantazee.Ui.Buttons;
 using TMPro;
-using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Relics.Ui
 {
-    public class RelicEntryUi : MonoBehaviour
+    public class RelicEntryUi : SimpleButton
     {
         private RelicInstance relic;
 
@@ -20,16 +18,16 @@ namespace Fantazee.Relics.Ui
         [Header("References")]
         
         [SerializeField]
-        private Image image;
+        protected Image image;
 
         [SerializeField]
-        private GameObject relicTooltip;
+        protected GameObject relicTooltip;
         
         [SerializeField]
-        private TMP_Text relicName;
+        protected TMP_Text relicName;
         
         [SerializeField]
-        private TMP_Text relicDescription;
+        protected TMP_Text relicDescription;
 
         private void Awake()
         {
@@ -86,6 +84,18 @@ namespace Fantazee.Relics.Ui
         public void SetTooltip(bool set)
         {
             relicTooltip.SetActive(set);
+        }
+
+        public override void OnSelect()
+        {
+            base.OnSelect();
+            relicTooltip.SetActive(true);
+        }
+
+        public override void OnDeselect()
+        {
+            base.OnDeselect();
+            relicTooltip.SetActive(false);
         }
     }
 }

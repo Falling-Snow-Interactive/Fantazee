@@ -1,6 +1,5 @@
 using System;
 using DG.Tweening;
-using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Fantazee.Shop.Ui.Screens
@@ -38,7 +37,7 @@ namespace Fantazee.Shop.Ui.Screens
         [SerializeField]
         private GameObject root;
 
-        public void Show(bool force = false, Action onComplete = null)
+        public virtual void Show(bool force = false, Action onComplete = null)
         {
             root.SetActive(true);
             if (force)
@@ -56,7 +55,7 @@ namespace Fantazee.Shop.Ui.Screens
                                   });
         }
 
-        public void Hide(bool force = false, Action onComplete = null)
+        public virtual void Hide(bool force = false, Action onComplete = null)
         {
             if (force)
             {

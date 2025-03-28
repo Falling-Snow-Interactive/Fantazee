@@ -10,11 +10,6 @@ namespace Fantazee.MainMenu
         [SerializeField]
         private Button button;
 
-        private void OnEnable()
-        {
-            EventSystem.current.SetSelectedGameObject(button.gameObject);
-        }
-
         public void OnNewGameButton()
         {
             MainMenuController.Instance.ShowCharacterMenu();

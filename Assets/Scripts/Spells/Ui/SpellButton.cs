@@ -79,25 +79,12 @@ namespace Fantazee.Spells.Ui
             sequence.Play();
         }
 
-        // public override void OnPointerEnter()
+        // public override void OnSelect()
         // {
-        //
-        // }
-
-        public override void OnSelect()
-        {
-            if (canSelect)
-            {
-                base.OnSelect();
-            }
-        }
-
-        // public override void OnPointerExit()
-        // {
-        // }
-        //
-        // public override void OnDeselect()
-        // {
+        //     if (canSelect)
+        //     {
+        //         base.OnSelect();
+        //     }
         // }
     }
 }

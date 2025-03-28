@@ -3,11 +3,12 @@ using DG.Tweening;
 using Fantazee.Currencies.Ui;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Entries
 {
-    public class ShopSpellButton : SpellButton
+    public class ShopSpellButton : SpellButton, IPointerExitHandler
     {
         [Header("Cost")]
         
@@ -18,6 +19,9 @@ namespace Fantazee.Shop.Ui.Entries
 
         [SerializeField]
         private Image borderImage;
+
+        [SerializeField]
+        private SpellTooltip tooltip;
         
         public void Initialize(SpellInstance spell, Action<ShopSpellButton> onSelect)
         {
@@ -26,6 +30,15 @@ namespace Fantazee.Shop.Ui.Entries
                                        onSelect?.Invoke(this);
                                    });
             currencyEntryUi.SetCurrency(spell.Data.Cost);
+            tooltip.Initialize(spell);
+            if (tooltip.transform is RectTransform rect)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
+            }
+
+            tooltip.gameObject.SetActive(false);
+            
+            // TODO - show and hide 
         }
         
         public void PlayCantAfford()
@@ -42,16 +55,16 @@ namespace Fantazee.Shop.Ui.Entries
             borderImage.DOColor(b1, 0.2f);
         }
 
-        // public override void OnSelect()
-        // {
-        //     base.OnSelect();
-        //     SetTooltip(false);
-        // }
-        //
-        // public override void OnDeselect()
-        // {
-        //     base.OnDeselect();
-        //     SetTooltip(false);
-        // }
+        public override void OnSelect()
+        {
+            base.OnSelect();
+            tooltip.gameObject.SetActive(true);
+        }
+        
+        public override void OnDeselect()
+        {
+            base.OnDeselect();
+            tooltip.gameObject.SetActive(false);
+        }
     }
 }

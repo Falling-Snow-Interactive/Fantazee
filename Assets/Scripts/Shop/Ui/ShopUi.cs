@@ -82,17 +82,17 @@ namespace Fantazee.Shop.Ui
             }
         }
 
-        private void OnRelicSelected(RelicEntry relicEntry)
+        private void OnRelicSelected(RelicShopEntry relicShopEntry)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(relicEntry.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(relicShopEntry.Relic.Data.Cost))
             {
-                ShopController.Instance.MakePurchase(relicEntry.Cost);
-                GameInstance.Current.Character.AddRelic(relicEntry.Relic);
-                Destroy(relicEntry.gameObject);
+                ShopController.Instance.MakePurchase(relicShopEntry.Relic.Data.Cost);
+                GameInstance.Current.Character.AddRelic(relicShopEntry.Relic);
+                Destroy(relicShopEntry.gameObject);
             }
             else
             {
-                relicEntry.PlayCantAfford();
+                // relicShopEntry.PlayCantAfford();
             }
         }
 
