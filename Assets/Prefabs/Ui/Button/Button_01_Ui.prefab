@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background_01_Ui
       objectReference: {fileID: 0}
+    - target: {fileID: 4872066685148428856, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5279615504785741057, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -97,6 +101,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
+--- !u!114 &2171997420211884836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1889435202847096459, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
+  m_PrefabInstance: {fileID: 296361725125127599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5573227899441182894 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5279615504785741057, guid: 9777d8c129acf4c6abd1031255f504e8, type: 3}
@@ -125,6 +140,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_01_Ui
       objectReference: {fileID: 0}
+    - target: {fileID: 4281904334136482283, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: 'outlines.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2171997420211884836}
+    - target: {fileID: 4281904334136482283, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: 'backgrounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6949455032017932357}
     - target: {fileID: 5279615504785741057, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

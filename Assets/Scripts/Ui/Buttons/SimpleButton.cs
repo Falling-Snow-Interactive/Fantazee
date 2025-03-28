@@ -1,7 +1,6 @@
 using System;
 using Fantazee.Scores.Settings;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Ui.Buttons
@@ -40,18 +39,10 @@ namespace Fantazee.Ui.Buttons
         }
 
         #region Ui Events
-        
-        public void OnPointerClick(PointerEventData _)
-        {
-            OnClick();
-        }
 
         public virtual void OnClick()
         {
-            foreach (Graphic bg in backgrounds)
-            {
-                ColorPalette.ClickedColors.InOutBackground(bg);
-            }
+            ClickFlash();
         }
 
         public virtual void OnSelect()
@@ -147,6 +138,19 @@ namespace Fantazee.Ui.Buttons
             }
 
             UpdateColors();
+        }
+
+        public void ClickFlash()
+        {
+            foreach (Graphic bg in backgrounds)
+            {
+                ColorPalette.ClickedColors.InOutBackground(bg);
+            }
+
+            foreach (Graphic outline in outlines)
+            {
+                ColorPalette.ClickedColors.InOutOutline(outline);
+            }
         }
 
         #endregion

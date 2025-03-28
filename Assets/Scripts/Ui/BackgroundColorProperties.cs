@@ -23,12 +23,18 @@ public class BackgroundColorProperties
 
     public void ApplyBackground(Graphic bg)
     {
-        bg.color = background;
+        if (bg)
+        {
+            bg.color = background;
+        }
     }
 
     public void ApplyOutline(Graphic ol)
     {
-        ol.color = outline;
+        if (ol)
+        {
+            ol.color = outline;
+        }
     }
 
     public Sequence InOutBackground(Graphic bg)

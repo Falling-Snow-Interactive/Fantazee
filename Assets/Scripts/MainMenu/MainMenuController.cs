@@ -63,6 +63,8 @@ namespace Fantazee.MainMenu
         {
             characterMenu.gameObject.SetActive(true);
             mainMenu.gameObject.SetActive(false);
+            
+            characterMenu.Activate();
         }
 
         public void Quit()

@@ -5,6 +5,7 @@ using Fantazee.Relics.Ui;
 using Fantazee.Scores;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.Buttons;
+using Fantazee.Ui.Buttons;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -37,9 +38,29 @@ namespace Fantazee.MainMenu.Character.Ui
         [SerializeField]
         private Button confirmButton;
 
+        [SerializeField]
+        private SimpleButton leftButton;
+        
+        [SerializeField]
+        private SimpleButton rightButton;
+
+        private FsiInput input;
+
+        private void Awake()
+        {
+            input = new();
+
+            input.Gameplay.Navigation.performed += ctx => OnNavigate();
+        }
+
         private void OnEnable()
         {
-            EventSystem.current.SetSelectedGameObject(confirmButton.gameObject);
+            input.Gameplay.Enable();
+        }
+
+        private void OnDisable()
+        {
+            input.Gameplay.Disable();
         }
 
         private void Start()
@@ -47,17 +68,29 @@ namespace Fantazee.MainMenu.Character.Ui
             characters = new List<CharacterData>(CharacterSettings.Settings.Characters);
             ShowCharacter(0);
         }
+
+        public void Activate()
+        {
+            EventSystem.current.SetSelectedGameObject(confirmButton.gameObject);
+        }
         
         #region Ui Buttons
         
-        public void LeftButton()
+        private void OnNavigate()
         {
-            PrevCharacter();
-        }
-
-        public void RightButton()
-        {
-            NextCharacter();
+            Vector2 dir = input.Gameplay.Navigation.ReadValue<Vector2>();
+            Debug.Log(dir);
+            switch (dir.x)
+            {
+                case < 0:
+                    leftButton.ClickFlash();
+                    PrevCharacter();
+                    break;
+                case > 0:
+                    rightButton.ClickFlash();
+                    NextCharacter();
+                    break;
+            }
         }
 
         public void ConfirmButton()
