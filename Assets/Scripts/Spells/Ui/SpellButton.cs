@@ -10,7 +10,7 @@ namespace Fantazee.Spells.Ui
 {
     public class SpellButton : SimpleButton
     {
-        private Action<SpellButton> onClick;
+        private Action<SpellButton> onClickCallback;
         
         [Header("Spell")]
         
@@ -41,15 +41,15 @@ namespace Fantazee.Spells.Ui
 
         public void Initialize(SpellInstance spell, Action<SpellButton> onSelect)
         {
-            this.onClick = onSelect;
+            this.onClickCallback = onSelect;
             
             this.spell = spell;
             icon.sprite = spell.Data.Icon;
         }
 
-        public Tweener Activate(Action<SpellButton> onSelect)
+        public Tweener Activate(Action<SpellButton> onClickCallback)
         {
-            this.onClick = onSelect;
+            this.onClickCallback = onClickCallback;
             DOTween.Complete(transform);
 
             Tweener t = transform.DOScale(Vector3.one * 2f, 0.2f);
@@ -68,8 +68,11 @@ namespace Fantazee.Spells.Ui
 
         public override void OnClick()
         {
-            base.OnClick();
-            onClick?.Invoke(this);
+            if (canSelect)
+            {
+                base.OnClick();
+                onClickCallback?.Invoke(this);
+            }
         }
 
         public void Punch(Action onComplete = null)
@@ -83,13 +86,5 @@ namespace Fantazee.Spells.Ui
             sequence.OnComplete(() => onComplete?.Invoke());
             sequence.Play();
         }
-
-        // public override void OnSelect()
-        // {
-        //     if (canSelect)
-        //     {
-        //         base.OnSelect();
-        //     }
-        // }
     }
 }

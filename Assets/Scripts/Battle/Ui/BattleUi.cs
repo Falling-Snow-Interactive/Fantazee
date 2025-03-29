@@ -34,7 +34,7 @@ namespace Fantazee.Battle.Ui
         private Image backgroundImage;
         
         private FsiInput input;
-
+        
         protected override void Awake()
         {
             base.Awake();

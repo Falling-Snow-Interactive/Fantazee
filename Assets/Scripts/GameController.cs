@@ -8,7 +8,9 @@ using Fantazee.LoadingScreens;
 using Fantazee.Maps;
 using Fsi.Gameplay;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Environment = Fantazee.Environments.Environment;
 
 namespace Fantazee
 {
@@ -149,11 +151,29 @@ namespace Fantazee
 
         public void BattleReady()
         {
-            loadingScreen.Hide(0,
-                               () =>
-                               {
-                                   BattleController.Instance.BattleStart();
-                               });
+            if (SceneManager.sceneCount == 1)
+            {
+                Debug.LogWarning("No Environment found. Is this intentional?\n" +
+                                 $"Loading {GameInstance.Environment.Data.name}.");
+                ProjectSceneManager.Instance.LoadBattleEnvironment(GameInstance.Environment.Data, () =>
+                                                                   {
+                                                                       loadingScreen.Hide(0,
+                                                                           () =>
+                                                                           {
+                                                                               BattleController.Instance
+                                                                                   .BattleStart();
+                                                                           });
+                                                                   });
+            }
+            else
+            {
+                loadingScreen.Hide(0,
+                                   () =>
+                                   {
+                                       BattleController.Instance.BattleStart();
+                                   });
+            }
+            
         }
 
         public void FinishedBattle(bool win)

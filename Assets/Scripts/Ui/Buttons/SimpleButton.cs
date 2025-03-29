@@ -37,6 +37,11 @@ namespace Fantazee.Ui.Buttons
             {
                 ColorPalette.NormalColors.ApplyBackground(bg);
             }
+
+            foreach (Graphic outline in outlines)
+            {
+                ColorPalette.NormalColors.ApplyOutline(outline);
+            }
         }
 
         private void OnEnable()
@@ -98,7 +103,7 @@ namespace Fantazee.Ui.Buttons
             OnPointerExit();
         }
 
-        private void UpdateColors()
+        protected void UpdateColors()
         {
             foreach (Graphic bg in backgrounds)
             {

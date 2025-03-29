@@ -58,10 +58,10 @@ namespace Fantazee.Scores.Ui.Buttons
             fsiInput.Gameplay.Disable();
         }
 
-        public void Initialize(ScoreInstance score, Action<ScoreButton> onClick)
+        public void Initialize(ScoreInstance score, Action<ScoreButton> onClickCallback)
         {
             Score = score;
-            onClickCallback = onClick;
+            this.onClickCallback = onClickCallback;
 
             Debug.Assert(spells.Count <= score.Spells.Count);
             List<SpellType> tooltipCreated = new();

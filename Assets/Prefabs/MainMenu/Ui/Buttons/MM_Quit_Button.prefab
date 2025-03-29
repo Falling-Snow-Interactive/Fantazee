@@ -16,17 +16,21 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.49803922
       objectReference: {fileID: 0}
+    - target: {fileID: 3341900497861262428, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4191941181379241870, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_Name
       value: MM_Quit_Button
       objectReference: {fileID: 0}
     - target: {fileID: 4351701223544197840, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_text
-      value: quit_game
+      value: menu_quit
       objectReference: {fileID: 0}
     - target: {fileID: 4351701223544197840, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 58.1
       objectReference: {fileID: 0}
     - target: {fileID: 5152660844916742039, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -50,10 +54,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926601977647561022, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 5926601977647561022, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
       propertyPath: m_SizeDelta.y
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926601977647561022, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926601977647561022, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6935474293442237118, guid: 9f961a199c53548b29d57ce68fc9d06d, type: 3}

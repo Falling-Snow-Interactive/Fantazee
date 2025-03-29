@@ -140,9 +140,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.05645872
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.09963302
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_Color.r
+      value: 0.36200002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940054514566908321, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_text
+      value: end_turn
+      objectReference: {fileID: 0}
     - target: {fileID: 5940054514566908321, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_fontSize
-      value: 60.9
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 6064041253760908543, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Name
@@ -150,11 +166,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.b
-      value: 0.03529412
+      value: 0.042571407
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.17560712
       objectReference: {fileID: 0}
     - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.r
-      value: 0.49803922
+      value: 0.59599996
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9065709612515820034, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
@@ -182,10 +202,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a818fd7c4704ba88cc08e386a4127b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgrounds: []
-  outlines: []
+  backgrounds:
+  - {fileID: 7210961699957271856}
+  outlines:
+  - {fileID: 3027482409846440233}
   button: {fileID: 4683189119606656738}
+  colorPalette:
+    normalColors:
+      background: {r: 0.36200002, g: 0.09963302, b: 0.05645872, a: 1}
+      outline: {r: 0.59599996, g: 0.17560712, b: 0.042571407, a: 1}
+    selectedColors:
+      background: {r: 0.36078432, g: 0.09803922, b: 0.05490196, a: 1}
+      outline: {r: 0.872, g: 0.2581579, b: 0.06310528, a: 1}
+    disabledColors:
+      background: {r: 0.213, g: 0.057851844, b: 0.03418518, a: 1}
+      outline: {r: 0.283, g: 0.08125742, b: 0.019613855, a: 1}
+    clickedColors:
+      background: {r: 0.638, g: 0.17328393, b: 0.10239504, a: 1}
+      outline: {r: 0.85800004, g: 0.25047204, b: 0.0586211, a: 1}
   endActionRef: {fileID: -703002404751936499, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+--- !u!114 &3027482409846440233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+  m_PrefabInstance: {fileID: 6634512300986588949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4683189119606656738 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2084184180754928119, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
@@ -206,5 +252,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7210961699957271856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
+  m_PrefabInstance: {fileID: 6634512300986588949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

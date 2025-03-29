@@ -20,20 +20,28 @@ public class BackgroundColorPalette
     #endregion
     
     [SerializeField]
-    private BackgroundColorProperties normalColors = new(NormalBgColor, NormalOutlineColor);
+    private BackgroundColorProperties normalColors;
     public BackgroundColorProperties NormalColors => normalColors;
         
     [SerializeField]
-    private BackgroundColorProperties selectedColors = new(SelectBgColor, SelectOutlineColor);
+    private BackgroundColorProperties selectedColors;
     public BackgroundColorProperties SelectedColors => selectedColors;
         
     [SerializeField]
-    private BackgroundColorProperties disabledColors = new(DisableBgColor, DisableOutlineColor);
+    private BackgroundColorProperties disabledColors;
     public BackgroundColorProperties DisabledColors => disabledColors;
 
     [SerializeField]
-    private BackgroundColorProperties clickedColors = new(ClickBgColor, ClickOutlineColor);
+    private BackgroundColorProperties clickedColors;
     public BackgroundColorProperties ClickedColors => clickedColors;
+
+    public BackgroundColorPalette()
+    {
+        normalColors = new BackgroundColorProperties(NormalBgColor, NormalOutlineColor);
+        selectedColors = new BackgroundColorProperties(SelectBgColor, SelectOutlineColor);
+        disabledColors = new BackgroundColorProperties(DisableBgColor, DisableOutlineColor);
+        clickedColors = new BackgroundColorProperties(ClickBgColor, ClickOutlineColor);
+    }
     
     public void ResetColors()
     {
@@ -41,5 +49,15 @@ public class BackgroundColorPalette
         selectedColors = new BackgroundColorProperties(SelectBgColor, SelectOutlineColor);
         disabledColors = new BackgroundColorProperties(DisableBgColor, DisableOutlineColor);
         clickedColors = new BackgroundColorProperties(ClickBgColor, ClickOutlineColor);
+    }
+
+    public static BackgroundColorPalette Default
+    {
+        get
+        {
+            BackgroundColorPalette palette = new BackgroundColorPalette();
+            palette.ResetColors();
+            return palette;
+        }
     }
 }

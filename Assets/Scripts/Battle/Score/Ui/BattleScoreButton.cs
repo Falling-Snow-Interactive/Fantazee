@@ -81,12 +81,12 @@ namespace Fantazee.Battle.Score.Ui
             }
         }
 
-        public void Initialize(BattleScore battleScore, Action<BattleScoreButton> onSelect)
+        public void Initialize(BattleScore battleScore, Action<BattleScoreButton> onClickCallback)
         {
             BattleScore = battleScore;
             base.Initialize(battleScore.Score, _ =>
                                                       {
-                                                          onSelect?.Invoke(this);
+                                                          onClickCallback?.Invoke(this);
                                                       });
             
             battleScore.DieAdded += OnDieAdded;

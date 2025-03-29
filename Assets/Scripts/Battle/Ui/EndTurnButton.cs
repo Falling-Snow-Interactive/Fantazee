@@ -1,17 +1,23 @@
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Scores;
+using Fantazee.Ui;
 using Fantazee.Ui.Buttons;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
-    public class EndTurnButton : SimpleButton, IDeselectHandler, IPointerEnterHandler
+    public class EndTurnButton : SimpleButton
     {
         private BattlePlayer player;
 
-        [Header("Ui")]
+        [Header("Color Overrides")]
+
+        [SerializeField]
+        private BackgroundColorPalette colorPalette = BackgroundColorPalette.Default;
+        protected override BackgroundColorPalette ColorPalette => colorPalette;
+
+        [Header("     Input")]
 
         [SerializeField]
         private InputActionReference endActionRef;
@@ -50,6 +56,13 @@ namespace Fantazee.Battle.Ui
             endAction.Disable();
         }
 
+        private void Start()
+        {
+            IsDisabled = true;
+            button.interactable = false;
+            UpdateColors();
+        }
+
         private void OnCharacterSpawned(BattleCharacter character)
         {
             if (character is BattlePlayer player)
@@ -63,17 +76,25 @@ namespace Fantazee.Battle.Ui
 
         public override void OnClick()
         {
-            BattleController.Instance.Player.EndTurn();
+            base.OnClick();
+            if (!IsDisabled)
+            {
+                BattleController.Instance.Player.EndTurn();
+            }
         }
 
         private void OnScored(ScoreResults scoreResults)
         {
             button.interactable = true;
+            IsDisabled = false;
+            UpdateColors();
         }
 
         private void OnTurnEnd()
         {
             button.interactable = false;
+            IsDisabled = true;
+            UpdateColors();
         }
     }
 }
