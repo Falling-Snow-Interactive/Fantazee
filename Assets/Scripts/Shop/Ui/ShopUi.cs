@@ -67,12 +67,16 @@ namespace Fantazee.Shop.Ui
 
         private void OnEnable()
         {
-            // cancelAction.performed += OnCancelAction;
+            cancelAction.performed += OnCancelAction;
+            
+            cancelAction.Enable();
         }
 
         private void OnDisable()
         {
-            // cancelAction.performed -= OnCancelAction;
+            cancelAction.performed -= OnCancelAction;
+            
+            cancelAction.Disable();
         }
 
         public void Initialize(ShopInventory inventory)
