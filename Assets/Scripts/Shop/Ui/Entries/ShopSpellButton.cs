@@ -63,6 +63,7 @@ namespace Fantazee.Shop.Ui.Entries
         
         public override void OnDeselect()
         {
+            Debug.Log($"Deselecting {name}");
             base.OnDeselect();
             tooltip.gameObject.SetActive(false);
         }

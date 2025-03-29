@@ -1865,6 +1865,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  cancelActionRef: {fileID: -8589095092479290892, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
 --- !u!1 &1002702458
 GameObject:
   m_ObjectHideFlags: 0
@@ -4096,6 +4097,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3275827422065453967, guid: 103604f118a4a4cb989b87c473428826, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502992770839196816, guid: 103604f118a4a4cb989b87c473428826, type: 3}
+      propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502992770839196816, guid: 103604f118a4a4cb989b87c473428826, type: 3}

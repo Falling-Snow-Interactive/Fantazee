@@ -106,15 +106,19 @@ namespace Fantazee.Scores.Ui.Buttons
 
         public void RequestSpell(Action<SpellButton> onSpellSelect)
         {
+            Sequence sequence = DOTween.Sequence();
+            
             foreach (SpellButton spell in spells)
             {
-                spell.Activate(s => OnSpellSelected(s, onSpellSelect));
+                sequence.Insert(0, spell.Activate(s => OnSpellSelected(s, onSpellSelect)));
             }
 
-            if (spells.Count > 0)
-            {
-                EventSystem.current.SetSelectedGameObject(spells[0].gameObject);
-            }
+            sequence.OnComplete(() =>
+                                {
+                                    EventSystem.current.SetSelectedGameObject(spells[0].gameObject);
+                                });
+            
+            sequence.Play();
         }
 
         private void OnSpellSelected(SpellButton spell, Action<SpellButton> onSpellSelect)

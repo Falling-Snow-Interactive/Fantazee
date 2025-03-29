@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Fantazee.Scores.Settings;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -36,6 +37,11 @@ namespace Fantazee.Ui.Buttons
             {
                 ColorPalette.NormalColors.ApplyBackground(bg);
             }
+        }
+
+        private void OnEnable()
+        {
+            UpdateColors();
         }
 
         #region Ui Events
@@ -142,15 +148,23 @@ namespace Fantazee.Ui.Buttons
 
         public void ClickFlash()
         {
+            Sequence sequence = DOTween.Sequence();
+            
             foreach (Graphic bg in backgrounds)
             {
-                ColorPalette.ClickedColors.InOutBackground(bg);
+                var s = ColorPalette.ClickedColors.InOutBackground(bg);
+                sequence.Insert(0, s);
             }
 
             foreach (Graphic outline in outlines)
             {
-                ColorPalette.ClickedColors.InOutOutline(outline);
+                var s = ColorPalette.ClickedColors.InOutOutline(outline);
+                sequence.Insert(0, s);
             }
+
+            sequence.OnComplete(UpdateColors);
+            
+            sequence.Play();
         }
 
         #endregion

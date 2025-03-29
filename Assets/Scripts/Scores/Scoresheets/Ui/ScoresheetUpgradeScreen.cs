@@ -16,6 +16,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
     public class ScoresheetUpgradeScreen : MonoBehaviour
     {
         private Action onComplete;
+        private Action onCancel;
         
         [SerializeField]
         private ScoresheetUi scoresheet;
@@ -136,13 +137,20 @@ namespace Fantazee.Scores.Scoresheets.Ui
         [SerializeField]
         private Transform root;
 
+        [SerializeField]
+        private Button cancelButton;
+
         private bool isSpellUpgrade = false;
 
-        public void StartScoreUpgrade(ScoreInstance scoreToReceive, Action onComplete = null)
+        public void StartScoreUpgrade(ScoreInstance scoreToReceive, Action onComplete = null, Action onCancel = null)
         {
             isSpellUpgrade = false;
             
             this.onComplete = onComplete;
+            this.onCancel = onCancel;
+
+            cancelButton.gameObject.SetActive(onCancel != null);
+            
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(false);
@@ -157,11 +165,12 @@ namespace Fantazee.Scores.Scoresheets.Ui
             scoresheet.RequestScore(OnScoreSelect, true);
         }
         
-        public void StartSpellUpgrade(SpellInstance spellToReceive, Action onComplete = null)
+        public void StartSpellUpgrade(SpellInstance spellToReceive, Action onComplete = null, Action onCancel = null)
         {
             isSpellUpgrade = true;
             
             this.onComplete = onComplete;
+            this.onCancel = onCancel;
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(true);
@@ -187,6 +196,11 @@ namespace Fantazee.Scores.Scoresheets.Ui
             toUpgradeScore = scoreToUpgrade;
             toUpgradeSpell = spellToUpgrade;
             ScoreSelectSequence(toReceiveSpell.transform, scoreToUpgrade, () => onComplete?.Invoke());
+        }
+
+        public void OnCancelSelect()
+        {
+            onCancel?.Invoke();
         }
         
         private void Apply()
@@ -313,7 +327,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
             sequence.OnComplete(() =>
                                 {
                                     toUpgradeButton.transform.SetParent(returnParent);
-                                    toUpgradeButton.transform.SetSiblingIndex(siblingIndex);
+                                    // toUpgradeButton.transform.SetSiblingIndex(siblingIndex);
                                     foreach (MonoBehaviour mb in offWhileAnimating)
                                     {
                                         mb.enabled = true;

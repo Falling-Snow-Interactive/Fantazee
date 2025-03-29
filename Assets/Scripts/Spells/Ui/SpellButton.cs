@@ -1,6 +1,9 @@
 using System;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using Fantazee.Ui.Buttons;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Spells.Ui
@@ -44,13 +47,15 @@ namespace Fantazee.Spells.Ui
             icon.sprite = spell.Data.Icon;
         }
 
-        public void Activate(Action<SpellButton> onSelect)
+        public Tweener Activate(Action<SpellButton> onSelect)
         {
             this.onClick = onSelect;
             DOTween.Complete(transform);
-            
-            transform.DOScale(Vector3.one * 2f, 0.2f);
+
+            Tweener t = transform.DOScale(Vector3.one * 2f, 0.2f);
             canSelect = true;
+
+            return t;
         }
 
         public void Deactivate()
