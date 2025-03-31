@@ -134,11 +134,11 @@ namespace Fantazee.Dice.Ui
             SetImage(Die.Value);
         }
 
-        public void Roll(float delay = 0, Action<Die> onRollComplete = null)
+        public Sequence Roll(float delay = 0, Action<Die> onRollComplete = null)
         {
             if (rolling)
             {
-                return;
+                return null;
             }
             
             ResetDice();
@@ -160,6 +160,8 @@ namespace Fantazee.Dice.Ui
                                 });
             sequence.SetDelay(delay);
             sequence.Play();
+
+            return sequence;
         }
 
         public void SetImage(int value)
@@ -206,42 +208,41 @@ namespace Fantazee.Dice.Ui
             root.DOLocalRotate(Vector3.zero, lockTime).SetEase(lockEase);
             root.DOScale(Vector3.one, lockTime).SetEase(lockEase);
         }
-
-        public void Hide(Action onComplete, float delay = 0, bool force = false)
+        
+        public Tweener Hide(Action onComplete = null)
         {
-            if (force)
-            {
-                root.localPosition = hideOffset;
-                return;
-            }
-
             hideSfx.start();
-            root.DOLocalMove(hideOffset, hideTime)
+            Tweener tween = root.DOLocalMove(hideOffset, hideTime)
                  .SetEase(hideEase)
-                 .SetDelay(delay)
                  .OnComplete(() => onComplete?.Invoke());
+
+            return tween;
+        }
+
+        public void ForceHide()
+        {
+            root.localPosition = hideOffset;
         }
         
-        public void Show(Action onComplete, float delay = 0, bool force = false)
+        public Tweener Show(Action onComplete = null)
         {
-            if (force)
-            {
-                root.localPosition = Vector3.zero;
-                return;
-            }
-
             showSfx.start();
-            root.DOLocalMove(Vector3.zero, showTime)
+            Tweener tweener = root.DOLocalMove(Vector3.zero, showTime)
                  .SetEase(showEase)
-                 .SetDelay(delay)
                  .OnComplete(() => onComplete?.Invoke());
+            return tweener;
+        }
+
+        public void ForceShow()
+        {
+            root.localPosition = Vector3.zero;
         }
 
         public void Squish()
         {
-            root.transform.localScale = Vector3.one;
+            root.localScale = Vector3.one;
             squishSfx.start();
-            root.transform.DOPunchScale(DiceSettings.Settings.SquishAmount, 
+            root.DOPunchScale(DiceSettings.Settings.SquishAmount, 
                                         DiceSettings.Settings.SquishTime, 
                                          10, 
                                          1f)

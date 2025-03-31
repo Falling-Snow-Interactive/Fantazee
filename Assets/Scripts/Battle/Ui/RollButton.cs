@@ -25,8 +25,6 @@ namespace Fantazee.Battle.Ui
         private void Awake()
         {
             rollAction = rollActionRef.ToInputAction();
-
-            rollAction.performed += ctx => OnClick();
         }
 
         private void OnEnable()
@@ -38,6 +36,7 @@ namespace Fantazee.Battle.Ui
                 player.RollsChanged += OnRollsChanged;
             }
             
+            rollAction.performed += OnClick;
             rollAction.Enable();
         }
 
@@ -50,6 +49,7 @@ namespace Fantazee.Battle.Ui
                 player.RollsChanged += OnRollsChanged;
             }
             
+            rollAction.performed -= OnClick;
             rollAction.Disable();
         }
 
@@ -73,6 +73,11 @@ namespace Fantazee.Battle.Ui
             base.OnClick();
             BattleController.Instance.Player.TryRoll();
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
+        }
+        
+        private void OnClick(InputAction.CallbackContext ctx)
+        {
+            OnClick();
         }
         
         private void OnRollsChanged()

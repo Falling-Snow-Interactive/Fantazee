@@ -174,6 +174,8 @@ namespace Fantazee.Battle.Score.Ui
         private void OnBattleScoreReset()
         {
             isFinalized = false;
+            IsDisabled = false;
+            button.interactable = true;
             for (int i = 0; i < diceImages.Count; i++)
             {
                 int v = BattleScore.Dice.Count > i ? BattleScore.Dice[i].Value : 0;
@@ -185,6 +187,8 @@ namespace Fantazee.Battle.Score.Ui
             
             transform.DOShakeRotation(0.3f, Vector3.one * 4f, 10, 90f, true, ShakeRandomnessMode.Full)
                      .SetEase(Ease.Linear);
+            
+            UpdateColors();
         }
 
         private void OnSpellCastStart(SpellInstance spell)

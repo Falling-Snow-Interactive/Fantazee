@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
@@ -34,10 +35,6 @@ namespace Fantazee.Battle.Ui
             nextDieAction = nextDieActionRef.ToInputAction();
             prevDieAction = prevDieActionRef.ToInputAction();
             toggleDieAction = toggleDieActionRef.ToInputAction();
-
-            nextDieAction.performed += ctx => NextDie();
-            prevDieAction.performed += ctx => PrevDie();
-            toggleDieAction.performed += ctx => ToggleDie();
         }
         
         private void OnEnable()
@@ -46,6 +43,10 @@ namespace Fantazee.Battle.Ui
             {
                 d.Selected += OnDieSelected;
             }
+            
+            nextDieAction.performed += NextDie;
+            prevDieAction.performed += PrevDie;
+            toggleDieAction.performed += ToggleDie;
             
             nextDieAction.Enable();
             prevDieAction.Enable();
@@ -58,6 +59,10 @@ namespace Fantazee.Battle.Ui
             {
                 d.Selected -= OnDieSelected;
             }
+            
+            nextDieAction.performed -= NextDie;
+            prevDieAction.performed -= PrevDie;
+            toggleDieAction.performed -= ToggleDie;
             
             nextDieAction.Disable();
             prevDieAction.Disable();
@@ -77,55 +82,56 @@ namespace Fantazee.Battle.Ui
         /// <param name="onDiceRollsComplete">Called when all dice have finished rolling.</param>
         public void Roll(BattlePlayer player, Action<Die> onDieRollComplete, Action onDiceRollsComplete)
         {
-            int i = 0;
+            Sequence sequence = DOTween.Sequence();
+            float delay = 0;
             foreach (DieUi d in dice)
             {
                 if (!player.LockedDice.Contains(d.Die))
                 {
-                    d.Roll(i * 0.2f, die =>
-                                     {
-                                         i--;
-                                         onDieRollComplete?.Invoke(die);
-                                         if (i == 0)
-                                         {
-                                             onDiceRollsComplete?.Invoke();
-                                         }
-                                     });
-                    i++;
+                    Sequence s = d.Roll(0, die => onDieRollComplete?.Invoke(die));
+                    sequence.Insert(delay, s);
+                    delay += 0.2f;
                 }
             }
+
+            sequence.OnComplete(() => onDiceRollsComplete?.Invoke());
+            sequence.Play();
         }
 
         public void HideDice(Action onComplete = null)
         {
+            Sequence sequence = DOTween.Sequence();
             for (int i = 0; i < dice.Count; i++)
             {
                 DieUi d = dice[i];
-                if (i == dice.Count - 1)
-                {
-                    d.Hide(onComplete, i * 0.2f, false);
-                }
-                else
-                {
-                    d.Hide(null, i * 0.2f, false);
-                }
+                Tweener tweener = d.Hide();
+                sequence.Insert(i * 0.2f, tweener);
             }
+
+            sequence.OnComplete(() => onComplete?.Invoke());
+            sequence.Play();
         }
 
+        public void ShowDice(Action onComplete = null)
+        {
+            Sequence sequence = DOTween.Sequence();
+            
+            for (int i = 0; i < dice.Count; i++)
+            {
+                DieUi d = dice[i];
+                Tweener tweener = d.Show();
+                sequence.Insert(i * 0.2f, tweener);
+            }
+            
+            sequence.OnComplete(() => onComplete?.Invoke());
+            sequence.Play();
+        }
+        
         public void ResetDice()
         {
             foreach (DieUi d in BattleUi.Instance.DiceControl.Dice)
             {
                 d.ResetDice();
-            }
-        }
-
-        public void ShowDice(Action onComplete = null)
-        {
-            for (int i = 0; i < dice.Count; i++)
-            {
-                DieUi d = dice[i];
-                d.Show(i == dice.Count - 1 ? onComplete : null, i * 0.2f, false);
             }
         }
 
@@ -136,7 +142,7 @@ namespace Fantazee.Battle.Ui
             dice[selectedIndex].OnSelect();
         }
 
-        private void NextDie()
+        private void NextDie(InputAction.CallbackContext callbackContext)
         {
             dice[selectedIndex].OnDeselect();
             
@@ -146,7 +152,7 @@ namespace Fantazee.Battle.Ui
             dice[selectedIndex].OnSelect();
         }
 
-        private void PrevDie()
+        private void PrevDie(InputAction.CallbackContext callbackContext)
         {
             dice[selectedIndex].OnDeselect();
             selectedIndex--;
@@ -173,8 +179,9 @@ namespace Fantazee.Battle.Ui
             }
         }
 
-        private void ToggleDie()
+        private void ToggleDie(InputAction.CallbackContext callbackContext)
         {
+            Debug.Log($"Toggle: {selectedIndex}");
             dice[selectedIndex].ToggleLock();
         }
     }

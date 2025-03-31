@@ -21,8 +21,6 @@ namespace Fantazee.Battle.Ui
         private void Awake()
         {
             endAction = endActionRef.ToInputAction();
-
-            endAction.performed += ctx => OnClick();
         }
         
         private void OnEnable()
@@ -35,6 +33,7 @@ namespace Fantazee.Battle.Ui
                 player.TurnEnded += OnTurnEnd;
             }
             
+            endAction.performed += OnClick;
             endAction.Enable();
         }
 
@@ -48,6 +47,7 @@ namespace Fantazee.Battle.Ui
                 player.TurnEnded -= OnTurnEnd;
             }
             
+            endAction.performed -= OnClick;
             endAction.Disable();
         }
 
@@ -76,6 +76,11 @@ namespace Fantazee.Battle.Ui
             {
                 BattleController.Instance.Player.EndTurn();
             }
+        }
+        
+        private void OnClick(InputAction.CallbackContext ctx)
+        {
+            OnClick();
         }
 
         private void OnScored(ScoreResults scoreResults)
