@@ -1,5 +1,6 @@
 using Fantazee.Scores.Data;
 using Fantazee.Ui;
+using Fantazee.Ui.ColorPalettes;
 using UnityEditor;
 
 namespace Fantazee.Scores.Settings
@@ -21,8 +22,8 @@ namespace Fantazee.Scores.Settings
         private Dictionary<ScoreType, ScoreData> scoreDict;
         
         [SerializeField]
-        private BackgroundColorPalette buttonColorPalette;
-        public BackgroundColorPalette ButtonColorPalette => buttonColorPalette;
+        private ColorPalette buttonColorPalette;
+        public ColorPalette ButtonColorPalette => buttonColorPalette;
 
         private Dictionary<ScoreType, ScoreData> BuildScoreDict()
         {

@@ -3,6 +3,7 @@ using Fantazee.Battle.Characters.Player;
 using Fantazee.Scores;
 using Fantazee.Ui;
 using Fantazee.Ui.Buttons;
+using Fantazee.Ui.ColorPalettes;
 using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
@@ -10,12 +11,6 @@ namespace Fantazee.Battle.Ui
     public class EndTurnButton : SimpleButton
     {
         private BattlePlayer player;
-
-        [Header("Color Overrides")]
-
-        [SerializeField]
-        private BackgroundColorPalette colorPalette = BackgroundColorPalette.Default;
-        protected override BackgroundColorPalette ColorPalette => colorPalette;
 
         [Header("     Input")]
 

@@ -4,6 +4,7 @@ using Fantazee.Currencies.Ui;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Entries
@@ -23,10 +24,48 @@ namespace Fantazee.Shop.Ui.Entries
         [SerializeField]
         private SpellTooltip tooltip;
         
+        [Header("     Input")]
+
+        [SerializeField]
+        private InputActionReference expandActionReference;
+        private InputAction expandAction;
+
+        private void Awake()
+        {
+            if (expandActionReference)
+            {
+                expandAction = expandActionReference.ToInputAction();
+            }
+        }
+        
+        private void OnEnable()
+        {
+            if (expandAction != null)
+            {
+                expandAction.started += OnExpandStarted;
+                expandAction.canceled += OnExpandCanceled;
+
+                expandAction.Enable();
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (expandAction != null)
+            {
+                expandAction.started -= OnExpandStarted;
+                expandAction.canceled -= OnExpandCanceled;
+
+                expandAction.Disable();
+            }
+        }
+        
         public void Initialize(SpellInstance spell, Action<ShopSpellButton> onSelect)
         {
+            canSelect = true;
             base.Initialize(spell, _ =>
                                    {
+                                       Debug.Log("Boogrsp");
                                        onSelect?.Invoke(this);
                                    });
             currencyEntryUi.SetCurrency(spell.Data.Cost);
@@ -52,19 +91,30 @@ namespace Fantazee.Shop.Ui.Entries
             Color b2 = Color.red;
             b2.a = b1.a;
             borderImage.color = b2;
-            borderImage.DOColor(b1, 0.2f);
+            borderImage.DOColor(b1, 0.2f).SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable);
         }
 
         public override void OnSelect()
         {
             base.OnSelect();
-            tooltip.gameObject.SetActive(true);
         }
         
         public override void OnDeselect()
         {
-            Debug.Log($"Deselecting {name}");
             base.OnDeselect();
+            tooltip.gameObject.SetActive(false);
+        }
+        
+        private void OnExpandStarted(InputAction.CallbackContext ctx)
+        {
+            if (IsSelected)
+            {
+                tooltip.gameObject.SetActive(true);
+            }
+        }
+
+        private void OnExpandCanceled(InputAction.CallbackContext ctx)
+        {
             tooltip.gameObject.SetActive(false);
         }
     }

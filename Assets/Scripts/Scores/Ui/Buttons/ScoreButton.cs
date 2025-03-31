@@ -6,6 +6,7 @@ using Fantazee.Spells.Ui;
 using Fantazee.Ui.Buttons;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Fantazee.Scores.Ui.Buttons
@@ -36,26 +37,41 @@ namespace Fantazee.Scores.Ui.Buttons
 
         [SerializeField]
         private Transform tooltipContainer;
-        
-        // Input
-        private FsiInput fsiInput;
+
+        [Header("     Input")]
+
+        [SerializeField]
+        private InputActionReference expandActionReference;
+        private InputAction expandAction;
 
         private void Awake()
         {
-            fsiInput = new FsiInput();
-
-            fsiInput.Gameplay.Expand.started += ctx => SetTooltips(true);
-            fsiInput.Gameplay.Expand.canceled += ctx => SetTooltips(false);
+            if (expandActionReference)
+            {
+                expandAction = expandActionReference.ToInputAction();
+            }
         }
 
         protected virtual void OnEnable()
         {
-            fsiInput.Gameplay.Enable();
+            if (expandAction != null)
+            {
+                expandAction.started += OnExpandStarted; // ctx => SetTooltips(true);
+                expandAction.canceled += OnExpandCanceled; // ctx => SetTooltips(false);
+
+                expandAction.Enable();
+            }
         }
 
         protected virtual void OnDisable()
         {
-            fsiInput.Gameplay.Disable();
+            if (expandAction != null)
+            {
+                expandAction.started -= OnExpandStarted;
+                expandAction.canceled -= OnExpandCanceled;
+
+                expandAction.Disable();
+            }
         }
 
         public void Initialize(ScoreInstance score, Action<ScoreButton> onClickCallback)
@@ -140,7 +156,7 @@ namespace Fantazee.Scores.Ui.Buttons
             onClickCallback?.Invoke(this);
         }
 
-        private void SetTooltips(bool set)
+        protected virtual void SetTooltips(bool set)
         {
             tooltipContainer.gameObject.SetActive(set && IsSelected);
             LayoutRebuilder.ForceRebuildLayoutImmediate(tooltipContainer.transform as RectTransform);
@@ -149,6 +165,19 @@ namespace Fantazee.Scores.Ui.Buttons
         public override void OnDeselect()
         {
             base.OnDeselect();
+            SetTooltips(false);
+        }
+        
+        private void OnExpandStarted(InputAction.CallbackContext ctx)
+        {
+            if (IsSelected)
+            {
+                SetTooltips(true);
+            }
+        }
+        
+        private void OnExpandCanceled(InputAction.CallbackContext ctx)
+        {
             SetTooltips(false);
         }
     }

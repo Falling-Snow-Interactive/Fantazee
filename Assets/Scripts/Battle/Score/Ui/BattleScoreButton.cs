@@ -137,7 +137,7 @@ namespace Fantazee.Battle.Score.Ui
             
             previewText.gameObject.SetActive(true);
 
-            ScoreResults results = new(BattleScore.Score, GameInstance.Current.Character.Dice);
+            ScoreResults results = new(BattleScore.Score, BattleController.Instance.Player.Dice);
             results = BattleController.Instance.Player.CheckScoreReceivers(results);
             previewText.text = results.Value.ToString();
         }
@@ -206,6 +206,12 @@ namespace Fantazee.Battle.Score.Ui
         private void OnRollStarted()
         {
             HidePreview();
+        }
+
+        protected override void SetTooltips(bool set)
+        {
+            transform.SetAsLastSibling();
+            base.SetTooltips(set);
         }
     }
 }

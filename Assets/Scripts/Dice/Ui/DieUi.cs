@@ -3,7 +3,6 @@ using DG.Tweening;
 using Fantazee.Battle;
 using Fantazee.Dice.Settings;
 using Fantazee.Items.Dice.Information;
-using Fantazee.Ui;
 using Fantazee.Ui.Buttons;
 using FMOD.Studio;
 using FMODUnity;
@@ -14,10 +13,6 @@ namespace Fantazee.Dice.Ui
     public class DieUi : SimpleButton
     {
         public Die Die { get; private set; }
-
-        [SerializeField]
-        private BackgroundColorPalette colorPalette;
-        protected override BackgroundColorPalette ColorPalette => colorPalette;
 
         [Header("Rolling")]
         

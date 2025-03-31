@@ -37,11 +37,11 @@ namespace Fantazee.Spells.Ui
         [SerializeField]
         private Vector3 punchScale;
 
-        private bool canSelect = false;
+        protected bool canSelect = false;
 
-        public void Initialize(SpellInstance spell, Action<SpellButton> onSelect)
+        public void Initialize(SpellInstance spell, Action<SpellButton> onClickCallback)
         {
-            this.onClickCallback = onSelect;
+            this.onClickCallback = onClickCallback;
             
             this.spell = spell;
             icon.sprite = spell.Data.Icon;
@@ -72,6 +72,14 @@ namespace Fantazee.Spells.Ui
             {
                 base.OnClick();
                 onClickCallback?.Invoke(this);
+            }
+        }
+
+        public override void OnSelect()
+        {
+            if (canSelect)
+            {
+                base.OnSelect();
             }
         }
 

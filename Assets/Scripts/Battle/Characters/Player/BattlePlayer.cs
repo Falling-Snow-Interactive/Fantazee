@@ -78,6 +78,8 @@ namespace Fantazee.Battle.Characters.Player
         private readonly List<IRollFinishedCallbackReceiver> rollFinishedReceivers = new();
         private readonly List<IDieRolledCallbackReceivers> dieRolledCallbackReceivers = new();
 
+        public List<Die> Dice { get; set; }
+
         #region Initialize
         
         public void Initialize(CharacterInstance character)
@@ -106,9 +108,10 @@ namespace Fantazee.Battle.Characters.Player
         private void SetupDice()
         {
             Debug.Log($"BattlePlayer - Setup Dice");
-            for (int i = 0; i < instance.Dice.Count; i++)
+            Dice = Die.DefaultDice(5);
+            for (int i = 0; i < Dice.Count; i++)
             {
-                Die die = instance.Dice[i];
+                Die die = Dice[i];
                 die.Roll();
                 if (BattleUi.Instance.DiceControl.Dice.Count > i)
                 {
@@ -266,7 +269,7 @@ namespace Fantazee.Battle.Characters.Player
             {
                 hasScoredRoll = false;
                 RollsRemaining--;
-                foreach (Die d in instance.Dice)
+                foreach (Die d in Dice)
                 {
                     if(!lockedDice.Contains(d))
                     {

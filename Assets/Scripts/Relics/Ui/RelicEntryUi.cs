@@ -4,6 +4,8 @@ using Fantazee.Relics.Instance;
 using Fantazee.Relics.Settings;
 using Fantazee.Ui.Buttons;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Relics.Ui
@@ -20,18 +22,29 @@ namespace Fantazee.Relics.Ui
         [SerializeField]
         protected Image image;
 
+        [FormerlySerializedAs("relicTooltip")]
         [SerializeField]
-        protected GameObject relicTooltip;
+        protected GameObject tooltip;
         
         [SerializeField]
         protected TMP_Text relicName;
         
         [SerializeField]
         protected TMP_Text relicDescription;
+        
+        [Header("Input")]
+
+        [SerializeField]
+        private InputActionReference expandActionReference;
+        private InputAction expandAction;
 
         private void Awake()
         {
-            relicTooltip.SetActive(!hideTooltipOnAwake);
+            tooltip.SetActive(!hideTooltipOnAwake);
+            if (expandActionReference)
+            {
+                expandAction = expandActionReference.ToInputAction();
+            }
         }
 
         private void OnEnable()
@@ -40,6 +53,14 @@ namespace Fantazee.Relics.Ui
             {
                 relic.Activated += OnActivated;
             }
+
+            if (expandAction != null)
+            {
+                expandAction.started += OnExpandStarted;
+                expandAction.canceled += OnExpandCanceled;
+
+                expandAction.Enable();
+            }
         }
 
         private void OnDisable()
@@ -47,6 +68,14 @@ namespace Fantazee.Relics.Ui
             if (relic != null)
             {
                 relic.Activated -= OnActivated;
+            }
+
+            if (expandAction != null)
+            {
+                expandAction.started -= OnExpandStarted;
+                expandAction.canceled -= OnExpandCanceled;
+
+                expandAction.Disable();
             }
         }
 
@@ -83,19 +112,32 @@ namespace Fantazee.Relics.Ui
 
         public void SetTooltip(bool set)
         {
-            relicTooltip.SetActive(set);
+            tooltip.SetActive(set);
         }
 
         public override void OnSelect()
         {
             base.OnSelect();
-            relicTooltip.SetActive(true);
+            // tooltip.SetActive(true);
         }
 
         public override void OnDeselect()
         {
             base.OnDeselect();
-            relicTooltip.SetActive(false);
+            tooltip.SetActive(false);
+        }
+        
+        private void OnExpandStarted(InputAction.CallbackContext ctx)
+        {
+            if (IsSelected)
+            {
+                tooltip.gameObject.SetActive(true);
+            }
+        }
+
+        private void OnExpandCanceled(InputAction.CallbackContext ctx)
+        {
+            tooltip.gameObject.SetActive(false);
         }
     }
 }

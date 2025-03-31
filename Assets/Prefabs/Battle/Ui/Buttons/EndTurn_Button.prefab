@@ -142,15 +142,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.b
-      value: 0.05645872
+      value: 0.05098038
       objectReference: {fileID: 0}
     - target: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.g
-      value: 0.09963302
+      value: 0.05098038
       objectReference: {fileID: 0}
     - target: {fileID: 4035505352360702501, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.r
-      value: 0.36200002
+      value: 0.31764707
       objectReference: {fileID: 0}
     - target: {fileID: 5940054514566908321, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_text
@@ -166,15 +166,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.b
-      value: 0.042571407
+      value: 0.0352941
       objectReference: {fileID: 0}
     - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.g
-      value: 0.17560712
+      value: 0.0352941
       objectReference: {fileID: 0}
     - target: {fileID: 8507654836159241788, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
       propertyPath: m_Color.r
-      value: 0.59599996
+      value: 0.49803922
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9065709612515820034, guid: 42746804fc7a04dd89d27c886e9c229d, type: 3}
@@ -202,24 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a818fd7c4704ba88cc08e386a4127b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorPalette: 2
   backgrounds:
   - {fileID: 7210961699957271856}
   outlines:
   - {fileID: 3027482409846440233}
   button: {fileID: 4683189119606656738}
-  colorPalette:
-    normalColors:
-      background: {r: 0.36200002, g: 0.09963302, b: 0.05645872, a: 1}
-      outline: {r: 0.59599996, g: 0.17560712, b: 0.042571407, a: 1}
-    selectedColors:
-      background: {r: 0.36078432, g: 0.09803922, b: 0.05490196, a: 1}
-      outline: {r: 0.872, g: 0.2581579, b: 0.06310528, a: 1}
-    disabledColors:
-      background: {r: 0.213, g: 0.057851844, b: 0.03418518, a: 1}
-      outline: {r: 0.283, g: 0.08125742, b: 0.019613855, a: 1}
-    clickedColors:
-      background: {r: 0.638, g: 0.17328393, b: 0.10239504, a: 1}
-      outline: {r: 0.85800004, g: 0.25047204, b: 0.0586211, a: 1}
   endActionRef: {fileID: -703002404751936499, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
 --- !u!114 &3027482409846440233 stripped
 MonoBehaviour:

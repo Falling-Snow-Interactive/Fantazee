@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
@@ -166,7 +167,19 @@ namespace Fantazee.Shop.Ui
         private void UpgradeFinished(Currency cost, GameObject objectToDisable)
         {
             MakePurchase(cost);
-            objectToDisable.SetActive(false);
+            // objectToDisable.SetActive(false);
+
+            if (objectToDisable.TryGetComponent(out ShopSpellButton spellButton))
+            {
+                mainScreen.SpellEntries.Remove(spellButton);
+            }
+            else if (objectToDisable.TryGetComponent(out ShopScoreButton scoreButton))
+            {
+                mainScreen.ScorePurchaseEntries.Remove(scoreButton);
+            }
+            
+            DOTween.Complete(objectToDisable);
+            Destroy(objectToDisable);
             scoresheetUpgradeScreen.Hide();
             mainScreen.Show();
         }

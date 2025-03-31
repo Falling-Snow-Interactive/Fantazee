@@ -45,9 +45,9 @@ namespace Fantazee.Blacksmith.Ui
                 return;
             }
             
-            Die die = GameInstance.Current.Character.Dice[i];
+            // Die die = GameInstance.Current.Character.Dice[i];
             blacksmithSideGroupUi.Initialize(this);
-            blacksmithSideGroupUi.SetDie(die);
+            // blacksmithSideGroupUi.SetDie(die);
             SetSelected(i);
         }
 

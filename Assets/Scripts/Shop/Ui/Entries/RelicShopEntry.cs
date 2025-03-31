@@ -2,7 +2,6 @@ using System;
 using Fantazee.Currencies.Ui;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Ui;
-using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Entries
 {

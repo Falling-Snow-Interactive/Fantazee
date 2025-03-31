@@ -108,9 +108,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 175}
+  m_AnchoredPosition: {x: 0, y: 105}
   m_SizeDelta: {x: 314.6286, y: 180}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &2276558462190762784
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5019608, g: 0.2784314, b: 0.050980393, a: 1}
+  m_Color: {r: 0.6, g: 0.36, b: 0.12, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -631,15 +631,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497a17d8fbda4e79a1f0690b1d286a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorPalette: 3
   backgrounds: []
   outlines:
   - {fileID: 6886667922918741268}
   button: {fileID: 4223946159780925262}
   hideTooltipOnAwake: 1
   image: {fileID: 1666093338419242443}
-  relicTooltip: {fileID: 2208445348928819121}
+  tooltip: {fileID: 2208445348928819121}
   relicName: {fileID: 1932015655387362681}
   relicDescription: {fileID: 3502563467013367390}
+  expandActionReference: {fileID: 2601023236716196853, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
   currencyEntryUi: {fileID: 8848555098009955839}
 --- !u!114 &4223946159780925262
 MonoBehaviour:

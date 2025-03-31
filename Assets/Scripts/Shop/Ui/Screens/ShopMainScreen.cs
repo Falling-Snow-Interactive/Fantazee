@@ -8,7 +8,9 @@ using Fantazee.Scores.Instance;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Screens
 {
@@ -23,21 +25,21 @@ namespace Fantazee.Shop.Ui.Screens
         [SerializeField]
         private ShopSpellButton shopSpellButtonPrefab;
         
-        [SerializeReference]
-        private List<ShopSpellButton> spellEntries = new();
+        private readonly List<ShopSpellButton> spellEntries = new();
+        public List<ShopSpellButton> SpellEntries => spellEntries;
         
         [FormerlySerializedAs("relicEntryPrefab")]
         [SerializeField]
         private RelicShopEntry relicShopEntryPrefab;
 
-        [SerializeReference]
-        private List<RelicShopEntry> relicEntries = new();
+        private readonly List<RelicShopEntry> relicEntries = new();
+        public List<RelicShopEntry> RelicEntries => relicEntries;
 
         [SerializeField]
         private ShopScoreButton shopScoreButtonPrefab;
         
-        [SerializeReference]
-        private List<ShopScoreButton> scorePurchaseEntries = new();
+        private readonly List<ShopScoreButton> scorePurchaseEntries = new();
+        public List<ShopScoreButton> ScorePurchaseEntries => scorePurchaseEntries;
         
         [Header("References")]
 
@@ -90,6 +92,22 @@ namespace Fantazee.Shop.Ui.Screens
                 
                 relicEntries.Add(relicShopEntry);
             }
+
+            if (relicEntries.Count > 0
+                && spellEntries.Count > 0)
+            {
+                // spellEntries[0].Button.navigation
+                //     = spellEntries[0].Button.navigation with
+                //       {
+                //           selectOnDown = relicEntries[0].Button,
+                //       };
+                //
+                // relicEntries[0].Button.navigation
+                //     = relicEntries[0].Button.navigation with
+                //       {
+                //           selectOnUp = spellEntries[0].Button,
+                //       };
+            }
             
             SelectFirstButton();
         }
@@ -129,8 +147,11 @@ namespace Fantazee.Shop.Ui.Screens
 
         public override void Show(bool force = false, Action onComplete = null)
         {
-            base.Show(force, onComplete);
-            SelectFirstButton();
+            base.Show(force, () =>
+                             {
+                                 SelectFirstButton();
+                                 onComplete?.Invoke();
+                             });
         }
     }
 }

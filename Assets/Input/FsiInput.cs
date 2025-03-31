@@ -89,15 +89,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Expand"",
-                    ""type"": ""Button"",
-                    ""id"": ""1fce8a82-5528-4bc2-9fee-cfe9f61e7e6d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -241,28 +232,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""EndTurn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d53046c2-7f15-4300-bd18-db4f03033898"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse"",
-                    ""action"": ""Expand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""143c7223-9ca6-44de-97b7-685dd0a17853"",
-                    ""path"": ""<XInputController>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Xbox"",
-                    ""action"": ""Expand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -490,6 +459,15 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Expand"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d91a4c5-ee2d-4750-a2b0-e5417a13e90e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -712,6 +690,28 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""action"": ""LeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca4d4d45-9ab7-4f25-b05e-a0f03ecc3bae"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Expand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""932cad7c-fda9-4f56-9f93-d5b6d63532da"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox"",
+                    ""action"": ""Expand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -766,7 +766,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Gameplay_ToggleDie = m_Gameplay.FindAction("ToggleDie", throwIfNotFound: true);
         m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
         m_Gameplay_EndTurn = m_Gameplay.FindAction("EndTurn", throwIfNotFound: true);
-        m_Gameplay_Expand = m_Gameplay.FindAction("Expand", throwIfNotFound: true);
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Cursor = m_Map.FindAction("Cursor", throwIfNotFound: true);
@@ -781,6 +780,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         m_Ui_Cancel = m_Ui.FindAction("Cancel", throwIfNotFound: true);
         m_Ui_Point = m_Ui.FindAction("Point", throwIfNotFound: true);
         m_Ui_LeftClick = m_Ui.FindAction("LeftClick", throwIfNotFound: true);
+        m_Ui_Expand = m_Ui.FindAction("Expand", throwIfNotFound: true);
     }
 
     ~@FsiInput()
@@ -856,7 +856,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_ToggleDie;
     private readonly InputAction m_Gameplay_Roll;
     private readonly InputAction m_Gameplay_EndTurn;
-    private readonly InputAction m_Gameplay_Expand;
     public struct GameplayActions
     {
         private @FsiInput m_Wrapper;
@@ -868,7 +867,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         public InputAction @ToggleDie => m_Wrapper.m_Gameplay_ToggleDie;
         public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
         public InputAction @EndTurn => m_Wrapper.m_Gameplay_EndTurn;
-        public InputAction @Expand => m_Wrapper.m_Gameplay_Expand;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -899,9 +897,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @EndTurn.started += instance.OnEndTurn;
             @EndTurn.performed += instance.OnEndTurn;
             @EndTurn.canceled += instance.OnEndTurn;
-            @Expand.started += instance.OnExpand;
-            @Expand.performed += instance.OnExpand;
-            @Expand.canceled += instance.OnExpand;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -927,9 +922,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @EndTurn.started -= instance.OnEndTurn;
             @EndTurn.performed -= instance.OnEndTurn;
             @EndTurn.canceled -= instance.OnEndTurn;
-            @Expand.started -= instance.OnExpand;
-            @Expand.performed -= instance.OnExpand;
-            @Expand.canceled -= instance.OnExpand;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1034,6 +1026,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ui_Cancel;
     private readonly InputAction m_Ui_Point;
     private readonly InputAction m_Ui_LeftClick;
+    private readonly InputAction m_Ui_Expand;
     public struct UiActions
     {
         private @FsiInput m_Wrapper;
@@ -1043,6 +1036,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         public InputAction @Cancel => m_Wrapper.m_Ui_Cancel;
         public InputAction @Point => m_Wrapper.m_Ui_Point;
         public InputAction @LeftClick => m_Wrapper.m_Ui_LeftClick;
+        public InputAction @Expand => m_Wrapper.m_Ui_Expand;
         public InputActionMap Get() { return m_Wrapper.m_Ui; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1067,6 +1061,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
+            @Expand.started += instance.OnExpand;
+            @Expand.performed += instance.OnExpand;
+            @Expand.canceled += instance.OnExpand;
         }
 
         private void UnregisterCallbacks(IUiActions instance)
@@ -1086,6 +1083,9 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
+            @Expand.started -= instance.OnExpand;
+            @Expand.performed -= instance.OnExpand;
+            @Expand.canceled -= instance.OnExpand;
         }
 
         public void RemoveCallbacks(IUiActions instance)
@@ -1139,7 +1139,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         void OnToggleDie(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnEndTurn(InputAction.CallbackContext context);
-        void OnExpand(InputAction.CallbackContext context);
     }
     public interface IMapActions
     {
@@ -1156,5 +1155,6 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
+        void OnExpand(InputAction.CallbackContext context);
     }
 }

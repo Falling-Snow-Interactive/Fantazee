@@ -1,6 +1,8 @@
 using System;
 using DG.Tweening;
-using Fantazee.Scores.Settings;
+using Fantazee.Ui.ColorPalettes;
+using Fantazee.Ui.ColorPalettes.Information;
+using Fantazee.Ui.Settings;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -18,6 +20,11 @@ namespace Fantazee.Ui.Buttons
         public bool IsSelected { get; set; }
         public bool IsDisabled { get; set; }
 
+        [Header("Colors")]
+
+        [SerializeField]
+        private ColorPaletteType colorPalette;
+
         [Header("Simple Button")]
 
         [SerializeField]
@@ -28,11 +35,27 @@ namespace Fantazee.Ui.Buttons
 
         [SerializeField]
         protected Button button;
+        public Button Button => button;
 
-        protected virtual BackgroundColorPalette ColorPalette => ScoreSettings.Settings.ButtonColorPalette;
+        private ColorPaletteInformation paletteInfo;
+        private ColorPalette ColorPalette
+        {
+            get
+            {
+                paletteInfo ??= GetPaletteInfo();
+                return paletteInfo != null ? paletteInfo.Palette : ColorPalette.Default;
+            }
+        }
+
+        private ColorPaletteInformation GetPaletteInfo()
+        {
+            return UiSettings.Settings.ColorPalettes.TryGetInformation(colorPalette, out var info) ? info : null;
+        }
 
         private void OnValidate()
         {
+            paletteInfo = GetPaletteInfo();
+            
             foreach (Graphic bg in backgrounds)
             {
                 ColorPalette.NormalColors.ApplyBackground(bg);
