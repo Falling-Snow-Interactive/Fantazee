@@ -2,11 +2,13 @@ using System;
 using DG.Tweening;
 using UnityEngine.UI;
 
-namespace Fantazee.Ui.ColorPalettes.Properties
+namespace Fantazee.Ui.ColorPalettes
 {
     [Serializable]
-    public class ButtonColorProperties
+    public class ButtonColorProperty
     {
+        [Header("Buttons")]
+        
         [SerializeField]
         private Color background;
         public Color Background => background;
@@ -15,7 +17,7 @@ namespace Fantazee.Ui.ColorPalettes.Properties
         private Color outline;
         public Color Outline => outline;
 
-        public ButtonColorProperties(Color background, Color outline)
+        public ButtonColorProperty(Color background, Color outline)
         {
             this.background = background;
             this.outline = outline;

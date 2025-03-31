@@ -1,6 +1,4 @@
 using System;
-using Fantazee.Ui.ColorPalettes.Properties;
-using UnityEngine.Serialization;
 
 namespace Fantazee.Ui.ColorPalettes
 {
@@ -12,56 +10,52 @@ namespace Fantazee.Ui.ColorPalettes
 
         #region Default
 
-        private static Color NormalBgColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
-        private static Color NormalOutlineColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
+        private static Color NormalBgColor => new(81f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
+        private static Color NormalOutlineColor => new(127f / 255f, 71f / 255f, 9f / 255f, 255f / 255f);
 
-        private static Color SelectBgColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
-        private static Color SelectOutlineColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
+        private static Color SelectBgColor => new(81f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
+        private static Color SelectOutlineColor => new(203f / 255f, 123f / 255f, 9f / 255f, 255f / 255f);
 
-        private static Color DisableBgColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
-        private static Color DisableOutlineColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
+        private static Color DisableBgColor => new(41f / 255f, 21f / 255f, 13 / 255f, 255f / 255f);
+        private static Color DisableOutlineColor => new(127f / 255f, 71f / 255f, 9f / 255f, 255f / 255f);
 
-        private static Color ClickBgColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
-        private static Color ClickOutlineColor => new(80f / 255f, 45f / 255f, 13f / 255f, 255f / 255f);
-
-        #endregion
+        private static Color ClickBgColor => new(139 / 255f, 83 / 255f, 16 / 255f, 255f / 255f);
+        private static Color ClickOutlineColor => new(127f / 255f, 71f / 255f, 9f / 255f, 255f / 255f);
 
         #endregion
 
-        [FormerlySerializedAs("normalColors")]
-        [SerializeField]
-        private ColorPaletteProperties normal;
-        public ColorPaletteProperties Normal => normal;
+        #endregion
 
-        [FormerlySerializedAs("selectedColors")]
         [SerializeField]
-        private ColorPaletteProperties selected;
-        public ColorPaletteProperties Selected => selected;
+        private ButtonColorProperty normalColors;
+        public ButtonColorProperty NormalColors => normalColors;
 
-        [FormerlySerializedAs("disabledColors")]
         [SerializeField]
-        private ColorPaletteProperties disabled;
-        public ColorPaletteProperties Disabled => disabled;
+        private ButtonColorProperty selectedColors;
+        public ButtonColorProperty SelectedColors => selectedColors;
 
-        [FormerlySerializedAs("clickedColors")]
         [SerializeField]
-        private ColorPaletteProperties clicked;
-        public ColorPaletteProperties Clicked => clicked;
+        private ButtonColorProperty disabledColors;
+        public ButtonColorProperty DisabledColors => disabledColors;
+
+        [SerializeField]
+        private ButtonColorProperty clickedColors;
+        public ButtonColorProperty ClickedColors => clickedColors;
 
         public ColorPalette()
         {
-            normal = new(NormalBgColor, NormalOutlineColor);
-            selected = new(SelectBgColor, SelectOutlineColor);
-            disabled = new(DisableBgColor, DisableOutlineColor);
-            clicked = new(ClickBgColor, ClickOutlineColor);
+            normalColors = new(NormalBgColor, NormalOutlineColor);
+            selectedColors = new(SelectBgColor, SelectOutlineColor);
+            disabledColors = new(DisableBgColor, DisableOutlineColor);
+            clickedColors = new(ClickBgColor, ClickOutlineColor);
         }
 
         public void ResetColors()
         {
-            normal = new(NormalBgColor, NormalOutlineColor);
-            selected = new(SelectBgColor, SelectOutlineColor);
-            disabled = new(DisableBgColor, DisableOutlineColor);
-            clicked = new(ClickBgColor, ClickOutlineColor);
+            normalColors = new(NormalBgColor, NormalOutlineColor);
+            selectedColors = new(SelectBgColor, SelectOutlineColor);
+            disabledColors = new(DisableBgColor, DisableOutlineColor);
+            clickedColors = new(ClickBgColor, ClickOutlineColor);
         }
 
         public static ColorPalette Default

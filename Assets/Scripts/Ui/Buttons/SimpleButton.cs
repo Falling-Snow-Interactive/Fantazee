@@ -43,7 +43,7 @@ namespace Fantazee.Ui.Buttons
             get
             {
                 paletteInfo ??= GetPaletteInfo();
-                return paletteInfo != null ? paletteInfo.Palettes : ColorPalette.Default;
+                return paletteInfo != null ? paletteInfo.Palette : ColorPalette.Default;
             }
         }
 
@@ -58,12 +58,12 @@ namespace Fantazee.Ui.Buttons
             
             foreach (Graphic bg in backgrounds)
             {
-                ColorPalette.Normal.ApplyBackground(bg);
+                ColorPalette.NormalColors.ApplyBackground(bg);
             }
 
             foreach (Graphic outline in outlines)
             {
-                ColorPalette.Normal.ApplyOutline(outline);
+                ColorPalette.NormalColors.ApplyOutline(outline);
             }
         }
 
@@ -130,12 +130,12 @@ namespace Fantazee.Ui.Buttons
         {
             foreach (Graphic bg in backgrounds)
             {
-                ColorPalette.Normal.ApplyBackground(bg);
+                ColorPalette.NormalColors.ApplyBackground(bg);
             }
 
             foreach (Graphic outline in outlines)
             {
-                ColorPalette.Normal.ApplyOutline(outline);
+                ColorPalette.NormalColors.ApplyOutline(outline);
             }
 
             // Select will just be the outline and take piority
@@ -143,7 +143,7 @@ namespace Fantazee.Ui.Buttons
             {
                 foreach (Graphic ol in outlines)
                 {
-                    ColorPalette.Selected.ApplyOutline(ol);
+                    ColorPalette.SelectedColors.ApplyOutline(ol);
                 }
             }
 
@@ -151,7 +151,7 @@ namespace Fantazee.Ui.Buttons
             {
                 foreach (Graphic bg in backgrounds)
                 {
-                    ColorPalette.Disabled.ApplyBackground(bg);
+                    ColorPalette.DisabledColors.ApplyBackground(bg);
                 }
             }
         }
@@ -180,13 +180,13 @@ namespace Fantazee.Ui.Buttons
             
             foreach (Graphic bg in backgrounds)
             {
-                var s = ColorPalette.Clicked.InOutBackground(bg);
+                var s = ColorPalette.ClickedColors.InOutBackground(bg);
                 sequence.Insert(0, s);
             }
 
             foreach (Graphic outline in outlines)
             {
-                var s = ColorPalette.Clicked.InOutOutline(outline);
+                var s = ColorPalette.ClickedColors.InOutOutline(outline);
                 sequence.Insert(0, s);
             }
 

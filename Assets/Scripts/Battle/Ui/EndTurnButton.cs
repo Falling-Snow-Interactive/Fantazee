@@ -1,7 +1,9 @@
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Scores;
+using Fantazee.Ui;
 using Fantazee.Ui.Buttons;
+using Fantazee.Ui.ColorPalettes;
 using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
