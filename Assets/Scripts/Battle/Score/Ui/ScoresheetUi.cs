@@ -42,20 +42,21 @@ namespace Fantazee.Battle.Score.Ui
             this.onScoreSelect = onScoreSelect;
             spellRequested = false;
 
-            fantazeeButton.Button.interactable = !excludeFantazee;
+            fantazeeButton.SetInteractable(!excludeFantazee);
         }
 
         public void RequestSpell(Action<ScoreButton, SpellButton> onSpellSelect)
         {
             this.onSpellSelect = onSpellSelect;
             spellRequested = true;
-            fantazeeButton.Button.interactable = true;
+            fantazeeButton.SetInteractable(true);
         }
 
         private void OnScoreEntrySelected(ScoreButton scoreButton)
         {
             if (spellRequested)
             {
+                scoreButton.transform.SetAsLastSibling();
                 scoreButton.RequestSpell(spellButton =>
                                           {
                                               OnSpellSelected(scoreButton, spellButton);

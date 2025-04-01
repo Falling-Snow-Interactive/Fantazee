@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
+using DG.Tweening;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Dice;
 using Fantazee.Dice.Ui;
-using Fantazee.Items.Dice;
-using UnityEngine;
+using Fantazee.Ui.Buttons;
+using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
@@ -14,6 +14,66 @@ namespace Fantazee.Battle.Ui
         private List<DieUi> dice = new();
         public List<DieUi> Dice => dice;
 
+        private int selectedIndex = 0;
+
+        [Header("Input")]
+
+        [SerializeField]
+        private InputActionReference nextDieActionRef;
+        private InputAction nextDieAction;
+
+        [SerializeField]
+        private InputActionReference prevDieActionRef;
+        private InputAction prevDieAction;
+
+        [SerializeField]
+        private InputActionReference toggleDieActionRef;
+        private InputAction toggleDieAction;
+
+        private void Awake()
+        {
+            nextDieAction = nextDieActionRef.ToInputAction();
+            prevDieAction = prevDieActionRef.ToInputAction();
+            toggleDieAction = toggleDieActionRef.ToInputAction();
+        }
+        
+        private void OnEnable()
+        {
+            foreach (DieUi d in dice)
+            {
+                d.Selected += OnDieSelected;
+            }
+            
+            nextDieAction.performed += NextDie;
+            prevDieAction.performed += PrevDie;
+            toggleDieAction.performed += ToggleDie;
+            
+            nextDieAction.Enable();
+            prevDieAction.Enable();
+            toggleDieAction.Enable();
+        }
+
+        private void OnDisable()
+        {
+            foreach (DieUi d in dice)
+            {
+                d.Selected -= OnDieSelected;
+            }
+            
+            nextDieAction.performed -= NextDie;
+            prevDieAction.performed -= PrevDie;
+            toggleDieAction.performed -= ToggleDie;
+            
+            nextDieAction.Disable();
+            prevDieAction.Disable();
+            toggleDieAction.Disable();
+        }
+
+        private void Start()
+        {
+            SelectDie(selectedIndex);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -22,41 +82,51 @@ namespace Fantazee.Battle.Ui
         /// <param name="onDiceRollsComplete">Called when all dice have finished rolling.</param>
         public void Roll(BattlePlayer player, Action<Die> onDieRollComplete, Action onDiceRollsComplete)
         {
-            int i = 0;
+            Sequence sequence = DOTween.Sequence();
+            float delay = 0;
             foreach (DieUi d in dice)
             {
                 if (!player.LockedDice.Contains(d.Die))
                 {
-                    d.Roll(i * 0.2f, die =>
-                                     {
-                                         i--;
-                                         onDieRollComplete?.Invoke(die);
-                                         if (i == 0)
-                                         {
-                                             onDiceRollsComplete?.Invoke();
-                                         }
-                                     });
-                    i++;
+                    Sequence s = d.Roll(0, die => onDieRollComplete?.Invoke(die));
+                    sequence.Insert(delay, s);
+                    delay += 0.2f;
                 }
             }
+
+            sequence.OnComplete(() => onDiceRollsComplete?.Invoke());
+            sequence.Play();
         }
 
         public void HideDice(Action onComplete = null)
         {
+            Sequence sequence = DOTween.Sequence();
             for (int i = 0; i < dice.Count; i++)
             {
                 DieUi d = dice[i];
-                if (i == dice.Count - 1)
-                {
-                    d.Hide(onComplete, i * 0.2f, false);
-                }
-                else
-                {
-                    d.Hide(null, i * 0.2f, false);
-                }
+                Tweener tweener = d.Hide();
+                sequence.Insert(i * 0.2f, tweener);
             }
+
+            sequence.OnComplete(() => onComplete?.Invoke());
+            sequence.Play();
         }
 
+        public void ShowDice(Action onComplete = null)
+        {
+            Sequence sequence = DOTween.Sequence();
+            
+            for (int i = 0; i < dice.Count; i++)
+            {
+                DieUi d = dice[i];
+                Tweener tweener = d.Show();
+                sequence.Insert(i * 0.2f, tweener);
+            }
+            
+            sequence.OnComplete(() => onComplete?.Invoke());
+            sequence.Play();
+        }
+        
         public void ResetDice()
         {
             foreach (DieUi d in BattleUi.Instance.DiceControl.Dice)
@@ -65,13 +135,54 @@ namespace Fantazee.Battle.Ui
             }
         }
 
-        public void ShowDice(Action onComplete = null)
+        private void SelectDie(int index)
         {
-            for (int i = 0; i < dice.Count; i++)
+            dice[selectedIndex].OnDeselect();
+            selectedIndex = index;
+            dice[selectedIndex].OnSelect();
+        }
+
+        private void NextDie(InputAction.CallbackContext callbackContext)
+        {
+            dice[selectedIndex].OnDeselect();
+            
+            selectedIndex++;
+            selectedIndex %= dice.Count;
+            
+            dice[selectedIndex].OnSelect();
+        }
+
+        private void PrevDie(InputAction.CallbackContext callbackContext)
+        {
+            dice[selectedIndex].OnDeselect();
+            selectedIndex--;
+            if (selectedIndex < 0)
             {
-                DieUi d = dice[i];
-                d.Show(i == dice.Count - 1 ? onComplete : null, i * 0.2f, false);
+                selectedIndex += dice.Count;
             }
+            dice[selectedIndex].OnSelect();
+        }
+
+        private void OnDieSelected(SimpleButton simpleButton)
+        {
+            if (simpleButton is DieUi dieUi)
+            {
+                int index = dice.IndexOf(dieUi);
+                if (selectedIndex != index)
+                {
+                    DieUi d = dice[selectedIndex];
+                    d.OnDeselect();
+                    selectedIndex = index;
+                    d = dice[selectedIndex];
+                    d.OnSelect();
+                }
+            }
+        }
+
+        private void ToggleDie(InputAction.CallbackContext callbackContext)
+        {
+            Debug.Log($"Toggle: {selectedIndex}");
+            dice[selectedIndex].ToggleLock();
         }
     }
 }

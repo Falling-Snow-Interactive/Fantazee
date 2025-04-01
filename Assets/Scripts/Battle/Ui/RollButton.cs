@@ -1,22 +1,31 @@
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
+using Fantazee.Ui.Buttons;
 using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
-    public class RollButton : MonoBehaviour
+    public class RollButton : SimpleButton, IDeselectHandler
     {
         private BattlePlayer player;
+
+        [Header("     Input")]
+
+        [SerializeField]
+        private InputActionReference rollActionRef;
+        private InputAction rollAction;
         
         [Header("References")]
 
         [SerializeField]
         private TMP_Text rollsText;
 
-        [SerializeField]
-        private Button button;
+        private void Awake()
+        {
+            rollAction = rollActionRef.ToInputAction();
+        }
 
         private void OnEnable()
         {
@@ -26,6 +35,9 @@ namespace Fantazee.Battle.Ui
             {
                 player.RollsChanged += OnRollsChanged;
             }
+            
+            rollAction.performed += OnClick;
+            rollAction.Enable();
         }
 
         private void OnDisable()
@@ -36,6 +48,9 @@ namespace Fantazee.Battle.Ui
             {
                 player.RollsChanged += OnRollsChanged;
             }
+            
+            rollAction.performed -= OnClick;
+            rollAction.Disable();
         }
 
         private void OnCharacterSpawned(BattleCharacter character)
@@ -53,10 +68,16 @@ namespace Fantazee.Battle.Ui
             rollsText.text = "";
         }
         
-        public void OnClick()
+        public override void OnClick()
         {
+            base.OnClick();
             BattleController.Instance.Player.TryRoll();
             rollsText.text = BattleController.Instance.Player.RollsRemaining.ToString();
+        }
+        
+        private void OnClick(InputAction.CallbackContext ctx)
+        {
+            OnClick();
         }
         
         private void OnRollsChanged()

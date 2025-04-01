@@ -1,11 +1,11 @@
 using System;
 using DG.Tweening;
+using Fantazee.Ui.Buttons;
 using TMPro;
-using UnityEngine;
 
 namespace Fantazee.Encounters.Ui
 {
-    public class EncounterResponseUi : MonoBehaviour
+    public class EncounterResponseUi : SimpleButton
     {
         private EncounterResponse response;
         private Action<EncounterResponse> onSelected;
@@ -43,8 +43,9 @@ namespace Fantazee.Encounters.Ui
             bodyText.text = response.Body;
         }
 
-        public void OnClick()
+        public override void OnClick()
         {
+            base.OnClick();
             transform.DOPunchScale(selectAmount, selectTime, selectVibrato, selectElasticity)
                      .OnComplete(() =>
                                  {

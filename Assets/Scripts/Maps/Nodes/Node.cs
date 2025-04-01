@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Fantazee.Maps.Nodes.Information;
 using Fantazee.Maps.Settings;
 using Shapes;
-using UnityEngine;
 using UnityEngine.Splines;
 
 namespace Fantazee.Maps.Nodes
@@ -30,6 +28,18 @@ namespace Fantazee.Maps.Nodes
         
         [SerializeField]
         private SpriteRenderer spriteRenderer;
+
+        [SerializeField]
+        private GameObject highlightGroup;
+
+        [SerializeField]
+        private List<Disc> highlightDiscs = new();
+
+        [SerializeField]
+        private float highlightRadius = 0.5f;
+
+        [SerializeField]
+        private float highlightDif = 0.1f;
         
         public void OnValidate()
         {
@@ -44,6 +54,41 @@ namespace Fantazee.Maps.Nodes
                 {
                     spriteRenderer.sprite = info.Sprite;
                 }
+
+                foreach (var h in highlightDiscs)
+                {
+                    h.Color = info.Color;
+                }
+            }
+        }
+
+        private void Awake()
+        {
+            foreach (var h in highlightDiscs)
+            {
+                h.gameObject.SetActive(false);
+            }
+        }
+
+        private void Update()
+        {
+            foreach (var h in highlightDiscs)
+            {
+                float t = Mathf.Sin(Time.time * 1.5f);
+                float r = highlightRadius + t * highlightDif;
+                h.Radius = r;
+            }
+        }
+
+        public void SetHighlight(bool set)
+        {
+            foreach (var h in highlightDiscs)
+            {
+                if (h == null)
+                {
+                    continue;
+                }
+                h.gameObject.SetActive(set);
             }
         }
         

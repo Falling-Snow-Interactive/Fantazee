@@ -1,11 +1,10 @@
 using Fantazee.Battle.Relics.Ui;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Battle.Ui.WinScreens;
-using Fantazee.Environments.Settings;
 using Fantazee.Instance;
 using Fsi.Gameplay;
-using JetBrains.Annotations;
-using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Ui
@@ -34,9 +33,15 @@ namespace Fantazee.Battle.Ui
         
         [SerializeField]
         private Image backgroundImage;
-        
-        private FsiInput input;
 
+        [Header("Input")]
+
+        [SerializeField]
+        private InputActionReference helpActionReference;
+        private InputAction helpAction;
+        
+        // private FsiInput input;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -47,21 +52,24 @@ namespace Fantazee.Battle.Ui
             winScreen.gameObject.SetActive(false);
             
             helpScreen.gameObject.SetActive(false);
-            
-            input = new FsiInput();
-            
-            input.Gameplay.Help.started += ctx => helpScreen.gameObject.SetActive(true);
-            input.Gameplay.Help.canceled += ctx => helpScreen.gameObject.SetActive(false);
+
+            helpAction = helpActionReference.ToInputAction();
         }
 
         private void OnEnable()
         {
-            input.Gameplay.Enable();
+            helpAction.started += OnHelpActionStarted;
+            helpAction.canceled += OnHelpActionCanceled;
+            
+            helpAction.Enable();
         }
 
         private void OnDisable()
         {
-            input.Gameplay.Disable();
+            helpAction.started -= OnHelpActionStarted;
+            helpAction.canceled -= OnHelpActionCanceled;
+            
+            helpAction.Disable();
         }
 
         private void Start()
@@ -70,11 +78,24 @@ namespace Fantazee.Battle.Ui
             {
                 backgroundImage.color = GameInstance.Current.Environment.Data.Color;
             }
+
+            Debug.Log($"BattleUi: Selecting Game Object ({scoresheet.ScoreButtons[0].gameObject.name}).");
+            EventSystem.current.SetSelectedGameObject(scoresheet.ScoreButtons[0].gameObject);
         }
 
         public void ShowWinScreen()
         {
             winScreen.gameObject.SetActive(true);
+        }
+        
+        private void OnHelpActionCanceled(InputAction.CallbackContext ctx)
+        {
+            helpScreen.gameObject.SetActive(false);
+        }
+
+        private void OnHelpActionStarted(InputAction.CallbackContext ctx)
+        {
+            helpScreen.gameObject.SetActive(true);
         }
     }
 }

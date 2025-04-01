@@ -35,8 +35,10 @@ namespace Fantazee.Battle.DamageNumbers
             dir = direction.Random().normalized;
             transform.DOMove(transform.position + dir * distance, time)
                 .SetEase(ease)
+                .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
                 .OnComplete(() => Destroy(gameObject));
             transform.DOScale(scale, time)
+                     .SetLink(gameObject, LinkBehaviour.CompleteAndKillOnDisable)
                      .SetEase(scaleEase);
         }
         

@@ -102,6 +102,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Left_Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1346441637321115450, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_Color.b
+      value: 0.03529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346441637321115450, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_Color.r
+      value: 0.49803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498836150306460232, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 3837105588222379831, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_IgnoreLayout
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5279615504785741057, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -183,6 +199,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -191,20 +215,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LeftButton
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: OnClick
       objectReference: {fileID: 0}
     - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Fantazee.MainMenu.Character.Ui.CharacterMenu, Assembly-CSharp
+      value: FMODUnity.StudioEventEmitter, FMODUnity
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Fantazee.Ui.Buttons.SimpleButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507488062355950110, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750985878415571153, guid: de60a1f9f3e754f1f9ab26aa84cb3a35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

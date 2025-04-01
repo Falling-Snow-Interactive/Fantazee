@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Fantazee.Battle.CallbackReceivers;
 using Fantazee.Battle.Score;
 using Fantazee.Battle.Score.Ui;
@@ -13,7 +12,6 @@ using Fantazee.Scores;
 using Fantazee.Scores.Instance;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
-using UnityEngine;
 
 namespace Fantazee.Battle.Characters.Player
 {
@@ -59,9 +57,7 @@ namespace Fantazee.Battle.Characters.Player
             }
         }
 
-        [SerializeReference]
-        private readonly List<Die> lockedDice = new();
-        public List<Die> LockedDice => lockedDice;
+        public List<Die> LockedDice { get; } = new();
 
         [SerializeField]
         private bool hasScoredRoll = false;
@@ -77,6 +73,8 @@ namespace Fantazee.Battle.Characters.Player
         private readonly List<IRollStartedCallbackReceiver> rollStartedReceivers = new();
         private readonly List<IRollFinishedCallbackReceiver> rollFinishedReceivers = new();
         private readonly List<IDieRolledCallbackReceivers> dieRolledCallbackReceivers = new();
+
+        public List<Die> Dice { get; set; }
 
         #region Initialize
         
@@ -106,16 +104,17 @@ namespace Fantazee.Battle.Characters.Player
         private void SetupDice()
         {
             Debug.Log($"BattlePlayer - Setup Dice");
-            for (int i = 0; i < instance.Dice.Count; i++)
+            Dice = Die.DefaultDice(5);
+            for (int i = 0; i < Dice.Count; i++)
             {
-                Die die = instance.Dice[i];
+                Die die = Dice[i];
                 die.Roll();
                 if (BattleUi.Instance.DiceControl.Dice.Count > i)
                 {
                     DieUi dieUi = BattleUi.Instance.DiceControl.Dice[i];
                     dieUi.Initialize(die);
 
-                    dieUi.Hide(null, 0, true);
+                    dieUi.ForceHide();
                 }
             }
         }
@@ -144,7 +143,7 @@ namespace Fantazee.Battle.Characters.Player
             if (canPlay)
             {
                 RollsRemaining = instance.Rolls;
-                lockedDice.Clear();
+                LockedDice.Clear();
                 
                 TryRoll();
             }
@@ -175,10 +174,9 @@ namespace Fantazee.Battle.Characters.Player
                 return;
             }
             
-            hasScoredRoll = true;
-            
             if (battleScoreButton.BattleScore.CanScore())
             {
+                hasScoredRoll = true;
                 StartCoroutine(StartScoreSequence(battleScoreButton, BattleUi.Instance.DiceControl.Dice));
             }
         }
@@ -233,7 +231,7 @@ namespace Fantazee.Battle.Characters.Player
                 return;
             }
             
-            lockedDice.Clear();
+            LockedDice.Clear();
             Scored?.Invoke(results);
             if (RollsRemaining > 0)
             {
@@ -267,9 +265,9 @@ namespace Fantazee.Battle.Characters.Player
             {
                 hasScoredRoll = false;
                 RollsRemaining--;
-                foreach (Die d in instance.Dice)
+                foreach (Die d in Dice)
                 {
-                    if(!lockedDice.Contains(d))
+                    if(!LockedDice.Contains(d))
                     {
                         d.Roll();
                     }

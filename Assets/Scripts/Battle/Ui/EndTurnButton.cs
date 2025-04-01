@@ -1,22 +1,28 @@
-using System;
-using Fantazee.Battle.CallbackReceivers;
 using Fantazee.Battle.Characters;
 using Fantazee.Battle.Characters.Player;
 using Fantazee.Scores;
-using UnityEngine;
-using UnityEngine.UI;
+using Fantazee.Ui;
+using Fantazee.Ui.Buttons;
+using Fantazee.Ui.ColorPalettes;
+using UnityEngine.InputSystem;
 
 namespace Fantazee.Battle.Ui
 {
-    public class EndTurnButton : MonoBehaviour
+    public class EndTurnButton : SimpleButton
     {
         private BattlePlayer player;
 
-        [Header("References")]
+        [Header("     Input")]
 
         [SerializeField]
-        private Button button;
+        private InputActionReference endActionRef;
+        private InputAction endAction;
 
+        private void Awake()
+        {
+            endAction = endActionRef.ToInputAction();
+        }
+        
         private void OnEnable()
         {
             BattlePlayer.Spawned += OnCharacterSpawned;
@@ -26,6 +32,9 @@ namespace Fantazee.Battle.Ui
                 player.Scored += OnScored;
                 player.TurnEnded += OnTurnEnd;
             }
+            
+            endAction.performed += OnClick;
+            endAction.Enable();
         }
 
         private void OnDisable()
@@ -37,6 +46,16 @@ namespace Fantazee.Battle.Ui
                 player.Scored -= OnScored;
                 player.TurnEnded -= OnTurnEnd;
             }
+            
+            endAction.performed -= OnClick;
+            endAction.Disable();
+        }
+
+        private void Start()
+        {
+            IsDisabled = true;
+            button.interactable = false;
+            UpdateColors();
         }
 
         private void OnCharacterSpawned(BattleCharacter character)
@@ -50,19 +69,32 @@ namespace Fantazee.Battle.Ui
             }
         }
 
-        public void OnClick()
+        public override void OnClick()
         {
-            BattleController.Instance.Player.EndTurn();
+            base.OnClick();
+            if (!IsDisabled)
+            {
+                BattleController.Instance.Player.EndTurn();
+            }
+        }
+        
+        private void OnClick(InputAction.CallbackContext ctx)
+        {
+            OnClick();
         }
 
         private void OnScored(ScoreResults scoreResults)
         {
             button.interactable = true;
+            IsDisabled = false;
+            UpdateColors();
         }
 
         private void OnTurnEnd()
         {
             button.interactable = false;
+            IsDisabled = true;
+            UpdateColors();
         }
     }
 }

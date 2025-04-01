@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Fantazee.Instance;
 using Fantazee.Relics;
 using Fantazee.Relics.Data;
@@ -8,15 +7,17 @@ using Fantazee.Scores;
 using Fantazee.Scores.Instance;
 using Fantazee.Shop.Ui.Entries;
 using Fantazee.Spells;
-using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Screens
 {
     public class ShopMainScreen : ShopScreen
     {
         private Action<ShopSpellButton> onSpellSelected;
-        private Action<RelicEntry> onRelicSelected;
+        private Action<RelicShopEntry> onRelicSelected;
         private Action<ShopScoreButton> onScoreSelected;
 
         [Header("Prefabs")]
@@ -24,20 +25,21 @@ namespace Fantazee.Shop.Ui.Screens
         [SerializeField]
         private ShopSpellButton shopSpellButtonPrefab;
         
-        [SerializeReference]
-        private List<ShopSpellButton> spellEntries = new();
+        private readonly List<ShopSpellButton> spellEntries = new();
+        public List<ShopSpellButton> SpellEntries => spellEntries;
         
+        [FormerlySerializedAs("relicEntryPrefab")]
         [SerializeField]
-        private RelicEntry relicEntryPrefab;
+        private RelicShopEntry relicShopEntryPrefab;
 
-        [SerializeReference]
-        private List<RelicEntry> relicEntries = new();
+        private readonly List<RelicShopEntry> relicEntries = new();
+        public List<RelicShopEntry> RelicEntries => relicEntries;
 
         [SerializeField]
         private ShopScoreButton shopScoreButtonPrefab;
         
-        [SerializeReference]
-        private List<ShopScoreButton> scorePurchaseEntries = new();
+        private readonly List<ShopScoreButton> scorePurchaseEntries = new();
+        public List<ShopScoreButton> ScorePurchaseEntries => scorePurchaseEntries;
         
         [Header("References")]
 
@@ -58,7 +60,7 @@ namespace Fantazee.Shop.Ui.Screens
 
         public void Initialize(ShopInventory shopInventory, 
                                Action<ShopSpellButton> onSpellSelected,
-                               Action<RelicEntry> onRelicSelected,
+                               Action<RelicShopEntry> onRelicSelected,
                                Action<ShopScoreButton> onScoreSelected)
         {
             this.onSpellSelected = onSpellSelected;
@@ -85,10 +87,44 @@ namespace Fantazee.Shop.Ui.Screens
             foreach (RelicData relic in shopInventory.Relics)
             {
                 RelicInstance r = RelicFactory.Create(relic, GameInstance.Current.Character);
-                RelicEntry relicEntry = Instantiate(relicEntryPrefab, relicContent);
-                relicEntry.Initialize(r, OnRelicSelected);
+                RelicShopEntry relicShopEntry = Instantiate(relicShopEntryPrefab, relicContent);
+                relicShopEntry.Initialize(r, OnRelicSelected);
                 
-                relicEntries.Add(relicEntry);
+                relicEntries.Add(relicShopEntry);
+            }
+
+            if (relicEntries.Count > 0
+                && spellEntries.Count > 0)
+            {
+                // spellEntries[0].Button.navigation
+                //     = spellEntries[0].Button.navigation with
+                //       {
+                //           selectOnDown = relicEntries[0].Button,
+                //       };
+                //
+                // relicEntries[0].Button.navigation
+                //     = relicEntries[0].Button.navigation with
+                //       {
+                //           selectOnUp = spellEntries[0].Button,
+                //       };
+            }
+            
+            SelectFirstButton();
+        }
+
+        public void SelectFirstButton()
+        {
+            if (spellEntries.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(spellEntries[0].gameObject);
+            }
+            else if (scorePurchaseEntries.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(scorePurchaseEntries[0].gameObject);
+            }
+            else if (relicEntries.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(relicEntries[0].gameObject);
             }
         }
 
@@ -98,15 +134,24 @@ namespace Fantazee.Shop.Ui.Screens
             onSpellSelected?.Invoke(spellButton);
         }
 
-        private void OnRelicSelected(RelicEntry relicEntry)
+        private void OnRelicSelected(RelicShopEntry relicShopEntry)
         {
-            Debug.Log($"Shop: OnRelicSelected: {relicEntry}");
-            onRelicSelected?.Invoke(relicEntry);
+            Debug.Log($"Shop: OnRelicSelected: {relicShopEntry}");
+            onRelicSelected?.Invoke(relicShopEntry);
         }
 
         private void OnScoreSelected(ShopScoreButton scoreButton)
         {
             onScoreSelected?.Invoke(scoreButton);
+        }
+
+        public override void Show(bool force = false, Action onComplete = null)
+        {
+            base.Show(force, () =>
+                             {
+                                 SelectFirstButton();
+                                 onComplete?.Invoke();
+                             });
         }
     }
 }

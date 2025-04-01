@@ -1,12 +1,13 @@
-using System.Collections.Generic;
 using Fantazee.Characters;
 using Fantazee.Characters.Settings;
 using Fantazee.Relics.Ui;
 using Fantazee.Scores;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.Buttons;
+using Fantazee.Ui.Buttons;
 using TMPro;
-using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Fantazee.MainMenu.Character.Ui
@@ -34,22 +35,63 @@ namespace Fantazee.MainMenu.Character.Ui
         [SerializeField]
         private RelicEntryUi relic;
 
+        [SerializeField]
+        private Button confirmButton;
+
+        [SerializeField]
+        private SimpleButton leftButton;
+        
+        [SerializeField]
+        private SimpleButton rightButton;
+
+        [Header("     Input")]
+
+        [SerializeField]
+        private InputActionReference moveActionRef;
+        private InputAction moveAction;
+        
+        private void Awake()
+        {
+            moveAction = moveActionRef.ToInputAction();
+        }
+
+        private void OnEnable()
+        {
+            moveAction.performed += OnNavigate;
+        }
+
+        private void OnDisable()
+        {
+            moveAction.performed -= OnNavigate;
+        }
+
         private void Start()
         {
             characters = new List<CharacterData>(CharacterSettings.Settings.Characters);
             ShowCharacter(0);
         }
+
+        public void Activate()
+        {
+            EventSystem.current.SetSelectedGameObject(confirmButton.gameObject);
+        }
         
         #region Ui Buttons
         
-        public void LeftButton()
+        private void OnNavigate(InputAction.CallbackContext callbackContext)
         {
-            PrevCharacter();
-        }
-
-        public void RightButton()
-        {
-            NextCharacter();
+            float dir = moveAction.ReadValue<Vector2>().x;
+            switch (dir)
+            {
+                case < 0:
+                    leftButton.ClickFlash();
+                    PrevCharacter();
+                    break;
+                case > 0:
+                    rightButton.ClickFlash();
+                    NextCharacter();
+                    break;
+            }
         }
 
         public void ConfirmButton()

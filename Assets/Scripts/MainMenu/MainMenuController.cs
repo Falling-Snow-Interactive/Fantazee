@@ -3,7 +3,6 @@ using Fantazee.Characters;
 using Fantazee.Environments;
 using Fantazee.MainMenu.Character.Ui;
 using Fsi.Gameplay;
-using UnityEngine;
 
 namespace Fantazee.MainMenu
 {
@@ -63,6 +62,8 @@ namespace Fantazee.MainMenu
         {
             characterMenu.gameObject.SetActive(true);
             mainMenu.gameObject.SetActive(false);
+            
+            characterMenu.Activate();
         }
 
         public void Quit()

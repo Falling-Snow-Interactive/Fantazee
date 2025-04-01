@@ -1,26 +1,25 @@
 using System;
 using DG.Tweening;
-using UnityEngine;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using Fantazee.Ui.Buttons;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Spells.Ui
 {
-    public class SpellButton : MonoBehaviour
+    public class SpellButton : SimpleButton
     {
-        private Action<SpellButton> onSelect;
-
+        private Action<SpellButton> onClickCallback;
+        
+        [Header("Spell")]
+        
         [SerializeReference]
         private SpellInstance spell;
         public SpellInstance Spell => spell;
 
         [SerializeField]
         private Image icon;
-        
-        [SerializeField]
-        private Button button;
-        
-        [SerializeField]
-        private SpellTooltip tooltip;
         
         [Header("Animations")]
         
@@ -38,23 +37,25 @@ namespace Fantazee.Spells.Ui
         [SerializeField]
         private Vector3 punchScale;
 
-        public void Initialize(SpellInstance spell, Action<SpellButton> onSelect)
+        protected bool canSelect = false;
+
+        public void Initialize(SpellInstance spell, Action<SpellButton> onClickCallback)
         {
-            this.onSelect = onSelect;
+            this.onClickCallback = onClickCallback;
             
             this.spell = spell;
             icon.sprite = spell.Data.Icon;
-
-            tooltip.Initialize(spell);
-            tooltip?.Hide();
         }
 
-        public void Activate(Action<SpellButton> onSelect)
+        public Tweener Activate(Action<SpellButton> onClickCallback)
         {
-            this.onSelect = onSelect;
+            this.onClickCallback = onClickCallback;
             DOTween.Complete(transform);
-            
-            transform.DOScale(Vector3.one * 2f, 0.2f);
+
+            Tweener t = transform.DOScale(Vector3.one * 2f, 0.2f);
+            canSelect = true;
+
+            return t;
         }
 
         public void Deactivate()
@@ -62,25 +63,23 @@ namespace Fantazee.Spells.Ui
             DOTween.Complete(transform);
             
             transform.DOScale(Vector3.one, 0.2f);
+            canSelect = false;
         }
 
-        public void OnSelect()
+        public override void OnClick()
         {
-            onSelect?.Invoke(this);
-        }
-
-        public void SetTooltip(bool set)
-        {
-            if (set && spell.Data.Type != SpellType.spell_none)
+            if (canSelect)
             {
-                tooltip.transform.SetParent(transform.parent.parent, true);
-                tooltip.transform.SetAsLastSibling();
-                tooltip?.Show(Spell);
+                base.OnClick();
+                onClickCallback?.Invoke(this);
             }
-            else
+        }
+
+        public override void OnSelect()
+        {
+            if (canSelect)
             {
-                tooltip.transform.SetParent(transform, true);
-                tooltip?.Hide();
+                base.OnSelect();
             }
         }
 

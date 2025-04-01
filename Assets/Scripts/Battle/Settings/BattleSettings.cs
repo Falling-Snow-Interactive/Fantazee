@@ -2,7 +2,6 @@ using DG.Tweening;
 using Fantazee.Battle.Characters.Intentions.Information;
 using FMODUnity;
 using UnityEditor;
-using UnityEngine;
 
 namespace Fantazee.Battle.Settings
 {
@@ -14,7 +13,7 @@ namespace Fantazee.Battle.Settings
         private static BattleSettings _settings;
         public static BattleSettings Settings => _settings ??= GetOrCreateSettings();
 
-        [Header("Intentions")]
+        // [Header("Intentions")]
 
         [SerializeField]
         private IntentionInformationGroup intentions;
@@ -26,9 +25,9 @@ namespace Fantazee.Battle.Settings
         private EventReference scoreSfx;
         public EventReference ScoreSfx => scoreSfx;
         
-        [Header("Animations")]
+        // [Header("Animations")]
         
-        [Header("Score Sequence")]
+        // [Header("Score Sequence")]
         
         [SerializeField]
         private float scoreTime = 0.2f;

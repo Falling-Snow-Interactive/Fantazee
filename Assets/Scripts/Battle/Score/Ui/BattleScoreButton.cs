@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Settings;
 using Fantazee.Dice.Settings;
@@ -8,22 +7,18 @@ using Fantazee.Items.Dice.Information;
 using Fantazee.Scores;
 using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Spells;
-using Fantazee.Spells.Ui;
 using FMODUnity;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Fantazee.Battle.Score.Ui
 {
-    public class BattleScoreButton : MonoBehaviour
+    public class BattleScoreButton : ScoreButton
     {
-        [SerializeField]
-        private ScoreButton scoreButton;
-        
-        private BattleScore battleScore;
-        public BattleScore BattleScore => battleScore;
+        public BattleScore BattleScore { get; private set; }
 
+        [Header("Battle Score Button")]
+        
         [SerializeField]
         private bool isFinalized = false;
         public bool IsFinalized => isFinalized;
@@ -52,13 +47,14 @@ namespace Fantazee.Battle.Score.Ui
         [SerializeField]
         private TMP_Text previewText;
         
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            if (battleScore != null)
+            base.OnEnable();
+            if (BattleScore != null)
             {
-                battleScore.DieAdded += OnDieAdded;
-                battleScore.ScoreReset += OnBattleScoreReset;
-                battleScore.SpellCastStart += OnSpellCastStart;
+                BattleScore.DieAdded += OnDieAdded;
+                BattleScore.ScoreReset += OnBattleScoreReset;
+                BattleScore.SpellCastStart += OnSpellCastStart;
             }
             
             if (BattleController.Instance && BattleController.Instance.Player)
@@ -68,13 +64,14 @@ namespace Fantazee.Battle.Score.Ui
             }
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
-            if (BattleController.Instance && battleScore != null)
+            base.OnDisable();
+            if (BattleController.Instance && BattleScore != null)
             {
-                battleScore.DieAdded -= OnDieAdded;
-                battleScore.ScoreReset -= OnBattleScoreReset;
-                battleScore.SpellCastStart -= OnSpellCastStart;
+                BattleScore.DieAdded -= OnDieAdded;
+                BattleScore.ScoreReset -= OnBattleScoreReset;
+                BattleScore.SpellCastStart -= OnSpellCastStart;
             }
 
             if (BattleController.Instance.Player)
@@ -84,12 +81,12 @@ namespace Fantazee.Battle.Score.Ui
             }
         }
 
-        public void Initialize(BattleScore battleScore, Action<BattleScoreButton> onSelect)
+        public void Initialize(BattleScore battleScore, Action<BattleScoreButton> onClickCallback)
         {
-            this.battleScore = battleScore;
-            scoreButton.Initialize(battleScore.Score, _ =>
+            BattleScore = battleScore;
+            base.Initialize(battleScore.Score, _ =>
                                                       {
-                                                          onSelect?.Invoke(this);
+                                                          onClickCallback?.Invoke(this);
                                                       });
             
             battleScore.DieAdded += OnDieAdded;
@@ -111,7 +108,7 @@ namespace Fantazee.Battle.Score.Ui
             }
         }
 
-        private List<int> GetDiceValues()
+        private new List<int> GetDiceValues()
         {
             return new List<int>{0,0,0,0,0};
         }
@@ -119,7 +116,7 @@ namespace Fantazee.Battle.Score.Ui
         public void FinalizeScore(int score)
         {
             isFinalized = true;
-            scoreButton.Button.interactable = false;
+            SetInteractable(false);
             scoreText.gameObject.SetActive(true);
             scoreText.text = score.ToString();
             RuntimeManager.PlayOneShot(BattleSettings.Settings.ScoreSfx);
@@ -140,7 +137,7 @@ namespace Fantazee.Battle.Score.Ui
             
             previewText.gameObject.SetActive(true);
 
-            ScoreResults results = new(battleScore.Score, GameInstance.Current.Character.Dice);
+            ScoreResults results = new(BattleScore.Score, BattleController.Instance.Player.Dice);
             results = BattleController.Instance.Player.CheckScoreReceivers(results);
             previewText.text = results.Value.ToString();
         }
@@ -152,9 +149,9 @@ namespace Fantazee.Battle.Score.Ui
         
         private void OnDieAdded()
         {
-            for (int i = 0; i < battleScore.Dice.Count; i++)
+            for (int i = 0; i < BattleScore.Dice.Count; i++)
             {
-                ShowDieInSlot(i, battleScore.Dice[i].Value);
+                ShowDieInSlot(i, BattleScore.Dice[i].Value);
             }
         }
 
@@ -177,28 +174,32 @@ namespace Fantazee.Battle.Score.Ui
         private void OnBattleScoreReset()
         {
             isFinalized = false;
+            IsDisabled = false;
+            button.interactable = true;
             for (int i = 0; i < diceImages.Count; i++)
             {
-                int v = battleScore.Dice.Count > i ? battleScore.Dice[i].Value : 0;
+                int v = BattleScore.Dice.Count > i ? BattleScore.Dice[i].Value : 0;
                 ShowDieInSlot(i, v);
             }
 
-            scoreButton.Button.interactable = battleScore.Dice.Count == 0;
-            scoreText.text = battleScore.Dice.Count == 0 ? "" : battleScore.Calculate().ToString();
+            // scoreButton.Button.interactable = battleScore.Dice.Count == 0;
+            scoreText.text = BattleScore.Dice.Count == 0 ? "" : BattleScore.Calculate().ToString();
             
             transform.DOShakeRotation(0.3f, Vector3.one * 4f, 10, 90f, true, ShakeRandomnessMode.Full)
                      .SetEase(Ease.Linear);
+            
+            UpdateColors();
         }
 
         private void OnSpellCastStart(SpellInstance spell)
         {
-            foreach (SpellButton s in scoreButton.Spells)
-            {
-                if (s.Spell == spell)
-                {
-                    s.Punch();
-                }
-            }
+            // foreach (SpellButton s in scoreButton.Spells)
+            // {
+            //     if (s.Spell == spell)
+            //     {
+            //         s.Punch();
+            //     }
+            // }
         }
 
         private void OnRollFinished()
@@ -209,6 +210,12 @@ namespace Fantazee.Battle.Score.Ui
         private void OnRollStarted()
         {
             HidePreview();
+        }
+
+        protected override void SetTooltips(bool set)
+        {
+            transform.SetAsLastSibling();
+            base.SetTooltips(set);
         }
     }
 }

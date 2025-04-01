@@ -1,16 +1,16 @@
 using DG.Tweening;
 using Fantazee.Relics.Data;
-using Fantazee.Relics.Information;
 using Fantazee.Relics.Instance;
 using Fantazee.Relics.Settings;
+using Fantazee.Ui.Buttons;
 using TMPro;
-using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fantazee.Relics.Ui
 {
-    public class RelicEntryUi : MonoBehaviour
+    public class RelicEntryUi : SimpleButton
     {
         private RelicInstance relic;
 
@@ -20,20 +20,31 @@ namespace Fantazee.Relics.Ui
         [Header("References")]
         
         [SerializeField]
-        private Image image;
+        protected Image image;
+
+        [FormerlySerializedAs("relicTooltip")]
+        [SerializeField]
+        protected GameObject tooltip;
+        
+        [SerializeField]
+        protected TMP_Text relicName;
+        
+        [SerializeField]
+        protected TMP_Text relicDescription;
+        
+        [Header("Input")]
 
         [SerializeField]
-        private GameObject relicTooltip;
-        
-        [SerializeField]
-        private TMP_Text relicName;
-        
-        [SerializeField]
-        private TMP_Text relicDescription;
+        private InputActionReference expandActionReference;
+        private InputAction expandAction;
 
         private void Awake()
         {
-            relicTooltip.SetActive(!hideTooltipOnAwake);
+            tooltip.SetActive(!hideTooltipOnAwake);
+            if (expandActionReference)
+            {
+                expandAction = expandActionReference.ToInputAction();
+            }
         }
 
         private void OnEnable()
@@ -42,6 +53,14 @@ namespace Fantazee.Relics.Ui
             {
                 relic.Activated += OnActivated;
             }
+
+            if (expandAction != null)
+            {
+                expandAction.started += OnExpandStarted;
+                expandAction.canceled += OnExpandCanceled;
+
+                expandAction.Enable();
+            }
         }
 
         private void OnDisable()
@@ -49,6 +68,14 @@ namespace Fantazee.Relics.Ui
             if (relic != null)
             {
                 relic.Activated -= OnActivated;
+            }
+
+            if (expandAction != null)
+            {
+                expandAction.started -= OnExpandStarted;
+                expandAction.canceled -= OnExpandCanceled;
+
+                expandAction.Disable();
             }
         }
 
@@ -85,7 +112,32 @@ namespace Fantazee.Relics.Ui
 
         public void SetTooltip(bool set)
         {
-            relicTooltip.SetActive(set);
+            tooltip.SetActive(set);
+        }
+
+        public override void OnSelect()
+        {
+            base.OnSelect();
+            // tooltip.SetActive(true);
+        }
+
+        public override void OnDeselect()
+        {
+            base.OnDeselect();
+            tooltip.SetActive(false);
+        }
+        
+        private void OnExpandStarted(InputAction.CallbackContext ctx)
+        {
+            if (IsSelected)
+            {
+                tooltip.gameObject.SetActive(true);
+            }
+        }
+
+        private void OnExpandCanceled(InputAction.CallbackContext ctx)
+        {
+            tooltip.gameObject.SetActive(false);
         }
     }
 }

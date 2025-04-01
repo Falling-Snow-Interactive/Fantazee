@@ -1,147 +1,140 @@
 using System;
+using DG.Tweening;
 using Fantazee.Scores.Instance;
+using Fantazee.Spells;
 using Fantazee.Spells.Ui;
+using Fantazee.Ui.Buttons;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Fantazee.Scores.Ui.Buttons
 {
-    public class ScoreButton : MonoBehaviour
+    public class ScoreButton : SimpleButton
     {
-        private Action<ScoreButton> onSelect;
-        
-        [SerializeReference]
-        private ScoreInstance score;
-        public ScoreInstance Score
-        {
-            get => score;
-            set => score = value;
-        }
+        // Callback
+        private Action<ScoreButton> onClickCallback;
+
+        // Score
+        public ScoreInstance Score { get; set; }
+        private List<Tweener> colorTweens = new();
+
+        [Header("Score Button")]
+
+        [SerializeField]
+        private SpellTooltip tooltipPrefab;
 
         [Header("References")]
-        
+
         [SerializeField]
         private TMP_Text nameText;
+
         public TMP_Text NameText => nameText;
 
         [SerializeField]
-        protected Button button;
-        public Button Button => button;
-        
-        [SerializeField]
         private List<SpellButton> spells = new();
-        public List<SpellButton> Spells => spells;
 
-        public void Initialize(ScoreInstance score, Action<ScoreButton> onSelect)
+        [SerializeField]
+        private Transform tooltipContainer;
+
+        [Header("     Input")]
+
+        [SerializeField]
+        private InputActionReference expandActionReference;
+        private InputAction expandAction;
+
+        private void Awake()
         {
-            this.score = score;
-            this.onSelect = onSelect;
-            
-            Debug.Assert(spells.Count <= score.Spells.Count);
-            for (int i = 0; i < Spells.Count; i++)
+            if (expandActionReference)
             {
-                Spells[i].Initialize(score.Spells[i], null);
+                expandAction = expandActionReference.ToInputAction();
             }
-            
-            UpdateVisuals();
         }
-        
-        public void OnSelect()
+
+        protected virtual void OnEnable()
         {
-            onSelect?.Invoke(this);
+            if (expandAction != null)
+            {
+                expandAction.started += OnExpandStarted; // ctx => SetTooltips(true);
+                expandAction.canceled += OnExpandCanceled; // ctx => SetTooltips(false);
+
+                expandAction.Enable();
+            }
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (expandAction != null)
+            {
+                expandAction.started -= OnExpandStarted;
+                expandAction.canceled -= OnExpandCanceled;
+
+                expandAction.Disable();
+            }
+        }
+
+        public void Initialize(ScoreInstance score, Action<ScoreButton> onClickCallback)
+        {
+            Score = score;
+            this.onClickCallback = onClickCallback;
+
+            Debug.Assert(spells.Count <= score.Spells.Count);
+            List<SpellType> tooltipCreated = new();
+            for (int i = 0; i < spells.Count; i++)
+            {
+                SpellButton button = spells[i];
+                SpellInstance spell = score.Spells[i];
+                
+                button.Initialize(spell, null);
+
+                if (spell.Data.Type != SpellType.spell_none 
+                    && !tooltipCreated.Contains(spell.Data.Type))
+                {
+                    SpellTooltip tooltip = Instantiate(tooltipPrefab, tooltipContainer);
+                    tooltip.Initialize(spell);
+                    tooltipCreated.Add(spell.Data.Type);
+                }
+            }
+
+            UpdateVisuals();
+            SetTooltips(false);
         }
 
         public void UpdateVisuals()
         {
-            nameText.text = score.Data.Name;
-            button.interactable = true;
+            nameText.text = Score.Data.Name;
+            if (button)
+            {
+                button.interactable = true;
+            }
 
-            Debug.Assert(spells.Count == score.Spells.Count, 
-                         $"Spells Count ({spells.Count}) != Score Spells Count ({score.Spells.Count}).", 
+            Debug.Assert(spells.Count == Score.Spells.Count,
+                         $"Spells Count ({spells.Count}) != Score Spells Count ({Score.Spells.Count}).",
                          gameObject);
             for (int i = 0; i < spells.Count; i++)
             {
-                spells[i].Initialize(score.Spells[i], null);
+                spells[i].Initialize(Score.Spells[i], null);
             }
-        }
-
-        protected List<int> GetDiceValues()
-        {
-            List<int> diceValues = new();
-
-            switch (score)
-            {
-                case NumberScoreInstance n:
-                    diceValues = new List<int>{n.NumberData.Number, 
-                                                  n.NumberData.Number, 
-                                                  n.NumberData.Number,
-                                                  n.NumberData.Number,
-                                                  n.NumberData.Number};
-                    break;
-                case KindScoreInstance k:
-                    diceValues = new List<int>();
-                    for (int i = 0; i < k.KindData.Kind; i++)
-                    {
-                        diceValues.Add(6);
-                    }
-
-                    while (diceValues.Count < 5)
-                    {
-                        diceValues.Add(Random.Range(1, 6));
-                    }
-
-                    break;
-                case RunScoreInstance r:
-                    diceValues = new List<int>();
-                    for (int i = 0; i < r.RunData.Run; i++)
-                    {
-                        diceValues.Add(1 + i);
-                    }
-
-                    while (diceValues.Count < 5)
-                    {
-                        diceValues.Add(Random.Range(1, r.RunData.Run));
-                    }
-
-                    break;
-                case FullHouseScoreInstance f:
-                    diceValues = new List<int> { 5,5,5,2,2 };
-                    break;
-                case ChanceScoreInstance c:
-                    diceValues = new List<int>{Random.Range(1, 6), 
-                                                  Random.Range(1, 6), 
-                                                  Random.Range(1, 6), 
-                                                  Random.Range(1, 6), 
-                                                  Random.Range(1, 6)};
-                    break;
-                case FantazeeScoreInstance f:
-                    diceValues = new List<int> { 6,6,6,6,6 };
-                    break;
-                case TwoPairScoreInstance tp:
-                    diceValues = new List<int> { 6, 6, 5, 5, Random.Range(1, 5) };
-                    break;
-                case EvenOddScoreInstance e when !e.EvenOddData.Even:
-                    diceValues = new List<int> { 1, 3, 5, 3, 1 };
-                    break;
-                case EvenOddScoreInstance e when e.EvenOddData.Even:
-                    diceValues = new List<int> { 2, 4, 6, 4, 2 };
-                    break;
-                default:
-                    Debug.LogError($"{nameof(score)} has not been implemented.");
-                    break;
-            }
-            
-            return diceValues;
         }
 
         #region Request Spell
-        
+
         public void RequestSpell(Action<SpellButton> onSpellSelect)
         {
+            Sequence sequence = DOTween.Sequence();
+            
             foreach (SpellButton spell in spells)
             {
-                spell.Activate(s => OnSpellSelected(s, onSpellSelect));
+                sequence.Insert(0, spell.Activate(s => OnSpellSelected(s, onSpellSelect)));
             }
+
+            sequence.OnComplete(() =>
+                                {
+                                    EventSystem.current.SetSelectedGameObject(spells[0].gameObject);
+                                });
+            
+            sequence.Play();
         }
 
         private void OnSpellSelected(SpellButton spell, Action<SpellButton> onSpellSelect)
@@ -151,9 +144,41 @@ namespace Fantazee.Scores.Ui.Buttons
                 s.Deactivate();
             }
 
+            EventSystem.current.SetSelectedGameObject(null);
             onSpellSelect?.Invoke(spell);
         }
-        
+
         #endregion
+
+        public override void OnClick()
+        {
+            base.OnClick();
+            onClickCallback?.Invoke(this);
+        }
+
+        protected virtual void SetTooltips(bool set)
+        {
+            tooltipContainer.gameObject.SetActive(set && IsSelected);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(tooltipContainer.transform as RectTransform);
+        }
+
+        public override void OnDeselect()
+        {
+            base.OnDeselect();
+            SetTooltips(false);
+        }
+        
+        private void OnExpandStarted(InputAction.CallbackContext ctx)
+        {
+            if (IsSelected)
+            {
+                SetTooltips(true);
+            }
+        }
+        
+        private void OnExpandCanceled(InputAction.CallbackContext ctx)
+        {
+            SetTooltips(false);
+        }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using Fantazee.Currencies;
 using Fantazee.Currencies.Ui;
 using Fantazee.Instance;
@@ -7,7 +9,7 @@ using Fantazee.Shop.Ui.Entries;
 using Fantazee.Shop.Ui.Screens;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Fantazee.Shop.Ui
 {
@@ -40,6 +42,12 @@ namespace Fantazee.Shop.Ui
         private EventReference purchaseSfxRef;
         private EventInstance? purchaseSfx;
 
+        [Header("     Input")]
+
+        [SerializeField]
+        private InputActionReference cancelActionRef;
+        private InputAction cancelAction;
+
         private void Awake()
         {
             mainScreen.Show(true);
@@ -54,6 +62,22 @@ namespace Fantazee.Shop.Ui
             {
                 purchaseSfx = RuntimeManager.CreateInstance(purchaseSfxRef);
             }
+
+            cancelAction = cancelActionRef.ToInputAction();
+        }
+
+        private void OnEnable()
+        {
+            cancelAction.performed += OnCancelAction;
+            
+            cancelAction.Enable();
+        }
+
+        private void OnDisable()
+        {
+            cancelAction.performed -= OnCancelAction;
+            
+            cancelAction.Disable();
         }
 
         public void Initialize(ShopInventory inventory)
@@ -82,17 +106,18 @@ namespace Fantazee.Shop.Ui
             }
         }
 
-        private void OnRelicSelected(RelicEntry relicEntry)
+        private void OnRelicSelected(RelicShopEntry relicShopEntry)
         {
-            if (GameInstance.Current.Character.Wallet.CanAfford(relicEntry.Cost))
+            if (GameInstance.Current.Character.Wallet.CanAfford(relicShopEntry.Relic.Data.Cost))
             {
-                ShopController.Instance.MakePurchase(relicEntry.Cost);
-                GameInstance.Current.Character.AddRelic(relicEntry.Relic);
-                Destroy(relicEntry.gameObject);
+                ShopController.Instance.MakePurchase(relicShopEntry.Relic.Data.Cost);
+                GameInstance.Current.Character.AddRelic(relicShopEntry.Relic);
+                Destroy(relicShopEntry.gameObject);
+                mainScreen.SelectFirstButton();
             }
             else
             {
-                relicEntry.PlayCantAfford();
+                // relicShopEntry.PlayCantAfford();
             }
         }
 
@@ -119,7 +144,7 @@ namespace Fantazee.Shop.Ui
                                                                              {
                                                                                  UpgradeFinished(shopScoreButton.Score.Data.Cost,
                                                                                      shopScoreButton.gameObject);
-                                                                             });
+                                                                             }, UpgradeCanceled);
         }
 
         private void SelectSpell(ShopSpellButton spellButton)
@@ -130,13 +155,31 @@ namespace Fantazee.Shop.Ui
                                                                              {
                                                                                  UpgradeFinished(spellButton.Spell.Data.Cost, 
                                                                                      spellButton.gameObject);
-                                                                             });
+                                                                             },UpgradeCanceled);
+        }
+
+        private void UpgradeCanceled()
+        {
+            scoresheetUpgradeScreen.Hide();
+            mainScreen.Show();
         }
 
         private void UpgradeFinished(Currency cost, GameObject objectToDisable)
         {
             MakePurchase(cost);
-            objectToDisable.SetActive(false);
+            // objectToDisable.SetActive(false);
+
+            if (objectToDisable.TryGetComponent(out ShopSpellButton spellButton))
+            {
+                mainScreen.SpellEntries.Remove(spellButton);
+            }
+            else if (objectToDisable.TryGetComponent(out ShopScoreButton scoreButton))
+            {
+                mainScreen.ScorePurchaseEntries.Remove(scoreButton);
+            }
+            
+            DOTween.Complete(objectToDisable);
+            Destroy(objectToDisable);
             scoresheetUpgradeScreen.Hide();
             mainScreen.Show();
         }
@@ -151,6 +194,18 @@ namespace Fantazee.Shop.Ui
         {
             Debug.Log("ShopUi - Leave button clicked");
             shopController.LeaveShop();
+        }
+        
+        private void OnCancelAction(InputAction.CallbackContext callbackContext)
+        {
+            if (mainScreen.IsActiveScreen)
+            {
+                OnLeaveButtonClicked();
+            }
+            else
+            {
+                scoresheetUpgradeScreen.OnCancelSelect();
+            }
         }
     }
 }

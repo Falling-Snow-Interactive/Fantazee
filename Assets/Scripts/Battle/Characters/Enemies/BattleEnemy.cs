@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Characters.Enemies.Actions;
 using Fantazee.Battle.Characters.Enemies.Actions.ActionData;
@@ -10,7 +9,6 @@ using Fantazee.Enemies;
 using Fantazee.Instance;
 using FMODUnity;
 using Fsi.Gameplay.Healths;
-using UnityEngine;
 
 namespace Fantazee.Battle.Characters.Enemies
 {

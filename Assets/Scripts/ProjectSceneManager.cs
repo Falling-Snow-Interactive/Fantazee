@@ -74,7 +74,7 @@ namespace Fantazee
             LoadSceneAsync(innScene.Name, LoadSceneMode.Single, onComplete);
         }
         
-        private void LoadBattleEnvironment(EnvironmentData data, Action onComplete)
+        public void LoadBattleEnvironment(EnvironmentData data, Action onComplete)
         {
             LoadSceneAsync(data.Battle.Name, LoadSceneMode.Additive, onComplete);
         }

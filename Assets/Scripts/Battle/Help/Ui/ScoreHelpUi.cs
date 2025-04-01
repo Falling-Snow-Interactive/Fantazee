@@ -1,26 +1,22 @@
-using System.Collections.Generic;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
-using UnityEngine;
 
 namespace Fantazee.Battle.Help.Ui
 {
     public class ScoreHelpUi : MonoBehaviour
     {
         [SerializeField]
-        private HelpScoreEntry helpEntryPrefab;
-        
-        private readonly List<HelpScoreEntry> entries = new();
-
-        [SerializeField]
-        private Transform content;
+        private List<HelpScoreEntry> entries = new();
 
         private void Start()
         {
-            foreach (ScoreInstance score in GameInstance.Current.Character.Scoresheet.Scores)
+            List<ScoreInstance> scores = GameInstance.Current.Character.Scoresheet.Scores;
+            Debug.Assert(entries.Count <= scores.Count);
+            for (int i = 0; i < entries.Count; i++)
             {
-                HelpScoreEntry entry = Instantiate(helpEntryPrefab, content);
-                entry.Initialize(score);
+                HelpScoreEntry entry = entries[i];
+                entry.gameObject.SetActive(true);
+                entry.Initialize(scores[i]);
             }
         }
     }

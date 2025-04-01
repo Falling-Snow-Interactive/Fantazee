@@ -3,18 +3,12 @@ using DG.Tweening;
 using Fantazee.Currencies.Ui;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.Buttons;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Fantazee.Shop.Ui.Entries
 {
-    public class ShopScoreButton : MonoBehaviour
+    public class ShopScoreButton : ScoreButton
     {
-        public ScoreInstance Score => scoreButton.Score;
-        
-        [SerializeField]
-        private ScoreButton scoreButton;
-        
         [Header("Cost")]
         
         [SerializeField]
@@ -27,7 +21,7 @@ namespace Fantazee.Shop.Ui.Entries
         
         public void Initialize(ScoreInstance score, Action<ShopScoreButton> onSelect)
         {
-            scoreButton.Initialize(score, _ =>
+            base.Initialize(score, _ =>
                                           {
                                               onSelect?.Invoke(this);
                                           });
@@ -38,7 +32,7 @@ namespace Fantazee.Shop.Ui.Entries
         {
             DOTween.Complete(transform);
             DOTween.Complete(borderImage);
-            DOTween.Complete(scoreButton.NameText);
+            DOTween.Complete(NameText);
             
             transform.DOPunchScale(Vector3.one * -0.1f, 0.2f, 10, 1f);
             
@@ -48,11 +42,11 @@ namespace Fantazee.Shop.Ui.Entries
             borderImage.color = b2;
             borderImage.DOColor(b1, 0.2f);
 
-            Color t1 = scoreButton.NameText.color;
+            Color t1 = NameText.color;
             Color t2 = Color.red;
             t2.a = t1.a;
-            scoreButton.NameText.color = t2;
-            scoreButton.NameText.DOColor(t1, 0.2f);
+            NameText.color = t2;
+            NameText.DOColor(t1, 0.2f);
         }
     }
 }

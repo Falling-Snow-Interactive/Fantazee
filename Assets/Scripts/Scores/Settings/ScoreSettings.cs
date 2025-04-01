@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Fantazee.Scores.Data;
+using Fantazee.Ui;
+using Fantazee.Ui.ColorPalettes;
 using UnityEditor;
-using UnityEngine;
 
 namespace Fantazee.Scores.Settings
 {
@@ -20,6 +20,10 @@ namespace Fantazee.Scores.Settings
         [SerializeField]
         private List<ScoreData> scores = new();
         private Dictionary<ScoreType, ScoreData> scoreDict;
+        
+        [SerializeField]
+        private ColorPalette buttonColorPalette;
+        public ColorPalette ButtonColorPalette => buttonColorPalette;
 
         private Dictionary<ScoreType, ScoreData> BuildScoreDict()
         {
@@ -36,6 +40,11 @@ namespace Fantazee.Scores.Settings
         {
             scoreDict ??= BuildScoreDict();
             return scoreDict.TryGetValue(type, out score);
+        }
+
+        public void ResetColors()
+        {
+            buttonColorPalette.ResetColors();
         }
 
         #region Settings

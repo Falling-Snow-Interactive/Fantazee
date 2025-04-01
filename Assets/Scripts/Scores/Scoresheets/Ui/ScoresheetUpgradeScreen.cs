@@ -1,16 +1,14 @@
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
 using Fantazee.Battle.Score.Ui;
 using Fantazee.Instance;
 using Fantazee.Scores.Instance;
 using Fantazee.Scores.Ui.Buttons;
 using Fantazee.Shop.Settings;
-using Fantazee.Shop.Ui;
 using Fantazee.Spells;
 using Fantazee.Spells.Ui;
 using FMODUnity;
-using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Fantazee.Scores.Scoresheets.Ui
@@ -18,6 +16,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
     public class ScoresheetUpgradeScreen : MonoBehaviour
     {
         private Action onComplete;
+        private Action onCancel;
         
         [SerializeField]
         private ScoresheetUi scoresheet;
@@ -138,13 +137,20 @@ namespace Fantazee.Scores.Scoresheets.Ui
         [SerializeField]
         private Transform root;
 
+        [SerializeField]
+        private Button cancelButton;
+
         private bool isSpellUpgrade = false;
 
-        public void StartScoreUpgrade(ScoreInstance scoreToReceive, Action onComplete = null)
+        public void StartScoreUpgrade(ScoreInstance scoreToReceive, Action onComplete = null, Action onCancel = null)
         {
             isSpellUpgrade = false;
             
             this.onComplete = onComplete;
+            this.onCancel = onCancel;
+
+            cancelButton.gameObject.SetActive(onCancel != null);
+            
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(false);
@@ -153,15 +159,18 @@ namespace Fantazee.Scores.Scoresheets.Ui
             toReceiveScore.transform.localRotation = Quaternion.identity;
             toReceiveScore.transform.localScale = Vector3.one;
             toReceiveScore.Initialize(scoreToReceive, null);
+            
+            EventSystem.current.SetSelectedGameObject(scoresheet.ScoreButtons[0].gameObject);
 
             scoresheet.RequestScore(OnScoreSelect, true);
         }
         
-        public void StartSpellUpgrade(SpellInstance spellToReceive, Action onComplete = null)
+        public void StartSpellUpgrade(SpellInstance spellToReceive, Action onComplete = null, Action onCancel = null)
         {
             isSpellUpgrade = true;
             
             this.onComplete = onComplete;
+            this.onCancel = onCancel;
             scoresheet.Initialize(GameInstance.Current.Character.Scoresheet);
             
             toReceiveSpell.gameObject.SetActive(true);
@@ -170,6 +179,8 @@ namespace Fantazee.Scores.Scoresheets.Ui
             toReceiveSpell.transform.localRotation = Quaternion.identity;
             toReceiveSpell.transform.localScale = Vector3.one;
             toReceiveSpell.Initialize(spellToReceive, null);
+            
+            EventSystem.current.SetSelectedGameObject(scoresheet.ScoreButtons[0].gameObject);
 
             scoresheet.RequestSpell(OnSpellSelect);
         }
@@ -185,6 +196,11 @@ namespace Fantazee.Scores.Scoresheets.Ui
             toUpgradeScore = scoreToUpgrade;
             toUpgradeSpell = spellToUpgrade;
             ScoreSelectSequence(toReceiveSpell.transform, scoreToUpgrade, () => onComplete?.Invoke());
+        }
+
+        public void OnCancelSelect()
+        {
+            onCancel?.Invoke();
         }
         
         private void Apply()
@@ -311,7 +327,7 @@ namespace Fantazee.Scores.Scoresheets.Ui
             sequence.OnComplete(() =>
                                 {
                                     toUpgradeButton.transform.SetParent(returnParent);
-                                    toUpgradeButton.transform.SetSiblingIndex(siblingIndex);
+                                    // toUpgradeButton.transform.SetSiblingIndex(siblingIndex);
                                     foreach (MonoBehaviour mb in offWhileAnimating)
                                     {
                                         mb.enabled = true;
