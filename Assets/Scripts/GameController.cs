@@ -7,10 +7,10 @@ using Fantazee.Instance;
 using Fantazee.LoadingScreens;
 using Fantazee.Maps;
 using Fsi.Gameplay;
-using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
-using Environment = Fantazee.Environments.Environment;
 
 namespace Fantazee
 {
@@ -50,6 +50,11 @@ namespace Fantazee
 
         private FsiInput input;
         
+        [Header("Input")]
+        
+        [SerializeField]
+        private PlayerInput playerInput;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -63,11 +68,20 @@ namespace Fantazee
         private void OnEnable()
         {
             input.Gameplay.Enable();
+
+            playerInput.onControlsChanged += OnControlsChanged;
         }
 
         private void OnDisable()
         {
             input.Gameplay.Disable();
+            
+            playerInput.onControlsChanged -= OnControlsChanged;
+        }
+
+        private void Start()
+        {
+            OnControlsChanged();
         }
 
         public void NewGame(CharacterData character, EnvironmentData environment)
@@ -304,5 +318,23 @@ namespace Fantazee
         }
 
         #endregion
+        
+        private void OnControlsChanged(PlayerInput _ = null)
+        {
+            Debug.Log(playerInput.currentControlScheme);
+
+            if (playerInput.currentControlScheme == "Keyboard & Mouse")
+            {
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.visible = false;
+                if (EventSystem.current && EventSystem.current.currentSelectedGameObject == null)
+                {
+                    EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
+                }
+            }
+        }
     }
 }

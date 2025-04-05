@@ -117,10 +117,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3d2eebc8-37f0-4600-8a0c-aa06a95d2af7"",
-                    ""path"": ""<XInputController>/select"",
+                    ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Help"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -139,10 +139,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""38b8fe63-3f31-42d9-b434-c7a0e85a466a"",
-                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""NextDie"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -161,10 +161,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c4a7b542-58ca-4a4e-a04a-c7915da45de6"",
-                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""PrevDie"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -183,10 +183,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3ab29322-afa4-4427-b54d-7e3df8c1501e"",
-                    ""path"": ""<XInputController>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""ToggleDie"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -205,10 +205,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2cb5b14e-30a0-4fea-a28b-76bcc9285e8d"",
-                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -216,10 +216,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3d6d593c-0cac-4a7b-a296-9c5871fa0258"",
-                    ""path"": ""<XInputController>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""EndTurn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -324,10 +324,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0bb16347-28cc-470f-9f9d-5461a116937a"",
-                    ""path"": ""<XInputController>/dpad/right"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""NextNode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -357,10 +357,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""09cdc401-43de-4faf-b2ff-dd7acedcdddc"",
-                    ""path"": ""<XInputController>/dpad/down"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""NextNode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -379,10 +379,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e1132b99-2601-47e4-87c6-35d4d477702c"",
-                    ""path"": ""<XInputController>/dpad/left"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""PrevNode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -415,7 +415,7 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""PrevNode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -445,10 +445,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9a057394-c36e-4118-b5c6-40e5f21315df"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""SelectNode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -540,10 +540,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d57faff4-2459-4acd-97fa-38db6a3d2e7e"",
-                    ""path"": ""<XInputController>/dpad"",
+                    ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -551,10 +551,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8c5fec80-9d61-44c9-abee-dc12e9e6f4e0"",
-                    ""path"": ""<XInputController>/leftStick"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -694,10 +694,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c084b955-2548-4d48-9e93-289ef948bf6f"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -727,10 +727,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dd6be695-e59d-41d6-b80d-65bb50d7c3da"",
-                    ""path"": ""<XInputController>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -771,10 +771,10 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""932cad7c-fda9-4f56-9f93-d5b6d63532da"",
-                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Xbox"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Expand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -800,11 +800,11 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Xbox"",
-            ""bindingGroup"": ""Xbox"",
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
             ""devices"": [
                 {
-                    ""devicePath"": ""<XInputController>"",
+                    ""devicePath"": ""<Gamepad>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -1178,13 +1178,13 @@ public partial class @FsiInput: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
         }
     }
-    private int m_XboxSchemeIndex = -1;
-    public InputControlScheme XboxScheme
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
     {
         get
         {
-            if (m_XboxSchemeIndex == -1) m_XboxSchemeIndex = asset.FindControlSchemeIndex("Xbox");
-            return asset.controlSchemes[m_XboxSchemeIndex];
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
     private int m_TouchSchemeIndex = -1;

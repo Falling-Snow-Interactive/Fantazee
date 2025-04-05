@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 5289247866963360002}
   - component: {fileID: 5505610813834021074}
   - component: {fileID: 8953011610711814437}
+  - component: {fileID: 4725964406284956054}
   m_Layer: 0
   m_Name: Game_CTRL
   m_TagString: Untagged
@@ -235,6 +236,7 @@ MonoBehaviour:
       rid: -2
   loadingScreen: {fileID: 5289247866963360002}
   musicController: {fileID: 5505610813834021074}
+  playerInput: {fileID: 4725964406284956054}
   references:
     version: 2
     RefIds:
@@ -342,3 +344,33 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: -1
   OverrideMaxDistance: -1
+--- !u!114 &4725964406284956054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022420503714906224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 56a95e78813e646a5ac9e6ca082e4d2f, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
